@@ -23,12 +23,12 @@ https://github.com/nptcl/npt.git
 # ドキュメント
 
 - nptの使用方法
-  1. [https://nptcl.hatenablog.com/entry/2020/08/21/214200:title]
-  2. [https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]
-  3. [https://nptcl.hatenablog.com/entry/2020/08/22/132802:title]
-  4. [https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]
-  5. [https://nptcl.hatenablog.com/entry/2020/08/26/001605:title]
-  6. [https://nptcl.hatenablog.com/entry/2021/07/18/231200:title]
+  1. [1. インストール方法](A1_Install.html)
+  2. [2. コンパイルの詳細](A2_Compilation.html)
+  3. [3. nptコマンドの引数](A3_Arguments.html)
+  4. [4. npt amalgamation](A4_Amalgamation.html)
+  5. [5. npt特有の機能](A5_Features.html)
+  6. [6. 入力モジュール](A6_Input.html)
 
 - 開発用
   1. [https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]

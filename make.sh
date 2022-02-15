@@ -8,7 +8,7 @@ if [ ! -d "${input}" ]; then
 	exit 1
 fi
 
-for file in `cd ${input}; find . -name "*.md" -type f`; do
+for file in `cd ${input}; find . -name "*.md" -type f | sort`; do
   base=`basename ${file}`
   path=`dirname ${file}`
   echo ${base}

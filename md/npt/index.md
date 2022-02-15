@@ -31,14 +31,14 @@ https://github.com/nptcl/npt.git
   6. [6. 入力モジュール](A6_Input.html)
 
 - 開発用
-  1. [https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]
-  2. [https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]
-  3. [https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]
-  4. [https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]
-  5. [https://nptcl.hatenablog.com/entry/2020/08/27/143742:title]
-  6. [https://nptcl.hatenablog.com/entry/2020/08/28/130802:title]
-  7. [https://nptcl.hatenablog.com/entry/2020/08/28/192930:title]
-  8. [https://nptcl.hatenablog.com/entry/2022/02/09/214137:title]
+  1. [1. nptをC言語で使用する](B1_Using.html)
+  2. [2. hold変数の使い方](B2_Hold.html)
+  3. [3. 脱出関数](B3_Escape.html)
+  4. [4. 関数の登録](B4_Registering.html)
+  5. [5. LISP ABORT](B5_Abort.html)
+  6. [6. 脱出の操作](B6_Operations.html)
+  7. [7. スタートアップ](B7_StartUp.html)
+  8. [8. Paperオブジェクト](B8_Paper.html)
 
 - 関数仕様
   - [https://nptcl.hatenablog.com/entry/2020/08/24/000754:title]

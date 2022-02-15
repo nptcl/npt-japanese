@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Paperオブジェクト</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Paperオブジェクト</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
+前へ：[https://nptcl.hatenablog.com/entry/2020/08/28/192930:title]</p>
+<h1 id="paperオブジェクト">8.1 Paperオブジェクト</h1>
+<p>Paperオブジェクトは、npt固有のデータ形式です。<br />
+<code>vector</code>のような一次元配列と、byte形式の配列データを同時に保有することができます。<br />
+nptの実装に合ったオブジェクトを作成するため、 メモリ空間に対して効率がよいという利点があります。</p>
+<p>本オブジェクトは、主にC言語上で使用することを目的としています。<br />
+例えば、Common Lispのヒープ上に独自のデータを格納するような場合に便利です。<br />
+操作関数はC言語とCommon Lispのどちらのものも用意されています。</p>
+<h1 id="オブジェクト形式">8.2 オブジェクト形式</h1>
+<p>nptのオブジェクトは、下記の3つのいずれかの形で表されます。</p>
+<ul>
+<li>array形式</li>
+<li>body形式</li>
+<li>array-body形式</li>
+</ul>
+<p>array形式は一次元<code>vector</code>と同じです。<br />
+body形式は、バイト単位のバッファ領域を保有します。<br />
+array-body形式は、array形式とbody形式を組み合わせたものです。</p>
+<p>array-body形式には制限があり、arrayとbodyのサイズをどちらも<code>#xFFFF</code>以下にしなければなりません。<br />
+それ以上の長さを使いたい場合は、例えばarray形式とbody形式を分けて確保してください。</p>
+<p>全てのオブジェクトには、User値と呼ばれる1byteのデータ領域が用意されています。<br />
+User値の使い方は自由ですが、Paperオブジェクトを種類分けするために使うことをお勧めします。<br />
+User値のデフォルト値は<code>0</code>です。</p>
+<h1 id="array形式">8.3 array形式</h1>
+<p>array形式の使い方を説明します。<br />
+array形式は、一次元general arrayである、<code>vector</code>と同じです。<br />
+作成は次のようにして行います。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(make-paper size <span class="dv">0</span>)</span></code></pre></div>
+<p>第一引数の<code>size</code>は配列の要素数です。<br />
+例えば、要素数10のPaperを作成する場合は次のようになります。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">10</span> <span class="dv">0</span>)</span></code></pre></div>
+<p>初期値は、全要素が<code>nil</code>です。</p>
+<p>配列の値を取得するには、次のように実行します。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(array-paper paper index)</span></code></pre></div>
+<p>値を設定するには、次のように実行します。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(array-paper paper index value)</span></code></pre></div>
+<p>下記の実行を<code>vector</code>の操作と比較してみます。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">10</span> <span class="dv">0</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(array-paper x <span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(array-paper x <span class="dv">3</span> <span class="st">&quot;Hello&quot;</span>)</span></code></pre></div>
+<p><code>vector</code>では次のようにあらわされます。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (<span class="kw">make-array</span> <span class="dv">10</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">aref</span> x <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">aref</span> x <span class="dv">3</span>) <span class="st">&quot;Hello&quot;</span>)</span></code></pre></div>
+<p>次に、同じことをC言語で行います。<br />
+オブジェクトの作成は次の関数を使用します。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> array<span class="op">,</span> <span class="dt">size_t</span> body<span class="op">);</span></span></code></pre></div>
+<p>実行例を示します。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> main_call_<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    addr x<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">0</span><span class="op">))</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main_lisp<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ignore<span class="op">)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="dt">void</span><span class="op">)</span>main_call_<span class="op">();</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>正しく実行するには上記のようにする必要があるのですが、 説明するうえでは不要のため、 戻り値の判定を省略して次のようにあらわします。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>addr x<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>配列の取得と設定は下記の関数を使用します。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_getarray_<span class="op">(</span>addr x<span class="op">,</span> addr pos<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">);</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_setarray_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">,</span> addr value<span class="op">);</span></span></code></pre></div>
+<p>次の例文をC言語で表してみます。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">10</span> <span class="dv">0</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(array-paper x <span class="dv">3</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(array-paper x <span class="dv">3</span> <span class="st">&quot;Hello&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>addr x<span class="op">,</span> v<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>lisp_paper_getarray_<span class="op">(</span>v<span class="op">,</span> x<span class="op">,</span> <span class="dv">3</span><span class="op">);</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>lisp_string8_<span class="op">(</span>v<span class="op">,</span> <span class="st">&quot;Hello&quot;</span><span class="op">);</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>lisp_paper_setarray_<span class="op">(</span>x<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> v<span class="op">);</span></span></code></pre></div>
+<h1 id="body形式">8.4 body形式</h1>
+<p>body形式の使い方を説明します。<br />
+body形式は、<code>(unsigned-byte 8)</code>形式の 一次元specialized arrayと同じです。<br />
+作成は次のようにして行います。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> size)</span></code></pre></div>
+<p>第二引数の<code>size</code>は確保するバッファのバイト数です。<br />
+例えば、10byteのPaperを作成する場合は次のようになります。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> <span class="dv">10</span>)</span></code></pre></div>
+<p>初期値は不定です。<br />
+array形式とは違い、body形式は値の内容を初期化しません。<br />
+もし初期化が必要な場合は<code>:fill</code>引数を使用します。</p>
+<p>下記の例では、確保したbody部の<code>#x00</code>で初期化します。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> <span class="dv">10</span> :fill <span class="kw">t</span>)</span></code></pre></div>
+<p>または、次のように初期値を指定できます。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> <span class="dv">10</span> :fill <span class="ch">#x</span>FF)</span></code></pre></div>
+<p>値の範囲は<code>0</code>～<code>#xFF</code>の間になります。</p>
+<p>配列の値を取得するには、次のように実行します。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(body-paper paper index)</span></code></pre></div>
+<p>返却される値は、<code>0</code>～<code>#xFF</code>の整数です。</p>
+<p>値を設定するには、次のように実行します。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(body-paper paper index value)</span></code></pre></div>
+<p>valueの値は、<code>0</code>～<code>#xFF</code>の整数である必要があります。</p>
+<p>バッファの取得と設定は下記の関数を使用します。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_getbody_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">,</span> byte <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_setbody_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">,</span> byte value<span class="op">);</span></span></code></pre></div>
+<p>次の例文をC言語で表してみます。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">0</span> <span class="dv">10</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(body-paper x <span class="dv">3</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>(body-paper x <span class="dv">3</span> <span class="ch">#x</span>FF)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>byte value<span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>addr x<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>lisp_paper_getbody_<span class="op">(</span>x<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="op">&amp;</span>value<span class="op">);</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>lisp_paper_setbody_<span class="op">(</span>x<span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="bn">0xFF</span><span class="op">);</span></span></code></pre></div>
+<h1 id="array-body形式">8.5 array-body形式</h1>
+<p>array-body形式の使い方を説明します。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(make-paper size1 size2)</span></code></pre></div>
+<p>第一引数の<code>size1</code>は、array配列の個数です。<br />
+第二引数の<code>size2</code>は、bodyバッファのバイト数です。<br />
+例えば、arrayが10要素、bodyが20byteのPaperを作成する場合は次のようになります。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">10</span> <span class="dv">20</span>)</span></code></pre></div>
+<p>array-body形式を作成する場合は、 <code>size1</code>, <code>size2</code>どちらの値も<code>#xFFFF</code>以下にしてください。<br />
+違反した場合は<code>simple-error</code> conditionが発生します。</p>
+<h1 id="info-array関数">8.6 <code>info-array</code>関数</h1>
+<p><code>info-array</code>関数は、Paperオブジェクトに対して、下記の操作を行います。</p>
+<ul>
+<li>User値の取得と設定</li>
+<li>内容の一括取得</li>
+<li>長さを取得</li>
+</ul>
+<h2 id="user値の取得と設定">8.6.1 User値の取得と設定</h2>
+<p>User値とはオブジェクトが保有する1byteの情報です。<br />
+取得は<code>info-paper</code>関数に、<code>type</code>を指定します。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">0</span> <span class="ch">#x</span>801699220&gt;</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>(info-array paper &#39;type)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">0</span></span></code></pre></div>
+<p>User値は、<code>make-array</code>の<code>:type</code>引数で指定できます。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span> <span class="bu">:type</span> <span class="dv">123</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">123</span> <span class="ch">#x</span>80169b258&gt;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;type)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">123</span></span></code></pre></div>
+<p>または、<code>info-array</code>の引数にて設定できます。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;type <span class="dv">100</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">100</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;type)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">100</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">100</span> <span class="ch">#x</span>80169b258&gt;</span></code></pre></div>
+<p>C言語では、下記の関数を使用します。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_gettype_<span class="op">(</span>addr x<span class="op">,</span> byte <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_settype_<span class="op">(</span>addr x<span class="op">,</span> byte value<span class="op">);</span></span></code></pre></div>
+<p>実行例を示します。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>byte value<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>addr x<span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>lisp_paper_settype_<span class="op">(</span>x<span class="op">,</span> <span class="dv">123</span><span class="op">);</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>lisp_paper_gettype_<span class="op">(</span>x<span class="op">,</span> <span class="op">&amp;</span>value<span class="op">);</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span>value<span class="op">);</span></span></code></pre></div>
+<h2 id="内容の一括取得">8.6.2 内容の一括取得</h2>
+<p>arrayとbodyの内容は、<code>list</code>か<code>vector</code>形式で取得できます。<br />
+arrayの内容を取得してみます。<br />
+取得は<code>info-paper</code>関数に、<code>list</code>か<code>vector</code>を指定します。</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span> :fill <span class="dv">7</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">0</span> <span class="ch">#x</span>80174f258&gt;</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;list)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>-&gt; (NIL NIL NIL)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;vector)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>-&gt; #(NIL NIL NIL)</span></code></pre></div>
+<p>bodyの内容を取得する場合は、<code>info-paper</code>の第三引数に<code>t</code>を指定します。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span> :fill <span class="dv">7</span>))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">0</span> <span class="ch">#x</span>801752c28&gt;</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;list <span class="kw">t</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>-&gt; (<span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;vector <span class="kw">t</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>-&gt; #(<span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span>)</span></code></pre></div>
+<p>なお、body部の<code>vector</code>は、 <code>(unsigned-byte 8)</code>のspecialized array形式で返却されます。</p>
+<h2 id="長さを取得">8.6.2 長さを取得</h2>
+<p>arrayとbodyの長さを取得します。<br />
+取得は<code>info-paper</code>関数に、<code>length</code>を指定します。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;PAPER <span class="dv">0</span> <span class="ch">#x</span>801756418&gt;</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;length)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">3</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;length <span class="kw">t</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="dv">4</span></span></code></pre></div>
+<p>C言語では、下記の関数を使用します。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_lenarray_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_lenbody_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> <span class="op">*</span>ret<span class="op">);</span></span></code></pre></div>
+<p>実行例を示します。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>addr x<span class="op">;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dt">size_t</span> array<span class="op">,</span> body<span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>lisp_paper_<span class="op">(</span>x<span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">);</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>lisp_paper_lenarray_<span class="op">(</span>x<span class="op">,</span> <span class="op">&amp;</span>array<span class="op">);</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>lisp_paper_lenbody_<span class="op">(</span>x<span class="op">,</span> <span class="op">&amp;</span>body<span class="op">);</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>printf<span class="op">(</span><span class="st">&quot;%d, %d</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span>array<span class="op">,</span> <span class="op">(</span><span class="dt">int</span><span class="op">)</span>body<span class="op">);</span></span></code></pre></div>
+<h1 id="その他の内容">8.7 その他の内容</h1>
+<p>下記の内容について説明します。</p>
+<ul>
+<li>Paperオブジェクトと型</li>
+<li><code>compile-file</code>の扱い</li>
+<li>その他のC言語関数</li>
+</ul>
+<h2 id="paperオブジェクトと型">8.7.1 Paperオブジェクトと型</h2>
+<p>Paperオブジェクトは、npt内においては通常のLispオブジェクトです。<br />
+<code>eval</code>で評価できますし、型も持っています。</p>
+<p>型の評価は下記のようにして行います。</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> x &#39;npt-system::paper)</span></code></pre></div>
+<p><code>built-in-class</code>のクラスも存在します。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-class</span> &#39;npt-system::paper)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>-&gt; #&lt;BUILT-IN-CLASS PAPER&gt;</span></code></pre></div>
+<h2 id="compile-fileの扱い">8.7.2 <code>compile-file</code>の扱い</h2>
+<p>Paperオブジェクトは、<code>compile-file</code>で保存できます。<br />
+array部分は<code>vector</code>オブジェクトと同様に扱われます。<br />
+body部分は、バッファの内容をそのままfaslファイルに書き込みます。<br />
+User値も同様に保存されます。</p>
+<h2 id="その他のc言語関数">8.7.3 その他のC言語関数</h2>
+<p>下記の関数が用意されています。</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_getmemory_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> a<span class="op">,</span> <span class="dt">size_t</span> b<span class="op">,</span> <span class="dt">void</span> <span class="op">*</span>output<span class="op">,</span> <span class="dt">size_t</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_setmemory_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> a<span class="op">,</span> <span class="dt">size_t</span> b<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>input<span class="op">,</span> <span class="dt">size_t</span> <span class="op">*</span>ret<span class="op">);</span></span></code></pre></div>
+<p><code>lisp_paper_getmemory_</code>は、body部の内容を一括して取得します。<br />
+<code>lisp_paper_setmemory_</code>は、body部の内容を一括して設定します。</p>
+<p>引数<code>a</code>と<code>b</code>はbody部の位置を表し、<code>a</code>番目から<code>b</code>番目直前までの内容を示します。<br />
+<code>subseq</code>関数と同様、<code>b</code>番目の位置は含まれません。<br />
+<code>a</code>番目から開始し、<code>(- b a)</code>byte分の内容を処理します。</p>
+<p><code>a</code>と<code>b</code>の値は、body部のサイズを超えていてもかまいません。<br />
+処理されたバイト数は、引数<code>ret</code>に格納されます。<br />
+引数<code>ret</code>が<code>NULL</code>の場合は無視されます。</p>
+</body>
+</html>

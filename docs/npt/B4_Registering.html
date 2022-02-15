@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>関数の登録</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">関数の登録</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
+前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]<br />
+次へ：[https://nptcl.hatenablog.com/entry/2020/08/27/143742:title]</p>
+<h1 id="関数の登録">4.1 関数の登録</h1>
+<p>Common Lispの関数を作成する方法を説明します。</p>
+<p>ここではC言語の中だけにとどまらず、 Common Lispの機能でも利用できるようなごく普通の関数を、 C言語だけで実装する方法について説明します。</p>
+<p>通常、関数の作成は<code>lambda</code>と<code>defun</code>によって行われますが、 C言語だけでもほぼ同等の関数を作成できます。<br />
+ただし関数の型だけは違っており、 C言語で作成するため<code>FUNCTION</code>型ではなく、 <code>car</code>のような標準関数と同様に<code>COMPILED-FUNCTION</code>型になります。</p>
+<p>確認してみます。</p>
+<pre><code>* (lambda ())
+#&lt;FUNCTION LAMBDA #x801256a00&gt;
+* #&#39;car
+#&lt;COMPILED-FUNCTION CAR&gt;
+*</code></pre>
+<h1 id="関数ポインタを登録する">4.2 関数ポインタを登録する</h1>
+<p>C言語の関数を使用するには、 関数ポインタに番号を付けて登録する必要があります。</p>
+<p>登録できる関数ポインタの数は最大32個です。<br />
+もし足りないのであれば、 コンパイル時に<code>LISP_POINTER_EXTEND</code>をdefineして下さい。</p>
+<p>例として128個に拡張したコンパイルの実行を下記に示します。</p>
+<pre><code>$ cc -DLISP_POINTER_EXTEND=128 src/*.c -lm</code></pre>
+<p>関数ポインタを登録する命令を下記に示します。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_rest<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> lisp_calltype_rest call<span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_empty<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> lisp_calltype_empty call<span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_var1<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> lisp_calltype_var1 call<span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_var2<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> lisp_calltype_var2 call<span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_var3<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> lisp_calltype_var3 call<span class="op">);</span></span></code></pre></div>
+<p>引数<code>index</code>は登録する番号であり、通常は0～31の値です。<br />
+引数<code>call</code>は脱出関数の関数ポインタです。<br />
+引数によって使う関数が異なります。</p>
+<p>汎用的に使用できるのが<code>lisp_compiled_rest</code>であり、 <code>lisp_calltype_rest</code>は<code>int (*)(addr)</code>型です。<br />
+<code>rest</code>とはlambdaリストの<code>(&amp;rest list)</code>を意味します。<br />
+<code>empty</code>は引数無し、<code>var1</code>は1つ、<code>var2</code>は2つ、<code>var3</code>は3つの引数に対応します。</p>
+<p>登録するのは脱出関数です。</p>
+<h1 id="関数オブジェクトの作成">4.3 関数オブジェクトの作成</h1>
+<p>関数オブジェクトを作成する命令を下記に示します。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_function_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> addr symbol<span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_function8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_function16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_function32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span></code></pre></div>
+<p>これらの関数はCommon Lisp上で実行するものなので、 関数ポインタの登録関数とは違い、 <code>main_lisp</code>関数に制御が渡ってからでないと実行できません。</p>
+<p>例として、次の脱出関数をCommon Lispで使用することを考えます。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> function_test_<span class="op">(</span>addr list<span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_format8_<span class="op">(</span>NULL<span class="op">,</span> <span class="st">&quot;TEST = ~A~%&quot;</span><span class="op">,</span> list<span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>まずは関数番号0番に<code>function_test_</code>の関数ポインタを登録します。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lisp_compiled_rest<span class="op">(</span><span class="dv">0</span><span class="op">,</span> function_test_<span class="op">);</span></span></code></pre></div>
+<p>これで関数生成ができるようになりました。<br />
+関数オブジェクトを作成するには次のようになります。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lisp_compiled_function_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> NULL<span class="op">);</span></span></code></pre></div>
+<p>実行して確認するために、確認用の関数<code>test_output_</code>を作成します。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> test_output_<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">,</span> x<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    lisp_compiled_function_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>これでhold変数<code>x</code>に関数オブジェクトが格納されます。<br />
+更に変更し、作成した関数オブジェクトを<code>funcall</code>で実行してみます。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> test_output_<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> z<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    lisp_compiled_function_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    lisp_fixnum<span class="op">(</span>y<span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    lisp_fixnum<span class="op">(</span>z<span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    lisp_funcall_<span class="op">(</span>NULL<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> z<span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>脱出は無視しています。</p>
+<p>関数<code>test_output_</code>は、Common Lispで表すと次のようになります。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> #&lt;COMPILED-FUNCTION NIL&gt; <span class="dv">10</span> <span class="dv">20</span>)</span></code></pre></div>
+<p>実行結果は下記のとおりです。</p>
+<pre><code>TEST = (10 20)</code></pre>
+<p>登録された関数が動作しているのがわかります。</p>
+<h1 id="関数オブジェクトの登録">4.4 関数オブジェクトの登録</h1>
+<p>次は<code>defun</code>を実行します。<br />
+つまり関数オブジェクトを作成したら<code>symbol-function</code>に登録します。</p>
+<p>登録する関数は下記のとおりです。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_defun_<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> addr symbol<span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_defun8_<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_defun16_<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_compiled_defun32_<span class="op">(</span><span class="dt">int</span> index<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span></code></pre></div>
+<p>例として、以前作成した階乗の関数<code>fact_</code>を <code>FACT</code>という名前で登録してみます。<br />
+まずは前章で完成した関数<code>fact_</code>を示します。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> fact_<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">,</span> y<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span> lisp_plus_p<span class="op">(</span>value<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        lisp_fixnum<span class="op">(</span>x<span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lisp_funcall8_<span class="op">(</span>y<span class="op">,</span> <span class="st">&quot;1-&quot;</span><span class="op">,</span> value<span class="op">,</span> NULL<span class="op">))</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">goto</span> escape<span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fact_<span class="op">(</span>y<span class="op">,</span> y<span class="op">))</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">goto</span> escape<span class="op">;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>lisp_funcall8_<span class="op">(</span>x<span class="op">,</span> <span class="st">&quot;*&quot;</span><span class="op">,</span> value<span class="op">,</span> y<span class="op">,</span> NULL<span class="op">))</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">goto</span> escape<span class="op">;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>escape<span class="op">:</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>関数<code>fact_</code>は脱出関数としては完成されているのですが、 登録用に作成しているわけではないため、 そのまま関数ポインタに登録することはできません。</p>
+<p>そこで登録用に関数<code>function_fact_</code>を作成します。<br />
+内容は関数<code>fact_</code>を呼びだして戻り値を設定するというものです。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> function_fact_<span class="op">(</span>addr var<span class="op">)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">,</span> x<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> Lisp_hold<span class="op">();</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fact_<span class="op">(</span>x<span class="op">,</span> var<span class="op">))</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">goto</span> escape<span class="op">;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    lisp_set_result_control<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>escape<span class="op">:</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>関数の戻り値の設定は<code>lisp_set_result_control</code>関数で行っています。<br />
+続いて登録の処理を示します。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main_lisp<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ignore<span class="op">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    lisp_compiled_var1<span class="op">(</span><span class="dv">1</span><span class="op">,</span> function_fact_<span class="op">);</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    lisp_compiled_defun8_<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="st">&quot;FACT&quot;</span><span class="op">);</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_eval_loop_<span class="op">();</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>登録には<code>lisp_compiled_var1</code>を用いて、 たった1つの引数のみを受け取るようにしています。<br />
+関数番号は1番です。<br />
+次に<code>lisp_compiled_defun8_</code>を実行し、 <code>FACT</code>という名前で関数を登録します。<br />
+最後に<code>lisp_eval_loop_</code>を実行し、 確認のためのeval-loopを呼び出します。</p>
+<p>実行するとプロンプトが表示されるので、 <code>fact</code>関数を実行してみましょう。</p>
+<pre><code>$ ./a.out
+* (fact 123)
+1214630436702532967576624324188129585545421708848338231532891816182923
+5892362167668831156960612640202170735835221294047782591091570411651472
+186029519906261646730733907419814952960000000000000000000000000000
+* (/ (fact 123) (fact 121))
+15006
+* ^D
+$</code></pre>
+<p>関数<code>fact</code>がLispの関数として動作しており、 式の中にも組み込むことができているのがわかります。</p>
+<h1 id="クロージャーを使う">4.5 クロージャーを使う</h1>
+<p>ここでのクロージャーとは、 関数オブジェクトに値を保存する機能のことです。</p>
+<p>関数オブジェクトは1つの値を持つことができます。<br />
+値の設定は下記の命令を使います。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_setvalue<span class="op">(</span>addr pos<span class="op">,</span> addr value<span class="op">);</span></span></code></pre></div>
+<p>関数オブジェクトを生成したあとで、 値10をクロージャ―に保存するときは次のようになります。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lisp_compiled_function_<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lisp_fixnum<span class="op">(</span>value<span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>lisp_compiled_setvalue<span class="op">(</span>x<span class="op">,</span> value<span class="op">);</span></span></code></pre></div>
+<p>設定した値は、関数ポインタを登録した関数が呼び出されたときに、 次の命令を使用して取得できます。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_compiled_getvalue<span class="op">(</span>addr <span class="op">*</span>ret<span class="op">);</span></span></code></pre></div>
+<p>この関数には注意しなければならないことがあります。<br />
+値の取得は、<code>lisp_push_control</code>を行う前に実施してください。<br />
+スタックフレームの確保ができないのでhold変数は使用できず、 オブジェクトを直接受け取る形になっています。</p>
+<p>もしhold変数に格納したい場合は、次のような記述になります。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> function_test_<span class="op">(</span>addr list<span class="op">)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    addr control<span class="op">,</span> x<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    lisp_compiled_getvalue<span class="op">(&amp;</span>x<span class="op">);</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    lisp_push_control<span class="op">(&amp;</span>control<span class="op">);</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    lisp_hold<span class="op">(&amp;</span>x<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_pop_control_<span class="op">(</span>control<span class="op">);</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="なぜ関数を番号に割り当てるのか">4.6 なぜ関数を番号に割り当てるのか</h1>
+<p>関数ポインタを登録する際に、0～31の番号に割り当てると説明しました。<br />
+例えば下記の実行を行います。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lisp_compiled_rest<span class="op">(</span><span class="dv">0</span><span class="op">,</span> function_test_<span class="op">);</span></span></code></pre></div>
+<p>では、なぜ番号に割り当てるのでしょうか。<br />
+理由はコアファイルの読み書きの為です。</p>
+<p>当初コアファイルには関数ポインタの値をそのまま記載する予定でした。<br />
+しかし近年のセキュリティ事情によって、オペレーティングシステムに ASLR (Address Space Layout Randomization)という機能が実装され、 プロセスが起動するたびに関数ポインタが ランダムに変わるようになりました。<br />
+もし関数ポインタの値をコアファイルに書き込んでしまうと、 次のプロセスが起動したときに全く違うアドレスを指しているため 正常に動作しなくなります。</p>
+<p>番号の登録はnpt内部でも使用されており、<code>lisp_init</code>関数を実行すると Common Lispの関数をはじめとする全ての関数の番号が設定されます。</p>
+<p>関数ポインタの登録は、対応する関数が実行される前であれば いつでも実施できます。<br />
+しかしなるべく早い方が良いと考えますので、 推奨としては<code>lisp_init</code>関数を実行した直後が適しているのではないかと思います。</p>
+<p>一方、下記の関数</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lisp_compiled_defun8_<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="st">&quot;TEST&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>は、<code>compiled-function</code>オブジェクトを作成するというCommon Lispの機能です。<br />
+初期化ではないため<code>main_lisp</code>関数以降でないと実行できません。</p>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nptをC言語で使用する</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">nptをC言語で使用する</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
+次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]</p>
+<h1 id="はじめに">1.1 はじめに</h1>
+<p>nptはC言語に組み込むことを目的として開発しています。<br />
+本章の目的は、nptをモジュールという位置づけにして どのように開発していくのかを示し、 簡単なサンプルを作成して実行することです。</p>
+<p>★注意：nptのモジュール用関数はまだ開発中なので変更される可能性があります。</p>
+<h1 id="amalgamationを作成する">1.2 amalgamationを作成する</h1>
+<p>開発で必ず必要になるのがamalgamationのソースです （npt amalgamationの詳細はこちら [https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]）。<br />
+特にヘッダーファイルである<code>lisp.h</code>が必要となります。</p>
+<p>まずはnptのソースからamalgamationを作成する手順を説明します。</p>
+<pre><code>$ cd github/npt
+$ cd develop/amalgamation/
+$ npt --script amalgamation-single.lisp</code></pre>
+<p><code>amalgamation-single.lisp</code>はCommon Lispであればなんでも動作します。<br />
+nptコマンドがない時は代わりに下記のどれかを実行してください。</p>
+<pre><code>$ sbcl --script amalgamation-single.lisp
+$ ccl -l amalgamation-single.lisp
+$ clisp amalgamation-single.lisp</code></pre>
+<p>作成されるファイルは下記のとおりです。</p>
+<ul>
+<li><code>lisp.c</code></li>
+<li><code>lisp.h</code></li>
+<li><code>shell.c</code></li>
+</ul>
+<p>amalgamationのページでは<code>amalgamation-header.lisp</code>の使い方も説明していますが、 どちらを用いても構いません。<br />
+<code>lisp.h</code>は同じものが生成されます。</p>
+<h1 id="nptのソースを組み込む方法を選ぶ">1.3 nptのソースを組み込む方法を選ぶ</h1>
+<p>大きく3つ存在します。</p>
+<ol type="1">
+<li>amalgamationを利用する</li>
+<li>nptのソースをそのまま利用する</li>
+<li><code>lisp.a</code>ファイルを作成する</li>
+</ol>
+<p>どの方法でも、amalgamationが生成したヘッダーファイル<code>lisp.h</code>は必要となります。</p>
+<p>1つ目のamalgamationを利用するというのは、 <code>amalgamation-single.lisp</code>が生成したファイル<code>lisp.c</code>を利用する方法です。<br />
+この方法が楽なのですが、<code>lisp.c</code>ファイルが大きすぎるため C言語のデバッガーが起動すると動作が非常に遅くなるという欠点があります。<br />
+もしファイル容量が気になるのであれば、 <code>amalgamation-header.lisp</code>を用いることもできます。<br />
+ファイル数は多少増えるものの個々のファイルの容量を 抑えることができるため、使いやすい方法になります。</p>
+<p>2つ目のnptのソースをそのまま利用するというのは、 その名の通り、<code>src/*.c</code>ファイル一式をコピーするというものです。<br />
+nptの<code>main.c</code>さえコンパイルしなければ実現できます。<br />
+欠点は、nptがバージョンアップしたときに、 nptのソースを更新する必要があるということです。<br />
+nptのファイルが増えるだけなら良いのですが、 減ることもあるため、管理が複雑になります。</p>
+<p>3つ目の<code>lisp.a</code>ファイルというのは、 nptのオブジェクトファイルである<code>*.o</code>を開発用にまとめたものです。<br />
+この方法は便利なので説明するときに利用します。</p>
+<p>以上3つの方法について、簡単にコンパイルする手順を説明します。</p>
+<h1 id="コンパイルに用いる例文">1.4 コンパイルに用いる例文</h1>
+<p>今回実行する例文は下記の通りです。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main_lisp<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ignore<span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    lisp_format8_<span class="op">(</span>NULL<span class="op">,</span> <span class="st">&quot;Hello~%&quot;</span><span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>この文は、Common Lispで表すと下記の文と同じです。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;Hello~%&quot;</span>)</span></code></pre></div>
+<p>実際にコンパイルするにはこれだけではなく、 nptを初期化するコードも記載しなければなりません。<br />
+下記に完全なコードを示しますので、 <code>main.c</code>という名前で保存してください。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* main.c */</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;lisp.h&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main_lisp<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>ignore<span class="op">)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    lisp_format8_<span class="op">(</span>NULL<span class="op">,</span> <span class="st">&quot;Hello~%&quot;</span><span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> main_argv<span class="op">(</span><span class="kw">struct</span> lispargv <span class="op">*</span>args<span class="op">)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* mode */</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>args<span class="op">-&gt;</span>mode_help<span class="op">)</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> lisp_main_help<span class="op">(</span>stdout<span class="op">);</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>args<span class="op">-&gt;</span>mode_version<span class="op">)</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> lisp_main_version<span class="op">(</span>args<span class="op">,</span> stdout<span class="op">);</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>args<span class="op">-&gt;</span>mode_degrade<span class="op">)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> lisp_main_degrade<span class="op">(</span>args<span class="op">);</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* execute */</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>call <span class="op">=</span> main_lisp<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    lisp_argv_init<span class="op">(</span>args<span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    lisp_argv_run<span class="op">(</span>args<span class="op">);</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lisp_code<span class="op">?</span> <span class="dv">1</span><span class="op">:</span> lisp_result<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[],</span> <span class="dt">char</span> <span class="op">*</span>env<span class="op">[])</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result<span class="op">;</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> lispargv <span class="op">*</span>args<span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* initialize */</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    lisp_init<span class="op">();</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> lispargv_main<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">,</span> env<span class="op">);</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>args <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;argv error</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* main_argv */</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>mode_core <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>mode_degrade <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>mode_standalone <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>nocore <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>noinit <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>debugger <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>debuggerp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    args<span class="op">-&gt;</span>quit <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> main_argv<span class="op">(</span>args<span class="op">);</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* free */</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    lispargv_free<span class="op">(</span>args<span class="op">);</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    lisp_free<span class="op">();</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h1 id="amalgamationを利用する">1.5 amalgamationを利用する</h1>
+<p>まずはamalgamation-singleだけを利用する方法を説明します。<br />
+作成した<code>main.c</code>と同じディレクトリに amalgamationが出力した下記のファイルを配置してください。</p>
+<ul>
+<li><code>lisp.c</code></li>
+<li><code>lisp.h</code></li>
+</ul>
+<p><code>shell.c</code>は不要です。</p>
+<p>次にコンパイルを行います。<br />
+コンパイルの方法は環境によって変わりますので、 [https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]のページを参考にしてください。<br />
+例文ではFreeBSDで実行する手順を示します。</p>
+<pre><code>$ cc lisp.c main.c -lm
+$ ./a.out
+Hello
+$</code></pre>
+<p>amalgamation-headerを利用する方法を説明します。<br />
+コンパイルの方法はsingleの場合とほぼ同じですが、 ソースファイルが1つだけではないので、 <code>lisp_file_*.c</code>のように一括指定します。</p>
+<pre><code>$ cc lisp_file_*.c main.c -lm
+$ ./a.out
+Hello
+$</code></pre>
+<h1 id="nptのソースをそのまま利用する">1.6 nptのソースをそのまま利用する</h1>
+<p>作業用のディレクトリを作成してください。</p>
+<pre><code>$ mkdir $HOME/libnpt1</code></pre>
+<p><code>main.c</code>と<code>lisp.h</code>をコピーします。</p>
+<pre><code>$ cp -i main.c lisp.h $HOME/libnpt1/</code></pre>
+<p>次に、githubのnptのソースをコピーします。<br />
+まずはnptのディレクトリに移動します。</p>
+<pre><code>$ cd github/npt</code></pre>
+<p>ソースをコピーします。</p>
+<pre><code>$ cp -i src/*.[ch] $HOME/libnpt1/
+overwrite .../main.c? (y/n [n]) n  ★nを入力して上書きしない
+not overwritten
+$</code></pre>
+<p>コンパイルを行います。</p>
+<pre><code>$ cd $HOME/libnpt1
+$ cc *.c -lm
+$ ./a.out
+Hello
+$</code></pre>
+<h1 id="lisp.aファイルを作成する">1.7 <code>lisp.a</code>ファイルを作成する</h1>
+<p>作業用ディレクトリを作成してください。</p>
+<pre><code>$ mkdir $HOME/libnpt2</code></pre>
+<p><code>main.c</code>と<code>lisp.h</code>をコピーします。</p>
+<pre><code>$ cp -i main.c lisp.h $HOME/libnpt2/</code></pre>
+<p>githubのnpt上で、<code>lisp.a</code>ファイルを作成します。<br />
+まずは移動します。</p>
+<pre><code>$ cd github/npt</code></pre>
+<p>コンパイルをしてオブジェクトファイルを生成します。<br />
+例えば<code>freebsd_debug.sh</code>などスクリプトを実行しても良いのですが、 その際はコンパイルオプションを覚えておくようにしてください。<br />
+今回は手動でコンパイルします。</p>
+<pre><code>$ cc -c src/*.c</code></pre>
+<p><code>lisp.a</code>ファイルを作成します。</p>
+<pre><code>$ ar -rc lisp.a *.o
+$ ar -d lisp.a main.o</code></pre>
+<p><code>lisp.a</code>が生成されましたのでコピーします。</p>
+<pre><code>$ cp -i lisp.a $HOME/libnpt2/</code></pre>
+<p>コンパイルします。</p>
+<pre><code>$ cd $HOME/libnpt2/
+$ cc main.c lisp.a -lm
+$ ./a.out
+Hello
+$</code></pre>
+<h1 id="main_lispの説明">1.8 <code>main_lisp</code>の説明</h1>
+<p>今回の例文では<code>format</code>を実行するだけなので単純でしたが、 本来はCommon Lispと同等の文をC言語で表す必要があるため、 開発は非常に複雑でわかりづらいものとなります。</p>
+<p>次章で詳しく見て行きます。</p>
+</body>
+</html>

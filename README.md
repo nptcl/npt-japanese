@@ -4,8 +4,8 @@
 
 # 1. 説明書
 
-[https://nptcl.github.io/npt-japanese/docs/npt/index.html](https://nptcl.github.io/npt-japanese/docs/npt/index.html)
-[https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)  
+[https://nptcl.github.io/npt-japanese/docs/npt/index.html](https://nptcl.github.io/npt-japanese/docs/npt/index.html)  
+[https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)
 
 
 # 2. ライセンス

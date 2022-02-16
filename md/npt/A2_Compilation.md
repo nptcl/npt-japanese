@@ -1,9 +1,11 @@
 % コンパイルの詳細
 
+% コンパイルの詳細
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/21/214200:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/22/132802:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[インストール方法](A1_Install.html)  
+次へ：[nptコマンドの引数](A3_Arguments.html)
 
 
 # 2.1 手動でコンパイル
@@ -223,4 +225,4 @@ $ cc -DLISP_POINTER_EXTEND=128 src/*.c -lm
 この例の場合、関数番号の範囲は0～127になります。
 
 関数番号の使い方については
-[https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]をご確認ください。
+[関数の登録](B4_Registering.html)をご確認ください。

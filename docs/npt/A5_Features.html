@@ -216,10 +216,11 @@
 <header id="title-block-header">
 <h1 class="title">npt特有の機能</h1>
 </header>
+<p>% npt特有の機能</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2021/07/18/231200:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="A4_Amalgamation.html">npt amalgamation</a><br />
+次へ：<a href="A6_Input.html">入力モジュール</a></p>
 <h1 id="nptの機能">5.1 nptの機能</h1>
 <p>本章はnpt特有の機能について、代表的なものを紹介します。<br />
 nptで使用するコマンドと変数は、<code>npt-system</code>パッケージに存在します。</p>
@@ -266,7 +267,7 @@ T
 上記のコマンドを定期的に実行することで回避できるかもしれません。</p>
 <p>もしメモリ不足が生じた場合は<code>LISP ABORT</code>します。</p>
 <p>関数仕様を作成しました。<br />
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]</p>
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
 <h2 id="コアファイルの保存"><a id="specific-5">5.5 コアファイルの保存</a></h2>
 <p>下記のコマンドでコアファイルを作成できます。</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(npt-system:savecore file)</span></code></pre></div>
@@ -274,7 +275,7 @@ T
 正しく<code>savecore</code>conditionで終了したら、コアファイルの保存が始まります。</p>
 <p>作成したコアファイルを読み込むためには、nptコマンドの<code>--core</code>引数を使用します。</p>
 <p>関数仕様を作成しました。<br />
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]</p>
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
 <h2 id="プロセスの終了"><a id="specific-6">5.6 プロセスの終了</a></h2>
 <p>下記のコマンドでnptを終了します。</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(npt-system:exit code)</span>
@@ -284,7 +285,7 @@ nptのプロンプトで<code>(exit)</code>と<code>(quit)</code>を実行でき
 <p>本命令は<code>serious-condition</code>の<code>exit</code>conditionを実行してnptを終了させます。<br />
 正しく<code>exit</code>conditionで終了したら、引数の値を終了コードにしてプロセスを終了させます。</p>
 <p>関数仕様を作成しました。<br />
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]</p>
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
 <h2 id="ed関数によるエディタ起動"><a id="specific-7">5.7 <code>ed</code>関数によるエディタ起動</a></h2>
 <p>Common Lispの関数<code>ed</code>はエディタを起動します。<br />
 この機能に対応しているのはFreeBSD, Linux, Windowsです。</p>
@@ -324,7 +325,7 @@ nptでは全角が2文字、半角が1文字として、 <code>format</code>やP
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> eastasian-get </span>(var) ...)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> eastasian-set </span>(var size &amp;optional errorp) ...)</span></code></pre></div>
 <p>関数仕様を作成しました。<br />
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#others:title]</p>
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
 <h3 id="関数eastasian-width">関数<code>eastasian-width</code></h3>
 <p>オブジェクトからEastAsianWidthのサイズを返却します。</p>
 <p>引数<code>var</code>が整数の場合は、Unicodeの文字としてサイズを返却します。<br />

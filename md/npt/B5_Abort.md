@@ -1,9 +1,11 @@
 % LISP ABORT
 
+% LISP ABORT
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/28/130802:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[関数の登録](B4_Registering.html)  
+次へ：[脱出の操作](B6_Operations.html)
 
 
 # 5.1 LISP ABORT

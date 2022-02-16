@@ -1,8 +1,10 @@
 % インストール方法
 
+% インストール方法
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+次へ：[コンパイルの詳細](A2_Compilation.html)
 
 
 # 1.1 インストール方法
@@ -13,7 +15,7 @@ nptのドキュメントです。
 
 手動でコンパイルする方法については別途ページを用意しますので、
 もし本ページの方法がうまく行かない場合はそちらをご覧ください
-（[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]）。
+（[コンパイルの詳細](A2_Compilation.html)）。
 
 まずはgithubからソースをダウンロードします。
 
@@ -61,7 +63,7 @@ Visual Studio 2017で動作確認しています。
 成功した場合は、`npt.exe`という実行ファイルが生成されます。
 
 環境によってはうまく動作しないかもしれません。  
-失敗する場合は、[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]を確認し、
+失敗する場合は、[コンパイルの詳細](A2_Compilation.html)を確認し、
 手動でコンパイルを行ってください。
 
 

@@ -1,8 +1,10 @@
 % Paperオブジェクト
 
+% Paperオブジェクト
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/28/192930:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[スタートアップ](B7_StartUp.html)
 
 
 # 8.1 Paperオブジェクト

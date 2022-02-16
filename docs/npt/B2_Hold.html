@@ -216,10 +216,11 @@
 <header id="title-block-header">
 <h1 class="title">hold変数の使い方</h1>
 </header>
+<p>% hold変数の使い方</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="B1_Using.html">nptをC言語で使用する</a><br />
+次へ：<a href="B3_Escape.html">脱出関数</a></p>
 <h1 id="基本的な作成方法の解説">2.1 基本的な作成方法の解説</h1>
 <p>本書ではnptモジュールを用いてC言語で開発をするための基本を示します。<br />
 主な内容は、hold変数の使い方になります。</p>
@@ -322,7 +323,7 @@ hold変数とはレキシカル変数のようなものであり、 C言語上�
 関数の名前には、<code>fact_</code>や<code>lisp_format8_</code>のように、 名前の最後がアンダーバー<code>_</code>で終わるものと終わらないものがあります。</p>
 <p>簡単に言うと<code>error</code>が発生する可能性があるものにアンダーバーが付いています。<br />
 このような関数を「脱出関数」と呼びます。<br />
-脱出についての詳しい説明は別章で行います（[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]）。<br />
+脱出についての詳しい説明は別章で行います（<a href="B3_Escape.html">脱出関数</a>）。<br />
 命名規則は自主的なものなので、アンダーバーを付けるかどうかは自由です。</p>
 <p>それでは<code>fact_</code>関数の内容を示します。</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> fact_<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">)</span></span>

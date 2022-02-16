@@ -153,10 +153,11 @@
 <header id="title-block-header">
 <h1 class="title">コンパイルの詳細</h1>
 </header>
+<p>% コンパイルの詳細</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/21/214200:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/22/132802:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="A1_Install.html">インストール方法</a><br />
+次へ：<a href="A3_Arguments.html">nptコマンドの引数</a></p>
 <h1 id="手動でコンパイル">2.1 手動でコンパイル</h1>
 <p>コンパイルをするには、<code>src</code>ディレクトリにある 全ての<code>c</code>ファイルをコンパイルすることで実現できます。<br />
 簡単な例をあげます。</p>
@@ -328,6 +329,6 @@ defineが指定された場合は <code>npt</code>コマンドの<code>--version
 <p>関数番号の個数を128個に変更する例を示します。</p>
 <pre><code>$ cc -DLISP_POINTER_EXTEND=128 src/*.c -lm</code></pre>
 <p>この例の場合、関数番号の範囲は0～127になります。</p>
-<p>関数番号の使い方については [https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]をご確認ください。</p>
+<p>関数番号の使い方については <a href="B4_Registering.html">関数の登録</a>をご確認ください。</p>
 </body>
 </html>

@@ -1,9 +1,11 @@
 % 脱出関数
 
+% 脱出関数
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[hold変数の使い方](B2_Hold.html)  
+次へ：[関数の登録](B4_Registering.html)
 
 
 # 3.1 脱出関数とは
@@ -210,7 +212,7 @@ static int test_call_(void)
 
 # 3.4 階乗の例を書き換える
 
-前章（[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]）では、
+前章（[hold変数の使い方](B2_Hold.html)）では、
 階乗を出力する例文を作りました。  
 しかし説明の都合上エラー処理を行っていなかったため、
 脱出関数の戻り値をすべて無視していました。

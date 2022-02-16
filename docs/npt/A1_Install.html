@@ -153,13 +153,14 @@
 <header id="title-block-header">
 <h1 class="title">インストール方法</h1>
 </header>
+<p>% インストール方法</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+次へ：<a href="A2_Compilation.html">コンパイルの詳細</a></p>
 <h1 id="インストール方法">1.1 インストール方法</h1>
 <p>インストールは、ソースをCコンパイラでコンパイルして行います。<br />
 コンパイル方法は、スクリプトによるものと<code>autoconf</code>を用いるもの、 それらを使わずに手動で行うものがあります。</p>
-<p>手動でコンパイルする方法については別途ページを用意しますので、 もし本ページの方法がうまく行かない場合はそちらをご覧ください （[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]）。</p>
+<p>手動でコンパイルする方法については別途ページを用意しますので、 もし本ページの方法がうまく行かない場合はそちらをご覧ください （<a href="A2_Compilation.html">コンパイルの詳細</a>）。</p>
 <p>まずはgithubからソースをダウンロードします。</p>
 <pre><code>$ git clone https://github.com/nptcl/npt.git
 $ cd npt</code></pre>
@@ -186,7 +187,7 @@ $ cd npt</code></pre>
 </ul>
 <p>成功した場合は、<code>npt.exe</code>という実行ファイルが生成されます。</p>
 <p>環境によってはうまく動作しないかもしれません。<br />
-失敗する場合は、[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]を確認し、 手動でコンパイルを行ってください。</p>
+失敗する場合は、<a href="A2_Compilation.html">コンパイルの詳細</a>を確認し、 手動でコンパイルを行ってください。</p>
 <h1 id="autoconfによるコンパイル">1.4 <code>autoconf</code>によるコンパイル</h1>
 <p><code>autoconf</code>によるコンパイルを行うには、 <code>bootstrap.sh</code>を実行して<code>configure</code>を生成します。</p>
 <pre><code>$ ./bootstrap.sh</code></pre>

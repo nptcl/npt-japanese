@@ -1,9 +1,11 @@
 % 関数の登録
 
+% 関数の登録
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/27/143742:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[脱出関数](B3_Escape.html)  
+次へ：[LISP ABORT](B5_Abort.html)
 
 
 # 4.1 関数の登録

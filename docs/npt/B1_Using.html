@@ -216,15 +216,16 @@
 <header id="title-block-header">
 <h1 class="title">nptをC言語で使用する</h1>
 </header>
+<p>% nptをC言語で使用する</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+次へ：<a href="B2_Hold.html">hold変数の使い方</a></p>
 <h1 id="はじめに">1.1 はじめに</h1>
 <p>nptはC言語に組み込むことを目的として開発しています。<br />
 本章の目的は、nptをモジュールという位置づけにして どのように開発していくのかを示し、 簡単なサンプルを作成して実行することです。</p>
 <p>★注意：nptのモジュール用関数はまだ開発中なので変更される可能性があります。</p>
 <h1 id="amalgamationを作成する">1.2 amalgamationを作成する</h1>
-<p>開発で必ず必要になるのがamalgamationのソースです （npt amalgamationの詳細はこちら [https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]）。<br />
+<p>開発で必ず必要になるのがamalgamationのソースです （npt amalgamationの詳細はこちら <a href="A4_Amalgamation.html">npt amalgamation</a>）。<br />
 特にヘッダーファイルである<code>lisp.h</code>が必要となります。</p>
 <p>まずはnptのソースからamalgamationを作成する手順を説明します。</p>
 <pre><code>$ cd github/npt
@@ -340,7 +341,7 @@ nptのファイルが増えるだけなら良いのですが、 減ることも�
 </ul>
 <p><code>shell.c</code>は不要です。</p>
 <p>次にコンパイルを行います。<br />
-コンパイルの方法は環境によって変わりますので、 [https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]のページを参考にしてください。<br />
+コンパイルの方法は環境によって変わりますので、 <a href="A2_Compilation.html">コンパイルの詳細</a>のページを参考にしてください。<br />
 例文ではFreeBSDで実行する手順を示します。</p>
 <pre><code>$ cc lisp.c main.c -lm
 $ ./a.out

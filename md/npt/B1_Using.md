@@ -1,8 +1,10 @@
 % nptをC言語で使用する
 
+% nptをC言語で使用する
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+次へ：[hold変数の使い方](B2_Hold.html)
 
 
 # 1.1 はじめに
@@ -19,7 +21,7 @@ nptはC言語に組み込むことを目的として開発しています。
 
 開発で必ず必要になるのがamalgamationのソースです
 （npt amalgamationの詳細はこちら
-[https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]）。  
+[npt amalgamation](A4_Amalgamation.html)）。  
 特にヘッダーファイルである`lisp.h`が必要となります。
 
 まずはnptのソースからamalgamationを作成する手順を説明します。
@@ -182,7 +184,7 @@ amalgamationが出力した下記のファイルを配置してください。
 
 次にコンパイルを行います。  
 コンパイルの方法は環境によって変わりますので、
-[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]のページを参考にしてください。  
+[コンパイルの詳細](A2_Compilation.html)のページを参考にしてください。  
 例文ではFreeBSDで実行する手順を示します。
 
 ```

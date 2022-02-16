@@ -1,7 +1,9 @@
 % 関数仕様 - スタックフレーム
 
+% 関数仕様 - スタックフレーム
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]
+参照元：[ANSI Common Lisp npt](index.html)
 
 
 # 関数仕様

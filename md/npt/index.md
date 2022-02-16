@@ -1,5 +1,11 @@
+% ANSI Common Lisp npt
+
 % ANSI Common Lisp npt トップページ
+
 ANSI Common Lisp nptのトップページです。  
+
+[https://nptcl.github.io/npt-japanese/docs/index.html](https://nptcl.github.io/npt-japanese/docs/md/index.html)  
+[https://nptcl.github.io/npt-japanese/md/index.html](https://nptcl.github.io/npt-japanese/md/index.html)
 
 nptとは、C言語で構築できるANSI Common Lisp処理系です。  
 FreeBSD, Linux, Windowsで構築できます。  
@@ -9,15 +15,16 @@ FreeBSD, Linux, Windowsで構築できます。
 
 英語版も用意しました。  
 An English version of the document is also available.  
-https://nptcl.github.io/npt/docs/md/index.html  
-https://nptcl.github.io/npt/docs/index.html
+[https://nptcl.github.io/npt/docs/index.html](https://nptcl.github.io/npt/docs/index.html)  
+[https://nptcl.github.io/npt/docs/md/index.html](https://nptcl.github.io/npt/docs/md/index.html)
+
 
 # 配布元
 
 githubにて配布しています。
 
-https://github.com/nptcl/npt  
-https://github.com/nptcl/npt.git
+[https://github.com/nptcl/npt](https://github.com/nptcl/npt)  
+[https://github.com/nptcl/npt.git](https://github.com/nptcl/npt.git)
 
 
 # ドキュメント
@@ -60,3 +67,9 @@ https://github.com/nptcl/npt.git
 
 nptのライセンスは[Unlicense](https://unlicense.org/)です。  
 作者の承諾など気にせず好きに使ってください。
+
+
+# 配布
+
+[https://github.com/nptcl/npt-japanese](https://github.com/nptcl/npt-japanese)
+

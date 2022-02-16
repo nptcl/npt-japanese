@@ -216,10 +216,11 @@
 <header id="title-block-header">
 <h1 class="title">スタートアップ</h1>
 </header>
+<p>% スタートアップ</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/28/130802:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2022/02/09/214137:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="B6_Operations.html">脱出の操作</a><br />
+次へ：<a href="B8_Paper.html">Paperオブジェクト</a></p>
 <h1 id="スタートアップ">7.1 スタートアップ</h1>
 <p>本章ではC言語にて、nptをどのようにして開始するかを説明します。</p>
 <p>C言語では<code>main</code>関数から実行されますが、Windowsの場合は<code>WinMain</code>関数ですので、 両者でどのようにnptを初期化するのかを説明します。</p>
@@ -379,7 +380,7 @@
 一例をあげるなら、<code>warn</code>関数で使用する<code>handler-bind</code>の処理です。</p>
 <p><code>main_lisp</code>関数は脱出関数ですが、 普通の脱出関数とは少々違っており、 もし非脱出時に0以外の値が返却された場合は 異常終了とみなして後の処理を全て無視して、 終了コード<code>1</code>で終了します。</p>
 <h1 id="まとめ">7.7 まとめ</h1>
-<p>以上の内容をまとめますと、 最初に[https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]で説明した 例文そのものになります。</p>
+<p>以上の内容をまとめますと、 最初に<a href="B1_Using.html">nptをC言語で使用する</a>で説明した 例文そのものになります。</p>
 <p>下記に例文を示します。</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main_lisp<span class="op">(</span><span class="dt">void</span> <span class="op">*</span>call_ptr<span class="op">)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>

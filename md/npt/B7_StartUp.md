@@ -1,9 +1,11 @@
 % スタートアップ
 
+% スタートアップ
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/28/130802:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2022/02/09/214137:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[脱出の操作](B6_Operations.html)  
+次へ：[Paperオブジェクト](B8_Paper.html)
 
 
 # 7.1 スタートアップ
@@ -272,7 +274,7 @@ Common Lispとして正しく動作するさせるためには
 # 7.7 まとめ
 
 以上の内容をまとめますと、
-最初に[https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]で説明した
+最初に[nptをC言語で使用する](B1_Using.html)で説明した
 例文そのものになります。
 
 下記に例文を示します。

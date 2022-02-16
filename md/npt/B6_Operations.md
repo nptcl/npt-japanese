@@ -1,9 +1,11 @@
 % 脱出の操作
 
+% 脱出の操作
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/27/143742:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/28/192930:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[LISP ABORT](B5_Abort.html)  
+次へ：[スタートアップ](B7_StartUp.html)
 
 
 # 6.1 脱出の操作

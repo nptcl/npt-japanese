@@ -216,10 +216,11 @@
 <header id="title-block-header">
 <h1 class="title">脱出関数</h1>
 </header>
+<p>% 脱出関数</p>
 <p>nptのドキュメントです。<br />
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]<br />
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]<br />
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/27/012933:title]</p>
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="B2_Hold.html">hold変数の使い方</a><br />
+次へ：<a href="B4_Registering.html">関数の登録</a></p>
 <h1 id="脱出関数とは">3.1 脱出関数とは</h1>
 <p>脱出関数とは、脱出が行われる可能性のある関数のことです。<br />
 以前、脱出関数とは<code>error</code>が生じる可能性のある関数だと説明しました。<br />
@@ -352,7 +353,7 @@
 <li>pushに対応するpopは必ず実行する</li>
 </ul>
 <h1 id="階乗の例を書き換える">3.4 階乗の例を書き換える</h1>
-<p>前章（[https://nptcl.hatenablog.com/entry/2020/08/23/001650:title]）では、 階乗を出力する例文を作りました。<br />
+<p>前章（<a href="B2_Hold.html">hold変数の使い方</a>）では、 階乗を出力する例文を作りました。<br />
 しかし説明の都合上エラー処理を行っていなかったため、 脱出関数の戻り値をすべて無視していました。</p>
 <p>正しい脱出関数に書き換えたものを下記に示します。</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">int</span> fact_<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">)</span></span>

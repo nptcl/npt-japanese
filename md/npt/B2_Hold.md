@@ -1,9 +1,11 @@
 % hold変数の使い方
 
+% hold変数の使い方
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/22/151315:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[nptをC言語で使用する](B1_Using.html)  
+次へ：[脱出関数](B3_Escape.html)
 
 
 # 2.1 基本的な作成方法の解説
@@ -177,7 +179,7 @@ int main_lisp(void *ignore)
 
 簡単に言うと`error`が発生する可能性があるものにアンダーバーが付いています。  
 このような関数を「脱出関数」と呼びます。  
-脱出についての詳しい説明は別章で行います（[https://nptcl.hatenablog.com/entry/2020/08/23/134815:title]）。  
+脱出についての詳しい説明は別章で行います（[脱出関数](B3_Escape.html)）。  
 命名規則は自主的なものなので、アンダーバーを付けるかどうかは自由です。
 
 それでは`fact_`関数の内容を示します。

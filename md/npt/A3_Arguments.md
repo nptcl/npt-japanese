@@ -1,9 +1,11 @@
 % nptコマンドの引数
 
+% nptコマンドの引数
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/22/003812:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[コンパイルの詳細](A2_Compilation.html)  
+次へ：[npt amalgamation](A4_Amalgamation.html)
 
 
 nptコマンドの引数を説明します。  

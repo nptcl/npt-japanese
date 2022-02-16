@@ -1,8 +1,10 @@
 % 入力モジュール
 
+% 入力モジュール
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/26/001605:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[npt特有の機能](A5_Features.html)
 
 
 # 6.1 入力モジュールTERME

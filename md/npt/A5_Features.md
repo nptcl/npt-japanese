@@ -1,9 +1,11 @@
 % npt特有の機能
 
+% npt特有の機能
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/23/184033:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2021/07/18/231200:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[npt amalgamation](A4_Amalgamation.html)  
+次へ：[入力モジュール](A6_Input.html)
 
 # 5.1 nptの機能
 
@@ -88,7 +90,7 @@ T
 もしメモリ不足が生じた場合は`LISP ABORT`します。
 
 関数仕様を作成しました。  
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]
+[Lisp関数仕様 - システム関数](D1_System.html)
 
 
 ## <a id="specific-5">5.5 コアファイルの保存</a>
@@ -105,7 +107,7 @@ T
 作成したコアファイルを読み込むためには、nptコマンドの`--core`引数を使用します。
 
 関数仕様を作成しました。  
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]
+[Lisp関数仕様 - システム関数](D1_System.html)
 
 
 ## <a id="specific-6">5.6 プロセスの終了</a>
@@ -125,7 +127,7 @@ nptのプロンプトで`(exit)`と`(quit)`を実行できるように、
 正しく`exit`conditionで終了したら、引数の値を終了コードにしてプロセスを終了させます。
 
 関数仕様を作成しました。  
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#system-develop:title]
+[Lisp関数仕様 - システム関数](D1_System.html)
 
 
 ## <a id="specific-7">5.7 `ed`関数によるエディタ起動</a>
@@ -198,7 +200,7 @@ EastAsianWidthに関する関数は下記の3つです。
 ```
 
 関数仕様を作成しました。  
-[https://nptcl.hatenablog.com/entry/2020/11/02/122736#others:title]
+[Lisp関数仕様 - システム関数](D1_System.html)
 
 
 ### 関数`eastasian-width`

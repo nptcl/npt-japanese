@@ -1,9 +1,11 @@
 % npt amalgamation
 
+% npt amalgamation
+
 nptのドキュメントです。  
-参照元：[https://nptcl.hatenablog.com/entry/2020/08/21/214057:title]  
-前へ：[https://nptcl.hatenablog.com/entry/2020/08/22/132802:title]  
-次へ：[https://nptcl.hatenablog.com/entry/2020/08/26/001605:title]
+参照元：[ANSI Common Lisp npt](index.html)  
+前へ：[nptコマンドの引数](A3_Arguments.html)  
+次へ：[npt特有の機能](A5_Features.html)
 
 
 # 4.1 npt amalgamation

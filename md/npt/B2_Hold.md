@@ -1,7 +1,5 @@
 % hold変数の使い方
 
-% hold変数の使い方
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[nptをC言語で使用する](B1_Using.html)  

@@ -1,7 +1,5 @@
 % npt amalgamation
 
-% npt amalgamation
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[nptコマンドの引数](A3_Arguments.html)  

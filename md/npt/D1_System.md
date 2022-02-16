@@ -1,7 +1,5 @@
 % Lisp関数仕様 - システム関数
 
-% Lisp関数仕様 - システム関数
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

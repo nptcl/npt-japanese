@@ -1,7 +1,5 @@
 % ANSI Common Lisp npt
 
-% ANSI Common Lisp npt トップページ
-
 ANSI Common Lisp nptのトップページです。  
 
 [https://nptcl.github.io/npt-japanese/docs/index.html](https://nptcl.github.io/npt-japanese/docs/md/index.html)  

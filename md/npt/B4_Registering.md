@@ -1,7 +1,5 @@
 % 関数の登録
 
-% 関数の登録
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[脱出関数](B3_Escape.html)  

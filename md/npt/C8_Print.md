@@ -1,7 +1,5 @@
 % 関数仕様 - 書式
 
-% 関数仕様 - 書式
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

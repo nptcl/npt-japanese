@@ -1,7 +1,5 @@
 % コンパイルの詳細
 
-% コンパイルの詳細
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[インストール方法](A1_Install.html)  

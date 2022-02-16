@@ -1,7 +1,5 @@
 % 脱出の操作
 
-% 脱出の操作
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[LISP ABORT](B5_Abort.html)  

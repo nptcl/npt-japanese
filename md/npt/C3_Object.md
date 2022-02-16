@@ -1,7 +1,5 @@
 % 関数仕様 - オブジェクト
 
-% 関数仕様 - オブジェクト
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

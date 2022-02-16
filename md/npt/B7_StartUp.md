@@ -1,7 +1,5 @@
 % スタートアップ
 
-% スタートアップ
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[脱出の操作](B6_Operations.html)  

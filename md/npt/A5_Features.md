@@ -1,7 +1,5 @@
 % npt特有の機能
 
-% npt特有の機能
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[npt amalgamation](A4_Amalgamation.html)  

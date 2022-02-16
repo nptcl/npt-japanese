@@ -1,7 +1,5 @@
 % Paperオブジェクト
 
-% Paperオブジェクト
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[スタートアップ](B7_StartUp.html)

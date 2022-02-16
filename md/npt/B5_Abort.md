@@ -1,7 +1,5 @@
 % LISP ABORT
 
-% LISP ABORT
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[関数の登録](B4_Registering.html)  

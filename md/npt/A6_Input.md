@@ -1,7 +1,5 @@
 % 入力モジュール
 
-% 入力モジュール
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[npt特有の機能](A5_Features.html)

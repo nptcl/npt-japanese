@@ -1,7 +1,5 @@
 % 脱出関数
 
-% 脱出関数
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 前へ：[hold変数の使い方](B2_Hold.html)  

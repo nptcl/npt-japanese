@@ -1,7 +1,5 @@
 % 関数仕様 - 実行
 
-% 関数仕様 - 実行
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

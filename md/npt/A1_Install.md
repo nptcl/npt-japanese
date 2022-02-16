@@ -1,7 +1,5 @@
 % インストール方法
 
-% インストール方法
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 次へ：[コンパイルの詳細](A2_Compilation.html)

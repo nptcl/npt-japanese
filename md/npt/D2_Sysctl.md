@@ -1,7 +1,5 @@
 % Lisp関数仕様 - sysctl
 
-% Lisp関数仕様 - sysctl
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

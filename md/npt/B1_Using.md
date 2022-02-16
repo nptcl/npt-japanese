@@ -1,7 +1,5 @@
 % nptをC言語で使用する
 
-% nptをC言語で使用する
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)  
 次へ：[hold変数の使い方](B2_Hold.html)

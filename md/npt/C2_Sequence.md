@@ -1,7 +1,5 @@
 % 関数仕様 - シーケンス
 
-% 関数仕様 - シーケンス
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

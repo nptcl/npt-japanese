@@ -1,7 +1,5 @@
 % Lisp関数仕様 - terme
 
-% Lisp関数仕様 - terme
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

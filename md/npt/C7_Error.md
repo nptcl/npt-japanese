@@ -1,7 +1,5 @@
 % 関数仕様 - エラー
 
-% 関数仕様 - エラー
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

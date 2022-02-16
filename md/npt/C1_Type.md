@@ -1,7 +1,5 @@
 % 関数仕様 - 型関数
 
-% 関数仕様 - 型関数
-
 nptのドキュメントです。  
 参照元：[ANSI Common Lisp npt](index.html)
 

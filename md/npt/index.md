@@ -2,8 +2,8 @@
 
 ANSI Common Lisp nptのトップページです。  
 
-[https://nptcl.github.io/npt-japanese/docs/index.html](https://nptcl.github.io/npt-japanese/docs/md/index.html)  
-[https://nptcl.github.io/npt-japanese/md/index.html](https://nptcl.github.io/npt-japanese/md/index.html)
+[https://nptcl.github.io/npt-japanese/docs/npt/index.html](https://nptcl.github.io/npt-japanese/docs/npt/index.html)  
+[https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)
 
 nptとは、C言語で構築できるANSI Common Lisp処理系です。  
 FreeBSD, Linux, Windowsで構築できます。  

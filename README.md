@@ -4,8 +4,8 @@
 
 # 1. 説明書
 
-[https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)  
 [https://nptcl.github.io/npt-japanese/docs/npt/index.html](https://nptcl.github.io/npt-japanese/docs/npt/index.html)
+[https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)  
 
 
 # 2. ライセンス
@@ -15,7 +15,10 @@
 
 # 3. 配布
 
-https://github.com/nptcl/npt-japanese  
+ドキュメント  
+https://github.com/nptcl/npt-japanese
+
+モジュール  
 https://github.com/nptcl/npt  
 https://github.com/nptcl/npt-amalgamation
 

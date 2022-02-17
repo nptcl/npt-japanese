@@ -25,7 +25,7 @@ nptのオブジェクトは、下記の3つのいずれかの形で表されま�
 - body形式
 - array-body形式
 
-array形式は一次元`vector`と同じです。  
+array形式は一次元`simple-vector`と同じです。  
 body形式は、バイト単位のバッファ領域を保有します。  
 array-body形式は、array形式とbody形式を組み合わせたものです。
 
@@ -40,7 +40,7 @@ User値のデフォルト値は`0`です。
 # 8.3 array形式
 
 array形式の使い方を説明します。  
-array形式は、一次元general arrayである、`vector`と同じです。  
+array形式は、一次元general arrayである、`simple-vector`と同じです。  
 作成は次のようにして行います。
 
 ```lisp
@@ -187,24 +187,21 @@ array形式とは違い、body形式は値の内容を初期化しません。
 (make-paper 0 10 :fill #xFF)
 ```
 
-値の範囲は`0`～`#xFF`の間になります。
-
+値の範囲は`0`～`#xFF`の間になります。  
 配列の値を取得するには、次のように実行します。
 
 ```lisp
 (body-paper paper index)
 ```
 
-返却される値は、`0`～`#xFF`の整数です。
-
+返却される値は、`0`～`#xFF`の整数です。  
 値を設定するには、次のように実行します。
 
 ```lisp
 (body-paper paper index value)
 ```
 
-valueの値は、`0`～`#xFF`の整数である必要があります。
-
+`value`は、`0`～`#xFF`の整数である必要があります。  
 バッファの取得と設定は下記の関数を使用します。
 
 ```c
@@ -233,7 +230,7 @@ lisp_paper_setbody_(x, 3, 0xFF);
 
 # 8.5 array-body形式
 
-array-body形式の使い方を説明します。  
+array-body形式の使い方を説明します。
 
 ```lisp
 (make-paper size1 size2)
@@ -352,7 +349,7 @@ bodyの内容を取得する場合は、`info-paper`の第三引数に`t`を指�
 `(unsigned-byte 8)`のspecialized array形式で返却されます。
 
 
-## 8.6.2 長さを取得
+## 8.6.3 長さを取得
 
 arrayとbodyの長さを取得します。  
 取得は`info-paper`関数に、`length`を指定します。
@@ -401,7 +398,7 @@ printf("%d, %d\n", (int)array, (int)body);
 ## 8.7.1 Paperオブジェクトと型
 
 Paperオブジェクトは、npt内においては通常のLispオブジェクトです。  
-`eval`で評価できますし、型も持っています。  
+`eval`で評価できますし、型も持っています。
 
 型の評価は下記のようにして行います。
 

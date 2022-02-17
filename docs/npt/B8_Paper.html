@@ -233,7 +233,7 @@ nptの実装に合ったオブジェクトを作成するため、 メモリ空�
 <li>body形式</li>
 <li>array-body形式</li>
 </ul>
-<p>array形式は一次元<code>vector</code>と同じです。<br />
+<p>array形式は一次元<code>simple-vector</code>と同じです。<br />
 body形式は、バイト単位のバッファ領域を保有します。<br />
 array-body形式は、array形式とbody形式を組み合わせたものです。</p>
 <p>array-body形式には制限があり、arrayとbodyのサイズをどちらも<code>#xFFFF</code>以下にしなければなりません。<br />
@@ -243,7 +243,7 @@ User値の使い方は自由ですが、Paperオブジェクトを種類分け�
 User値のデフォルト値は<code>0</code>です。</p>
 <h1 id="array形式">8.3 array形式</h1>
 <p>array形式の使い方を説明します。<br />
-array形式は、一次元general arrayである、<code>vector</code>と同じです。<br />
+array形式は、一次元general arrayである、<code>simple-vector</code>と同じです。<br />
 作成は次のようにして行います。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(make-paper size <span class="dv">0</span>)</span></code></pre></div>
 <p>第一引数の<code>size</code>は配列の要素数です。<br />
@@ -320,14 +320,14 @@ array形式とは違い、body形式は値の内容を初期化しません。<b
 <div class="sourceCode" id="cb15"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> <span class="dv">10</span> :fill <span class="kw">t</span>)</span></code></pre></div>
 <p>または、次のように初期値を指定できます。</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(make-paper <span class="dv">0</span> <span class="dv">10</span> :fill <span class="ch">#x</span>FF)</span></code></pre></div>
-<p>値の範囲は<code>0</code>～<code>#xFF</code>の間になります。</p>
-<p>配列の値を取得するには、次のように実行します。</p>
+<p>値の範囲は<code>0</code>～<code>#xFF</code>の間になります。<br />
+配列の値を取得するには、次のように実行します。</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(body-paper paper index)</span></code></pre></div>
-<p>返却される値は、<code>0</code>～<code>#xFF</code>の整数です。</p>
-<p>値を設定するには、次のように実行します。</p>
+<p>返却される値は、<code>0</code>～<code>#xFF</code>の整数です。<br />
+値を設定するには、次のように実行します。</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(body-paper paper index value)</span></code></pre></div>
-<p>valueの値は、<code>0</code>～<code>#xFF</code>の整数である必要があります。</p>
-<p>バッファの取得と設定は下記の関数を使用します。</p>
+<p><code>value</code>は、<code>0</code>～<code>#xFF</code>の整数である必要があります。<br />
+バッファの取得と設定は下記の関数を使用します。</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_getbody_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">,</span> byte <span class="op">*</span>ret<span class="op">);</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_paper_setbody_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">size_t</span> index<span class="op">,</span> byte value<span class="op">);</span></span></code></pre></div>
 <p>次の例文をC言語で表してみます。</p>
@@ -414,7 +414,7 @@ arrayの内容を取得してみます。<br />
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>(info-paper x &#39;vector <span class="kw">t</span>)</span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>-&gt; #(<span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span> <span class="dv">7</span>)</span></code></pre></div>
 <p>なお、body部の<code>vector</code>は、 <code>(unsigned-byte 8)</code>のspecialized array形式で返却されます。</p>
-<h2 id="長さを取得">8.6.2 長さを取得</h2>
+<h2 id="長さを取得">8.6.3 長さを取得</h2>
 <p>arrayとbodyの長さを取得します。<br />
 取得は<code>info-paper</code>関数に、<code>length</code>を指定します。</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-paper <span class="dv">3</span> <span class="dv">4</span>))</span>

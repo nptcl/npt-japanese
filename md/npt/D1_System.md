@@ -8,7 +8,7 @@ nptのドキュメントです。
 
 `npt-system`パッケージの下記の関数を説明します。
 
-- [システム関数](#system-develop)
+- [システム関数](#system-call-1)
 
 ```lisp
 defun gc
@@ -18,7 +18,7 @@ defun quit
 ```
 
 
-- [オブジェクト確認](#object-check)
+- [オブジェクト確認](#system-call-2)
 
 ```lisp
 defun specialp
@@ -36,7 +36,7 @@ defun callnamep
 ```
 
 
-- [オブジェクト生成](#object-make)
+- [オブジェクト生成](#system-call-3)
 
 ```lisp
 defun make-character
@@ -48,7 +48,7 @@ defun make-callname
 ```
 
 
-- [型確認](#type-check)
+- [型確認](#system-call-4)
 
 ```lisp
 defun subtypep-result
@@ -57,7 +57,7 @@ defun type-object
 ```
 
 
-- [メモリストリーム](#memory-stream)
+- [メモリストリーム](#system-call-5)
 
 ```lisp
 defun make-memory-input-stream
@@ -71,7 +71,7 @@ defun (setf memory-stream-p)
 ```
 
 
-- [ソート](#sort)
+- [ソート](#system-call-6)
 
 ```lisp
 defun simple-sort
@@ -81,7 +81,7 @@ defun merge-sort
 ```
 
 
-- [Paperオブジェクト](#paper)
+- [Paperオブジェクト](#system-call-7)
 
 ```lisp
 defun make-paper
@@ -91,7 +91,7 @@ defun body-paper
 ```
 
 
-- [その他の関数](#others)
+- [その他の関数](#system-call-8)
 
 ```lisp
 defun package-export-list
@@ -107,7 +107,7 @@ defun eastasian-width
 ```
 
 
-# <a id="system-develop">■システム関数</a>
+# <a id="system-call-1">■システム関数</a>
 
 `npt-system`パッケージに存在する、システム関数の関数仕様を示します。
 
@@ -235,7 +235,7 @@ $
 ```
 
 
-# <a id="object-check">■オブジェクト確認</a>
+# <a id="system-call-2">■オブジェクト確認</a>
 
 `npt-system`パッケージに存在する、オブジェクト確認の関数仕様を示します。
 
@@ -508,7 +508,7 @@ setf関数を表す`(setf car)`形式をまとめたものです。
 Common Lispにおいて、`callname`オブジェクトを生成する方法はありません。
 
 
-# <a id="object-make">■オブジェクト生成</a>
+# <a id="system-call-3">■オブジェクト生成</a>
 
 `npt-system`パッケージに存在する、オブジェクト生成の関数仕様を示します。
 
@@ -716,7 +716,7 @@ T
 入力は`symbol`型か`(setf symbol)`型を受け取ります。
 
 
-# <a id="type-check">■型確認</a>
+# <a id="system-call-4">■型確認</a>
 
 `npt-system`パッケージに存在する、型確認の関数仕様を示します。
 
@@ -778,7 +778,7 @@ defun type-object
 入力の型オブジェクトから、型の名前を生成します。
 
 
-# <a id="memory-stream">■メモリストリーム</a>
+# <a id="system-call-5">■メモリストリーム</a>
 
 `npt-system`パッケージに存在する、メモリストリームの関数仕様を示します。
 
@@ -1019,7 +1019,7 @@ T
 ```
 
 
-# <a id="sort">■ソート</a>
+# <a id="system-call-6">■ソート</a>
 
 `npt-system`パッケージに存在する、ソートの関数仕様を示します。
 
@@ -1094,7 +1094,7 @@ defun merge-sort
 安定であり、実行コストが`O(n log n)`のソートを行います。
 
 
-# <a id="paper">■Paperオブジェクト</a>
+# <a id="system-call-7">■Paperオブジェクト</a>
 
 `npt-system`パッケージに存在する、Paperオブジェクトの関数仕様を示します。
 
@@ -1206,7 +1206,7 @@ Paperオブジェクトに対して、bodyの設定と取得を行います。
 `value`が指定された場合は設定です。
 
 
-# <a id="others">■その他の関数</a>
+# <a id="system-call-8">■その他の関数</a>
 
 `npt-system`パッケージに存在する、その他の関数の仕様を示します。
 

@@ -221,14 +221,14 @@
 <h1 id="lisp関数仕様">Lisp関数仕様</h1>
 <p><code>npt-system</code>パッケージの下記の関数を説明します。</p>
 <ul>
-<li><a href="#system-develop">システム関数</a></li>
+<li><a href="#system-call-1">システム関数</a></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> gc</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> savecore</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> exit</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> quit</span></span></code></pre></div>
 <ul>
-<li><a href="#object-check">オブジェクト確認</a></li>
+<li><a href="#system-call-2">オブジェクト確認</a></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> specialp</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> array-general-p</span></span>
@@ -243,7 +243,7 @@
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> long-float-p</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> callnamep</span></span></code></pre></div>
 <ul>
-<li><a href="#object-make">オブジェクト生成</a></li>
+<li><a href="#system-call-3">オブジェクト生成</a></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-character</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-fixnum</span></span>
@@ -252,13 +252,13 @@
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-complex</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-callname</span></span></code></pre></div>
 <ul>
-<li><a href="#type-check">型確認</a></li>
+<li><a href="#system-call-4">型確認</a></li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep-result</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> parse-type</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> type-object</span></span></code></pre></div>
 <ul>
-<li><a href="#memory-stream">メモリストリーム</a></li>
+<li><a href="#system-call-5">メモリストリーム</a></li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-memory-input-stream</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-memory-output-stream</span></span>
@@ -269,21 +269,21 @@
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> memory-stream-p</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> </span>(<span class="kw">setf</span> memory-stream-p)</span></code></pre></div>
 <ul>
-<li><a href="#sort">ソート</a></li>
+<li><a href="#system-call-6">ソート</a></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> simple-sort</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> bubble-sort</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> quick-sort</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> merge-sort</span></span></code></pre></div>
 <ul>
-<li><a href="#paper">Paperオブジェクト</a></li>
+<li><a href="#system-call-7">Paperオブジェクト</a></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-paper</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> info-paper</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> array-paper</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> body-paper</span></span></code></pre></div>
 <ul>
-<li><a href="#others">その他の関数</a></li>
+<li><a href="#system-call-8">その他の関数</a></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> package-export-list</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> large-number</span></span>
@@ -295,7 +295,7 @@
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-set</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-get</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-width</span></span></code></pre></div>
-<h1 id="システム関数"><a id="system-develop">■システム関数</a></h1>
+<h1 id="システム関数"><a id="system-call-1">■システム関数</a></h1>
 <p><code>npt-system</code>パッケージに存在する、システム関数の関数仕様を示します。</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> gc</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> savecore</span></span>
@@ -375,7 +375,7 @@ npt起動時に<code>--core</code>引数および<code>--corefile</code>引数�
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>$ echo $?</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="dv">22</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>$</span></code></pre></div>
-<h1 id="オブジェクト確認"><a id="object-check">■オブジェクト確認</a></h1>
+<h1 id="オブジェクト確認"><a id="system-call-2">■オブジェクト確認</a></h1>
 <p><code>npt-system</code>パッケージに存在する、オブジェクト確認の関数仕様を示します。</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> specialp</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> array-general-p</span></span>
@@ -528,7 +528,7 @@ Common Lispでは、全てのCLOSオブジェクトが <code>standard-object</co
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>出力: <span class="kw">boolean</span></span></code></pre></div>
 <p><code>callname</code>とは、関数名を表すオブジェクトであり、 通常の<code>car</code>と言った<code>symbol</code>と、 setf関数を表す<code>(setf car)</code>形式をまとめたものです。<br />
 Common Lispにおいて、<code>callname</code>オブジェクトを生成する方法はありません。</p>
-<h1 id="オブジェクト生成"><a id="object-make">■オブジェクト生成</a></h1>
+<h1 id="オブジェクト生成"><a id="system-call-3">■オブジェクト生成</a></h1>
 <p><code>npt-system</code>パッケージに存在する、オブジェクト生成の関数仕様を示します。</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-character</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-fixnum</span></span>
@@ -654,7 +654,7 @@ nptでは、本来<code>integer</code>となるものが<code>complex</code>オ�
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>出力: callname</span></code></pre></div>
 <p>関数名を扱う<code>callname</code>オブジェクトを生成します。<br />
 入力は<code>symbol</code>型か<code>(setf symbol)</code>型を受け取ります。</p>
-<h1 id="型確認"><a id="type-check">■型確認</a></h1>
+<h1 id="型確認"><a id="system-call-4">■型確認</a></h1>
 <p><code>npt-system</code>パッケージに存在する、型確認の関数仕様を示します。</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep-result</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> parse-type</span></span>
@@ -689,7 +689,7 @@ nptでは、本来<code>integer</code>となるものが<code>complex</code>オ�
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>入力: <span class="kw">type</span></span>
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>出力: result (<span class="kw">or</span> <span class="kw">cons</span> <span class="kw">symbol</span>)</span></code></pre></div>
 <p>入力の型オブジェクトから、型の名前を生成します。</p>
-<h1 id="メモリストリーム"><a id="memory-stream">■メモリストリーム</a></h1>
+<h1 id="メモリストリーム"><a id="system-call-5">■メモリストリーム</a></h1>
 <p><code>npt-system</code>パッケージに存在する、メモリストリームの関数仕様を示します。</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-memory-input-stream</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-memory-output-stream</span></span>
@@ -829,7 +829,7 @@ nptでは、本来<code>integer</code>となるものが<code>complex</code>オ�
 <span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;ABC&quot;</span></span>
 <span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>T</span>
 <span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a><span class="op">*</span></span></code></pre></div>
-<h1 id="ソート"><a id="sort">■ソート</a></h1>
+<h1 id="ソート"><a id="system-call-6">■ソート</a></h1>
 <p><code>npt-system</code>パッケージに存在する、ソートの関数仕様を示します。</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> simple-sort</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> bubble-sort</span></span>
@@ -871,7 +871,7 @@ nptでは、本来<code>integer</code>となるものが<code>complex</code>オ�
 <span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>入力: key 関数</span>
 <span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>出力: result <span class="kw">sequence</span></span></code></pre></div>
 <p>安定であり、実行コストが<code>O(n log n)</code>のソートを行います。</p>
-<h1 id="paperオブジェクト"><a id="paper">■Paperオブジェクト</a></h1>
+<h1 id="paperオブジェクト"><a id="system-call-7">■Paperオブジェクト</a></h1>
 <p><code>npt-system</code>パッケージに存在する、Paperオブジェクトの関数仕様を示します。</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> make-paper</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> info-paper</span></span>
@@ -945,7 +945,7 @@ bodyのときは、<code>(unsigned-byte 8)</code>形式のspecialized arrayで�
 <span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>出力: result</span></code></pre></div>
 <p><code>value</code>が指定されていなかった場合は取得です。<br />
 <code>value</code>が指定された場合は設定です。</p>
-<h1 id="その他の関数"><a id="others">■その他の関数</a></h1>
+<h1 id="その他の関数"><a id="system-call-8">■その他の関数</a></h1>
 <p><code>npt-system</code>パッケージに存在する、その他の関数の仕様を示します。</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> package-export-list</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> large-number</span></span>

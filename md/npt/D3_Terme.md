@@ -102,7 +102,7 @@ termeモジュールが利用可能かどうかを返却します。
 termeの操作を開始します。
 
 ```lisp
-(defun terme (terme-begin) ...) -> paper
+(defun terme (terme-begin &optional mode) ...) -> paper
 ```
 
 内部の動作は、端末をraw modeに設定しています。  
@@ -115,6 +115,11 @@ raw modeは、下記の点において通常のモードと違っています。
 返却値`paper`は、変更前の端末情報を保有したPaperオブジェクトです。  
 `terme-end`の引数に渡すことで、端末の状態をもとに戻すことができます。  
 終了する前は、必ず`terme-end`を実行してください。
+
+引数`mode`は、`nil`か`:default`を指定できます。  
+省略時は`nil`であり、端末をraw modeに設定します。  
+`mode`が`:default`の場合は、端末を起動時の設定に変更します。  
+その際の返却値は、raw modeと同様に、変更される前の端末情報です。
 
 実行例は`terme-end`をご確認ください。
 
@@ -170,6 +175,12 @@ termeの操作を終了します。
 |← キー|`terme-left`|`nil`|
 |→ キー|`terme-right`|`nil`|
 |Function キー|`terme-function`| 1, 2, ～|
+|Home キー|`terme-home`|`nil`|
+|End キー|`terme-end`|`nil`|
+|Page Up キー|`terme-page-up`|`nil`|
+|Page Down キー|`terme-page-down`|`nil`|
+|Insert キー|`terme-insert`|`nil`|
+|Esc キー|`terme-escape`|`nil`|
 
 イベントと返却値の対応を下記に示します。
 
@@ -212,14 +223,20 @@ termeの操作を終了します。
 
 ```lisp
 (defun terme (terme-output &optional value) ...) -> null
-  value  (or null charcter string integer)  ;; default nil
+  value  (or null charcter string integer array)  ;; default nil
 ```
 
 引数`value`は省略可能であり、デフォルトは`nil`です。  
 引数`value`が文字の場合は、UTF-8エンコードで出力します。  
 引数`value`が文字列の場合は、UTF-8エンコードで出力します。  
 引数`value`が整数の場合は、Unicodeコードとみなして、UTF-8エンコードで出力します。  
+引数`value`が配列の場合は、内容に応じて出力を行います。  
 引数`value`が`nil`の場合は、キャッシュのデータをflushします。
+
+引数が配列出会った場合は、必ず一次元である必要があります。  
+配列は、最初の要素から、`fill-pointer`の値まで出力します。  
+あらかじめバッファを広めに用意しておき、`fill-pointer`でサイスを操作することで、
+メモリ空間の節約と速度向上を期待することができます。
 
 本機能で出力を行うと、内部のバッファに出力データが保留されます。  
 画面に反映したい場合は、必ず`(terme 'terme-output)`で内容をflushして下さい。  

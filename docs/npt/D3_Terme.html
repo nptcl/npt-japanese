@@ -278,7 +278,7 @@ Prompt mode          terme</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(terme &#39;terme-enable)</span></code></pre></div>
 <h1 id="関数terme-terme-begin"><a id="terme-3">関数<code>terme</code>: <code>terme-begin</code></a></h1>
 <p>termeの操作を開始します。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> terme </span>(terme-begin) ...) -&gt; paper</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> terme </span>(terme-begin &amp;optional mode) ...) -&gt; paper</span></code></pre></div>
 <p>内部の動作は、端末をraw modeに設定しています。<br />
 raw modeは、下記の点において通常のモードと違っています。</p>
 <ul>
@@ -289,6 +289,10 @@ raw modeは、下記の点において通常のモードと違っています。
 <p>返却値<code>paper</code>は、変更前の端末情報を保有したPaperオブジェクトです。<br />
 <code>terme-end</code>の引数に渡すことで、端末の状態をもとに戻すことができます。<br />
 終了する前は、必ず<code>terme-end</code>を実行してください。</p>
+<p>引数<code>mode</code>は、<code>nil</code>か<code>:default</code>を指定できます。<br />
+省略時は<code>nil</code>であり、端末をraw modeに設定します。<br />
+<code>mode</code>が<code>:default</code>の場合は、端末を起動時の設定に変更します。<br />
+その際の返却値は、raw modeと同様に、変更される前の端末情報です。</p>
 <p>実行例は<code>terme-end</code>をご確認ください。</p>
 <h1 id="関数terme-terme-end"><a id="terme-4">関数<code>terme</code>: <code>terme-end</code></a></h1>
 <p>termeの操作を終了します。</p>
@@ -354,6 +358,36 @@ raw modeは、下記の点において通常のモードと違っています。
 <td><code>terme-function</code></td>
 <td>1, 2, ～</td>
 </tr>
+<tr class="odd">
+<td>Home キー</td>
+<td><code>terme-home</code></td>
+<td><code>nil</code></td>
+</tr>
+<tr class="even">
+<td>End キー</td>
+<td><code>terme-end</code></td>
+<td><code>nil</code></td>
+</tr>
+<tr class="odd">
+<td>Page Up キー</td>
+<td><code>terme-page-up</code></td>
+<td><code>nil</code></td>
+</tr>
+<tr class="even">
+<td>Page Down キー</td>
+<td><code>terme-page-down</code></td>
+<td><code>nil</code></td>
+</tr>
+<tr class="odd">
+<td>Insert キー</td>
+<td><code>terme-insert</code></td>
+<td><code>nil</code></td>
+</tr>
+<tr class="even">
+<td>Esc キー</td>
+<td><code>terme-escape</code></td>
+<td><code>nil</code></td>
+</tr>
 </tbody>
 </table>
 <p>イベントと返却値の対応を下記に示します。</p>
@@ -403,12 +437,16 @@ raw modeは、下記の点において通常のモードと違っています。
 <h1 id="関数terme-terme-output"><a id="terme-6">関数<code>terme</code>: <code>terme-output</code></a></h1>
 <p>端末にデータを出力します。</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> terme </span>(terme-output &amp;optional value) ...) -&gt; <span class="kw">null</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  value  (<span class="kw">or</span> <span class="kw">null</span> charcter <span class="kw">string</span> <span class="kw">integer</span>)  <span class="co">;; default nil</span></span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  value  (<span class="kw">or</span> <span class="kw">null</span> charcter <span class="kw">string</span> <span class="kw">integer</span> <span class="kw">array</span>)  <span class="co">;; default nil</span></span></code></pre></div>
 <p>引数<code>value</code>は省略可能であり、デフォルトは<code>nil</code>です。<br />
 引数<code>value</code>が文字の場合は、UTF-8エンコードで出力します。<br />
 引数<code>value</code>が文字列の場合は、UTF-8エンコードで出力します。<br />
 引数<code>value</code>が整数の場合は、Unicodeコードとみなして、UTF-8エンコードで出力します。<br />
+引数<code>value</code>が配列の場合は、内容に応じて出力を行います。<br />
 引数<code>value</code>が<code>nil</code>の場合は、キャッシュのデータをflushします。</p>
+<p>引数が配列出会った場合は、必ず一次元である必要があります。<br />
+配列は、最初の要素から、<code>fill-pointer</code>の値まで出力します。<br />
+あらかじめバッファを広めに用意しておき、<code>fill-pointer</code>でサイスを操作することで、 メモリ空間の節約と速度向上を期待することができます。</p>
 <p>本機能で出力を行うと、内部のバッファに出力データが保留されます。<br />
 画面に反映したい場合は、必ず<code>(terme 'terme-output)</code>で内容をflushして下さい。<br />
 <code>terme-output</code>ではない、他の操作関数(例えば<code>terme-move</code>など)は、 エスケープシーケンスを<code>terme-output</code>で出力して実現しています。<br />

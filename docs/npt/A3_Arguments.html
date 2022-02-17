@@ -159,7 +159,7 @@
 次へ：<a href="A4_Amalgamation.html">npt amalgamation</a></p>
 <p>nptコマンドの引数を説明します。</p>
 <h1 id="引数">3.1 引数</h1>
-<h2 id="help">–help</h2>
+<h2 id="help"><code>--help</code></h2>
 <p>次のようなメッセージを表示します。</p>
 <pre><code>$ npt --help
 npt -- ANSI Common Lisp Programming Language.
@@ -188,11 +188,11 @@ INPUTS:
   --eval &lt;cmd&gt;       Execute command.
 
 If inputs aren&#39;t appeared, load from a standard-input.</code></pre>
-<h2 id="version">–version</h2>
+<h2 id="version"><code>--version</code></h2>
 <p>nptのコンパイル情報を出力します。<br />
 スクリプトなど機械的に読みやすいように整形された 引数<code>--version-script</code>も存在します。<br />
 出力内容はほぼ変わりませんが、 スクリプト版の方が若干情報が増えます。</p>
-<h2 id="core">–core</h2>
+<h2 id="core"><code>--core</code></h2>
 <p>コアファイル読み込みモードです。<br />
 <code>--standalone</code>と同時に指定できません。</p>
 <p>コアファイルの位置は引数<code>--corefile</code>で指定できます。<br />
@@ -214,13 +214,13 @@ Windows
     %PROGRAMFILES%\npt\npt.core
     %ProgramFiles(x86)%\npt\npt.core</code></pre>
 <p>引数<code>--nocore</code>が指定された場合は、標準のコアファイルは読み込みません。 もしコアファイルが見つからなかった場合はエラーです。</p>
-<h2 id="standalone">–standalone</h2>
+<h2 id="standalone"><code>--standalone</code></h2>
 <p>Lispのイメージを作成するモードです。<br />
 本引数が指定された場合は、 コアファイルを読み込まずにCommon Lispのイメージを最初から作成します。<br />
 <code>--core</code>と同時に指定できません。</p>
 <p>本モードは標準で指定されているため、引数<code>--standalone</code>は省略可能です。<br />
 nptのコンパイルによっては、デフォルトが<code>--standalone</code>ではない場合が存在するため、 本引数はそのような特殊なコマンドのために用意されました。</p>
-<h2 id="heap-size">–heap <code>&lt;size&gt;</code></h2>
+<h2 id="heap-size"><code>--heap &lt;size&gt;</code></h2>
 <p>heap領域のサイズを指定します。<br />
 <code>&lt;size&gt;</code>は10進数の数値を指定します。</p>
 <p>単位K, M, G, T, P, Eを付与することができます。<br />
@@ -228,11 +228,11 @@ nptのコンパイルによっては、デフォルトが<code>--standalone</cod
 <pre><code>--heap 1G</code></pre>
 <p>となります。<br />
 省略時は1Gです。</p>
-<h2 id="local-size">–local <code>&lt;size&gt;</code></h2>
+<h2 id="local-size"><code>--local &lt;size&gt;</code></h2>
 <p>local領域のサイズを指定します。<br />
 <code>&lt;size&gt;</code>は<code>--heap</code>と同様、10進数の数値を指定し、単位を含めることができます。<br />
 省略時は512Mです。</p>
-<h2 id="initfile-file">–initfile <code>&lt;file&gt;</code></h2>
+<h2 id="initfile-file"><code>--initfile &lt;file&gt;</code></h2>
 <p>起動時に初期化ファイルとして読み込まれるLispファイルを指定します。<br />
 引数<code>--load</code>と同じような動作をしますが、 本引数は初期化を行うという目的でファイルを読み込みます。</p>
 <p>もし<code>--initfile</code>が指定されていない場合は、 標準の初期化ファイルを下記の順番で探します。</p>
@@ -253,16 +253,16 @@ Windows
     %PROGRAMFILES%\npt\npt.lisp
     %ProgramFiles(x86)%\npt\npt.lisp</code></pre>
 <p>引数<code>--noinit</code>が指定された場合は、標準の初期化ファイルは読み込みません。 もし初期化ファイルが見つからなかった場合は、 読み込みを行わずに次の処理へ移行します。</p>
-<h2 id="debugger-nodebugger">–debugger / –nodebugger</h2>
+<h2 id="debugger---nodebugger"><code>--debugger</code> / <code>--nodebugger</code></h2>
 <p>デバッガーを有効/無効にします。<br />
 有効の場合は、エラーが生じたときにデバッガーが起動されます。<br />
 無効の場合は、エラーが生じたときにabortしてプログラムが異常終了します。</p>
 <p>デバッガーの有効/無効は、<code>lisp-system::*enable-debugger*</code>に <code>boolean</code>値として設定されます。</p>
-<h2 id="quit">–quit</h2>
+<h2 id="quit"><code>--quit</code></h2>
 <p>本引数は、引数のINPUTSが処理されたあとに 終了するかあるいは<code>eval-loop</code>に移行するかを決定します。</p>
 <p>もし<code>--quit</code>が指定された場合は終了します。<br />
 指定されなかった場合は<code>eval-loop</code>に移行し入力待ちになります。</p>
-<h2 id="inputs">INPUTS</h2>
+<h2 id="inputs"><code>INPUTS</code></h2>
 <p>INPUTSは次の3つの引数から成り立ちます。</p>
 <ul>
 <li><code>--eval &lt;cmd&gt;</code></li>
@@ -270,7 +270,7 @@ Windows
 <li><code>--script &lt;file&gt;</code></li>
 </ul>
 <p>これらの引数は何度も記載することができます。</p>
-<h2 id="eval-cmd">–eval <code>&lt;cmd&gt;</code></h2>
+<h2 id="eval-cmd"><code>--eval &lt;cmd&gt;</code></h2>
 <p>引数<code>--eval</code>を用いることで、引数の文を実行できます。<br />
 例を示します。</p>
 <pre><code>$ npt --eval &#39;(format t &quot;Hello~%&quot;)&#39;
@@ -281,7 +281,7 @@ Hello
 <pre><code>$ npt --quit --eval &#39;(format t &quot;Hello~%&quot;)&#39;
 Hello
 $</code></pre>
-<h2 id="load-script">–load / –script</h2>
+<h2 id="load---script"><code>--load</code> / <code>--script</code></h2>
 <p>Lispファイルを読み込む場合は、 <code>--load</code>と<code>--script</code>の二つの方法があります。</p>
 <p><code>--load</code>はファイルを読み込んだあと、入力待ちに遷移します。<br />
 <code>--script</code>はファイルを読み込んだあと、すぐに終了します。</p>

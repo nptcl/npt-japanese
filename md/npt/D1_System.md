@@ -51,7 +51,7 @@ defun make-callname
 - [型確認](#system-call-4)
 
 ```lisp
-defun subtypep-result
+defun subtypep!
 defun parse-type
 defun type-object
 ```
@@ -298,7 +298,7 @@ NIL
 入力が`array`オブジェクトであり、かつgeneral arrayの場合は`t`を返却します。  
 `typep`とは違い、npt内部のオブジェクト種別によって判定が変わります。  
 入力が`make-array`によって生成され、
-かつ`elemennt-type`が`t`のオブジェクトの場合に限り`t`が返却されます。  
+かつ`element-type`が`t`のオブジェクトの場合に限り`t`が返却されます。  
 例えば`#(10 20 30)`は、`vector`オブジェクトのため、`t`にはなりません。  
 
 
@@ -721,18 +721,18 @@ T
 `npt-system`パッケージに存在する、型確認の関数仕様を示します。
 
 ```lisp
-defun subtypep-result
+defun subtypep!
 defun parse-type
 defun type-object
 ```
 
 
-## 関数`subtypep-result`
+## 関数`subtypep!`
 
 `subtypep`の結果を`symbol`で取得します。
 
 ```lisp
-(defun subtypep-result (left right) ...) -> symbol
+(defun subtypep! (left right) ...) -> symbol
 
 入力: left type-specifier
 入力: right type-specifier

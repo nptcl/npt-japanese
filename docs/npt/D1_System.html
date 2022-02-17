@@ -254,7 +254,7 @@
 <ul>
 <li><a href="#system-call-4">型確認</a></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep-result</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep</span>!</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> parse-type</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> type-object</span></span></code></pre></div>
 <ul>
@@ -414,7 +414,7 @@ npt起動時に<code>--core</code>引数および<code>--corefile</code>引数�
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>出力: <span class="kw">boolean</span></span></code></pre></div>
 <p>入力が<code>array</code>オブジェクトであり、かつgeneral arrayの場合は<code>t</code>を返却します。<br />
 <code>typep</code>とは違い、npt内部のオブジェクト種別によって判定が変わります。<br />
-入力が<code>make-array</code>によって生成され、 かつ<code>elemennt-type</code>が<code>t</code>のオブジェクトの場合に限り<code>t</code>が返却されます。<br />
+入力が<code>make-array</code>によって生成され、 かつ<code>element-type</code>が<code>t</code>のオブジェクトの場合に限り<code>t</code>が返却されます。<br />
 例えば<code>#(10 20 30)</code>は、<code>vector</code>オブジェクトのため、<code>t</code>にはなりません。</p>
 <h3 id="実行例-4">実行例</h3>
 <div class="sourceCode" id="cb20"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (array-general-p (<span class="kw">make-array</span> <span class="dv">10</span>))</span>
@@ -656,12 +656,12 @@ nptでは、本来<code>integer</code>となるものが<code>complex</code>オ�
 入力は<code>symbol</code>型か<code>(setf symbol)</code>型を受け取ります。</p>
 <h1 id="型確認"><a id="system-call-4">■型確認</a></h1>
 <p><code>npt-system</code>パッケージに存在する、型確認の関数仕様を示します。</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep-result</span></span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> subtypep</span>!</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> parse-type</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> type-object</span></span></code></pre></div>
-<h2 id="関数subtypep-result">関数<code>subtypep-result</code></h2>
+<h2 id="関数subtypep">関数<code>subtypep!</code></h2>
 <p><code>subtypep</code>の結果を<code>symbol</code>で取得します。</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> subtypep-result </span>(left right) ...) -&gt; <span class="kw">symbol</span></span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> subtypep</span>! (left right) ...) -&gt; <span class="kw">symbol</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>入力: left type-specifier</span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>入力: right type-specifier</span>

@@ -1167,7 +1167,7 @@ Paperオブジェクトに対して、下記の操作を行います。
 `second`が`nil`ではない場合は、全てのbodyが返却されます。  
 bodyのときは、`(unsigned-byte 8)`形式のspecialized arrayで返却されます。
 
-`symbol`が`vector`のときは、arrayかbodyの長さを返却します。  
+`symbol`が`length`のときは、arrayかbodyの長さを返却します。  
 `second`が指定されないか`nil`の場合は、arrayの長さが返却されます。  
 `second`が`nil`ではない場合は、body長さが返却されます。
 
@@ -1217,6 +1217,7 @@ defun equal-random-state
 defun remove-file
 defun remove-directory
 defun byte-integer
+defun fpclassify
 defun eastasian-set
 defun eastasian-get
 defun eastasian-width
@@ -1350,11 +1351,11 @@ CPUがbig endianの場合は、上位バイトが`#x00`で、下位バイトが`
 出力: result 1か-1
 ```
 
-`float`が無限大のとき、`type`は`fp-infinite`です。  
-`float`が非数のとき、`type`は`fp-nan`です。  
-`float`が通常の数のとき、`type`は`fp-normal`です。  
-`float`がデノーマル数のとき、`type`は`fp-subnormal`です。  
-`float`がゼロのとき、`type`は`fp-zero`です。  
+`float`が無限大のとき、`type`は`npt-system::fp-infinite`です。  
+`float`が非数のとき、`type`は`npt-system::fp-nan`です。  
+`float`が通常の数のとき、`type`は`npt-system::fp-normal`です。  
+`float`がデノーマル数のとき、`type`は`npt-system::fp-subnormal`です。  
+`float`がゼロのとき、`type`は`npt-system::fp-zero`です。  
 `float`の符号が正のとき、`sign`は`1`です。  
 `float`の符号が負のとき、`sign`は`-1`です。
 

@@ -32,7 +32,7 @@ defun terme
 本関数は、端末の入出力を操作します。
 
 termeを利用するには、コンパイルオプションを指定する必要があります。  
-利用可能かどうかは`--version`で確認ができます。
+利用可能かどうかはコマンドライン引数の`--version`で確認できます。
 
 ```
 $ npt --version | grep Prompt
@@ -235,7 +235,7 @@ termeの操作を終了します。
 
 引数が配列であった場合は、必ず一次元である必要があります。  
 配列は、最初の要素から、`fill-pointer`の値まで出力します。  
-あらかじめバッファを広めに用意しておき、`fill-pointer`でサイスを操作することで、
+あらかじめバッファを広めに用意しておき、`fill-pointer`でサイズを操作することで、
 メモリ空間の節約と速度向上を期待することができます。
 
 本機能で出力を行うと、内部のバッファに出力データが保留されます。  
@@ -248,12 +248,14 @@ termeの操作を終了します。
 実行例を示します。
 
 ```lisp
-* (terme 'terme-output 13)
-* (terme 'terme-output 10)
-* (terme 'terme-output)  ;;  13, 10, flushで改行出力
+;;  13, 10, flushで改行出力
+(terme 'terme-output 13)
+(terme 'terme-output 10)
+(terme 'terme-output)
 
-* (terme 'terme-move 10 20 :absolute)
-* (terme 'terme-output)  ;;  カーソルの移動
+;;  カーソルの移動
+(terme 'terme-move 10 20 :absolute)
+(terme 'terme-output)
 ```
 
 
@@ -276,8 +278,8 @@ termeの操作を終了します。
 実行例を示します。
 
 ```lisp
-* (terme 'terme-move 0 0 :absolute)
-* (terme 'terme-output)
+(terme 'terme-move 0 0 :absolute)
+(terme 'terme-output)
 ```
 
 
@@ -443,6 +445,7 @@ MNOPQR
 - 背景色の設定
 - 複合設定
 
+
 ## 設定のリセット
 
 次のいずれかを実行することで、設定をリセットできます。
@@ -554,7 +557,6 @@ RGBフルカラー指定は、`rgbfore`という識別子で設定できます�
 - 標準8色指定、`back`
 - 256パレット指定、`palback`
 - RGBフルカラー指定、`rgbback`
-
 
 実行例を示します。
 

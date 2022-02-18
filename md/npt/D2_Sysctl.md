@@ -64,7 +64,7 @@ sysctl: random-state, write
 
 入力: type, オブジェクト
 入力: args, 引数
-出力: *, 状態
+出力: *
 ```
 
 `type`は次の内容を指定できます。

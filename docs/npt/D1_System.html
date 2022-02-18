@@ -922,7 +922,7 @@ Paperオブジェクトの種類として利用することをお勧めします
 <code>second</code>が指定されないか<code>nil</code>の場合は、全てのarrayが返却されます。<br />
 <code>second</code>が<code>nil</code>ではない場合は、全てのbodyが返却されます。<br />
 bodyのときは、<code>(unsigned-byte 8)</code>形式のspecialized arrayで返却されます。</p>
-<p><code>symbol</code>が<code>vector</code>のときは、arrayかbodyの長さを返却します。<br />
+<p><code>symbol</code>が<code>length</code>のときは、arrayかbodyの長さを返却します。<br />
 <code>second</code>が指定されないか<code>nil</code>の場合は、arrayの長さが返却されます。<br />
 <code>second</code>が<code>nil</code>ではない場合は、body長さが返却されます。</p>
 <h2 id="関数array-paper">関数<code>array-paper</code></h2>
@@ -953,9 +953,10 @@ bodyのときは、<code>(unsigned-byte 8)</code>形式のspecialized arrayで�
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> remove-file</span></span>
 <span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> remove-directory</span></span>
 <span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> byte-integer</span></span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-set</span></span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-get</span></span>
-<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-width</span></span></code></pre></div>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> fpclassify</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-set</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-get</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="kw">defun</span><span class="fu"> eastasian-width</span></span></code></pre></div>
 <h2 id="関数package-export-list">関数<code>package-export-list</code></h2>
 <p><code>package</code>の<code>export</code>リストを取得します。</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> package-export-list </span>(package-designer) ...) -&gt; <span class="kw">list</span></span>
@@ -1029,11 +1030,11 @@ CPUがbig endianの場合は、上位バイトが<code>#x00</code>で、下位�
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>入力: <span class="kw">float</span></span>
 <span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>出力: result <span class="kw">symbol</span></span>
 <span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>出力: result 1か<span class="dv">-1</span></span></code></pre></div>
-<p><code>float</code>が無限大のとき、<code>type</code>は<code>fp-infinite</code>です。<br />
-<code>float</code>が非数のとき、<code>type</code>は<code>fp-nan</code>です。<br />
-<code>float</code>が通常の数のとき、<code>type</code>は<code>fp-normal</code>です。<br />
-<code>float</code>がデノーマル数のとき、<code>type</code>は<code>fp-subnormal</code>です。<br />
-<code>float</code>がゼロのとき、<code>type</code>は<code>fp-zero</code>です。<br />
+<p><code>float</code>が無限大のとき、<code>type</code>は<code>npt-system::fp-infinite</code>です。<br />
+<code>float</code>が非数のとき、<code>type</code>は<code>npt-system::fp-nan</code>です。<br />
+<code>float</code>が通常の数のとき、<code>type</code>は<code>npt-system::fp-normal</code>です。<br />
+<code>float</code>がデノーマル数のとき、<code>type</code>は<code>npt-system::fp-subnormal</code>です。<br />
+<code>float</code>がゼロのとき、<code>type</code>は<code>npt-system::fp-zero</code>です。<br />
 <code>float</code>の符号が正のとき、<code>sign</code>は<code>1</code>です。<br />
 <code>float</code>の符号が負のとき、<code>sign</code>は<code>-1</code>です。</p>
 <p>本来、Common Lispでは、無限大と非数を扱うことはできず、 発生した時点で<code>arithmetic-error</code> conditionが発生します。</p>

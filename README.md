@@ -16,9 +16,9 @@
 # 3. 配布
 
 ドキュメント  
-https://github.com/nptcl/npt-japanese
+[https://github.com/nptcl/npt-japanese](https://github.com/nptcl/npt-japanese)
 
 モジュール  
-https://github.com/nptcl/npt  
-https://github.com/nptcl/npt-amalgamation
+[https://github.com/nptcl/npt](https://github.com/nptcl/npt)  
+[https://github.com/nptcl/npt-amalgamation](https://github.com/nptcl/npt-amalgamation)
 

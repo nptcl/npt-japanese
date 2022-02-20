@@ -262,7 +262,21 @@ Windows
 <p>本引数は、引数のINPUTSが処理されたあとに 終了するかあるいは<code>eval-loop</code>に移行するかを決定します。</p>
 <p>もし<code>--quit</code>が指定された場合は終了します。<br />
 指定されなかった場合は<code>eval-loop</code>に移行し入力待ちになります。</p>
-<h2 id="inputs"><code>INPUTS</code></h2>
+<h1 id="色の設定">3.2 色の設定</h1>
+<p>色の出力に対応している場合は、下記の引数を使用できます。<br />
+詳しくは<a href="A6_Input.html">入力モジュール</a>をご確認ください。</p>
+<h2 id="color"><code>--color</code></h2>
+<p>色の出力を有効にします。</p>
+<h2 id="monochrome"><code>--monochrome</code></h2>
+<p>色の出力を無効にします。<br />
+同時に文字の種類（ボールドなど）も無効になります。</p>
+<h2 id="bright"><code>--bright</code></h2>
+<p>色の出力を明るくします。<br />
+端末の背景が暗い場合に便利です。</p>
+<h2 id="dark"><code>--dark</code></h2>
+<p>色の出力を暗くします。<br />
+端末の背景が明るい場合に便利です。</p>
+<h1 id="引数-inputs">3.3 引数 <code>INPUTS</code></h1>
 <p>INPUTSは次の3つの引数から成り立ちます。</p>
 <ul>
 <li><code>--eval &lt;cmd&gt;</code></li>
@@ -298,7 +312,7 @@ $ npt --load aaa.lisp
 Hello
 * (quit)
 $</code></pre>
-<h1 id="引数--">3.2 引数<code>--</code></h1>
+<h2 id="引数--">引数<code>--</code></h2>
 <p>引数<code>--</code>が指定された場合は、 それ以降の引数がnptのプログラムへ渡される引数と認識されます。</p>
 <p>引数は<code>npt-system::*arguments*</code>に配列として格納されます。<br />
 例を示します。</p>
@@ -306,7 +320,7 @@ $</code></pre>
 * npt-system::*arguments*
 #(&quot;npt&quot; &quot;10&quot; &quot;20&quot; &quot;30&quot;)
 *</code></pre>
-<h1 id="開発用の引数">3.3 開発用の引数</h1>
+<h1 id="開発用の引数">3.4 開発用の引数</h1>
 <p>引数<code>--build</code>は<code>--standalone</code>と同じです。</p>
 <p>引数<code>--degrade</code>だけが指定された場合はテストケースを実行します。<br />
 <code>--core</code>と<code>--standalone</code>とは同時に指定できません。</p>

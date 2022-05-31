@@ -1,0 +1,32 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class EXTENDED-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.extended-char
+@name: extended-char
+@type: type
+
+Type `EXTENDED-CHAR`
+
+
+## {supertypes}
+
+{extended-char:link}, {character!system-class:link}, {t:link}
+
+
+## {description}
+
+型{extended-char:link}は、`(and character (not base-char))`と同じです。
+
+
+## {notes}
+
+全ての文字が型{base-char:link}である実装では、
+型{extended-char:link}は要素が無いかもしれません。
+
+@end
+

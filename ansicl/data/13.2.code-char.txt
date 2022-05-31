@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CODE-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.code-char
+@name: code-char
+@type: function
+
+Function `CODE-CHAR`
+
+
+## {syntax}
+
+`code-char` *code* => *char-p*
+
+
+## {arguments-and-values}
+
+*code* - 文字コード  
+*char-p* - 文字か{nil!variable:link}
+
+
+## {description}
+
+コード属性が*code*の文字を返却します。
+もしそのような文字が存在せず、作成もできない場合は{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(code-char 65.) =>  #\A  ; ASCIIコードを使用している処理系の場合
+(code-char (char-code #\Space)) =>  #\Space  ; どんな処理系でも
+```
+
+
+## {affected-by}
+
+処理系の文字コード
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{char-code:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

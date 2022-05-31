@@ -1,0 +1,55 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type BASE-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.base-char
+@name: base-char
+@type: type
+
+Type `BASE-CHAR`
+
+
+## {supertypes}
+
+{base-char:link}, {character!system-class:link}, {t:link}
+
+
+## {description}
+
+型{base-char:link}は、{standard-char:link}の
+{upgraded-array-element-type}として定義されています。
+実装者は、型{character!system-class:link}のサブタイプの型について、
+標準以外のものを追加することができます。
+その追加する型は、型{base-char:link}がスーパータイプになっていても、
+いなくてもどちらでも構いません。
+また実装者は、型{base-char:link}と型{character!system-class:link}を
+同じ型として定義することもできます。
+
+{base-character}(base characters)は、次のように区別されます。
+
+1. 型{standard-char:link}は、型`base-char`の中に含まれます。
+2. {base-character}の中の{standard-character}(standard characters)以外の文字は実装依存です。
+3. 型{base-char:link}のオブジェクトだけが、{base-string}の構成要素になれます。
+4. {base-char:link}の文字数の上限は無く、サイズは実装依存です。
+文字数の下限は{standard-char:link}の文字数である`96`です。
+
+ある文字が`base-char`であるかどうかは、
+文字列を表現する実装方法に依存しますが、
+その他の実装の特性や、ホストオペレーティングシステムには依存しません。
+
+例えば、ある実装では全ての文字列を16bitの文字として表現しているとします。
+また別の実装では、8bitエンコーディングと16bitエンコーディングの
+2種類の文字列を扱うシステムであるとします。
+最初の実装では、型{base-char:link}と型{character!system-class:link}は同じに実装されます。
+なぜなら文字の種類が一つしか無いからです。
+2つ目の実装では、{base-char:link}は8bitの文字を格納できるようにするかもしれません。
+このような実装では、型{base-char:link}は型{character!system-class:link}のサブタイプとなります。
+
+型{standard-char:link}は、型{base-char:link}のサブタイプとなります。
+
+@end
+

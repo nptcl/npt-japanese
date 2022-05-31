@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ALPHA-CHAR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.alpha-char-p
+@name: alpha-char-p
+@type: function
+
+Function `ALPHA-CHAR-P`
+
+
+## {syntax}
+
+`alpha-char-p` *character* => generalized-boolean
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*character*が{alphabetic-character}であったら*true*、それ以外は*false*。
+
+
+## {examples}
+
+```lisp
+(alpha-char-p #\a) =>  true
+(alpha-char-p #\5) =>  false
+(alpha-char-p #\Newline) =>  false
+;; 次の例では、#\<ALPHA>という文字が定義されている処理系を前提にしている。
+(alpha-char-p #\<ALPHA>) => 処理系依存 
+```
+
+
+## {affected-by}
+
+なし。
+（この関数の結果は、現在のreadtableで有効になっているかもしれない
+特別な構文に依存しません。）
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{alphanumericp:link}, {13.1.10:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

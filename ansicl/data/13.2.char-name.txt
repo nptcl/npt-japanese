@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHAR-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.char-name
+@name: char-name
+@type: function
+
+Function `CHAR-NAME`
+
+
+## {syntax}
+
+`char-name` *character* => *name*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*name* - 文字列か{nil!variable:link}
+
+
+## {description}
+
+文字の名前を文字列で返却します。
+もし文字に名前がないときは{nil!variable:link}です。
+
+全ての非{graphic-character}文字は、
+{nil!variable:link}でない何らかの実装定義属性を持たない限り、
+名前を持つことが要求されます。
+他の文字が名前を持つかどうかは処理系依存です。
+
+{standard-character}の<Newline>と<Space>は、
+それぞれ`"Newline"`, `"Space"`という名前を持っています。
+準{standard-character}の
+<Tab>, <Page>, <Rubout>, <Linefeed>, <Return>, <Backspace>は、
+（もし処理系がサポートしているのであれば）
+それぞれ`"Tab"`, `"Page"`, `"Rubout"`, `"Linefeed"`, `"Return"`, `"Backspace"`
+という名前を持ちます。
+（これらの場合は、`#\`による名前の検索や、
+関数{name-char:link}の場合あっても、大文字小文字は区別されません。）
+
+
+## {examples}
+
+```lisp
+(char-name #\ ) =>  "Space"
+(char-name #\Space) =>  "Space"
+(char-name #\Page) =>  "Page"
+
+(char-name #\a)
+=>  NIL
+OR=>  "LOWERCASE-a"
+OR=>  "Small-A"
+OR=>  "LA01"
+
+(char-name #\A)
+=>  NIL
+OR=>  "UPPERCASE-A"
+OR=>  "Capital-A"
+OR=>  "LA02"
+
+;; CHAR-NAMEの返却値が変わっても、#\Aは#\Aとして印刷されます。
+(prin1-to-string (read-from-string (format nil "#\\~A" (or (char-name #\A) "A"))))
+=>  "#\\A"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{name-char:link}, {22.1.3.2:ab}
+
+
+## {notes}
+
+非{graphic-character}が名前を持っている場合は、
+Lispプリンターが`#\`に続けて名前を出力します。
+{22.1.3.2:ab}を参照。
+
+@end
+

@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GRAPHIC-CHAR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.graphic-char-p
+@name: graphic-char-p
+@type: function
+
+Function `GRAPHIC-CHAR-P`
+
+
+## {syntax}
+
+`graphic-char-p` *character* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*character*が{graphic-character}の場合は*true*を、それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(graphic-char-p #\G) =>  true
+(graphic-char-p #\#) =>  true
+(graphic-char-p #\Space) =>  true
+(graphic-char-p #\Newline) =>  false
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{read:link}, {2.1:ab}, {13.1.10:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

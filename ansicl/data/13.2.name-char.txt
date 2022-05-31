@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NAME-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.name-char
+@name: name-char
+@type: function
+
+Function `NAME-CHAR`
+
+
+## {syntax}
+
+`name-char` *name* => *char-p*
+
+
+## {arguments-and-values}
+
+*name* - {string-designer}  
+*name* - 文字か{nil!variable:link}
+
+
+## {description}
+
+名前が*name*である文字オブジェクトを返却します。
+名前の検索には{string-equal:link}が使われるので、
+大文字小文字の区別はありません。
+もしそのような文字が存在しない場合は{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(name-char 'space) =>  #\Space
+(name-char "space") =>  #\Space
+(name-char "Space") =>  #\Space
+(let ((x (char-name #\a)))
+  (or (not x) (eql (name-char x) #\a))) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{char-name:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

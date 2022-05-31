@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHARACTERP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.characterp
+@name: characterp
+@type: function
+
+Function `CHARACTERP`
+
+
+## {syntax}
+
+`characterp` *object* -> *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{character!system-class:link}であったら*true*、それ以外は*false*。
+
+
+## {examples}
+
+```lisp
+(characterp #\a) → true
+(characterp 'a) → false
+(characterp "a") → false
+(characterp 65.) → false
+(characterp #\Newline) → true
+;; 次の例は#\Ruboutが実装定義の文字として実装されていることが要求されます。
+(characterp #\Rubout) → true
+```
+
+
+## {affected-by}
+
+なし
+
+
+## {exceptional-situations}
+
+なし
+
+
+## {see-also}
+
+型{character!system-class:link},
+関数{character!function:link},
+{typep:link}
+
+
+## {notes}
+
+```lisp
+(characterp object) == (typep object 'character)
+```
+
+@end
+

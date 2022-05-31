@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DIGIT-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.digit-char
+@name: digit-char
+@type: function
+
+Function `DIGIT-CHAR`
+
+
+## {syntax}
+
+`digit-char` *weight* &optional *radix* => *char*
+
+
+## {arguments-and-values}
+
+*weight* - 非負の整数  
+*radix* - 基数。デフォルトは10。  
+*char* - 文字か*false*
+
+
+## {description}
+
+もし*weight*が*radix*より小さいとき、{digit-char:link}は
+基数の設定値を考慮して*weight*の文字を返却します。
+結果が{alphabetic-character}の場合は、大文字が返却されます。
+
+もし*weight*が*radix*以上の場合は、{digit-char:link}は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(digit-char 0) =>  #\0
+(digit-char 10 11) =>  #\A
+(digit-char 10 10) =>  false
+(digit-char 7) =>  #\7
+(digit-char 12) =>  false
+(digit-char 12 16) =>  #\C  ;not #\c
+(digit-char 6 2) =>  false
+(digit-char 1 2) =>  #\1
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{digit-char-p:link}, {graphic-char-p:link}, {2.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

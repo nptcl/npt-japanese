@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DIGIT-CHAR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.digit-char-p
+@name: digit-char-p
+@type: function
+
+Function `DIGIT-CHAR-P`
+
+
+## {syntax}
+
+`digit-char-p` *char* &optional *radix* => *weight*
+
+
+## {arguments-and-values}
+
+*char* - 文字  
+*radix* - 基数。デフォルトは10。  
+*weight* - *radix*未満の非負の整数か、*false*
+
+
+## {description}
+
+*char*が、*radix*値の数字かどうかを調べます
+（例えば*weight*が*radix*より小さいかどうか）。
+もし*radix*内の数字であった場合、*weight*は整数が返却されます。
+それ以外は{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(digit-char-p #\5)    =>  5
+(digit-char-p #\5 2)  =>  false
+(digit-char-p #\A)    =>  false
+(digit-char-p #\a)    =>  false
+(digit-char-p #\A 11) =>  10
+(digit-char-p #\a 11) =>  10
+(mapcar #'(lambda (radix)
+            (map 'list #'(lambda (x) (digit-char-p x radix))
+                 "059AaFGZ"))
+        '(2 8 10 16 36))
+=>  ((0 NIL NIL NIL NIL NIL NIL NIL)
+     (0 5 NIL NIL NIL NIL NIL NIL)
+     (0 5 9 NIL NIL NIL NIL NIL)
+     (0 5 9 10 10 15 NIL NIL)
+     (0 5 9 10 10 15 16 35))
+```
+
+
+## {affected-by}
+
+なし。
+（この関数の結果は、現在のreadtableで有効になっているかもしれない
+特別な構文に依存しません。）
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{alphanumericp:link}
+
+
+## {notes}
+
+数値は{graphic-character}です。
+
+@end
+

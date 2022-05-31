@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHAR-UPCASE
+;;  Function CHAR-DOWNCASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.char-case
+@name: char-upcase
+@name: char-downcase
+@type: function
+
+Function `CHAR-UPCASE`, `CHAR-DOWNCASE`
+
+
+## {syntax}
+
+`char-upcase` *character* => *corresponding-character*  
+`char-downcase` *character* => *corresponding-character*
+
+
+## {arguments-and-values}
+
+*character*, *corresponding-character* - 文字
+
+
+## {description}
+
+*character*が小文字なら、{char-upcase:link}は大文字を返却します。
+それ以外はただ引数の文字をそのまま返却します。
+
+*character*が大文字なら、{char-downcase:link}は小文字を返却します。
+それ以外はただ引数の文字をそのまま返却します。
+
+*character*と返却値では、ただ文字コードの属性のみが違っており、
+その他のすべての実装定義の属性は保存されます。
+
+
+## {examples}
+
+```lisp
+(char-upcase #\a) =>  #\A
+(char-upcase #\A) =>  #\A
+(char-downcase #\a) =>  #\a
+(char-downcase #\A) =>  #\a
+(char-upcase #\9) =>  #\9
+(char-downcase #\9) =>  #\9
+(char-upcase #\@) =>  #\@
+(char-downcase #\@) =>  #\@
+
+;; 注意：次の例文は、もしCHAR-CODE-LIMITの値が非常に大きい実装の場合は、
+;;       おそらく非常に長い時間かかるだろう。
+(dotimes (code char-code-limit)
+  (let ((char (code-char code)))
+    (when char
+      (unless (cond ((upper-case-p char) (char= (char-upcase (char-downcase char)) char))
+                    ((lower-case-p char) (char= (char-downcase (char-upcase char)) char))
+                     (t (and (char= (char-upcase (char-downcase char)) char)
+                             (char= (char-downcase (char-upcase char)) char))))
+        (return char)))))
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{upper-case-p:link}, {alpha-char-p:link}, {13.1.4.3:ab}, {13.1.10:ab}
+
+
+## {notes}
+
+もし*corresponding-character*が*character*と違う場合は、
+*corresponding-character*と*character*両方に
+ケース(大文字と小文字のこと)があるということになります。
+
+{char-equal:link}は文字の比較の際にケースを無視するため、
+*corresponding-character*は*character*と{char-equal:link}での
+比較においては常に等しいです。
+
+@end
+

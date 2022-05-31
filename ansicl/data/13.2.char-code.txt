@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHAR-CODE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.char-code
+@name: char-code
+@type: function
+
+Function `CHAR-CODE`
+
+
+## {syntax}
+
+`char-code` *character* => *code*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*code* - 文字コード
+
+
+## {description}
+
+{char-code:link}は、文字のコード属性を返却します。
+
+
+## {examples}
+
+```lisp
+;; ASCII文字コードを使っている処理系は次の値を返却するでしょう
+(char-code #\$) =>  36
+(char-code #\a) =>  97
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{char-code-limit:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

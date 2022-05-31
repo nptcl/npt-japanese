@@ -1,0 +1,98 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class CHARACTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.character!system-class
+@name: character!system-class
+@type: system-class
+
+System Class `CHARACTER`
+
+
+## {class-precedence-list}
+
+{character!system-class:link}, {t:link}
+
+
+## {description}
+
+文字(character)とは、
+テキストを構成する集合体の、単一の要素を表すオブジェクトでです。
+{13.1:ab}を参照。  
+型{base-char:link}と型{extended-char:link}は、
+型{character!system-class:link}に含まれる要素です。
+
+
+## {see-also}
+
+{13.1:ab}, {2.4.8.1:ab}, {22.1.3.2:ab}。
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHARACTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.character!function
+@name: character!function
+@type: function
+
+Function `CHARACTER`
+
+
+## {syntax}
+
+`charcter` *character* => *denoted-character*
+
+
+## {arguments-and-values}
+
+*character* - {character-designer}  
+*denoted-character* - 文字
+
+
+## {description}
+
+{character-designer}によって示される文字が返却されます。
+
+
+## {examples}
+
+```lisp
+(character #\a) → #\a
+(character "a") → #\a
+(character 'a) → #\A
+(character '\a) → #\a
+(character 65.) はエラー.
+(character 'apple) はエラー.
+```
+
+
+## {affected-by}
+
+なし
+
+
+## {exceptional-situations}
+
+もし引数が{character-designer}ではなかった場合は、
+型{type-error:link}が発せられます。
+
+
+## {see-also}
+
+{coerce:link}
+
+
+## {notes}
+
+```lisp
+(character object) == (coerce object 'character)
+```
+
+@end
+

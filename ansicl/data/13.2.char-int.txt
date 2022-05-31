@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CHAR-INT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.char-int
+@name: char-int
+@type: function
+
+Function `CHAR-INT`
+
+
+## {syntax}
+
+`char-int` *character* => *integer*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*integer* - 非負の整数
+
+
+## {description}
+
+文字オブジェクトを符号化した非負の整数を返却します。
+整数の算出方法は処理系依存です。
+{sxhash:link}とは対照的に、
+結果は特定のLispイメージに依存しないことが保証されません。
+
+もし*character*が処理系依存の属性を持っていないとき、
+{char-int:link}と{char-code:link}の結果は同じです。
+
+`c1`と`c2`が文字のとき、下記が成り立ちます。
+
+```lisp
+(char= c1 c2) ==  (= (char-int c1) (char-int c2))
+```
+
+
+## {examples}
+
+```lisp
+(char-int #\A) =>  65       ; 処理系A
+(char-int #\A) =>  577      ; 処理系B
+(char-int #\A) =>  262145   ; 処理系C
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{char-code:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

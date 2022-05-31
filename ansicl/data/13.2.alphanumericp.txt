@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ALPHANUMERICP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.alphanumericp
+@name: alphanumericp
+@type: function
+
+Function `ALPHANUMERICP`
+
+
+## {syntax}
+
+`alphanumericp` *character* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*character*が{alphabetic-character}か{numeric-character}であったら*true*、
+それ以外は*false*。
+
+
+## {examples}
+
+```lisp
+(alphanumericp #\Z) =>  true
+(alphanumericp #\9) =>  true
+(alphanumericp #\Newline) =>  false
+(alphanumericp #\#) =>  false
+```
+
+
+## {affected-by}
+
+なし。
+（この関数の結果は、現在のreadtableで有効になっているかもしれない
+特別な構文に依存しません。）
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{alphanumericp:link}, {13.1.10:ab}
+
+
+## {notes}
+
+{alphanumeric-character}は、{graphic-char-p:link}で定義される図形文字です。
+{alphanumeric-character}は、{graphic-character}のサブセットです。
+{standard-character}の`A`～`Z`、`a`～`z`、`0`～`9`がは{alphanumeric-character}です。
+
+```lisp
+(alphanumericp x)
+  == (or (alpha-char-p x) (not (null (digit-char-p x))))
+```
+
+@end
+

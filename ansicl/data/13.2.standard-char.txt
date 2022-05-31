@@ -1,0 +1,36 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STANDARD-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.standard-char
+@name: standard-char
+@type: type
+
+Type `STANDARD-CHAR`
+
+
+## {supertypes}
+
+{standard-char:link}, {base-char:link}, {character!system-class:link}, {t:link}
+
+
+## {description}
+
+標準準拠の全ての処理系では、
+96個固定の文字を実装する必要があります。  
+{standard-character}は、{2.1.3:ab}で定義されています。
+
+単純ではない文字（つまり文字の属性が定義されている文字）は、
+{standard-character}ではありません。
+
+
+## {see-also}
+
+{2.1.3:ab}
+
+@end
+

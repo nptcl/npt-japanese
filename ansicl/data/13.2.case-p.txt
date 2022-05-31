@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UPPER-CASE-P
+;;  Function LOWER-CASE-P
+;;  Function BOTH-CASE-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.case-p
+@name: upper-case-p
+@name: lower-case-p
+@name: both-case-p
+@type: function
+
+Function `UPPER-CASE-P`, `LOWER-CASE-P`, `BOTH-CASE-P`
+
+
+## {syntax}
+
+`upper-case-p` *character* => *generalized-boolean*  
+`lower-case-p` *character* => *generalized-boolean*  
+`both-case-p` *character* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+これらの関数は、*character*のケースをテストします。
+
+{upper-case-p:link}は、*character*が大文字の場合は*true*を、
+それ以外は*false*を返却します。
+
+{lower-case-p:link}は、*character*が小文字の場合は*true*を、
+それ以外は*false*を返却します。
+
+{both-case-p:link}は、*character*にケースがある場合は*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(upper-case-p #\A) =>  true
+(upper-case-p #\a) =>  false
+(both-case-p #\a) =>  true
+(both-case-p #\5) =>  false
+(lower-case-p #\5) =>  false
+(upper-case-p #\5) =>  false
+;; 次の例では、#\Bellという文字が定義されている処理系を前提にしている。
+(lower-case-p #\Bell) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*character*が文字ではなかったら、型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{char-upcase:link}, {char-downcase:link}, {13.1.4.3:ab}, {13.1.10:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

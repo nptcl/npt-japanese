@@ -1,0 +1,38 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  13. 文字
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable CHAR-CODE-LIMIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 13.2.char-code-limit
+@name: char-code-limit
+@type: constant-variable
+
+Constant Variable `CHAR-CODE-LIMIT`
+
+
+## {constant-value}
+
+非負の整数であり、処理系依存です。
+ただし96({standard-character}の個数)以上です。
+
+
+## {description}
+
+関数{char-code:link}の返却値の排他的上限値。
+
+
+## {see-also}
+
+{char-code:link}
+
+
+## {notes}
+
+{char-code-limit:link}の値は、
+実際に処理系がサポートしている文字の総数より大きいでしょう。
+
+@end
+

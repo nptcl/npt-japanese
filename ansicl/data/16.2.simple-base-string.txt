@@ -1,0 +1,49 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIMPLE-BASE-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.simple-base-string
+@name: simple-base-string
+@type: type
+
+Type `SIMPLE-BASE-STRING`
+
+
+## {class-precedence-list}
+
+{simple-base-string:link}, {base-string:link}, {simple-string:link},
+{string!system-class:link}, {vector!system-class:link},
+{simple-array:link}, {array:link}, {sequence:link}, {t:link}
+
+
+## {description}
+
+型{simple-base-string:link}は、`(simple-array base-char (*))`と同一です。
+
+
+## {Compound-Type-Specifier-Kind}
+
+省略。
+
+
+## {Compound-Type-Specifier-Syntax}
+
+`simple-base-string` *[size]*
+
+
+## {Compound-Type-Specifier-Arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`
+
+
+## {Compound-Type-Specifier-Description}
+
+型`(simple-array base-char (size))`と同一です。
+このとき、*size*は{simple-base-string}の集合のサイズです。
+
+@end
+

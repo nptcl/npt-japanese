@@ -30,7 +30,7 @@
 @name: char-greaterp
 @name: char-not-greaterp
 @name: char-not-lessp
-@type: system-class
+@type: function
 
 Function `CHAR=`, `CHAR/=`, `CHAR<`, `CHAR>`, `CHAR<=`, `CHAR>=`,
 `CHAR-EQUAL`, `CHAR-NOT-EQUAL`,

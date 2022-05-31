@@ -1,0 +1,125 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.string!system-class
+@name: string!system-class
+@type: system-class
+
+System Class `STRING`
+
+
+## {class-precedence-list}
+
+{string!system-class:link}, {vector!system-class:link},
+{array:link}, {sequence:link}, {t:link}
+
+
+## {description}
+
+文字列(string)とは、要素が{character!system-class:link}か、
+あるいは{string!system-class:link}のサブタイプである
+{specialized-vector}です。
+
+オブジェクトの生成時に{type-specifier}として使用された場合、
+{character!system-class:link}は`(vector character)`を意味します。
+
+
+## {Compound-Type-Specifier-Kind}
+
+省略。
+
+
+## {Compound-Type-Specifier-Syntax}
+
+`string` *[size]*
+
+
+## {Compound-Type-Specifier-Arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`
+
+
+## {Compound-Type-Specifier-Description}
+
+{character!system-class:link}の全てのサブタイプを`c`としたとき、
+全ての`(array c (size))`の和集合を示します。
+このとき、*size*は文字列の集合のサイズです。
+
+
+## {see-also}
+
+{16.1:ab}, {2.4.5:ab}, {22.1.3.4:ab}
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.string!function
+@name: string!function
+@type: function
+
+Function `STRING`
+
+
+## {syntax}
+
+`string` *x* => *string*
+
+
+## {arguments-and-values}
+
+*x* - 文字列か、シンボルか、文字  
+*string* - 文字列
+
+
+## {description}
+
+*x*が次のようなときに文字列を返却します。
+
+- もし*x*が文字列の場合は、それが返却されます
+- もし*x*がシンボルの場合は、シンボルの名前が返却されます
+- もし*x*が文字の場合は、一文字で構成される文字列が返却されます
+- 加えて、{string!function:link}は実装依存の変換を行います
+
+
+## {examples}
+
+```lisp
+(string "already a string") =>  "already a string"
+(string 'elm) =>  "ELM"
+(string #\c) =>  "c"
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし変換が仕様にも実装にも定義されていなかった場合は、
+型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+{coerce:link}, {string!system-class:link}.
+
+
+## {notes}
+
+{coerce:link}は、文字のシーケンスを文字列に変換するのに使われます。
+
+{prin1-to-string:link}, {princ-to-string:link}, {write-to-string:link},
+{format:link} (最初の引数が{nil!variable:link})は、
+数や他のオブジェクトの文字列の表現を取得するのに使われます。
+
+@end
+

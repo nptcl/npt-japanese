@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor CHAR
+;;  Accessor SCHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.char-accessor
+@name: char
+@name: schar
+@type: accessor
+
+Accessor `CHAR`, `SCHAR`
+
+
+## {syntax}
+
+`char` *string* *index* => *character*  
+`schar` *string* *index* => *character*  
+(setf (`char` *string* *index*) *new-character*)  
+(setf (`schar` *string* *index*) *new-character*)
+
+
+## {arguments-and-values}
+
+*string* - {char:link}の場合は文字列、{schar:link}の場合は{simple-string}  
+*index* - 文字列の{valid-array-index}  
+*character*, *new-character* - 文字
+
+
+## {description}
+
+{char:link}と{schar:link}は、*index*で指定された文字列の要素にアクセスします。
+
+{char:link}は要素にアクセスする際に{fill-pointer}を無視します。
+
+
+## {examples}
+
+```lisp
+(setq my-simple-string (make-string 6 :initial-element #\A)) =>  "AAAAAA"
+(schar my-simple-string 4) =>  #\A
+(setf (schar my-simple-string 4) #\B) =>  #\B
+my-simple-string =>  "AAAABA"
+(setq my-filled-string
+      (make-array 6 :element-type 'character
+                    :fill-pointer 5
+                    :initial-contents my-simple-string))
+=>  "AAAAB"
+(char my-filled-string 4) =>  #\B
+(char my-filled-string 5) =>  #\A
+(setf (char my-filled-string 3) #\C) =>  #\C
+(setf (char my-filled-string 5) #\D) =>  #\D
+(setf (fill-pointer my-filled-string) 6) =>  6
+my-filled-string =>  "AAACBD"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{aref:link}, {elt:link}, {3.2.1:ab}
+
+
+## {notes}
+
+```lisp
+(char s j) ==  (aref (the string s) j)
+```
+
+@end
+

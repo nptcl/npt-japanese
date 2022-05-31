@@ -1,0 +1,51 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type BASE-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.base-string
+@name: base-string
+@type: type
+
+Type `BASE-STRING`
+
+
+## {class-precedence-list}
+
+{base-string:link}, {string!system-class:link}, {vector!system-class:link},
+{array:link}, {sequence:link}, {t:link}
+
+
+## {description}
+
+型{base-string:link}は、`(vector base-char)`と同一です。
+{base-string}(base-string)とは、
+任意の{standard-character}の列を最も効率よく格納できる
+文字列の表現です。
+
+
+## {Compound-Type-Specifier-Kind}
+
+省略。
+
+
+## {Compound-Type-Specifier-Syntax}
+
+`base-string` *[size]*
+
+
+## {Compound-Type-Specifier-Arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`
+
+
+## {Compound-Type-Specifier-Description}
+
+型`(vector base-char size)`と同一です。
+このとき、*size*は{base-string}の集合のサイズです。
+
+@end
+

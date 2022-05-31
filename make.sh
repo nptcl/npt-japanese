@@ -8,6 +8,9 @@ if [ ! -d "${input}" ]; then
 	exit 1
 fi
 
+mkdir -p ${output}/ansicl
+mkdir -p ${output}/npt
+
 for file in `cd ${input}; find . -name "*.md" -type f | sort`; do
   base=`basename ${file}`
   path=`dirname ${file}`

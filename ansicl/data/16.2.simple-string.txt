@@ -1,0 +1,54 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIMPLE-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.simple-string
+@name: simple-string
+@type: type
+
+Type `SIMPLE-STRING`
+
+
+## {class-precedence-list}
+
+{simple-string:link}, {string!system-class:link}, {vector!system-class:link},
+{simple-array:link}, {array:link}, {sequence:link}, {t:link}
+
+
+## {description}
+
+{simple-string}とは、一次元に特化した{simple-array}であり、
+その要素は{character!system-class:link}か、
+あるいは{character!system-class:link}のサブタイプです。
+
+オブジェクトの生成時に{type-specifier}として使用された場合、
+{simple-string:link}は`(simple-array character (size))`を意味します。
+
+
+## {Compound-Type-Specifier-Kind}
+
+省略。
+
+
+## {Compound-Type-Specifier-Syntax}
+
+`simple-string` *[size]*
+
+
+## {Compound-Type-Specifier-Arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`
+
+
+## {Compound-Type-Specifier-Description}
+
+{character!system-class:link}の全てのサブタイプを`c`としたとき、
+全ての`(simple-array c (size))`の和集合を示します。
+このとき、*size*は{simple-string}の集合のサイズです。
+
+@end
+

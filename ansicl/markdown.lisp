@@ -22,7 +22,7 @@
     (when x
       (let ((y (position #\} str :start (1+ x))))
         (unless y
-          (error "There is no #\} character."))
+          (error "There is no #\} character, ~S." str))
         (values (subseq str 0 x)
                 (subseq str (1+ x) y)
                 (subseq str (1+ y)))))))

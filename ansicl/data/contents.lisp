@@ -40,8 +40,13 @@
 (text 2.1 "文字の構文" "Character Syntax")
 (text 2.1.3 "標準文字" "Standard Characters")
 (text 2.4 "標準マクロ文字" "Standard Macro Characters")
+(text 2.4.5 "ダブルクォート" "Double-Quote")
 (text 2.4.8 "シャープサイン" "Sharpsign")
 (text 2.4.8.1 "シャープサイン バックスラッシュ" "Sharpsign Backslash")
+
+;; Chapter 3
+(index 3.2 "コンパイル" "Compilation")
+(text 3.2.1 "コンパイラーの用語" "Compiler Terminology")
 
 ;; Chapter 4
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
@@ -60,7 +65,7 @@
 (dictionary 5.3.equalp)
 
 ;; Chapter 13
-(index 13.1 "文字の概念" "Character Concepts")
+(index 13.1 "文字の説明" "Character Concepts")
 (text 13.1.3 "文字の属性" "Character Attributes")
 (text 13.1.4 "文字のカテゴリ" "Character Categories")
 (text 13.1.4.3 "文字のケース" "Characters With Case")
@@ -89,9 +94,29 @@
 (dictionary 13.2.char-name)
 (dictionary 13.2.name-char)
 
+;; Chapter 15
+(index 15.2 "配列の辞書" "Arrays Dictionary")
+(dictionary 15.2.array)
+(dictionary 15.2.simple-array)
+(dictionary 15.2.vector!system-class)
+(dictionary 15.2.aref)
+
 ;; Chapter 16
+(index 16.1 "文字の説明" "String Concepts")
 (index 16.2 "文字列の辞書" "Strings Dictionary")
+(dictionary 16.2.string!system-class)
+(dictionary 16.2.base-string)
+(dictionary 16.2.simple-string)
+(dictionary 16.2.simple-base-string)
+(dictionary 16.2.simple-string-p)
+(dictionary 16.2.char-accessor)
+(dictionary 16.2.string!function)
 (dictionary 16.2.string-equal)
+
+;; Chapter 17
+(index 17.3 "シーケンスの辞書" "Sequences Dictionary")
+(dictionary 17.3.sequence)
+(dictionary 17.3.elt)
 
 ;; Chapter 18
 (index 18.2 "ハッシュテーブルの辞書" "Hash Tables Dictionary")
@@ -101,6 +126,12 @@
 (index 22.1 "Lispプリンター" "The Lisp Printer")
 (text 22.1.3 "標準のPrint-Object`メソッド" "Default Print-Object Methods")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
+(text 22.1.3.4 "文字列の印字" "Printing Strings")
+(index 22.4 "プリンターの辞書" "Printer Dictionary")
+(dictionary 22.4.write-to-string)
+(dictionary 22.4.prin1-to-string) ;; delete
+(dictionary 22.4.princ-to-string) ;; delete
+(dictionary 22.4.format)
 
 ;; Chapter 23
 (index 23.2 "リーダーの辞書" "Reader Dictionary")

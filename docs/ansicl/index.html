@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ANSI Common Lisp</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">ANSI Common Lisp</h1>
+</header>
+<p>ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。</p>
+<p><strong>★★翻訳の対象はDictionaryだけです★★</strong><br />
+現時点では「13.2 文字の辞書」しか完成していません。<br />
+気が向いたら更新します。</p>
+<h1 id="目次">目次</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1.</td>
+<td style="text-align: left;">Introduction</td>
+<td style="text-align: left;">紹介</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="2.html">2.</a></td>
+<td style="text-align: left;"><a href="2.html">Syntax</a></td>
+<td style="text-align: left;"><a href="2.html">構文</a></td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3.</td>
+<td style="text-align: left;">Evaluation and Compilation</td>
+<td style="text-align: left;">評価とコンパイル</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="4.html">4.</a></td>
+<td style="text-align: left;"><a href="4.html">Types and Classes</a></td>
+<td style="text-align: left;"><a href="4.html">型とクラス</a></td>
+<td style="text-align: left;"><a href="4.4.html">辞書</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="5.html">5.</a></td>
+<td style="text-align: left;"><a href="5.html">Data and Control Flow</a></td>
+<td style="text-align: left;"><a href="5.html">データと制御フロー</a></td>
+<td style="text-align: left;"><a href="5.3.html">辞書</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6.</td>
+<td style="text-align: left;">Iteration</td>
+<td style="text-align: left;">繰り返し</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7.</td>
+<td style="text-align: left;">Objects</td>
+<td style="text-align: left;">オブジェクト</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8.</td>
+<td style="text-align: left;">Structures</td>
+<td style="text-align: left;">構造体</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9.</td>
+<td style="text-align: left;">Conditions</td>
+<td style="text-align: left;">コンディション</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10.</td>
+<td style="text-align: left;">Symbols</td>
+<td style="text-align: left;">シンボル</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11.</td>
+<td style="text-align: left;">Packages</td>
+<td style="text-align: left;">パッケージ</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12.</td>
+<td style="text-align: left;">Numbers</td>
+<td style="text-align: left;">数</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="13.html">13.</a></td>
+<td style="text-align: left;"><a href="13.html">Characters</a></td>
+<td style="text-align: left;"><a href="13.html">文字</a></td>
+<td style="text-align: left;"><a href="13.2.html">辞書</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14.</td>
+<td style="text-align: left;">Conses</td>
+<td style="text-align: left;">コンス</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15.</td>
+<td style="text-align: left;">Arrays</td>
+<td style="text-align: left;">配列</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="16.html">16.</a></td>
+<td style="text-align: left;"><a href="16.html">Strings</a></td>
+<td style="text-align: left;"><a href="16.html">文字列</a></td>
+<td style="text-align: left;"><a href="16.2.html">辞書</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17.</td>
+<td style="text-align: left;">Sequences</td>
+<td style="text-align: left;">シーケンス</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="18.html">18.</a></td>
+<td style="text-align: left;"><a href="18.html">Hash Tables</a></td>
+<td style="text-align: left;"><a href="18.html">ハッシュテーブル</a></td>
+<td style="text-align: left;"><a href="18.2.html">辞書</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19.</td>
+<td style="text-align: left;">Filenames</td>
+<td style="text-align: left;">ファイル名</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20.</td>
+<td style="text-align: left;">Files</td>
+<td style="text-align: left;">ファイル操作</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21.</td>
+<td style="text-align: left;">Streams</td>
+<td style="text-align: left;">ストリーム</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="22.html">22.</a></td>
+<td style="text-align: left;"><a href="22.html">Printer</a></td>
+<td style="text-align: left;"><a href="22.html">プリンター</a></td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="23.html">23.</a></td>
+<td style="text-align: left;"><a href="23.html">Reader</a></td>
+<td style="text-align: left;"><a href="23.html">リーダー</a></td>
+<td style="text-align: left;"><a href="23.2.html">辞書</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24.</td>
+<td style="text-align: left;">System Construction</td>
+<td style="text-align: left;">システム構築</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25.</td>
+<td style="text-align: left;">Environment</td>
+<td style="text-align: left;">環境</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">26.</td>
+<td style="text-align: left;">Glossary</td>
+<td style="text-align: left;">用語集</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a.</td>
+<td style="text-align: left;">Appendix</td>
+<td style="text-align: left;">付録</td>
+<td style="text-align: left;">辞書</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考文献">参考文献</h1>
+<p>draft proposed American National Standard for Information Systems<br />
+Programming Language Common Lisp<br />
+Version 15.17R, X3J13/94-101R.<br />
+Fri 12-Aug-1994 6:35pm EDT<br />
+<a href="http://www.cs.cmu.edu/afs/cs/Web/Groups/AI/lang/lisp/doc/standard/ansi/dpans/">http://www.cs.cmu.edu/afs/cs/Web/Groups/AI/lang/lisp/doc/standard/ansi/dpans/</a></p>
+<p>ドラフト版提案書　ANSIプログラミング言語Common Lisp<br />
+Version 15.17R, X3J13/94-101R.<br />
+1994年8月12日金曜日　午後6時35分（米国東部標準時・夏時間）</p>
+<h1 id="配布">配布</h1>
+<p><a href="https://github.com/nptcl/npt-japanese">https://github.com/nptcl/npt-japanese</a></p>
+</body>
+</html>

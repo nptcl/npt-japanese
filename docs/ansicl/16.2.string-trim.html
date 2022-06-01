@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function NAME-CHAR</title>
+  <title>Function STRING-TRIM, STRING-LEFT-TRIM, STRING-RIGHT-TRIM</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,29 +214,44 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function NAME-CHAR</h1>
+<h1 class="title">Function STRING-TRIM, STRING-LEFT-TRIM, STRING-RIGHT-TRIM</h1>
 </header>
-<h1 id="function-name-char">Function NAME-CHAR</h1>
-<p>Function <code>NAME-CHAR</code></p>
+<h1 id="function-string-trim-string-left-trim-string-right-trim">Function STRING-TRIM, STRING-LEFT-TRIM, STRING-RIGHT-TRIM</h1>
+<p>Function <code>STRING-TRIM</code>, <code>STRING-LEFT-TRIM</code>, <code>STRING-RIGHT-TRIM</code></p>
 <h2 id="構文">構文</h2>
-<p><code>name-char</code> <em>name</em> =&gt; <em>char-p</em></p>
+<p><code>string-trim</code> <em>character-bag</em> <em>string</em> =&gt; <em>trimmed-string</em><br />
+<code>string-left-trim</code> <em>character-bag</em> <em>string</em> =&gt; <em>trimmed-string</em><br />
+<code>string-right-trim</code> <em>character-bag</em> <em>string</em> =&gt; <em>trimmed-string</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>name</em> - string-designator<br />
-<em>name</em> - 文字か<code>nil</code></p>
+<p><em>character-bag</em> - 文字列を含むシーケンス<br />
+<em>string</em> - string-designator<br />
+<em>trimmed-string</em> - 文字列</p>
 <h2 id="定義">定義</h2>
-<p>名前が<em>name</em>である文字オブジェクトを返却します。 名前の検索には<a href="16.2.string-equal.html"><code>string-equal</code></a>が使われるので、 大文字小文字の区別はありません。 もしそのような文字が存在しない場合は<code>nil</code>が返却されます。</p>
+<p><a href="16.2.string-trim.html"><code>string-trim</code></a>は、<em>string</em>の先頭と末尾から <em>character-bag</em>内のすべての文字を取り除いた文字列を返す。 <a href="16.2.string-trim.html"><code>string-left-trim</code></a>は似た動作をするが、 文字列の先頭からのみ文字を取り除く。 <a href="16.2.string-trim.html"><code>string-right-trim</code></a>は末尾からのみ取り除く。</p>
+<p>もし<em>string</em>から取り除く必要がない場合は、 処理系の判断により、<em>string</em>そのものか、あるいはそのコピーが返却される。</p>
+<p>全ての関数はfill-pointerを考慮する。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> &#39;space) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> <span class="st">&quot;space&quot;</span>) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> <span class="st">&quot;Space&quot;</span>) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((x (<span class="kw">char-name</span> <span class="ch">#\a</span>)))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">or</span> (<span class="kw">not</span> x) (<span class="kw">eql</span> (<span class="kw">name-char</span> x) <span class="ch">#\a</span>))) <span class="op">=&gt;</span>  true</span></code></pre></div>
-<h2 id="影響">影響</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-trim</span> <span class="st">&quot;abc&quot;</span> <span class="st">&quot;abcaakaaakabcaaa&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;kaaak&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-trim</span> &#39;(<span class="ch">#\S</span>pace <span class="ch">#\T</span>ab <span class="ch">#\N</span>ewline) <span class="st">&quot; garbanzo beans</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">       &quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;garbanzo beans&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-trim</span> <span class="st">&quot; (*)&quot;</span> <span class="st">&quot; ( *three (silly) words* ) &quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;three (silly) words&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-left-trim</span> <span class="st">&quot;abc&quot;</span> <span class="st">&quot;labcabcabc&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;labcabcabc&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-left-trim</span> <span class="st">&quot; (*)&quot;</span> <span class="st">&quot; ( *three (silly) words* ) &quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;three (silly) words* ) &quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-right-trim</span> <span class="st">&quot; (*)&quot;</span> <span class="st">&quot; ( *three (silly) words* ) &quot;</span>) </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot; ( *three (silly) words&quot;</span></span></code></pre></div>
+<h2 id="副作用">副作用</h2>
 <p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>処理系。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>character</em>が文字ではなかったら、型<code>type-error</code>のエラーが生じます。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="13.2.char-name.html"><code>char-name</code></a></p>
+<p>なし。</p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 </body>

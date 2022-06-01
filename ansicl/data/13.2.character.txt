@@ -51,13 +51,13 @@ Function `CHARACTER`
 
 ## {arguments-and-values}
 
-*character* - {character-designer}  
+*character* - {character-designator}  
 *denoted-character* - 文字
 
 
 ## {description}
 
-{character-designer}によって示される文字が返却されます。
+{character-designator}によって示される文字が返却されます。
 
 
 ## {examples}
@@ -79,7 +79,7 @@ Function `CHARACTER`
 
 ## {exceptional-situations}
 
-もし引数が{character-designer}ではなかった場合は、
+もし引数が{character-designator}ではなかった場合は、
 型{type-error:link}が発せられます。
 
 

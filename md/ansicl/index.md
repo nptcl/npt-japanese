@@ -22,10 +22,10 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |10.|Symbols|シンボル|辞書|
 |11.|Packages|パッケージ|辞書|
 |12.|Numbers|数|辞書|
-|[13.](13.html)|[Characters](13.html)|[文字](13.html)|[辞書](13.2.html)|
+|[13.](13.html)|[Characters](13.html)|[文字](13.html)|[辞書 ★完了](13.2.html)|
 |14.|Conses|コンス|辞書|
 |[15.](15.html)|[Arrays](15.html)|[配列](15.html)|[辞書](15.2.html)|
-|[16.](16.html)|[Strings](16.html)|[文字列](16.html)|[辞書](16.2.html)|
+|[16.](16.html)|[Strings](16.html)|[文字列](16.html)|[辞書 ★完了](16.2.html)|
 |[17.](17.html)|[Sequences](17.html)|[シーケンス](17.html)|[辞書](17.3.html)|
 |[18.](18.html)|[Hash Tables](18.html)|[ハッシュテーブル](18.html)|[辞書](18.2.html)|
 |19.|Filenames|ファイル名|辞書|

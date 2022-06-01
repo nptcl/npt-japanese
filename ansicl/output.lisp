@@ -135,15 +135,22 @@
 ;;
 ;;  index
 ;;
-(defun toppage-dictionary-find (x)
+(defun toppage-dictionary-string (x)
+  (let ((v (car (contents-index x))))
+    (case (assocv v *working*)
+      (finish "辞書 ★完了")
+      (work "辞書 ☆作業中")
+      (otherwise "辞書"))))
+
+(defun toppage-dictionary-link (x)
   (awhen (contents-dictionary
            (car (contents-index x)))
     (filename-html
       (filename-join it))))
 
 (defun toppage-dictionary (x)
-  (aif (toppage-dictionary-find x)
-    (format nil "[辞書](~A)" it)
+  (aif (toppage-dictionary-link x)
+    (format nil "[~A](~A)" (toppage-dictionary-string x) it)
     "辞書"))
 
 (defun toppage-link (s x)

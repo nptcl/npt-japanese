@@ -30,3 +30,13 @@
 (defun mapcar-delete-attribute (list)
   (mapcar #'delete-attribute list))
 
+
+;;
+;;  Dictionary
+;;
+(defvar *working* nil)
+
+;;  Finish
+(push (cons 13 'finish) *working*)
+(push (cons 16 'finish) *working*)
+

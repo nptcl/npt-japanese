@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STRING-TRIM
+;;  Function STRING-LEFT-TRIM
+;;  Function STRING-RIGHT-TRIM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.string-trim
+@name: string-trim
+@name: string-left-trim
+@name: string-right-trim
+@type: function
+
+Function `STRING-TRIM`, `STRING-LEFT-TRIM`, `STRING-RIGHT-TRIM`
+
+
+## {syntax}
+
+`string-trim` *character-bag* *string* => *trimmed-string*  
+`string-left-trim` *character-bag* *string* => *trimmed-string*  
+`string-right-trim` *character-bag* *string* => *trimmed-string*
+
+
+## {arguments-and-values}
+
+*character-bag* - 文字列を含むシーケンス  
+*string* - {string-designator}  
+*trimmed-string* - 文字列
+
+
+## {description}
+
+{string-trim:link}は、*string*の先頭と末尾から
+*character-bag*内のすべての文字を取り除いた文字列を返す。
+{string-left-trim:link}は似た動作をするが、
+文字列の先頭からのみ文字を取り除く。
+{string-right-trim:link}は末尾からのみ取り除く。
+
+もし*string*から取り除く必要がない場合は、
+処理系の判断により、*string*そのものか、あるいはそのコピーが返却される。
+
+全ての関数は{fill-pointer}を考慮する。
+
+
+## {examples}
+
+```lisp
+(string-trim "abc" "abcaakaaakabcaaa") =>  "kaaak"
+(string-trim '(#\Space #\Tab #\Newline) " garbanzo beans
+       ") =>  "garbanzo beans"
+
+(string-trim " (*)" " ( *three (silly) words* ) ")
+=>  "three (silly) words"
+
+(string-left-trim "abc" "labcabcabc") =>  "labcabcabc"
+(string-left-trim " (*)" " ( *three (silly) words* ) ")
+=>  "three (silly) words* ) "
+
+(string-right-trim " (*)" " ( *three (silly) words* ) ") 
+=>  " ( *three (silly) words"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+処理系。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

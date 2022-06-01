@@ -1,0 +1,133 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STRING-UPCASE
+;;  Function STRING-DOWNCASE
+;;  Function STRING-CAPITALIZE
+;;  Function NSTRING-UPCASE
+;;  Function NSTRING-DOWNCASE
+;;  Function NSTRING-CAPITALIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.string-case
+@name: string-upcase
+@name: string-downcase
+@name: string-capitalize
+@name: nstring-upcase
+@name: nstring-downcase
+@name: nstring-capitalize
+@type: function
+
+Function `STRING-UPCASE`, `STRING-DOWNCASE`, `STRING-CAPITALIZE`,
+`NSTRING-UPCASE`, `NSTRING-DOWNCASE`, `NSTRING-CAPITALIZE`
+
+
+## {syntax}
+
+`string-upcase` *string* &key *start* *end* => *cased-string*  
+`string-downcase` *string* &key *start* *end* => *cased-string*  
+`string-capitalize` *string* &key *start* *end* => *cased-string*  
+`nstring-upcase` *string* &key *start* *end* => *string*  
+`string-downcase` *string* &key *start* *end* => *string*  
+`string-capitalize` *string* &key *start* *end* => *string*
+
+
+## {arguments-and-values}
+
+*string* - {string-designator}。ただし、
+{nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}の場合は、
+文字列出なければならない。  
+*start*, *end* - 文字列の{bounding-index-designator}。
+*start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
+*cased-string* - 文字列。
+
+
+## {description}
+{string-upcase:link}, {string-downcase:link}, {string-capitalize:link},
+{nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}は、
+文字列の*start*, *end*の境界間の列のケース（大文字小文字）を次のように変更します。
+
+- {string-upcase:link}  
+{string-upcase:link}は、*string*の全ての小文字を、
+対応する大文字に全て置き換えた文字列を返却します。
+正確には、返却された文字列の各文字は、
+*string*の各文字に対して関数{char-upcase:link}の実行によって生成されたものです。
+
+- {string-downcase:link}  
+{string-downcase:link}は、{string-upcase:link}と似ていますが、
+全ての大文字を小文字に置き換えるところが違っています
+({char-downcase:link}を使用します）。
+
+- {string-capitalize:link}  
+{string-capitalize:link}は、すべての単語`word`について、
+`word`の最初の文字が大文字であり、
+その他の文字が小文字であるような文字列のコピーを作成します。
+{string-capitalize:link}では、
+{alphanumeric-character}からなる連続した文字列の両端を、
+{alphanumeric-character}以外の文字か、
+または文字列の終端で区切ったものを単語`word`と定義しています。
+
+- {nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}  
+{nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}は、
+それぞれ{string-upcase:link}, {string-downcase:link}, {string-capitalize:link}と
+同一ですが、*string*を変更するところが違っています。
+
+{string-upcase:link}, {string-downcase:link}, {string-capitalize:link}は、
+*string*を変更しません。
+しかし文字列に変更する文字がない場合は、
+処理系の判断により、返却値は*string*かあるいはそのコピーのどちらかになります。
+
+
+## {examples}
+
+```lisp
+(string-upcase "abcde") =>  "ABCDE"
+(string-upcase "Dr. Livingston, I presume?")
+=>  "DR. LIVINGSTON, I PRESUME?"
+(string-upcase "Dr. Livingston, I presume?" :start 6 :end 10)
+=>  "Dr. LiVINGston, I presume?"
+(string-downcase "Dr. Livingston, I presume?")
+=>  "dr. livingston, i presume?"
+
+(string-capitalize "elm 13c arthur;fig don't") =>  "Elm 13c Arthur;Fig Don'T"
+(string-capitalize " hello ") =>  " Hello "
+(string-capitalize "occlUDeD cASEmenTs FOreSTAll iNADVertent DEFenestraTION")
+=>   "Occluded Casements Forestall Inadvertent Defenestration"
+(string-capitalize 'kludgy-hash-search) =>  "Kludgy-Hash-Search"
+(string-capitalize "DON'T!") =>  "Don'T!"    ;not "Don't!"
+(string-capitalize "pipe 13a, foo16c") =>  "Pipe 13a, Foo16c"
+
+(setq str (copy-seq "0123ABCD890a")) =>  "0123ABCD890a"
+(nstring-downcase str :start 5 :end 7) =>  "0123AbcD890a"
+str =>  "0123AbcD890a"
+```
+
+## {side-effects}
+
+{nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}は、
+新しい文字列を構築するのではなく、*string*を変更します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{char-upcase:link}, {char-downcase:link}.
+
+
+## {notes}
+
+返却値は常に*string*と同じ長さです。
+
+@end
+

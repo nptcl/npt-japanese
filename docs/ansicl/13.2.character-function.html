@@ -221,10 +221,10 @@
 <h2 id="構文">構文</h2>
 <p><code>charcter</code> <em>character</em> =&gt; <em>denoted-character</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>character</em> - character-designer<br />
+<p><em>character</em> - character-designator<br />
 <em>denoted-character</em> - 文字</p>
 <h2 id="定義">定義</h2>
-<p>character-designerによって示される文字が返却されます。</p>
+<p>character-designatorによって示される文字が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">character</span> <span class="ch">#\a</span>) → <span class="ch">#\a</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">character</span> <span class="st">&quot;a&quot;</span>) → <span class="ch">#\a</span></span>
@@ -235,7 +235,7 @@
 <h2 id="影響">影響</h2>
 <p>なし</p>
 <h2 id="例外">例外</h2>
-<p>もし引数がcharacter-designerではなかった場合は、 型<code>type-error</code>が発せられます。</p>
+<p>もし引数がcharacter-designatorではなかった場合は、 型<code>type-error</code>が発せられます。</p>
 <h2 id="参考">参考</h2>
 <p><code>coerce</code></p>
 <h2 id="備考">備考</h2>

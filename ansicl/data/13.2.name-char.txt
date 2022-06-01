@@ -20,7 +20,7 @@ Function `NAME-CHAR`
 
 ## {arguments-and-values}
 
-*name* - {string-designer}  
+*name* - {string-designator}  
 *name* - 文字か{nil!variable:link}
 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function NAME-CHAR</title>
+  <title>Function MAKE-STRING</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,29 +214,29 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function NAME-CHAR</h1>
+<h1 class="title">Function MAKE-STRING</h1>
 </header>
-<h1 id="function-name-char">Function NAME-CHAR</h1>
-<p>Function <code>NAME-CHAR</code></p>
+<h1 id="function-make-string">Function MAKE-STRING</h1>
+<p>Function <code>MAKE-STRING</code></p>
 <h2 id="構文">構文</h2>
-<p><code>name-char</code> <em>name</em> =&gt; <em>char-p</em></p>
+<p><code>make-string</code> <em>size</em> &amp;key <em>initial-element</em> <em>element-type</em> =&gt; <em>string</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>name</em> - string-designator<br />
-<em>name</em> - 文字か<code>nil</code></p>
+<p><em>size</em> - 有効な配列の次元<br />
+<em>initial-element</em> - 文字。標準値は処理系依存。<br />
+<em>element-type</em> - 型指定子。標準値は<a href="13.2.character-system-class.html"><code>character</code></a>。<br />
+<em>string</em> - simple-string</p>
 <h2 id="定義">定義</h2>
-<p>名前が<em>name</em>である文字オブジェクトを返却します。 名前の検索には<a href="16.2.string-equal.html"><code>string-equal</code></a>が使われるので、 大文字小文字の区別はありません。 もしそのような文字が存在しない場合は<code>nil</code>が返却されます。</p>
+<p><a href="16.2.make-string.html"><code>make-string</code></a>は、長さが<em>size</em>のsimple-stringを返却します。 各要素は<em>initial-element</em>で初期化されます。</p>
+<p><em>element-type</em>は、<em>string</em>の各要素の型を指定します。 <em>string</em>は、指定された型を収容できる特化型で構築されます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> &#39;space) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> <span class="st">&quot;space&quot;</span>) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> <span class="st">&quot;Space&quot;</span>) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((x (<span class="kw">char-name</span> <span class="ch">#\a</span>)))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">or</span> (<span class="kw">not</span> x) (<span class="kw">eql</span> (<span class="kw">name-char</span> x) <span class="ch">#\a</span>))) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-string</span> <span class="dv">10</span> <span class="bu">:initial-element</span> <span class="ch">#\5</span>) <span class="op">=&gt;</span>  <span class="st">&quot;5555555555&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">length</span> (<span class="kw">make-string</span> <span class="dv">10</span>)) <span class="op">=&gt;</span>  <span class="dv">10</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p>処理系。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>character</em>が文字ではなかったら、型<code>type-error</code>のエラーが生じます。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="13.2.char-name.html"><code>char-name</code></a></p>
+<p>なし。</p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 </body>

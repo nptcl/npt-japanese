@@ -1,0 +1,64 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.make-string
+@name: make-string
+@type: function
+
+Function `MAKE-STRING`
+
+
+## {syntax}
+
+`make-string` *size* &key *initial-element* *element-type* => *string*
+
+
+## {arguments-and-values}
+
+*size* - {valid-array-dimension}  
+*initial-element* - 文字。標準値は処理系依存。  
+*element-type* - {type-specifier}。標準値は{character!system-class:link}。  
+*string* - {simple-string}
+
+
+## {description}
+
+{make-string:link}は、長さが*size*の{simple-string}を返却します。
+各要素は*initial-element*で初期化されます。
+
+*element-type*は、*string*の各要素の型を指定します。
+*string*は、指定された型を収容できる特化型で構築されます。
+
+## {examples}
+
+```lisp
+(make-string 10 :initial-element #\5) =>  "5555555555"
+(length (make-string 10)) =>  10
+```
+
+## {affected-by}
+
+処理系。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

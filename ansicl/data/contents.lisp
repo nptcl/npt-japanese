@@ -111,7 +111,11 @@
 (dictionary 16.2.simple-string-p)
 (dictionary 16.2.char-accessor)
 (dictionary 16.2.string!function)
+(dictionary 16.2.string-case)
+(dictionary 16.2.string-trim)
 (dictionary 16.2.string-equal)
+(dictionary 16.2.stringp)
+(dictionary 16.2.make-string)
 
 ;; Chapter 17
 (index 17.3 "シーケンスの辞書" "Sequences Dictionary")

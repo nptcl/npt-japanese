@@ -1,0 +1,190 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  16. 文字列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STRING=
+;;  Function STRING/=
+;;  Function STRING<
+;;  Function STRING>
+;;  Function STRING<=
+;;  Function STRING>=
+;;  Function STRING-EQUAL
+;;  Function STRING-NOT-EQUAL
+;;  Function STRING-LESSP
+;;  Function STRING-GREATERP
+;;  Function STRING-NOT-GREATERP
+;;  Function STRING-NOT-LESSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 16.2.string-equal
+@name: string=
+@name: string/=
+@name: string<
+@name: string>
+@name: string<=
+@name: string>=
+@name: string-equal
+@name: string-not-equal
+@name: string-lessp
+@name: string-greaterp
+@name: string-not-greaterp
+@name: string-not-lessp
+@type: function
+
+Function `STRING=`, `STRING/=`, 
+`STRING<`, `STRING>`, `STRING<=`, `STRING>=`, 
+`STRING-EQUAL`, `STRING-NOT-EQUAL`, 
+`STRING-LESSP`, `STRING-GREATERP`, `STRING-NOT-GREATERP`, `STRING-NOT-LESSP`
+
+
+## {syntax}
+
+`string=` *string1* *string2* &key *start1* *end1* *start2* *end2* => *generalized-boolean*  
+`string/=` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string<` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string>` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string<=` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string>=` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string-equal` *string1* *string2* &key *start1* *end1* *start2* *end2* => *generalized-boolean*  
+`string-not-equal` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string-lessp` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string-greaterp` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string-not-greaterp` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+`string-not-lessp` *string1* *string2* &key *start1* *end1* *start2* *end2* => *mismatch-index*  
+
+
+## {arguments-and-values}
+
+*string1* - {string-designator}  
+*string2* - {string-designator}  
+*start1*, *end1* - 文字列の{bounding-index-designator}。
+*start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
+*start2*, *end2* - 文字列の{bounding-index-designator}。
+*start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
+*generalized-boolean* - {generalized-boolean}
+*mismatch-index* - *string1*の境界内インデックスか、{nil!variable:link}
+
+
+## {description}
+
+これらの関数は*string1*と*string2*の辞書式比較を行います。
+{string=:link}と{string-equal:link}は等式関数と呼ばれます。
+その他の関数は不等式関数です。
+これらの関数が行う比較演算は、
+*start1*と*end1*で囲まれた*string1*の部分文字列と、
+*start2*と*end2*で囲まれた*string2*の部分文字列に限定されます。
+
+文字列`a`と文字列`b`が等しいとは、
+どちらも同じ個数の文字を保有しており、
+各文字が{char=:link}か{char-equal:link}の適用において等しい場合です。
+
+文字列`a`が文字列`b`より小さいとは、
+両者の文字が異なる最初の位置で、
+`a`の文字が{char<:link}または{char-lessp:link}に従って
+`b`の対応する文字より小さい場合、
+あるいは文字列`a`が文字列`b`のプレフィックス
+（文字の長さが短く、`a`のすべての文字に一致する）の場合です。
+
+等式関数は、文字列が等しい場合は
+*generalized-boolean*に*true*を返却し、
+それ以外は*false*を返却します。
+
+不等式関数は、文字列が等しくない場合は
+*mismatch-index*に*true*を返却し、
+それ以外は*false*を返却します。
+
+もし*mismatch-index*が*true*の場合は、
+*string1*の開始位置をオフセット値として、
+2つの部分文字列が異なっている最初の文字の位置を整数で返却します。
+
+比較は次のように行われます。
+
+- {string=:link}  
+{string=:link}は、部分文字列の長さが同じであり、
+対応する位置に同じ文字が含まれているとき*true*を返却します。
+それ以外は*false*です。
+
+- {string/=:link}  
+{string/=:link}は、部分文字列が異なっているときは*true*を、
+それ以外は*false*を返却します。
+
+- {string-equal:link}  
+{string-equal:link}は、{string=:link}と似ていますが、
+大文字小文字の違いを無視するところが異なっています。
+2つの文字は{char-equal:link}が*true*であれば同一とみなされます。
+
+- {string<:link}  
+{string<:link}は、部分文字列1が部分文字列2よりも小さいときは*true*を、
+それ以外は*false*を返却します。
+
+- {string>:link}  
+{string>:link}は、部分文字列1が部分文字列2よりも大きいときは*true*を、
+それ以外は*false*を返却します。
+
+- {string-lessp:link}, {string-greaterp:link}  
+{string-lessp:link}, {string-greaterp:link}は、
+それぞれ{string<:link}, {string>:link}と似ていますが、
+大文字小文字を無視するところが異なっています。
+
+- {string<=:link}  
+{string<=:link}は、部分文字列1が部分文字列2を比べて
+等しいかあるいは小さいときは*true*を、
+それ以外は*false*を返却します。
+
+- {string>=:link}  
+{string>=:link}は、部分文字列1が部分文字列2を比べて
+等しいかあるいは大きいときは*true*を、
+それ以外は*false*を返却します。
+
+- {string-not-greaterp:link}, {string-not-lessp:link}  
+{string-not-greaterp:link}と{string-not-lessp:link}は、
+それぞれ{string<=:link}と{string>=:link}に似ていますが、
+大文字小文字を無視するところが異なっています。
+文字を比較するときに、{char<:link}の代わりに
+{char-lessp:link}が使用されたかのように行われます。
+
+## {examples}
+
+```lisp
+(string= "foo" "foo") =>  true
+(string= "foo" "Foo") =>  false
+(string= "foo" "bar") =>  false
+(string= "together" "frog" :start1 1 :end1 3 :start2 2) =>  true
+(string-equal "foo" "Foo") =>  true
+(string= "abcd" "01234abcd9012" :start2 5 :end2 9) =>  true
+(string< "aaaa" "aaab") =>  3
+(string>= "aaaaa" "aaaa") =>  4
+(string-not-greaterp "Abcde" "abcdE") =>  5
+(string-lessp "012AAAA789" "01aaab6" :start1 3 :end1 7
+                                     :start2 2 :end2 6) =>  6
+(string-not-equal "AAAA" "aaaA") =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{char=:link}
+
+
+## {notes}
+
+{equal:link}は、2つの文字列を比較するとき{string=:link}を呼び出します。
+
+@end
+

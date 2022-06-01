@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Standard-Generic-Function SHARED-INITIALIZE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Standard-Generic-Function SHARED-INITIALIZE</h1>
+</header>
+<h1 id="standard-generic-function-shared-initialize">Standard-Generic-Function SHARED-INITIALIZE</h1>
+<p>Standard Generic Function <code>SHARED-INITIALIZE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>shared-initialize</code> <em>instance</em> <em>slot-names</em> &amp;rest <em>initargs</em> &amp;key &amp;allow-other-keys =&gt; <em>instance</em></p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<p><code>shared-initialize</code> (<em>instance</em> <code>standard-object</code>) <em>slot-names</em> &amp;rest <em>initargs</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>instance</em> - オブジェクト<br />
+<em>slot-names</em> - リストか<a href="4.4.t.html"><code>t</code></a><br />
+<em>initargs</em> - keyword/valueのペアのリスト（初期化引数の名前と値）</p>
+<h2 id="定義">定義</h2>
+<p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>はインスタンスのスロットに、 引数<em>initargs</em>と<code>:initform</code>を用いて値を埋めるときに使われます。 この関数の呼び出しは、インスタンスが作成されるとき、 インスタンスが再初期化されるとき、 クラスの再定義によりインスタンスが更新されるとき、 違うクラスにインスタンスを従わせるときに行われます。 ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 システムにより共有されるメソッドである、 <code>initialize-instance</code>, <code>reinitialize-instance</code>, <code>update-instance-for-redefined-class</code>, そして<code>update-instance-for-different-class</code>によって呼び出されます。</p>
+<p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、次のような引数を取ります。 初期化されるインスタンス、 インスタンスがアクセス可能なスロットの名前の集合、 そして<em>initargs</em>の集合です。 最初2つの引数のあとの引数は、 初期化引数リストの形を取らなければなりません。 システムが提供している<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドは、 スロットの値を<em>initargs</em>で指定された<code>:initform</code>のフォームによって初期化します。 <em>slot-names</em>は、もしスロットに対して<em>initargs</em>が指定されていなかった場合、 <code>:initform</code>によって初期化するべきスロットを指定します。</p>
+<p>スロットがローカルか共有かにかかわらず、システムが共有するメソッドは、 下記のような振る舞いをします。</p>
+<ul>
+<li><p>もしスロットに対して、 初期化引数リストにある<em>initarg</em>が値を特定している場合、 値はそのスロットに格納されます。 もしそのスロットにはすでに値が格納されている場合でも同様に、値が格納されます。 値の格納は、メソッドが実行する前に行われます。</p></li>
+<li><p><em>slot-names</em>で指定されたどんなスロットでも、 現時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームによって初期化されます。 <code>:initform</code>フォームを持ったどんなスロットでも、 フォーム自体は<code>defclass</code>フォームが宣言されたレキシカル環境によって評価され、 結果がスロットへ格納されます。 例えば、<code>before</code>メソッドがスロットに値を格納した場合は、 <code>:initform</code>フォームはスロットへの値の供給には使用されないでしょう。</p></li>
+<li><p>規則<a href="7.1.4.html">7.1.4. 初期化引数の規則</a>に従います。</p></li>
+</ul>
+<p>もし初期化引数が指定されなかった場合、 <em>slot-names</em>引数によって指定されたスロットは <code>:initform</code>フォームに従って初期化されます。 <em>slot-names</em>はスロットの名前のリストにすることができます。 この場合は、スロットの名前の集合を指定することになります。 あるいは、<em>slot-names</em>にシンボルである<a href="4.4.t.html"><code>t</code></a>を指定することもできます。 この場合は、スロットのすべての集合を指定したことになります。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><code>initialize-instance</code>, <code>reinitialize-instance</code>, <code>update-instance-for-redefined-class</code>, <code>update-instance-for-different-class</code>, <code>slot-boundp</code>, <code>slot-makunbound</code>, <a href="7.1.html">7.1. オブジェクトの作成と初期化</a>, <a href="7.1.4.html">7.1.4. 初期化引数の規則</a>, <a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a></p>
+<h2 id="備考">備考</h2>
+<p><em>initarg</em>は、<code>defclass</code>の<code>:iniarg</code>オプションを使用するか、 あるいは<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することで、 有効な宣言であるとされます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>で定義されたメソッドのラムダリスト内の 各キーワードパラメータ指定子のキーワード名は、 そのメソッドが適用される全てのクラスで有効な<em>initarg</em>の名前として宣言されます。</p>
+<p>処理系は、<code>:initform</code>のフォームを、 副作用を生成せず依存もせず、 また<code>initialize-instance</code>のプライマリメソッドで処理するのではなく、 <code>initialize-instance</code>メソッドを実行する前に、 これらのフォームを評価してスロットに値を格納することが、 最適化では許可されています。 （この最適化は、<code>allocate-instance</code>メソッドに プロトタイプのインスタンスをコピーさせることで実現できるかもしれません。）</p>
+<p>処理系は、初期化引数リストが渡されるメソッドが 全て<code>standard-object</code>上のメソッドのみである場合において、 実際には完全な初期化引数リストを作成せず、 <em>initargs</em>とスロットを関連付けるよう、 デフォルト初期値フォームを最適化することが許可されています。 この場合、デフォルトの初期値フォームは、 <code>:initform</code>フォームのように扱うことができます。 この最適化には、パフォーマンスの向上以外に目に見える効果はありません。</p>
+</body>
+</html>

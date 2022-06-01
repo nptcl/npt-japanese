@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.1.2. 初期化引数の有効性の宣言</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.1.2. 初期化引数の有効性の宣言</h1>
+</header>
+<p>7.1.2. 初期化引数の有効性の宣言</p>
+<p>初期化引数は、4つの状況にて有効性がチェックされます。 初期化引数はひとつの状況では有効かもしれませんが、 他はそうではないかもしれません。 例えば、システムで提供された<code>make-instance</code>のメソッドの <code>standard-class</code>クラスを対象とした場合を考えます。 もし初期化引数が与えられていたものの、 有効性としての宣言がされていなかった場合、 メソッドは初期化引数の有効性チェックにおいて エラーのシグナルを発することになります。</p>
+<p>初期化引数の有効性の宣言は、次の2つの意味があります。</p>
+<ul>
+<li><p>スロットを設定するときの初期化引数は、 <code>defclass</code>のスロットオプションである <code>:initarg</code>によって有効であるとして宣言されます。 スロットオプションの<code>:initarg</code>は、スーパークラスから継承されます。 よって、クラスのスロット設定時の有効な初期化引数の集合は、 クラスとスーパークラスによって有効であると宣言されたスロット設定時の 初期化引数の和集合となります。 初期化引数による値の設定は、4つの状況すべてにおいて有効です。</p></li>
+<li><p>メソッドの引数として与えられた初期化引数は、 これらメソッドの宣言によって有効であると定義されます。 メソッドのラムダリストとして定義されたキーワードパラメーターのキーワード名は、 全てのクラスの適用可能なメソッドの初期化引数となります。 適用されるメソッドのラムダリストにある<code>&amp;allow-other-keys</code>の存在は、 初期化引数の有効性のチェックを無効にします。 よってメソッドの継承は、メソッドに引数として渡される有効な 初期化引数の集合を制御します。 メソッドの定義を持ったジェネリック関数は、下記に示すものとして、 有効な初期化引数の宣言を守ります。</p></li>
+<li><p>関数<code>allocate-instance</code>, <code>initialize-instance</code>と<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>により、 クラスのインスタンスを作成するとき。 クラスのインスタンスを作成するとき、 これらのメソッドにより有効だと宣言された初期化引数は有効です。</p></li>
+<li><p>関数<code>reinitialize-instance</code>と <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>により、インスタンスの再初期化が行われるとき。 インスタンスの再初期化が行われるとき、 これらのメソッドにより有効だと宣言された初期化引数は有効です。</p></li>
+<li><p>関数<code>update-instance-for-redefined-class</code>と <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>により、 再定義されたクラスにインスタンスを更新するとき。 再定義されたクラスにインスタンスを更新するとき、 これらのメソッドにより有効だと宣言された初期化引数は有効です。</p></li>
+<li><p>関数<code>update-instance-for-different-class</code>と <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>により、 違うクラスの定義にインスタンスを更新するとき。 違うクラスの定義にインスタンスを更新するとき、 これらのメソッドにより有効だと宣言された初期化引数は有効です。</p></li>
+</ul>
+<p>クラスの有効な初期化引数の集合は、スロットの値の設定か、 あるいは初期化引数の前宣言として与えられる<code>:allow-other-keys</code>に従った メソッドの引数かのどちらかの初期化引数の集合です。 <code>:allow-other-keys</code>のデフォルト値は<code>nil</code>です。 もし初期化引数<code>:allow-other-keys</code>の値が<code>true</code>であるならば、 初期化引数の有効性の確認は無効となります。</p>
+</body>
+</html>

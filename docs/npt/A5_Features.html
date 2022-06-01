@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>npt特有の機能</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">npt特有の機能</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="A4_Amalgamation.html">npt amalgamation</a><br />
+次へ：<a href="A6_Input.html">入力モジュール</a></p>
+<h1 id="nptの機能">5.1 nptの機能</h1>
+<p>本章はnpt特有の機能について、代表的なものを紹介します。<br />
+nptで使用するコマンドと変数は、<code>npt-system</code>パッケージに存在します。</p>
+<p>下記の内容について説明します。</p>
+<ul>
+<li><a href="#specific-2">5.2 コマンド引数</a></li>
+<li><a href="#specific-3">5.3 環境変数</a></li>
+<li><a href="#specific-4">5.4 ガベージコレクタの実行</a></li>
+<li><a href="#specific-5">5.5 コアファイルの保存</a></li>
+<li><a href="#specific-6">5.6 プロセスの終了</a></li>
+<li><a href="#specific-7">5.7 <code>ed</code>関数によるエディタ起動</a></li>
+<li><a href="#specific-8">5.8 <code>require</code>関数の動作</a></li>
+<li><a href="#specific-9">5.9 EastAsianWidthの操作</a></li>
+<li><a href="#specific-10">5.10 <code>load-logical-pathname-translations</code>の読み込み</a></li>
+<li><a href="#specific-11">5.11 <code>pathname</code>の使用</a></li>
+<li><a href="#specific-12">5.12 <code>random-state</code>の初期値</a></li>
+<li><a href="#specific-13">5.13 <code>load</code>関数の引数</a></li>
+</ul>
+<h2 id="コマンド引数"><a id="specific-2">5.2 コマンド引数</a></h2>
+<p>nptコマンドの引数は下記の変数に格納します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>npt-system::*arguments*</span></code></pre></div>
+<p>値は配列であり、第一要素が<code>npt</code>のコマンド、 第二引数以降がコマンドの引数です。</p>
+<p>例として下記のコマンドを実行したことを考えます。</p>
+<pre><code>$ npt -- 10 20 30
+*</code></pre>
+<p>引数の<code>--</code>は、これ以降の引数がnptコマンドの引数になるという指定です。<br />
+値は次のようになります。</p>
+<pre><code>* npt-system::*arguments*
+#(&quot;npt&quot; &quot;10&quot; &quot;20&quot; &quot;30&quot;)</code></pre>
+<h2 id="環境変数"><a id="specific-3">5.3 環境変数</a></h2>
+<p>環境変数は下記の変数に格納しています。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>npt-system::*environment*</span></code></pre></div>
+<p>値はハッシュテーブルです。<br />
+例えば、ホームディレクトリを表す<code>$HOME</code>を取得するには 次のように実行します。</p>
+<pre><code>$ npt
+* (gethash &quot;HOME&quot; npt-system::*environment*)
+&quot;/home/username&quot;
+T
+*</code></pre>
+<h2 id="ガベージコレクタの実行"><a id="specific-4">5.4 ガベージコレクタの実行</a></h2>
+<p>下記のコマンドでガベージコレクタを起動します。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(npt-system:gc)</span></code></pre></div>
+<p>ガベージコレクタはheap領域が圧迫されていれば自動的に実行されますが、 タイミングによっては判定が間に合わずにメモリ不足に陥る可能性があります。<br />
+上記のコマンドを定期的に実行することで回避できるかもしれません。</p>
+<p>もしメモリ不足が生じた場合は<code>LISP ABORT</code>します。</p>
+<p>関数仕様を作成しました。<br />
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
+<h2 id="コアファイルの保存"><a id="specific-5">5.5 コアファイルの保存</a></h2>
+<p>下記のコマンドでコアファイルを作成できます。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(npt-system:savecore file)</span></code></pre></div>
+<p>本命令は<code>serious-condition</code>の<code>savecore</code>conditionを実行してnptを終了させます。<br />
+正しく<code>savecore</code>conditionで終了したら、コアファイルの保存が始まります。</p>
+<p>作成したコアファイルを読み込むためには、nptコマンドの<code>--core</code>引数を使用します。</p>
+<p>関数仕様を作成しました。<br />
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
+<h2 id="プロセスの終了"><a id="specific-6">5.6 プロセスの終了</a></h2>
+<p>下記のコマンドでnptを終了します。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(npt-system:exit code)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(npt-system:quit code)</span></code></pre></div>
+<p>上記2つは全く同じものです。<br />
+nptのプロンプトで<code>(exit)</code>と<code>(quit)</code>を実行できるように、 標準で<code>common-lisp-user</code>パッケージに<code>import</code>されています。</p>
+<p>本命令は<code>serious-condition</code>の<code>exit</code>conditionを実行してnptを終了させます。<br />
+正しく<code>exit</code>conditionで終了したら、引数の値を終了コードにしてプロセスを終了させます。</p>
+<p>関数仕様を作成しました。<br />
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
+<h2 id="ed関数によるエディタ起動"><a id="specific-7">5.7 <code>ed</code>関数によるエディタ起動</a></h2>
+<p>Common Lispの関数<code>ed</code>はエディタを起動します。<br />
+この機能に対応しているのはFreeBSD, Linux, Windowsです。</p>
+<p>起動するエディタは設定可能であり、 下記の順番でエディタのコマンド名を取得します。</p>
+<ol type="1">
+<li><code>npt-system::*ed-program*</code>から文字列を取得</li>
+<li>環境変数<code>EDITOR</code>から文字列を取得</li>
+<li>npt標準のエディタを起動</li>
+</ol>
+<p>npt標準のエディタとは、 FreeBSD/Linuxなら<code>vi</code>、 Windowsなら<code>notepad.exe</code>、 それ以外なら<code>ed</code>です。</p>
+<h2 id="require関数の動作"><a id="specific-8">5.8 <code>require</code>関数の動作</a></h2>
+<p>Common Lispの関数<code>require</code>は引数の名前からモジュールを読み込む機能です。<br />
+nptでの実装はsbclのものとほぼ同じにしてあります。</p>
+<p><code>require</code>は実行されると、変数<code>npt-system::*module-provider-functions*</code>を 関数のリストとして読み込み、 最初の関数から順に<code>require</code>の引数を指定して実行していきます。<br />
+もしどれかの関数が<code>NIL</code>以外の値を返却したら、 ロードが成功したとみなして処理を終了します。</p>
+<p>例を示します。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> require-tmp </span>(var)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">load</span> (<span class="kw">merge-pathnames</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">format</span> <span class="kw">nil</span> <span class="st">&quot;~(~A~).lisp&quot;</span> var)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          #p<span class="st">&quot;/tmp/&quot;</span>)))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">push</span> #&#39;require-tmp npt-system::*module-provider-functions*)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> &#39;aaa)</span></code></pre></div>
+<p>実行した結果を示します。(ただし失敗例）</p>
+<pre><code>ERROR: NPT-SYSTEM::SIMPLE-FILE-ERROR
+Cannot open file #P&quot;/tmp/aaa.lisp&quot;.
+
+ 0. ABORT            Return to eval-loop.
+[1]* 0</code></pre>
+<p>ファイル<code>/tmp/aaa.lisp</code>を読み込もうとしているのがわかります。</p>
+<h2 id="eastasianwidthの操作"><a id="specific-9">5.9 EastAsianWidthの操作</a></h2>
+<p>EastAsianWidthとは、Unicodeの全角・半角を表すものです。<br />
+nptでは全角が2文字、半角が1文字として、 <code>format</code>やPretty Printingの出力を整形しています。</p>
+<p>EastAsianWidthに関する関数は下記の3つです。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> eastasian-width </span>(var) ...)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> eastasian-get </span>(var) ...)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> eastasian-set </span>(var size &amp;optional errorp) ...)</span></code></pre></div>
+<p>関数仕様を作成しました。<br />
+<a href="D1_System.html">Lisp関数仕様 - システム関数</a></p>
+<h3 id="関数eastasian-width">関数<code>eastasian-width</code></h3>
+<p>オブジェクトからEastAsianWidthのサイズを返却します。</p>
+<p>引数<code>var</code>が整数の場合は、Unicodeの文字としてサイズを返却します。<br />
+引数<code>var</code>が文字の場合は、その文字のサイズを返却します。<br />
+引数<code>var</code>が文字列の場合は、全ての文字のサイズの合計を返却します。</p>
+<p>第1返却値はEastAsianWidthのサイズです。<br />
+第2返却値はサイズが正しく求められたかどうかのboolean値です。</p>
+<h3 id="関数eastasian-get">関数<code>eastasian-get</code></h3>
+<p>EastAsianWidthは全角と半角の判定と書きましたが、 正確には文字に対して、<code>N</code>, <code>A</code>, <code>H</code>, <code>W</code>, <code>F</code>, <code>NA</code>の 6つのカテゴリに分類されます。<br />
+本関数はそれぞれのカテゴリが、何文字分に相当するかを取得します。</p>
+<p>引数<code>var</code>は<code>string-designer</code>であり、カテゴリの名前を表します。</p>
+<p>第1返却値はEastAsianWidthのサイズです。<br />
+第2返却値はカテゴリを表すsymbolであり、エラーは‘NIL`です。</p>
+<p>例を示します。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (npt-system:eastasian-get :na)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>NPT-SYSTEM::NA</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (npt-system:eastasian-get :hello)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>NIL</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="op">*</span></span></code></pre></div>
+<h3 id="関数eastasian-set">関数<code>eastasian-set</code></h3>
+<p>EastAsianWidthのカテゴリのサイズを設定します。</p>
+<p>引数<code>var</code>はカテゴリをあらわすsymbolです。<br />
+引数<code>size</code>はカテゴリに対するサイズです。<br />
+引数<code>&amp;optional errorp</code>が<code>error</code> condition発生の有無です。</p>
+<h2 id="load-logical-pathname-translationsの読み込み"><a id="specific-10">5.10 <code>load-logical-pathname-translations</code>の読み込み</a></h2>
+<p><code>load-logical-pathname-translations</code>とは、 論理パス名の設定をファイルから読み込む機能です。<br />
+ファイルの読み込む場所は処理系依存です。<br />
+nptでは下記のspecial変数をもとにファイルを探索します。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>npt-system::*load-logical-pathname-translations*</span></code></pre></div>
+<p><code>load-logical-pathname-translations</code>関数は 文字列を引数として受け取り、対応する設定ファイルを読み込みます。<br />
+例えば次のように実行されたことを考えます。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load-logical-pathname-translations</span> <span class="st">&quot;hello&quot;</span>)</span></code></pre></div>
+<p>設定ファイルが次の場所に存在するとします。</p>
+<pre><code>/tmp/host/hello.txt</code></pre>
+<p>この場合は、special変数の値を次のように設定します。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> npt-system::*load-logical-pathname-translations* #p<span class="st">&quot;/tmp/host/*.txt&quot;</span>)</span></code></pre></div>
+<p>動作確認をしてみます。<br />
+まずは適当な設定ファイルを配置します。<br />
+ファイルの内容を下記に示します。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">&quot;*.*&quot;</span> <span class="st">&quot;/home/lisp/&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">&quot;path;to;*.*&quot;</span> <span class="st">&quot;/home/path/&quot;</span>)</span></code></pre></div>
+<p>設定ファイルを配置します。</p>
+<pre><code>$ cd /tmp
+$ mkdir host
+$ cd host
+$ vi hello.txt
+上記の内容を入力
+$</code></pre>
+<p>nptにより次の命令を実行します。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load-logical-pathname-translations</span> <span class="st">&quot;hello&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="kw">t</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">translate-logical-pathname</span> <span class="st">&quot;hello:name.txt&quot;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>-&gt; #P<span class="st">&quot;/home/lisp/name.txt&quot;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">translate-logical-pathname</span> <span class="st">&quot;hello:path;to;name.txt&quot;</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>-&gt; #P<span class="st">&quot;/home/path/name.txt&quot;</span></span></code></pre></div>
+<p>正しく変換されているのがわかります。</p>
+<h2 id="pathnameの仕様"><a id="specific-11">5.11 <code>pathname</code>の仕様</a></h2>
+<p><code>pathname</code>とはファイル名を表すオブジェクトです。</p>
+<p><code>pathname-host</code>は、ファイル名がどの環境に属しているかを表します。<br />
+nptでは次の値を使用します。</p>
+<table>
+<thead>
+<tr class="header">
+<th><code>pathname-host</code></th>
+<th>環境</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>npt-system::unix</code></td>
+<td>Unix環境</td>
+</tr>
+<tr class="even">
+<td><code>npt-system::windows</code></td>
+<td>Windows環境</td>
+</tr>
+<tr class="odd">
+<td>文字列</td>
+<td>論理パス</td>
+</tr>
+</tbody>
+</table>
+<p>初期値は<code>*default-pathname-defaults*</code>の<code>pathname</code>オブジェクトに 設定されている<code>host</code>の値です。</p>
+<p><code>parse-namestring</code>関数では、<code>host</code>の値によって文字列を分析する方法が決まります。<br />
+もし実行している環境がUnix上であっても、<code>host</code>の値を変更することで Windows用のファイル名を認識することができます。<br />
+例えば下記の通り。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Windows</span><span class="sc">\\</span><span class="st">&quot;</span> &#39;npt-system::windows)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>#P<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Windows</span><span class="sc">\\</span><span class="st">&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-directory</span> <span class="op">*</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>(:ABSOLUTE <span class="st">&quot;Windows&quot;</span>)</span></code></pre></div>
+<p><code>equal</code>関数は<code>pathname</code>が同一かどうかを調べることができます。<br />
+もし<code>namestring</code>が同じでも<code>host</code>が違う場合は同一ではありません。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;notepad.exe&quot;</span> &#39;npt-system::windows)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>#P<span class="st">&quot;notepad.exe&quot;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;notepad.exe&quot;</span> &#39;npt-system::unix)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>#P<span class="st">&quot;notepad.exe&quot;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">equal</span> <span class="op">**</span> <span class="op">*</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>NIL</span></code></pre></div>
+<p><code>equal</code>関数は、<code>host</code>の値を見て文字列の大文字小文字の判定を行います。<br />
+Unix環境では大文字小文字を別とみなし、 Windows環境では同一とみなします。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">equal</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">parse-namestring</span> <span class="st">&quot;Hello.TXT&quot;</span> &#39;npt-system::unix)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">parse-namestring</span> <span class="st">&quot;hello.txt&quot;</span> &#39;npt-system::unix))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>NIL</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">equal</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">parse-namestring</span> <span class="st">&quot;Hello.TXT&quot;</span> &#39;npt-system::windows)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">parse-namestring</span> <span class="st">&quot;hello.txt&quot;</span> &#39;npt-system::windows))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
+<p><code>pathname-device</code>は、Unixと論理パスでは無視されます。<br />
+Windowsでは、ファイルの種別か、あるいはドライブレターが設定されます。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-device</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">Windows</span><span class="sc">\\</span><span class="st">&quot;</span> &#39;npt-system::windows))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C&quot;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-device</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;notepad.exe&quot;</span> &#39;npt-system::windows))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>NIL</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-device</span> (<span class="kw">parse-namestring</span> <span class="st">&quot;</span><span class="sc">\\\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">COM1&quot;</span> &#39;npt-system::windows))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>NPT-SYSTEM::DEVICE</span></code></pre></div>
+<p><code>pathname-version</code>は、UnixとWindowsでは無視されます。<br />
+論理パスでは規則に従って使用されます。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-version</span> (<span class="kw">logical-pathname</span> <span class="st">&quot;test:hello.txt&quot;</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>:NEWEST</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">pathname-version</span> (<span class="kw">logical-pathname</span> <span class="st">&quot;test:hello.txt.999&quot;</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="dv">999</span></span></code></pre></div>
+<h2 id="random-stateの初期値"><a id="specific-12">5.12 <code>random-state</code>の初期値</a></h2>
+<p><code>random-state</code>とは乱数を生成するときに使用するオブジェクトです。<br />
+nptではxorshiftという乱数の生成器を使用しており、 <code>random-state</code>には128bitの内部状態を保有しています。</p>
+<p>初期値は関数<code>make-random-state</code>に引数<code>t</code>を渡すことで、 可能な限りデタラメな値を設定できます。<br />
+例えば下記の通り。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">make-random-state</span> <span class="kw">t</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>#&lt;RANDOM-STATE <span class="ch">#x</span>85A5B416389D9716A81B4F43F76E922A&gt;</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> (<span class="kw">make-random-state</span> <span class="kw">t</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>#&lt;RANDOM-STATE <span class="ch">#x</span>E51C94EB01856FEAC5B1EC8C90E3107E&gt;</span></code></pre></div>
+<p>乱数の初期値を決めることは簡単ではないので、 基本的にはOSに初期値を設定してもらいます。<br />
+本章では、乱数の初期値をどのように取得しているか説明します。</p>
+<h3 id="freebsd-linux">FreeBSD / Linux</h3>
+<p>コンパイルモードがFreeBSDかLinuxの場合は、 ファイル<code>/dev/urandom</code>から乱数の初期値を取得します。</p>
+<p>読み込むデバイスは<code>/dev/random</code>ではないことに注意してください。<br />
+FreeBSDでは両者に違いはありませんが、Linuxでは<code>/dev/random</code>の方が安全です。<br />
+nptでは安全性より利便性を優先し、<code>/dev/urandom</code>を使用することにしました。</p>
+<p><code>/dev/urandom</code>から、256byteのデータを受け取り、 それをMD5でハッシュに送り、 MD5の内部状態をそのままxorshiftの内部状態に設定します。<br />
+もし<code>/dev/urandom</code>の読み込みが失敗した場合はエラーです。</p>
+<h3 id="windows">Windows</h3>
+<p>コンパイルモードがWindowsの場合は、 <code>Advapi32.dll</code>の関数<code>SystemFunction036</code>、 通称<code>RtlGenRandom</code>関数から初期値を取得します。</p>
+<p><code>RtlGenRandom</code>から、256byteのデータを受け取り、 それをMD5でハッシュに送り、 MD5の内部状態をそのままxorshiftの内部状態に設定します。<br />
+もし<code>RtlGenRandom</code>の読み込みが失敗した場合はエラーです。</p>
+<h3 id="ansi-c">ANSI-C</h3>
+<p>ファイル<code>/dev/urandom</code>を読み込もうとします。<br />
+もし値が取得できた場合は初期値に使用しますが、 値が取得できなかった場合はあきらめて、 時刻などを乱数の初期値にします。</p>
+<p>FreeBSD, Linux, Windowsとは違い、 初期値用のデバイスが読み込めなかった場合でも エラーが生じることはなく続行します。</p>
+<h2 id="load関数の引数"><a id="specific-13">5.13 <code>load</code>関数の引数</a></h2>
+<p><code>load</code>関数は、Lisp式が記述されたテキストファイルか、 <code>compile-file</code>関数により生成されたバイナリファイル（通称faslファイル）を 読み込むことができます。</p>
+<p>どちらを読み込むかは<code>pathname-type</code>が<code>"FASL"</code>であるかどうかで判定されますが、 <code>load</code>関数の引数<code>:type</code>により種別を指定することもできます。</p>
+<p>テキストファイルを読み込む場合</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load</span> file <span class="bu">:type</span> :lisp)</span></code></pre></div>
+<p><code>fasl</code>ファイルを読み込む場合</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load</span> file <span class="bu">:type</span> :fasl)</span></code></pre></div>
+<p><code>load</code>関数の第一引数は<code>pathname</code>だけではなく、<code>memory-stream</code>を指定することができます。<br />
+ただし<code>memory-stream</code>は<code>pathname</code>を持たないため、 <code>:type</code>引数を指定する必要があります。</p>
+<p>実行例を示します。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((input (npt-system:make-memory-io-stream))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      (output (npt-system:make-memory-io-stream)))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">with-open-file</span> (<span class="kw">stream</span> input <span class="bu">:direction</span> <span class="bu">:output</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;(format t </span><span class="sc">\&quot;</span><span class="st">Hello~~%</span><span class="sc">\&quot;</span><span class="st">)&quot;</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">with-open-file</span> (<span class="kw">stream</span> input <span class="bu">:direction</span> <span class="bu">:input</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">compile-file</span> <span class="kw">stream</span> <span class="bu">:output-file</span> output))</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">file-position</span> output <span class="bu">:start</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">load</span> output <span class="bu">:type</span> :fasl))</span></code></pre></div>
+<p>実行結果</p>
+<pre><code>Hello
+T</code></pre>
+<p>この例では、変数<code>input</code>にテキストファイルを書き込み、 <code>compile-file</code>関数によって変数<code>output</code>にfaslファイルを出力します。<br />
+出力された<code>output</code>のファイルポインタを先頭に戻してから、 <code>load</code>関数により生成されたfaslファイルを実行します。</p>
+</body>
+</html>

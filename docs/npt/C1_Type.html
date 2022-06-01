@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>関数仕様 - 型関数</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">関数仕様 - 型関数</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：<a href="index.html">ANSI Common Lisp npt</a></p>
+<h1 id="関数仕様">関数仕様</h1>
+<p><code>lisp.h</code>に記載されている下記の関数仕様を示します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>■hold関数</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_hold_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_value<span class="op">(</span>addr x<span class="op">,</span> addr <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_set<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>addr Lisp_holdv<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold<span class="op">(</span>addr <span class="op">*</span>ret<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>addr Lisp_hold<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>■nil<span class="op">,</span> t</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_nil<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_t<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>addr Lisp_nil<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>addr Lisp_t<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>■type</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_nil_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_t_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_null_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_cons_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_list_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_string_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_symbol_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_strvect_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_array_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_vector_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>■数値型</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_fixnum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_bignum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_integer_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_ratio_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_rational_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_single_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_real_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_complex_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_number_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>■オブジェクト</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_clos_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_hashtable_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_readtable_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_control_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_callname_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_function_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_random_state_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_stream_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_restart_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_environment_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_bitvector_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_print_dispatch_p<span class="op">(</span>addr x<span class="op">);</span></span></code></pre></div>
+<h1 id="hold関数">■hold関数</h1>
+<p>hold変数の操作関数です。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_hold_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_value<span class="op">(</span>addr x<span class="op">,</span> addr <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_set<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>addr Lisp_holdv<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold<span class="op">(</span>addr <span class="op">*</span>ret<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>addr Lisp_hold<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<h2 id="関数-lisp_hold_p">関数 <code>lisp_hold_p</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_hold_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は0以外を返却します。</p>
+<h2 id="関数-lisp_hold_value">関数 <code>lisp_hold_value</code></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_value<span class="op">(</span>addr x<span class="op">,</span> addr <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret オブジェクトの返却</span></code></pre></div>
+<p>もし<code>x</code>がhold変数の場合は、値を取り出し<code>ret</code>に返却します。<br />
+もし<code>x</code>がhold変数ではない場合は、<code>x</code>をそのまま<code>ret</code>に返却します。</p>
+<h2 id="関数-lisp_hold_set">関数 <code>lisp_hold_set</code></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold_set<span class="op">(</span>addr x<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x hold変数</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value オブジェクト</span></code></pre></div>
+<p>hold変数<code>x</code>にオブジェクトを格納します。<br />
+もし<code>value</code>がhold変数の場合は、 <code>value</code>が保有しているオブジェクトを<code>x</code>に格納します。</p>
+<h2 id="関数lisp_holdv">関数<code>Lisp_holdv</code></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>addr Lisp_holdv<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> オブジェクト</span></code></pre></div>
+<p>関数<code>lisp_hold_value</code>のinplace版です。<br />
+<code>x</code>がhold変数の場合は、格納されているオブジェクトを返却します。<br />
+<code>x</code>がhold変数ではない場合は、入力をそのまま返却します。</p>
+<h2 id="関数-lisp_hold">関数 <code>lisp_hold</code></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_hold<span class="op">(</span>addr <span class="op">*</span>ret<span class="op">,</span> addr value<span class="op">);</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value オブジェクト</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret hold変数</span></code></pre></div>
+<p>hold変数を作成し、<code>value</code>を格納してから<code>ret</code>に返却します。<br />
+もし<code>value</code>がhold変数の場合は、値を取り出してから格納します。</p>
+<h2 id="関数-lisp_hold-1">関数 <code>Lisp_hold</code></h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>addr Lisp_hold<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> hold変数</span></code></pre></div>
+<p>hold変数を作成し返却します。<br />
+hold変数が保有する値は<code>NIL</code>です。</p>
+<h1 id="nil-t">■nil, t</h1>
+<p><code>nil</code>と<code>t</code>オブジェクトの格納関数です。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_nil<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_t<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>addr Lisp_nil<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>addr Lisp_t<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<h2 id="関数lisp_nil">関数<code>lisp_nil</code></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_nil<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span></code></pre></div>
+<p>hold変素<code>x</code>に<code>nil</code>オブジェクトを格納します。</p>
+<h2 id="関数lisp_t">関数<code>lisp_t</code></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_t<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span></code></pre></div>
+<p>hold変素<code>x</code>に<code>t</code>オブジェクトを格納します。</p>
+<h2 id="関数lisp_nil-1">関数<code>Lisp_nil</code></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>addr Lisp_nil<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> nil</span></code></pre></div>
+<p><code>nil</code>オブジェクトを返却します。</p>
+<h2 id="関数lisp_t-1">関数<code>Lisp_t</code></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>addr Lisp_t<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> t</span></code></pre></div>
+<p><code>t</code>オブジェクトを返却します。</p>
+<h1 id="type">■type</h1>
+<p>型チェックの関数です。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>■type</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_nil_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_t_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_null_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_cons_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_list_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_string_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_symbol_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_strvect_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_array_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_vector_p<span class="op">(</span>addr x<span class="op">);</span></span></code></pre></div>
+<h2 id="関数lisp_nil_p">関数<code>lisp_nil_p</code></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_nil_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>nil</code>であれば0以外を返却します。</p>
+<h2 id="関数lisp_t_p">関数<code>lisp_t_p</code></h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_t_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>t</code>であれば0以外を返却します。</p>
+<h2 id="関数lisp_null_p">関数<code>lisp_null_p</code></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_null_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>がNULLポインターであれば0以外を返却します。<br />
+NULLポインターはC言語の<code>(void *)0</code>のことであり、 Common Lispの<code>NIL</code>とは違います。</p>
+<h2 id="関数lisp_character_p">関数<code>lisp_character_p</code></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が文字型であれば0以外を返却します。</p>
+<h2 id="関数lisp_cons_p">関数<code>lisp_cons_p</code></h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_cons_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>がconsであれば0以外を返却します。</p>
+<h2 id="関数lisp_list_p">関数<code>lisp_list_p</code></h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_list_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>がlistであれば0以外を返却します。<br />
+listとは、<code>NIL</code>かconsのことです。</p>
+<h2 id="関数lisp_string_p">関数<code>lisp_string_p</code></h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_string_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>がstringであれば0以外を返却します。<br />
+stringとは、<code>LISPTYPE_STRING</code>型のオブジェクトか、 あるいは<code>LISPTYPE_ARRAY</code>型でかつ 1次元のcharacter型specialized arrayのことです。</p>
+<h2 id="関数lisp_strvect_p">関数<code>lisp_strvect_p</code></h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_strvect_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>LISPTYPE_STRING</code>型であれば0以外を返却します。<br />
+Common Lispの<code>stringp</code>とは違います。</p>
+<h2 id="関数lisp_symbol_p">関数<code>lisp_symbol_p</code></h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_symbol_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>がsymbolであれば0以外を返却します。</p>
+<h2 id="関数lisp_array_p">関数<code>lisp_array_p</code></h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_array_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>LISPTYPE_ARRAY</code>型であれば0以外を返却します。<br />
+Common Lispの<code>arrayp</code>とは違います。</p>
+<h2 id="関数lisp_vector_p">関数`lisp_vector_p‘</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_vector_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>LISPTYPE_VECTOR</code>型であれば0以外を返却します。<br />
+Common Lispの<code>vectorp</code>とは違います。</p>
+<h1 id="数値型">■数値型</h1>
+<p>数値型の型関数です。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_fixnum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_bignum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_integer_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_ratio_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_rational_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_single_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_real_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_complex_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_number_p<span class="op">(</span>addr x<span class="op">);</span></span></code></pre></div>
+<h2 id="関数lisp_fixnum_p">関数<code>lisp_fixnum_p</code></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_fixnum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>LISPTYPE_FIXNUM</code>型であれば0以外を返却します。<br />
+Common Lispの<code>(typep x 'fixnum)</code>とは厳密には違いますが、 通常の使用で差異が生じることはありません。</p>
+<h2 id="関数lisp_bignum_p">関数<code>lisp_bignum_p</code></h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_bignum_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>LISPTYPE_BIGNUM</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_integer_p">関数<code>lisp_integer_p</code></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_integer_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>integer</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_ratio_p">関数<code>lisp_ratio_p</code></h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_ratio_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>ratio</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_rational_p">関数<code>lisp_rational_p</code></h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_rational_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>rational</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_single_float_p">関数<code>lisp_single_float_p</code></h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_single_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>single-float</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_double_float_p">関数<code>lisp_double_float_p</code></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>double-float</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_long_float_p">関数<code>lisp_long_float_p</code></h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>long-float</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_float_p">関数<code>lisp_float_p</code></h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>float</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_real_p">関数<code>lisp_real_p</code></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_real_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>real</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_complex_p">関数<code>lisp_complex_p</code></h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_complex_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>complex</code>型であれば0以外を返却します。</p>
+<h2 id="関数lisp_number_p">関数<code>lisp_number_p</code></h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_number_p<span class="op">(</span>addr x<span class="op">);</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> x オブジェクト</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>x</code>がhold変数の場合は、内容が評価されます。<br />
+<code>x</code>が<code>number</code>型であれば0以外を返却します。</p>
+</body>
+</html>

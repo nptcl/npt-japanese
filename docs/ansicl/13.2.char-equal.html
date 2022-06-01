@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function CHAR=, CHAR/=, CHAR&lt;, CHAR&gt;, CHAR&lt;=, CHAR&gt;=, CHAR-EQUAL, CHAR-NOT-EQUAL, CHAR-LESSP, CHAR-GREATERP, CHAR-NOT-GREATERP, CHAR-NOT-LESSP</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function CHAR=, CHAR/=, CHAR&lt;, CHAR&gt;, CHAR&lt;=, CHAR&gt;=, CHAR-EQUAL, CHAR-NOT-EQUAL, CHAR-LESSP, CHAR-GREATERP, CHAR-NOT-GREATERP, CHAR-NOT-LESSP</h1>
+</header>
+<h1 id="function-char-char-char-char-char-char-char-equal-char-not-equal-char-lessp-char-greaterp-char-not-greaterp-char-not-lessp">Function CHAR=, CHAR/=, CHAR&lt;, CHAR&gt;, CHAR&lt;=, CHAR&gt;=, CHAR-EQUAL, CHAR-NOT-EQUAL, CHAR-LESSP, CHAR-GREATERP, CHAR-NOT-GREATERP, CHAR-NOT-LESSP</h1>
+<p>Function <code>CHAR=</code>, <code>CHAR/=</code>, <code>CHAR&lt;</code>, <code>CHAR&gt;</code>, <code>CHAR&lt;=</code>, <code>CHAR&gt;=</code>, <code>CHAR-EQUAL</code>, <code>CHAR-NOT-EQUAL</code>, <code>CHAR-LESSP</code>, <code>CHAR-GREATERP</code>, <code>CHAR-NOT-GREATERP</code>, <code>CHAR-NOT-LESSP</code></p>
+<h2 id="構文">構文</h2>
+<p><code>char=</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char/=</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char&lt;</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char&gt;</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char&lt;=</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char&gt;=</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-equal</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-not-equal</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-lessp</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-greaterp</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-not-greaterp</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>char-not-lessp</code> &amp;rest <em>characters</em>+ =&gt; <em>generalized-boolean</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>character</em> – 文字<br />
+<em>generalized-boolean</em> – generalized-boolean</p>
+<h2 id="定義">定義</h2>
+<p>これらの関数は文字を比較します。</p>
+<p><a href="13.2.char-equal.html"><code>char=</code></a>は、全ての文字が同じなら<em>true</em>を、それ以外は<em>false</em>を返却します。 もし2つの文字の何らかの属性が違うときは<a href="13.2.char-equal.html"><code>char=</code></a>ではありません。</p>
+<p><a href="13.2.char-equal.html"><code>char/=</code></a>は、全ての文字が違うとき<em>true</em>を、それ以外は<em>false</em>を返却します。</p>
+<p><a href="13.2.char-equal.html"><code>char&lt;</code></a>は、文字が単調増加のとき<em>true</em>を、それ以外は<em>false</em>を返却します。 もし2つの文字の属性が等しいとき、 <a href="13.2.char-equal.html"><code>char&lt;</code></a>の順序は文字コードを数値として<code>&lt;</code>で比較したものと同じです。</p>
+<p><a href="13.2.char-equal.html"><code>char&gt;</code></a>は、文字が単調減少の場合は<em>true</em>を、それ以外は<em>false</em>を返却します。 もし2つの文字の属性が等しいとき、 <a href="13.2.char-equal.html"><code>char&gt;</code></a>の順序は文字コードを数値として<code>&gt;</code>で比較したものと同じです。</p>
+<p><a href="13.2.char-equal.html"><code>char&lt;=</code></a>は、文字が単調非減少のとき<em>true</em>を、それ以外は<em>false</em>を返却します。 もし2つの文字の属性が等しいとき、 <a href="13.2.char-equal.html"><code>char&lt;=</code></a>の順序は文字コードを数値として<code>&lt;=</code>で比較したものと同じです。</p>
+<p><a href="13.2.char-equal.html"><code>char&gt;=</code></a>は、文字が単調非増加の場合は<em>true</em>を、それ以外は<em>false</em>を返却します。 もし2つの文字の属性が等しいとき、 <a href="13.2.char-equal.html"><code>char&gt;=</code></a>の順序は文字コードを数値として<code>&gt;=</code>で比較したものと同じです。</p>
+<p>char-equal, char-not-equal, char-lessp, char-greaterp, char-not-greaterp, char-not-lessp&gt;は、 順にchar=, char/=, char&lt;, char&gt;, char&lt;=, char&gt;=と似ていますが、 大文字小文字を無視します。 もし文字が単純ではない場合（文字の属性がある場合。13.1.3. 文字の属性を参照） 結果は実装で定義された動作になります。 例えば、ある実装では<a href="13.2.char-equal.html"><code>char-equal</code></a>などの関数では、 属性を明確に無視するように定義しているかもしれません。 属性に何らかの効果がある場合は、 これらの比較関数の属性を定義する個所で規定しておく必要があります。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → true</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\A</span> <span class="ch">#\a</span>) → false</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\x</span>) → false</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\D</span>) → false</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\x</span>) → true</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\D</span>) → true</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → true</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\x</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\x</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\y</span> <span class="ch">#\x</span> <span class="ch">#\c</span>) → false</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\y</span> <span class="ch">#\x</span> <span class="ch">#\c</span>) → true</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char/=</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;</span> <span class="ch">#\d</span> <span class="ch">#\x</span>) → true</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;=</span> <span class="ch">#\d</span> <span class="ch">#\x</span>) → true</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → false</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;=</span> <span class="ch">#\d</span> <span class="ch">#\d</span>) → true</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;</span> <span class="ch">#\a</span> <span class="ch">#\e</span> <span class="ch">#\y</span> <span class="ch">#\z</span>) → true</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;=</span> <span class="ch">#\a</span> <span class="ch">#\e</span> <span class="ch">#\y</span> <span class="ch">#\z</span>) → true</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;</span> <span class="ch">#\a</span> <span class="ch">#\e</span> <span class="ch">#\e</span> <span class="ch">#\y</span>) → false</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&lt;=</span> <span class="ch">#\a</span> <span class="ch">#\e</span> <span class="ch">#\e</span> <span class="ch">#\y</span>) → true</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\e</span> <span class="ch">#\d</span>) → true</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;=</span> <span class="ch">#\e</span> <span class="ch">#\d</span>) → true</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\b</span> <span class="ch">#\a</span>) → true</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;=</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\b</span> <span class="ch">#\a</span>) → true</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\a</span>) → false</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;=</span> <span class="ch">#\d</span> <span class="ch">#\d</span> <span class="ch">#\c</span> <span class="ch">#\a</span>) → true</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\e</span> <span class="ch">#\d</span> <span class="ch">#\b</span> <span class="ch">#\c</span> <span class="ch">#\a</span>) → false</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;=</span> <span class="ch">#\e</span> <span class="ch">#\d</span> <span class="ch">#\b</span> <span class="ch">#\c</span> <span class="ch">#\a</span>) → false</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\z</span> <span class="ch">#\A</span>) → implementation-dependent</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char&gt;</span> <span class="ch">#\Z</span> <span class="ch">#\a</span>) → implementation-dependent</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char-equal</span> <span class="ch">#\A</span> <span class="ch">#\a</span>) → true</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>(<span class="kw">stable-sort</span> (<span class="kw">list</span> <span class="ch">#\b</span> <span class="ch">#\A</span> <span class="ch">#\B</span> <span class="ch">#\a</span> <span class="ch">#\c</span> <span class="ch">#\C</span>) #&#39;char-lessp)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\A</span> <span class="ch">#\a</span> <span class="ch">#\b</span> <span class="ch">#\B</span> <span class="ch">#\c</span> <span class="ch">#\C</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>(<span class="kw">stable-sort</span> (<span class="kw">list</span> <span class="ch">#\b</span> <span class="ch">#\A</span> <span class="ch">#\B</span> <span class="ch">#\a</span> <span class="ch">#\c</span> <span class="ch">#\C</span>) #&#39;char&lt;)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\A</span> <span class="ch">#\B</span> <span class="ch">#\C</span> <span class="ch">#\a</span> <span class="ch">#\b</span> <span class="ch">#\c</span>) <span class="co">;実装A</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\a</span> <span class="ch">#\b</span> <span class="ch">#\c</span> <span class="ch">#\A</span> <span class="ch">#\B</span> <span class="ch">#\C</span>) <span class="co">;実装B</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\a</span> <span class="ch">#\A</span> <span class="ch">#\b</span> <span class="ch">#\B</span> <span class="ch">#\c</span> <span class="ch">#\C</span>) <span class="co">;実装C</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\A</span> <span class="ch">#\a</span> <span class="ch">#\B</span> <span class="ch">#\b</span> <span class="ch">#\C</span> <span class="ch">#\c</span>) <span class="co">;実装D</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>→ (<span class="ch">#\A</span> <span class="ch">#\B</span> <span class="ch">#\a</span> <span class="ch">#\b</span> <span class="ch">#\C</span> <span class="ch">#\c</span>) <span class="co">;実装E</span></span></code></pre></div>
+<h2 id="例外">例外</h2>
+<p>もし少なくとも1文字も与えられなかった場合は、 型<code>program-error</code>のエラーが発せられます。</p>
+<h2 id="参考">参考</h2>
+<p>2.1. 文字の構文, 13.1.10. 処理系実装のスクリプトの説明</p>
+<h2 id="備考">備考</h2>
+<p>文字がコードの属性かあるいは実装定義の属性で異なる場合、 <a href="13.2.char-equal.html"><code>char=</code></a>によって異なるものとしてみなされます。</p>
+<p><code>(char= c1 c2)</code>が<em>true</em>のときに、<code>(eq c1 c2)</code>が<em>true</em>である必要はありません。 <code>eq</code>は、<a href="13.2.char-equal.html"><code>char=</code></a>が区別できないような2つの文字を区別できますが、 それは文字として区別しているのではなく、 低レベルの実装の特性に基づいて行われています。 もし<code>(eq c1 c2)</code>が<em>true</em>のときは、<code>(char= c1 c2)</code>もまた<em>true</em>です。 文字の<code>eql</code>と<code>equal</code>の比較は、<a href="13.2.char-equal.html"><code>char=</code></a>と同じ方法で行われます。</p>
+<p>関数<a href="13.2.char-equal.html"><code>char-equal</code></a>, <a href="13.2.char-equal.html"><code>char-not-equal</code></a>, <a href="13.2.char-equal.html"><code>char-lessp</code></a>, <a href="13.2.char-equal.html"><code>char-greaterp</code></a>, <a href="13.2.char-equal.html"><code>char-not-greaterp</code></a>, <a href="13.2.char-equal.html"><code>char-not-lessp</code></a>において、 <a href="13.2.standard-char.html"><code>standard-char</code></a>の大文字小文字の比較は、 暗に標準文字の<code>A=a</code>, <code>B=b</code>, <code>...</code>, <code>Z=z</code>、 さらに、<code>9&lt;A</code>か、あるいは<code>Z&lt;0</code>の どちらかで順序付けされることを意味します。</p>
+</body>
+</html>

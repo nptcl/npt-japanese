@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.6.6.2. Standard Method-Combination</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.6.6.2. Standard Method-Combination</h1>
+</header>
+<p>7.6.6.2. Standard Method-Combination</p>
+<p>method-combinationの<code>standard</code>は、<code>standard-generic-function</code>クラスによって提供されます。 これはmethod-combinationのタイプが指定されなかった場合か、 あるいは組み込みのmethod-combinationタイプである<code>standard</code>が指定された場合に使われます。</p>
+<p>プライマリメソッドは有効なメソッドのメインとなる動作として定義されます。 補助メソッドは3つあるうちの1つの方法を用いて動作を変更します。 プライマリメソッドは修飾子を持ちません。</p>
+<p>補助メソッドは、修飾子<code>:before</code>, <code>:after</code>, そして<code>:around</code>のメソッドです。 method-combinationの<code>standard</code>は、メソッドに対して2つ以上の修飾子を許容しません。 もしメソッド定義で複数の修飾子をもつメソッドを定義した場合は、エラーが発せられます。</p>
+<ul>
+<li><p><code>before</code>メソッドは、ただひとつの修飾子として<code>:before</code>キーワードを持ちます。 <code>before</code>メソッドは、プライマリメソッドの前に実行されるコードを定義します。</p></li>
+<li><p><code>after</code>メソッドは、ただひとつの修飾子として<code>:after</code>キーワードを持ちます。 <code>after</code>メソッドは、プライマリメソッドの後に実行されるコードを定義します。</p></li>
+<li><p><code>around</code>メソッドは、ただひとつの修飾子として<code>:around</code>キーワードを持ちます。 <code>around</code>メソッドは、他の適用可能なメソッドの代わりとして実行されますが、 いくつかのシャドウされたメソッドを（<code>call-next-method</code>経由で）呼び出すコードを、 明に含むことができます。</p></li>
+</ul>
+<p>method-combinationの<code>standard</code>の意味を次に示します。</p>
+<ul>
+<li><p>もし<code>around</code>メソッドが存在する場合は、最も特定的な<code>around</code>メソッドが呼ばれます。 これはジェネリック関数に対して1つか複数の返却値を提供します。</p></li>
+<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<code>no-next-method</code>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。</p></li>
+<li><p>もし<code>around</code>メソッドが<code>call-next-method</code>を実行したとき、 次の特定的な<code>around</code>メソッドが適用可能であれば呼び出されます。 もし<code>around</code>メソッドが存在しないか、 あるいは最も特定的ではない<code>around</code>メソッドによって<code>call-next-method</code>が呼び出された場合は、 次に示すものとして他のメソッドが呼び出されます。</p>
+<ul>
+<li><p>全ての<code>before</code>メソッドが<code>most-specific-first</code>の順番で呼ばれます。 これらの返却値は無視されます。 もし<code>before</code>メソッド内で<code>call-next-method</code>が使用された場合は、エラーが発せられます。</p></li>
+<li><p>最も特定的なプライマリメソッドが呼び出されます。 プライマリメソッドのコード内では、 次の特定的なプライマリメソッドを呼び出すための<code>call-next-method</code>が使用できます。 メソッドから戻ったとき、以前のプライマリメソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<code>no-next-method</code>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 もし<code>call-next-method</code>が使われなかった場合は、最も特定的なプライマリメソッドだけが呼び出されます。</p></li>
+<li><p>全ての<code>after</code>メソッドが<code>most-specific-last</code>の順番で呼ばれます。 これらの返却値は無視されます。 もし<code>after</code>メソッド内で<code>call-next-method</code>が使用された場合は、エラーが発せられます。</p></li>
+</ul></li>
+<li><p>もし<code>around</code>メソッドが呼び出されなかった場合は、 最も特定的なプライマリメソッドが、 1つか複数の値をジェネリック関数の返却値として返却します。 最も特定的ではない<code>around</code>メソッドから <code>call-next-method</code>の呼び出しによって返却される1つか複数の返却値は、 最も特定的なプライマリメソッドの返却値となります。</p></li>
+</ul>
+<p>method-combinationの<code>standard</code>では、適用可能なメソッドが存在しても、 適用可能なプライマリメソッドが存在しなかった場合はエラーが発せられます。</p>
+<p><code>before</code>メソッドは<code>most-specific-first</code>順にて実行され、 <code>after</code>メソッドは<code>least-specific-first</code>順に実行されます。 この設計の違いの根拠を、例として次のように示します。 クラス<code>C1</code>がスーパークラスである<code>C2</code>の動作を、 <code>before</code>メソッドと<code>after</code>メソッドに追加することで変更することを考えます。 クラス<code>C2</code>の振る舞いが<code>C2</code>のメソッドとして直接定義するか、 あるいはスーパクラスを継承によるものかに関わらず、 クラス<code>C1</code>のインスタンスによって呼び出されるメソッドの相対的な順番には影響しません。 クラス<code>C1</code>の<code>before</code>メソッドは、クラス<code>C2</code>の全てのメソッドの前に実行されます。 クラス<code>C1</code>の<code>after</code>メソッドは、クラス<code>C2</code>の全てのメソッドの後に実行されます。</p>
+<p>対称的に、全ての<code>around</code>メソッドが実行されるのは、他のメソッドが実行される前です。 このように最も遠い<code>around</code>メソッドは、最も特定的なプライマリメソッドの前に実行されます。</p>
+<p>もしプライマリメソッドのみが宣言されており、 さらに<code>call-next-method</code>が使用されなかった場合は、 最も特定的なメソッドのみが実行されます。 つまり最も特定的なメソッドが他の一般的なメソッドをシャドウしたということです。</p>
+</body>
+</html>

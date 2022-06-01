@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>コンパイルの詳細</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">コンパイルの詳細</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：<a href="index.html">ANSI Common Lisp npt</a><br />
+前へ：<a href="A1_Install.html">インストール方法</a><br />
+次へ：<a href="A3_Arguments.html">nptコマンドの引数</a></p>
+<h1 id="手動でコンパイル">2.1 手動でコンパイル</h1>
+<p>コンパイルをするには、<code>src</code>ディレクトリにある 全ての<code>c</code>ファイルをコンパイルすることで実現できます。<br />
+簡単な例をあげます。</p>
+<pre><code>$ cc src/*.c -lm
+$ ./a.out --version
+npt Version 1.0.2
+...
+Lisp mode            ANSI-C
+...</code></pre>
+<p>ただし、この方法でコンパイルすると、<code>ANSI-C</code>モードという 機能を削減したモードでコンパイルされてしまいます。<br />
+機能が削減されていますので、Common Lispの機能を全て使うことができません。</p>
+<p>全ての機能を使用したい場合は、 コンパイルするときに環境の種類を指定しなければなりません。<br />
+利用できる環境は下記のとおりです。</p>
+<table>
+<thead>
+<tr class="header">
+<th>環境</th>
+<th>#define</th>
+<th>ANSI Common Lispの機能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FreeBSD</td>
+<td>LISP_FREEBSD</td>
+<td>全て使用可能</td>
+</tr>
+<tr class="even">
+<td>Linux</td>
+<td>LISP_LINUX</td>
+<td>全て使用可能</td>
+</tr>
+<tr class="odd">
+<td>Windows</td>
+<td>LISP_WINDOWS</td>
+<td>全て使用可能</td>
+</tr>
+<tr class="even">
+<td>ANSI-C</td>
+<td>LISP_ANSIC (あるいは省略)</td>
+<td>制限あり</td>
+</tr>
+</tbody>
+</table>
+<p>例えば、FreeBSDを指定してコンパイルするときは次のように実行します。</p>
+<pre><code>$ cc -DLISP_FREEBSD src/*.c -lm
+$ ./a.out --version
+npt Version 1.0.2
+...
+Lisp mode            FreeBSD
+...</code></pre>
+<h1 id="デバッグリリース">2.2 デバッグ・リリース</h1>
+<p>通常のコンパイルでは、nptはリリースモードで行われます。<br />
+もし<code>LISP_DEBUG</code>を指定した場合、デバッグモードとしてコンパイルを行います。</p>
+<p>例をあげます。</p>
+<pre><code>$ cc -DLISP_DEBUG -DLISP_FREEBSD src/*.c -lm
+$ ./a.out --version
+npt Version 1.0.2
+...
+Release mode         debug
+...</code></pre>
+<p>デバッグモードとリリースモードの違いはチェックの数です。<br />
+デバッグモードではあらゆる場所にチェックのコードを配置しており、 もしチェックに違反していた場合は、プログラムが強制停止するようになっています。</p>
+<p>一方、リリースモードではそのチェック自体が存在しないため、 デバッグモードに比べると実行が速くなります。</p>
+<p>Lispとして使う分にはデバッグモードは必要ありませんが、 もしnptをC言語に組み込んで使用するのであれば、 少なくとも開発段階では<code>LISP_DEBUG</code>を指定した方が良いかと思います。</p>
+<h1 id="プロンプト">2.3 プロンプト</h1>
+<p>プロンプトとは、入力を受け取るときに使用するモジュールです。<br />
+下記のモジュールを選択できます。</p>
+<table>
+<thead>
+<tr class="header">
+<th>モジュール</th>
+<th>#define</th>
+<th>リンク</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>terme</td>
+<td>LISP_TERME</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>editline</td>
+<td>LISP_EDITLINE</td>
+<td>-ledit</td>
+</tr>
+<tr class="odd">
+<td>readline</td>
+<td>LISP_READLINE</td>
+<td>-lreadline</td>
+</tr>
+<tr class="even">
+<td>stdin</td>
+<td>LISP_STDIN</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>termeは、nptのプロンプトの機能です。<br />
+FreeBSDとLinuxでは標準で使用されます。</p>
+<p>editlineとreadlineは外部モジュールであり、 使用するには別途インストール作業が必要です。</p>
+<p>stdinは、単純に標準入力から読み込みを行います。<br />
+履歴やカーソルの移動が使えません。</p>
+<p>コンパイルの例を示します。</p>
+<pre><code>$ cc -DLISP_FREEBSD -DLISP_EDITLINE src/*.c -lm -ledit
+$ ./a.out --version
+npt Version 1.0.2
+...
+Prompt mode          editline
+...</code></pre>
+<h1 id="localメモリの方式変更">2.4 localメモリの方式変更</h1>
+<p>localメモリとは、heap領域とは別のメモリ領域であるstackのことです。<br />
+nptは起動時にheap領域のメモリを<code>malloc</code>にて一括で確保しますが、 localメモリをどのように確保するかを指定することができます。</p>
+<p>通常はheapと同様、localメモリも<code>malloc</code>にて一括確保を行います。<br />
+もしコンパイル時に<code>LISP_MEMORY_MALLOC</code>を指定した場合は、 localメモリの確保を要求するたびに<code>malloc</code>にて確保します。</p>
+<p>一括確保の方が速度が速く、<code>LISP_MEMORY_MALLOC</code>は若干遅いようです。<br />
+defineが指定された場合は <code>npt</code>コマンドの<code>--version</code>に<code>Debug Memory true</code>が出現します。</p>
+<h1 id="ガベージコレクタ強制実行モード">2.5 ガベージコレクタ強制実行モード</h1>
+<p>ガベージコレクタとは、heap領域のメモリを掃除するための機能です。</p>
+<p>nptでは、heap領域の使用量を監視しており、 もしメモリが圧迫されていると判断した場合は、 何らかのタイミングでガベージコレクタが実行されます。</p>
+<p>もしコンパイル時に<code>LISP_DEBUG_FORCE_GC</code>が与えられた場合は、 ガベージコレクタ強制実行モードとなり、 実行できるタイミング全てでガベージコレクタが実行されるようになります。</p>
+<p>本モードは動作が非常に遅くなります。<br />
+このモードの存在意義は、C言語にて開発しているときに メモリ破壊が生じないかを確認するためのものとなります。</p>
+<h1 id="windows-ansi-cモード">2.6 Windows ANSI-Cモード</h1>
+<p>Windows環境でANSI-Cモードを使用すると、 ANSI C言語の機能だけではUnicodeのファイル名を扱えないという問題が生じます。</p>
+<p>そこで、<code>LISP_ANSIC</code>の代わりになる、<code>LISP_ANSIC_WINDOWS</code>モードを用意しました。<br />
+このモードは、ファイルのオープンに<code>fopen</code>ではなく<code>_wfopen</code>を使用するので、 Unicodeのファイル名を問題なく扱うことができるようになります。</p>
+<h1 id="windowsのメイン関数">2.7 Windowsのメイン関数</h1>
+<p>Windows環境でC言語を扱うときには、 スタートアップ関数をC言語標準の<code>main</code>にするのか、 あるいはWindows標準の<code>WinMain</code>にするのか選択できます。</p>
+<p>nptでは、通常は<code>main</code>関数を使いますが、 defineによって変更することができます。</p>
+<table>
+<thead>
+<tr class="header">
+<th>関数</th>
+<th>#define</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>main</code></td>
+<td>LISP_CONSOLE (または省略)</td>
+</tr>
+<tr class="even">
+<td><code>WinMain</code></td>
+<td>LISP_WINMAIN</td>
+</tr>
+</tbody>
+</table>
+<p>ただスタートアップ関数を切り替えるだけであり、機能としての違いありません。</p>
+<h1 id="cでコンパイル">2.8 C++でコンパイル</h1>
+<p>nptはC++でコンパイルできることを確認しています。<br />
+コンパイルは次のようにして行います。</p>
+<pre><code>$ c++ -Wno-deprecated src/*.c</code></pre>
+<p>引数の<code>-Wno-deprecated</code>は、 C++コンパイラで<code>*.c</code>ファイルをコンパイルする際に出る 警告を抑止するためのものです。</p>
+<p>確認は<code>*features*</code>で行うことができます。</p>
+<pre><code>$ ./a.out
+*features*
+(:LONG-FLOAT-80 :CPLUSPLUS :MATH-INACCURACY :NPT-64-BIT :NPT :64-BIT
+ :ARCH-64-BIT :NPT-ANSI-C :ANSI-C :COMMON-LISP :ANSI-CL)</code></pre>
+<p><code>*features*</code>の中に、<code>:CPLUSPLUS</code>が含まれているのがわかります。</p>
+<p>CコンパイラとC++コンパイラで出力されるコードにほぼ違いはありませんが、 <code>setjmp</code>を使用しているコードが<code>try / catch</code>に変更される部分があります。</p>
+<h1 id="デグレードモード">2.9 デグレードモード</h1>
+<p>デグレードモードとは、C言語でテストを行うモードです。 コンパイル時に<code>LISP_DEGRADE</code>を付与することで実施できますが、 ソースファイルが<code>src</code>だけではなく<code>test</code>にも含まれるようになるため、 単純にコンパイルすることができません。</p>
+<p>通常このモードが必要になることはほぼないと思いますが、 実施したいのであれば<code>freebsd_debug.sh</code>など<code>debug</code>指定のものを 使用することを考えてください。</p>
+<h1 id="関数番号の最大値">2.10 関数番号の最大値</h1>
+<p>関数番号とは、C言語の関数ポインタを登録するときの番号です。<br />
+登録できる関数ポインタの数はデフォルトで32個ですが、 <code>LISP_POINTER_EXTEND</code>を指定することで変更することができます。</p>
+<p>関数番号の個数を128個に変更する例を示します。</p>
+<pre><code>$ cc -DLISP_POINTER_EXTEND=128 src/*.c -lm</code></pre>
+<p>この例の場合、関数番号の範囲は0～127になります。</p>
+<p>関数番号の使い方については <a href="B4_Registering.html">関数の登録</a>をご確認ください。</p>
+</body>
+</html>

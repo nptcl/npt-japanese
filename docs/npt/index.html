@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ANSI Common Lisp npt</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">ANSI Common Lisp npt</h1>
+</header>
+<p>ANSI Common Lisp nptのトップページです。</p>
+<p><a href="https://nptcl.github.io/npt-japanese/docs/npt/index.html">https://nptcl.github.io/npt-japanese/docs/npt/index.html</a><br />
+<a href="https://nptcl.github.io/npt-japanese/md/npt/index.html">https://nptcl.github.io/npt-japanese/md/npt/index.html</a></p>
+<p>nptとは、C言語で構築できるANSI Common Lisp処理系です。<br />
+FreeBSD, Linux, Windowsで構築できます。<br />
+作者は主にFreeBSDとGentoo Linuxで確認しています。</p>
+<p>このページではドキュメントを整備していきます。</p>
+<p>英語版も用意しました。<br />
+An English version of the document is also available.<br />
+<a href="https://nptcl.github.io/npt/docs/index.html">https://nptcl.github.io/npt/docs/index.html</a><br />
+<a href="https://nptcl.github.io/npt/docs/md/index.html">https://nptcl.github.io/npt/docs/md/index.html</a></p>
+<h1 id="配布元">配布元</h1>
+<p>githubにて配布しています。</p>
+<p><a href="https://github.com/nptcl/npt">https://github.com/nptcl/npt</a><br />
+<a href="https://github.com/nptcl/npt.git">https://github.com/nptcl/npt.git</a></p>
+<h1 id="ドキュメント">ドキュメント</h1>
+<ul>
+<li>nptの使用方法
+<ol type="1">
+<li><a href="A1_Install.html">インストール方法</a></li>
+<li><a href="A2_Compilation.html">コンパイルの詳細</a></li>
+<li><a href="A3_Arguments.html">nptコマンドの引数</a></li>
+<li><a href="A4_Amalgamation.html">npt amalgamation</a></li>
+<li><a href="A5_Features.html">npt特有の機能</a></li>
+<li><a href="A6_Input.html">入力モジュール</a></li>
+</ol></li>
+<li>開発用
+<ol type="1">
+<li><a href="B1_Using.html">nptをC言語で使用する</a></li>
+<li><a href="B2_Hold.html">hold変数の使い方</a></li>
+<li><a href="B3_Escape.html">脱出関数</a></li>
+<li><a href="B4_Registering.html">関数の登録</a></li>
+<li><a href="B5_Abort.html">LISP ABORT</a></li>
+<li><a href="B6_Operations.html">脱出の操作</a></li>
+<li><a href="B7_StartUp.html">スタートアップ</a></li>
+<li><a href="B8_Paper.html">Paperオブジェクト</a></li>
+</ol></li>
+<li>関数仕様
+<ul>
+<li><a href="C1_Type.html">関数仕様 - 型関数</a></li>
+<li><a href="C2_Sequence.html">関数仕様 - シーケンス</a></li>
+<li><a href="C3_Object.html">関数仕様 - オブジェクト</a></li>
+<li><a href="C4_Stack.html">関数仕様 - スタックフレーム</a></li>
+<li><a href="C5_Execute.html">関数仕様 - 実行</a></li>
+<li><a href="C6_Function.html">関数仕様 - 関数</a></li>
+<li><a href="C7_Error.html">関数仕様 - エラー</a></li>
+<li><a href="C8_Print.html">関数仕様 - 書式</a></li>
+</ul></li>
+<li>Lisp関数仕様
+<ul>
+<li><a href="D1_System.html">Lisp関数仕様 - システム関数</a></li>
+<li><a href="D2_Sysctl.html">Lisp関数仕様 - sysctl</a></li>
+<li><a href="D3_Terme.html">Lisp関数仕様 - terme</a></li>
+</ul></li>
+</ul>
+<h1 id="ライセンス">ライセンス</h1>
+<p>nptのライセンスは<a href="https://unlicense.org/">Unlicense</a>です。<br />
+作者の承諾など気にせず好きに使ってください。</p>
+<h1 id="配布">配布</h1>
+<p><a href="https://github.com/nptcl/npt-japanese">https://github.com/nptcl/npt-japanese</a></p>
+</body>
+</html>

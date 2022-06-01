@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>関数仕様 - オブジェクト</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">関数仕様 - オブジェクト</h1>
+</header>
+<p>nptのドキュメントです。<br />
+参照元：<a href="index.html">ANSI Common Lisp npt</a></p>
+<h1 id="関数仕様">関数仕様</h1>
+<p><code>lisp.h</code>に記載されている下記の関数仕様を示します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>■オブジェクト生成</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_<span class="op">(</span>addr x<span class="op">,</span> unicode value<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_fixnum<span class="op">(</span>addr x<span class="op">,</span> fixnum value<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">float</span> value<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>■値取得</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_zero_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_plus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_minus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_character<span class="op">(</span>addr pos<span class="op">,</span> unicode <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_fixnum<span class="op">(</span>addr pos<span class="op">,</span> fixnum <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_float_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">float</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_long_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>■package</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package_<span class="op">(</span>addr x<span class="op">,</span> addr pos<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>■intern</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern_<span class="op">(</span>addr x<span class="op">,</span> addr package<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>■reader</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader_<span class="op">(</span>addr x<span class="op">,</span> addr str<span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>■pathname</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname_<span class="op">(</span>addr x<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_namestring_<span class="op">(</span>addr x<span class="op">,</span> addr path<span class="op">);</span></span></code></pre></div>
+<h1 id="オブジェクト生成">■オブジェクト生成</h1>
+<p>Lispオブジェクト生成の関数です。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_<span class="op">(</span>addr x<span class="op">,</span> unicode value<span class="op">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_fixnum<span class="op">(</span>addr x<span class="op">,</span> fixnum value<span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">float</span> value<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> value<span class="op">);</span></span></code></pre></div>
+<h2 id="脱出関数lisp_character_">脱出関数<code>lisp_character_</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_character_<span class="op">(</span>addr x<span class="op">,</span> unicode value<span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value unicode文字</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>value</code>をUnicodeとして扱い、文字型のオブジェクトを生成します。<br />
+<code>value</code>がサロゲートペアで予約されているコードであるか、 あるいはUnicodeの範囲を超えている場合はエラーです。</p>
+<h2 id="関数lisp_fixnum">関数<code>lisp_fixnum</code></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_fixnum<span class="op">(</span>addr x<span class="op">,</span> fixnum value<span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value 整数</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span></code></pre></div>
+<p>型<code>fixnum</code>で表される整数オブジェクトを生成します。</p>
+<h2 id="脱出関数lisp_float_">脱出関数<code>lisp_float_</code></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_float_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">float</span> value<span class="op">);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value 浮動小数</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>single-float</code>型の浮動小数オブジェクトを生成します。<br />
+<code>value</code>が<code>inf</code>か<code>nan</code>の場合はエラーです。</p>
+<h2 id="脱出関数lisp_double_">脱出関数<code>lisp_double_</code></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value 浮動小数</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>double-float</code>型の浮動小数オブジェクトを生成します。<br />
+<code>value</code>が<code>inf</code>か<code>nan</code>の場合はエラーです。</p>
+<h2 id="脱出関数lisp_long_double_">脱出関数<code>lisp_long_double_</code></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_long_double_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> value<span class="op">);</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value 浮動小数</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>long-float</code>型の浮動小数オブジェクトを生成します。<br />
+<code>value</code>が<code>inf</code>か<code>nan</code>の場合はエラーです。</p>
+<h1 id="値取得">■値取得</h1>
+<p>オブジェクトの値を取得する関数です。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_zero_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_plus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_minus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_character<span class="op">(</span>addr pos<span class="op">,</span> unicode <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_fixnum<span class="op">(</span>addr pos<span class="op">,</span> fixnum <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_float_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">float</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_long_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span></code></pre></div>
+<h2 id="関数lisp_zero_p">関数<code>lisp_zero_p</code></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_zero_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value オブジェクト</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>value</code>がhold変数の場合は、内容が評価されます。<br />
+<code>value</code>が実数でありかつ<code>0</code>である場合に0以外が返却されます。</p>
+<h2 id="関数lisp_plus_p">関数<code>lisp_plus_p</code></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_plus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value オブジェクト</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>value</code>がhold変数の場合は、内容が評価されます。<br />
+<code>value</code>が実数でありかつ<code>0</code>を超えている場合に0以外が返却されます。<br />
+<code>0</code>は含まれません。</p>
+<h2 id="関数lisp_minus_p">関数<code>lisp_minus_p</code></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_minus_p<span class="op">(</span>addr value<span class="op">);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> value オブジェクト</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> bool値</span></code></pre></div>
+<p><code>value</code>がhold変数の場合は、内容が評価されます。<br />
+<code>value</code>が実数でありかつ<code>0</code>をより小さい場合に0以外が返却されます。<br />
+<code>0</code>は含まれません。</p>
+<h2 id="関数lisp_get_character">関数<code>lisp_get_character</code></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_character<span class="op">(</span>addr pos<span class="op">,</span> unicode <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos 文字型オブジェクト</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret unicode文字</span></code></pre></div>
+<p><code>pos</code>がhold変数の場合は、内容が評価されます。<br />
+文字型のコードを<code>ret</code>に返却します。</p>
+<h2 id="関数lisp_get_fixnum">関数<code>lisp_get_fixnum</code></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> lisp_get_fixnum<span class="op">(</span>addr pos<span class="op">,</span> fixnum <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos fixnum型オブジェクト</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret fixnum型整数</span></code></pre></div>
+<p><code>pos</code>がhold変数の場合は、内容が評価されます。<br />
+<code>LISPTYPE_FIXNUM</code>型オブジェクトから値を<code>ret</code>に返却します。</p>
+<h2 id="脱出関数lisp_get_float_">脱出関数<code>lisp_get_float_</code></h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_float_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">float</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos 実数型オブジェクト</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret 浮動小数</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>pos</code>がhold変数の場合は、内容が評価されます。<br />
+<code>pos</code>が<code>single-float</code>型の場合は値を<code>ret</code>に返却します。<br />
+それ以外の実数型の場合は<code>single-float</code>にcastして返却します。</p>
+<h2 id="脱出関数lisp_get_double_">脱出関数<code>lisp_get_double_</code></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos 実数型オブジェクト</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret 浮動小数</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>pos</code>がhold変数の場合は、内容が評価されます。<br />
+<code>pos</code>が<code>double-float</code>型の場合は値を<code>ret</code>に返却します。<br />
+それ以外の実数型の場合は<code>double-float</code>にcastして返却します。</p>
+<h2 id="脱出関数lisp_get_long_double_">脱出関数<code>lisp_get_long_double_</code></h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_get_long_double_<span class="op">(</span>addr pos<span class="op">,</span> <span class="dt">long</span> <span class="dt">double</span> <span class="op">*</span>ret<span class="op">);</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos 実数型オブジェクト</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> ret 浮動小数</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>pos</code>がhold変数の場合は、内容が評価されます。<br />
+<code>pos</code>が<code>long-float</code>型の場合は値を<code>ret</code>に返却します。<br />
+それ以外の実数型の場合は<code>long-float</code>にcastして返却します。</p>
+<h1 id="package">■package</h1>
+<p>packageの関数です。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package_<span class="op">(</span>addr x<span class="op">,</span> addr pos<span class="op">);</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span></code></pre></div>
+<h2 id="脱出関数lisp_package_">脱出関数<code>lisp_package_</code></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package_<span class="op">(</span>addr x<span class="op">,</span> addr pos<span class="op">);</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos package<span class="op">-</span>designer</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>pos</code>が表す名前のpackageを返却します。<br />
+<code>pos</code>がhold変数の場合は、内容が使用されます。</p>
+<h2 id="脱出関数lisp_package8_">脱出関数<code>lisp_package8_</code></h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> str Unicode文字列</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>str</code>が表す名前のpackageを返却します。<br />
+Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認ください。</p>
+<h2 id="脱出関数lisp_package16_">脱出関数<code>lisp_package16_</code></h2>
+<p><code>lisp_package8_</code>で解説</p>
+<h2 id="脱出関数lisp_package32_">脱出関数<code>lisp_package32_</code></h2>
+<p><code>lisp_package8_</code>で解説</p>
+<h1 id="intern">■intern</h1>
+<p>internの関数です。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern_<span class="op">(</span>addr x<span class="op">,</span> addr package<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span></code></pre></div>
+<h2 id="脱出関数lisp_intern_">脱出関数<code>lisp_intern_</code></h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern_<span class="op">(</span>addr x<span class="op">,</span> addr package<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> package package<span class="op">-</span>designerかnil</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name 文字列</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>package</code>に<code>name</code>で表す名前のsymbolをinternします。<br />
+<code>package</code>が<code>nil</code>か<code>NULL</code>の場合は<code>*package*</code>の値が使用されます。<br />
+<code>package</code>と<code>name</code>がhold変数の場合は、内容が使用されます。</p>
+<h2 id="脱出関数lisp_intern8_">脱出関数<code>lisp_intern8_</code></h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>package<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>name<span class="op">);</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> package Unicode文字列かNULL</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name Unicode文字列</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p><code>package</code>に<code>name</code>で表す名前のsymbolをinternします。<br />
+<code>package</code>が<code>NULL</code>の場合は<code>*package*</code>の値が使用されます。<br />
+Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認ください。</p>
+<h2 id="脱出関数lisp_intern16_">脱出関数<code>lisp_intern16_</code></h2>
+<p><code>lisp_intern8_</code>で解説</p>
+<h2 id="脱出関数lisp_intern32_">脱出関数<code>lisp_intern32_</code></h2>
+<p><code>lisp_intern8_</code>で解説</p>
+<h1 id="reader">■reader</h1>
+<p>readerによる読み込みの関数です。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader_<span class="op">(</span>addr x<span class="op">,</span> addr str<span class="op">);</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span></code></pre></div>
+<h2 id="脱出関数lisp_reader_">脱出関数<code>lisp_reader_</code></h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader_<span class="op">(</span>addr x<span class="op">,</span> addr str<span class="op">);</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> str 文字列</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p>文字列の<code>str</code>をreaderで読み込みます。<br />
+<code>read-from-string</code>関数と同等です。<br />
+何も読み込めなかったときはNULLが返却されます。<br />
+NULLかどうかは<code>lisp_null_p</code>関数で確認できます。<br />
+<code>str</code>がhold変数の場合は、内容が使用されます。</p>
+<h2 id="脱出関数lisp_reader8_">脱出関数<code>lisp_reader8_</code></h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_reader32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> str Unicode文字列</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p>文字列の<code>str</code>をreaderで読み込みます。<br />
+<code>read-from-string</code>関数と同等です。<br />
+何も読み込めなかったときはNULLが返却されます。<br />
+NULLかどうかは<code>lisp_null_p</code>関数で確認できます。<br />
+Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認ください。</p>
+<h2 id="脱出関数lisp_reader16_">脱出関数<code>lisp_reader16_</code></h2>
+<p><code>lisp_reader8_</code>で解説</p>
+<h2 id="脱出関数lisp_reader32_">脱出関数<code>lisp_reader32_</code></h2>
+<p><code>lisp_reader8_</code>で解説</p>
+<h1 id="pathname">■pathname</h1>
+<p>pathnameの関数です。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname_<span class="op">(</span>addr x<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_namestring_<span class="op">(</span>addr x<span class="op">,</span> addr path<span class="op">);</span></span></code></pre></div>
+<h2 id="脱出関数lisp_pathname_">脱出関数<code>lisp_pathname_</code></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname_<span class="op">(</span>addr x<span class="op">,</span> addr name<span class="op">);</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name pathname<span class="op">-</span>designer</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p>文字列<code>name</code>をpathnameに変換します。<br />
+<code>parse-namestring</code>関数と同等です。<br />
+<code>name</code>がhold変数の時は、内容が使用されます。</p>
+<h2 id="脱出関数lisp_pathname8_">脱出関数<code>lisp_pathname8_</code></h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname8_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname16_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname32_<span class="op">(</span>addr x<span class="op">,</span> <span class="dt">const</span> <span class="dt">void</span> <span class="op">*</span>str<span class="op">);</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> str Unicode文字列</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
+<p>文字列<code>str</code>をpathnameに変換します。<br />
+<code>parse-namestring</code>関数と同等です。<br />
+Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認ください。</p>
+<h2 id="脱出関数lisp_pathname16_">脱出関数<code>lisp_pathname16_</code></h2>
+<p><code>lisp_pathname8_</code>で解説</p>
+<h2 id="脱出関数lisp_pathname32_">脱出関数<code>lisp_pathname32_</code></h2>
+<p><code>lisp_pathname8_</code>で解説</p>
+<h2 id="脱出関数lisp_namestring_">脱出関数<code>lisp_namestring_</code></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_namestring_<span class="op">(</span>addr x<span class="op">,</span> addr path<span class="op">);</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> path pathname<span class="op">-</span>designer</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
+<p>pathnameオブジェクトで<code>path</code>を文字列に変換します。<br />
+<code>namestring</code>関数と同等です。<br />
+<code>path</code>がhold変数の時は、内容が使用されます。</p>
+</body>
+</html>

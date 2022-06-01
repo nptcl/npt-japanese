@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.1. オブジェクトの作成と初期化</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.1. オブジェクトの作成と初期化</h1>
+</header>
+<p>7.1. オブジェクトの作成と初期化</p>
+<p>ジェネリック関数<code>make-instance</code>は、 クラスの新しいインスタンスを作成し返却します。 最初の引数はクラスか、クラスの名前であり、 残りの引数は初期化引数リストです。</p>
+<p>新しいインスタンスの初期化は、いくつかのステップから成ります。 内容は次のようになります。 指定されなかった初期化引数の値に対して、 明に指定された初期化引数とデフォルト値を結びつけるステップ。 初期化引数の有効性をチェックするステップ。 インスタンスの記憶領域を確保するステップ。 スロットに値を埋めるステップ。 そして追加の初期化を行うためにユーザーが提供したメソッドを実行するステップ。 <code>make-instance</code>の各ステップはジェネリック関数により実装されているため、 それぞれのステップをカスタマイズする仕組みが提供されています。 加えて、<code>make-instance</code>自体がジェネリック関数であるため、 自身もカスタマイズできます。</p>
+<p>オブジェクトシステムは各ステップに対して、システムで提供されたメソッドを用意しています。 メソッドは初期化全体の手順の標準的な振る舞いを定義したものです。 標準の振る舞いは、下記の4つの簡単な仕組みによって、初期化を制御することができます。</p>
+<ul>
+<li><p>スロットの初期化引数としてのシンボルの宣言。 初期化引数は<code>defclass</code>のスロットオプションである、 <code>:initarg</code>を使うことで宣言できます。 これは、<code>make-instance</code>の呼び出し時に、 スロットの値を設定するための仕組みとして提供されたものです。</p></li>
+<li><p>初期化引数のデフォルト値フォームの指定。 初期化引数のデフォルト値フォームは、 <code>defclass</code>のクラスオプションである<code>:default-initargs</code>を使うことで定義できます。 もし初期化引数が <code>make-instance</code>の引数として明に提供されなかった場合、 デフォルト値フォームは<code>defclass</code>が宣言されたレキシカル環境の中で評価されます。 そして評価された結果の値は、初期化引数の値として使用されます。</p></li>
+<li><p>スロットのデフォルト初期化値フォームの提供。スロットのデフォルト初期化値フォームは、 <code>defclass</code>のスロットオプション<code>:initform</code>を使うことで宣言されます。 もし<code>make-instance</code>の引数かあるいは<code>:default-initargs</code>のデフォルト値にて、 スロットに対応する初期化引数が与えられていなかった場合、 デフォルト値フォームは<code>defclass</code>が宣言されたレキシカル環境の中で評価されます。 そして評価された結果の値はスロットに格納されます。 局所スロットの<code>:initform</code>フォームは、インスタンスが作成されたとき、 クラスの再定義によりインスタンスを更新するとき、 そしてインスタンスを違うクラスの定義に更新するときに使用されるでしょう。 共有スロットの<code>:initform</code>フォームに関しては、 定義のときか、再定義のときに使用されます。</p></li>
+<li><p><code>initialize-instance</code>と<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッド定義。 スロットの値を設定するこれらの振る舞いは、 システムが提供するメソッドで提供されており、 <code>initialize-instance</code>は、<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を呼び出すように実装されています。 ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は初期化の部分を実装しており、 次の4つの状況で共有されています。 それは、インスタンス作成時、インスタンスの再初期化時、 クラスの再定義によるインスタンスの更新時、 そして違うクラス定義へインスタンスを更新するときです。 システムが提供する<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドは、 スロットの値を更新するための上記の振る舞いを直接実装しているため、 <code>initialize-instance</code>は単純に<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を呼び出すだけとなります。</p></li>
+<li><p><a href="7.1.1.html">7.1.1. 初期化引数</a></p></li>
+<li><p><a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a></p></li>
+<li><p><a href="7.1.3.html">7.1.3. 初期化引数のデフォルト値</a></p></li>
+<li><p><a href="7.1.4.html">7.1.4. 初期化引数の規則</a></p></li>
+<li><p><a href="7.1.5.html">7.1.5. Shared-Initialize</a></p></li>
+<li><p><a href="7.1.6.html">7.1.6. Initialize-Instance</a></p></li>
+<li><p><a href="7.1.7.html">7.1.7. Make-InstanceとInitialize-Instanceの宣言</a></p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.5.3. スロットの継承とスロットオプション</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.5.3. スロットの継承とスロットオプション</h1>
+</header>
+<p>7.5.3. スロットの継承とスロットオプション</p>
+<p>クラス<code>C</code>のインスタンスについて、アクセス可能な全てのスロットの名前の集合は、 クラス<code>C</code>とそのスーパークラスによって定義されたスロットの名前の集合の和集合となります。 インスタンスの構造は、そのインスタンスの局所スロットの名前の集合です。</p>
+<p>単純な場合として、たった1つのクラス<code>C</code>と、そのスーパークラスにて、 名前ありのスロットを定義したとします。 もしスロットが<code>C</code>のスーパークラスによって定義された場合、 そのスロットは継承されたと言えます。 スロットの特性は、クラス定義のスロット指定子によって決定されます。 スロット<code>S</code>を定義したクラスを考えます。 もしスロットオプション<code>:alocation</code>が<code>:instance</code>ならば、<code>S</code>は局所スロットであり、 <code>C</code>の各インスタンスは<code>S</code>と名前の付いた独自のスロットをもち、 <code>S</code>には独自の値が格納されます。 もしスロットオプション<code>:allocation</code>が<code>:class</code>ならば、 <code>S</code>は共有スロットであり、<code>S</code>が定義されたクラスに値が格納されます。 そして<code>C</code>の全てのインスタンスは、その1つのスロットにアクセスできます。 もしスロットオプション<code>:allocation</code>が省略された場合は、<code>:instance</code>が使用されます。</p>
+<p>一般的に、複数のクラスである、<code>C</code>とそのスーパークラスは、 1つの名前付きのスロットを定義できます。 そのような場合、<code>C</code>のインスタンスに対しては、 与えられた名前に対してただ1つのスロットがアクセス可能です。 そしてそのスロットの特性は、いくつかのスロットの指定子を 計算によって結び付けたものになります。 計算方法を次に示します。</p>
+<ul>
+<li><p>1つのスロットの名前に対する全てのスロット指定子は、 クラス<code>C</code>のクラス優先順位リストのクラスに従って、 最も特定的なものからそうでないものへ順序付けられます。 どのスロット指定子の直下に特定されるかの全ての参照は、この順序に従って調査されます。</p></li>
+<li><p>スロットの確保は、最も特定的なスロット指定子によって制御されます。 もし最も特定的なスロット指定子がスロットオプション<code>:allocation</code>を含んでいなかった場合は、 <code>:instance</code>が使用されます。 特定的ではないスロット指定子は、確保には影響しません。</p></li>
+<li><p>スロットのデフォルト初期値フォームは、 スロットオプション<code>:initform</code>が含まれる最も特定的なスロット指定子の、 <code>:initform</code>の値になります。 もしスロット指定子が<code>:initform</code>を持っていなかった場合、 スロットはデフォルト初期値フォームを持ちません。</p></li>
+<li><p>スロットの値は、常に型<code>(and T1 ... Tn)</code>となるでしょう。 ここで<code>T1 ... Tn</code>とは、全てのスロット指定子が持っているスロットオプション<code>:type</code>の値です。 もしスロット指定子がスロットオプション<code>:type</code>を持っていなかった場合は、 スロットの値は常に型<code>t</code>となります。 スロットの型に合っていない値をスロットに格納しようとした結果については未定義です。</p></li>
+<li><p>指定したスロットを初期化する際に使用する初期化引数の集合は、 全てのスロット指定子の中のスロットオプション<code>:initarg</code>で定義された 初期化引数の和集合です。</p></li>
+<li><p>スロットのドキュメント文字列は、 スロットオプション<code>:documentation</code>が含まれる最も特定的なスロット指定子の、 <code>:documentation</code>の値になります。 もしスロット指定子が<code>:documentation</code>を持っていなかった場合、 スロットはドキュメント文字列を持ちません。</p></li>
+</ul>
+<p>スロットの確保の規則では、共有スロットはシャドウすることができます。 例えば、もしクラス<code>C1</code>が、スロットの名前<code>S</code>、 スロットオプション<code>:allocation</code>が<code>:class</code>のスロットを定義した場合、 そのスロットは、<code>C1</code>とその全てのサブクラスのインスタンスからアクセス可能です。 しかし、もし<code>C2</code>が<code>C1</code>のサブクラスであり、<code>C2</code>が名前<code>S</code>のスロットを定義した場合、 <code>C2</code>とその全てのサブクラスのインスタンスでは、<code>C1</code>のスロットは共有されません。 クラス<code>C1</code>が共有スロットを定義したときは、 次の条件の時に<code>C1</code>のどんなサブクラス<code>C2</code>でもその単一のスロットは共有されます。 それは、<code>C2</code>の<code>defclass</code>フォームで同じ名前のスロットを定義していないとき。 あるいは、<code>C2</code>のクラス優先リスト内において 同じ名前のスロットを定義しているクラスを見たとき、 <code>C1</code>よりも先導しているものが<code>C2</code>のスーパークラスに存在していない場合です。</p>
+<p>型の規則による結果は、スロットの値が関連するスロットの 各スロット指定子の型の条件を満たすことです。 スロットの型の条件が守られていない値を スロットに格納しようとした際の結果は未定義なので、 スロットの値は型の条件の安全性を失うでしょう。</p>
+<p>スロットオプション<code>:reader</code>, <code>:writer</code>, <code>:accessor</code>は、 スロットの特性を宣言すると言うよりは、 メソッドを作成するものです。 <code>reader</code>と<code>writer</code>メソッドは、 <a href="7.6.7.html">7.6.7. メソッドの継承</a>で説明される定義により継承されます。</p>
+<p>スロットにアクセスするメソッドは、スロットの名前と、 スロットの値の型のみを使用します。 例えば、スーパークラスが、 指定した名前により共有スロットにアクセスすることを期待するメソッドを提供した場合、 またサブクラスが同じ名前で局所スロットを定義した場合を考えます。 もしスーパークラスによって提供されたメソッドを、 サブクラスのインスタンス上で使用した場合、 メソッドは局所スロットにアクセスします。</p>
+</body>
+</html>

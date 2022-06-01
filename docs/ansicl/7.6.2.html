@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.6.2. メソッドの紹介</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.6.2. メソッドの紹介</h1>
+</header>
+<p>7.6.2. メソッドの紹介</p>
+<p>メソッドは、クラス特定か、あるいは同一性特定による動作と、 ジェネリック関数のオペレーションを定義します。</p>
+<p>メソッドオブジェクトは、次のものと結びつけられます。 それは、メソッドの動作を定義したコード。 与えられたメソッドが適用するかどうかを特定するための一連の特定パラメーター。 ラムダリスト。 そして、method-combinationがメソッドの区分けをするために使われる、一連の修飾子。</p>
+<p>メソッドオブジェクトは関数ではないため、関数として呼び出すことはできません。 ジェネリック関数が呼び出されたときのような場合において、 オブジェクトシステムの様々な仕組みがメソッドオブジェクトを受け取り、 そしてメソッド関数を呼び出します。 このような動作を、メソッドが実行された、あるいはメソッドが呼び出されたと言います。</p>
+<p>メソッド定義フォームは、 ジェネリック関数の引数起因により定義メソッドを実行するためのコードを含みます。 メソッド定義フォームが評価されたとき、メソッドオブジェクトは作成され、 次の4つのアクションが取られます。</p>
+<ul>
+<li><p>もし指定した名前のジェネリック関数がすでに存在しており、 さらに特定パラメーターと修飾子が 新しいものと一致するメソッドオブジェクトがすでに存在していた場合は、 新しいメソッドオブジェクトが古いものと置き換えられます。 定義されたメソッドが別の特定パラメーターと修飾子の場合は、 <a href="7.6.3.html">7.6.3. 特定パラメーターと修飾子の合致</a>を参照。</p></li>
+<li><p>もし指定した名前のジェネリック関数がすでに存在しており、 さらに特定パラメーターと修飾子が 新しいものと一致するメソッドオブジェクトが存在していなかった場合は、 既存のジェネリック関数オブジェクトは、 新しいメソッドオブジェクトを含むように修正されます。</p></li>
+<li><p>もし指定した名前が、通常の関数か、マクロ、特別オペレーターの名前であった場合は、 エラーが発せられます。</p></li>
+<li><p>それ以外の場合は、メソッド定義フォームによって定義されたメソッドとともに、 ジェネリック関数が作成されます。</p></li>
+</ul>
+<p>もし新しいメソッドのラムダリストがジェネリック関数のラムダリストに合致していない場合は、 エラーが発せられます。 もしジェネリック関数オプションを指定できないメソッド定義オペレーターが 新しいジェネリック関数を作成する場合は、 ジェネリック関数のラムダリストは、メソッドのものと合致するように、 メソッド定義フォームから生成されるメソッドのラムダリストから導出されます。 合致の議論については、7.6.4 ジェネリック関数の全てのメソッドのラムダリストの合意を参照。</p>
+<p>各メソッドは特定されたラムダリストを持っており、 それはメソッドが適用されたときに決定します。 特定されたラムダリストは、通常のラムダリストに似ていますが、 要求パラメータの名前の代わりに特定パラメーターとなるのが違っています。 特定パラメーターは<code>(変数名 特定パラメーター名)</code>のリストであり、 特定パラメーター名は次のうちの1つを取ります。</p>
+<ul>
+<li><p>シンボル：特定パラメーターはシンボルによるクラス名です。</p></li>
+<li><p>クラス：特定パラメーターはクラス自身です。</p></li>
+<li><p><code>(eql form)</code>：特定パラメーターは型特定子<code>(eql object)</code>を満たし、 <code>object</code>は<code>form</code>を評価した結果となります。 <code>form</code>フォームはメソッド定義フォームが評価された中での レキシカル環境内によって評価されます。 注意として、<code>form</code>はメソッドが定義されたときに、ただ一度だけ評価されます。 ジェネリック関数が呼び出されるたびに評価されるのではありません。</p></li>
+</ul>
+<p>特定パラメーター名は、ユーザーレベルのインターフェースである <code>defmethod</code>のようなマクロで使用されることを意図しており、 特定パラメーターは関数のインターフェース上で使われます。</p>
+<p>要求パラメーターのみを特定化することができ、 各要求パラメーターは特定パラメーターが存在しなければなりません。 表記を単純にするために、もしメソッド定義フォームの特定化されたラムダリスト内において、 要求パラメーターが単純に変数名だけであった場合は、 その要求パラメーターはデフォルトのクラス<code>t</code>が指定されます。</p>
+<p>ジェネリック関数に引数の集合が与えられたとき、 適用するメソッドは、特定パラメーターが対応する引数によって満たされる ジェネリック関数のメソッドです。 次の定義は、メソッドが適用可能かどうか、また引数が特定パラメーターを満たすかどうかとは、 どういう意味であるのかを示します。</p>
+<p><code>&lt;A1, ..., An&gt;</code>がジェネリック関数の要求パラメーターの順番であるとします。 <code>&lt;P1, ..., Pn&gt;</code>がメソッド<code>M</code>における要求パラメーターに対応する 特定パラメーターの順番であるとします。 各<code>Ai</code>の型が、型特定子<code>Pi</code>によって特定されるとき、メソッド<code>M</code>は適用可能です。 全ての有効な特定パラメータは有効な型指定子でもあるため、 関数<code>typep</code>は、メソッドの選択において、 引数が特定パラメーターを満たすかどうかを決定するために使用できます。</p>
+<p>全ての特定パラメーターがクラス<code>t</code>のメソッドは、デフォルトメソッドと呼ばれます。 これは常に適用可能ですが、他のもっと特定的なメソッドによってシャドウされるかもしれません。</p>
+<p>メソッドは修飾子を持てます。 これはmethod-combinationがメソッドを区別するための方法としての手順を与えます。 1つか複数の修飾子を持っているメソッドは、限定されたメソッドと呼ばれます。 修飾子を持っていないメソッドは、限定されていないメソッドと呼ばれます。 修飾子はリスト以外のオブジェクトです。 標準のmethod-combinationによって定義された修飾子の型はシンボルです。</p>
+<p>この定義の中で、「プライマリメソッド」と「補助メソッド」という語は、 これらを使用するmethod-combinationタイプにおいて、メソッドを区分けするために使用されます。 method-combinationの<code>standard</code>では、プライマリメソッドは限定されていないメソッドであり、 補助メソッドは単一の修飾子である<code>:around</code>, <code>:before</code>, <code>:after</code>のうちの1つを指定したメソッドです。 これらのメソッドは、順に<code>around</code>メソッド、<code>before</code>メソッド、<code>after</code>メソッドと呼びます。 method-combinationタイプが<code>define-method-combination</code>の 短いフォームを使用して定義されたとき、 プライマリメソッドはmethod-combinationタイプの名前を修飾子に与えたメソッドになります。 そして補助メソッドは<code>:around</code>の修飾子です。 このように「プライマリメソッド」と「補助メソッド」という語は、 method-combinationタイプにおける、ただの相対的な定義となります。</p>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</h1>
+</header>
+<p>7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</p>
+<p>下記に示すこれらの定義は、ラムダリストの集合の合意を定義します。 ラムダリストには、指定したジェネリック関数の各メソッドのラムダリストと、 ジェネリック関数自身で定義されたラムダリストを含みます。</p>
+<ol type="1">
+<li><p>各ラムダリストは、同じ数の要求パラメーターを持つ必要があります。</p></li>
+<li><p>各ラムダリストは、同じ数の<code>&amp;optional</code>パラメーターを持つ必要があります。 各メソッドは、<code>&amp;optional</code>パラメーターに独自のデフォルト値を提供することができます。</p></li>
+<li><p>もしどれかのラムダリストが<code>&amp;rest</code>か<code>&amp;key</code>を持つなら、 各ラムダリストはそのうちの1つか両方を指定する必要があります。</p></li>
+<li><p>もしジェネリック関数のラムダリストが<code>&amp;key</code>を持つなら、 各メソッドは<code>&amp;key</code>の後の全てのキーワードの名前を受け付けるようにする必要があります。 受け付ける方法は、全ての名前を明に指定する方法、 あるいは<code>&amp;allow-other-keys</code>を指定する方法がありますが、 <code>&amp;key</code>の指定ではなく<code>&amp;rest</code>を指定する方法でも問題ありません。 各メソッドは、独自のキーワード引数を追加で受け付けることができます。 キーワードの名前の有効性のチェックはジェネリック関数が行い、各メソッドでは行いません。 メソッドが実行されたときには、キーワード引数に名前が<code>:allow-other-keys</code>、 値が<code>true</code>であるペアが与えられたように呼び出されますが、 そのような引数のペアは渡されません。</p></li>
+<li><p><code>&amp;allow-other-keys</code>の使用は、ラムダリスト間で一貫している必要はありません。 もし<code>&amp;allow-other-keys</code>がジェネリック関数か適用メソッドのラムダリストに指定されている場合、 ジェネリック関数が呼び出されるときには、どんなキーワード引数も受け付けるでしょう。</p></li>
+<li><p><code>&amp;aux</code>の使用は、メソッド間で一貫している必要はありません。</p></li>
+</ol>
+<p>もしジェネリック関数のオプションを指定できないメソッド宣言オペレーターが ジェネリック関数を作成した場合、 さらにメソッドのラムダリストにキーワードパラメーターが指定されている場合は、 ジェネリック関数のラムダリストには<code>&amp;key</code>が指定されます（しかしキーワード引数は指定されない）。</p>
+</body>
+</html>

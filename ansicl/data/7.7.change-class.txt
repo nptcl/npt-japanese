@@ -1,0 +1,134 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function CHANGE-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.change-class
+@name: change-class
+@type: standard-generic-function
+
+Standard Generic Function `CHANGE-CLASS`
+
+
+## {syntax}
+
+`change-class` *instance* *new-class* &key &allow-other-keys => *instance*
+
+
+# {method-signatures}
+
+`change-class` (*instance* {standard-object:link})
+(*new-class* {standard-class:link}) &rest *initargs*  
+`change-class` (*instance* {t:link})
+(*new-class* {symbol:link}) &rest *initargs*
+
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*new-class* - クラス指定子  
+*initargs* - {initialization-arguments}リスト
+
+
+## {description}
+
+ジェネリック関数{change-class:link}は、
+*instance*のクラスを*new-class*に変更します。
+変更は破壊的な修正を行い、*instance*を返却します。
+もし元のクラスに、*new-class*の局所スロットと
+同じ名前のスロットが存在する場合は、
+そのスロットの値は保持されます。
+これは、もしスロットに値があるとき、
+{change-class:link}実行後の{slot-value:link}の返却値と、
+{change-class:link}実行前の{slot-value:link}の返却値は、
+{eql:link}であるという意味です。
+同様に、スロットが`unbound`のときは、`unbound`が保持されます。
+他のスロットは、{7.2:ab}で記載されたように初期化されます。
+
+他の全ての動作が完了した後で、
+{change-class:link}は{update-instance-for-different-class:link}を実行します。
+ジェネリック関数{update-instance-for-different-class:link}は、
+変更された*instance*のスロットに値を割り当てるときに使用できます。
+{7.2.2:ab}を確認ください。
+
+もし、上記のメソッドの2番目が選ばれたとき、
+そのメソッドは{change-class:link}の引数を、
+*instance*、`(find-class new-class)`、*initargs*で起動します。
+
+
+## {examples}
+ 
+```lisp
+(defclass position () ())
+ 
+(defclass x-y-position (position)
+    ((x :initform 0 :initarg :x)
+     (y :initform 0 :initarg :y)))
+ 
+(defclass rho-theta-position (position)
+    ((rho :initform 0)
+     (theta :initform 0)))
+ 
+(defmethod update-instance-for-different-class :before ((old x-y-position) 
+                                                        (new rho-theta-position)
+                                                        &key)
+  ;; Copy the position information from old to new to make new
+  ;; be a rho-theta-position at the same position as old.
+  (let ((x (slot-value old 'x))
+        (y (slot-value old 'y)))
+    (setf (slot-value new 'rho) (sqrt (+ (* x x) (* y y)))
+          (slot-value new 'theta) (atan y x))))
+ 
+;;; At this point an instance of the class x-y-position can be
+;;; changed to be an instance of the class rho-theta-position using
+;;; change-class:
+ 
+(setq p1 (make-instance 'x-y-position :x 2 :y 0))
+ 
+(change-class p1 'rho-theta-position)
+  
+;;; The result is that the instance bound to p1 is now an instance of
+;;; the class rho-theta-position.   The update-instance-for-different-class
+;;; method performed the initialization of the rho and theta slots based
+;;; on the value of the x and y slots, which were maintained by
+;;; the old instance.
+```
+
+ 
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{update-instance-for-different-class:link}, {7.2:ab}
+
+
+## {notes}
+
+第一に、これは破壊的なオペレーションであり、
+あるメソッドの選択に使われたインスタンスに対して、
+そのメソッド内で実行できるという点があげられます。
+メソッドが結合されているときに複数のメソッドが巻き込まれると、
+現在実行されているメソッドやこれから実行されるメソッドが
+適用できなくなることがあります。
+第二に、処理系によってはスロットアクセスに
+コンパイラの最適化を用いている場合があり、
+インスタンスのクラスが変更されると
+コンパイラの想定に反してしまう可能性があります。
+これは、プログラマがメソッド内部で{change-class:link}を
+使ってはいけないということを意味しており、
+もしそのジェネリック関数のメソッドが
+何らかのスロットにアクセスすれば、結果は未定義になります。
+
+@end
+

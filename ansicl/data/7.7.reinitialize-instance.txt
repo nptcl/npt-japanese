@@ -1,0 +1,97 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function REINITIALIZE-INSTANCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.reinitialize-instance
+@name: reinitialize-instance
+@type: standard-generic-function
+
+Standard Generic Function `REINITIALIZE-INSTANCE`
+
+
+## {syntax}
+
+`reinitialize-instance` *instance*
+&rest *initargs* &key &allow-other-keys => *instance*
+
+
+## {method-signatures}
+
+`reinitialize-instance` (*instance* {standard-object:link}) &rest *initargs*
+
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*initargs* - {initialization-arguments}リスト
+
+
+## {description}
+
+ジェネリック関数{reinitialize-instance:link}は、
+*instance*の局所スロットの値を*initargs*に従って
+変更するときに使われます。
+このジェネリック関数は、ユーザーによって呼び出すことができます。
+
+システムが提供する{reinitialize-instance:link}のプライマリメソッドは
+*initargs*の有効性の確認を行い、
+有効だと宣言されていないものが*initargs*で与えられていた場合は、
+エラーが通知されます。
+このメソッドはジェネリック関数{shared-initialize:link}を次の引数で呼び出します。
+*instance*, {nil!variable:link}
+（これはinitformでスロットを初期化しないという意味です）, 
+そして受け取った*initargs*。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+ジェネリック関数{reinitialize-instance:link}は局所スロットの値を変更します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+システムが提供する{reinitialize-instance:link}のプライマリメソッドは
+有効だと宣言されていないものが*initargs*で与えられていた場合は、
+エラーが通知されます。
+
+
+## {see-also}
+
+{initialize-instance:link},
+{shared-initialize:link},
+{update-instance-for-redefined-class:link},
+{update-instance-for-different-class:link},
+{slot-boundp:link},
+{slot-makunbound:link},
+{7.3:ab},
+{7.1.4:ab},
+{7.1.2:ab}
+
+
+## {notes}
+
+*initargs*は、{defclass:link}の`:initarg`引数によって、
+あるいは{reinitialize-instance:link}か{shared-initialize:link}の
+メソッドの宣言によって、有効であると宣言されます。
+{reinitialize-instance:link}か{shared-initialize:link}の
+各メソッドの宣言のラムダリストにある、
+各キーワードパラメーター指定子のキーワード名は、
+それらのメソッドが適用されるすべてのクラスに対して、
+有効な{initialization-arguments}の名前として宣言されます。
+
+@end
+

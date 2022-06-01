@@ -237,7 +237,7 @@
 <h2 id="参考">参考</h2>
 <p><a href="13.2.alphanumericp.html"><code>alphanumericp</code></a>, 13.1.10. 処理系実装のスクリプトの説明</p>
 <h2 id="備考">備考</h2>
-<p>英数字は、<a href="13.2.graphic-char-p.html"><code>graphic-char-p</code></a>で定義される図形文字です。 英数字は、図形文字のサブセットです。 標準文字の<code>A</code>～<code>Z</code>、<code>a</code>～<code>z</code>、<code>0</code>～<code>9</code>がは英数字です。</p>
+<p>英数字は、<a href="13.2.graphic-char-p.html"><code>graphic-char-p</code></a>で定義される図形文字です。 英数字は、図形文字のサブセットです。 標準文字の<code>A</code>～<code>Z</code>、<code>a</code>～<code>z</code>、<code>0</code>～<code>9</code>は英数字です。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">alphanumericp</span> x)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  == (<span class="kw">or</span> (<span class="kw">alpha-char-p</span> x) (<span class="kw">not</span> (<span class="kw">null</span> (<span class="kw">digit-char-p</span> x))))</span></code></pre></div>
 </body>

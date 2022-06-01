@@ -19,7 +19,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[7.](7.html)|[Objects](7.html)|[オブジェクト](7.html)|[辞書 ☆作業中](7.7.html)|
 |[8.](8.html)|[Structures](8.html)|[構造体](8.html)|[辞書](8.2.html)|
 |[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書](9.2.html)|
-|10.|Symbols|シンボル|辞書|
+|[10.](10.html)|[Symbols](10.html)|[シンボル](10.html)|[辞書](10.2.html)|
 |11.|Packages|パッケージ|辞書|
 |12.|Numbers|数|辞書|
 |[13.](13.html)|[Characters](13.html)|[文字](13.html)|[辞書 ★完了](13.2.html)|

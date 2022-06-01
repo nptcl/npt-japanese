@@ -166,6 +166,6 @@
 <li><p>第二引数によって指定されたどんなスロットも、 この時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームに従って初期化されます。 <code>:initform</code>フォームを持つどのスロットも、 フォームは<code>defclass</code>宣言のレキシカル環境にて評価され、 その結果がスロットに格納されます。 例えば、<code>before</code>メソッドがスロットへ値を格納する場合、 <code>:initform</code>フォームはスロットへの値の格納には使用されないでしょう。 もし第二引数が指定した名前が、 インスタンスのアクセス可能なスロットに対応していなかった場合は、 結果は定義されていません。</p></li>
 <li><p>この規則は<a href="7.1.4.html">7.1.4. 初期化引数の規則</a>に従います。</p></li>
 </ul>
-<p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 システムが提供するメソッド<code>reinitialize-instance</code>, <code>update-instance-for-different-class</code>, <code>update-instance-for-redefined-class</code>, そして<code>initialize-instance</code>によって呼び出されます。 このようにメソッドは これらすべてのコンテキスト上で実行できるようなアクションを指定するように、 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を記述することができます。</p>
+<p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 システムが提供するメソッド<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, そして<code>initialize-instance</code>によって呼び出されます。 このようにメソッドは これらすべてのコンテキスト上で実行できるようなアクションを指定するように、 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を記述することができます。</p>
 </body>
 </html>

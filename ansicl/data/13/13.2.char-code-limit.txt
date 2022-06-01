@@ -23,6 +23,10 @@ Constant Variable `CHAR-CODE-LIMIT`
 
 関数{char-code:link}の返却値の排他的上限値。
 
+追記：排他的上限値とは、上限値に1を加算した値のことです。
+例えば{char-code:link}の上限が255だとすれば、
+{char-code-limit:link}の値は256になります。
+
 
 ## {see-also}
 

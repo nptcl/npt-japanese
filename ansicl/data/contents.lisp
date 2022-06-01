@@ -52,6 +52,8 @@
 (dictionary 3.8.defmacro)
 
 ;; Chapter 4
+(text 4.3 "クラス" "Classes")
+(text 4.3.6 "クラスの再定義" "Redefining Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
 (dictionary 4.4.generic-function)
 (dictionary 4.4.standard-generic-function)
@@ -182,6 +184,10 @@
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
 (dictionary 9.2.error)
 (dictionary 9.2.define-condition)
+
+;; Chapter 10
+(index 10.2 "シンボルの辞書" "Symbols Dictionary")
+(dictionary 10.2.symbol)
 
 ;; Chapter 13
 (index 13.1 "文字の説明" "Character Concepts")

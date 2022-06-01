@@ -154,10 +154,10 @@
 <h1 class="title">7.3. インスタンスの再初期化</h1>
 </header>
 <p>7.3. インスタンスの再初期化</p>
-<p>ジェネリック関数<code>reinitialize-instance</code>は、 初期化引数に従ってスロットの値を変更するときに使用されます。</p>
+<p>ジェネリック関数<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>は、 初期化引数に従ってスロットの値を変更するときに使用されます。</p>
 <p>再初期化のプロセスにより、スロットの値が変更され、 ユーザーが定義するアクションが実行されます。 これはスロットの追加と削除といったインスタンスの構造の修正は行いません。 また、<code>:initform</code>フォームを使ったスロットの初期化を行いません。</p>
-<p>ジェネリック関数<code>reinitialize-instance</code>は、直接呼び出されるでしょう。 これは引数に一つのインスタンスが要求されます。 また<code>reinitialize-instance</code>か<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>によって使用される、 任意の数の初期化引数を受け取ります。 要求されるインスタンスの引数より後の引数は、 初期化引数リストの形式でなければなりません。</p>
-<p>システムが提供する<code>reinitialize-instance</code>のメソッドは、 特定パラメーターに<code>standard-object</code>クラスを取ります。 最初、メソッドは初期化引数の有効性をチェックし、 もし指定された初期化引数が有効であると宣言されていなかった場合は、 エラーが発せられます（詳細は<a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a>を参照）。 このメソッドは、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を、 次に示す引数とともに呼び出します。 引数は、インスタンス、<code>nil</code>、 そして受け取った初期化引数です。</p>
+<p>ジェネリック関数<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>は、直接呼び出されるでしょう。 これは引数に一つのインスタンスが要求されます。 また<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>か<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>によって使用される、 任意の数の初期化引数を受け取ります。 要求されるインスタンスの引数より後の引数は、 初期化引数リストの形式でなければなりません。</p>
+<p>システムが提供する<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>のメソッドは、 特定パラメーターに<code>standard-object</code>クラスを取ります。 最初、メソッドは初期化引数の有効性をチェックし、 もし指定された初期化引数が有効であると宣言されていなかった場合は、 エラーが発せられます（詳細は<a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a>を参照）。 このメソッドは、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を、 次に示す引数とともに呼び出します。 引数は、インスタンス、<code>nil</code>、 そして受け取った初期化引数です。</p>
 <ul>
 <li><a href="7.3.1.html">7.3.1. 再初期化のカスタマイズ</a></li>
 </ul>

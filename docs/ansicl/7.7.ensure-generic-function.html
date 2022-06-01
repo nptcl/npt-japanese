@@ -169,7 +169,7 @@
 <p>もし<em>function-name</em>がグローバル環境において<code>fbound</code>ではない場合 新しいジェネリック関数が作成されます。 もし<code>(fdefinition function-name)</code>が通常の関数か、 マクロか、特殊オペレーターで存在する場合は、エラーが発せられます。</p>
 <p>もし<em>function-name</em>がリストの場合は、 <code>(setf symbol)</code>の形式でなければなりません。 もし<em>function-name</em>というジェネリック関数が定義されており、 引数に続く値が違っている場合は、 ジェネリック関数は<code>:argument-precedence-order</code>, <code>:declare</code>, <code>:documentation</code>, <code>:method-combination</code> の値を新しいものに修正します。</p>
 <p>もし<em>function-name</em>で定義されているジェネリック関数と <code>:lambda-list</code>引数の値が異なっており、 新しい値が既存の全てのメソッドのラムダリストと合致するか、 あるいはメソッドがそもそも存在しない場合は新しい値に変更されます。 そうでない場合は、エラーが発せられます。</p>
-<p><em>function-name</em>で定義されているジェネリック関数と <code>:generic-function-class</code>引数の値が異なっており、 かつ新しいジェネリック関数のクラスが古いものと互換性がある場合は、 <code>change-class</code>を呼び出して ジェネリック関数のクラスを変更します。 そうでない場合は、エラーが発生します。</p>
+<p><em>function-name</em>で定義されているジェネリック関数と <code>:generic-function-class</code>引数の値が異なっており、 かつ新しいジェネリック関数のクラスが古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>を呼び出して ジェネリック関数のクラスを変更します。 そうでない場合は、エラーが発生します。</p>
 <p><em>function-name</em>で定義されているジェネリック関数と <code>:method-class</code>引数の値が異なっている場合は、 新しい値に変更されます。 しかし既に存在しているメソッドは変更されません。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>

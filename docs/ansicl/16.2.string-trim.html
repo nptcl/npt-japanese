@@ -227,9 +227,9 @@
 <em>string</em> - string-designator<br />
 <em>trimmed-string</em> - 文字列</p>
 <h2 id="定義">定義</h2>
-<p><a href="16.2.string-trim.html"><code>string-trim</code></a>は、<em>string</em>の先頭と末尾から <em>character-bag</em>内のすべての文字を取り除いた文字列を返す。 <a href="16.2.string-trim.html"><code>string-left-trim</code></a>は似た動作をするが、 文字列の先頭からのみ文字を取り除く。 <a href="16.2.string-trim.html"><code>string-right-trim</code></a>は末尾からのみ取り除く。</p>
-<p>もし<em>string</em>から取り除く必要がない場合は、 処理系の判断により、<em>string</em>そのものか、あるいはそのコピーが返却される。</p>
-<p>全ての関数はfill-pointerを考慮する。</p>
+<p><a href="16.2.string-trim.html"><code>string-trim</code></a>は、<em>string</em>の先頭と末尾から <em>character-bag</em>内のすべての文字を取り除いた文字列を返します。 <a href="16.2.string-trim.html"><code>string-left-trim</code></a>は似た動作をしますが、 文字列の先頭からのみ文字を取り除きます。 <a href="16.2.string-trim.html"><code>string-right-trim</code></a>は末尾からのみ取り除きます。</p>
+<p>もし<em>string</em>から取り除く必要がない場合は、 処理系の判断により、<em>string</em>そのものか、あるいはそのコピーが返却されます。</p>
+<p>全ての関数はfill-pointerを考慮します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-trim</span> <span class="st">&quot;abc&quot;</span> <span class="st">&quot;abcaakaaakabcaaa&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;kaaak&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-trim</span> &#39;(<span class="ch">#\S</span>pace <span class="ch">#\T</span>ab <span class="ch">#\N</span>ewline) <span class="st">&quot; garbanzo beans</span></span>

@@ -1,0 +1,132 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function UPDATE-INSTANCE-FOR-DIFFERENT-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.update-instance-for-different-class
+@name: update-instance-for-different-class
+@type: standard-generic-function
+
+Standard Generic Function `UPDATE-INSTANCE-FOR-DIFFERENT-CLASS`
+
+
+## {syntax}
+
+`update-instance-for-different-class` *previous* *current*
+&rest *initargs* &key &allow-other-keys => 処理系依存
+
+## {method-signatures}
+
+`update-instance-for-different-class`
+(*previous* {standard-object:link})
+(*current* {standard-object:link}) &rest *initargs*
+
+
+## {arguments-and-values}
+
+*previous* - 元の*instance*のコピー  
+*current* - 元の*instance* (変更された)  
+*initargs* - {initialization-arguments}リスト
+
+
+## {description}
+
+ジェネリック関数{update-instance-for-different-class:link}は、
+プログラマーによって呼び出されることを意図していません。
+プログラマーはこの関数のメソッドを作成します。
+関数{update-instance-for-different-class:link}は、
+ただ関数{change-class:link}によってのみ呼ばれます。
+
+システムが提供する{update-instance-for-different-class:link}の
+プライマリメソッドは、*initargs*の有効性を確認し、
+もし*initargs*に有効として宣言されていないものが与えられていた場合は
+エラーが通知されます。
+このメソッドは、*initargs*に対応する値でスロットを初期化します。
+そして新たに追加されたスロットには`:initform`フォーム対応した値で初期化します。
+このような動作は、ジェネリック関数{shared-initialize:link}を
+次のような引数で呼び出すことで行います。
+引数は、インスタンス（*current*）、
+新しく追加されたスロットの名前のリスト、
+そして受け取った*initargs*。
+新しく追加されたスロットとは、
+以前のクラスに同じ名前のスロットが存在しない局所スロットのことです。
+
+{update-instance-for-different-class:link}のメソッドを定義することで、
+インスタンス更新時の動作を指定することができます。
+{update-instance-for-different-class:link}の
+`after`メソッドのみが定義されている場合は、
+それらはシステムが提供している初期化の
+プライマリメソッドの後に実行されるため、
+{update-instance-for-different-class:link}の
+デフォルトの動作に干渉することはありません。
+
+{update-instance-for-different-class:link}のメソッドは、
+{change-class:link}とは違うスロットの初期化を定義できます。
+{change-class:link}のデフォルトの動作は、{7.2:ab}に定義されています。
+
+{update-instance-for-different-class:link}の引数は、
+{change-class:link}によって計算されます。
+{change-class:link}がインスタンスとともに起動されると
+そのインスタンスのコピーが生成され、
+そのとき{change-class:link}は元のインスタンスを破壊的に変更します。
+{update-instance-for-different-class:link}の最初の引数である
+*previous*はコピーであり、古いスロットの値が一時的に保存されます。
+この引数は{change-class:link}内で{dynamic-extent}を持ちます。
+もし{update-instance-for-different-class:link}から戻った後に、
+何らかの方法で参照された場合、結果は未定義です。
+{update-instance-for-different-class:link}の二番目の引数である
+*current*は変更された元のインスタンスです。
+*previous*の使用目的は、
+{slot-value:link}か、{with-slots:link}か、リーダーのジェネリック関数によって、
+古いスロットの値を読みだしたり、
+あるいは元のクラスのインスタンスとして適用できる
+他のメソッドを実行したりすることです。
+
+
+## {examples}
+
+{change-class:link}の例をご確認ください。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+システムが提供する{update-instance-for-different-class:link}の
+プライマリメソッドは、
+{initialization-arguments}に有効として宣言されていないものが
+与えられていた場合はエラーが通知されます。
+
+
+## {see-also}
+
+{change-class:link},
+{shared-initialize:link},
+{7.2:ab},
+{7.1.4:ab},
+{7.1.2:ab}
+
+
+## {notes}
+
+*initargs*は、{defclass:link}の`:initarg`引数によって、
+あるいは{update-instance-for-different-class:link}か
+{shared-initialize:link}のメソッドの宣言によって、
+有効であると宣言されます。
+{update-instance-for-different-class:link}か
+{shared-initialize:link}の各メソッドの宣言のラムダリストにある、
+各キーワードパラメーター指定子のキーワード名は、
+それらのメソッドが適用されるすべてのクラスに対して、
+有効な{initialization-arguments}の名前として宣言されます。
+
+{update-instance-for-different-class:link}の返却値は、
+{change-class:link}によって無視されます。
+
+@end
+

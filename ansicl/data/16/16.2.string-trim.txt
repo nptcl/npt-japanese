@@ -34,15 +34,15 @@ Function `STRING-TRIM`, `STRING-LEFT-TRIM`, `STRING-RIGHT-TRIM`
 ## {description}
 
 {string-trim:link}は、*string*の先頭と末尾から
-*character-bag*内のすべての文字を取り除いた文字列を返す。
-{string-left-trim:link}は似た動作をするが、
-文字列の先頭からのみ文字を取り除く。
-{string-right-trim:link}は末尾からのみ取り除く。
+*character-bag*内のすべての文字を取り除いた文字列を返します。
+{string-left-trim:link}は似た動作をしますが、
+文字列の先頭からのみ文字を取り除きます。
+{string-right-trim:link}は末尾からのみ取り除きます。
 
 もし*string*から取り除く必要がない場合は、
-処理系の判断により、*string*そのものか、あるいはそのコピーが返却される。
+処理系の判断により、*string*そのものか、あるいはそのコピーが返却されます。
 
-全ての関数は{fill-pointer}を考慮する。
+全ての関数は{fill-pointer}を考慮します。
 
 
 ## {examples}

@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function ALLOCATE-INSTANCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.allocate-instance
+@name: allocate-instance
+@type: standard-generic-function
+
+Standard Generic Function `ALLOCATE-INSTANCE`
+
+
+## {syntax}
+
+`allocate-instance` *class* &rest *initargs* &key &allow-other-keys => *new-instance*
+
+
+## {method-signatures}
+
+`allocate-instance` (*class* {standard-class:link}) &rest *initargs*  
+`allocate-instance` (*class* {structure-class:link}) &rest *initargs*
+
+
+## {arguments-and-values}
+
+*class* - クラス  
+*initargs* - keyword/valueのペアのリスト（{initialization-arguments}の名前と値）  
+*new-instance* - クラスが*class*のオブジェクト
+
+
+## {description}
+
+ジェネリック関数{allocate-instance:link}は、
+*class*の新しいインスタンスを作成し、初期化せずに返却します。
+もし*class*が`standard-class`のクラスのときは、
+スロットが`unbound`になるという意味です。
+あるいは、*class*が`structure-class`のクラスのときは、
+スロットの値は規定されていません。
+
+{allocate-instance:link}の呼び出し側は、
+{initialization-arguments}がすでにチェックされていることを期待しています。
+
+ジェネリック関数{allocate-instance:link}は、
+{make-instance:link}によって呼ばれます。
+{7.1:ab}に定義されています。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defclass:link},
+{make-instance:link},
+{class-of:link},
+{7.1:ab}
+
+
+## {notes}
+
+{allocate-instance:link}へメソッドを追加した結果は規定されていません。
+この機能は、Metaobject Protocolによって追加されるかもしれません。
+
+@end
+

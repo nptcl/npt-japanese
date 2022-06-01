@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>4. 型とクラス</title>
+  <title>Standard-Generic-Function ALLOCATE-INSTANCE</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,14 +151,30 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">4. 型とクラス</h1>
+<h1 class="title">Standard-Generic-Function ALLOCATE-INSTANCE</h1>
 </header>
-<ol start="4" type="1">
-<li>型とクラス</li>
-</ol>
-<ul>
-<li>4.3. クラス</li>
-<li><a href="4.4.html">4.4. 型とクラスの辞書</a></li>
-</ul>
+<h1 id="standard-generic-function-allocate-instance">Standard-Generic-Function ALLOCATE-INSTANCE</h1>
+<p>Standard Generic Function <code>ALLOCATE-INSTANCE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>allocate-instance</code> <em>class</em> &amp;rest <em>initargs</em> &amp;key &amp;allow-other-keys =&gt; <em>new-instance</em></p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<p><code>allocate-instance</code> (<em>class</em> <code>standard-class</code>) &amp;rest <em>initargs</em><br />
+<code>allocate-instance</code> (<em>class</em> <code>structure-class</code>) &amp;rest <em>initargs</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>class</em> - クラス<br />
+<em>initargs</em> - keyword/valueのペアのリスト（初期化引数の名前と値）<br />
+<em>new-instance</em> - クラスが<em>class</em>のオブジェクト</p>
+<h2 id="定義">定義</h2>
+<p>ジェネリック関数<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>は、 <em>class</em>の新しいインスタンスを作成し、初期化せずに返却します。 もし<em>class</em>が<code>standard-class</code>のクラスのときは、 スロットが<code>unbound</code>になるという意味です。 あるいは、<em>class</em>が<code>structure-class</code>のクラスのときは、 スロットの値は規定されていません。</p>
+<p><a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>の呼び出し側は、 初期化引数がすでにチェックされていることを期待しています。</p>
+<p>ジェネリック関数<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>は、 <code>make-instance</code>によって呼ばれます。 <a href="7.1.html">7.1. オブジェクトの作成と初期化</a>に定義されています。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><code>defclass</code>, <code>make-instance</code>, <code>class-of</code>, <a href="7.1.html">7.1. オブジェクトの作成と初期化</a></p>
+<h2 id="備考">備考</h2>
+<p><a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>へメソッドを追加した結果は規定されていません。 この機能は、Metaobject Protocolによって追加されるかもしれません。</p>
 </body>
 </html>

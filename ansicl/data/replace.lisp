@@ -41,4 +41,5 @@
 (replace initialization-arguments "初期化引数")
 (replace qualifiers "修飾子")
 (replace special-operator "特殊オペレーター")
+(replace dynamic-extent "動的生存期間")
 

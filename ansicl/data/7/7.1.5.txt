@@ -53,9 +53,9 @@ method-combinationは`standard`が使用されます。
 - この規則は{7.1.4:ab}に従います。
 
 ジェネリック関数{shared-initialize:link}は、
-システムが提供するメソッド{reinitialize-instance:link}, 
+システムが提供するメソッド{reinitialize-instance:link},
 {update-instance-for-different-class:link},
-{update-instance-for-redefined-class:link}, 
+{update-instance-for-redefined-class:link},
 そして{initialize-instance:link}によって呼び出されます。
 このようにメソッドは
 これらすべてのコンテキスト上で実行できるようなアクションを指定するように、

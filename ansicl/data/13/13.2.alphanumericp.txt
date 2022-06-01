@@ -61,7 +61,7 @@ Function `ALPHANUMERICP`
 
 {alphanumeric-character}は、{graphic-char-p:link}で定義される図形文字です。
 {alphanumeric-character}は、{graphic-character}のサブセットです。
-{standard-character}の`A`～`Z`、`a`～`z`、`0`～`9`がは{alphanumeric-character}です。
+{standard-character}の`A`～`Z`、`a`～`z`、`0`～`9`は{alphanumeric-character}です。
 
 ```lisp
 (alphanumericp x)

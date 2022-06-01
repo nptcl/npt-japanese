@@ -180,6 +180,7 @@
 
 ;; Chapter 9
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
+(dictionary 9.2.error)
 (dictionary 9.2.define-condition)
 
 ;; Chapter 13

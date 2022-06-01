@@ -40,4 +40,5 @@
 (replace method-signatures "メソッド宣言")
 (replace initialization-arguments "初期化引数")
 (replace qualifiers "修飾子")
+(replace special-operator "特殊オペレーター")
 

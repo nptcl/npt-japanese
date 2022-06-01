@@ -86,10 +86,11 @@ Function `CHAR=`, `CHAR/=`, `CHAR<`, `CHAR>`, `CHAR<=`, `CHAR>=`,
 もし2つの文字の属性が等しいとき、
 {char>=:link}の順序は文字コードを数値として`>=`で比較したものと同じです。
 
-char-equal, char-not-equal,
-char-lessp, char-greaterp,
-char-not-greaterp, char-not-lessp>は、
-順にchar=, char/=, char<, char>, char<=, char>=と似ていますが、
+{char-equal:link}, {char-not-equal:link},
+{char-lessp:link}, {char-greaterp:link},
+{char-not-greaterp:link}, {char-not-lessp:link}は、
+順に{char=:link}, {char/=:link}, {char<:link}, {char>:link},
+{char<=:link}, {char>=:link}と似ていますが、
 大文字小文字を無視します。
 もし文字が単純ではない場合（文字の属性がある場合。{13.1.3:ab}を参照）
 結果は実装で定義された動作になります。

@@ -1,0 +1,115 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ENSURE-GENERIC-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.ensure-generic-function
+@name: ensure-generic-function
+@type: function
+
+Function `ENSURE-GENERIC-FUNCTION`
+
+
+## {syntax}
+
+`ensure-generic-function` *function-name*
+&key *argument-precedence-order* *declare* *documentation*
+*environment* *generic-function-class* *lambda-list*
+*method-class* *method-combination*  
+=> *generic-function*
+
+
+## {arguments-and-values}
+
+*function-name* - 関数名
+
+キーワード引数は{defgeneric:link}の引数に対応しますが、
+`:method-class`と`:generic-function-class`の引数は、
+名前と同様にクラスオブジェクトを指定できます。
+
+*method-combination* - method-combinationオブジェクト  
+*environment* - マクロ展開関数の`&environment`引数と同じです。
+この引数は、コンパイル時と実行時を区別するために使われます。  
+*generic-function* - ジェネリック関数オブジェクト
+
+
+## {description}
+
+{ensure-generic-function:link}関数は、
+メソッドを持たないグローバルの名前付きジェネリック関数を定義したり、
+グローバルの名前付きジェネリック関数全体に関連する
+オプションや宣言を指定・変更するために使われます。
+
+もし*function-name*がグローバル環境において`fbound`ではない場合
+新しいジェネリック関数が作成されます。
+もし`(fdefinition function-name)`が通常の関数か、
+マクロか、{special-operator}で存在する場合は、エラーが発せられます。
+
+もし*function-name*がリストの場合は、
+`(setf symbol)`の形式でなければなりません。
+もし*function-name*というジェネリック関数が定義されており、
+引数に続く値が違っている場合は、
+ジェネリック関数は`:argument-precedence-order`, `:declare`,
+`:documentation`, `:method-combination`
+の値を新しいものに修正します。
+
+もし*function-name*で定義されているジェネリック関数と
+`:lambda-list`引数の値が異なっており、
+新しい値が既存の全てのメソッドのラムダリストと合致するか、
+あるいはメソッドがそもそも存在しない場合は新しい値に変更されます。
+そうでない場合は、エラーが発せられます。
+
+*function-name*で定義されているジェネリック関数と
+`:generic-function-class`引数の値が異なっており、
+かつ新しいジェネリック関数のクラスが古いものと互換性がある場合は、
+{change-class:link}を呼び出して
+ジェネリック関数のクラスを変更します。
+そうでない場合は、エラーが発生します。
+
+*function-name*で定義されているジェネリック関数と
+`:method-class`引数の値が異なっている場合は、
+新しい値に変更されます。
+しかし既に存在しているメソッドは変更されません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+*function-name*に束縛されている既存の関数。
+
+
+## {exceptional-situations}
+
+もし`(fdefinition function-name)`が通常の関数か、
+マクロか、{special-operator}で存在する場合は、
+型{error:link}のエラーが発せられます。
+
+もし*function-name*で定義されているジェネリック関数と
+`:lambda-list`引数の値が異なっており、
+新しい値が既存の全てのメソッドのラムダリストと合致しない場合は、
+型{error:link}のエラーが発せられます。
+
+*function-name*で定義されているジェネリック関数と
+`:generic-function-class`引数の値が異なっており、
+かつ新しいジェネリック関数のクラスが古いものと互換性がない場合は、
+型{error:link}のエラーが発せられます。
+
+
+## {see-also}
+
+{defgeneric:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

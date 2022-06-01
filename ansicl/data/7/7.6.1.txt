@@ -31,8 +31,8 @@
 あるいは引数を渡したりすることができます。
 
 ジェネリック関数の関数名の設定は、いくつかの手順のひとつとして確立します。
-それはグローバル環境内において、{ensure-generic-function:link}, 
-{defmethod:link}（暗に{ensure-generic-function:link}が呼ばれる）, 
+それはグローバル環境内において、{ensure-generic-function:link},
+{defmethod:link}（暗に{ensure-generic-function:link}が呼ばれる）,
 {defgeneric:link}（これもまた暗に、{ensure-generic-function:link}が呼ばれる）
 によって確立されます。
 レキシカル環境において、ジェネリック関数の関数名の束縛を確立するための

@@ -1,0 +1,46 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.6.5.1 ジェネリック関数とメソッドのキーワード引数の例
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.6.5.1
+@type: text
+
+例えば、下記の2つの`width`メソッドが定義されていることを考えます。
+
+```lisp
+(defmethod width ((c character-class) &key font) ...)
+
+(defmethod width ((p picture-class) &key pixel-size) ...)
+```
+
+その他の`width`以外のメソッドとジェネリック関数は存在しないと仮定します。
+下記のフォームを評価したときには、
+キーワード引数`:pixel-size`が適用可能なメソッドで受け付けられないため、
+エラーが発せられます。
+
+```lisp
+(width (make-instance 'character-class :char #\Q)
+       :font 'baskerville :pixel-size 10)
+```
+
+下記のフォームの評価は、エラーが発せられます。
+
+```lisp
+(width (make-instance 'picture-class :glyph (glyph #\Q))
+       :font 'baskerville :pixel-size 10)
+```
+
+下記のフォームの評価は、もし`character-picture-class`という名前のクラスが、
+`picture-class`と`character-class`両方のサブクラスであった場合には、
+エラーにはならないでしょう。
+
+```lisp
+(width (make-instance 'character-picture-class :char #\Q)
+       :font 'baskerville :pixel-size 10)
+
+@end
+

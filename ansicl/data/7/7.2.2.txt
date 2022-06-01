@@ -1,0 +1,39 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.2.2 新しく追加された局所スロットの初期化
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.2.2
+@type: text
+
+更新の二番目の手順では、新しく追加されたスロットを初期化し、
+ユーザー定義のアクションを実行します。
+このステップは、
+ジェネリック関数{update-instance-for-different-class:link}によって定義されます。
+ジェネリック関数{update-instance-for-different-class:link}は、
+最初の更新手順が完了したあとに、{change-class:link}によって実行されます。
+
+ジェネリック関数{update-instance-for-different-class:link}は、
+{change-class:link}によって計算された引数により実行されます。
+最初の引数は、更新されるインスタンスのコピーであり、
+クラス`Cfromの`インスタンスです。
+このコピーは、ジェネリック関数{change-class:link}に動的エクステントとして保有されます。
+二番目の引数は、{change-class:link}によって更新されるインスタンスであり、
+クラス`Cto`のインスタンスです。残りの引数は、{initialization-arguments}リストです。
+
+システムが提供する{update-instance-for-different-class:link}メソッドは、
+2つの特定パラメーターがあり、
+どちらも{standard-object:link}クラスです。
+最初、このメソッドは、{initialization-arguments}の有効性をチェックし、
+もし指定された{initialization-arguments}が有効であると宣言されていなかった場合は、
+エラーが発せられます（詳細は7.1.2 {initialization-arguments}の有効性の宣言を参照）。
+それから、このメソッドはジェネリック関数{shared-initialize:link}を、
+次に示す引数とともに呼び出します。
+引数は、新しいインスタンス、新しく追加されるスロット名のリスト、
+そして受け取った{initialization-arguments}です。
+
+@end
+

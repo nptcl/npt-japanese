@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.1.4 {initialization-arguments}の規則
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.1.4
+@type: text
+
+スロットオプションの`:initarg`は、スロット対して複数定義されるかもしれません。
+
+もし{initialization-arguments}に複数の定義がされるかもしれないときには、
+下記に示すルールが適応されます。
+
+- もし同じ{initialization-arguments}の名前が
+`:initarg`スロットオプションに複数現れた場合は、
+{initialization-arguments}は複数のスロットを初期化できます。
+
+- {initialization-arguments}の名前は、複数の初期化メソッドのラムダリストに現れます。
+
+- {initialization-arguments}の名前は、
+スロットオプションの`:initarg`と、
+初期化メソッドのラムダリストの両方に現れます。
+
+もし{make-instance:link}に与えられた引数が、
+同じスロットを初期化するような複数の{initialization-arguments}であった場合、
+さらに{initialization-arguments}が違った名前であったときは、
+{initialization-arguments}リストの
+最も左の{initialization-arguments}の値が採用されます。
+
+もし複数の違った{initialization-arguments}が同じスロットを初期化する場合、
+さらにスロットはデフォルト値を持っており、
+{make-instance:link}の引数には明示的に指定されていなかったときは、
+{initialization-arguments}は最も特定的な
+クラスのクラスオプション`:default-initargs`に現れる値が採用されます。
+もしひとつの`:default-initargs`クラスオプションが、
+複数の{initialization-arguments}により同じスロットを初期化する場合、
+さらに{make-instance:link}の引数には明示的に指定がなかったときは、
+クラスオプション`:default-initargs`の最も左側の値が採用され、
+残りのデフォルト値フォームの値は無視されます。
+
+{make-instance:link}の引数として明示的に与えられた{initialization-arguments}は、
+デフォルト{initialization-arguments}の左側に現れます。
+例えば、クラス`C1`と`C2`が違うスロットに対して
+デフォルト{initialization-arguments}の値を与えた場合を考えます。
+`C1`は`C2`よりも特定的であるとします。
+`C1`によって提供されたデフォルト{initialization-arguments}は、
+デフォルト{initialization-arguments}リストにおいては、
+`C2`によって提供されたのデフォルト{initialization-arguments}の左側に位置します。
+もし単一のクラスオプション`:default-initargs`が、
+2つの違ったスロットに対して{initialization-arguments}の値が与えられた場合、
+クラスオプション`:default-initargs`の最も左に位置する{initialization-arguments}が、
+デフォルト{initialization-arguments}リストの最も左側に現れます。
+
+もしスロットが`:initform`フォームと`:initarg`スロットオプションの両方を持っており、
+さらに{initialization-arguments}が
+`:default-initargs`によるデフォルト値により与えられているか、
+あるいは{make-instance:link}の引数により与えられていた場合、
+`:initform`フォームは使われませんし評価もされません。
+
+上記の規則の例を示します。
+
+```lisp
+(defclass q () ((x :initarg a)))
+(defclass r (q) ((x :initarg b))
+  (:default-initargs a 1 b 2))
+```
+
+```
+フォーム                      デフォルト初期化引数リスト    スロットXの値
+----------
+(make-instance 'r)            (a 1 b 2)                     1
+(make-instance 'r 'a 3)       (a 3 b 2)                     3
+(make-instance 'r 'b 4)       (b 4 a 1)                     4
+(make-instance 'r 'a 1 'a 2)  (a 1 a 2 b 2)                 1
+```
+
+@end
+

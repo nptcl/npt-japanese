@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.1 {initialization-arguments}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.1.1
+@type: text
+
+{initialization-arguments}は、オブジェクトの作成と初期化を制御します。
+よくキーワードを{initialization-arguments}の名前にするのが便利で使われますが、
+{initialization-arguments}の名前は{nil!variable:link}を含む
+どんなシンボルでも使用できます。
+{initialization-arguments}は、次の2つの方法である、
+スロットの値を埋めるためか、
+あるいは初期化メソッドの引数に提供するときに使用します。
+単一の{initialization-arguments}は、両方の目的で使用されます。
+
+{initialization-arguments}リストは、
+{initialization-arguments}の名前と値のプロパティリストです。
+この構造は、通常のプロパティリストとして同一であり、
+引数リストの`&key`パラメーターとして処理される部分としても同一です。
+これらのリストは、もし{initialization-arguments}の名前が
+{initialization-arguments}リストに複数現れた場合は、
+もっとも左側に現れた値が指定され、残りのものは無視されます。
+{make-instance:link}の引数（最初の引数よりあとのもの）の形は、
+{initialization-arguments}リストです。
+
+{initialization-arguments}はスロットと結び付けることができます。
+もし{initialization-arguments}が
+{initialization-arguments}リストの中で値を持っている場合、
+その値は新しく作成されたオブジェクトのスロットに格納されます。
+もし`:initform`フォームがスロットと結び付けられていた場合でも、
+{initialization-arguments}の方が上書きをします。
+1つの{initialization-arguments}は、複数のスロットを初期化することができます。
+共有スロットを初期化する{initialization-arguments}は、
+以前の値を置き換えて、共有スロットに値を格納します。
+
+{initialization-arguments}はメソッドに結び付けることができます。
+オブジェクトが作成されて、特定の{initialization-arguments}が与えられた場合、
+ジェネリック関数である{initialize-instance:link},
+{shared-initialize:link}, そして{allocate-instance:link}は、
+キーワード引数のペアとして、{initialization-arguments}の名前と値とともに呼び出されます。
+もし{initialization-arguments}の値が
+{initialization-arguments}リストで提供されていなかった場合は、
+メソッドのラムダリストがデフォルト値を提供します。
+
+{initialization-arguments}は次の4つの状況によって使用されます。
+インスタンスの作成時、インスタンスの再初期化時、
+クラス再定義によるインスタンスの更新時、
+そして違うクラス定義へのインスタンスを更新するときです。
+
+{initialization-arguments}は特定のクラスのインスタンスの
+作成と初期化時に制御で使用されるため、
+{initialization-arguments}は、
+クラスの「{initialization-arguments}は～」のように記述します。
+
+@end
+

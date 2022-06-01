@@ -12,13 +12,13 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |:---|:---|:---|:---|
 |1.|Introduction|紹介|辞書|
 |[2.](2.html)|[Syntax](2.html)|[構文](2.html)|辞書|
-|[3.](3.html)|[Evaluation and Compilation](3.html)|[評価とコンパイル](3.html)|辞書|
+|[3.](3.html)|[Evaluation and Compilation](3.html)|[評価とコンパイル](3.html)|[辞書](3.8.html)|
 |[4.](4.html)|[Types and Classes](4.html)|[型とクラス](4.html)|[辞書](4.4.html)|
 |[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書](5.3.html)|
 |6.|Iteration|繰り返し|辞書|
-|7.|Objects|オブジェクト|辞書|
-|8.|Structures|構造体|辞書|
-|9.|Conditions|コンディション|辞書|
+|[7.](7.html)|[Objects](7.html)|[オブジェクト](7.html)|[辞書 ☆作業中](7.7.html)|
+|[8.](8.html)|[Structures](8.html)|[構造体](8.html)|[辞書](8.2.html)|
+|[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書](9.2.html)|
 |10.|Symbols|シンボル|辞書|
 |11.|Packages|パッケージ|辞書|
 |12.|Numbers|数|辞書|

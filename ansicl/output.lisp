@@ -12,14 +12,18 @@
            (join (join ", " list)))
       (format nil "~:(~A~) ~:@(~A~)" type join))))
 
+(defun reference-title (x)
+  (reference-string
+    (contents-title x)))
+
 (defun linkpage-title (x)
   (if (eq (contents-type x) 'dictionary)
     (dictionary-title x)
-    (contents-title x)))
+    (reference-title x)))
 
 (defun index-string-title (x)
   (let ((index (contents-string x))
-        (title (contents-title x)))
+        (title (reference-title x)))
     (format nil "~A. ~A" index title)))
 
 (defun index-string (x)
@@ -78,6 +82,8 @@
     (dolist (y (dictionary-list dic))
       (cond ((eq y 'eol)
              (terpri s))
+            ((eq y 'index)
+             (index-body s x))
             ((consp y)
              (dictionary-operator s y))
             (t (princ y s))))))
@@ -87,8 +93,7 @@
 ;;  text
 ;;
 (defun text-body (s x)
-  (declare (ignore s x))
-  (error "TODO, text-body"))
+  (dictionary-body s x))
 
 
 ;;
@@ -96,7 +101,7 @@
 ;;
 (defun linkpage-header (s x)
   (let ((index (contents-string x))
-        (title (contents-title x)))
+        (title (reference-title x)))
     (format s "% ~A. ~A~2%" index title)
     (format s "~A. ~A~2%" index title)))
 
@@ -155,7 +160,7 @@
 
 (defun toppage-link (s x)
   (let* ((index (contents-string x))
-         (title (contents-title x))
+         (title (reference-title x))
          (english (contents-english x))
          (dic (toppage-dictionary x))
          (uri (filename-html index)))
@@ -167,7 +172,7 @@
   (if (contents-exists-p x)
     (toppage-link s x)
     (let ((index (contents-string x))
-          (title (contents-title x))
+          (title (reference-title x))
           (english (contents-english x))
           (dic (toppage-dictionary x)))
       (format s "|~A.|~A|~A|~A|~%" index english title dic))))

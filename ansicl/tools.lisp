@@ -50,6 +50,11 @@
     x
     (mapcar #'read-from-string (split sep (princ-to-string x)))))
 
+(defun read-colon (x)
+  (if (consp x)
+    x
+    (mapcar #'trim (split #\: (princ-to-string x)))))
+
 (defmacro or2 (&rest args)
   (cond ((null args) nil)
         ((and (consp args) (null (cdr args))) (car args))

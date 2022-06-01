@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.3 インスタンスの再初期化
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.3
+@type: text
+
+ジェネリック関数{reinitialize-instance:link}は、
+{initialization-arguments}に従ってスロットの値を変更するときに使用されます。
+
+再初期化のプロセスにより、スロットの値が変更され、
+ユーザーが定義するアクションが実行されます。
+これはスロットの追加と削除といったインスタンスの構造の修正は行いません。
+また、`:initform`フォームを使ったスロットの初期化を行いません。
+
+ジェネリック関数{reinitialize-instance:link}は、直接呼び出されるでしょう。
+これは引数に一つのインスタンスが要求されます。
+また{reinitialize-instance:link}か{shared-initialize:link}によって使用される、
+任意の数の{initialization-arguments}を受け取ります。
+要求されるインスタンスの引数より後の引数は、
+{initialization-arguments}リストの形式でなければなりません。
+
+システムが提供する{reinitialize-instance:link}のメソッドは、
+特定パラメーターに{standard-object:link}クラスを取ります。
+最初、メソッドは{initialization-arguments}の有効性をチェックし、
+もし指定された{initialization-arguments}が有効であると宣言されていなかった場合は、
+エラーが発せられます（詳細は{7.1.2:ab}を参照）。
+このメソッドは、ジェネリック関数{shared-initialize:link}を、
+次に示す引数とともに呼び出します。
+引数は、インスタンス、{nil!variable:link}、
+そして受け取った{initialization-arguments}です。
+
+@index
+
+@end
+

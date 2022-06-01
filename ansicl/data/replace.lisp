@@ -37,3 +37,7 @@
 (replace fill-pointer "fill-pointer")
 (replace bounding-index-designator "境界インデックス指定子")
 
+(replace method-signatures "メソッド宣言")
+(replace initialization-arguments "初期化引数")
+(replace qualifiers "修飾子")
+

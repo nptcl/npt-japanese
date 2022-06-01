@@ -24,7 +24,7 @@
     *find-file*))
 
 (defun main-read ()
-  (let* ((list (find-file #p"data/" "txt"))
+  (let* ((list (find-file #p"data/**/" "txt"))
          (files (sort list #'string< :key #'namestring)))
     (dolist (file files)
       (format t "Load: ~S~%" file)

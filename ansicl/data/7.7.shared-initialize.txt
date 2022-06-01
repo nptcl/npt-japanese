@@ -1,0 +1,145 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function SHARED-INITIALIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.shared-initialize
+@name: shared-initialize
+@type: standard-generic-function
+
+Standard Generic Function `SHARED-INITIALIZE`
+
+
+## {syntax}
+
+`shared-initialize` *instance* *slot-names*
+&rest *initargs* &key &allow-other-keys
+=> *instance*
+
+
+## {method-signatures}
+
+`shared-initialize` (*instance* {standard-object:link}) *slot-names* &rest *initargs*
+
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*slot-names* - リストか{t:link}  
+*initargs* - keyword/valueのペアのリスト（{initialization-arguments}の名前と値）
+
+
+## {description}
+
+ジェネリック関数{shared-initialize:link}はインスタンスのスロットに、
+引数*initargs*と`:initform`を用いて値を埋めるときに使われます。
+この関数の呼び出しは、インスタンスが作成されるとき、
+インスタンスが再初期化されるとき、
+クラスの再定義によりインスタンスが更新されるとき、
+違うクラスにインスタンスを従わせるときに行われます。
+ジェネリック関数{shared-initialize:link}は、
+システムにより共有されるメソッドである、
+{initialize-instance:link}, {reinitialize-instance:link},
+{update-instance-for-redefined-class:link},
+そして{update-instance-for-different-class:link}によって呼び出されます。
+
+ジェネリック関数{shared-initialize:link}は、次のような引数を取ります。
+初期化されるインスタンス、
+インスタンスがアクセス可能なスロットの名前の集合、
+そして*initargs*の集合です。
+最初2つの引数のあとの引数は、
+{initialization-arguments}リストの形を取らなければなりません。
+システムが提供している{shared-initialize:link}のメソッドは、
+スロットの値を*initargs*で指定された`:initform`のフォームによって初期化します。
+*slot-names*は、もしスロットに対して*initargs*が指定されていなかった場合、
+`:initform`によって初期化するべきスロットを指定します。
+
+スロットがローカルか共有かにかかわらず、システムが共有するメソッドは、
+下記のような振る舞いをします。
+
+- もしスロットに対して、
+{initialization-arguments}リストにある*initarg*が値を特定している場合、
+値はそのスロットに格納されます。
+もしそのスロットにはすでに値が格納されている場合でも同様に、値が格納されます。
+値の格納は、メソッドが実行する前に行われます。
+
+- *slot-names*で指定されたどんなスロットでも、
+現時点においてまだ`unbound`であった場合は、
+`:initform`フォームによって初期化されます。
+`:initform`フォームを持ったどんなスロットでも、
+フォーム自体は{defclass:link}フォームが宣言されたレキシカル環境によって評価され、
+結果がスロットへ格納されます。
+例えば、`before`メソッドがスロットに値を格納した場合は、
+`:initform`フォームはスロットへの値の供給には使用されないでしょう。
+
+- 規則{7.1.4:ab}に従います。
+
+もし{initialization-arguments}が指定されなかった場合、
+*slot-names*引数によって指定されたスロットは
+`:initform`フォームに従って初期化されます。
+*slot-names*はスロットの名前のリストにすることができます。
+この場合は、スロットの名前の集合を指定することになります。
+あるいは、*slot-names*にシンボルである{t:link}を指定することもできます。
+この場合は、スロットのすべての集合を指定したことになります。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{initialize-instance:link},
+{reinitialize-instance:link},
+{update-instance-for-redefined-class:link},
+{update-instance-for-different-class:link},
+{slot-boundp:link},
+{slot-makunbound:link},
+{7.1:ab},
+{7.1.4:ab},
+{7.1.2:ab}
+
+
+## {notes}
+
+*initarg*は、{defclass:link}の`:iniarg`オプションを使用するか、
+あるいは{shared-initialize:link}のメソッドを定義することで、
+有効な宣言であるとされます。
+{shared-initialize:link}で定義されたメソッドのラムダリスト内の
+各キーワードパラメータ指定子のキーワード名は、
+そのメソッドが適用される全てのクラスで有効な*initarg*の名前として宣言されます。
+
+処理系は、`:initform`のフォームを、
+副作用を生成せず依存もせず、
+また{initialize-instance:link}のプライマリメソッドで処理するのではなく、
+{initialize-instance:link}メソッドを実行する前に、
+これらのフォームを評価してスロットに値を格納することが、
+最適化では許可されています。
+（この最適化は、{allocate-instance:link}メソッドに
+プロトタイプのインスタンスをコピーさせることで実現できるかもしれません。）
+
+処理系は、{initialization-arguments}リストが渡されるメソッドが
+全て{standard-object:link}上のメソッドのみである場合において、
+実際には完全な{initialization-arguments}リストを作成せず、
+*initargs*とスロットを関連付けるよう、
+デフォルト初期値フォームを最適化することが許可されています。
+この場合、デフォルトの初期値フォームは、
+`:initform`フォームのように扱うことができます。
+この最適化には、パフォーマンスの向上以外に目に見える効果はありません。
+
+@end
+

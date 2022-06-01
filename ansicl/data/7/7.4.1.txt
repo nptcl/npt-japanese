@@ -1,0 +1,34 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.4.1 標準メタオブジェクト
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.4.1
+@type: text
+
+オブジェクトシステムは、標準メタオブジェクトと呼ばれる
+メタオブジェクトの集合を提供します。
+これらは{standard-object:link}クラスと、
+{standard-method:link}, {standard-generic-function:link},
+{method-combination:link}のそれぞれのクラスのインスタンスを含みます。
+
+- {standard-method:link}クラスは、{defmethod:link}と{defgeneric:link}フォームによって
+定義されるメソッドの標準クラスです。
+
+- {standard-generic-function:link}クラスは、
+{defmethod:link}, {defgeneric:link}, {defclass:link}のフォームによって
+定義されるジェネリック関数の標準クラスです。
+
+- {standard-object:link}という名前のクラスは、
+{standard-class:link}クラスのインスタンスです。
+また{standard-object:link}は、自分自身と{structure-class:link}を除く、
+{standard-class:link}のインスタンスである全てのクラスのスーパークラスです。
+
+すべてのmethod-combinationオブジェクトは、
+{method-combination:link}クラスのサブクラスのインスタンスです。
+
+@end
+

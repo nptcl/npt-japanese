@@ -1,0 +1,60 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.1.7 Make-InstanceとInitialize-Instanceの宣言
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.1.7
+@type: text
+
+ジェネリック関数{make-instance:link}は、最適化を考えない場合は、
+下記に示す宣言のように実行されます。
+
+```lisp
+(defmethod make-instance ((class standard-class) &rest initargs)
+  ...
+  (let ((instance (apply #'allocate-instance class initargs)))
+    (apply #'initialize-instance instance initargs)
+    instance))
+
+(defmethod make-instance ((class-name symbol) &rest initargs)
+  (apply #'make-instance (find-class class-name) initargs))
+```
+
+{make-instance:link}の定義で省かれているコードは、
+`initargs`をデフォルト{initialization-arguments}によって指定する部分であり、
+また{initialization-arguments}の結果を
+{initialization-arguments}に設定するかどうか決定するために、
+スロットに値が設定されておらず、
+メソッドの引数として供給もされていないかどうかをチェックする部分となります。
+
+ジェネリック関数{initialize-instance:link}は、最適化を考えない場合は、
+下記に示す宣言のように実行されます。
+
+```lisp
+(defmethod initialize-instance ((instance standard-object) &rest initargs)
+  (apply #'shared-initialize instance t initargs)))
+```
+
+これらのコードはカスタマイズ可能です。
+
+プログラマーへのインターフェイスレベルとしてカスタマイズできるものは、
+{defclass:link}のオプションである、`:initform`, `:initarg`, 
+そして`:default-initargs`が含まれますし、
+同様に{make-instance:link}, {allocate-instance:link},
+そして{initialize-instance:link}のメソッド宣言があげられます。
+{shared-initialize:link}のメソッドを定義することも可能です。
+この関数は、ジェネリック関数の{reinitialize-instance:link},
+{update-instance-for-redefined-class:link}, 
+{update-instance-for-different-class:link},
+そして{initialize-instance:link}によって実行されます。
+メタオブジェクトレベルでは、追加でカスタマイズをサポートします。
+
+処理系は、{initialize-instance:link}と{shared-initialize:link}について
+明確な最適化を許容しています。
+7章にある{shared-initialize:link}の定義では、可能な最適化についての説明があります。
+
+@end
+

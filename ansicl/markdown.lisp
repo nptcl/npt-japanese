@@ -14,7 +14,7 @@
 ;;  parse
 ;;
 (defun reference-markdown (str)
-  (cons 'ref (read-split #\: str)))
+  (cons 'ref (read-colon str)))
 
 ;;  string
 (defun parensis-bracket-markdown (str)

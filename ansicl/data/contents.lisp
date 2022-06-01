@@ -47,9 +47,23 @@
 ;; Chapter 3
 (index 3.2 "コンパイル" "Compilation")
 (text 3.2.1 "コンパイラーの用語" "Compiler Terminology")
+(index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
+(index 3.8 "評価とコンパイルの辞書" "Evaluation and Compilation Dictionary")
+(dictionary 3.8.defmacro)
 
 ;; Chapter 4
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
+(dictionary 4.4.generic-function)
+(dictionary 4.4.standard-generic-function)
+(dictionary 4.4.class)
+(dictionary 4.4.built-in-class)
+(dictionary 4.4.structure-class)
+(dictionary 4.4.standard-class)
+(dictionary 4.4.method)
+(dictionary 4.4.standard-method)
+(dictionary 4.4.structure-object)
+(dictionary 4.4.standard-object)
+(dictionary 4.4.method-combination)
 (dictionary 4.4.t)
 (dictionary 4.4.coerce)
 (dictionary 4.4.typep)
@@ -57,12 +71,116 @@
 
 ;; Chapter 5
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
+(dictionary 5.3.apply)
+(dictionary 5.3.funcall)
 (dictionary 5.3.program-error)
 (dictionary 5.3.nil!variable)
 (dictionary 5.3.eq)
 (dictionary 5.3.eql)
 (dictionary 5.3.equal)
 (dictionary 5.3.equalp)
+
+;; Chapter 7
+(text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")
+(text 7.1.1 "{initialization-arguments}" "Initialization Arguments")
+(text 7.1.2 "{initialization-arguments}の有効性の宣言"
+      "Declaring the Validity of Initialization Arguments")
+(text 7.1.3 "{initialization-arguments}のデフォルト値"
+      "Defaulting of Initialization Arguments")
+(text 7.1.4 "{initialization-arguments}の規則" "Rules for Initialization Arguments")
+(text 7.1.5 "Shared-Initialize" "Shared-Initialize")
+(text 7.1.6 "Initialize-Instance" "Initialize-Instance")
+(text 7.1.7 "Make-InstanceとInitialize-Instanceの宣言"
+      "Definitions of Make-Instance and Initialize-Instance")
+(text 7.2 "インスタンスのクラスの変更" "Changing the Class of an Instance")
+(text 7.2.1 "インスタンスの構造の修正" "Modifying the Structure of the Instance")
+(text 7.2.2 "新しく追加された局所スロットの初期化"
+      "Initializing Newly Added Local Slots")
+(text 7.2.3 "インスタンスのクラスの更新のカスタマイズ"
+      "Customizing the Change of Class of an Instance")
+(text 7.3 "インスタンスの再初期化" "Reinitializing an Instance")
+(text 7.3.1 "再初期化のカスタマイズ" "Customizing Reinitialization")
+(text 7.4 "メタオブジェクト" "Meta-Objects")
+(text 7.4.1 "標準メタオブジェクト" "Standard Meta-objects")
+(index 7.5 "スロット" "Slots")
+(text 7.5.1 "スロットの紹介" "Introduction to Slots")
+(text 7.5.2 "スロットへのアクセス" "Accessing Slots")
+(text 7.5.3 "スロットの継承とスロットオプション"
+      "Inheritance of Slots and Slot Options")
+(index 7.6 "ジェネリック関数とメソッド" "Generic Functions and Methods")
+(text 7.6.1 "ジェネリック関数の紹介" "Introduction to Generic Functions")
+(text 7.6.2 "メソッドの紹介" "Introduction to Methods")
+(text 7.6.3 "特定パラメーターと{qualifiers}の合致"
+      "Agreement on Parameter Specializers and Qualifiers")
+(text 7.6.4 "ジェネリック関数の全てのメソッドのラムダリストの合意"
+      "Congruent Lambda-lists for all Methods of a Generic Function")
+(text 7.6.5 "ジェネリック関数とメソッドのキーワード引数"
+      "Keyword Arguments in Generic Functions and Methods")
+(text 7.6.5.1 "ジェネリック関数とメソッドのキーワード引数の例"
+      "Examples of Keyword Arguments in Generic Functions and Methods")
+(text 7.6.6 "メソッドの選択とコンビネーション" "Method Selection and Combination")
+(text 7.6.6.1 "有効なメソッドの決定" "Determining the Effective Method")
+(text 7.6.6.1.1 "適用可能なメソッドの選択" "Selecting the Applicable Methods")
+(text 7.6.6.1.2 "優先順位による適用可能なメソッドのソート"
+      "Sorting the Applicable Methods by Precedence Order")
+(text 7.6.6.1.3 "ソートされた適用可能なメソッドのMethod-Combination実行"
+      "Applying method combination to the sorted list of applicable methods")
+(text 7.6.6.2 "Standard Method-Combination" "Standard Method Combination")
+(text 7.6.6.3 "Method-Combinationの宣言" "Declarative Method Combination")
+(text 7.6.6.4 "組み込みのMethod-Combination" "Built-in Method Combination Types")
+(text 7.6.7 "メソッドの継承" "Inheritance of Methods")
+(index 7.7 "オブジェクトの辞書" "Objects Dictionary")
+(dictionary 7.7.function-keywords)
+(dictionary 7.7.ensure-generic-function)
+(dictionary 7.7.allocate-instance)
+(dictionary 7.7.reinitialize-instance)
+(dictionary 7.7.shared-initialize)
+(dictionary 7.7.update-instance-for-different-class)
+(dictionary 7.7.update-instance-for-redefined-class)
+(dictionary 7.7.change-class)
+(dictionary 7.7.slot-boundp)
+(dictionary 7.7.slot-exists-p)
+(dictionary 7.7.slot-makunbound)
+(dictionary 7.7.slot-missing)
+(dictionary 7.7.slot-unbound)
+(dictionary 7.7.slot-value)
+(dictionary 7.7.method-qualifiers)
+(dictionary 7.7.no-applicable-method)
+(dictionary 7.7.no-next-method)
+(dictionary 7.7.remove-method)
+(dictionary 7.7.make-instance)
+(dictionary 7.7.make-instances-obsolete)
+(dictionary 7.7.make-load-form)
+(dictionary 7.7.make-load-form-saving-slots)
+(dictionary 7.7.with-accessors)
+(dictionary 7.7.with-slots)
+(dictionary 7.7.defclass)
+(dictionary 7.7.defgeneric)
+(dictionary 7.7.defmethod)
+(dictionary 7.7.find-class)
+(dictionary 7.7.next-method-p)
+(dictionary 7.7.call-method)
+(dictionary 7.7.make-method)  ;; delete
+(dictionary 7.7.call-next-method)
+(dictionary 7.7.compute-applicable-methods)
+(dictionary 7.7.define-method-combination)
+(dictionary 7.7.find-method)
+(dictionary 7.7.add-method)
+(dictionary 7.7.initialize-instance)
+(dictionary 7.7.class-name)
+;(dictionary 7.7.(setf class-name))
+(dictionary 7.7.class-of)
+(dictionary 7.7.unbound-slot)
+(dictionary 7.7.unbound-slot-instance)
+
+;; Chapter 8
+(index 8.2 "構造体の辞書" "Structures Dictionary")
+(dictionary 8.2.defstruct)
+(dictionary 8.2.copy-structure)
+
+;; Chapter 9
+(index 9.2 "コンディションの辞書" "Conditions Dictionary")
+(dictionary 9.2.define-condition)
 
 ;; Chapter 13
 (index 13.1 "文字の説明" "Character Concepts")
@@ -128,7 +246,7 @@
 
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")
-(text 22.1.3 "標準のPrint-Object`メソッド" "Default Print-Object Methods")
+(text 22.1.3 "標準のPrint-Objectメソッド" "Default Print-Object Methods")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")

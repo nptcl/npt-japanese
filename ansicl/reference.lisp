@@ -37,12 +37,58 @@
   (or2 (gethash key *reference-value*)
        (error "There is no value, ~S." key)))
 
-(defun reference (key)
+(defun reference-find (key)
   (dbind (key . cdr) key
-    (let ((key (read-split #\. key)))
+    (let ((key (read-split #\. key))
+          (cdr (mapcar #'read-from-string cdr)))
       (if cdr
         (reference-cons key cdr)
         (reference-single key)))))
+
+
+;;
+;;  recursive replace
+;;
+(defun reference-update (str)
+  (setq *reference-update* t)
+  (reference-find (read-colon str)))
+
+(defun reference-parensis (str)
+  (mvbind (x y z) (parensis-bracket-markdown str)
+    (if x
+      (list* x (reference-update y) (reference-parensis z))
+      (list str))))
+
+(defun reference-code (str)
+  (mvbind (x y z) (parensis-code-markdown str)
+    (if x
+      (nconc (reference-parensis x)
+             (list y)
+             (code-split-markdown z))
+      (reference-parensis str))))
+
+(defun reference-concatenate (str)
+  (let ((list (reference-code str)))
+    (when *reference-update*
+      (with-output-to-string (s)
+        (dolist (x list)
+          (princ x s))))))
+
+(defun reference-loop (str)
+  (setq *reference-update* nil)
+  (let ((value (reference-concatenate str)))
+    (if *reference-update*
+      (reference-loop value)
+      str)))
+
+(defun reference (key)
+  (let (*reference-update*)
+    (reference-loop
+      (reference-find key))))
+
+(defun reference-string (str)
+  (let (*reference-update*)
+    (reference-loop str)))
 
 
 ;;

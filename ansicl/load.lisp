@@ -42,7 +42,7 @@
          (name (queue-root *load-name*))
          (list (queue-root *load-list*))
          (x (make-dictionary :type type :name name :list list)))
-    (unless name
+    (unless (or (eq type 'text) type)
       (error "There is no @name line."))
     (setf (contents-text *load-begin*) x)))
 
@@ -79,13 +79,18 @@
   (when *load-type*
     (error "@type is already exist."))
   (dbind (type) cdr
-    (setq *load-type* type)))
+    (setq *load-type* (read-from-string type))))
 
-(defun load-command-split (x)
-  (mapcar #'trim (read-split #\: x)))
+(defun load-index (cdr)
+  (load-begin-check)
+  (unless (eq *load-type* 'text)
+    (error "@type must be a text at @index operator."))
+  (when cdr
+    (error "@index must be a null argument, but ~S." cdr))
+  (enqueue *load-list* 'index))
 
 (defun load-command (x)
-  (dbind (car . cdr) (load-command-split x)
+  (dbind (car . cdr) (read-colon x)
     (cond ((string-equal car "@begin")
            (load-begin cdr))
           ((string-equal car "@end")
@@ -94,6 +99,8 @@
            (load-name cdr))
           ((string-equal car "@type")
            (load-type cdr))
+          ((string-equal car "@index")
+           (load-index cdr))
           (t (error "Invalid operator, ~S." car)))))
 
 (defun string-first-p (str char)

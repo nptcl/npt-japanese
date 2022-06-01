@@ -1,0 +1,63 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  7.1.6 Initialize-Instance
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.1.6
+@type: text
+
+ジェネリック関数{initialize-instance:link}は、
+新しく作成されたインスタンスを初期化するために、
+{make-instance:link}によって呼び出されます。
+method-combinationは`standard`が使われます。
+{initialize-instance:link}のメソッドは、
+単純に初期値をスロットに指定できないような初期化を実行するために定義できます。
+
+初期化中では、次に示したアクションを実行したあとに
+{initialize-instance:link}が呼び出されます。
+
+- デフォルト{initialization-arguments}リストは、
+提供された{initialization-arguments}リストと
+各クラスのデフォルト{initialization-arguments}を結びつける計算がされます。
+
+- デフォルト{initialization-arguments}リストの有効性はチェックされます。
+もしどの{initialization-arguments}の有効として宣言されていなかった場合は、
+エラーが発せられます。
+
+- 新しいインスタンスはスロットが`unbound`として作成されます。
+
+ジェネリック関数{initialize-instance:link}は
+新しいインスタンスとデフォルト{initialization-arguments}とともに呼び出されます。
+システムが提供する{initialize-instance:link}のメソッドでは、
+特定パラメーターは{standard-object:link}クラスのものが存在します。
+このメソッドは、ジェネリック関数{shared-initialize:link}を呼び出し、
+{initialization-arguments}に対応したものか、
+あるいは`:initform`フォームに対応した値を設定します。
+ジェネリック関数{shared-initialize:link}の引数は、
+インスタンス、{t:link}、デフォルト{initialization-arguments}を指定して呼び出されます。
+
+注意として、{initialize-instance:link}はデフォルト{initialization-arguments}リストを
+{shared-initialize:link}の呼び出し時に提供します。
+そして最初のステップとして、
+システムが提供する{shared-initialize:link}のメソッドは、
+{make-instance:link}呼び出し時に提供された{initialization-arguments}と、
+デフォルト{initialization-arguments}リストの両方を集計して呼び出されます。
+
+{initialize-instance:link}のメソッドは、
+インスタンスの初期化時に、特定のアクションを定義することができます。
+もし{initialize-instance:link}の`after`メソッドだけが定義された場合、
+これらはシステムが提供した初期化後に実行されます。
+したがってこれらは、{initialize-instance:link}の標準的な動作には干渉しないでしょう。
+
+オブジェクトシステムは、{initialize-instance:link}メソッドの構築に
+便利な2つの関数を提供しています。
+関数{slot-boundp:link}は、スロットが値を持っているかどうかを示すブール値を返却します。
+これは{initialize-instance:link}の`after`メソッドを記述する際に、
+まだ初期化されていないスロットのみを初期化するような仕組みを提供します。
+関数{slot-makunbound:link}は、スロットの値を削除します。
+
+@end
+

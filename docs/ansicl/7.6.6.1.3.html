@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.6.6.1.3. ソートされた適用可能なメソッドのMethod-Combination実行</h1>
 </header>
+<p><a href="7.6.6.1.html">UP</a></p>
+<hr />
 <p>7.6.6.1.3. ソートされた適用可能なメソッドのMethod-Combination実行</p>
 <p>単純な場合として、method-combinationは<code>standard</code>が使われており、 全ての適用可能なメソッドはプライマリメソッドであるとします。 この場合は、有効メソッドは最も特定的なメソッドとなります。 メソッドは、次に特定的なメソッドを関数<code>call-next-method</code>の使用にて呼び出すことができます。 <code>call-next-method</code>によって呼び出されるメソッドは、次のメソッドと言います。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかをテストします。 もし<code>call-next-method</code>が呼ばれたものの、次の特定的なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。</p>
 <p>一般的に、有効なメソッドは、適用可能なメソッドを組み合わせた結果のいくつかとなります。 これは次に記載されたような目的によりフォームとして定義されます。 適用可能なメソッドは、いくつかが呼ばれるか、あるいは全部が呼ばれるかを定義します。 また、返却値は1つか複数が返却されるように定義します。 その返却値はジェネリック関数として返却されるものです。 付加的にはいくつかのメソッドが<code>call-next-method</code>を用いてアクセス可能になるように定義します。</p>
@@ -160,5 +162,7 @@
 <p>method-combinationの<code>standard</code>が限定されたメソッドと一緒に使われたときは、 有効なメソッドは<a href="7.6.6.2.html">7.6.6.2. Standard Method-Combination</a>に記載されたものとして生成されます。</p>
 <p>他のタイプのmethod-combinationは、<code>defgeneric</code>かあるいは別のオペレーターで ジェネリック関数のオプション<code>:method-combination</code>を使うことで使用できます。 この方法により、手順をカスタマイズできます。</p>
 <p>新しいタイプのmethod-combinationは、 <code>define-method-combination</code>マクロを使うことによって定義することができます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

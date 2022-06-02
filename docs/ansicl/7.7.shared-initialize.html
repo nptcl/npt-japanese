@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">Standard-Generic-Function SHARED-INITIALIZE</h1>
 </header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
 <h1 id="standard-generic-function-shared-initialize">Standard-Generic-Function SHARED-INITIALIZE</h1>
 <p>Standard Generic Function <code>SHARED-INITIALIZE</code></p>
 <h2 id="構文">構文</h2>
@@ -185,5 +187,7 @@
 <p><em>initarg</em>は、<code>defclass</code>の<code>:iniarg</code>オプションを使用するか、 あるいは<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することで、 有効な宣言であるとされます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>で定義されたメソッドのラムダリスト内の 各キーワードパラメータ指定子のキーワード名は、 そのメソッドが適用される全てのクラスで有効な<em>initarg</em>の名前として宣言されます。</p>
 <p>処理系は、<code>:initform</code>のフォームを、 副作用を生成せず依存もせず、 また<code>initialize-instance</code>のプライマリメソッドで処理するのではなく、 <code>initialize-instance</code>メソッドを実行する前に、 これらのフォームを評価してスロットに値を格納することが、 最適化では許可されています。 （この最適化は、<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>メソッドに プロトタイプのインスタンスをコピーさせることで実現できるかもしれません。）</p>
 <p>処理系は、初期化引数リストが渡されるメソッドが 全て<code>standard-object</code>上のメソッドのみである場合において、 実際には完全な初期化引数リストを作成せず、 <em>initargs</em>とスロットを関連付けるよう、 デフォルト初期値フォームを最適化することが許可されています。 この場合、デフォルトの初期値フォームは、 <code>:initform</code>フォームのように扱うことができます。 この最適化には、パフォーマンスの向上以外に目に見える効果はありません。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

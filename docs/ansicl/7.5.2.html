@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.5.2. スロットへのアクセス</h1>
 </header>
+<p><a href="7.5.html">UP</a></p>
+<hr />
 <p>7.5.2. スロットへのアクセス</p>
 <p>スロットは次の2つの方法にてアクセスできます。 関数<a href="7.7.slot-value.html"><code>slot-value</code></a>を使用する方法、 そして<code>defclass</code>フォームによって生成されるジェネリック関数を使用する方法です。</p>
 <p>関数<a href="7.7.slot-value.html"><code>slot-value</code></a>は、 <code>defclass</code>フォームで対象のクラスのインスタンスにて アクセス可能に設定したスロットに対しては、 どんなスロットの名前でも指定してアクセスすることができます。</p>
@@ -160,7 +162,9 @@
 <p>スロットに対して<code>reader</code>か<code>writer</code>のメソッドを指定するときは、 ジェネリック関数の名前とそれに沿って生成されるメソッドの名前を直接指定します。 もし<code>writer</code>メソッドの名前をシンボル<code>name</code>に指定した場合、 スロットへ書き込むためのジェネリック関数の名前がシンボル<code>name</code>となり、 そのジェネリック関数の引数は、 新しい値、インスタンスの順に2つ取ります。 もし<code>accessor</code>メソッドの名前をシンボル<code>name</code>に指定した場合、 スロットから読み込むためのジェネリック関数の名前がシンボル<code>name</code>となり、 そしてスロットへ書き込むためのジェネリック関数の名前が、リストの<code>(setf name)</code>となります。</p>
 <p>スロットオプションの<code>:reader</code>, <code>:writer</code>, <code>:accessor</code>の指定により、 作成か修正が行われたジェネリック関数は、 正確に普通のジェネリック関数として扱うことができます。</p>
 <p>注意として、<a href="7.7.slot-value.html"><code>slot-value</code></a>はスロットから値を読み込むか書き込む時に使われますが、 そのスロットの<code>reader</code>か<code>writer</code>のメソッドが存在するかどうかに関わらず使用できます。 <a href="7.7.slot-value.html"><code>slot-value</code></a>が使われる時、<code>reader</code>か<code>writer</code>のメソッドは実行されません。</p>
-<p>マクロ<code>with-slots</code>は、 指定されたスロットがレキシカル変数として使えるようにするレキシカル環境を確立します。 マクロ<code>with-slots</code>は、指定したスロットへアクセスするために関数<a href="7.7.slot-value.html"><code>slot-value</code></a>を実行します。</p>
-<p>マクロ<code>with-accessors</code>は、 指定したスロットがレキシカル変数としてスロットの<code>accessor</code>を通して 使えるようにするレキシカル環境を確立します。 マクロ<code>with-accessors</code>は、指定したスロットへアクセスするために、 適切な<code>accessor</code>を実行します。</p>
+<p>マクロ<a href="7.7.with-slots.html"><code>with-slots</code></a>は、 指定されたスロットがレキシカル変数として使えるようにするレキシカル環境を確立します。 マクロ<a href="7.7.with-slots.html"><code>with-slots</code></a>は、指定したスロットへアクセスするために関数<a href="7.7.slot-value.html"><code>slot-value</code></a>を実行します。</p>
+<p>マクロ<a href="7.7.with-accessors.html"><code>with-accessors</code></a>は、 指定したスロットがレキシカル変数としてスロットの<code>accessor</code>を通して 使えるようにするレキシカル環境を確立します。 マクロ<a href="7.7.with-accessors.html"><code>with-accessors</code></a>は、指定したスロットへアクセスするために、 適切な<code>accessor</code>を実行します。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

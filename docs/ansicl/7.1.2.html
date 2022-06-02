@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.1.2. 初期化引数の有効性の宣言</h1>
 </header>
+<p><a href="7.1.html">UP</a></p>
+<hr />
 <p>7.1.2. 初期化引数の有効性の宣言</p>
 <p>初期化引数は、4つの状況にて有効性がチェックされます。 初期化引数はひとつの状況では有効かもしれませんが、 他はそうではないかもしれません。 例えば、システムで提供された<a href="7.7.make-instance.html"><code>make-instance</code></a>のメソッドの <code>standard-class</code>クラスを対象とした場合を考えます。 もし初期化引数が与えられていたものの、 有効性としての宣言がされていなかった場合、 メソッドは初期化引数の有効性チェックにおいて エラーのシグナルを発することになります。</p>
 <p>初期化引数の有効性の宣言は、次の2つの意味があります。</p>
@@ -165,5 +167,7 @@
 <li><p>関数<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>と <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>により、 違うクラスの定義にインスタンスを更新するとき。 違うクラスの定義にインスタンスを更新するとき、 これらのメソッドにより有効だと宣言された初期化引数は有効です。</p></li>
 </ul>
 <p>クラスの有効な初期化引数の集合は、スロットの値の設定か、 あるいは初期化引数の前宣言として与えられる<code>:allow-other-keys</code>に従った メソッドの引数かのどちらかの初期化引数の集合です。 <code>:allow-other-keys</code>のデフォルト値は<code>nil</code>です。 もし初期化引数<code>:allow-other-keys</code>の値が<code>true</code>であるならば、 初期化引数の有効性の確認は無効となります。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

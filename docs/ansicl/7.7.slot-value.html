@@ -216,6 +216,8 @@
 <header id="title-block-header">
 <h1 class="title">Function SLOT-VALUE</h1>
 </header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
 <h1 id="function-slot-value">Function SLOT-VALUE</h1>
 <p>Function <code>SLOT-VALUE</code></p>
 <h2 id="構文">構文</h2>
@@ -262,9 +264,11 @@ value - オブジェクト</p>
 <p>（この場合、<a href="7.7.slot-missing.html"><code>slot-missing</code></a>が返却されたとき、 全ての値は無視されます。）</p>
 <p>具体的なふるまいは、<em>instance</em>のメタクラスに依存します。 もし<em>instance</em>のメタクラスが<code>standard-class</code>なら、 決してエラーは発生しません。 もし<em>instance</em>のメタクラスが<code>built-in-class</code>なら、 常にエラーが発生します。 もし<em>instance</em>が他のメタクラスなら結果は規定されておらず、 状況によってエラーが発生するかもしれませんし、 されないかもしれません。 特にコンディションと構造体についての動作は規定されていません。</p>
 <h2 id="参考">参考</h2>
-<p><a href="7.7.slot-missing.html"><code>slot-missing</code></a>, <a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>, <code>with-slots</code></p>
+<p><a href="7.7.slot-missing.html"><code>slot-missing</code></a>, <a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>, <a href="7.7.with-slots.html"><code>with-slots</code></a></p>
 <h2 id="備考">備考</h2>
 <p>実装は必須ではありませんが、 実装者はMetaobject Protocolで説明されている 関数<code>slot-value-using-class</code>を使用して 関数<a href="7.7.slot-value.html"><code>slot-value</code></a>を実装することが強く推奨されます。</p>
 <p>実装者は<a href="7.7.slot-value.html"><code>slot-value</code></a>をコンパイル時にインラインに最適化するかもしれません。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

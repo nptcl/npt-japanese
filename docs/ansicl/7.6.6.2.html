@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.6.6.2. Standard Method-Combination</h1>
 </header>
+<p><a href="7.6.6.html">UP</a></p>
+<hr />
 <p>7.6.6.2. Standard Method-Combination</p>
 <p>method-combinationの<code>standard</code>は、<code>standard-generic-function</code>クラスによって提供されます。 これはmethod-combinationのタイプが指定されなかった場合か、 あるいは組み込みのmethod-combinationタイプである<code>standard</code>が指定された場合に使われます。</p>
 <p>プライマリメソッドは有効なメソッドのメインとなる動作として定義されます。 補助メソッドは3つあるうちの1つの方法を用いて動作を変更します。 プライマリメソッドは修飾子を持ちません。</p>
@@ -178,5 +180,7 @@
 <p><code>before</code>メソッドは<code>most-specific-first</code>順にて実行され、 <code>after</code>メソッドは<code>least-specific-first</code>順に実行されます。 この設計の違いの根拠を、例として次のように示します。 クラス<code>C1</code>がスーパークラスである<code>C2</code>の動作を、 <code>before</code>メソッドと<code>after</code>メソッドに追加することで変更することを考えます。 クラス<code>C2</code>の振る舞いが<code>C2</code>のメソッドとして直接定義するか、 あるいはスーパクラスを継承によるものかに関わらず、 クラス<code>C1</code>のインスタンスによって呼び出されるメソッドの相対的な順番には影響しません。 クラス<code>C1</code>の<code>before</code>メソッドは、クラス<code>C2</code>の全てのメソッドの前に実行されます。 クラス<code>C1</code>の<code>after</code>メソッドは、クラス<code>C2</code>の全てのメソッドの後に実行されます。</p>
 <p>対称的に、全ての<code>around</code>メソッドが実行されるのは、他のメソッドが実行される前です。 このように最も遠い<code>around</code>メソッドは、最も特定的なプライマリメソッドの前に実行されます。</p>
 <p>もしプライマリメソッドのみが宣言されており、 さらに<code>call-next-method</code>が使用されなかった場合は、 最も特定的なメソッドのみが実行されます。 つまり最も特定的なメソッドが他の一般的なメソッドをシャドウしたということです。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

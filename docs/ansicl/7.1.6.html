@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.1.6. Initialize-Instance</h1>
 </header>
+<p><a href="7.1.html">UP</a></p>
+<hr />
 <p>7.1.6. Initialize-Instance</p>
 <p>ジェネリック関数<code>initialize-instance</code>は、 新しく作成されたインスタンスを初期化するために、 <a href="7.7.make-instance.html"><code>make-instance</code></a>によって呼び出されます。 method-combinationは<code>standard</code>が使われます。 <code>initialize-instance</code>のメソッドは、 単純に初期値をスロットに指定できないような初期化を実行するために定義できます。</p>
 <p>初期化中では、次に示したアクションを実行したあとに <code>initialize-instance</code>が呼び出されます。</p>
@@ -165,5 +167,7 @@
 <p>注意として、<code>initialize-instance</code>はデフォルト初期化引数リストを <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の呼び出し時に提供します。 そして最初のステップとして、 システムが提供する<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドは、 <a href="7.7.make-instance.html"><code>make-instance</code></a>呼び出し時に提供された初期化引数と、 デフォルト初期化引数リストの両方を集計して呼び出されます。</p>
 <p><code>initialize-instance</code>のメソッドは、 インスタンスの初期化時に、特定のアクションを定義することができます。 もし<code>initialize-instance</code>の<code>after</code>メソッドだけが定義された場合、 これらはシステムが提供した初期化後に実行されます。 したがってこれらは、<code>initialize-instance</code>の標準的な動作には干渉しないでしょう。</p>
 <p>オブジェクトシステムは、<code>initialize-instance</code>メソッドの構築に 便利な2つの関数を提供しています。 関数<a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>は、スロットが値を持っているかどうかを示すブール値を返却します。 これは<code>initialize-instance</code>の<code>after</code>メソッドを記述する際に、 まだ初期化されていないスロットのみを初期化するような仕組みを提供します。 関数<a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>は、スロットの値を削除します。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

@@ -54,3 +54,7 @@ Version 15.17R, X3J13/94-101R.
 
 [https://github.com/nptcl/npt-japanese](https://github.com/nptcl/npt-japanese)
 
+
+---
+[TOP](index.html),  [Github](https://github.com/nptcl/npt-japanese)
+

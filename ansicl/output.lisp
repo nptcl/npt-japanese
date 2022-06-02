@@ -4,6 +4,43 @@
 
 (declaim (ftype function  linkpage))
 
+;;
+;;  footer
+;;
+(defun contents-prev (x)
+  (declare (ignore x))
+  nil)
+
+(defun contents-up (x)
+  (aif (butlast (contents-index x))
+    (awhen (find-contents it)
+      (filename-html
+        (contents-string it)))
+    "index.html"))
+
+(defun contents-next (x)
+  (declare (ignore x))
+  nil)
+
+(defun output-header (s x)
+  ;;  PREV  UP  NEXT
+  (awhen (contents-prev x)
+    (format s "[PREV](~A)  " it))
+  (awhen (contents-up x)
+    (format s "[UP](~A)  " it))
+  (awhen (contents-next x)
+    (format s "[NEXT](~A)" it))
+  (format s "~2&---~2%"))
+
+(defun output-footer (s)
+  (format s "~2&---~%")
+  (format s "[TOP](index.html),  ")
+  (format s "[Github](https://github.com/nptcl/npt-japanese)~2%"))
+
+
+;;
+;;  index
+;;
 (defun dictionary-title (x)
   (let* ((inst (contents-text x))
          (name (dictionary-name inst))
@@ -75,6 +112,7 @@
 (defun dictionary-header (s x)
   (let ((name (dictionary-title x)))
     (format s "% ~A~2%" name)
+    (output-header s x)
     (format s "# ~A~2%" name)))
 
 (defun dictionary-body (s x)
@@ -103,10 +141,12 @@
   (let ((index (contents-string x))
         (title (reference-title x)))
     (format s "% ~A. ~A~2%" index title)
+    (output-header s x)
     (format s "~A. ~A~2%" index title)))
 
 (defun linkpage-footer (s x)
-  (declare (ignore s x)))
+  (declare (ignore x))
+  (output-footer s))
 
 (defun text-stream (s x)
   (linkpage-header s x)
@@ -206,7 +246,8 @@
   (format s "1994年8月12日金曜日　午後6時35分（米国東部標準時・夏時間）~2%")
   (format s "# 配布~2%")
   (let ((x "https://github.com/nptcl/npt-japanese"))
-    (format s "[~A](~A)~2%" x x)))
+    (format s "[~A](~A)~2%" x x))
+  (output-footer s))
 
 (defun toppage-stream (s)
   (toppage-header s)

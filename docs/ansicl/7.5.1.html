@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.5.1. スロットの紹介</h1>
 </header>
+<p><a href="7.5.html">UP</a></p>
+<hr />
 <p>7.5.1. スロットの紹介</p>
 <p><code>standard-class</code>がメタクラスのオブジェクトは、 0個かそれ以上の名前の付いたスロットを持ちます。 オブジェクトのスロットは、オブジェクトのクラスによって決められます。 各スロットは、値を保有できます。 スロットの名前は、変数名として使うのに有効な構文のシンボルです。</p>
 <p>スロットが値を持っていないときは、そのスロットは<code>unbound</code>であると言われます。 もし<code>unbound</code>のスロットを読み込んだ場合は、 ジェネリック関数の<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>が呼び出されます。 システムが提供する<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>のメソッドでは、 引数の特定パラメーターが<a href="4.4.t-system-class.html"><code>t</code></a>クラスのものが提供されており、 エラーが発せられます。 もし<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>が値を返却する場合は、 第一返却値はスロットの値として、そのときに使用されるものとなります。</p>
@@ -161,5 +163,7 @@
 <p><code>defclass</code>フォームによるクラスが、スロット特定子に名前を含んでいたとき、 クラスは名前が与えられたスロットが定義されたと言います。 局所スロットの宣言では、即座にはスロットが作成されません。 なぜならクラスのインスタンスが作成されるときに、スロットが作成されるからです。 共有スロットは宣言では、即座にスロットを作成します。</p>
 <p><code>defclass</code>のスロットオプション<code>:allocation</code>は、スロットの定義時に種類を指定します。 もしスロットオプション<code>:allocation</code>の値が<code>:instance</code>ならば、局所スロットが作成されます。 もしスロットオプション<code>:allocation</code>が<code>:class</code>ならば、共有スロットが作成されます。</p>
 <p>もしスロットがインスタンスのクラスによって定義された場合、 あるいはクラスのスーパークラスから継承された場合は、 スロットはクラスのインスタンスからアクセス可能であると言います。 インスタンスからは、せいぜい一つの名前付きスロットがアクセス可能です。 クラスによって定義された共有スロットは、 クラスのすべてのインスタンスからアクセス可能です。 スロットの継承による詳細な説明は、<a href="7.5.3.html">7.5.3. スロットの継承とスロットオプション</a>を参照。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

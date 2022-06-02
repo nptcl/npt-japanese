@@ -53,4 +53,6 @@
 (replace literal-object "リテラルオブジェクト")
 (replace confirming-implementation "仕様に適合した実装")
 (replace confirming-program "仕様に適合したプログラム")
+(replace implicit-progn "暗黙のprogn")
+(replace accessor "アクセッサ")
 

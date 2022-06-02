@@ -216,6 +216,8 @@
 <header id="title-block-header">
 <h1 class="title">7.6.6.4. 組み込みのMethod-Combination</h1>
 </header>
+<p><a href="7.6.6.html">UP</a></p>
+<hr />
 <p>7.6.6.4. 組み込みのMethod-Combination</p>
 <p>オブジェクトシステムは、組み込みのmethod-combinationタイプをいくつか提供しています。 これらのmethod-combinationタイプのうちの1つを、ジェネリック関数で使うことができます。 指定する方法は、method-combinationタイプの名前を、 <code>defgeneric</code>の<code>:method-combination</code>オプションに引数として与えるか、 その他のオペレーターでジェネリック関数の オプション<code>:method-combination</code>を指定することです。</p>
 <p>組み込みのmethod-combinationタイプの名前を、次の表に示します。</p>
@@ -249,5 +251,7 @@ standard
 <p>もし式<code>&lt;Mi a1...an&gt;</code>が評価されたとき、メソッド<code>Mi</code>は引数<code>a1...an</code>を適用します。 例えば<code>operator</code>が<code>or</code>のとき、式<code>&lt;Mi a1...an&gt;</code>は、 ただ<code>&lt;Mj a1...an&gt;</code>, <code>1≦j&lt;i</code>が<code>nil</code>を返却したときのみに評価されます。</p>
 <p>プライマリメソッドのデフォルトの順番は<code>:most-specific-first</code>です。 しかし、<code>:method-combination</code>オプションの2番目の引数に <code>:most-specific-last</code>を指定したときは逆順にすることができます。</p>
 <p>シンプルな組み込みmethod-combinationタイプは、 メソッドに対して正確に1つの修飾子を要求します。 もし修飾子が存在しない適用可能なメソッドか、 あるいはmethod-combinationタイプが認識しない修飾子を指定したときはエラーが発せられます。 もし<code>around</code>メソッドが存在するものの、プライマリメソッドが存在しない場合は、エラーが発せられます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

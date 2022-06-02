@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">Standard-Generic-Function UPDATE-INSTANCE-FOR-DIFFERENT-CLASS</h1>
 </header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
 <h1 id="standard-generic-function-update-instance-for-different-class">Standard-Generic-Function UPDATE-INSTANCE-FOR-DIFFERENT-CLASS</h1>
 <p>Standard Generic Function <code>UPDATE-INSTANCE-FOR-DIFFERENT-CLASS</code></p>
 <h2 id="構文">構文</h2>
@@ -168,7 +170,7 @@
 <p>システムが提供する<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の プライマリメソッドは、<em>initargs</em>の有効性を確認し、 もし<em>initargs</em>に有効として宣言されていないものが与えられていた場合は エラーが通知されます。 このメソッドは、<em>initargs</em>に対応する値でスロットを初期化します。 そして新たに追加されたスロットには<code>:initform</code>フォーム対応した値で初期化します。 このような動作は、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を 次のような引数で呼び出すことで行います。 引数は、インスタンス（<em>current</em>）、 新しく追加されたスロットの名前のリスト、 そして受け取った<em>initargs</em>。 新しく追加されたスロットとは、 以前のクラスに同じ名前のスロットが存在しない局所スロットのことです。</p>
 <p><a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>のメソッドを定義することで、 インスタンス更新時の動作を指定することができます。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の <code>after</code>メソッドのみが定義されている場合は、 それらはシステムが提供している初期化の プライマリメソッドの後に実行されるため、 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の デフォルトの動作に干渉することはありません。</p>
 <p><a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>のメソッドは、 <a href="7.7.change-class.html"><code>change-class</code></a>とは違うスロットの初期化を定義できます。 <a href="7.7.change-class.html"><code>change-class</code></a>のデフォルトの動作は、<a href="7.2.html">7.2. インスタンスのクラスの変更</a>に定義されています。</p>
-<p><a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の引数は、 <a href="7.7.change-class.html"><code>change-class</code></a>によって計算されます。 <a href="7.7.change-class.html"><code>change-class</code></a>がインスタンスとともに起動されると そのインスタンスのコピーが生成され、 そのとき<a href="7.7.change-class.html"><code>change-class</code></a>は元のインスタンスを破壊的に変更します。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の最初の引数である <em>previous</em>はコピーであり、古いスロットの値が一時的に保存されます。 この引数は<a href="7.7.change-class.html"><code>change-class</code></a>内で動的生存期間を持ちます。 もし<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>から戻った後に、 何らかの方法で参照された場合、結果は未定義です。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の二番目の引数である <em>current</em>は変更された元のインスタンスです。 <em>previous</em>の使用目的は、 <a href="7.7.slot-value.html"><code>slot-value</code></a>か、<code>with-slots</code>か、リーダーのジェネリック関数によって、 古いスロットの値を読みだしたり、 あるいは元のクラスのインスタンスとして適用できる 他のメソッドを実行したりすることです。</p>
+<p><a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の引数は、 <a href="7.7.change-class.html"><code>change-class</code></a>によって計算されます。 <a href="7.7.change-class.html"><code>change-class</code></a>がインスタンスとともに起動されると そのインスタンスのコピーが生成され、 そのとき<a href="7.7.change-class.html"><code>change-class</code></a>は元のインスタンスを破壊的に変更します。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の最初の引数である <em>previous</em>はコピーであり、古いスロットの値が一時的に保存されます。 この引数は<a href="7.7.change-class.html"><code>change-class</code></a>内で動的生存期間を持ちます。 もし<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>から戻った後に、 何らかの方法で参照された場合、結果は未定義です。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の二番目の引数である <em>current</em>は変更された元のインスタンスです。 <em>previous</em>の使用目的は、 <a href="7.7.slot-value.html"><code>slot-value</code></a>か、<a href="7.7.with-slots.html"><code>with-slots</code></a>か、リーダーのジェネリック関数によって、 古いスロットの値を読みだしたり、 あるいは元のクラスのインスタンスとして適用できる 他のメソッドを実行したりすることです。</p>
 <h2 id="例文">例文</h2>
 <p><a href="7.7.change-class.html"><code>change-class</code></a>の例をご確認ください。</p>
 <h2 id="影響">影響</h2>
@@ -180,5 +182,7 @@
 <h2 id="備考">備考</h2>
 <p><em>initargs</em>は、<code>defclass</code>の<code>:initarg</code>引数によって、 あるいは<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>か <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドの宣言によって、 有効であると宣言されます。 <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>か <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の各メソッドの宣言のラムダリストにある、 各キーワードパラメーター指定子のキーワード名は、 それらのメソッドが適用されるすべてのクラスに対して、 有効な初期化引数の名前として宣言されます。</p>
 <p><a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>の返却値は、 <a href="7.7.change-class.html"><code>change-class</code></a>によって無視されます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

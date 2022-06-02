@@ -56,6 +56,7 @@
 (index 3.8 "評価とコンパイルの辞書" "Evaluation and Compilation Dictionary")
 (dictionary 3.8.eval)
 (dictionary 3.8.defmacro)
+(dictionary 3.8.symbol-macrolet)
 
 ;; Chapter 4
 (text 4.3 "クラス" "Classes")
@@ -81,7 +82,7 @@
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
 (dictionary 5.3.funcall)
-(dictionary 5.3.program-error)
+(dictionary 5.3.setq)
 (dictionary 5.3.nil!variable)
 (dictionary 5.3.t!variable)
 (dictionary 5.3.eq)
@@ -89,6 +90,7 @@
 (dictionary 5.3.equal)
 (dictionary 5.3.equalp)
 (dictionary 5.3.setf)
+(dictionary 5.3.program-error)
 
 ;; Chapter 7
 (text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")

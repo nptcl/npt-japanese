@@ -216,6 +216,8 @@
 <header id="title-block-header">
 <h1 class="title">7.6.5.1. ジェネリック関数とメソッドのキーワード引数の例</h1>
 </header>
+<p><a href="7.6.5.html">UP</a></p>
+<hr />
 <p>7.6.5.1. ジェネリック関数とメソッドのキーワード引数の例</p>
 <p>例えば、下記の2つの<code>width</code>メソッドが定義されていることを考えます。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> width </span>((c character-class) &amp;key font) ...)</span>
@@ -229,5 +231,7 @@
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       :font &#39;baskerville :pixel-size <span class="dv">10</span>)</span></code></pre></div>
 <p>下記のフォームの評価は、もし<code>character-picture-class</code>という名前のクラスが、 <code>picture-class</code>と<code>character-class</code>両方のサブクラスであった場合には、 エラーにはならないでしょう。</p>
 <p>```lisp (width (make-instance ’character-picture-class :char #) :font ’baskerville :pixel-size 10)</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

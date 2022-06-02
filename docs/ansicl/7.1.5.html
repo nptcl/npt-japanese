@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.1.5. Shared-Initialize</h1>
 </header>
+<p><a href="7.1.html">UP</a></p>
+<hr />
 <p>7.1.5. Shared-Initialize</p>
 <p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 インスタンスの作成時、インスタンスの再初期化時、 クラス再定義によるインスタンス更新時、違うクラスへのインスタンス更新時において、 インスタンスのスロット値を、初期化引数か <code>:initform</code>フォームによって設定する際に使用されます。 method-combinationは<code>standard</code>が使用されます。 引数は次のような順番で受け取ります。 初期化されるインスタンス、インスタンスのアクセス可能なスロット名の集合、 そして任意の長さの初期化引数です。 最初2つよりあとの引数は、初期化引数リストの形にしなければなりません。</p>
 <p><a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の2番目の引数は、下記のどちらかに従います。</p>
@@ -167,5 +169,7 @@
 <li><p>この規則は<a href="7.1.4.html">7.1.4. 初期化引数の規則</a>に従います。</p></li>
 </ul>
 <p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 システムが提供するメソッド<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, そして<code>initialize-instance</code>によって呼び出されます。 このようにメソッドは これらすべてのコンテキスト上で実行できるようなアクションを指定するように、 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を記述することができます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

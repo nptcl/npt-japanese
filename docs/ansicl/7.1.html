@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.1. オブジェクトの作成と初期化</h1>
 </header>
+<p><a href="7.html">UP</a></p>
+<hr />
 <p>7.1. オブジェクトの作成と初期化</p>
 <p>ジェネリック関数<a href="7.7.make-instance.html"><code>make-instance</code></a>は、 クラスの新しいインスタンスを作成し返却します。 最初の引数はクラスか、クラスの名前であり、 残りの引数は初期化引数リストです。</p>
 <p>新しいインスタンスの初期化は、いくつかのステップから成ります。 内容は次のようになります。 指定されなかった初期化引数の値に対して、 明に指定された初期化引数とデフォルト値を結びつけるステップ。 初期化引数の有効性をチェックするステップ。 インスタンスの記憶領域を確保するステップ。 スロットに値を埋めるステップ。 そして追加の初期化を行うためにユーザーが提供したメソッドを実行するステップ。 <a href="7.7.make-instance.html"><code>make-instance</code></a>の各ステップはジェネリック関数により実装されているため、 それぞれのステップをカスタマイズする仕組みが提供されています。 加えて、<a href="7.7.make-instance.html"><code>make-instance</code></a>自体がジェネリック関数であるため、 自身もカスタマイズできます。</p>
@@ -170,5 +172,7 @@
 <li><p><a href="7.1.6.html">7.1.6. Initialize-Instance</a></p></li>
 <li><p><a href="7.1.7.html">7.1.7. Make-InstanceとInitialize-Instanceの宣言</a></p></li>
 </ul>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

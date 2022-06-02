@@ -153,6 +153,8 @@
 <header id="title-block-header">
 <h1 class="title">7.6.2. メソッドの紹介</h1>
 </header>
+<p><a href="7.6.html">UP</a></p>
+<hr />
 <p>7.6.2. メソッドの紹介</p>
 <p>メソッドは、クラス特定か、あるいは同一性特定による動作と、 ジェネリック関数のオペレーションを定義します。</p>
 <p>メソッドオブジェクトは、次のものと結びつけられます。 それは、メソッドの動作を定義したコード。 与えられたメソッドが適用するかどうかを特定するための一連の特定パラメーター。 ラムダリスト。 そして、method-combinationがメソッドの区分けをするために使われる、一連の修飾子。</p>
@@ -178,5 +180,7 @@
 <p>全ての特定パラメーターがクラス<code>t</code>のメソッドは、デフォルトメソッドと呼ばれます。 これは常に適用可能ですが、他のもっと特定的なメソッドによってシャドウされるかもしれません。</p>
 <p>メソッドは修飾子を持てます。 これはmethod-combinationがメソッドを区別するための方法としての手順を与えます。 1つか複数の修飾子を持っているメソッドは、限定されたメソッドと呼ばれます。 修飾子を持っていないメソッドは、限定されていないメソッドと呼ばれます。 修飾子はリスト以外のオブジェクトです。 標準のmethod-combinationによって定義された修飾子の型はシンボルです。</p>
 <p>この定義の中で、「プライマリメソッド」と「補助メソッド」という語は、 これらを使用するmethod-combinationタイプにおいて、メソッドを区分けするために使用されます。 method-combinationの<code>standard</code>では、プライマリメソッドは限定されていないメソッドであり、 補助メソッドは単一の修飾子である<code>:around</code>, <code>:before</code>, <code>:after</code>のうちの1つを指定したメソッドです。 これらのメソッドは、順に<code>around</code>メソッド、<code>before</code>メソッド、<code>after</code>メソッドと呼びます。 method-combinationタイプが<code>define-method-combination</code>の 短いフォームを使用して定義されたとき、 プライマリメソッドはmethod-combinationタイプの名前を修飾子に与えたメソッドになります。 そして補助メソッドは<code>:around</code>の修飾子です。 このように「プライマリメソッド」と「補助メソッド」という語は、 method-combinationタイプにおける、ただの相対的な定義となります。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>
 </html>

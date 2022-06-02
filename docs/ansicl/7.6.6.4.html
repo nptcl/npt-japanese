@@ -240,7 +240,7 @@ standard
 <p>シンプルな組み込みmethod-combinationタイプの意味を下記に示します。</p>
 <ul>
 <li><p>もし<code>around</code>メソッドが存在するならば、最も特定的な<code>around</code>メソッドが呼ばれます。 これはジェネリック関数へ1つか複数の返却値を提供します。</p></li>
-<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<code>no-next-method</code>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。</p></li>
+<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。</p></li>
 <li><p>もし<code>around</code>メソッドが<code>call-next-method</code>を実行したとき、 次の特定的な<code>around</code>メソッドが適用可能であれば呼び出されます。 もし<code>around</code>メソッドが存在しないか、 あるいは最も遠い<code>around</code>メソッドによって<code>call-next-method</code>が呼び出されたときは、 組み込みmethod-combinationタイプの名前と適用可能なプライマリメソッドのリストから、 評価されるとジェネリック関数の返却値を生成する様なLispフォームが導出されます。 例えば、method-combinationタイプの名前が<code>operator</code>のとき、 ジェネリック関数が次のフォームによって呼び出されることを考えます。</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">generic-function</span> a1...an)</span></code></pre></div>

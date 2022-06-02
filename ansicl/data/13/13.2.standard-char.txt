@@ -15,7 +15,8 @@ Type `STANDARD-CHAR`
 
 ## {supertypes}
 
-{standard-char:link}, {base-char:link}, {character!system-class:link}, {t:link}
+{standard-char:link}, {base-char:link},
+{character!system-class:link}, {t!system-class:link}
 
 
 ## {description}

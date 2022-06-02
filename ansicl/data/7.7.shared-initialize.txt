@@ -28,7 +28,7 @@ Standard Generic Function `SHARED-INITIALIZE`
 ## {arguments-and-values}
 
 *instance* - オブジェクト  
-*slot-names* - リストか{t:link}  
+*slot-names* - リストか{t!variable:link}  
 *initargs* - keyword/valueのペアのリスト（{initialization-arguments}の名前と値）
 
 
@@ -82,7 +82,7 @@ Standard Generic Function `SHARED-INITIALIZE`
 `:initform`フォームに従って初期化されます。
 *slot-names*はスロットの名前のリストにすることができます。
 この場合は、スロットの名前の集合を指定することになります。
-あるいは、*slot-names*にシンボルである{t:link}を指定することもできます。
+あるいは、*slot-names*にシンボルである{t!variable:link}を指定することもできます。
 この場合は、スロットのすべての集合を指定したことになります。
 
 

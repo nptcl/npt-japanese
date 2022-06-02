@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function NO-APPLICABLE-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.no-applicable-method
+@name: no-applicable-method
+@type: standard-generic-function
+
+Standard Generic Function `NO-APPLICABLE-METHOD`
+
+
+## {syntax}
+
+`no-applicable-method` *generic-function* &rest *function-arguments* => *result\**
+
+
+## {method-signatures}
+
+`no-applicable-method` (*generic-function* {t!system-class:link})
+&rest *function-arguments*
+
+
+## {arguments-and-values}
+
+*generic-function* - 該当するメソッドが見つからなかったジェネリック関数  
+*function-arguments* - ジェネリック関数の引数  
+*result* - オブジェクト
+
+
+## {description}
+
+ジェネリック関数{no-applicable-method:link}は、
+あるジェネリック関数が呼ばれたときに
+適用するメソッドが見つからなかったときに呼び出されます。
+デフォルトのメソッドは、エラーが発生します。
+
+ジェネリック関数{slot-unbound:link}は、
+プログラマーによって呼び出されることを想定していません。
+プログラマーはメソッドを書くことができます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+デフォルトのメソッドは、エラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -15,7 +15,7 @@ Type `EXTENDED-CHAR`
 
 ## {supertypes}
 
-{extended-char:link}, {character!system-class:link}, {t:link}
+{extended-char:link}, {character!system-class:link}, {t!system-class:link}
 
 
 ## {description}

@@ -1,0 +1,89 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SLOT-BOUNDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.slot-boundp
+@name: slot-boundp
+@type: function
+
+Function `SLOT-BOUNDP`
+
+
+## {syntax}
+
+`slot-boundp` *instance* *slot-name* => *generalized-boolean*
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*slot-name* - *instance*のスロットの名前であるシンボル  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*instance*のスロット*slot-name*に値がある(bound)なら*true*、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*instance*に*slot-name*のスロットがない場合は、
+下記のように{slot-missing:link}が呼ばれます。
+
+```lisp
+(slot-missing (class-of instance)
+              instance
+              slot-name
+              'slot-boundp)
+```
+
+（もし{slot-missing:link}が起動されて値が返却されたとき、
+第一返却値はブール値であるとされて、
+{slot-boundp:link}として返却されます。）
+
+具体的なふるまいは、*instance*のメタクラスに依存します。
+もし*instance*のメタクラスが{standard-class:link}なら、
+決してエラーは発生しません。
+もし*instance*のメタクラスが{built-in-class:link}なら、
+常にエラーが発生します。
+もし*instance*が他のメタクラスなら結果は規定されておらず、
+状況によってエラーが発生するかもしれませんし、
+されないかもしれません。
+特にコンディションと構造体についての動作は規定されていません。
+
+
+## {see-also}
+
+{slot-makunbound:link},
+{slot-missing:link}
+
+
+## {notes}
+
+関数{slot-boundp:link}は、
+{initialize-instance:link}の`after`メソッド作成時に、
+まだ値を持っていないスロットのみを初期化するために
+使用することができます。
+
+実装は必須ではありませんが、
+実装者はMetaobject Protocolで説明されている
+関数{slot-boundp-using-class}を使用して
+関数{slot-boundp:link}を実装することが強く推奨されます。
+
+@end
+

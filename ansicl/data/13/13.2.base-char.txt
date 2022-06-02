@@ -15,7 +15,7 @@ Type `BASE-CHAR`
 
 ## {supertypes}
 
-{base-char:link}, {character!system-class:link}, {t:link}
+{base-char:link}, {character!system-class:link}, {t!system-class:link}
 
 
 ## {description}

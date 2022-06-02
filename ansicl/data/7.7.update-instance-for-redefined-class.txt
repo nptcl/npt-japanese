@@ -85,9 +85,8 @@ Standard Generic Function `UPDATE-INSTANCE-FOR-REDEFINED-CLASS`
     ((x :initform 0 :accessor position-x)
      (y :initform 0 :accessor position-y)))
  
-;;; It turns out polar coordinates are used more than Cartesian 
-;;; coordinates, so the representation is altered and some new
-;;; accessor methods are added.
+;;; 極座標は直交座標よりも多く使用されることが判明したため、
+;;; 表現を変更し、いくつかの新しいaccessorメソッドを追加しました。
  
 (defmethod update-instance-for-redefined-class :before
    ((pos x-y-position) added deleted plist &key)
@@ -102,11 +101,11 @@ Standard Generic Function `UPDATE-INSTANCE-FOR-REDEFINED-CLASS`
     ((rho :initform 0 :accessor position-rho)
      (theta :initform 0 :accessor position-theta)))
   
-;;; All instances of the old x-y-position class will be updated
-;;; automatically.
- 
-;;; The new representation is given the look and feel of the old one.
- 
+;;; 全ての古いx-y-positionインスタンスは、
+;;; 自動的にアップデートされるでしょう。
+
+;;; 新しい表現は、旧来の表現と同じような見た目が与えられています。
+
 (defmethod position-x ((pos x-y-position))  
    (with-slots (rho theta) pos (* rho (cos theta))))
 

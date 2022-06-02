@@ -45,10 +45,16 @@
 (text 2.4.8.1 "シャープサイン バックスラッシュ" "Sharpsign Backslash")
 
 ;; Chapter 3
+(text 3.1 "評価" "Evaluation")
 (index 3.2 "コンパイル" "Compilation")
 (text 3.2.1 "コンパイラーの用語" "Compiler Terminology")
+(text 3.2.4 "ファイルコンパイル時の{literal-object}"
+      "Literal Objects in Compiled Files")
+(text 3.2.4.4 "外部オブジェクトの制約の追記"
+      "Additional Constraints on Externalizable Objects")
 (index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
 (index 3.8 "評価とコンパイルの辞書" "Evaluation and Compilation Dictionary")
+(dictionary 3.8.eval)
 (dictionary 3.8.defmacro)
 
 ;; Chapter 4
@@ -66,7 +72,7 @@
 (dictionary 4.4.structure-object)
 (dictionary 4.4.standard-object)
 (dictionary 4.4.method-combination)
-(dictionary 4.4.t)
+(dictionary 4.4.t!system-class)
 (dictionary 4.4.coerce)
 (dictionary 4.4.typep)
 (dictionary 4.4.type-error)
@@ -77,10 +83,12 @@
 (dictionary 5.3.funcall)
 (dictionary 5.3.program-error)
 (dictionary 5.3.nil!variable)
+(dictionary 5.3.t!variable)
 (dictionary 5.3.eq)
 (dictionary 5.3.eql)
 (dictionary 5.3.equal)
 (dictionary 5.3.equalp)
+(dictionary 5.3.setf)
 
 ;; Chapter 7
 (text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")
@@ -182,7 +190,9 @@
 
 ;; Chapter 9
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
-(dictionary 9.2.error)
+(dictionary 9.2.condition)
+(dictionary 9.2.serious-condition)
+(dictionary 9.2.error!condition)
 (dictionary 9.2.define-condition)
 
 ;; Chapter 10
@@ -251,6 +261,10 @@
 (index 18.2 "ハッシュテーブルの辞書" "Hash Tables Dictionary")
 (dictionary 18.2.sxhash)
 
+;; Chapter 21
+(index 21.2 "ストリームの辞書" "Streams Dictionary")
+(dictionary 21.2.stream)
+
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")
 (text 22.1.3 "標準のPrint-Objectメソッド" "Default Print-Object Methods")
@@ -265,4 +279,9 @@
 ;; Chapter 23
 (index 23.2 "リーダーの辞書" "Reader Dictionary")
 (dictionary 23.2.read)
+
+;; Chapter 24
+(index 24.2 "システム構築の辞書" "System Construction Dictionary")
+(dictionary 24.2.compile-file)
+(dictionary 24.2.load)
 

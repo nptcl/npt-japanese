@@ -30,10 +30,10 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[18.](18.html)|[Hash Tables](18.html)|[ハッシュテーブル](18.html)|[辞書](18.2.html)|
 |19.|Filenames|ファイル名|辞書|
 |20.|Files|ファイル操作|辞書|
-|21.|Streams|ストリーム|辞書|
+|[21.](21.html)|[Streams](21.html)|[ストリーム](21.html)|[辞書](21.2.html)|
 |[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書](22.4.html)|
 |[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書](23.2.html)|
-|24.|System Construction|システム構築|辞書|
+|[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書](24.2.html)|
 |25.|Environment|環境|辞書|
 |26.|Glossary|用語集|辞書|
 |a.|Appendix|付録|辞書|

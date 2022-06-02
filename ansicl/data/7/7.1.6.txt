@@ -37,7 +37,8 @@ method-combinationは`standard`が使われます。
 {initialization-arguments}に対応したものか、
 あるいは`:initform`フォームに対応した値を設定します。
 ジェネリック関数{shared-initialize:link}の引数は、
-インスタンス、{t:link}、デフォルト{initialization-arguments}を指定して呼び出されます。
+インスタンス、{t!variable:link}、
+デフォルト{initialization-arguments}を指定して呼び出されます。
 
 注意として、{initialize-instance:link}はデフォルト{initialization-arguments}リストを
 {shared-initialize:link}の呼び出し時に提供します。

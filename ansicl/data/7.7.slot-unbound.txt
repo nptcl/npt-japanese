@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function SLOT-UNBOUND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.slot-unbound
+@name: slot-unbound
+@type: standard-generic-function
+
+Standard Generic Function `SLOT-UNBOUND`
+
+
+## {syntax}
+
+`slot-unbound` *class* *instance* *slot-name* => *result\**
+
+
+## {method-signatures}
+
+`slot-unbound` (*class* {t!system-class:link}) *instance* *slot-name*
+
+
+## {arguments-and-values}
+
+class - インスタンス*instance*のクラス  
+instance - `unbound`スロットから読み込みしたインスタンス  
+slot-name - `unbound`スロットの名前  
+result - オブジェクト
+
+
+## {description}
+
+ジェネリック関数{slot-unbound:link}は、
+メタクラスが{standard-class:link}の*instance*から
+`unbound`スロットを読み込んだ時に呼び出されます。
+デフォルトのメソッドは、型{unbound-slot:link}のエラーが発生します。
+{unbound-slot:link}コンディションの名前のスロットは
+問題の変数の名前で初期化され、
+{unbound-slot:link}コンディションのインスタンスのスロットは
+問題の*instance*で初期化されます。
+
+ジェネリック関数{slot-unbound:link}は、
+プログラマーによって呼び出されることを想定していません。
+プログラマーはメソッドを書くことができます。
+関数{slot-unbound:link}は、間接的に{slot-value:link}によってのみ呼び出されます。
+
+{slot-unbound:link}の戻り値は、
+ただ第一返却値のみが呼び出し側によって使われ、
+他の全ての返却値は無視されます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+{slot-unbound:link}のデフォルトのメソッドは、
+型{unbound-slot:link}のエラーが発生します。
+
+
+## {see-also}
+
+{slot-makunbound:link}
+
+
+## {notes}
+
+スロットに`:initform`が指定されず値もセットされていないときか、
+あるいは{slot-makunbound:link}がスロットに対して呼び出されたとき、
+`unbound`スロットが起こることがあります。
+
+@end
+

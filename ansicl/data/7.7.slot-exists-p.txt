@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SLOT-EXISTS-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.slot-exists-p
+@name: slot-exists-p
+@type: function
+
+Function `SLOT-EXISTS-P`
+
+
+## {syntax}
+
+`slot-exists-p` *object* *slot-name* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*slot-name* - シンボル  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が*slot-name*という名前のスロットを持っているとき*true*を返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+{defclass:link}, {defstruct:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+
+## {see-also}
+
+{defclass:link}, {slot-missing:link}
+
+
+## {notes}
+
+実装は必須ではありませんが、
+実装者はMetaobject Protocolで説明されている
+関数{slot-exists-p-using-class}を使用して
+関数{slot-exists-p:link}を実装することが強く推奨されます。
+
+@end
+

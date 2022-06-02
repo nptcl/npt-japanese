@@ -6,8 +6,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  System Class CHARACTER
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@begin: 4.4.t
-@name: t
+@begin: 4.4.t!system-class
+@name: t!system-class
 @type: system-class
 
 System Class `T`
@@ -15,14 +15,14 @@ System Class `T`
 
 ## {class-precedence-list}
 
-{t:link}
+{t!system-class:link}
 
 
 ## {description}
 
 全てのオブジェクトの集合を表します。
-型{t:link}は、自分自身を含む全ての方の{supertype}です。
-全てのオブジェクトは、型{t:link}です。
+型{t!system-class:link}は、自分自身を含む全ての方の{supertype}です。
+全てのオブジェクトは、型{t!system-class:link}です。
 
 @end
 

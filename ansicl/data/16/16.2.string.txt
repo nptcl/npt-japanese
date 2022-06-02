@@ -16,7 +16,7 @@ System Class `STRING`
 ## {class-precedence-list}
 
 {string!system-class:link}, {vector!system-class:link},
-{array:link}, {sequence:link}, {t:link}
+{array:link}, {sequence:link}, {t!system-class:link}
 
 
 ## {description}

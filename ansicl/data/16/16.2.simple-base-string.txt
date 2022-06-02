@@ -17,7 +17,7 @@ Type `SIMPLE-BASE-STRING`
 
 {simple-base-string:link}, {base-string:link}, {simple-string:link},
 {string!system-class:link}, {vector!system-class:link},
-{simple-array:link}, {array:link}, {sequence:link}, {t:link}
+{simple-array:link}, {array:link}, {sequence:link}, {t!system-class:link}
 
 
 ## {description}

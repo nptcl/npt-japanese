@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function MAKE-INSTANCES-OBSOLETE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.make-instances-obsolete
+@name: make-instances-obsolete
+@type: standard-generic-function
+
+Standard Generic Function `MAKE-INSTANCES-OBSOLETE`
+
+
+## {syntax}
+
+`make-instances-obsolete` *class* => *class*
+
+
+## {method-signatures}
+
+`make-instances-obsolete` (*class* {standard-class:link})  
+`make-instances-obsolete` (*class* {symbol:link})
+
+
+## {arguments-and-values}
+
+class - クラス指定子
+
+
+## {description}
+
+関数{make-instances-obsolete:link}は、
+クラス*class*のインスタンスの更新処理を開始する効果があります。
+更新中に、ジェネリック関数{update-instance-for-redefined-class:link}が
+実行されます。
+
+{defclass:link}が既存の標準クラスの再定義を行ったあとで
+インスタンスのアクセス可能な局所スロットが変更されたか、
+あるいはストレージ内のスロットの順序が変更されたときに、
+ジェネリック関数{make-instances-obsolete:link}が
+システムによって自動的に実行されます。
+これは明示的にユーザーが実行することもできます。
+
+もし上記メソッド定義の2番目が選ばれたとき、
+そのメソッドは、引数を`(find-class class)`として
+{make-instances-obsolete:link}を実行します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{update-instance-for-redefined-class:link}, {4.3.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

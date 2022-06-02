@@ -1,0 +1,27 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.error!condition
+@name: error!condition
+@type: condition-type
+
+Conditino Type `ERROR`
+
+
+## {class-precedence-list}
+
+{error!condition:link}, {serious-condition:link},
+{condition:link}, {t!system-class:link}
+
+
+## {description}
+
+型{error!condition:link}は、エラーを表現する全てのコンディションを含みます。
+
+@end
+

@@ -230,9 +230,9 @@
 <em>initargs</em> - 初期化引数リスト<br />
 <em>result</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
-<p>ジェネリック関数<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>は、 プログラマーによって呼び出されることを意図していません。 プログラマーはこの関数のメソッドを作成します。 関数<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>は、 関数<code>make-instances-obsolete</code>によって 有効化される仕組みによって呼び出されます。</p>
+<p>ジェネリック関数<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>は、 プログラマーによって呼び出されることを意図していません。 プログラマーはこの関数のメソッドを作成します。 関数<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>は、 関数<a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>によって 有効化される仕組みによって呼び出されます。</p>
 <p>システムが提供する<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>の プライマリメソッドは、<em>initargs</em>の有効性を確認し、 もし<em>initargs</em>に有効として宣言されていないものが与えられていた場合は エラーが通知されます。 このメソッドは、<em>initargs</em>に対応する値でスロットを初期化します。 そして新たに追加されたスロット<em>added-slots</em>には <code>:initform</code>フォーム対応した値で初期化します。 このような動作は、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を 次のような引数で呼び出すことで行います。 引数は、<em>instance</em>、 <em>instance</em>に新しく追加されたスロットの名前のリスト<em>added-slots</em>、 そして受け取った<em>initargs</em>です。 新しく追加されたスロット<em>added-slots</em>とは、 以前のクラスに同じ名前のスロットが存在しない局所スロットのことです。</p>
-<p><code>make-instances-obsolete</code>が起動されるときか、 クラスが再定義されて<em>instance</em>が更新されるときは、 元のインスタンスの全ての削除されるスロット<em>discarded-slots</em>とその値が、 スロットの名前と値とともに取り出され<em>property-list</em>が作成されます。 <em>instance</em>の構造は、現在のクラスの定義に合うように変換されます。 <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>の引数は、 変換された<em>instance</em>、 インスタンスへ追加されたスロットのリスト<em>added-slots</em>、 インスタンスから削除されるスロットのリスト<em>discarded-slots</em>、 削除されるスロットで値を持っているの スロットの名前と値が含まれるリスト<em>property-list</em>です。 削除されるスロットのリストは、古いクラスでは局所スロットだったものから、 新しいクラスでは共有スロットになったものが含まれます。</p>
+<p><a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>が起動されるときか、 クラスが再定義されて<em>instance</em>が更新されるときは、 元のインスタンスの全ての削除されるスロット<em>discarded-slots</em>とその値が、 スロットの名前と値とともに取り出され<em>property-list</em>が作成されます。 <em>instance</em>の構造は、現在のクラスの定義に合うように変換されます。 <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>の引数は、 変換された<em>instance</em>、 インスタンスへ追加されたスロットのリスト<em>added-slots</em>、 インスタンスから削除されるスロットのリスト<em>discarded-slots</em>、 削除されるスロットで値を持っているの スロットの名前と値が含まれるリスト<em>property-list</em>です。 削除されるスロットのリストは、古いクラスでは局所スロットだったものから、 新しいクラスでは共有スロットになったものが含まれます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> position </span>() ())</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> </span>
@@ -240,53 +240,52 @@
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ((x :initform <span class="dv">0</span> :accessor position-x)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     (y :initform <span class="dv">0</span> :accessor position-y)))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">;;; It turns out polar coordinates are used more than Cartesian </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">;;; coordinates, so the representation is altered and some new</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">;;; accessor methods are added.</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> update-instance-for-redefined-class </span>:before</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>   ((pos x-y-position) added deleted plist &amp;key)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Transform the x-y coordinates to polar coordinates</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; and store into the new slots.</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="kw">getf</span> plist &#39;x))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        (y (<span class="kw">getf</span> plist &#39;y)))</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">setf</span> (position-rho pos) (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> y y)))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>          (position-theta pos) (<span class="kw">atan</span> y x))))</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> x-y-position </span>(<span class="kw">position</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ((rho :initform <span class="dv">0</span> :accessor position-rho)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     (theta :initform <span class="dv">0</span> :accessor position-theta)))</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">;;; All instances of the old x-y-position class will be updated</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">;;; automatically.</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">;;; The new representation is given the look and feel of the old one.</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> position-x </span>((pos x-y-position))  </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos (<span class="op">*</span> rho (<span class="kw">cos</span> theta))))</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> </span>(<span class="kw">setf</span> position-x) (new-x (pos x-y-position))</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((y (position-y pos)))</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setq</span> rho (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> new-x new-x) (<span class="op">*</span> y y)))</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>             theta (<span class="kw">atan</span> y new-x))</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>       new-x)))</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> position-y </span>((pos x-y-position))</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos (<span class="op">*</span> rho (<span class="kw">sin</span> theta))))</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> </span>(<span class="kw">setf</span> position-y) (new-y (pos x-y-position))</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((x (position-x pos)))</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setq</span> rho (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> new-y new-y)))</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>             theta (<span class="kw">atan</span> new-y x))</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>       new-y)))</span></code></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 極座標は直交座標よりも多く使用されることが判明したため、</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 表現を変更し、いくつかの新しいaccessorメソッドを追加しました。</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> update-instance-for-redefined-class </span>:before</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>   ((pos x-y-position) added deleted plist &amp;key)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Transform the x-y coordinates to polar coordinates</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; and store into the new slots.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="kw">getf</span> plist &#39;x))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        (y (<span class="kw">getf</span> plist &#39;y)))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">setf</span> (position-rho pos) (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> y y)))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>          (position-theta pos) (<span class="kw">atan</span> y x))))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> x-y-position </span>(<span class="kw">position</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ((rho :initform <span class="dv">0</span> :accessor position-rho)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>     (theta :initform <span class="dv">0</span> :accessor position-theta)))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 全ての古いx-y-positionインスタンスは、</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 自動的にアップデートされるでしょう。</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 新しい表現は、旧来の表現と同じような見た目が与えられています。</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> position-x </span>((pos x-y-position))  </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos (<span class="op">*</span> rho (<span class="kw">cos</span> theta))))</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> </span>(<span class="kw">setf</span> position-x) (new-x (pos x-y-position))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((y (position-y pos)))</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setq</span> rho (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> new-x new-x) (<span class="op">*</span> y y)))</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>             theta (<span class="kw">atan</span> y new-x))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>       new-x)))</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> position-y </span>((pos x-y-position))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos (<span class="op">*</span> rho (<span class="kw">sin</span> theta))))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> </span>(<span class="kw">setf</span> position-y) (new-y (pos x-y-position))</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">with-slots</span> (rho theta) pos</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((x (position-x pos)))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setq</span> rho (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> new-y new-y)))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>             theta (<span class="kw">atan</span> new-y x))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>       new-y)))</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>システムが提供する<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>の プライマリメソッドは、 <em>initargs</em>に有効として宣言されていないものが与えられていた場合は エラーが通知されます。</p>
 <h2 id="参考">参考</h2>
-<p><code>make-instances-obsolete</code>, <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>, 4.3.6. クラスの再定義, <a href="7.1.4.html">7.1.4. 初期化引数の規則</a>, <a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a></p>
+<p><a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>, <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>, 4.3.6. クラスの再定義, <a href="7.1.4.html">7.1.4. 初期化引数の規則</a>, <a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a></p>
 <h2 id="備考">備考</h2>
 <p><em>initargs</em>は、<code>defclass</code>の<code>:initarg</code>引数によって、 あるいは<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>か <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドの宣言によって、 有効であると宣言されます。 <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>か <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の各メソッドの宣言のラムダリストにある、 各キーワードパラメーター指定子のキーワード名は、 それらのメソッドが適用されるすべてのクラスに対して、 有効な初期化引数の名前として宣言されます。</p>
 </body>

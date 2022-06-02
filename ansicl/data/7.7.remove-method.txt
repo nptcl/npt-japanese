@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function REMOVE-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.remove-method
+@name: remove-method
+@type: standard-generic-function
+
+Standard Generic Function `REMOVE-METHOD`
+
+
+## {syntax}
+
+`remove-method` *generic-function* *method* => *generic-function*
+
+
+## {method-signatures}
+
+`remove-method` (*generic-function* {standard-generic-function:link}) *method*
+
+
+## {arguments-and-values}
+
+*generic-function* - ジェネリック関数  
+*method* - メソッド
+
+
+## {description}
+
+ジェネリック関数{remove-method:link}は、
+*generic-function*から*method*を、
+必要なら*generic-function*を修正して削除します。
+
+もし*method*が*generic-function*のメソッドではないとき、
+{remove-method:link}はエラーを発生させてはいけません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{find-method:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

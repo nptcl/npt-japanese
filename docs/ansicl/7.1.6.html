@@ -154,16 +154,16 @@
 <h1 class="title">7.1.6. Initialize-Instance</h1>
 </header>
 <p>7.1.6. Initialize-Instance</p>
-<p>ジェネリック関数<code>initialize-instance</code>は、 新しく作成されたインスタンスを初期化するために、 <code>make-instance</code>によって呼び出されます。 method-combinationは<code>standard</code>が使われます。 <code>initialize-instance</code>のメソッドは、 単純に初期値をスロットに指定できないような初期化を実行するために定義できます。</p>
+<p>ジェネリック関数<code>initialize-instance</code>は、 新しく作成されたインスタンスを初期化するために、 <a href="7.7.make-instance.html"><code>make-instance</code></a>によって呼び出されます。 method-combinationは<code>standard</code>が使われます。 <code>initialize-instance</code>のメソッドは、 単純に初期値をスロットに指定できないような初期化を実行するために定義できます。</p>
 <p>初期化中では、次に示したアクションを実行したあとに <code>initialize-instance</code>が呼び出されます。</p>
 <ul>
 <li><p>デフォルト初期化引数リストは、 提供された初期化引数リストと 各クラスのデフォルト初期化引数を結びつける計算がされます。</p></li>
 <li><p>デフォルト初期化引数リストの有効性はチェックされます。 もしどの初期化引数の有効として宣言されていなかった場合は、 エラーが発せられます。</p></li>
 <li><p>新しいインスタンスはスロットが<code>unbound</code>として作成されます。</p></li>
 </ul>
-<p>ジェネリック関数<code>initialize-instance</code>は 新しいインスタンスとデフォルト初期化引数とともに呼び出されます。 システムが提供する<code>initialize-instance</code>のメソッドでは、 特定パラメーターは<code>standard-object</code>クラスのものが存在します。 このメソッドは、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を呼び出し、 初期化引数に対応したものか、 あるいは<code>:initform</code>フォームに対応した値を設定します。 ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の引数は、 インスタンス、<a href="4.4.t.html"><code>t</code></a>、デフォルト初期化引数を指定して呼び出されます。</p>
-<p>注意として、<code>initialize-instance</code>はデフォルト初期化引数リストを <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の呼び出し時に提供します。 そして最初のステップとして、 システムが提供する<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドは、 <code>make-instance</code>呼び出し時に提供された初期化引数と、 デフォルト初期化引数リストの両方を集計して呼び出されます。</p>
+<p>ジェネリック関数<code>initialize-instance</code>は 新しいインスタンスとデフォルト初期化引数とともに呼び出されます。 システムが提供する<code>initialize-instance</code>のメソッドでは、 特定パラメーターは<code>standard-object</code>クラスのものが存在します。 このメソッドは、ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を呼び出し、 初期化引数に対応したものか、 あるいは<code>:initform</code>フォームに対応した値を設定します。 ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の引数は、 インスタンス、<code>t</code>、 デフォルト初期化引数を指定して呼び出されます。</p>
+<p>注意として、<code>initialize-instance</code>はデフォルト初期化引数リストを <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の呼び出し時に提供します。 そして最初のステップとして、 システムが提供する<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドは、 <a href="7.7.make-instance.html"><code>make-instance</code></a>呼び出し時に提供された初期化引数と、 デフォルト初期化引数リストの両方を集計して呼び出されます。</p>
 <p><code>initialize-instance</code>のメソッドは、 インスタンスの初期化時に、特定のアクションを定義することができます。 もし<code>initialize-instance</code>の<code>after</code>メソッドだけが定義された場合、 これらはシステムが提供した初期化後に実行されます。 したがってこれらは、<code>initialize-instance</code>の標準的な動作には干渉しないでしょう。</p>
-<p>オブジェクトシステムは、<code>initialize-instance</code>メソッドの構築に 便利な2つの関数を提供しています。 関数<code>slot-boundp</code>は、スロットが値を持っているかどうかを示すブール値を返却します。 これは<code>initialize-instance</code>の<code>after</code>メソッドを記述する際に、 まだ初期化されていないスロットのみを初期化するような仕組みを提供します。 関数<code>slot-makunbound</code>は、スロットの値を削除します。</p>
+<p>オブジェクトシステムは、<code>initialize-instance</code>メソッドの構築に 便利な2つの関数を提供しています。 関数<a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>は、スロットが値を持っているかどうかを示すブール値を返却します。 これは<code>initialize-instance</code>の<code>after</code>メソッドを記述する際に、 まだ初期化されていないスロットのみを初期化するような仕組みを提供します。 関数<a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>は、スロットの値を削除します。</p>
 </body>
 </html>

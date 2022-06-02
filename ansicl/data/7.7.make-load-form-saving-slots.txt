@@ -1,0 +1,96 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-LOAD-FORM-SAVING-SLOTS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.make-load-form-saving-slots
+@name: make-load-form-saving-slots
+@type: function
+
+Function `MAKE-LOAD-FORM-SAVING-SLOTS`
+
+
+## {syntax}
+
+`make-load-form-saving-slots` *object* &key *slot-names* *environment*
+ => *creation-form*, *initialization-form*
+
+
+## {arguments-and-values}
+
+object - オブジェクト  
+slot-names - リスト  
+environment - 環境オブジェクト  
+creation-form - フォーム  
+initialization-form - フォーム
+
+
+## {description}
+
+返却値のフォームが評価されたとき、
+*initialization-form*の実行なしに、
+*object*と同等のオブジェクトが構築されます。
+新しいオブジェクトのスロットの初期化は、
+*object*の初期化されているスロットに対してはその値を用いて行われます。
+*object*の初期化されていないスロットについては、
+新しいオブジェクトでは初期化されません。
+{make-load-form-saving-slots:link}は、
+{standard-object:link}か{structure-object:link}の
+インスタンスであれば動作します。
+
+*slot-names*は保存するスロットの名前のリストです。
+*slot-names*が与えられない場合、その値はすべての局所スロットになります。
+
+{make-load-form-saving-slots:link}は2つの値を返却するので、
+循環構造を扱うことができます。
+この結果がアプリケーションで有用かどうかは、
+オブジェクトの型とスロットの内容が、
+アプリケーションの考えるオブジェクトの状態を
+完全に捉えているかどうかに依存します。
+
+*environment*はフォームを処理する環境です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+## {affected-by}
+
+なし。
+
+## {exceptional-situations}
+
+なし。
+
+## {see-also}
+
+{make-load-form:link},
+{make-instance:link},
+{setf:link},
+{slot-value:link},
+{slot-makunbound:link}
+
+
+## {notes}
+
+{make-load-form-saving-slots:link}は、
+ユーザーが{make-load-form:link}メソッドを作成する際に便利です。
+
+もし*object*が{standard-object:link}のインスタンスならば、
+{make-load-form-saving-slots:link}は
+*creation-form*に{allocate-instance:link}を呼ぶフォームを、
+*initialization-form*には{slot-value:link}の{setf:link}と、
+{slot-makunbound:link}を含むフォームが返却されます。
+しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。
+
+@end
+

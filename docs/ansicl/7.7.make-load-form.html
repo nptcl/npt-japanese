@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Standard-Generic-Function MAKE-LOAD-FORM</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Standard-Generic-Function MAKE-LOAD-FORM</h1>
+</header>
+<h1 id="standard-generic-function-make-load-form">Standard-Generic-Function MAKE-LOAD-FORM</h1>
+<p>Standard Generic Function <code>MAKE-LOAD-FORM</code></p>
+<h2 id="構文">構文</h2>
+<p><code>make-load-form</code> <em>object</em> &amp;optional <em>environment</em> =&gt; <em>creation-form</em>[, <em>initialization-form</em>]</p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<p><code>make-load-form</code> (<em>object</em> <code>standard-object</code>) &amp;optional <em>environment</em><br />
+<code>make-load-form</code> (<em>object</em> <code>structure-object</code>) &amp;optional <em>environment</em><br />
+<code>make-load-form</code> (<em>object</em> <code>condition</code>) &amp;optional <em>environment</em><br />
+<code>make-load-form</code> (<em>object</em> <code>class</code>) &amp;optional <em>environment</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p>object - オブジェクト<br />
+environment - 環境オブジェクト<br />
+creation-form - フォーム<br />
+initialization-form - フォーム</p>
+<h2 id="定義">定義</h2>
+<p>ジェネリック関数<a href="7.7.make-load-form.html"><code>make-load-form</code></a>は、 ひとつか2つのフォームを返却します。 それぞれ<em>creation-form</em>と<em>initialization-form</em>であり、 <code>load</code>時に<em>object</em>と等価なオブジェクトを構築することができます。 <em>environment</em>は、フォームが処理されるときの レキシカルな環境に対応する環境オブジェクトです。</p>
+<p>ファイルコンパイラは、特定のクラスのリテラルオブジェクトを処理するため、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出します。 3.2.4.4. 外部オブジェクトの制約の追記を参照。</p>
+<p>仕様に適合したプログラムは、<em>object</em>が<code>standard-object</code>, <code>structure-object</code>, <code>condition</code>からなる一般的なインスタンスであれば、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を直接呼び出します。</p>
+<p><em>creation-form</em>は<code>load</code>時に評価されるフォームであり、 <em>object</em>と等価なオブジェクトを返却しなければなりません。 等価の正確な意味は<em>object</em>の型によって異なるので、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>のメソッドを定義するプログラマーに任されています。 3.2.4. ファイルコンパイル時のリテラルオブジェクトを参照。</p>
+<p>もし<em>object</em>が<em>initialization-form</em>に定数として現れたときは、 ロード時にそれは、<em>creation-form</em>によって生成されたオブジェクトと 同一なものとして置き換えられます。 これは、さらなる初期化処理でオブジェクトにアクセスする方法です。</p>
+<p><em>creation-form</em>と<em>initialization-form</em>の両方で、 外部オブジェクトの参照が含まれる場合があります。 しかし、<em>creation-forms</em>では循環的な依存関係はがあってはなりません。 循環的な依存関係とは、例えば オブジェクト<code>X</code>の<em>creation-form</em>にオブジェクト<code>Y</code>が含まれており、 オブジェクト<code>Y</code>の<em>creation-form</em>にオブジェクト<code>X</code>が 含まれているような場合です。 <em>initialization-form</em>には循環的な依存関係のような制約はありません。 これが<em>initialization-form</em>フォームが存在する理由です。 循環的なデータ構造の例は下記を参照してください。</p>
+<p><em>object</em>の<em>creation-form</em>は、常に<em>initialization-form</em>より前に実行されます。 <em>creation-form</em>または<em>initialization-form</em>のいずれかが、 コンパイル中のファイル内で 以前に参照されていない他のオブジェクトを参照する場合、 コンパイラは、その参照しているフォームを評価する前に、 すべての参照されているオブジェクトが作成されたことを確認します。 参照されるオブジェクトが、ファイルコンパイラによって <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を実行するタイプの場合は、 そのオブジェクトのために、 評価された<em>creation-form</em>の返却値を実行します。 （これが、<em>creation-form</em>で循環参照を禁止している理由です。）</p>
+<p>各<em>initialization-form</em>は、データフローに従って、 その<em>creation-form</em>実行の後、できるだけ早く評価されます。 もしファイル内で、<em>object</em>の<em>initialization-form</em>が、 まだ参照されていない他のどんなオブジェクトも参照していないときに そのファイルコンパイラが<a href="7.7.make-load-form.html"><code>make-load-form</code></a>を実行した場合は、 <em>initialization-form</em>は<em>creation-form</em>処理直後に実行されます。</p>
+<p>もし<em>creation-form</em>か<em>initialization-form</em>のフォームを<code>F</code>としたとき、 <code>F</code>がそのようなオブジェクトを参照を含む場合は、 それらのオブジェクトは<em>creation-form</em>は<code>F</code>の前に実行され、 また、それらが<code>F</code>によって生成と初期化が行われるオブジェクトに依存しない限り、 それらのオブジェクトの<em>initialization-form</em>も<code>F</code>の前に実行されます。 これらの規則によって、作成と初期化の2フォーム間で 評価する順序が一意に決定されない個所については、 その評価順序は決められていません。</p>
+<p>これらの作成と初期化のフォームが評価されている間の オブジェクトはおそらく初期化されていない状態であり、 例えるなら、<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>で作成され、 <code>initialize-instance</code>で完全に初期化処理されるまでの オブジェクトの状態と似ています。 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>のメソッドを作成するプログラマーは、 まだ初期化されていないスロットに依存しないよう、 注意深くオブジェクトを操作しなければなりません。</p>
+<p><code>load</code>がフォームを<code>eval</code>で処理するか、 あるいは同等の効果を持つ他のオペレーションを行うかは、 処理系に依存します。 例をげると、フォームを別の違った同等の形式に変換して評価する、 それらをコンパイルした結果の関数を<code>load</code>から呼ぶ、 それらが<code>eval</code>とは違う特殊な目的の関数によって実行される、 などがあります。 フォームを評価するということと同等の効果があればよいのです。</p>
+<p>型<code>class</code>に特化したメソッドは、 もしクラスがちゃんとした名前を持っているときは、 クラス名を使った<em>creation-form</em>が返却されます。 もしクラスが名前を持っていない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。 <em>creation-form</em>の評価は、<code>find-class</code>を呼び出すように、 その名前を使用してクラスを検索します。 もしその名前のクラスが定義されていないときは、 クラスは実装で定義した方法で処理されます。 もし<em>creation-form</em>を評価した結果、 クラスを返却できなかった場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>仕様に適合した実装と仕様に適合したプログラムの両方が <a href="7.7.make-load-form.html"><code>make-load-form</code></a>をさらに特別化することができます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> obj </span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   ((x :initarg :x :reader obj-x)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    (y :initarg :y :reader obj-y)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    (dist :accessor obj-dist)))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;STANDARD-CLASS OBJ <span class="dv">250020030</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> shared-initialize </span>:after ((self obj) slot-names &amp;<span class="kw">rest</span> keys)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> slot-names keys))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">unless</span> (<span class="kw">slot-boundp</span> self &#39;dist)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">setf</span> (obj-dist self)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="kw">expt</span> (obj-x self) <span class="dv">2</span>) (<span class="kw">expt</span> (obj-y self) <span class="dv">2</span>))))))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;STANDARD-METHOD SHARED-INITIALIZE (:AFTER) (OBJ T) <span class="dv">26266714</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-load-form </span>((self obj) &amp;optional environment)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> environment))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; この定義は、XとYがオブジェクト自身を参照する情報を</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; 含んでいない場合にのみ有効であることに注意してください。</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; この問題に対するより一般的な解決策については、</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; 以下の改訂例を参照してください。</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">make-instance</span> &#39;,(<span class="kw">class-of</span> self)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                  :x &#39;,(obj-x self) :y &#39;,(obj-y self)))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;STANDARD-METHOD MAKE-LOAD-FORM (OBJ) <span class="dv">26267532</span>&gt;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> obj1 (<span class="kw">make-instance</span> &#39;obj :x <span class="fl">3.0</span> :y <span class="fl">4.0</span>)) <span class="op">=&gt;</span>  #&lt;OBJ <span class="dv">26274136</span>&gt;</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>(obj-dist obj1) <span class="op">=&gt;</span>  <span class="fl">5.0</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-load-form</span> obj1) <span class="op">=&gt;</span>  (MAKE-INSTANCE &#39;OBJ :X &#39;<span class="fl">3.0</span> :Y &#39;<span class="fl">4.0</span>)</span></code></pre></div>
+<p>上記の例では、<code>obj</code>の等価なインスタンスは、 そのスロットのうちの2つの値を使用して再構築されます。 3番目のスロットの値は、これら2つの値から導かれます。</p>
+<p><a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドの別の書き方の例は、 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>を使うことです。 このメソッドが生成するコードは、 上に示した<a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドとは 少し異なる結果をもたらすかもしれませんが、 操作上の効果は同じです。 例を示します。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 上記で定義したメソッドを再定義する</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-load-form </span>((self obj) &amp;optional environment)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">make-load-form-saving-slots</span> self</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                                :slot-names &#39;(x y)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                :environment environment))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;STANDARD-METHOD MAKE-LOAD-FORM (OBJ) <span class="dv">42755655</span>&gt;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">;; 上記で作成したオブジェクトにMAKE-LOAD-FORMを実行</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-load-form</span> obj1)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (ALLOCATE-INSTANCE &#39;#&lt;STANDARD-CLASS OBJ <span class="dv">250020030</span>&gt;),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   (PROGN</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>     (SETF (SLOT-VALUE &#39;#&lt;OBJ <span class="dv">26274136</span>&gt; &#39;X) &#39;<span class="fl">3.0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>     (SETF (SLOT-VALUE &#39;#&lt;OBJ <span class="dv">26274136</span>&gt; &#39;Y) &#39;<span class="fl">4.0</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>     (INITIALIZE-INSTANCE &#39;#&lt;OBJ <span class="dv">26274136</span>&gt;))</span></code></pre></div>
+<p>次の例は、<code>my-frob</code>のインスタンスが、 何らかの方法で<strong>intern</strong>されています。 スロット<code>name</code>の値をキーとして既存のオブジェクトを検索し、 同等のインスタンスを再構築しています。 この例では、プログラマーはオブジェクトが存在しなかったとき、 新しいをオブジェクトを生成することを選んでいますが、 他にはエラーを発生させるという場合もあります。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> my-frob </span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   ((name :initarg <span class="bu">:name</span> :reader my-name)))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-load-form </span>((self my-frob) &amp;optional environment)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> environment))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  `(find-my-frob &#39;,(my-name self) :if-does-not-exist <span class="bu">:create</span>))</span></code></pre></div>
+<p>次の例では、各親がその子のリストを持ち、 各子がその親に戻る参照を持っているので、 データ構造は循環しています。 このような構造のひとつのオブジェクトに<a href="7.7.make-load-form.html"><code>make-load-form</code></a>が呼ばれると、 <em>creation-form</em>は同等のオブジェクトを作成し、 <code>children</code>スロットを埋め、 その子や孫などすべてのオブジェクトに対して 同等のオブジェクトを強制的に作成します。 この時点では、<code>parent</code>スロットはひとつも埋まっていません。 <em>initialization-form</em>フォームでは、 <code>parent</code>スロットが埋められ、 親に相当するオブジェクトがまだ作成されていない場合は、 強制的に作成されます。 したがって、ロード時にツリー全体が再作成されます。 コンパイル時では、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>はツリー内の各オブジェクトに対して 一度だけ呼び出されます。 すべての<em>creation-form</em>が処理系に依存した順序で評価され、 次にすべての<em>initialization-form</em>が、 同じく処理系に依存した順序で評価されます。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> tree-with-parent </span>() ((parent :accessor tree-parent)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                               (children :initarg :children)))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-load-form </span>((x tree-with-parent) &amp;optional environment)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> environment))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">values</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; creation form</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    `(<span class="kw">make-instance</span> &#39;,(<span class="kw">class-of</span> x) :children &#39;,(<span class="kw">slot-value</span> x &#39;children))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; initialization form</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    `(<span class="kw">setf</span> (tree-parent &#39;,x) &#39;,(<span class="kw">slot-value</span> x &#39;parent))))</span></code></pre></div>
+<p>次のの例では、データ構造に特別な特性はなく出力され、 単純にスロットの内容を再構築するだけで 同等の構造体を再構築することができます。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> my-struct </span>a b c)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-load-form </span>((s my-struct) &amp;optional environment)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">make-load-form-saving-slots</span> s :environment environment))</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><code>standard-object</code>, <code>structure-object</code>, <code>condition</code> の特定メソッドは、型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>システムクラスの一般化されたインスタンスに対して<a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出すと、 エラーが発生するか、作成・初期化フォームが返されるかは、処理系に依存します。</p>
+<h2 id="参考">参考</h2>
+<p><code>compile-file</code>, <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>, 3.2.4.4. 外部オブジェクトの制約の追記, 3.1. 評価, <a href="3.2.html">3.2. コンパイル</a></p>
+<h2 id="備考">備考</h2>
+<p>ファイルコンパイラは、特定の状況下で<a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出します。 3.2.4.4. 外部オブジェクトの制約の追記を参照。</p>
+<p>実装によっては、システムクラスとして指定されたクラスの新しいサブクラスを 定義する機能を提供する場合があります。 （考えられる候補としては、 <code>generic-function</code>、<code>method</code>、<code>stream</code>があります。） そのような実装では、ファイルコンパイラがそのようなクラスのインスタンスを リテラルオブジェクトとして遭遇したときにどのように処理するかを文書化し、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>に関連するメソッドを文書化しなければなりません。</p>
+</body>
+</html>

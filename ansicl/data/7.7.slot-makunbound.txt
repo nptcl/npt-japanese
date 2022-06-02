@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SLOT-MAKUNBOUND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.slot-makunbound
+@name: slot-makunbound
+@type: function
+
+Function `SLOT-MAKUNBOUND`
+
+
+## {syntax}
+
+`slot-makunbound` *instance* *slot-name* => *instance*
+
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*slot-name* - シンボル  
+
+
+## {description}
+
+関数{slot-makunbound:link}は、
+*instance*の*slot-name*という名前のスロットを
+`unbound`状態にします。
+
+
+## {exceptional-situations}
+
+もし*instance*に*slot-name*のスロットがない場合は、
+下記のように{slot-missing:link}が呼ばれます。
+
+```lisp
+(slot-missing (class-of instance)
+              instance
+              slot-name
+              'slot-makunbound)
+```
+
+（この場合、{slot-missing:link}から返却されたどんな値も、
+{slot-makunbound:link}によって無視されます。）
+
+具体的なふるまいは、*instance*のメタクラスに依存します。
+もし*instance*のメタクラスが{standard-class:link}なら、
+決してエラーは発生しません。
+もし*instance*のメタクラスが{built-in-class:link}なら、
+常にエラーが発生します。
+もし*instance*が他のメタクラスなら結果は規定されておらず、
+状況によってエラーが発生するかもしれませんし、
+されないかもしれません。
+特にコンディションと構造体についての動作は規定されていません。
+
+
+## {see-also}
+
+{slot-boundp:link},
+{slot-missing:link}
+
+
+## {notes}
+
+実装は必須ではありませんが、
+実装者はMetaobject Protocolで説明されている
+関数{slot-makunbound-using-class}を使用して
+関数{slot-makunbound:link}を実装することが強く推奨されます。
+
+@end
+
+

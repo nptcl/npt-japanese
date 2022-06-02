@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function NO-NEXT-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.no-next-method
+@name: no-next-method
+@type: standard-generic-function
+
+Standard Generic Function `NO-NEXT-METHOD`
+
+
+## {syntax}
+
+`no-next-method` *generic-function* *method* &rest *args* => *result\**
+
+
+## {method-signatures}
+
+`no-next-method` (*generic-function* {standard-generic-function:link})
+ (*method* {standard-method:link}) &rest *args*
+
+
+## {arguments-and-values}
+
+*generic-function* - *method*が属しているジェネリック関数  
+*method* - 次のメソッドがないときに{call-next-method:link}を呼び出したメソッド  
+*args* - {call-next-method:link}の引数  
+*result* - オブジェクト
+
+
+## {description}
+
+ジェネリック関数{no-next-method:link}は、
+次のメソッドが存在しないときに{call-next-method:link}によって呼び出されます。
+
+ジェネリック関数{slot-unbound:link}は、
+プログラマーによって呼び出されることを想定していません。
+プログラマーはメソッドを書くことができます。
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+システムが提供する{no-next-method:link}のメソッドは、
+型{error!condition:link}のエラーを発生します。
+
+
+## {see-also}
+
+{call-next-method:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

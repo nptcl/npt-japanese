@@ -16,7 +16,7 @@ Type `BASE-STRING`
 ## {class-precedence-list}
 
 {base-string:link}, {string!system-class:link}, {vector!system-class:link},
-{array:link}, {sequence:link}, {t:link}
+{array:link}, {sequence:link}, {t!system-class:link}
 
 
 ## {description}

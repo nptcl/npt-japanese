@@ -165,11 +165,11 @@
 <p>method-combinationの<code>standard</code>の意味を次に示します。</p>
 <ul>
 <li><p>もし<code>around</code>メソッドが存在する場合は、最も特定的な<code>around</code>メソッドが呼ばれます。 これはジェネリック関数に対して1つか複数の返却値を提供します。</p></li>
-<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<code>no-next-method</code>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。</p></li>
+<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。</p></li>
 <li><p>もし<code>around</code>メソッドが<code>call-next-method</code>を実行したとき、 次の特定的な<code>around</code>メソッドが適用可能であれば呼び出されます。 もし<code>around</code>メソッドが存在しないか、 あるいは最も特定的ではない<code>around</code>メソッドによって<code>call-next-method</code>が呼び出された場合は、 次に示すものとして他のメソッドが呼び出されます。</p>
 <ul>
 <li><p>全ての<code>before</code>メソッドが<code>most-specific-first</code>の順番で呼ばれます。 これらの返却値は無視されます。 もし<code>before</code>メソッド内で<code>call-next-method</code>が使用された場合は、エラーが発せられます。</p></li>
-<li><p>最も特定的なプライマリメソッドが呼び出されます。 プライマリメソッドのコード内では、 次の特定的なプライマリメソッドを呼び出すための<code>call-next-method</code>が使用できます。 メソッドから戻ったとき、以前のプライマリメソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<code>no-next-method</code>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 もし<code>call-next-method</code>が使われなかった場合は、最も特定的なプライマリメソッドだけが呼び出されます。</p></li>
+<li><p>最も特定的なプライマリメソッドが呼び出されます。 プライマリメソッドのコード内では、 次の特定的なプライマリメソッドを呼び出すための<code>call-next-method</code>が使用できます。 メソッドから戻ったとき、以前のプライマリメソッドは返却された値に基づいて、 さらにコードを実行することができます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 もし<code>call-next-method</code>が使われなかった場合は、最も特定的なプライマリメソッドだけが呼び出されます。</p></li>
 <li><p>全ての<code>after</code>メソッドが<code>most-specific-last</code>の順番で呼ばれます。 これらの返却値は無視されます。 もし<code>after</code>メソッド内で<code>call-next-method</code>が使用された場合は、エラーが発せられます。</p></li>
 </ul></li>
 <li><p>もし<code>around</code>メソッドが呼び出されなかった場合は、 最も特定的なプライマリメソッドが、 1つか複数の値をジェネリック関数の返却値として返却します。 最も特定的ではない<code>around</code>メソッドから <code>call-next-method</code>の呼び出しによって返却される1つか複数の返却値は、 最も特定的なプライマリメソッドの返却値となります。</p></li>

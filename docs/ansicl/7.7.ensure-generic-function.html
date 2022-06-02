@@ -176,9 +176,9 @@
 <h2 id="影響">影響</h2>
 <p><em>function-name</em>に束縛されている既存の関数。</p>
 <h2 id="例外">例外</h2>
-<p>もし<code>(fdefinition function-name)</code>が通常の関数か、 マクロか、特殊オペレーターで存在する場合は、 型<code>error</code>のエラーが発せられます。</p>
-<p>もし<em>function-name</em>で定義されているジェネリック関数と <code>:lambda-list</code>引数の値が異なっており、 新しい値が既存の全てのメソッドのラムダリストと合致しない場合は、 型<code>error</code>のエラーが発せられます。</p>
-<p><em>function-name</em>で定義されているジェネリック関数と <code>:generic-function-class</code>引数の値が異なっており、 かつ新しいジェネリック関数のクラスが古いものと互換性がない場合は、 型<code>error</code>のエラーが発せられます。</p>
+<p>もし<code>(fdefinition function-name)</code>が通常の関数か、 マクロか、特殊オペレーターで存在する場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。</p>
+<p>もし<em>function-name</em>で定義されているジェネリック関数と <code>:lambda-list</code>引数の値が異なっており、 新しい値が既存の全てのメソッドのラムダリストと合致しない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。</p>
+<p><em>function-name</em>で定義されているジェネリック関数と <code>:generic-function-class</code>引数の値が異なっており、 かつ新しいジェネリック関数のクラスが古いものと互換性がない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。</p>
 <h2 id="参考">参考</h2>
 <p><code>defgeneric</code></p>
 <h2 id="備考">備考</h2>

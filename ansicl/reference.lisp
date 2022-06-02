@@ -49,6 +49,8 @@
 ;;
 ;;  recursive replace
 ;;
+(defvar *reference-update*)
+
 (defun reference-update (str)
   (setq *reference-update* t)
   (reference-find (read-colon str)))

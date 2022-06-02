@@ -217,7 +217,7 @@
 <h1 class="title">7.1.7. Make-InstanceとInitialize-Instanceの宣言</h1>
 </header>
 <p>7.1.7. Make-InstanceとInitialize-Instanceの宣言</p>
-<p>ジェネリック関数<code>make-instance</code>は、最適化を考えない場合は、 下記に示す宣言のように実行されます。</p>
+<p>ジェネリック関数<a href="7.7.make-instance.html"><code>make-instance</code></a>は、最適化を考えない場合は、 下記に示す宣言のように実行されます。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-instance </span>((<span class="kw">class</span> <span class="kw">standard-class</span>) &amp;<span class="kw">rest</span> initargs)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((instance (<span class="kw">apply</span> #&#39;allocate-instance <span class="kw">class</span> initargs)))</span>
@@ -226,12 +226,12 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> make-instance </span>((<span class="kw">class-name</span> <span class="kw">symbol</span>) &amp;<span class="kw">rest</span> initargs)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">apply</span> #&#39;make-instance (<span class="kw">find-class</span> <span class="kw">class-name</span>) initargs))</span></code></pre></div>
-<p><code>make-instance</code>の定義で省かれているコードは、 <code>initargs</code>をデフォルト初期化引数によって指定する部分であり、 また初期化引数の結果を 初期化引数に設定するかどうか決定するために、 スロットに値が設定されておらず、 メソッドの引数として供給もされていないかどうかをチェックする部分となります。</p>
+<p><a href="7.7.make-instance.html"><code>make-instance</code></a>の定義で省かれているコードは、 <code>initargs</code>をデフォルト初期化引数によって指定する部分であり、 また初期化引数の結果を 初期化引数に設定するかどうか決定するために、 スロットに値が設定されておらず、 メソッドの引数として供給もされていないかどうかをチェックする部分となります。</p>
 <p>ジェネリック関数<code>initialize-instance</code>は、最適化を考えない場合は、 下記に示す宣言のように実行されます。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> initialize-instance </span>((instance <span class="kw">standard-object</span>) &amp;<span class="kw">rest</span> initargs)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">apply</span> #&#39;shared-initialize instance <span class="kw">t</span> initargs)))</span></code></pre></div>
 <p>これらのコードはカスタマイズ可能です。</p>
-<p>プログラマーへのインターフェイスレベルとしてカスタマイズできるものは、 <code>defclass</code>のオプションである、<code>:initform</code>, <code>:initarg</code>, そして<code>:default-initargs</code>が含まれますし、 同様に<code>make-instance</code>, <a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>, そして<code>initialize-instance</code>のメソッド宣言があげられます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することも可能です。 この関数は、ジェネリック関数の<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>, そして<code>initialize-instance</code>によって実行されます。 メタオブジェクトレベルでは、追加でカスタマイズをサポートします。</p>
+<p>プログラマーへのインターフェイスレベルとしてカスタマイズできるものは、 <code>defclass</code>のオプションである、<code>:initform</code>, <code>:initarg</code>, そして<code>:default-initargs</code>が含まれますし、 同様に<a href="7.7.make-instance.html"><code>make-instance</code></a>, <a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>, そして<code>initialize-instance</code>のメソッド宣言があげられます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することも可能です。 この関数は、ジェネリック関数の<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>, そして<code>initialize-instance</code>によって実行されます。 メタオブジェクトレベルでは、追加でカスタマイズをサポートします。</p>
 <p>処理系は、<code>initialize-instance</code>と<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>について 明確な最適化を許容しています。 7章にある<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の定義では、可能な最適化についての説明があります。</p>
 </body>
 </html>

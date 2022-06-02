@@ -220,15 +220,15 @@
 <p>Standard Generic Function <code>CHANGE-CLASS</code></p>
 <h2 id="構文">構文</h2>
 <p><code>change-class</code> <em>instance</em> <em>new-class</em> &amp;key &amp;allow-other-keys =&gt; <em>instance</em></p>
-<h1 id="メソッド宣言">メソッド宣言</h1>
+<h2 id="メソッド宣言">メソッド宣言</h2>
 <p><code>change-class</code> (<em>instance</em> <code>standard-object</code>) (<em>new-class</em> <code>standard-class</code>) &amp;rest <em>initargs</em><br />
-<code>change-class</code> (<em>instance</em> <a href="4.4.t.html"><code>t</code></a>) (<em>new-class</em> <code>symbol</code>) &amp;rest <em>initargs</em></p>
+<code>change-class</code> (<em>instance</em> <a href="4.4.t-system-class.html"><code>t</code></a>) (<em>new-class</em> <code>symbol</code>) &amp;rest <em>initargs</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>instance</em> - オブジェクト<br />
 <em>new-class</em> - クラス指定子<br />
 <em>initargs</em> - 初期化引数リスト</p>
 <h2 id="定義">定義</h2>
-<p>ジェネリック関数<a href="7.7.change-class.html"><code>change-class</code></a>は、 <em>instance</em>のクラスを<em>new-class</em>に変更します。 変更は破壊的な修正を行い、<em>instance</em>を返却します。 もし元のクラスに、<em>new-class</em>の局所スロットと 同じ名前のスロットが存在する場合は、 そのスロットの値は保持されます。 これは、もしスロットに値があるとき、 <a href="7.7.change-class.html"><code>change-class</code></a>実行後の<code>slot-value</code>の返却値と、 <a href="7.7.change-class.html"><code>change-class</code></a>実行前の<code>slot-value</code>の返却値は、 <code>eql</code>であるという意味です。 同様に、スロットが<code>unbound</code>のときは、<code>unbound</code>が保持されます。 他のスロットは、<a href="7.2.html">7.2. インスタンスのクラスの変更</a>で記載されたように初期化されます。</p>
+<p>ジェネリック関数<a href="7.7.change-class.html"><code>change-class</code></a>は、 <em>instance</em>のクラスを<em>new-class</em>に変更します。 変更は破壊的な修正を行い、<em>instance</em>を返却します。 もし元のクラスに、<em>new-class</em>の局所スロットと 同じ名前のスロットが存在する場合は、 そのスロットの値は保持されます。 これは、もしスロットに値があるとき、 <a href="7.7.change-class.html"><code>change-class</code></a>実行後の<a href="7.7.slot-value.html"><code>slot-value</code></a>の返却値と、 <a href="7.7.change-class.html"><code>change-class</code></a>実行前の<a href="7.7.slot-value.html"><code>slot-value</code></a>の返却値は、 <code>eql</code>であるという意味です。 同様に、スロットが<code>unbound</code>のときは、<code>unbound</code>が保持されます。 他のスロットは、<a href="7.2.html">7.2. インスタンスのクラスの変更</a>で記載されたように初期化されます。</p>
 <p>他の全ての動作が完了した後で、 <a href="7.7.change-class.html"><code>change-class</code></a>は<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>を実行します。 ジェネリック関数<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>は、 変更された<em>instance</em>のスロットに値を割り当てるときに使用できます。 <a href="7.2.2.html">7.2.2. 新しく追加された局所スロットの初期化</a>を確認ください。</p>
 <p>もし、上記のメソッドの2番目が選ばれたとき、 そのメソッドは<a href="7.7.change-class.html"><code>change-class</code></a>の引数を、 <em>instance</em>、<code>(find-class new-class)</code>、<em>initargs</em>で起動します。</p>
 <h2 id="例文">例文</h2>
@@ -245,26 +245,24 @@
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> update-instance-for-different-class </span>:before ((old x-y-position) </span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                                        (new rho-theta-position)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                                        &amp;key)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Copy the position information from old to new to make new</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; be a rho-theta-position at the same position as old.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; 位置情報をoldからnewへコピーします。</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; 新しく作成されるrho-theta-positionは古い位置と同じです</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="kw">slot-value</span> old &#39;x))</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        (y (<span class="kw">slot-value</span> old &#39;y)))</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">setf</span> (<span class="kw">slot-value</span> new &#39;rho) (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> y y)))</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">slot-value</span> new &#39;theta) (<span class="kw">atan</span> y x))))</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">;;; At this point an instance of the class x-y-position can be</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">;;; changed to be an instance of the class rho-theta-position using</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">;;; change-class:</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> p1 (<span class="kw">make-instance</span> &#39;x-y-position :x <span class="dv">2</span> :y <span class="dv">0</span>))</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>(<span class="kw">change-class</span> p1 &#39;rho-theta-position)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">;;; The result is that the instance bound to p1 is now an instance of</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">;;; the class rho-theta-position.   The update-instance-for-different-class</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">;;; method performed the initialization of the rho and theta slots based</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">;;; on the value of the x and y slots, which were maintained by</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">;;; the old instance.</span></span></code></pre></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">;;; この時点で、クラスx-y-positionのインスタンスは</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">;;; chage-classでクラスrho-theta-positionのインスタンスに変更できます</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> p1 (<span class="kw">make-instance</span> &#39;x-y-position :x <span class="dv">2</span> :y <span class="dv">0</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>(<span class="kw">change-class</span> p1 &#39;rho-theta-position)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 結果p1のインスタンスはrho-theta-positionクラスのインスタンスとなりました。</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">;;; update-instance-for-different-class メソッドは、</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 古いインスタンスが保持していたxとyのスロットの値に基づいて</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">;;; rhoとthetaのスロットの初期化しました。</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>

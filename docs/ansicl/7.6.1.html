@@ -160,14 +160,14 @@
 <p>通常の関数のように、ジェネリック関数は引数を取り、 一連のオペレーションを実行し、そしておそらくは有効な値を返却します。 通常の関数は単一のコードの実体を持ち、関数が呼び出されたときに常に実行されます。 ジェネリック関数はコードの実体を複数の集合として持ち、 その集合の一部か全部を関数実行のときに選択します。 選ばれたコードの集合とその組み合わせは、 ジェネリック関数に渡される1つか複数の引数から、 クラスかあるいは同一性により決定します。 それはmethod-combinationによって決定が行われます。</p>
 <p>通常の関数とジェネリック関数は、同一の構文により呼び出されます。</p>
 <p>ジェネリック関数は本物の関数なので、 <code>funcall</code>と<code>apply</code>の最初の引数として使用されたり、 あるいは引数を渡したりすることができます。</p>
-<p>ジェネリック関数の関数名の設定は、いくつかの手順のひとつとして確立します。 それはグローバル環境内において、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <code>defmethod</code>（暗に<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる）, <code>defgeneric</code>（これもまた暗に、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる） によって確立されます。 レキシカル環境において、ジェネリック関数の関数名の束縛を確立するための 標準的な方法は提供されていません。</p>
-<p><code>defgeneric</code>フォームが評価されるとき、 （<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>によって）次の3つのうちの1つの手順が取られます。</p>
+<p>ジェネリック関数の関数名の設定は、いくつかの手順のひとつとして確立します。 それはグローバル環境内において、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <a href="7.7.defmethod.html"><code>defmethod</code></a>（暗に<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる）, <a href="7.7.defgeneric.html"><code>defgeneric</code></a>（これもまた暗に、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる） によって確立されます。 レキシカル環境において、ジェネリック関数の関数名の束縛を確立するための 標準的な方法は提供されていません。</p>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームが評価されるとき、 （<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>によって）次の3つのうちの1つの手順が取られます。</p>
 <ul>
-<li><p>もし指定した名前のジェネリック関数がもう存在している場合は、 存在しているジェネリック関数オブジェクトを修正します。 いま実行された<code>defgeneric</code>フォームによって宣言されたメソッドは追加され、 そして以前の<code>defgeneric</code>フォームによって定義された、 存在していたジェネリック関数のどんなメソッドも削除されます。 いま実行された<code>defgeneric</code>フォームによるメソッドの追加は、 <code>defmethod</code>, <code>defclass</code>, <code>define-condition</code>, そして<code>defstruct</code>によって定義されたメソッドも置き換えます。 ジェネリック関数内のその他のメソッドについては、影響は無いですし置き換えもされません。</p></li>
+<li><p>もし指定した名前のジェネリック関数がもう存在している場合は、 存在しているジェネリック関数オブジェクトを修正します。 いま実行された<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームによって宣言されたメソッドは追加され、 そして以前の<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームによって定義された、 存在していたジェネリック関数のどんなメソッドも削除されます。 いま実行された<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームによるメソッドの追加は、 <a href="7.7.defmethod.html"><code>defmethod</code></a>, <a href="7.7.defclass.html"><code>defclass</code></a>, <code>define-condition</code>, そして<code>defstruct</code>によって定義されたメソッドも置き換えます。 ジェネリック関数内のその他のメソッドについては、影響は無いですし置き換えもされません。</p></li>
 <li><p>もし指定した名前が、通常の関数、マクロ、特殊オペレーターによる名前であった場合は、 エラーが発せられます。</p></li>
-<li><p>そうでなければ、ジェネリック関数は<code>defgeneric</code>フォーム内にある メソッド定義により宣言されたメソッドとともに作成されます。</p></li>
+<li><p>そうでなければ、ジェネリック関数は<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォーム内にある メソッド定義により宣言されたメソッドとともに作成されます。</p></li>
 </ul>
-<p>いくつかのオペレーターは、ジェネリック関数のオプションの定義として、 使用するmethod-combinationのタイプや引数優先順位を指定することが許されています。 これらのオペレーターは、「ジェネリック関数のオプションを指定するオペレーター」と言います。 この分類の中で、標準的なオペレーターは<code>defgeneric</code>だけです。</p>
+<p>いくつかのオペレーターは、ジェネリック関数のオプションの定義として、 使用するmethod-combinationのタイプや引数優先順位を指定することが許されています。 これらのオペレーターは、「ジェネリック関数のオプションを指定するオペレーター」と言います。 この分類の中で、標準的なオペレーターは<a href="7.7.defgeneric.html"><code>defgeneric</code></a>だけです。</p>
 <p>いくつかのオペレーターは、ジェネリック関数のメソッドを定義します。 これらのオペレーターはメソッド定義オペレーターと言われます。 このオペレーターに関連付けられたフォームは、メソッド定義フォームと呼ばれます。 標準的なメソッド定義オペレーターを次の表に示します。</p>
 <pre><code>defgeneric
 define-condition
@@ -176,7 +176,7 @@ defstruct
 defclass
 
 表7-1 標準メソッド定義オペレーター</code></pre>
-<p>注意として、標準メソッド定義オペレーターの<code>defgeneric</code>だけは、 ジェネリック関数のオプションを指定することが出来ます。 <code>defgeneric</code>といくつかの実装定義オペレーターは、 ジェネリック関数のオプションを指定することが可能であり、 「ジェネリック関数のオプションを指定するオペレーター」と言われます。</p>
+<p>注意として、標準メソッド定義オペレーターの<a href="7.7.defgeneric.html"><code>defgeneric</code></a>だけは、 ジェネリック関数のオプションを指定することが出来ます。 <a href="7.7.defgeneric.html"><code>defgeneric</code></a>といくつかの実装定義オペレーターは、 ジェネリック関数のオプションを指定することが可能であり、 「ジェネリック関数のオプションを指定するオペレーター」と言われます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

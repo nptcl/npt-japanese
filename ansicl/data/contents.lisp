@@ -52,14 +52,50 @@
       "Literal Objects in Compiled Files")
 (text 3.2.4.4 "外部オブジェクトの制約の追記"
       "Additional Constraints on Externalizable Objects")
+(text 3.4 "ラムダリスト" "Lambda Lists")
+(text 3.4.11 "ドキュメント文字と宣言の文脈的な作用"
+      "Syntactic Interaction of Documentation Strings and Declarations")
+
 (index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
 (index 3.8 "評価とコンパイルの辞書" "Evaluation and Compilation Dictionary")
+(dictionary 3.8.lambda!symbol)
+(dictionary 3.8.lambda!macro)
+(dictionary 3.8.compile)
 (dictionary 3.8.eval)
+(dictionary 3.8.eval-when)
+(dictionary 3.8.load-time-value)
+(dictionary 3.8.quote)
+(dictionary 3.8.compiler-macro-function)
+(dictionary 3.8.define-compiler-macro)
 (dictionary 3.8.defmacro)
+(dictionary 3.8.macro-function)
+(dictionary 3.8.macroexpand)
+(dictionary 3.8.macroexpand-1)  ;; delete
+(dictionary 3.8.define-symbol-macro)
 (dictionary 3.8.symbol-macrolet)
+(dictionary 3.8.*macroexpand-hook*)
+(dictionary 3.8.proclaim)
+(dictionary 3.8.declaim)
+(dictionary 3.8.declare)
+(dictionary 3.8.ignore)
+(dictionary 3.8.ignorable)  ;; delete
+(dictionary 3.8.dynamic-extent)
+(dictionary 3.8.type)
+(dictionary 3.8.inline)
+(dictionary 3.8.notinline)  ;; delete
+(dictionary 3.8.ftype)
+(dictionary 3.8.declaration)
+(dictionary 3.8.optimize)
+(dictionary 3.8.special)
+(dictionary 3.8.locally)
+(dictionary 3.8.the)
+(dictionary 3.8.special-operator-p)
+(dictionary 3.8.constantp)
 
 ;; Chapter 4
 (text 4.3 "クラス" "Classes")
+(text 4.3.4 "継承" "Inheritance")
+(text 4.3.5 "{class-precedence-list}の決定" "Determining the Class Precedence List")
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
 (dictionary 4.4.generic-function)
@@ -75,6 +111,7 @@
 (dictionary 4.4.method-combination)
 (dictionary 4.4.t!system-class)
 (dictionary 4.4.coerce)
+(dictionary 4.4.deftype)
 (dictionary 4.4.typep)
 (dictionary 4.4.type-error)
 
@@ -86,7 +123,7 @@
 (dictionary 5.3.nil!variable)
 (dictionary 5.3.t!variable)
 (dictionary 5.3.eq)
-(dictionary 5.3.eql)
+(dictionary 5.3.eql!function)
 (dictionary 5.3.equal)
 (dictionary 5.3.equalp)
 (dictionary 5.3.setf)
@@ -286,4 +323,8 @@
 (index 24.2 "システム構築の辞書" "System Construction Dictionary")
 (dictionary 24.2.compile-file)
 (dictionary 24.2.load)
+
+;; Chapger 25
+(index 25.2 "環境の辞書" "Environment Dictionary")
+(dictionary 25.2.documentation)
 

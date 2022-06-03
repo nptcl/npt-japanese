@@ -129,7 +129,7 @@ results - フォームの返却値
 もし*slot-entry_i*がフォームなら次のようになります。
 
 ```lisp
-(variable-namei 'slot-namei))
+(variable-namei 'slot-namei)
 ```
 
 @end

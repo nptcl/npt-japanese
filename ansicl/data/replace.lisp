@@ -50,9 +50,16 @@
 
 (replace proper-list "通常のリスト")
 (replace lexical-environment "レキシカルな環境")
+(replace dynamic-environment "動的な環境")
 (replace literal-object "リテラルオブジェクト")
 (replace confirming-implementation "仕様に適合した実装")
 (replace confirming-program "仕様に適合したプログラム")
 (replace implicit-progn "暗黙のprogn")
 (replace accessor "アクセッサ")
+
+(replace direct-superclasses "ダイレクトスーパークラス")
+(replace parameter-specializer "特定パラメーター")
+(replace required-parameter "要求パラメーター")
+(replace required-arguments "要求された引数")
+(replace specialized-parameter "特化したパラメーター")
 

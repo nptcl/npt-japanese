@@ -41,13 +41,13 @@
 これらのコードはカスタマイズ可能です。
 
 プログラマーへのインターフェイスレベルとしてカスタマイズできるものは、
-{defclass:link}のオプションである、`:initform`, `:initarg`, 
+{defclass:link}のオプションである、`:initform`, `:initarg`,
 そして`:default-initargs`が含まれますし、
 同様に{make-instance:link}, {allocate-instance:link},
 そして{initialize-instance:link}のメソッド宣言があげられます。
 {shared-initialize:link}のメソッドを定義することも可能です。
 この関数は、ジェネリック関数の{reinitialize-instance:link},
-{update-instance-for-redefined-class:link}, 
+{update-instance-for-redefined-class:link},
 {update-instance-for-different-class:link},
 そして{initialize-instance:link}によって実行されます。
 メタオブジェクトレベルでは、追加でカスタマイズをサポートします。

@@ -116,7 +116,7 @@ Standard Generic Function `SHARED-INITIALIZE`
 
 ## {notes}
 
-*initarg*は、{defclass:link}の`:iniarg`オプションを使用するか、
+*initarg*は、{defclass:link}の`:initarg`オプションを使用するか、
 あるいは{shared-initialize:link}のメソッドを定義することで、
 有効な宣言であるとされます。
 {shared-initialize:link}で定義されたメソッドのラムダリスト内の

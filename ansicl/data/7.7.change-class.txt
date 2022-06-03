@@ -44,7 +44,7 @@ Standard Generic Function `CHANGE-CLASS`
 これは、もしスロットに値があるとき、
 {change-class:link}実行後の{slot-value:link}の返却値と、
 {change-class:link}実行前の{slot-value:link}の返却値は、
-{eql:link}であるという意味です。
+{eql!function:link}であるという意味です。
 同様に、スロットが`unbound`のときは、`unbound`が保持されます。
 他のスロットは、{7.2:ab}で記載されたように初期化されます。
 

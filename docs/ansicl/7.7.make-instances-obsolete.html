@@ -166,7 +166,7 @@
 <p>class - クラス指定子</p>
 <h2 id="定義">定義</h2>
 <p>関数<a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>は、 クラス<em>class</em>のインスタンスの更新処理を開始する効果があります。 更新中に、ジェネリック関数<a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>が 実行されます。</p>
-<p><code>defclass</code>が既存の標準クラスの再定義を行ったあとで インスタンスのアクセス可能な局所スロットが変更されたか、 あるいはストレージ内のスロットの順序が変更されたときに、 ジェネリック関数<a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>が システムによって自動的に実行されます。 これは明示的にユーザーが実行することもできます。</p>
+<p><a href="7.7.defclass.html"><code>defclass</code></a>が既存の標準クラスの再定義を行ったあとで インスタンスのアクセス可能な局所スロットが変更されたか、 あるいはストレージ内のスロットの順序が変更されたときに、 ジェネリック関数<a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>が システムによって自動的に実行されます。 これは明示的にユーザーが実行することもできます。</p>
 <p>もし上記メソッド定義の2番目が選ばれたとき、 そのメソッドは、引数を<code>(find-class class)</code>として <a href="7.7.make-instances-obsolete.html"><code>make-instances-obsolete</code></a>を実行します。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>

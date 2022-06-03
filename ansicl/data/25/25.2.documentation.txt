@@ -1,0 +1,18 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function DOCUMENTATION
+;;  Standard Generic Function (SETF DOCUMENTATION)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.documentation
+@name: documentation
+@name: type!symbol
+@name: function!symbol
+@type: standard-generic-function
+
+
+@end
+

@@ -162,7 +162,7 @@
 =&gt; <em>generic-function</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>function-name</em> - 関数名</p>
-<p>キーワード引数は<code>defgeneric</code>の引数に対応しますが、 <code>:method-class</code>と<code>:generic-function-class</code>の引数は、 名前と同様にクラスオブジェクトを指定できます。</p>
+<p>キーワード引数は<a href="7.7.defgeneric.html"><code>defgeneric</code></a>の引数に対応しますが、 <code>:method-class</code>と<code>:generic-function-class</code>の引数は、 名前と同様にクラスオブジェクトを指定できます。</p>
 <p><em>method-combination</em> - method-combinationオブジェクト<br />
 <em>environment</em> - マクロ展開関数の<code>&amp;environment</code>引数と同じです。 この引数は、コンパイル時と実行時を区別するために使われます。<br />
 <em>generic-function</em> - ジェネリック関数オブジェクト</p>
@@ -182,7 +182,7 @@
 <p>もし<em>function-name</em>で定義されているジェネリック関数と <code>:lambda-list</code>引数の値が異なっており、 新しい値が既存の全てのメソッドのラムダリストと合致しない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。</p>
 <p><em>function-name</em>で定義されているジェネリック関数と <code>:generic-function-class</code>引数の値が異なっており、 かつ新しいジェネリック関数のクラスが古いものと互換性がない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。</p>
 <h2 id="参考">参考</h2>
-<p><code>defgeneric</code></p>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

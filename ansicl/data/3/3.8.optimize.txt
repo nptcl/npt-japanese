@@ -1,0 +1,20 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3.  評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration OPTIMIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.optimize
+@name: optimize
+@name: compilation-speed
+@name: debug
+@name: safety
+@name: space
+@name: speed
+@type: declaration
+
+
+@end
+

@@ -160,7 +160,7 @@
 <p>一般的に、有効なメソッドは、適用可能なメソッドを組み合わせた結果のいくつかとなります。 これは次に記載されたような目的によりフォームとして定義されます。 適用可能なメソッドは、いくつかが呼ばれるか、あるいは全部が呼ばれるかを定義します。 また、返却値は1つか複数が返却されるように定義します。 その返却値はジェネリック関数として返却されるものです。 付加的にはいくつかのメソッドが<code>call-next-method</code>を用いてアクセス可能になるように定義します。</p>
 <p>有効なメソッドにおける各メソッドの役割は、 メソッドの修飾子と特定子によって決定されます。 修飾子はメソッドに印をつけるものであり、 修飾子の意味は手続きにおいて印を用いることで決定されます。 もし適用可能なメソッドが認識できない修飾子を持っていた場合はエラーを発し、 有効なメソッドの中にこのメソッドが存在しないものとします。</p>
 <p>method-combinationの<code>standard</code>が限定されたメソッドと一緒に使われたときは、 有効なメソッドは<a href="7.6.6.2.html">7.6.6.2. Standard Method-Combination</a>に記載されたものとして生成されます。</p>
-<p>他のタイプのmethod-combinationは、<code>defgeneric</code>かあるいは別のオペレーターで ジェネリック関数のオプション<code>:method-combination</code>を使うことで使用できます。 この方法により、手順をカスタマイズできます。</p>
+<p>他のタイプのmethod-combinationは、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>かあるいは別のオペレーターで ジェネリック関数のオプション<code>:method-combination</code>を使うことで使用できます。 この方法により、手順をカスタマイズできます。</p>
 <p>新しいタイプのmethod-combinationは、 <code>define-method-combination</code>マクロを使うことによって定義することができます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

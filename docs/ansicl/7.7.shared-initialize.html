@@ -171,7 +171,7 @@
 <p>スロットがローカルか共有かにかかわらず、システムが共有するメソッドは、 下記のような振る舞いをします。</p>
 <ul>
 <li><p>もしスロットに対して、 初期化引数リストにある<em>initarg</em>が値を特定している場合、 値はそのスロットに格納されます。 もしそのスロットにはすでに値が格納されている場合でも同様に、値が格納されます。 値の格納は、メソッドが実行する前に行われます。</p></li>
-<li><p><em>slot-names</em>で指定されたどんなスロットでも、 現時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームによって初期化されます。 <code>:initform</code>フォームを持ったどんなスロットでも、 フォーム自体は<code>defclass</code>フォームが宣言されたレキシカル環境によって評価され、 結果がスロットへ格納されます。 例えば、<code>before</code>メソッドがスロットに値を格納した場合は、 <code>:initform</code>フォームはスロットへの値の供給には使用されないでしょう。</p></li>
+<li><p><em>slot-names</em>で指定されたどんなスロットでも、 現時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームによって初期化されます。 <code>:initform</code>フォームを持ったどんなスロットでも、 フォーム自体は<a href="7.7.defclass.html"><code>defclass</code></a>フォームが宣言されたレキシカル環境によって評価され、 結果がスロットへ格納されます。 例えば、<code>before</code>メソッドがスロットに値を格納した場合は、 <code>:initform</code>フォームはスロットへの値の供給には使用されないでしょう。</p></li>
 <li><p>規則<a href="7.1.4.html">7.1.4. 初期化引数の規則</a>に従います。</p></li>
 </ul>
 <p>もし初期化引数が指定されなかった場合、 <em>slot-names</em>引数によって指定されたスロットは <code>:initform</code>フォームに従って初期化されます。 <em>slot-names</em>はスロットの名前のリストにすることができます。 この場合は、スロットの名前の集合を指定することになります。 あるいは、<em>slot-names</em>にシンボルである<code>t</code>を指定することもできます。 この場合は、スロットのすべての集合を指定したことになります。</p>
@@ -184,7 +184,7 @@
 <h2 id="参考">参考</h2>
 <p><code>initialize-instance</code>, <a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, <a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>, <a href="7.1.html">7.1. オブジェクトの作成と初期化</a>, <a href="7.1.4.html">7.1.4. 初期化引数の規則</a>, <a href="7.1.2.html">7.1.2. 初期化引数の有効性の宣言</a></p>
 <h2 id="備考">備考</h2>
-<p><em>initarg</em>は、<code>defclass</code>の<code>:iniarg</code>オプションを使用するか、 あるいは<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することで、 有効な宣言であるとされます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>で定義されたメソッドのラムダリスト内の 各キーワードパラメータ指定子のキーワード名は、 そのメソッドが適用される全てのクラスで有効な<em>initarg</em>の名前として宣言されます。</p>
+<p><em>initarg</em>は、<a href="7.7.defclass.html"><code>defclass</code></a>の<code>:initarg</code>オプションを使用するか、 あるいは<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドを定義することで、 有効な宣言であるとされます。 <a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>で定義されたメソッドのラムダリスト内の 各キーワードパラメータ指定子のキーワード名は、 そのメソッドが適用される全てのクラスで有効な<em>initarg</em>の名前として宣言されます。</p>
 <p>処理系は、<code>:initform</code>のフォームを、 副作用を生成せず依存もせず、 また<code>initialize-instance</code>のプライマリメソッドで処理するのではなく、 <code>initialize-instance</code>メソッドを実行する前に、 これらのフォームを評価してスロットに値を格納することが、 最適化では許可されています。 （この最適化は、<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>メソッドに プロトタイプのインスタンスをコピーさせることで実現できるかもしれません。）</p>
 <p>処理系は、初期化引数リストが渡されるメソッドが 全て<code>standard-object</code>上のメソッドのみである場合において、 実際には完全な初期化引数リストを作成せず、 <em>initargs</em>とスロットを関連付けるよう、 デフォルト初期値フォームを最適化することが許可されています。 この場合、デフォルトの初期値フォームは、 <code>:initform</code>フォームのように扱うことができます。 この最適化には、パフォーマンスの向上以外に目に見える効果はありません。</p>
 <hr />

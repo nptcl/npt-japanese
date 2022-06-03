@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFGENERIC</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFGENERIC</h1>
+</header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
+<h1 id="macro-defgeneric">Macro DEFGENERIC</h1>
+<p>Macro <code>DEFGENERIC</code></p>
+<h2 id="構文">構文</h2>
+<p><code>defgeneric</code> <em>function-name</em> <em>gf-lambda-list</em> [[<em>option</em> | <em>method-description*</em>]]<br />
+=&gt; <em>new-generic</em></p>
+<pre><code>option ::= (:argument-precedence-order parameter-name+) |
+           (declare gf-declaration+) |
+           (:documentation gf-documentation) |
+           (:method-combination method-combination method-combination-argument*) |
+           (:generic-function-class generic-function-class) |
+           (:method-class method-class)
+
+method-description ::=
+  (:method method-qualifier* specialized-lambda-list
+   [[declaration* | documentation]] form*)</code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>function-name</em> - 関数名<br />
+<em>generic-function-class</em> - <code>nil</code>ではない、クラス名のシンボル<br />
+<em>gf-declaration</em> - <a href="3.8.optimize.html"><code>optimize</code></a>の宣言指定子。他の宣言指定子は許されません。<br />
+<em>gf-documentation</em> - 文字列（評価はされない）<br />
+<em>gf-lambda-list</em> - ジェネリック関数のラムダリスト<br />
+<em>method-class</em> - <code>nil</code>ではない、クラス名のシンボル<br />
+<em>method-combination-argument</em> - オブジェクト<br />
+<em>method-combination-name</em> - <code>nil</code>ではない、method-combinationの型の名前のシンボル<br />
+<em>method-qualifiers</em>, <em>specialized-lambda-list, </em>declarations<em>, </em>documentation<em>, </em>forms* - <a href="7.7.defmethod.html"><code>defmethod</code></a>に従います。<br />
+<em>new-generic</em> - ジェネリック関数オブジェクト<br />
+<em>parameter-name</em> - ラムダリスト内にある要求パラメーターの名前のシンボル。 （もし<code>:argument-precedence-order</code>オプションが定義されているならば、 ラムダリスト内のそれぞれの要求パラメーターは、 <em>parameter-name</em>が正確にひとつ使われなければなりません）</p>
+<h2 id="定義">定義</h2>
+<p>マクロ<a href="7.7.defgeneric.html"><code>defgeneric</code></a>は、ジェネリック関数を定義したり、 ジェネリック関数全体に関わるオプションと宣言を指定するときに使われます。</p>
+<p>もし<em>function-name</em>がリストなら、<code>(setf symbol)</code>の形式でなければなりません。 もし<code>(fboundp function-name)</code>が<em>false</em>のときは、新しいジェネリック関数が作成されます。 もし<code>(fdefinition function-name)</code>がジェネリック関数のときは、 そのジェネリック関数は変更されます。 もし<em>function-name</em>が通常の関数か、マクロか、特殊オペレーターの名前のときは、 エラーが発生します。</p>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>マクロは、次に示す3つのステップが実行されたかのような効果を示します。 第一に、以前<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームで定義されたメソッドは削除されます。 第二に、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼び出されます。 そして最後に、今回の<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームによって定義されたメソッドが、 ジェネリック関数に追加されます。</p>
+<p>各<em>method-description</em>は、そのジェネリック関数上で、メソッドが宣言されます。 各メソッドのラムダリストは、<em>gf-lambda-list</em>オプションによって指定された ラムダリストと合致しなければなりません。 メソッドの定義が指定されておらず、 同名のジェネリック関数が存在しない場合は、 メソッドがないジェネリック関数が作成されます。</p>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>の引数<em>gf-lambda-list</em>は、 そのジェネリック関数のメソッドに対して、 ラムダリストの形を指定します。 返却されるジェネリック関数上の全てのメソッドは、 この形に合致したラムダリストを持たなければなりません。 もし、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームが評価されたとき、 そのジェネリック関数にあるメソッドのラムダリストが <a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームに付与されたものと合致しない場合は、 エラーが発生します。 メソッドの合致に関するさらなる詳細は、<a href="7.6.4.html">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</a>をご確認ください。</p>
+<p>ジェネリック関数は、渡されたすべての引数をメソッドに渡します。 渡されるのはそれらの値のみであり、デフォルト値は供給されません。 ただし、メソッド定義にはオプション引数とキーワード引数があり、 デフォルト値と<code>supplied-p</code>パラメーターが使用できることに注意してください。</p>
+<p>次に示すオプションが提供されます。 注意書きがあるもの以外、オプションはただひとつ与えられます。</p>
+<ul>
+<li>オプション<code>:argument-precedence-order</code>は、 ジェネリック関数が呼び出だされ、特定のメソッドを選択するときに テストを行う要求された引数の順序を指定するために使用されます。 完全かつ曖昧がないような優先順序が与えられるように、 <em>gf-lambda-list</em>引数内で指定されたそれぞれのrequired-arguments}は、 正確にひとつだけ<em>parameter-name</em>として含まれなければなりません。 もしこのような条件に合わない場合は、エラーが発生します。</li>
+<li><code>declare</code>のオプションは、 ジェネリック関数に関する宣言を指定するときに使われます。
+<ul>
+<li><a href="3.8.optimize.html"><code>optimize</code></a>宣言指定子が許されます。 この宣言は、メソッドの選択の最適化が<code>speed</code>か<code>space</code>なのかを指定するものであり、 メソッドへの効果はありません。 メソッドの最適化をどのように制御するかについては、 <a href="3.8.optimize.html"><code>optimize</code></a>宣言を<a href="7.7.defmethod.html"><code>defmethod</code></a>かメソッドの宣言内に 直接記載する必要があります。 標準で要求される最適化の種類は<a href="3.8.optimize.html"><code>speed</code></a>と<a href="3.8.optimize.html"><code>space</code></a>だけですが、 実装によっては他の種類も認識するように、 オブジェクトシステムを拡張することもできます。 単純な実装では、メソッドの選出方法をただひとつだけ実装し、 <a href="3.8.optimize.html"><code>optimize</code></a>宣言指定子を無視するというのが有効です。</li>
+<li><code>special</code>, <code>ftype</code>, <code>function</code>, <code>inline</code>, <code>notinline</code>, <code>declaration</code>の宣言は許されていません。 各実装は、<code>declare</code>オプションを拡張して、 追加の宣言をサポートすることができます。 もしある実装が、サポートしていない宣言指定子に遭遇し、 その宣言が非標準の宣言の名前で<code>proclaim</code>されていた場合は、 警告を発生させるべきです。</li>
+<li><code>declare</code>オプションは、複数指定されるかもしれません。 宣言指定子のリストをひとつにまとめて、 単体の<code>declare</code>オプションとして指定したのと同じ効果が得られます。</li>
+</ul></li>
+<li>引数<code>:documentation</code>は、ジェネリック関数のオブジェクトにドキュメント文字を、 種類<a href="25.2.documentation.html"><code>function</code></a>で、<em>funciton-name</em>に割り当てられます。</li>
+<li><code>:generic-function-class</code>オプションは、 ジェネリック関数が、システムの提供するデフォルトのもの (<code>standard-generic-function</code>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、ジェネリック関数クラスのクラス名です。 もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合はエラーが発生します。</li>
+<li><code>:method-class</code>オプションは、 ジェネリック関数上の全てのメソッドが、 システムの提供するデフォルトのもの(<code>standard-method</code>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、メソッドのクラスとなりえるクラス名です。</li>
+<li><code>:method-combination</code>オプションは、 method-combinationの型の名前であるシンボルが続きます。 そのシンボルの後に続く引数があるなら、それはmethod-combinationの型に依存します。 <code>standard</code>のmethod-combinationは、引数をサポートしません。 しかし、<code>define-method-combination</code>の短縮形によって宣言された method-combinationの型は全て、<em>order</em>というオプション引数を受け付けます。 デフォルトの値は<code>:most-specific-first</code>であり、 もしこの値が<code>:most-specific-last</code>のときは、 補助メソッドの順番に影響を与えずに、プライマリメソッドの順番を逆転させます。</li>
+</ul>
+<p>引数<em>method-description</em>は、ジェネリック関数に関連付けたメソッドを宣言できます。 メソッド宣言にある引数の<em>method-qualifier</em>と<em>specialized-lambda-list</em>は、 <a href="7.7.defmethod.html"><code>defmethod</code></a>と同じです。</p>
+<p>引数<em>form</em>は、メソッドのボディ部です。 メソッドのボディ部は、暗黙の<code>block</code>で囲まれます。 もし<em>function-name</em>がシンボルのとき、 <code>block</code>の名前はジェネリック関数と同じ名前です。 もし<em>function-name</em>が<code>(setf symbol)</code>のリスト形式の場合は、 <code>block</code>の名前は<em>symbol</em>です。</p>
+<p>実装は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>に別のオプションを含めるよう拡張できます。 もし自身が実装していないオプションが見られた場合は、 その実装はエラーを発生するよう要求されます。</p>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>は、コンパイル時にはどのような副作用も要求されていません。 特に、コンパイル時に呼び出すためのメソッドは導入されません。 実装者は、コンパイル時のエラーチェック （関数呼び出し時の引数の個数チェックであったり、 あるいは関数名の定義を確認したりすること）のために、 ジェネリック関数についての情報を保存するか選択できます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もし<em>function-name</em>が通常の関数か、マクロか、特殊オペレーターの名前のときは、 型<code>program-error</code>のエラーが発生します。</p>
+<p>引数<em>gf-lambda-list</em>として指定された各要求された引数は、 <em>parameter-name</em>として正確にひとつだけ含まれなければならず、 そうでないときは、型<code>program-error</code>のエラーが発生します。</p>
+<p><em>method-description</em>によって指定された各メソッドのラムダリストは、 <em>gf-lambda-list</em>オプションによって指定されたラムダリストと合致していなければならず、 そうでないときは型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>もし、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームが評価されたとき、 そのジェネリック関数にあるメソッドのラムダリストが <a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームに付与されたものと合致しない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>オプションがただひとつではなかった場合は、 型<code>program-error</code>のエラーが発生します。</p>
+<p>もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合は型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>実装は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>に別のオプションを含めるよう拡張できます。 もし自身が実装していないオプションが見られた場合は、 その実装は型<code>program-error</code>のエラーを発生するよう要求されます。</p>
+<h2 id="参考">参考</h2>
+<p><a href="7.7.defmethod.html"><code>defmethod</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <code>generic-function</code>, <a href="7.6.4.html">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

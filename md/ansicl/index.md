@@ -34,7 +34,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書](22.4.html)|
 |[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書](23.2.html)|
 |[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書](24.2.html)|
-|25.|Environment|環境|辞書|
+|[25.](25.html)|[Environment](25.html)|[環境](25.html)|[辞書](25.2.html)|
 |26.|Glossary|用語集|辞書|
 |a.|Appendix|付録|辞書|
 

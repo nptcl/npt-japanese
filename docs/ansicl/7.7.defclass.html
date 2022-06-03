@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFCLASS</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFCLASS</h1>
+</header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
+<h1 id="macro-defclass">Macro DEFCLASS</h1>
+<p>Macro <code>DEFCLASS</code></p>
+<h2 id="構文">構文</h2>
+<p><code>defclass</code> <em>class-name</em> (<em>superclass-name*</em>) (<em>slot-specifier*</em>) [[class-option]] =&gt; <em>new-class</em></p>
+<pre><code>slot-specifier ::= slot-name | (slot-name [[slot-option]])
+slot-name ::= symbol
+slot-option ::= {:reader reader-function-name}* |
+                {:writer writer-function-name}* |
+                {:accessor reader-function-name}* |
+                {:initarg initarg-name}* |
+                {:initform form} |
+                {:type type-specifier} |
+                {:documentation string}
+function-name ::= {symbol | (setf symbol)}
+class-option ::= (:default-initargs . initarg-list) |
+                 (:documentation string) |
+                 (:metaclass class-name)</code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>class-name</em> - <code>nil</code>ではないシンボル<br />
+<em>superclass-name</em> - <code>nil</code>ではないシンボル<br />
+<em>slot-name</em> - シンボル。 引数<em>slot-name</em>は、変数名として使用できる構文として有効なシンボルです。<br />
+<em>reader-function-name</em> - <code>nil</code>ではないシンボル。 <code>:reader</code>はひとつのスロットに複数指定できます。<br />
+<em>writer-function-name</em> - ジェネリック関数名。 <code>:reader</code>はひとつのスロットに複数指定できます。<br />
+<em>accessor-function-name</em> - <code>nil</code>ではないシンボル。 <code>:accessor</code>はひとつのスロットに複数指定できます。<br />
+<em>allocation-type</em> - <code>(member :instance :class)</code>。 ひとつのスロットに最大ひとつの指定ができます。<br />
+<em>initarg-name</em> - シンボル。 <code>:initarg</code>はひとつのスロットに対して複数指定できます。<br />
+<em>form</em> - フォーム。 <code>:initform</code>はひとつのスロットに最大ひとつの指定ができます。<br />
+<em>type-specifier</em> - 型指定子。 <code>:type</code>はひとつのスロットに最大ひとつの指定ができます。<br />
+<em>class-option</em> - クラス全体か、全てのクラスのスロットを示します。<br />
+<em>initarg-list</em> - 名前とデフォルトの初期化値のフォームを 交互に並べた初期化引数のリストです。 <code>:default-initargs</code>は最大ひとつの指定ができます。<br />
+<em>class-name</em> - <code>nil</code>ではないシンボル。<code>:metaclass</code>は最大ひとつの指定ができます。<br />
+<em>new-class</em> - 新しいクラスのオブジェクト</p>
+<h2 id="定義">定義</h2>
+<p>マクロ<a href="7.7.defclass.html"><code>defclass</code></a>は、新しい名前の付いたクラスを定義します。 その結果として新しいクラスオブジェクトが返却されます。</p>
+<p><a href="7.7.defclass.html"><code>defclass</code></a>の構文は、 スロットの初期化引数を指定するオプション、 スロットのデフォルト初期化値を指定するオプション、 そしてスロットの値を読み書きするためのジェネリック関数のメソッドを 自動的に生成するようなオプションを提供します。 デフォルトではリーダおよびライタ関数は定義されていませんので、 その生成は明示的に要求する必要があります。 ただし、スロットは常に<a href="7.7.slot-value.html"><code>slot-value</code></a>を使用してアクセスすることができます。</p>
+<p>新しいクラスを定義すると、同じ名前の型も定義されます。 式<code>(typep object class-name)</code>は、 引数<em>object</em>のクラスが<em>class-name</em>自身の名前のクラスであるか、 あるいはクラス<em>class-name</em>のサブクラスであるならば、<em>true</em>を返します。 クラスオブジェクトは型指定子として使われることができます。 したがって<code>(typep object class)</code>は、 <em>object</em>のクラスが、クラス自体か、 クラスのサブクラスである場合に<em>true</em>を返します。</p>
+<p>引数の<em>class-name</em>は、新しいクラスの適切な名前を指定します。 もし同名のクラスが存在しており、 そのクラスが<code>standard-class</code>のインスタンスであり、 さらに<a href="7.7.defclass.html"><code>defclass</code></a>フォームによる新しいクラスの定義が、 <code>standard-class</code>クラスのクラスで指定されていた場合、 既存のクラスは再定義され、 そのクラス（サブクラスも含む）のインスタンスは、 それらが次にアクセスされたときに 新しい定義へと更新されます。 詳細は4.3.6. クラスの再定義を参照。</p>
+<p>引数<em>superclass-name</em>は、新しいクラスのダイレクトスーパークラスを指定します。 もしスーパークラスのリストが空のとき、 スーパークラスはメタクラスによって異なるデフォルト値になりますが、 <code>standard-class</code>のデフォルトは<code>standard-object</code>です。</p>
+<p>新しいクラスは、各ダイレクトスーパークラスと、 それら各々のダイレクトスーパークラスの繋がりによって、 スロットとメソッドが継承されます。</p>
+<p>スロットオプションは下記のものが使用可能です。</p>
+<ul>
+<li>スロットオプションの<code>:reader</code>は、 スロットの値を読み込むための <em>reader-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
+<li>スロットオプションの<code>:writer</code>は、 スロットの値を書き込むための <em>writer-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
+<li>スロットオプションの<code>:accessor</code>は、 スロットの値を読み込むための <em>accessor-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。 さらに、スロットの値を<code>setf</code>を用いて修正するための <code>(setf accessor-function-name)</code>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
+<li>スロットオプションの<code>:allocation</code>は、 割り当てられたスロットが、どこのストレージを使用するかを指定します。 スロットのストレージは、各インスタンスか、 クラスオブジェクト自身に配置することができます。 引数<code>allocation-type</code>の値は、 <code>:instance</code>キーワードか、<code>:class</code>キーワードのどちらかです。 もし<code>:allocation</code>スロットオプションが指定されなかったときは、 <code>:allocation :instance</code>が指定されたと同じ効果になります。
+<ul>
+<li><em>allocation-type</em>が<code>:instance</code>のとき、 名前が<em>slot-name</em>の局所スロットは、 クラスのそれぞれのインスタンスに配置されます。</li>
+<li><em>allocation-type</em>が<code>:class</code>のとき、指定された名前の共有スロットは、 <a href="7.7.defclass.html"><code>defclass</code></a>フォームによって生成されたクラスオブジェクトに配置されます。 このスロットの値は、そのクラスの全てのインスタンスによって共有されます。 もしクラス<code>C1</code>に共有スロットがあるとき、 <code>C1</code>のサブクラス<code>C2</code>はこのひとつのスロットが共有されるでしょう。 ただし<code>C2</code>の<a href="7.7.defclass.html"><code>defclass</code></a>フォームで同名のスロットが 指定された場合は共有されません。 さらに、<code>C2</code>のクラス優先順位リストを見て、 <code>C2</code>のスーパークラスのうちの<code>C1</code>より先行しているものがあり、 そのクラスが同名のスロットを定義していた場合でも、 スロットの共有は行われません。</li>
+</ul></li>
+<li>スロットオプション<code>:initform</code>は、デフォルト初期値のフォームであり、 スロットの初期値として使用されます。 このフォームは、スロットを初期化するときに毎回評価されます。 このフォームが評価されるときのレキシカルな環境は、 <a href="7.7.defclass.html"><code>defclass</code></a>フォームが評価されたときのものになります。 レキシカルな環境は、変数と関数両方を参照することに注意してください。 局所スロットでは、動的な環境は <a href="7.7.make-instance.html"><code>make-instance</code></a>が呼ばれた場所であり、 共有スロットでは、<a href="7.7.defclass.html"><code>defclass</code></a>が評価された場所です。 詳細は<a href="7.1.html">7.1. オブジェクトの作成と初期化</a>をご確認ください。
+<ul>
+<li>どの処理系でも、<a href="7.7.defclass.html"><code>defclass</code></a>の構文を<code>(slot-name :initform form)</code>から 省略して<code>(slot-name form)</code>にすることは許されません。</li>
+</ul></li>
+<li>スロットオプション<code>:initarg</code>は、 初期化引数の名前を<em>initarg-name</em>で宣言し、 そのスロットが初期化引数で初期化されるように指定します。 もし<code>initialize-instance</code>呼び出し時に 初期化引数が値を持っているときは、 そのスロットに値が格納され、 そのスロットに<code>:initform</code>オプションがある場合は評価されません。 初期化引数にスロットの値がないときは、 そのスロットは、<code>:initform</code>オプションが指定されてるとき、 その内容に従って初期化されます。</li>
+<li>スロットオプション<code>:type</code>は、 スロットの内容が常に指定された型であることを指定します。 これは、このクラスのオブジェクトが適用できるリーダーのジェネリック関数の 返却値の型を宣言する効果があります。 そのスロットの型に違反した値を保存しようとしたときの結果は未定義です。 スロットオプション<code>:type</code>は、<a href="7.5.3.html">7.5.3. スロットの継承とスロットオプション</a>で詳しく説明しています。</li>
+<li>スロットオプション<code>:documentation</code>は、 スロットに、ドキュメント文字を提供します。 <code>:documentation</code>はひとつのスロットに、最大ひとつ指定できます。</li>
+</ul>
+<p>各クラスオプションは、クラス全体の設定です。<br />
+クラスオプションは下記のものが使用可能です。</p>
+<ul>
+<li>クラスオプション<code>:default-initargs</code>は、 名前とデフォルトの初期化値のフォームを交互に並べた 初期化引数のリストによって続けられます。 もし、これらの初期化引数のどれかが、 <a href="7.7.make-instance.html"><code>make-instance</code></a>に与えられた初期化引数リストに現れない場合、 対応するデフォルト初期値フォームが評価され、 その初期化引数名とフォームの値が 初期化引数リストの最後に追加されてからインスタンスが生成されます。 詳しくは<a href="7.1.html">7.1. オブジェクトの作成と初期化</a>をご確認ください。 デフォルト初期値フォームは、使用されるたびに評価されます。 評価されるときのレキシカルな環境は、 <a href="7.7.defclass.html"><code>defclass</code></a>フォームが評価されたときのものです。 動的な環境は、<a href="7.7.make-instance.html"><code>make-instance</code></a>が呼ばれたときのものです。 もしクラスオプション<code>:default-initargs</code>に 初期化引数名が複数現れたときは、 エラーが発生します。</li>
+<li>クラスオプション<code>:documentation</code>は、 クラスオブジェクトにドキュメント文字を、 種別<a href="25.2.documentation.html"><code>type</code></a>で、<em>class-name</em>に割り当てます。 <code>:documentation</code>は、最大ひとつ指定できます。</li>
+<li>クラスオプション<code>:metaclass</code>は、 定義するクラスのインスタンスが、 システムが提供するデフォルトのもの(<code>standard-class</code>のクラス)とは 異なるメタクラスを持つことを指定するために使われます。</li>
+</ul>
+<p>標準クラスにおいては、<a href="7.7.defclass.html"><code>defclass</code></a>は下記のルールに注意してください。</p>
+<ul>
+<li><a href="7.7.defclass.html"><code>defclass</code></a>フォームによってクラスが評価される前に、 そのクラスのスーパークラスが定義されている必要はありません。</li>
+<li>あるクラスの全てのスーパークラスは、 そのクラスのインスタンスが使用される前には定義されていなければなりません。</li>
+<li><a href="7.7.defmethod.html"><code>defmethod</code></a>フォームで 特定パラメーターとして使用される前には、 そのクラスは定義されていなければなりません。</li>
+</ul>
+<p>オブジェクトシステムは、これらのルールに従わない場合にも 対応できるように拡張することが可能です。</p>
+<p>いくつかのスロットは、 スーパークラスのクラスによって継承され、いくつかのものは隠蔽され、 あるいは局所スロットの定義によって変更されます。 クラスオプションは、<code>:default-initargs</code>以外継承されません。 スロットとスロットオプションがどのように継承されるかの詳しい説明は、 <a href="7.5.3.html">7.5.3. スロットの継承とスロットオプション</a>をご確認ください。</p>
+<p><a href="7.7.defclass.html"><code>defclass</code></a>のオプションは拡張できます。 すべての実装は、自身が実装していない クラスオプションやスロットオプションを見た場合は、 エラーを通知することが要求されています。</p>
+<p>複数のreader, writer, accessorを指定したり、 あるスロットに複数の初期化引数を指定するのは正しいです。 その他のスロットオプションが ひとつのスロットの定義に複数指定することはできませんので、 エラーが発生します。</p>
+<p>もし、あるスロットにreader, writer, accessorが指定されていないとき、 そのスロットはただ<a href="7.7.slot-value.html"><code>slot-value</code></a>によってのみアクセスできます。</p>
+<p>もし<a href="7.7.defclass.html"><code>defclass</code></a>フォームがトップレベルに現れたとき、 コンパイラーはクラス名を有効な型の名前であると認識し、 後続の宣言（たとえば<code>deftype</code>）や、 <a href="7.7.defmethod.html"><code>defmethod</code></a>の特定パラメーター、 また<a href="7.7.defclass.html"><code>defclass</code></a>の<code>:metaclass</code>オプションでも使用できるようにしなければならない。 コンパイラーは、<code>find-class</code>の環境の引数に、 マクロの環境パラメーターで受け取った値を指定したときは、 クラスの定義を返却できるようにしなければならない。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もしスロットの名前に重複があった場合は、 型<code>program-error</code>のエラーが発生します。</p>
+<p>もし、クラスオプション<code>:default-initargs</code>に 初期化引数の名前が複数現れたときは、 型<code>program-error</code>のエラーが発生します。</p>
+<p>もし、スロットオプション <code>:allocation</code>, <code>:initform</code>, <code>:type</code>, <code>:documentation</code>が ひとつのスロットの定義に複数現れたときは、 型<code>program-error</code>のエラーが発生します。</p>
+<p>すべての実装は、自身が実装していない クラスオプションやスロットオプションを見た場合は、 型<code>program-error</code>のエラーが通知することを要求されています。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.documentation.html"><code>documentation</code></a>, <code>initialize-instance</code>, <a href="7.7.make-instance.html"><code>make-instance</code></a>, <a href="7.7.slot-value.html"><code>slot-value</code></a>, 4.3. クラス, 4.3.4. 継承, 4.3.6. クラスの再定義, 4.3.5. クラス優先順位リストの決定, <a href="7.1.html">7.1. オブジェクトの作成と初期化</a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

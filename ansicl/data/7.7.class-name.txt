@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function CLASS-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.class-name
+@name: class-name
+@type: standard-generic-function
+
+Standard Generic Function `CLASS-NAME`
+
+
+## {syntax}
+
+`class-name` *class* => *name*
+
+
+## {method-signatures}
+
+`class-name` (*class* {class:link})
+
+
+## {arguments-and-values}
+
+*class* - クラスオブジェクト  
+*name* - シンボル
+
+
+## {description}
+
+引数*class*の名前を返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{find-class:link},
+{4.3:ab}
+
+
+## {notes}
+
+もし`S`がシンボルで、`S = (class-name C)`かつ、`C = (find-class S)`のとき、
+`S`は`C`の正しい名前です。さらなる説明は、{4.3:ab}をご確認ください。
+
+匿名のクラスの名前は{nil!variable:link}です。
+
+@end
+

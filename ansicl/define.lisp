@@ -39,5 +39,5 @@
 ;;  Finish
 (push (cons 13 'finish) *working*)
 (push (cons 16 'finish) *working*)
-(push (cons 7 'work) *working*)
+(push (cons 7 'all) *working*)
 

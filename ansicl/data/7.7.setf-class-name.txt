@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function (SETF CLASS-NAME)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.setf-class-name
+@name: (setf class-name)
+@type: standard-generic-function
+
+Standard Generic Function `(SETF CLASS-NAME)`
+
+
+## {syntax}
+
+`(setf class-name)` *new-value* *class* => *new-value*
+
+
+## {method-signatures}
+
+`(setf class-name)` *new-value* (*class* {class:link})
+
+
+## {arguments-and-values}
+
+*new-value* - シンボル  
+*class* - クラス  
+
+
+## {description}
+
+ジェネリック関数{setf-class-name:link}は、
+*class*オブジェクトの名前を設定します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{find-class:link},
+proper name（正しい名前）,
+{4.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

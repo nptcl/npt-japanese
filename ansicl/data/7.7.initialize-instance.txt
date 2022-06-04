@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function INITIALIZE-INSTANCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.initialize-instance
+@name: initialize-instance
+@type: standard-generic-function
+
+Standard Generic Function `INITIALIZE-INSTANCE`
+
+
+## {syntax}
+
+`initialize-instance` *instance* &rest *initargs* &key &allow-other-keys => *instance*
+
+
+## {method-signatures}
+
+`initialize-instance` (*instance* {standard-object:link}) &rest *initargs*
+
+
+## {arguments-and-values}
+
+*instance* - オブジェクト  
+*initargs* - デフォルトの{initialization-arguments}リスト
+
+
+## {description}
+
+新しく作成された*instance*を初期化するために、
+{make-instance:link}によって呼び出されます。
+ジェネリック関数は、新しい*instance*と
+デフォルトの{initialization-arguments}リストで呼び出されます。
+
+{initialize-instance:link}のシステムが提供するプライマリメソッドでは、
+*instance*のスロットを、対応する*initargs*の値と、
+スロットの`:initform`フォームで初期化します。
+これはジェネリック関数{shared-initialize:link}を
+次の引数で呼び出すことによって行われます。
+*instance*、{t!variable:link}
+（これは{initialization-arguments}が与えられないすべてのスロットが、
+それらの`:initform`フォームに従って初期化されるべきことを示します）、
+および*initargs*です。
+
+プログラマーは、{initialize-instance:link}にメソッドを定義して、
+インスタンスが初期化されたときに実行されるアクションを指定することができます。
+もし`after`メソッドのみが定義された場合、
+それらはシステムが提供するプライマリメソッドの初期化後に実行されるため、
+{initialize-instance:link}のデフォルトの動作を妨げることはありません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{shared-initialize:link},
+{make-instance:link},
+{slot-boundp:link},
+{slot-makunbound:link},
+{7.1:ab},
+{7.1.4:ab},
+{7.1.2:ab}
+
+## {notes}
+
+なし。
+
+@end
+

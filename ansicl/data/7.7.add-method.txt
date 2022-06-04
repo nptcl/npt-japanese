@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function ADD-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.add-method
+@name: add-method
+@type: standard-generic-function
+
+Standard Generic Function `ADD-METHOD`
+
+
+## {syntax}
+
+`add-method` *generic-function* *method* => *generic-function*
+
+
+## {method-signatures}
+
+`add-method` (*generic-function* {standard-generic-function:link})
+ (*method* {method:link})
+
+
+## {arguments-and-values}
+
+*generic-function* - ジェネリック関数オブジェクト  
+*method* - メソッドオブジェクト
+
+
+## {description}
+
+ジェネリック関数{add-method:link}は、ジェネリック関数にメソッドを追加します。
+
+もし*method*が、ジェネリック関数の既存のメソッドと
+特定パラメータおよび{qualifiers}で合致する場合は、
+既存のメソッドが置き換えられます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*method*のラムダリストは、*generic-generic*のラムダリストと一致する必要があり、
+そうでない場合は型{error!condition:link}のエラーが発生します。
+
+もし*method*が他のジェネリック関数のメソッドオブジェクトであるとき、
+型{error!condition:link}のエラーが発生します。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function FIND-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.find-method
+@name: find-method
+@type: standard-generic-function
+
+Standard Generic Function `FIND-METHOD`
+
+
+## {syntax}
+
+`find-method` *generic-function* *method-qualifiers* *specializers*
+ &optional *errorp*  
+=> *method*
+
+
+## {method-signatures}
+
+`find-method` (*generic-function* {standard-generic-function:link})
+ *method-qualifiers* *specializers* &optional *errorp*
+
+
+## {arguments-and-values}
+
+*generic-function* - ジェネリック関数  
+*method-qualifiers - リスト  
+*specializers* - リスト  
+*errorp* - {generalized-boolean}、デフォルトは*true*  
+*method* - メソッドオブジェクトか、{nil!variable:link}
+
+
+## {description}
+
+ジェネリック関数{find-method:link}は、
+引数にジェネリック関数を受け取り、
+{qualifiers}と特定パラメーターがそれぞれ
+{find-method:link}の引数*qualifiers*と*specializers*で
+一致するメソッドオブジェクトを返却します。
+*method-qualifiers*は、
+*method*のメソッド{qualifiers}が含まれます。
+メソッド{qualifiers}の順序は重要です。
+この文脈の合致についての定義は、{7.6.3:ab}をご確認ください。
+
+*specializers*引数は、メソッドの特定パラメーターを含みます。
+この引数は、ジェネリック関数の{required-arguments}の数と、
+一致する長さでなければならず、
+そうでない場合はエラーが発生します。
+つまり、引数の*generic-function*のデフォルトメソッドを得るためには、
+クラス{t!variable:link}を要素とするリストを与える必要があります。
+
+そのようなメソッドが存在せず、*errorp*が*true*のときは、
+{find-method:link}はエラーを発生します。
+そのようなメソッドが存在せず、*errorp*が*false*のときは、
+{find-method:link}は{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(defmethod some-operation ((a integer) (b float)) (list a b))
+=>  #<STANDARD-METHOD SOME-OPERATION (INTEGER FLOAT) 26723357>
+(find-method #'some-operation '() (mapcar #'find-class '(integer float)))
+=>  #<STANDARD-METHOD SOME-OPERATION (INTEGER FLOAT) 26723357>
+(find-method #'some-operation '() (mapcar #'find-class '(integer integer)))
+>>  Error: No matching method
+(find-method #'some-operation '() (mapcar #'find-class '(integer integer)) nil)
+=>  NIL
+```
+
+
+## {affected-by}
+
+{add-method:link},
+{defclass:link},
+{defgeneric:link},
+{defmethod:link}
+
+
+## {exceptional-situations}
+
+もし*specializers*引数の長さが、
+*generic-function*の{required-arguments}の数と、
+一致するしていなかったときは、
+型{error!condition:link}のエラーが生じます。
+
+そのようなメソッドが存在せず、*errorp*が*true*のときは、
+{find-method:link}は型{error!condition:link}のエラーが生じます。
+
+
+## {see-also}
+
+{7.6.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -334,23 +334,23 @@ long-form-option::= :description description |
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        (&amp;optional (order &#39;:most-specific-first))</span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        ((around (:around))</span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>         (primary (<span class="kw">or</span>)))</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Process the order argument</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; order引数の処理</span></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">case</span> order</span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    (:most-specific-first)</span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    (:most-specific-last (<span class="kw">setq</span> primary (<span class="kw">reverse</span> primary)))</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">otherwise</span> (<span class="kw">method-combination-error</span> <span class="st">&quot;~S is an invalid order.~@</span></span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">    :most-specific-first and :most-specific-last are the possible values.&quot;</span></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                                         order)))</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Must have a primary method</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; プライマリメソッドは必要</span></span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">unless</span> primary</span>
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">method-combination-error</span> <span class="st">&quot;A primary method is required.&quot;</span>))</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Construct the form that calls the primary methods</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; プライマリメソッドを呼び出すフォームの構築</span></span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((form (<span class="kw">if</span> (<span class="kw">rest</span> primary)</span>
 <span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">or</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>                                     `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                                 primary))</span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)))))</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; Wrap the around methods around that form</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; aroundメソッドを囲むフォーム</span></span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">if</span> around</span>
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        `(<span class="kw">call-method</span> ,(<span class="kw">first</span> around)</span>
 <span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                      (,@(<span class="kw">rest</span> around)</span>

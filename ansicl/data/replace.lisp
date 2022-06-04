@@ -66,4 +66,5 @@
 (replace format-control "format-control")
 (replace format-directive "format指示子")
 (replace ordinary-lambda-list "通常のラムダリスト")
+(replace direct-instance "direct-instance")
 

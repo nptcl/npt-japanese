@@ -167,7 +167,7 @@ instance - <code>unbound</code>スロットから読み込みしたインスタ�
 slot-name - <code>unbound</code>スロットの名前<br />
 result - オブジェクト</p>
 <h2 id="定義">定義</h2>
-<p>ジェネリック関数<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>は、 メタクラスが<code>standard-class</code>の<em>instance</em>から <code>unbound</code>スロットを読み込んだ時に呼び出されます。 デフォルトのメソッドは、型<code>unbound-slot</code>のエラーが発生します。 <code>unbound-slot</code>コンディションの名前のスロットは 問題の変数の名前で初期化され、 <code>unbound-slot</code>コンディションのインスタンスのスロットは 問題の<em>instance</em>で初期化されます。</p>
+<p>ジェネリック関数<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>は、 メタクラスが<code>standard-class</code>の<em>instance</em>から <code>unbound</code>スロットを読み込んだ時に呼び出されます。 デフォルトのメソッドは、型<a href="7.7.unbound-slot.html"><code>unbound-slot</code></a>のエラーが発生します。 <a href="7.7.unbound-slot.html"><code>unbound-slot</code></a>コンディションの名前のスロットは 問題の変数の名前で初期化され、 <a href="7.7.unbound-slot.html"><code>unbound-slot</code></a>コンディションのインスタンスのスロットは 問題の<em>instance</em>で初期化されます。</p>
 <p>ジェネリック関数<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>は、 プログラマーによって呼び出されることを想定していません。 プログラマーはメソッドを書くことができます。 関数<a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>は、間接的に<a href="7.7.slot-value.html"><code>slot-value</code></a>によってのみ呼び出されます。</p>
 <p><a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>の戻り値は、 ただ第一返却値のみが呼び出し側によって使われ、 他の全ての返却値は無視されます。</p>
 <h2 id="例文">例文</h2>
@@ -175,7 +175,7 @@ result - オブジェクト</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>のデフォルトのメソッドは、 型<code>unbound-slot</code>のエラーが発生します。</p>
+<p><a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>のデフォルトのメソッドは、 型<a href="7.7.unbound-slot.html"><code>unbound-slot</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a></p>
 <h2 id="備考">備考</h2>

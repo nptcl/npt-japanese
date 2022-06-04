@@ -1,0 +1,41 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type UNBOUND-SLOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.unbound-slot
+@name: unbound-slot
+@type: condition-type
+
+Contition Type `UNBOUND-SLOT`
+
+
+## {class-precedence-list}
+
+{unbound-slot:link},
+{cell-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+{make-condition:link}の{initialization-arguments}である`:instance`が、
+`unbound`スロットを持つオブジェクトに初期化されます。
+このスロットは、{unbound-slot-instance:link}関数によってアクセスできます。
+
+`cell`の名前（{cell-error:link}を参照）は、スロットの名前です。
+
+
+## {see-also}
+
+{cell-error-name:link},
+{9.1:ab}
+
+@end
+

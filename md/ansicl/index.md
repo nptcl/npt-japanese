@@ -3,7 +3,7 @@
 ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 
 **★★翻訳の対象はDictionaryだけです★★**  
-現時点では「13.2 文字の辞書」しか完成していません。  
+現時点であまり完成していません。  
 気が向いたら更新します。
 
 # 目次
@@ -16,7 +16,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[4.](4.html)|[Types and Classes](4.html)|[型とクラス](4.html)|[辞書](4.4.html)|
 |[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書](5.3.html)|
 |6.|Iteration|繰り返し|辞書|
-|[7.](7.html)|[Objects](7.html)|[オブジェクト](7.html)|[辞書 ☆作業中](7.7.html)|
+|[7.](7.html)|[Objects](7.html)|[オブジェクト ★完了](7.html)|[辞書 ★完了](7.7.html)|
 |[8.](8.html)|[Structures](8.html)|[構造体](8.html)|[辞書](8.2.html)|
 |[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書](9.2.html)|
 |[10.](10.html)|[Symbols](10.html)|[シンボル](10.html)|[辞書](10.2.html)|

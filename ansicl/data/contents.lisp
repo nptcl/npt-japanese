@@ -113,6 +113,7 @@
 (dictionary 4.4.t!system-class)
 (dictionary 4.4.coerce)
 (dictionary 4.4.deftype)
+(dictionary 4.4.type-of)
 (dictionary 4.4.typep)
 (dictionary 4.4.type-error)
 
@@ -221,7 +222,7 @@
 (dictionary 7.7.add-method)
 (dictionary 7.7.initialize-instance)
 (dictionary 7.7.class-name)
-;(dictionary 7.7.(setf class-name))
+(dictionary 7.7.setf-class-name)
 (dictionary 7.7.class-of)
 (dictionary 7.7.unbound-slot)
 (dictionary 7.7.unbound-slot-instance)
@@ -232,13 +233,17 @@
 (dictionary 8.2.copy-structure)
 
 ;; Chapter 9
+(text 9.1 "コンディションシステムの説明" "Condition System Concepts")
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
 (dictionary 9.2.condition)
 (dictionary 9.2.serious-condition)
 (dictionary 9.2.error!condition)
+(dictionary 9.2.cell-error)
+(dictionary 9.2.cell-error-name)
 (dictionary 9.2.method-combination-error)
 (dictionary 9.2.invalid-method-error)
 (dictionary 9.2.define-condition)
+(dictionary 9.2.make-condition)
 
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")

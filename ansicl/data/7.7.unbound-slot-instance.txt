@@ -1,0 +1,60 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UNBOUND-SLOT-INSTANCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.unbound-slot-instance
+@name: unbound-slot-instance
+@type: function
+
+Function `UNBOUND-SLOT-INSTANCE`
+
+
+## {syntax}
+
+`unbound-slot-instance` *condition* => *instance*
+
+
+## {arguments-and-values}
+
+*condition* - {unbound-slot:link}型のコンディション  
+*instance - オブジェクト
+
+
+## {description}
+
+*condition*によって表現される状況においての
+`unbound`スロットを持つインスタンスを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cell-error-name:link},
+{unbound-slot:link},
+{9.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

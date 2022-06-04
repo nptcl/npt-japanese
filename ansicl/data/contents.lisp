@@ -39,6 +39,10 @@
 ;; Chapter 2
 (text 2.1 "文字の構文" "Character Syntax")
 (text 2.1.3 "標準文字" "Standard Characters")
+(index 2.3 "トークンの解釈" "Interpretation of Tokens")
+(text 2.3.1 "トークンとしての数" "Numbers as Tokens")
+(text 2.3.1.1 "トークンとしての潜在的数" "Potential Numbers as Tokens")
+(text 2.3.4 "トークンとしてのシンボル" "Symbols as Tokens")
 (text 2.4 "標準マクロ文字" "Standard Macro Characters")
 (text 2.4.5 "ダブルクォート" "Double-Quote")
 (text 2.4.8 "シャープサイン" "Sharpsign")
@@ -120,7 +124,18 @@
 ;; Chapter 5
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
+(dictionary 5.3.defun)
+(dictionary 5.3.fdefinition)
+(dictionary 5.3.fboundp)
+(dictionary 5.3.fmakunbound)
+(dictionary 5.3.flet)
+(dictionary 5.3.labels)  ;; delete
+(dictionary 5.3.macrolet)  ;; delete
 (dictionary 5.3.funcall)
+(dictionary 5.3.function)
+(dictionary 5.3.function-lambda-expression)
+(dictionary 5.3.functionp)
+(dictionary 5.3.compiled-function-p)
 (dictionary 5.3.setq)
 (dictionary 5.3.nil!variable)
 (dictionary 5.3.t!variable)
@@ -248,6 +263,25 @@
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")
 (dictionary 10.2.symbol)
+(dictionary 10.2.keyword)
+(dictionary 10.2.symbolp)
+(dictionary 10.2.keywordp)
+(dictionary 10.2.make-symbol)
+(dictionary 10.2.copy-symbol)
+(dictionary 10.2.gensym)
+(dictionary 10.2.*gensym-counter*)
+(dictionary 10.2.gentemp)
+(dictionary 10.2.symbol-function)
+(dictionary 10.2.symbol-name)
+(dictionary 10.2.symbol-package)
+(dictionary 10.2.symbol-plist)
+(dictionary 10.2.symbol-value)
+(dictionary 10.2.get)
+(dictionary 10.2.remprop)
+(dictionary 10.2.boundp)
+(dictionary 10.2.makunbound)
+(dictionary 10.2.set)
+(dictionary 10.2.unbound-variable)
 
 ;; Chapger 12
 (index 12.2 "数の辞書" "Numbers Dictionary")
@@ -283,6 +317,11 @@
 (dictionary 13.2.char-code-limit)
 (dictionary 13.2.char-name)
 (dictionary 13.2.name-char)
+
+;; Chapter 14
+(index 14.2 "コンスの辞書" "Conses Dictionary")
+(dictionary 14.2.getf)
+(dictionary 14.2.remf)
 
 ;; Chapter 15
 (index 15.2 "配列の辞書" "Arrays Dictionary")
@@ -324,6 +363,7 @@
 (index 22.1 "Lispプリンター" "The Lisp Printer")
 (text 22.1.3 "標準のPrint-Objectメソッド" "Default Print-Object Methods")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
+(text 22.1.3.3 "シンボルの印字" "Printing Symbols")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
 (dictionary 22.4.write-to-string)

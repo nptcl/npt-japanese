@@ -1,0 +1,25 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class SYMBOL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbol
+@name: symbol
+@type: system-class
+
+System Class `SYMBOL`
+
+
+## {class-precedence-list}
+
+{symbol:link}, {t!system-class:link}
+
+
+## {description}
+
+
+@end
+

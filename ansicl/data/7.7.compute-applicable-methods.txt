@@ -1,0 +1,60 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function COMPUTE-APPLICABLE-METHODS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.compute-applicable-methods
+@name: compute-applicable-methods
+@type: standard-generic-function
+
+Standard Generic Function `COMPUTE-APPLICABLE-METHODS`
+
+
+## {syntax}
+
+`compute-applicable-methods` *generic-function* *function-arguments* => *methods*
+
+
+## {method-signatures}
+
+`compute-applicable-methods` (*generic-function* {standard-generic-function:link})
+
+
+## {arguments-and-values}
+
+*generic-function* - ジェネリック関数  
+*function-arguments* - ジェネリック関数の引数のリスト  
+*methods* - メソッドのリスト
+
+
+## {description}
+
+*generic-function*と*function-arguments*の集合が与えられると、
+関数{compute-applicable-methods:link}はこれらの引数によって、
+適用可能なメソッドの集合を優先順位に従ってソートして返却します。
+
+
+## {affected-by}
+
+{defmethod:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{7.6.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

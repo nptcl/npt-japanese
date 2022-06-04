@@ -2,7 +2,7 @@
 
 (defconstant +toppage+ "index")
 
-(declaim (ftype function  linkpage))
+(declaim (ftype function linkpage))
 
 ;;
 ;;  footer

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFINE-METHOD-COMBINATION</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFINE-METHOD-COMBINATION</h1>
+</header>
+<p><a href="7.7.html">UP</a></p>
+<hr />
+<h1 id="macro-define-method-combination">Macro DEFINE-METHOD-COMBINATION</h1>
+<p>Macro <code>DEFINE-METHOD-COMBINATION</code></p>
+<h2 id="構文">構文</h2>
+<p><code>define-method-combination</code> <em>name</em> [[short-form-option]]<br />
+=&gt; <em>name</em></p>
+<p><code>define-method-combination</code> <em>name</em> <em>lambda-list</em> (<em>method-group-specifier*</em>) [(:arguments . <em>args-lambda-list</em>)] [(:generic-function <em>generic-function-symbol</em>)] [[<em>declaration*</em> | <em>documentation</em>]] <em>form*</em><br />
+=&gt; <em>name</em></p>
+<pre><code>short-form-option::= :documentation documentation |  
+                     :identity-with-one-argument identity-with-one-argument |
+                     :operator operator
+method-group-specifier::= (name {qualifier-pattern+ | predicate} [[long-form-option]])
+long-form-option::= :description description |
+                    :order order |
+                    :required required-p</code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>args-lambda-list</em> - define-method-combination引数のラムダリスト<br />
+<em>declaration</em> - 宣言の式、評価はされません<br />
+<em>description</em> - format-control<br />
+<em>documentation</em> - 文字列、評価はされません <em>form</em> - 暗黙のprogn。 有効なメソッドをどのようにして結合させるかを計算し、 フォームとして返却しなければなりません。<br />
+<em>generic-function-symbol</em> - シンボル<br />
+<em>identity-with-one-argument</em> - generalized-boolean<br />
+<em>lambda-list</em> - 通常のラムダリスト<br />
+<em>name</em> - シンボル。 通常、キーワードではなく、<code>nil</code>でもないシンボルが使われます。<br />
+<em>operator</em> - オペレーター。 <em>name</em>と<em>operator</em>は、よく同じシンボルが使われます。 これがデフォルトですが、必須ではありません。<br />
+<em>order</em> - <code>:most-specific-first</code>か<code>:most-specific-last</code>。評価されます。<br />
+<em>predicate</em> - シンボルであり、 それはひとつの引数を取りgeneralized-booleanを返却する関数名。<br />
+<em>qualifier-pattern</em> - リストか、シンボル<code>*</code><br />
+*required-p - generalized-boolean</p>
+<h2 id="定義">定義</h2>
+<p>マクロ<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>は、 新しいmethod-combinationの型を定義するときに使います。</p>
+<p><a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>には2つのフォームがあります。 短いフォームは単純な機能であり、 もっとも一般的に必要があると予想されるケースに対応しています。 長いフォームはより強力で、より冗長です。 これは、<code>defmacro</code>のように、 通常はボディ部がバッククォートを使った式であり、 フォームを計算します。 したがって、任意の制御構造を実装することができます。 長いフォームは、メソッド修飾子を任意に処理することもできます。</p>
+<ul>
+<li>短いフォーム
+<ul>
+<li><a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の短いフォームの構文は、 二番目のサブフォームが<code>nil</code>ではないシンボルか、 あるいは現れていないときに認識されます。 短いフォームを使うと、 <em>name</em>が<code>(operator method-call method-call ...)</code>という Lispのフォームが生成されるmethod-combinationの型として定義されます。 <em>operator</em>は関数か、マクロか、 特殊オペレーターの名前のシンボルです。 <em>operator</em>はキーワードオプションによって指定することができ、 デフォルト値は<em>name</em>です。 <br><br> 短いフォームのキーワードオプションは下記の通り。
+<ul>
+<li><code>:documentation</code>オプションは、 method-combination型のドキュメントに使われます。 定義は下記にある長いフォームを参照。</li>
+<li><code>:identity-with-one-argument</code>オプションは、 値が<em>true</em>のときに最適化を有効にします。 （デフォルトは<em>false</em>です。） もし適用可能なメソッドが正確にひとつであり、 それがプライマリメソッドのとき、 そのメソッドは有効なメソッドとして機能し、 <em>operator</em>を呼び出しません。 この最適化は、新たに有効なメソッドを作成することがなくなり、 また関数呼び出しのオーバーヘッドを抑えます。 このオプションは <code>progn</code>, <code>and</code>, <code>+</code>, <code>max</code>のようなオペレーターで で使用することを想定しています。</li>
+<li><code>:operator</code>オプションは、オペレーターの名前を指定します。 <em>operator</em>引数は、関数か、マクロか、 特殊オペレーターの名前のシンボルです。</li>
+</ul></li>
+<li>これらのmethod-combinationの型は、 メソッドに対して正確にひとつの修飾子を要求します。 もし適用可能なメソッドに、 修飾子がなかったり、 method-combinationの型がサポートされていない 修飾子であったときは、 エラーが発生します。 <br><br> このように定義されたmethod-combinationの機能は、 メソッドに2つの役割を与えます。 このタイプのmethod-combinationによって名前付けられたシンボルが ひとつの修飾子として与えられたメソッドは、 プライマリメソッドとして定義されます。 少なくともひとつのプライマリメソッドが 適用可能でないとエラーが発生します。 ひとつの修飾子として<code>:around</code>が与えられたメソッドは、 <code>standard</code> method-combinationのaroundメソッドと 同じふるまいをする補助メソッドです。 関数<a href="7.7.call-next-method.html"><code>call-next-method</code></a>は、aroundメソッド内でのみ使用できます。 つまり、<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>マクロの 短いフォームによって定義された プライマリメソッド内では使用することができません。 <br><br> この方法で定義されたmethod-combinationの機能は、 オプション引数<em>order</em>を受け取ります。 デフォルト値は<code>:most-specific-first</code>です。 値<code>:most-specific-last</code>は、 補助メソッドの順番に影響することなく、 プライマリメソッドの順番を逆順にさせます。 <br><br> 短いフォームは、自動的にエラーチェックを含み、 またaroundメソッドもサポートします。 <br><br> 組み込みのmethod-combination型の説明は、<a href="7.6.6.4.html">7.6.6.4. 組み込みのMethod-Combination</a>を参照してください。 <br><br></li>
+</ul></li>
+<li>長いフォーム
+<ul>
+<li><a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の長いフォームの構文は、 二番目のサブフォームがリストのときに認識されます。 <br><br> <em>lambda-list</em>は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>の<code>:method-combination</code>オプションの 型method-combinationの名前の後に提供されている どのような引数も受け取ります。 <br><br> メソッドグループのリストについては次の通り。 各指定子は、パターンとマッチする修飾子か、 <em>predicate</em>でテストされた修飾子か、どちらかの判定によって、 適用可能なメソッド特定の役割を果たすためのサブセットを選択します。 これらのメソッドグループ指定子は、 このmethod-combination型で使用できる 全てのメソッド修飾子を定義します。 <br><br> 各<em>method-group-specifier</em>の<code>car</code>部は、変数名のシンボルです。 <a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>のボディ部のフォームを実行しているとき、 この変数はメソッドグループ内のメソッドのリストに束縛されます。 このリスト中のメソッドは、<code>:order</code>オプションによって順序付けられます。 <br><br> もし<em>qualifier-pattern</em>がシンボルなら、それは<code>*</code>出なければなりません。 もしメソッドの修飾子のリストと <em>qualifier-pattern</em>が<code>equal</code>で一致する場合 （ただしシンボル<code>*</code>はどんな<em>qualifier-pattern</em>にもマッチします）、 メソッドは<em>qualifier-pattern</em>にマッチすると言えます。 したがって、<em>qualifier-pattern</em>は、次に示すうちのひとつに当てはまります。 空のリストの場合は、修飾子がないメソッドにマッチします。 シンボル<code>*</code>は、すべてのメソッドにマッチします。 通常のリストのときは、 メソッドにはリストの長さと同じ数の修飾子があり、 各修飾子が対応するリストの要素にマッチします。 もしドットリストのときは、シンボル<code>*</code>で終端します （<code>*</code>は、続くどんな数の修飾子にもマッチします）。 <br><br> 適用可能な各メソッドは、左から右の順番で、 <em>qualifier-patterns</em>と<em>predicate</em>のテストが行われます。 <em>qualifier-patterns</em>か<em>predicate</em>が<em>true</em>のときは、 そのメソッドはすぐに対応するメソッドグループのメンバーとなり、 それ以上のテストは行われません。 したがって、メソッドグループが複数の<em>qualifier-pattern</em>を持つ場合、 メソッドはそのうちの1つの<em>qualifier-pattern</em>を満たすだけで グループのメンバとなることができます。 <br><br> もしどのメソッドグループにも属さない適用可能なメソッドがある場合は、 関数<code>invalid-method-error</code>が呼び出されます。 <br><br> メソッドグループは、<em>qualifier-patter</em>と<em>predicate</em>に続いて キーワードオプションを指定することができます。 キーワードオプションはリストでもシンボル<code>*</code>でもないので、 追加の<em>qualifier-pattern</em>と区別することができます。 キーワードオプションは次の通りです。
+<ul>
+<li><code>:description</code>オプションは、 メソッドグループ内のメソッドの役割の説明を指定するときに使われます。 プログラミング環境のツールは、 簡潔な説明を出力するときは、 <code>(apply #'format stream format-control (method-qualifiers method))</code>を 実行することを期待しています。 ほとんどの場合、<em>format-control</em>はformat指示子を含みませんが、 一般性のために利用できます。</li>
+<li><code>:order</code>オプションは、メソッドの順序を指定します。 <em>order</em>引数は、<code>:most-specific-first</code>か<code>:most-specific-last</code>に 評価されるフォームです。 もしそのほかの値に評価された場合はエラーが発生します。 <code>:order</code>が指定されなかったときは、デフォルトは<code>:most-specific-first</code>です。</li>
+<li><code>:require</code>オプションは、 メソッドグループに少なくともひとつのメソッドが必要かどうかを指定します。 もし値が<em>true</em>であり、かつメソッドグループが空のとき （これは、適用可能なメソッドが、<em>qualifier-pattern</em>にマッチしないか あるいは<em>predicate</em>を満たさなかったとき） エラーが発生します。 <code>:require</code>が指定されないときは、デフォルトは<code>nil</code>です。</li>
+</ul></li>
+<li>メソッドグループ指定子を使用することで、 メソッドを選択し、可能な役割にあうように分け、必要なエラーチェックを行うのに、 便利な構文が提供されます。 ボディ部のフォームにて、通常のリスト処理を行い、 <a href="7.7.method-qualifiers.html"><code>method-qualifiers</code></a>と<code>invalid-method-error</code>の関数を使用することで、 さらなるメソッドのフィルタリングを行うことができます。 メソッドグループ指定子内で名前付けられた変数に <code>setq</code>を使うこともできますし、 追加の変数に束縛することもできます。 また、メソッドグループ指定子の仕組みをバイパスして、 ボディ部のフォーム内ですべてを行うこともできます。 これは、<em>qualifier-patter</em>が<code>*</code>のみである 単体のメソッドグループを記述することで実現できます。 変数にはすべての適用可能なメソッドのリストが <code>most-specific-first</code>順に束縛されます。 <br><br> ボディ部<em>form</em>では、有効なメソッドをどのようにして結合させるかを計算し、 フォームとして返却します。 有効なメソッドは<code>null</code>のレキシカルな環境から 加えてローカルマクロ<a href="7.7.call-method-local.html"><code>call-method</code></a>の定義と、 <code>COMON-LISP-USER</code>パッケージからアクセスできないシンボル名の束縛で 拡張された環境下で評価されます。 メソッドグループ指定子によって生成されたリストのうちの ひとつのメソッドオブジェクトと、次のメソッドのリストが与えられると、 <a href="7.7.call-method-local.html"><code>call-method</code></a>は、<a href="7.7.call-next-method.html"><code>call-next-method</code></a>が次のメソッドとして利用可能な メソッドを呼び出します。 <br><br> ある有効なメソッドが、 単体のメソッドを呼び出す他に効果を持たないとき、 単体のメソッドをそのまま有効なメソッドとして呼び出し、 新たに有効なメソッドの生成をする必要がないように 最適化する実装もあります。 この最適化は、有効なメソッドのフォームが、 最初のフォームはメソッドオブジェクトで、 二番目のフォームは<code>nil</code>か あるいは指定されていないような<a href="7.7.call-method-local.html"><code>call-method</code></a>マクロの呼び出しで 全体が構成されているような場合において有効です。 各<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>のボディ部は この最適が必要な場合は、 <code>progn</code>, <code>and</code>, <code>multiple-value-prog1</code>などの 冗長な呼び出しを削除する責任を負います。 <br><br> リスト<code>(:arguments . lambda-list)</code>は、 宣言かドキュメント文字の前に記述することができます。 このフォームは、method-combinationが メソッドを結合するための一部としてある特定の動作を行い、 続けてジェネリック関数の引数にアクセスする 必要が生じた場合において有効です。 <em>lambda-list</em>によって定義された各パラメーターの変数は、 有効なメソッドの中に挿入されたフォーム内で束縛されます。 この<em>form</em>が有効なメソッドの実行中に評価されるとき、 それらの値はジェネリック関数に対応する引数になります。 そのようなフォームを<code>setf</code>の<code>place</code>として使用した時の結果は未定です。 引数の対応は、<code>:arguments</code>の<em>lambda-list</em>と、 ジェネリック関数の<em>lambda-list</em>を、 それぞれ次の三つのセクションに分けて計算します。 その三つは、要求パラメーター、オプションパラメーター、 そして、キーワードと<code>rest</code>パラメーターです。 ある特定の呼び出し時にジェネリック関数に指定された引数もまた、 三つのセクションに分割されます。 要求された引数のセクションは、 ジェネリック関数が保有する要求された引数と同じ数の引数を含み、 オプション引数のセクションは ジェネリック関数が保有するオプション引数と同じ数の引数を含み、 そしてキーワードと<code>rest</code>引数のセクションは残りの引数を含みます。 <code>:arguments</code>の<em>lambda-list</em>にある 要求された引数とオプション引数の セクション内にある各パラメーターは、 対応する引数のセクションと 同じ位置にある引数にアクセスします。 もし<code>arguments</code>の<em>lambda-list</em>のセクションの方が短いときは、 余分な引数は無視されます。 もし<code>arguments</code>の<em>lambda-list</em>のセクションの方が長いときは、 超過した要求パラメーターは<code>nil</code>が束縛され、 超過したオプションパラメーターはそれぞれの<code>initform</code>に束縛されます。 <code>:arguments</code>の<em>lambda-list</em>のキーワードと<code>rest</code>パラメーターは、 引数のキーワードと<code>rest</code>のセクションにアクセスされます。 もし<code>:arguments</code>の<em>lambda-list</em>に<code>&amp;key</code>が含まれているときは、 <code>&amp;allow-other-keys</code>が含まれているかのようにふるまいます。 <br><br> さらに、<code>:arguments</code>の<em>lambda-list</em>の最初に <code>&amp;whole var</code>配置することができます。 これは、ジェネリック関数に指定されたすべての引数のリストを、 評価される<em>form</em>に対して<em>var</em>に束縛します。 これはキーワードや<code>rest</code>引数だけでなく、 すべての引数にアクセスするので、<code>&amp;rest</code>とは異なります。 <br><br> ボディ部で検出されたエラーコンディションは、 <code>method-combination-error</code>か<code>invalid-method-error</code>で 報告するべきです。 これらの関数は、エラーメッセージに必要な文脈的情報を追加し、 そして適切なエラーを通知します。 <br><br> ボディ部<em>form</em>は、メソッドグループ指定子と ラムダリストによって作成された束縛の内側で評価されます。 ボディ部の先頭にある宣言は、 ラムダリストにの束縛の内側に直接配置され、 そしてメソッドグループの変数の束縛の外側に配置されます。 したがって、この方法では、メソッドグループの変数は宣言できません。 ただし、ボディ部の周囲に局所的に使用することはできます。 <br><br> ボディ部<em>form</em>の中では、<em>generic-function-symbol</em>は ジェネリック関数オブジェクトが束縛されます。 <br><br> <em>documentation</em>は、ドキュメント文字が<em>name</em>として、 （種類は<a href="25.2.documentation.html"><code>method-combination</code></a>で） method-combinationオブジェクトに割り当てられます。 <br><br> 同じ特定子の二つのメソッドが、それぞれ違う修飾子を持つとき、 メソッド選択と結合の過程を定義した<a href="7.6.6.html">7.6.6. メソッドの選択とコンビネーション</a>の ステップ2で定義されているアルゴリズムでは、 順序付けされないことに注意してください。 通常、2つのメソッドは修飾子が異なるので、 有効なメソッド内では違う役割をします。 しかしステップ2でどのように並び変えても、 有効なメソッドは同じです。 もし二つのメソッドが同じ役割であり それらの順序が重要な時はエラーが発生します。 これは<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の修飾子の パターンマッチの部分で発生します。</li>
+</ul></li>
+</ul>
+<p>もし<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>フォームがトップレベルフォームに現れたとき、 コンパイラーはmethod-combinationの名前が、 続く<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームのmethod-combination名で 有効であると認識させなければなりません。 しかし、method-combinationが実行されるのは、 <a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>フォームの実行時より早くはないので、 ジェネリック関数がmethod-combinationを使うときまで 可能な限り遅らせて実行されます。</p>
+<h2 id="例文">例文</h2>
+<p><a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の長いフォームの例のほとんどは、 メソッド結合の機能の宣言の一部として、 提供されている関係関数の使用も説明をしています。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;;; define-method-combinationの短いフォームの例</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> and </span>:identity-with-one-argument <span class="kw">t</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> func </span><span class="kw">and</span> ((x class1) y) ...)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">;;; このサンプルと同等の長いフォームの例:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> and</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        (&amp;optional (order :most-specific-first))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        ((around (:around))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>         (primary (<span class="kw">and</span>) :order order :required <span class="kw">t</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((form (<span class="kw">if</span> (<span class="kw">rest</span> primary)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">and</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                                      `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                                  primary))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)))))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">if</span> around</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        `(<span class="kw">call-method</span> ,(<span class="kw">first</span> around)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                      (,@(<span class="kw">rest</span> around)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                       (<span class="kw">make-method</span> ,form)))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        form)))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">;;; define-method-combinationの長いフォームの例</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">;The default method-combination technique</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> standard </span>()</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        ((around (:around))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>         (before (:before))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>         (primary () :required <span class="kw">t</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>         (after (:after)))</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">flet</span> ((call-methods (methods)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                       `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                   methods)))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">let</span> ((form (<span class="kw">if</span> (<span class="kw">or</span> before after (<span class="kw">rest</span> primary))</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                    `(<span class="kw">multiple-value-prog1</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                       (<span class="kw">progn</span> ,@(call-methods before)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                              (<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                                           ,(<span class="kw">rest</span> primary)))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                       ,@(call-methods (<span class="kw">reverse</span> after)))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                    `(<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)))))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">if</span> around</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>          `(<span class="kw">call-method</span> ,(<span class="kw">first</span> around)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                        (,@(<span class="kw">rest</span> around)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                         (<span class="kw">make-method</span> ,form)))</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>          form))))</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co">;どれかがnon-nilを返却するまでメソッドを実行する単純な例</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> or </span>()</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        ((methods (<span class="kw">or</span>)))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">or</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                     `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>                 methods)))</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co">;先行のより完成されたバージョン</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> or</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        (&amp;optional (order &#39;:most-specific-first))</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        ((around (:around))</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>         (primary (<span class="kw">or</span>)))</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Process the order argument</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">case</span> order</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    (:most-specific-first)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    (:most-specific-last (<span class="kw">setq</span> primary (<span class="kw">reverse</span> primary)))</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">otherwise</span> (<span class="kw">method-combination-error</span> <span class="st">&quot;~S is an invalid order.~@</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="st">    :most-specific-first and :most-specific-last are the possible values.&quot;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                                         order)))</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Must have a primary method</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">unless</span> primary</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">method-combination-error</span> <span class="st">&quot;A primary method is required.&quot;</span>))</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; Construct the form that calls the primary methods</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((form (<span class="kw">if</span> (<span class="kw">rest</span> primary)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">or</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>                                     `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                                 primary))</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)))))</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; Wrap the around methods around that form</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">if</span> around</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        `(<span class="kw">call-method</span> ,(<span class="kw">first</span> around)</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                      (,@(<span class="kw">rest</span> around)</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>                       (<span class="kw">make-method</span> ,form)))</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        form)))</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="co">;オプション:orderと:requireを使った同じ例</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> or</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        (&amp;optional (order &#39;:most-specific-first))</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>        ((around (:around))</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>         (primary (<span class="kw">or</span>) :order order :required <span class="kw">t</span>))</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((form (<span class="kw">if</span> (<span class="kw">rest</span> primary)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">or</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>                                     `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>                                 primary))</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>                  `(<span class="kw">call-method</span> ,(<span class="kw">first</span> primary)))))</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">if</span> around</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>        `(<span class="kw">call-method</span> ,(<span class="kw">first</span> around)</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>                      (,@(<span class="kw">rest</span> around)</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>                       (<span class="kw">make-method</span> ,form)))</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>        form)))</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="co">;この短いフォームの呼出しは先行と同一のふるまいをする</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> or </span>:identity-with-one-argument <span class="kw">t</span>)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="co">;qualifiersの正の整数によるメソッドの順序付け</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="co">;この小さな例では:aroundメソッドは許されない</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> example-method-combination </span>()</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>        ((methods positive-integer-qualifier-p))</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">progn</span> ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>                        `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>                    (<span class="kw">stable-sort</span> methods #&#39;&lt;</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>                      <span class="bu">:key</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">first</span> (<span class="kw">method-qualifiers</span> <span class="kw">method</span>)))))))</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> positive-integer-qualifier-p </span>(<span class="kw">method-qualifiers</span>)</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">and</span> (<span class="op">=</span> (<span class="kw">length</span> <span class="kw">method-qualifiers</span>) <span class="dv">1</span>)</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">typep</span> (<span class="kw">first</span> <span class="kw">method-qualifiers</span>) &#39;(<span class="kw">integer</span> <span class="dv">0</span> <span class="op">*</span>))))</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 引数:argumentsの使用例</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-method-combination</span><span class="fu"> progn-with-lock </span>()</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>        ((methods ()))</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>  (:arguments object)</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">unwind-protect</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">progn</span> (lock (object-lock ,object))</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>              ,@(<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">method</span>)</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>                            `(<span class="kw">call-method</span> ,<span class="kw">method</span>))</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>                        methods))</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>     (unlock (object-lock ,object))))</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>コンパイラーはコンパイル時の副次的な処理を行う必要はありません。</p>
+<h2 id="例外">例外</h2>
+<p>短いフォームで定義されたmethod-combinationの型は、 メソッドに対して正確にひとつの修飾子を要求します。 もし適用可能なメソッドに、修飾子がなかったり、 method-combinationの型がサポートされていない 修飾子であったときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。 少なくともひとつのプライマリメソッドが適用可能でないと 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>もしどのメソッドグループにも属さない適用可能なメソッドがある場合は、 システムは、型<a href="9.2.error-condition.html"><code>error</code></a>のエラーを通知し、 そのメソッドが使用中のmethod-combinationの種類に対して無効であることを示します。</p>
+<p>もし<code>:require</code>オプションの値が<em>true</em>であり、かつメソッドグループが空のとき （これは、適用可能なメソッドが、<em>qualifier-pattern</em>にマッチしないか あるいは<em>predicate</em>を満たさなかったとき） 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>もし<em>order</em>引数が評価された値が、 <code>:most-specific-first</code>か<code>:most-specific-last</code>の どちらでもなかった場合は型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><a href="7.7.call-method-local.html"><code>call-method</code></a>, <a href="7.7.call-next-method.html"><code>call-next-method</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.method-qualifiers.html"><code>method-qualifiers</code></a>, <code>method-combination-error</code>, <code>invalid-method-error</code>, <a href="7.7.defgeneric.html"><code>defgeneric</code></a>, <a href="7.6.6.html">7.6.6. メソッドの選択とコンビネーション</a>, <a href="7.6.6.4.html">7.6.6.4. 組み込みのMethod-Combination</a>, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
+<h2 id="備考">備考</h2>
+<p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>の<code>:method-combination</code>オプションは、 ジェネリック関数が特定のmethod-combination型を使用するように 指定するときに使われます。 <code>:method-combination</code>オプションの最初の引数はmethod-combination型の名前であり、 残りの引数はその型へのオプションです。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

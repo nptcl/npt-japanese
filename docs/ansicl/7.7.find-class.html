@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.2. 環境の辞書</title>
+  <title>Accessor FIND-CLASS</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,14 +151,35 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.2. 環境の辞書</h1>
+<h1 class="title">Accessor FIND-CLASS</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="7.7.html">UP</a></p>
 <hr />
-<p>25.2. 環境の辞書</p>
-<ul>
-<li><a href="25.2.documentation.html">Standard-Generic-Function DOCUMENTATION, TYPE, FUNCTION, METHOD-COMBINATION</a></li>
-</ul>
+<h1 id="accessor-find-class">Accessor FIND-CLASS</h1>
+<p>Accessor <code>FIND-CLASS</code></p>
+<h2 id="構文">構文</h2>
+<p><code>find-class</code> <em>symbol</em> &amp;optional <em>errorp</em> <em>environment</em> =&gt; <em>class</em><br />
+(<code>setf</code> (<code>find-class</code> <em>symbol</em> &amp;optional <em>errorp</em> <em>environment</em>) <em>new-class</em>)</p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>symbol</em> - シンボル<br />
+<em>errorp</em> - generalized-boolean, デフォルトは<em>true</em>。<br />
+<em>environment</em> – マクロ展開の<code>&amp;environment</code>と同じであり、 コンパイル時か実行時かを区別するために使用されます。 <code>&amp;environment</code>引数は動的な生存期間であり、 マクロ展開関数の動的生存期間の外側で <code>&amp;environment</code>引数が参照された場合はの結果は未定義です。<br />
+<em>class</em> - クラスオブジェクトか<code>nil</code></p>
+<h2 id="定義">定義</h2>
+<p><em>environment</em>内の<em>symbol</em>という名前のクラス<em>class</em>を返却します。 もしそのようなクラスが存在しないとき、 <em>errorp</em>が<em>false</em>なら<code>nil</code>が返却されます。 一方、<em>errorp</em>が<em>true</em>の場合は、エラーが発生します。</p>
+<p>特定の<em>symbol</em>に関連付けられたクラス<em>class</em>は、 <code>setf</code>と<a href="7.7.find-class.html"><code>find-class</code></a>を使うことで変更できます。 また、新しいクラスとして<code>setf</code>に<code>nil</code>を指定した時は、 関連したクラスは削除されます。 （しかしクラスオブジェクトそのものには影響しません） もしユーザーが、標準で定義されている型指定子のシンボルに 関連付けられているクラスを変更したり削除したりしたときの結果は未定義です。</p>
+<p><code>setf</code>で<a href="7.7.find-class.html"><code>find-class</code></a>を使用するときに、 引数の<em>errorp</em>は評価する効果がありますが、返却値は無視されます。 <em>errorp</em>のこのような使い方が許可されているのは、 主に<em>environment</em>引数を使用できるようにするためです。</p>
+<p><em>environment</em>はコンパイル時か実行時かを区別するために使用されます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もしそのようなクラスが存在せず、<em>errorp</em>が<em>true</em>の場合は、 <a href="7.7.find-class.html"><code>find-class</code></a>は、型<a href="9.2.error-condition.html"><code>error</code></a>のエラーを通知します。</p>
+<h2 id="参考">参考</h2>
+<p><code>defmacro</code>, 4.3.7. 型とクラスの統合</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

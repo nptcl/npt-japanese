@@ -230,7 +230,7 @@ class-option ::= (:default-initargs . initarg-list) |
 <p><a href="7.7.defclass.html"><code>defclass</code></a>のオプションは拡張できます。 すべての実装は、自身が実装していない クラスオプションやスロットオプションを見た場合は、 エラーを通知することが要求されています。</p>
 <p>複数のreader, writer, accessorを指定したり、 あるスロットに複数の初期化引数を指定するのは正しいです。 その他のスロットオプションが ひとつのスロットの定義に複数指定することはできませんので、 エラーが発生します。</p>
 <p>もし、あるスロットにreader, writer, accessorが指定されていないとき、 そのスロットはただ<a href="7.7.slot-value.html"><code>slot-value</code></a>によってのみアクセスできます。</p>
-<p>もし<a href="7.7.defclass.html"><code>defclass</code></a>フォームがトップレベルに現れたとき、 コンパイラーはクラス名を有効な型の名前であると認識し、 後続の宣言（たとえば<code>deftype</code>）や、 <a href="7.7.defmethod.html"><code>defmethod</code></a>の特定パラメーター、 また<a href="7.7.defclass.html"><code>defclass</code></a>の<code>:metaclass</code>オプションでも使用できるようにしなければならない。 コンパイラーは、<code>find-class</code>の環境の引数に、 マクロの環境パラメーターで受け取った値を指定したときは、 クラスの定義を返却できるようにしなければならない。</p>
+<p>もし<a href="7.7.defclass.html"><code>defclass</code></a>フォームがトップレベルに現れたとき、 コンパイラーはクラス名を有効な型の名前であると認識し、 後続の宣言（たとえば<code>deftype</code>）や、 <a href="7.7.defmethod.html"><code>defmethod</code></a>の特定パラメーター、 また<a href="7.7.defclass.html"><code>defclass</code></a>の<code>:metaclass</code>オプションでも使用できるようにしなければならない。 コンパイラーは、<a href="7.7.find-class.html"><code>find-class</code></a>の環境の引数に、 マクロの環境パラメーターで受け取った値を指定したときは、 クラスの定義を返却できるようにしなければならない。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>

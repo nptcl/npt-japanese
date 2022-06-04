@@ -234,16 +234,16 @@ standard
 
 表7-2 組み込みのMethod-Combinationタイプ</code></pre>
 <p>組み込みのmethod-combinationタイプである<code>standard</code>の意味は、 <a href="7.6.6.2.html">7.6.6.2. Standard Method-Combination</a>に記載しました。 他の組み込みmethod-combinationタイプは、 シンプルな組み込みmethod-combinationタイプと呼ばれています。</p>
-<p>シンプルなmethod-combinationタイプは、 短い形式の<code>define-method-combination</code>によって定義されたかのように動作します。 メソッドは次の2つの役割を認識します。</p>
+<p>シンプルなmethod-combinationタイプは、 短い形式の<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>によって定義されたかのように動作します。 メソッドは次の2つの役割を認識します。</p>
 <ul>
-<li><p><code>around</code>メソッドは、ただひとつの修飾子として<code>:around</code>キーワードを持ちます。 <code>around</code>メソッドの意味はmethod-combinationの<code>standard</code>と同じです。 <code>around</code>メソッド内では<code>call-next-method</code>と<code>next-method-p</code>の 関数の使用が提供されます。</p></li>
-<li><p>プライマリメソッドは、ただひとつの修飾子としてmethod-combinationの名前を持ちます。 例えば、組み込みのmethod-combinationタイプの<code>and</code>は、 ただひとつの修飾子である<code>and</code>を指定したメソッドをプライマリメソッドとして認識します。 <code>call-next-method</code>と<code>next-method-p</code>の関数は プライマリメソッドでは提供されません。</p></li>
+<li><p><code>around</code>メソッドは、ただひとつの修飾子として<code>:around</code>キーワードを持ちます。 <code>around</code>メソッドの意味はmethod-combinationの<code>standard</code>と同じです。 <code>around</code>メソッド内では<a href="7.7.call-next-method.html"><code>call-next-method</code></a>と<a href="7.7.next-method-p.html"><code>next-method-p</code></a>の 関数の使用が提供されます。</p></li>
+<li><p>プライマリメソッドは、ただひとつの修飾子としてmethod-combinationの名前を持ちます。 例えば、組み込みのmethod-combinationタイプの<code>and</code>は、 ただひとつの修飾子である<code>and</code>を指定したメソッドをプライマリメソッドとして認識します。 <a href="7.7.call-next-method.html"><code>call-next-method</code></a>と<a href="7.7.next-method-p.html"><code>next-method-p</code></a>の関数は プライマリメソッドでは提供されません。</p></li>
 </ul>
 <p>シンプルな組み込みmethod-combinationタイプの意味を下記に示します。</p>
 <ul>
 <li><p>もし<code>around</code>メソッドが存在するならば、最も特定的な<code>around</code>メソッドが呼ばれます。 これはジェネリック関数へ1つか複数の返却値を提供します。</p></li>
-<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<code>call-next-method</code>が使用できます。 もし<code>call-next-method</code>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。 関数<code>next-method-p</code>は、次のメソッドが存在するかどうかを決定するために使われます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。</p></li>
-<li><p>もし<code>around</code>メソッドが<code>call-next-method</code>を実行したとき、 次の特定的な<code>around</code>メソッドが適用可能であれば呼び出されます。 もし<code>around</code>メソッドが存在しないか、 あるいは最も遠い<code>around</code>メソッドによって<code>call-next-method</code>が呼び出されたときは、 組み込みmethod-combinationタイプの名前と適用可能なプライマリメソッドのリストから、 評価されるとジェネリック関数の返却値を生成する様なLispフォームが導出されます。 例えば、method-combinationタイプの名前が<code>operator</code>のとき、 ジェネリック関数が次のフォームによって呼び出されることを考えます。</p></li>
+<li><p><code>around</code>メソッドのコード内では、次のメソッドを呼ぶための<a href="7.7.call-next-method.html"><code>call-next-method</code></a>が使用できます。 もし<a href="7.7.call-next-method.html"><code>call-next-method</code></a>を使用したときに、呼び出せる適用可能なメソッドが存在しなかった場合は、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼び出されます。 関数<a href="7.7.next-method-p.html"><code>next-method-p</code></a>は、次のメソッドが存在するかどうかを決定するために使われます。 次のメソッドから戻ったとき、<code>around</code>メソッドは返却された値に基づいて、 さらにコードを実行することができます。</p></li>
+<li><p>もし<code>around</code>メソッドが<a href="7.7.call-next-method.html"><code>call-next-method</code></a>を実行したとき、 次の特定的な<code>around</code>メソッドが適用可能であれば呼び出されます。 もし<code>around</code>メソッドが存在しないか、 あるいは最も遠い<code>around</code>メソッドによって<a href="7.7.call-next-method.html"><code>call-next-method</code></a>が呼び出されたときは、 組み込みmethod-combinationタイプの名前と適用可能なプライマリメソッドのリストから、 評価されるとジェネリック関数の返却値を生成する様なLispフォームが導出されます。 例えば、method-combinationタイプの名前が<code>operator</code>のとき、 ジェネリック関数が次のフォームによって呼び出されることを考えます。</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">generic-function</span> a1...an)</span></code></pre></div>
 <p>ここで<code>M1, ... Mk</code>はこの順に適用可能なプライマリリストであるとします。 そのとき、Lispフォームは次のように導出されます。</p>

@@ -63,3 +63,7 @@
 (replace required-arguments "要求された引数")
 (replace specialized-parameter "特化したパラメーター")
 
+(replace format-control "format-control")
+(replace format-directive "format指示子")
+(replace ordinary-lambda-list "通常のラムダリスト")
+

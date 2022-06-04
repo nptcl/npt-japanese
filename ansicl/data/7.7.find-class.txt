@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor FIND-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.find-class
+@name: find-class
+@type: accessor
+
+Accessor `FIND-CLASS`
+
+
+## {syntax}
+
+`find-class` *symbol* &optional *errorp* *environment* => *class*  
+(`setf` (`find-class` *symbol* &optional *errorp* *environment*) *new-class*)
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*errorp* - {generalized-boolean}, デフォルトは*true*。  
+*environment* -- マクロ展開の`&environment`と同じであり、
+コンパイル時か実行時かを区別するために使用されます。
+`&environment`引数は動的な生存期間であり、
+マクロ展開関数の動的生存期間の外側で
+`&environment`引数が参照された場合はの結果は未定義です。  
+*class* - クラスオブジェクトか{nil!variable:link}
+
+
+## {description}
+
+*environment*内の*symbol*という名前のクラス*class*を返却します。
+もしそのようなクラスが存在しないとき、
+*errorp*が*false*なら{nil!variable:link}が返却されます。
+一方、*errorp*が*true*の場合は、エラーが発生します。
+
+特定の*symbol*に関連付けられたクラス*class*は、
+{setf:link}と{find-class:link}を使うことで変更できます。
+また、新しいクラスとして{setf:link}に{nil!variable:link}を指定した時は、
+関連したクラスは削除されます。
+（しかしクラスオブジェクトそのものには影響しません）
+もしユーザーが、標準で定義されている{type-specifier}のシンボルに
+関連付けられているクラスを変更したり削除したりしたときの結果は未定義です。
+
+{setf:link}で{find-class:link}を使用するときに、
+引数の*errorp*は評価する効果がありますが、返却値は無視されます。
+*errorp*のこのような使い方が許可されているのは、
+主に*environment*引数を使用できるようにするためです。
+
+*environment*はコンパイル時か実行時かを区別するために使用されます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もしそのようなクラスが存在せず、*errorp*が*true*の場合は、
+{find-class:link}は、型{error!condition:link}のエラーを通知します。
+
+
+## {see-also}
+
+{defmacro:link}, {4.3.7:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

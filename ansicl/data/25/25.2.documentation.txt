@@ -11,6 +11,7 @@
 @name: documentation
 @name: type!symbol
 @name: function!symbol
+@name: method-combination!symbol
 @type: standard-generic-function
 
 

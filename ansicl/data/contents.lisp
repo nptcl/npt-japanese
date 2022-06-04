@@ -97,6 +97,7 @@
 (text 4.3.4 "継承" "Inheritance")
 (text 4.3.5 "{class-precedence-list}の決定" "Determining the Class Precedence List")
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
+(text 4.3.7 "型とクラスの統合" "Integrating Types and Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
 (dictionary 4.4.generic-function)
 (dictionary 4.4.standard-generic-function)
@@ -126,8 +127,12 @@
 (dictionary 5.3.eql!function)
 (dictionary 5.3.equal)
 (dictionary 5.3.equalp)
+(dictionary 5.3.and)
+(dictionary 5.3.multiple-value-prog1)
+(dictionary 5.3.progn)
 (dictionary 5.3.setf)
 (dictionary 5.3.program-error)
+(dictionary 5.3.control-error)
 
 ;; Chapter 7
 (text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")
@@ -208,8 +213,7 @@
 (dictionary 7.7.defmethod)
 (dictionary 7.7.find-class)
 (dictionary 7.7.next-method-p)
-(dictionary 7.7.call-method)
-(dictionary 7.7.make-method)  ;; delete
+(dictionary 7.7.call-method-local)
 (dictionary 7.7.call-next-method)
 (dictionary 7.7.compute-applicable-methods)
 (dictionary 7.7.define-method-combination)
@@ -232,11 +236,18 @@
 (dictionary 9.2.condition)
 (dictionary 9.2.serious-condition)
 (dictionary 9.2.error!condition)
+(dictionary 9.2.method-combination-error)
+(dictionary 9.2.invalid-method-error)
 (dictionary 9.2.define-condition)
 
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")
 (dictionary 10.2.symbol)
+
+;; Chapger 12
+(index 12.2 "数の辞書" "Numbers Dictionary")
+(dictionary 12.2.max)
+(dictionary 12.2.+)
 
 ;; Chapter 13
 (index 13.1 "文字の説明" "Character Concepts")

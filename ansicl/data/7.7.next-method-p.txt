@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  7. オブジェクト
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Local Function NEXT-METHOD-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 7.7.next-method-p
+@name: next-method-p
+@type: local-function
+
+Local Function `NEXT-METHOD-P`
+
+
+## {syntax}
+
+`next-method-p` `<no arguments>` => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+ローカルに定義された関数{next-method-p:link}は、
+メソッド定義フォームで定義された
+ボディフォーム内（ただしラムダリストは除く）で、
+次のメソッドがあるかどうかを判断するために使用することができます。
+
+関数{next-method-p:link}は、
+レキシカルスコープと不定範囲を持っています。
+
+グローバル環境下で、{next-method-p:link}が`fbound`かどうかは実装依存です。
+しかし、再定義と{next-method-p:link}のシャドウについての制限は、
+`COMMON-LISP`パッケージにある、
+グローバル環境下において`fbound`であるシンボルと同じです。
+{next-method-p:link}をメソッド定義フォームの外で
+使おうとしたときの結果は未定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{call-next-method:link},
+{defmethod:link},
+{call-method:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

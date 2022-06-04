@@ -194,7 +194,7 @@ parameter-specializer-name ::= symbol | (eql eql-specializer-form)</code></pre>
 <p>特定化されたパラメーターについては、 <a href="7.6.2.html">7.6.2. メソッドの紹介</a>で説明したように特定パラメーター名から派生します。</p>
 <p>マクロ<a href="7.7.defmethod.html"><code>defmethod</code></a>の展開は、各特化したパラメーターを<strong>参照</strong>します （<code>declare</code>の定義の<code>ignore</code>の定義を参照してください）。 これは、特定化するパラメーター名を 明に<a href="4.4.t-system-class.html"><code>t</code></a>とした場合も含まれます。 つまり、メソッド本体で特化したパラメーターが参照されない場合でも コンパイラーは警告を出力しませんが、 メソッド本体で特化したパラメーターではない パラメーターが参照されない場合は警告を発します。 このため、<a href="4.4.t-system-class.html"><code>t</code></a>を特定化したパラメーターは、 特化したパラメーターではないパラメーターと 文脈的に同一ではありません。</p>
 <p>メソッド本体の先頭にある宣言で、 メソッドのラムダリストの変数に適用されるものは、 束縛に対応するものと同じスコープを持つ宣言として扱われます。</p>
-<p>メソッド本体の先頭にある宣言で、 <code>call-next-method</code>と<code>next-method-p</code>に束縛されてる関数への適用は、 メソッドのボディ部内でのそれらの関数の参照に適用されます。 外側で行われる <code>call-next-method</code>と<code>next-method-p</code>の どのような束縛についても、 またそれらの束縛に関連付けられる宣言に対しても、 メソッドのボディ部内では隠蔽されます。</p>
+<p>メソッド本体の先頭にある宣言で、 <a href="7.7.call-next-method.html"><code>call-next-method</code></a>と<a href="7.7.next-method-p.html"><code>next-method-p</code></a>に束縛されてる関数への適用は、 メソッドのボディ部内でのそれらの関数の参照に適用されます。 外側で行われる <a href="7.7.call-next-method.html"><code>call-next-method</code></a>と<a href="7.7.next-method-p.html"><code>next-method-p</code></a>の どのような束縛についても、 またそれらの束縛に関連付けられる宣言に対しても、 メソッドのボディ部内では隠蔽されます。</p>
 <p>メソッド本体の先頭にある自由形式の宣言の範囲は メソッドのボディ部全体であり、 それは暗黙のローカル関数の定義も含まれます。 しかしラムダリストの変数の初期化フォームは除外されます。</p>
 <p><a href="7.7.defmethod.html"><code>defmethod</code></a>は、コンパイル時にはどのような副作用も要求されていません。 特に、コンパイル時に呼び出すためのメソッドは導入されません。 実装者は、コンパイル時のエラーチェック （関数呼び出し時の引数の個数チェックであったり、 あるいは関数名の定義を確認したりすること）のために、 ジェネリック関数についての情報を保存するか選択できます。</p>
 <p><em>documentation</em>は、メソッドオブジェクトにドキュメント文字を割り当てます。</p>

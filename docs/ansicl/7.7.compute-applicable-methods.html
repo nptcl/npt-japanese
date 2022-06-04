@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.2. 環境の辞書</title>
+  <title>Standard-Generic-Function COMPUTE-APPLICABLE-METHODS</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,14 +151,30 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.2. 環境の辞書</h1>
+<h1 class="title">Standard-Generic-Function COMPUTE-APPLICABLE-METHODS</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="7.7.html">UP</a></p>
 <hr />
-<p>25.2. 環境の辞書</p>
-<ul>
-<li><a href="25.2.documentation.html">Standard-Generic-Function DOCUMENTATION, TYPE, FUNCTION, METHOD-COMBINATION</a></li>
-</ul>
+<h1 id="standard-generic-function-compute-applicable-methods">Standard-Generic-Function COMPUTE-APPLICABLE-METHODS</h1>
+<p>Standard Generic Function <code>COMPUTE-APPLICABLE-METHODS</code></p>
+<h2 id="構文">構文</h2>
+<p><code>compute-applicable-methods</code> <em>generic-function</em> <em>function-arguments</em> =&gt; <em>methods</em></p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<p><code>compute-applicable-methods</code> (<em>generic-function</em> <code>standard-generic-function</code>)</p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>generic-function</em> - ジェネリック関数<br />
+<em>function-arguments</em> - ジェネリック関数の引数のリスト<br />
+<em>methods</em> - メソッドのリスト</p>
+<h2 id="定義">定義</h2>
+<p><em>generic-function</em>と<em>function-arguments</em>の集合が与えられると、 関数<a href="7.7.compute-applicable-methods.html"><code>compute-applicable-methods</code></a>はこれらの引数によって、 適用可能なメソッドの集合を優先順位に従ってソートして返却します。</p>
+<h2 id="影響">影響</h2>
+<p><a href="7.7.defmethod.html"><code>defmethod</code></a></p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="7.6.6.html">7.6.6. メソッドの選択とコンビネーション</a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

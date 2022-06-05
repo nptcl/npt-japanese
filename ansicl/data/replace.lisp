@@ -78,4 +78,5 @@
 (replace property-indicator "標識")
 
 (replace exhaustive-partition "完全な分割")
+(replace place "`place`")
 

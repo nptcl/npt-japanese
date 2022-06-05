@@ -124,6 +124,10 @@
 (dictionary 4.4.type-error)
 
 ;; Chapter 5
+(text 5.1 "一般化された参照" "Generalized Reference")
+(text 5.1.1 "{place}と一般化された参照の概要"
+      "Overview of Places and Generalized Reference")
+(text 5.1.1.1 "{place}のサブフォームの評価" "Evaluation of Subforms to Places")
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
 (dictionary 5.3.defun)

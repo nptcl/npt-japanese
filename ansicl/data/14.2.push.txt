@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PUSH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.push
+@name: push
+@type: macro
+
+Macro `PUSH`
+
+
+## {syntax}
+
+`push` *item* *place* => *new-place-value*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*place* - {place}, 任意のオブジェクトの値  
+*new-place-value* - リスト（{place}の新しい値）
+
+
+## {description}
+
+{push:link}は*place*に保存されているリストの先頭に*item*を追加し、
+*place*にその結果のリストを保存して返却します。
+
+*place*のサブフォームの評価については、
+{5.1.1.1:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(setq llst '(nil)) =>  (NIL)
+(push 1 (car llst)) =>  (1)
+llst =>  ((1))
+(push 1 (car llst)) =>  (1 1)
+llst =>  ((1 1))
+(setq x '(a (b c) d)) =>  (A (B C) D)
+(push 5 (cadr x)) =>  (5 B C)  
+x =>  (A (5 B C) D)
+```
+
+
+## {side-effects}
+
+*place*の内容は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{pop:link},
+{pushnew:link},
+{5.1:ab}
+
+
+## {notes}
+
+
+`(push item place)`の効果は、次と同等です。
+
+```lisp
+(setf place (cons item place))
+```
+
+ただし、*place*のサブフォームはただ一度しか評価されず、
+*item*は*place*のあとに評価されます。
+
+@end
+

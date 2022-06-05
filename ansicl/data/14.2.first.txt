@@ -1,0 +1,148 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor FIRST
+;;  Accessor SECOND
+;;  Accessor THIRD
+;;  Accessor FOURTH
+;;  Accessor FIFTH
+;;  Accessor SIXTH
+;;  Accessor SEVENTH
+;;  Accessor EIGHTH
+;;  Accessor NINTH
+;;  Accessor TENTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.first
+@name: first
+@name: second
+@name: third
+@name: fourth
+@name: fifth
+@name: sixth
+@name: seventh
+@name: eighth
+@name: ninth
+@name: tenth
+@type: accessor
+
+Macro `FIRST`, `SECOND`, `THIRD`, `FOURTH`, `FIFTH`,
+`SIXTH`, `SEVENTH`, `EIGHTH`, `NINTH`, `TENTH`
+
+
+## {syntax}
+
+`first` *list* => *object*  
+`second` *list* => *object*  
+`third` *list* => *object*  
+`fourth` *list* => *object*  
+`fifth` *list* => *object*  
+`sixth` *list* => *object*  
+`seventh` *list* => *object*  
+`eighth` *list* => *object*  
+`ninth` *list* => *object*  
+`tenth` *list* => *object*  
+(`setf` (`first` *list*) *new-object*)  
+(`setf` (`second` *list*) *new-object*)  
+(`setf` (`third` *list*) *new-object*)  
+(`setf` (`fourth` *list*) *new-object*)  
+(`setf` (`fifth` *list*) *new-object*)  
+(`setf` (`sixth` *list*) *new-object*)  
+(`setf` (`seventh` *list*) *new-object*)  
+(`setf` (`eighth` *list*) *new-object*)  
+(`setf` (`ninth` *list*) *new-object*)  
+(`setf` (`tenth` *list*) *new-object*)
+
+
+## {arguments-and-values}
+
+*list* - リスト。{dotted-list}か{circular-list}も可能。  
+*object*, *new-object* - オブジェクト
+
+
+## {description}
+
+関数{first:link}, {second:link}, {third:link}, {fourth:link}, {fifth:link},
+{sixth:link}, {seventh:link}, {eighth:link}, {ninth:link}, {tenth:link}は、
+それぞれリストの1番目、2番目、3番目、4番目、5番目、
+6番目、7番目、8番目、9番目、10番目の要素にアクセスします。
+具体的には次のようになります。
+
+```lisp
+(first list)    ==   (car list)
+(second list)   ==   (car (cdr list))
+(third list)    ==   (car (cddr list))
+(fourth list)   ==   (car (cdddr list))
+(fifth list)    ==   (car (cddddr list))
+(sixth list)    ==   (car (cdr (cddddr list)))
+(seventh list)  ==   (car (cddr (cddddr list)))
+(eighth list)   ==   (car (cdddr (cddddr list)))
+(ninth list)    ==   (car (cddddr (cddddr list)))
+(tenth list)    ==   (car (cdr (cddddr (cddddr list))))
+```
+
+{setf:link}は、これらの関数を使うことによって
+既存の構成要素を変更することもできます。
+上記の等価な関係を用いて同じように適用できます。
+例えば次のようになります。
+
+```lisp
+(setf (fifth list) new-object) == (setf (car (cddddr list)) new-object)
+```
+
+
+## {examples}
+
+```lisp
+(setq lst '(1 2 3 (4 5 6) ((V)) vi 7 8 9 10)) 
+=>  (1 2 3 (4 5 6) ((V)) VI 7 8 9 10)
+(first lst) =>  1
+(tenth lst) =>  10
+(fifth lst) =>  ((V))
+(second (fourth lst)) =>  5
+(sixth '(1 2 3)) =>  NIL
+(setf (fourth lst) "four") =>  "four"
+lst =>  (1 2 3 "four" ((V)) VI 7 8 9 10)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{car:link},
+{nth:link}
+
+
+## {notes}
+
+{first:link}は機能的には{car:link}と同じです。
+{second:link}は機能的には{cadr:link}と同じです。
+{third:link}は機能的には{caddr:link}と同じです。
+{fourth:link}は機能的には{cadddr:link}と同じです。
+
+通常の番号付けは1から開始しますが、
+{nth:link}によって使われる採番は0開始であり、
+次の関係が成り立ちます。
+
+```lisp
+(fifth x) == (nth 4 x)
+```
+
+@end
+

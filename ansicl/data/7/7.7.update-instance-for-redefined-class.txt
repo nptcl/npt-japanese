@@ -41,7 +41,7 @@ Standard Generic Function `UPDATE-INSTANCE-FOR-REDEFINED-CLASS`
 
 ジェネリック関数{update-instance-for-redefined-class:link}は、
 プログラマーによって呼び出されることを意図していません。
-プログラマーはこの関数のメソッドを作成します。
+プログラマーはこの関数のメソッドを作成できます。
 関数{update-instance-for-redefined-class:link}は、
 関数{make-instances-obsolete:link}によって
 有効化される仕組みによって呼び出されます。
@@ -90,8 +90,7 @@ Standard Generic Function `UPDATE-INSTANCE-FOR-REDEFINED-CLASS`
  
 (defmethod update-instance-for-redefined-class :before
    ((pos x-y-position) added deleted plist &key)
-  ;; Transform the x-y coordinates to polar coordinates
-  ;; and store into the new slots.
+  ;; x-y座標を極座標に変換し新しいスロットに保存します
   (let ((x (getf plist 'x))
         (y (getf plist 'y)))
     (setf (position-rho pos) (sqrt (+ (* x x) (* y y)))

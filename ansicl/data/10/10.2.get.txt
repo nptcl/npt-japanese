@@ -45,7 +45,7 @@ Accessor `GET`
 もし存在しなかったときは、新しい関連を作成します。
 {property-indicator}に対して複数のプロパティがあるときは、
 {get:link}の{setf:link}は最初のプロパティに*new-value*を関連付けます。
-{get:link}フォームを{setf:link} placeで使うとき、
+{get:link}フォームを{setf:link}の{place}で使うとき、
 引数*default*が通常の左から右へ評価されるルールに従って評価され、
 *value*は無視されます。
 

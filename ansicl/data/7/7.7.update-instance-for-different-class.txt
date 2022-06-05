@@ -36,7 +36,7 @@ Standard Generic Function `UPDATE-INSTANCE-FOR-DIFFERENT-CLASS`
 
 ジェネリック関数{update-instance-for-different-class:link}は、
 プログラマーによって呼び出されることを意図していません。
-プログラマーはこの関数のメソッドを作成します。
+プログラマーはこの関数のメソッドを作成できます。
 関数{update-instance-for-different-class:link}は、
 ただ関数{change-class:link}によってのみ呼ばれます。
 

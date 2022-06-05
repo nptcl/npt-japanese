@@ -1,0 +1,91 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-TREE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.copy-tree
+@name: copy-tree
+@type: function
+
+Function `COPY-TREE`
+
+
+## {syntax}
+
+`copy-tree` *tree* => *new-tree*
+
+
+## {arguments-and-values}
+
+*tree* - ツリー  
+*new-tree* - ツリー
+
+
+## {description}
+
+コンスのツリーのコピーを作成します。
+
+もし*tree*がコンスではないときは、それが返却されます。
+そうでないときは、
+*tree*の`car`と`cdr`で{copy-tree:link}を呼び出し、
+その結果の新しいコンスを作り返却します。
+つまり、*tree*であらわされるツリーの全てのコンスを再帰的にコピーし、
+コンスではないものに遭遇したときだけ停止します。
+
+{copy-tree:link}は、循環している構造や、
+部分的に共有している構造を保存できません。
+
+
+## {examples}
+
+```lisp
+(setq object (list (cons 1 "one")
+                   (cons 2 (list 'a 'b 'c))))
+=>  ((1 . "one") (2 A B C))
+(setq object-too object) =>  ((1 . "one") (2 A B C))
+(setq copy-as-list (copy-list object))
+(setq copy-as-alist (copy-alist object))
+(setq copy-as-tree (copy-tree object))
+(eq object object-too) =>  true
+(eq copy-as-tree object) =>  false
+(eql copy-as-tree object) =>  false
+(equal copy-as-tree object) =>  true
+(setf (first (cdr (second object))) "a"
+      (car (second object)) "two"
+      (car object) '(one . 1)) =>  (ONE . 1)
+object =>  ((ONE . 1) ("two" "a" B C))
+object-too =>  ((ONE . 1) ("two" "a" B C))
+copy-as-list =>  ((1 . "one") ("two" "a" B C))
+copy-as-alist =>  ((1 . "one") (2 "a" B C))
+copy-as-tree =>  ((1 . "one") (2 A B C)) 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+## {see-also}
+
+{tree-equal:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

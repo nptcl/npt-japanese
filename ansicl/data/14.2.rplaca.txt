@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RPLACA, RPLACD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.rplaca
+@name: rplaca
+@name: rplacd
+@type: function
+
+Function `RPLACA`, `RPLACD`
+
+
+## {syntax}
+
+`rplaca` *cons* *object* => *cons*  
+`rplacd` *cons* *object* => *cons*
+
+
+## {pronunciation}
+
+{rplaca:link}: [,ree'plakuh] or [,ruh'plakuh]  
+{rplacd:link}: [,ree'plakduh] or [,ruh'plakduh] or [,ree'plakdee] or [,ruh'plakdee]
+
+
+## {arguments-and-values}
+
+*cons* - コンス  
+*object* - オブジェクト
+
+
+## {description}
+
+{rplaca:link}は、*cons*の`car`部を*object*に置き換えます。
+
+{rplacd:link}は、*cons*の`cdr`部を*object*に置き換えます。
+
+
+## {examples}
+
+```lisp
+(defparameter *some-list* (list* 'one 'two 'three 'four)) =>  *some-list*
+*some-list* =>  (ONE TWO THREE . FOUR)
+(rplaca *some-list* 'uno) =>  (UNO TWO THREE . FOUR)
+*some-list* =>  (UNO TWO THREE . FOUR)
+(rplacd (last *some-list*) (list 'IV)) =>  (THREE IV)
+*some-list* =>  (UNO TWO THREE IV)
+```
+
+
+## {side-effects}
+
+*cons*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*cons*がコンスではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

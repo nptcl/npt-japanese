@@ -1,0 +1,276 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor CAR
+;;  Accessor CDR
+;;  Accessor CAAR
+;;  Accessor CADR
+;;  Accessor CDAR
+;;  Accessor CDDR
+;;  Accessor CAAAR
+;;  Accessor CAADR
+;;  Accessor CADAR
+;;  Accessor CADDR
+;;  Accessor CDAAR
+;;  Accessor CDADR
+;;  Accessor CDDAR
+;;  Accessor CDDDR
+;;  Accessor CAAAAR
+;;  Accessor CAAADR
+;;  Accessor CAADAR
+;;  Accessor CAADDR
+;;  Accessor CADAAR
+;;  Accessor CADADR
+;;  Accessor CADDAR
+;;  Accessor CADDDR
+;;  Accessor CDAAAR
+;;  Accessor CDAADR
+;;  Accessor CDADAR
+;;  Accessor CDADDR
+;;  Accessor CDDAAR
+;;  Accessor CDDADR
+;;  Accessor CDDDAR
+;;  Accessor CDDDDR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.car
+@name: car
+@name: cdr
+@name: caar
+@name: cadr
+@name: cdar
+@name: cddr
+@name: caaar
+@name: caadr
+@name: cadar
+@name: caddr
+@name: cdaar
+@name: cdadr
+@name: cddar
+@name: cdddr
+@name: caaaar
+@name: caaadr
+@name: caadar
+@name: caaddr
+@name: cadaar
+@name: cadadr
+@name: caddar
+@name: cadddr
+@name: cdaaar
+@name: cdaadr
+@name: cdadar
+@name: cdaddr
+@name: cddaar
+@name: cddadr
+@name: cdddar
+@name: cddddr
+@type: Accessor
+
+Accessor `CAR`, `CDR`,
+`CAAR`, `CADR`, `CDAR`, `CDDR`,
+`CAAAR`, `CAADR`, `CADAR`, `CADDR`,
+`CDAAR`, `CDADR`, `CDDAR`, `CDDDR`,
+`CAAAAR`, `CAAADR`, `CAADAR`, `CAADDR`,
+`CADAAR`, `CADADR`, `CADDAR`, `CADDDR`,
+`CDAAAR`, `CDAADR`, `CDADAR`, `CDADDR`,
+`CDDAAR`, `CDDADR`, `CDDDAR`, `CDDDDR`
+
+
+## {syntax}
+
+`car` *x* => *object*  
+`cdr` *x* => *object*  
+`caar` *x* => *object*  
+`cadr` *x* => *object*  
+`cdar` *x* => *object*  
+`cddr` *x* => *object*  
+`caaar` *x* => *object*  
+`caadr` *x* => *object*  
+`cadar` *x* => *object*  
+`caddr` *x* => *object*  
+`cdaar` *x* => *object*  
+`cdadr` *x* => *object*  
+`cddar` *x* => *object*  
+`cdddr` *x* => *object*  
+`caaaar` *x* => *object*  
+`caaadr` *x* => *object*  
+`caadar` *x* => *object*  
+`caaddr` *x* => *object*  
+`cadaar` *x* => *object*  
+`cadadr` *x* => *object*  
+`caddar` *x* => *object*  
+`cadddr` *x* => *object*  
+`cdaaar` *x* => *object*  
+`cdaadr` *x* => *object*  
+`cdadar` *x* => *object*  
+`cdaddr` *x* => *object*  
+`cddaar` *x* => *object*  
+`cddadr` *x* => *object*  
+`cdddar` *x* => *object*  
+`cddddr` *x* => *object*  
+(`setf` (`car` *x*) *new-object*)  
+(`setf` (`cdr` *x*) *new-object*)  
+(`setf` (`caar` *x*) *new-object*)  
+(`setf` (`cadr` *x*) *new-object*)  
+(`setf` (`cdar` *x*) *new-object*)  
+(`setf` (`cddr` *x*) *new-object*)  
+(`setf` (`caaar` *x*) *new-object*)  
+(`setf` (`caadr` *x*) *new-object*)  
+(`setf` (`cadar` *x*) *new-object*)  
+(`setf` (`caddr` *x*) *new-object*)  
+(`setf` (`cdaar` *x*) *new-object*)  
+(`setf` (`cdadr` *x*) *new-object*)  
+(`setf` (`cddar` *x*) *new-object*)  
+(`setf` (`cdddr` *x*) *new-object*)  
+(`setf` (`caaaar` *x*) *new-object*)  
+(`setf` (`caaadr` *x*) *new-object*)  
+(`setf` (`caadar` *x*) *new-object*)  
+(`setf` (`caaddr` *x*) *new-object*)  
+(`setf` (`cadaar` *x*) *new-object*)  
+(`setf` (`cadadr` *x*) *new-object*)  
+(`setf` (`caddar` *x*) *new-object*)  
+(`setf` (`cadddr` *x*) *new-object*)  
+(`setf` (`cdaaar` *x*) *new-object*)  
+(`setf` (`cdaadr` *x*) *new-object*)  
+(`setf` (`cdadar` *x*) *new-object*)  
+(`setf` (`cdaddr` *x*) *new-object*)  
+(`setf` (`cddaar` *x*) *new-object*)  
+(`setf` (`cddadr` *x*) *new-object*)  
+(`setf` (`cdddar` *x*) *new-object*)  
+(`setf` (`cddddr` *x*) *new-object*)
+
+
+## {pronunciation}
+
+{cadr:link}: ['ka,duhr]  
+{caddr:link}: ['kaduh,duhr] or ['ka,dduhr]  
+{cdr:link}: ['k,duhr]  
+{cddr:link}: ['kduh,duhr] or ['kuh,dduhr]
+
+
+## {arguments-and-values}
+
+*x* - リスト  
+*object* - オブジェクト  
+*new-object* - オブジェクト
+
+
+## {description}
+
+*x*がコンスなら、{car:link}は*cons*の`car`を返します。
+*x*が{nil!variable:link}なら、 {car:link}は{nil!variable:link}を返します。
+
+*x*がコンスなら、{cdr:link}は*cons*の`cdr`を返します。
+*x*が{nil!variable:link}なら、 {cdr:link}は{nil!variable:link}を返します。
+
+最大4つの`car`と`cdr`の組み合わせを行う関数が用意されています。
+これらの名前は、`C`に続き、2つか3つか4つの`A`か`D`が現れ、
+最後の`R`で構成されます。
+各関数の名前にある`A`と`D`の並びは、
+その関数によって実行される一連の`car`, `cdr`のオペレーションの
+識別を意味しています。
+`A`と`D`の順序は、対応するオペレーションの実行順序とは逆に現れます。
+次の図は、その関係を正確に定義したものです。
+
+```lisp
+これは、        ここと等価です
+-----------------------------------------
+(caar x)        (car (car x))
+(cadr x)        (car (cdr x))
+(cdar x)        (cdr (car x))
+(cddr x)        (cdr (cdr x))
+(caaar x)       (car (car (car x)))
+(caadr x)       (car (car (cdr x)))
+(cadar x)       (car (cdr (car x)))
+(caddr x)       (car (cdr (cdr x)))
+(cdaar x)       (cdr (car (car x)))
+(cdadr x)       (cdr (car (cdr x)))
+(cddar x)       (cdr (cdr (car x)))
+(cdddr x)       (cdr (cdr (cdr x)))
+(caaaar x)      (car (car (car (car x))))
+(caaadr x)      (car (car (car (cdr x))))
+(caadar x)      (car (car (cdr (car x))))
+(caaddr x)      (car (car (cdr (cdr x))))
+(cadaar x)      (car (cdr (car (car x))))
+(cadadr x)      (car (cdr (car (cdr x))))
+(caddar x)      (car (cdr (cdr (car x))))
+(cadddr x)      (car (cdr (cdr (cdr x))))
+(cdaaar x)      (cdr (car (car (car x))))
+(cdaadr x)      (cdr (car (car (cdr x))))
+(cdadar x)      (cdr (car (cdr (car x))))
+(cdaddr x)      (cdr (car (cdr (cdr x))))
+(cddaar x)      (cdr (cdr (car (car x))))
+(cddadr x)      (cdr (cdr (car (cdr x))))
+(cdddar x)      (cdr (cdr (cdr (car x))))
+(cddddr x)      (cdr (cdr (cdr (cdr x))))
+
+Figure 14-6. CARとCDRの対応
+```
+
+{setf:link}は、これらの関数とともに使用することで
+*x*の既存の要素を変更することもできますが、
+{setf:link}は新しい要素を作成しません。
+よって、例えば{setf:link}と{car:link}はコンスの`car`を変更できますが、
+しかし{setf:link}と{car:link}では、{nil!variable:link}の`car`を変更できません。
+同じように、
+{setf:link}の{caar:link}は、
+`car`がコンスであるコンスに対しては、
+コンスの`car`の`car`を変更できますが、
+しかし{setf:link}の{caar:link}では、
+{nil!variable:link}や、
+`car`が{nil!variable:link}のコンスは、
+どちらも変更できません。
+
+引数*x*は、{dotted-list}と{circular-list}が許されます。
+
+
+## {examples}
+
+```lisp
+ (car nil) =>  NIL  
+ (cdr '(1 . 2)) =>  2
+ (cdr '(1 2)) =>  (2)
+ (cadr '(1 2)) =>  2 
+ (car '(a b c)) =>  A
+ (cdr '(a b c)) =>  (B C)
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+関数{car:link}と{cdr:link}は、
+引数がリストではないときは、
+型{type-error:link}のエラーが発生します。
+その他の関数（{caar:link}, {cadr:link}, ..., {cddddr:link}）は、
+エラーチェックのために、
+{car:link}と{cdr:link}が定義されているように
+適切に呼び出されたかのようにふるまう必要があります。
+
+
+## {see-also}
+
+{rplaca:link},
+{first:link},
+{rest:link}
+
+
+## {notes}
+
+コンスの`car`は{rplaca:link}を使うことによって変更できます。
+コンスの`cdr`は{rplacd:link}を使うことによって変更できます。
+
+```lisp
+(car x)    ==  (first x)
+(cadr x)   ==  (second x) ==  (car (cdr x))
+(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))
+(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))
+```
+
+@end
+

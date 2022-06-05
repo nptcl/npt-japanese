@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CONSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.consp
+@name: consp
+@type: function
+
+Function `CONSP`
+
+
+## {syntax}
+
+`consp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}  
+
+
+## {description}
+
+*object*が型{cons!system-class:link}なら*true*を、
+そうではないときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(consp nil) =>  false
+(consp (cons 1 2)) =>  true
+```
+
+空のリストはコンスではないので、次の結果が成り立ちます。
+
+```lisp
+(consp '()) == (consp 'nil) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{listp:link}
+
+
+## {notes}
+
+```lisp
+ (consp object) == (typep object 'cons) == (not (typep object 'atom)) == (typep object '(not atom))
+```
+
+@end
+

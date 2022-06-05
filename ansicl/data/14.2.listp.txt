@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LISTP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.listp
+@name: listp
+@type: function
+
+Function `LISTP`
+
+
+## {syntax}
+
+`listp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が{list!system-class:link}の型ならば*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(listp nil) =>  true
+(listp (cons 1 2)) =>  true
+(listp (make-array 6)) =>  false
+(listp t) =>  false
+```
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{consp:link}
+
+
+## {notes}
+
+もし*object*がコンスなら、
+{listp:link}は*object*が{proper-list}かどうか確認せず、
+どんな種類のリストでも*true*を返却します。
+
+```lisp
+(listp object) ==  (typep object 'list) ==  (typep object '(or cons null))
+```
+
+@end
+

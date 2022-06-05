@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function GENTEMP</title>
+  <title>Function TREE-EQUAL</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,43 +214,43 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function GENTEMP</h1>
+<h1 class="title">Function TREE-EQUAL</h1>
 </header>
-<p><a href="10.2.html">UP</a></p>
+<p><a href="14.2.html">UP</a></p>
 <hr />
-<h1 id="function-gentemp">Function GENTEMP</h1>
-<p>Function <code>GENTEMP</code></p>
+<h1 id="function-tree-equal">Function TREE-EQUAL</h1>
+<p>Function <code>TREE-EQUAL</code></p>
 <h2 id="構文">構文</h2>
-<p><code>gentemp</code> &amp;optional <em>prefix</em> <em>package</em> =&gt; <em>new-symbol</em></p>
+<p><code>tree-equal</code> <em>tree-1</em> <em>tree-2</em> &amp;key <em>test</em> <em>test-not</em> =&gt; <em>generalized-boolean</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>prefix</em> - 文字列。デフォルトは<code>"T"</code><br />
-<em>package</em> - パッケージ指定子。デフォルトは現在のパッケージ。<br />
-<em>new-symbol</em> - 新しい、<code>intern</code>なシンボル</p>
+<p><em>tree-1</em> - ツリー<br />
+<em>tree-2</em> - ツリー<br />
+<em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
+<em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
+generalized-boolean - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><a href="10.2.gentemp.html"><code>gentemp</code></a>は、指定された<em>package</em>に <code>intern</code>されている新しいシンボルを作成し返却します。 そのシンボルは、これまで<em>package</em>で アクセスできなかったものであることが保証されます。 それは、<code>bound</code>でも<code>fbound</code>でもなく、 <code>null</code>のプロパティリストを持ちます。</p>
-<p><em>new-symbol</em>の名前は、<em>prefix</em>と、 <a href="10.2.gentemp.html"><code>gentemp</code></a>によってのみ使用される 内部のカウンターからなるサフィックスを、 それぞれ結合して作成します。 （もしその名前のシンボルが<em>package</em>内ですでにアクセス可能の場合は、 <em>package</em>内でまだアクセスされてないシンボル名を生成するまで、 カウンターは必要な回数だけインクリメントされます。）</p>
+<p><a href="14.2.tree-equal.html"><code>tree-equal</code></a>は、2つのツリーが 同じ形であり同じ葉を持っているかどうかをテストします。 <a href="14.2.tree-equal.html"><code>tree-equal</code></a>は、 <em>tree-1</em>と<em>tree-2</em>がどちらもアトムでかつ <em>test</em>を満たすときは<em>true</em>を返却し、 また、どちらもコンスであり、 <em>tree-1</em>の<code>car</code>と<em>tree-2</em>の<code>car</code>が<a href="14.2.tree-equal.html"><code>tree-equal</code></a>で等しく、 <em>tree-1</em>の<code>cdr</code>と<em>tree-2</em>の<code>cdr</code>が<a href="14.2.tree-equal.html"><code>tree-equal</code></a>で等しいとき、 <em>true</em>を返却を返却します。 その他の場合は、<a href="14.2.tree-equal.html"><code>tree-equal</code></a>は<em>false</em>を返却します。</p>
+<p><a href="14.2.tree-equal.html"><code>tree-equal</code></a>はコンスを再帰的に比較しますが、 要素を持つ他のオブジェクトは比較しません。</p>
+<p><code>:test:</code>と<code>:test-not</code>の関数の 最初の引数は、<em>tree-1</em>か、<em>tree-1</em>の<code>car</code>か<code>cdr</code>です。 二番目の引数は、<em>tree-2</em>か、<em>tree-2</em>の<code>car</code>か<code>cdr</code>です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">gentemp</span>) <span class="op">=&gt;</span>  T1298</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">gentemp</span> <span class="st">&quot;FOO&quot;</span>) <span class="op">=&gt;</span>  FOO1299</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-symbol</span> <span class="st">&quot;FOO1300&quot;</span>) <span class="op">=&gt;</span>  NIL, NIL</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">gentemp</span> <span class="st">&quot;FOO&quot;</span>) <span class="op">=&gt;</span>  FOO1300</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-symbol</span> <span class="st">&quot;FOO1300&quot;</span>) <span class="op">=&gt;</span>  FOO1300, :INTERNAL</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">intern</span> <span class="st">&quot;FOO1301&quot;</span>) <span class="op">=&gt;</span>  FOO1301, :INTERNAL</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">gentemp</span> <span class="st">&quot;FOO&quot;</span>) <span class="op">=&gt;</span>  FOO1302</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">gentemp</span>) <span class="op">=&gt;</span>  T1303</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> tree1 &#39;(<span class="dv">1</span> (<span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      tree2 &#39;(<span class="dv">1</span> (<span class="dv">1</span> <span class="dv">2</span>))) <span class="op">=&gt;</span>  (<span class="dv">1</span> (<span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">tree-equal</span> tree1 tree2) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eql</span> tree1 tree2) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> tree1 &#39;(&#39;a (&#39;b &#39;c))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      tree2 &#39;(&#39;a (&#39;b &#39;c))) <span class="op">=&gt;</span>  (&#39;a (&#39;b &#39;c)) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  ((QUOTE A) ((QUOTE B) (QUOTE C)))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">tree-equal</span> tree1 tree2 <span class="bu">:test</span> &#39;eq) <span class="op">=&gt;</span>  true</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>内部カウンターは、一回かあるいは複数回インクリメントされます。</p>
+<p>なし。</p>
 <h2 id="影響">影響</h2>
-<p>内部カウンターの現在の状態と、 <em>package</em>の現在の状態。</p>
+<p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>prefix</em>が文字列ではないときは、 型<code>type-error</code>のエラーが発生します。 もし<em>package</em>がパッケージ指定子ではないときは、 型<code>type-error</code>のエラーが発生します。</p>
+<p><em>tree-1</em>と<em>tree-2</em>がどちらも循環しているときの結果は未定義です。</p>
 <h2 id="参考">参考</h2>
-<p><a href="10.2.gensym.html"><code>gensym</code></a></p>
+<p><code>equal</code>, 3.6. 横断の規則と副作用</p>
 <h2 id="備考">備考</h2>
-<p>関数<a href="10.2.gentemp.html"><code>gentemp</code></a>は非推奨です。</p>
-<p>もし<em>package</em>が<code>KEYWORD</code>パッケージのときは、 その結果は<em>package</em>の外部シンボルです。 その他の場合は、<em>package</em>の内部シンボルです。</p>
-<p><a href="10.2.gentemp.html"><code>gentemp</code></a>の内部カウンターは、 <a href="10.2.gensym.html"><code>gensym</code></a>が使用する<a href="10.2.gensym-counter.html"><code>*gensym-counter*</code></a>カウンターとは独立しています。 <a href="10.2.gentemp.html"><code>gentemp</code></a>の内部カウンターにアクセスする方法はありません。</p>
-<p><a href="10.2.gentemp.html"><code>gentemp</code></a>が以前存在しないシンボルを作成したからといって、 未来にわたってもそのようなシンボルが見えないわけではありません。 （例えばデータファイルでは、違うセッション内の同じプログラムによって、 作成されるかもしれません。） このため、このシンボルは、 <a href="10.2.gensym.html"><code>gensym</code></a>によって生成されたものと同じような意味で、 真にユニークであるということではありません。 特に自動でコード生成を行うようなプログラムでは、 そのように生成されたシンボルに グローバルな属性（例えば<code>special</code>宣言）を付与して ファイルに書き込まないよう注意する必要があります。 なぜならそのようなグローバルの属性は、 違うセッション内においては終わっており、 別の日の、別の目的で自動的に生成された 別のシンボルに適用されているかもしれないからです。</p>
+<p><code>:test-not</code>パラメーターは非推奨です。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

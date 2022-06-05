@@ -1,0 +1,140 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SUBLIS
+;;  Function NSUBLIS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.sublis
+@name: sublis
+@name: nsublis
+@type: function
+
+Function `SUBLIS`, `NSUBLIS`
+
+
+## {syntax}
+
+`sublis` *alist* *tree* &key *key* *test* *test-not* => *new-tree*  
+`nsublis` *alist* *tree* &key *key* *test* *test-not* => *new-tree*
+
+
+## {arguments-and-values}
+
+*alist* - 連想リスト  
+*tree* - ツリー  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*new-tree* - ツリー
+
+
+## {description}
+
+{sublis:link}は、*tree*（コンスの構造）をオブジェクトに置換します。
+{nsublis:link}は{sublis:link}と似ていますが、
+*tree*の関連する部分を破壊的に修正します。
+
+{sublis:link}は、*tree*の部分ツリーと葉を全て見ます。
+もし部分ツリーか葉が*alist*のキーとして現れたとき
+（つまりキーと、部分ツリーか葉が*test*を満たすとき）、
+それはキーに連想されているオブジェクトに置き換えられます。
+この操作は非破壊的です。
+実際には、{sublis:link}は複数の{subst:link}の操作を同時に
+行うようなものです。
+
+{sublis:link}が成功すると、
+指定された部分ツリーと葉が出現された各部分が、
+関連付けらているオブジェクトで置き換わった
+新しいツリーが返却されます。
+もし変更が生じなかったときは、もとの*tree*が返却されます。
+元の*tree*に変更は生じないとしても、返却値のツリーは
+元のツリーとセルを共有しているかもしれません。
+
+{nsublis:link}は*tree*の変更を許可されていますが、
+それ以外は{sublis:link}と同じ値を返却します。
+
+
+## {examples}
+
+```lisp
+(sublis '((x . 100) (z . zprime))
+        '(plus x (minus g z x p) 4 . x))
+=>  (PLUS 100 (MINUS G ZPRIME 100 P) 4 . 100)
+(sublis '(((+ x y) . (- x y)) ((- x y) . (+ x y)))
+        '(* (/ (+ x y) (+ x p)) (- x y))
+        :test #'equal)
+=>  (* (/ (- X Y) (+ X P)) (+ X Y))
+(setq tree1 '(1 (1 2) ((1 2 3)) (((1 2 3 4)))))
+=>  (1 (1 2) ((1 2 3)) (((1 2 3 4))))
+(sublis '((3 . "three")) tree1) 
+=>  (1 (1 2) ((1 2 "three")) (((1 2 "three" 4))))
+(sublis '((t . "string"))
+         (sublis '((1 . "") (4 . 44)) tree1)
+         :key #'stringp)
+=>  ("string" ("string" 2) (("string" 2 3)) ((("string" 2 3 44))))
+tree1 =>  (1 (1 2) ((1 2 3)) (((1 2 3 4))))
+(setq tree2 '("one" ("one" "two") (("one" "Two" "three"))))
+=>  ("one" ("one" "two") (("one" "Two" "three"))) 
+(sublis '(("two" . 2)) tree2) 
+=>  ("one" ("one" "two") (("one" "Two" "three"))) 
+tree2 =>  ("one" ("one" "two") (("one" "Two" "three"))) 
+(sublis '(("two" . 2)) tree2 :test 'equal) 
+=>  ("one" ("one" 2) (("one" "Two" "three"))) 
+
+(nsublis '((t . 'temp))
+          tree1
+          :key #'(lambda (x) (or (atom x) (< (list-length x) 3))))
+=>  ((QUOTE TEMP) (QUOTE TEMP) QUOTE TEMP) 
+```
+
+
+## {side-effects}
+
+{nsublis:link}は*tree*を修正します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{subst:link},
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+副作用による変形（{nsublis:link}など）は、
+通過するパスを変更する可能性があるので、
+共有構造や循環構造が現れるものでは、
+副作用による修正がないものと比べると、
+驚くべき方法で変化する可能性があります。
+このような挙動を見るために、
+いくつかの実装では見られるかもしれない、
+次のような副作用の動作を考えてみましょう。
+
+```lisp
+(defun test-it (fn)
+  (let* ((shared-piece (list 'a 'b))
+         (data (list shared-piece shared-piece)))
+    (funcall fn '((a . b) (b . a)) data)))
+(test-it #'sublis) =>  ((B A) (B A))
+(test-it #'nsublis) =>  ((A B) (A B))
+```
+
+@end
+

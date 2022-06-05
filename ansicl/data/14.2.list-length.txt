@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LIST-LENGTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.list-length
+@name: list-length
+@type: function
+
+Function `LIST-LENGTH`
+
+
+## {syntax}
+
+`list-length` *list* => *length*
+
+
+## {arguments-and-values}
+
+*list* - {proper-list}か{circular-list}  
+*length* - 非負の整数か、{nil!variable:link}
+
+
+## {description}
+
+*list*が{proper-list}なら、*list*の長さを返却します。
+*list*が{circular-list}なら、{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(list-length '(a b c d)) =>  4
+(list-length '(a (b c) d)) =>  3
+(list-length '()) =>  0
+(list-length nil) =>  0
+(defun circular-list (&rest elements)
+  (let ((cycle (copy-list elements))) 
+    (nconc cycle cycle)))
+(list-length (circular-list 'a 'b)) =>  NIL
+(list-length (circular-list 'a)) =>  NIL
+(list-length (circular-list)) =>  0
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*が{proper-list}でも{circular-list}でもないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{length:link}
+
+
+## {notes}
+
+{list-length:link}は次のように実装できます。
+
+```lisp
+(defun list-length (x)  
+  (do ((n 0 (+ n 2))           ;Counter.
+       (fast x (cddr fast))    ;Fast pointer: leaps by 2.
+       (slow x (cdr slow)))    ;Slow pointer: leaps by 1.
+      (nil)
+    ;; If fast pointer hits the end, return the count.
+    (when (endp fast) (return n))
+    (when (endp (cdr fast)) (return (+ n 1)))
+    ;; If fast pointer eventually equals slow pointer,
+    ;;  then we must be stuck in a circular list.
+    ;; (A deeper property is the converse: if we are
+    ;;  stuck in a circular list, then eventually the
+    ;;  fast pointer will equal the slow pointer.
+    ;;  That fact justifies this implementation.)
+    (when (and (eq fast slow) (> n 0)) (return nil))))
+```
+
+@end
+

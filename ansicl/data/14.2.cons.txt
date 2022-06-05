@@ -1,0 +1,135 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class CONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.cons!system-class
+@name: cons!system-class
+@type: system-class
+
+System Class `CONS`
+
+
+## {class-precedence-list}
+
+{cons!system-class:link},
+{list!system-class:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+コンスは2つの構成要素`car`と`cdr`を持つ複合オブジェクトです。
+これらはドットペアで表現されます。
+各要素はどんなオブジェクトにもなれます。
+
+
+## {compound-type-specifier-kind}
+
+特定可能
+
+
+## {compound-type-specifier-syntax}
+
+`cons` [*car-typespec* [*cdr-typespec*]]
+
+
+## {compound-type-specifier-arguments}
+
+*car-typespec* - {type-specifier}かシンボル`*`。デフォルトはシンボル`*`。  
+*cdr-typespec* - {type-specifier}かシンボル`*`。デフォルトはシンボル`*`。  
+
+
+## {compound-type-specifier-description}
+
+これは、
+`car`が*car-typespec*に、
+`cdr`が*cdr-typespec*に制約されている
+コンスの集合を意味します。
+（もし、*car-typespec*や*cdr-typespec*が`*`であったときは、
+型{t!system-class:link}が指定されたのと同じです ）
+
+
+## {see-also}
+
+{2.4.1:ab},
+{22.1.3.5:ab}
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.cons!function
+@name: cons!function
+@type: function
+
+Function `CONS`
+
+
+## {syntax}
+
+`cons` *object-1* *object-2* => *cons*
+
+
+## {arguments-and-values}
+
+*object-1* - オブジェクト  
+*object-2* - オブジェクト  
+*cons* - コンス
+
+
+## {description}
+
+`car`が*object-1*で、`cdr`が*object-2*の
+新しいコンスを作成します。
+
+
+## {examples}
+
+```lisp
+(cons 1 2) =>  (1 . 2)
+(cons 1 nil) =>  (1)
+(cons nil 2) =>  (NIL . 2)
+(cons nil nil) =>  (NIL)
+(cons 1 (cons 2 (cons 3 (cons 4 nil)))) =>  (1 2 3 4)
+(cons 'a 'b) =>  (A . B)
+(cons 'a (cons 'b (cons 'c '()))) =>  (A B C)
+(cons 'a '(b c d)) =>  (A B C D)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{list!function:link}
+
+
+## {notes}
+
+もし*object-2*がリストなら、
+{cons!function:link}は、
+*object-1*を先頭に追加したような新しいリストを生成すると
+考えることができます。
+
+@end
+

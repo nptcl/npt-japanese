@@ -55,3 +55,95 @@ System Class `LIST`
 
 @end
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LIST
+;;  Function LIST*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.list!function
+@name: list!function
+@name: list*
+@type: function
+
+Function `LIST`, `LIST*`
+
+
+## {syntax}
+
+`list` &rest *objects* => *list*  
+`list*` &rest *objects+* => *result*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*list* - リスト  
+*result* - オブジェクト
+
+
+## {description}
+
+{list!function:link}は、引数*objects*を含むリストを返却します。
+
+{list*:link}は{list!function:link}と似ていますが、
+{list!function:link}の最後の引数は、最後のコンスの`car`になるのに対し、
+{list*:link}の最後の引数は、最後のコンスの`cdr`になるのが違っています。
+したがって、{list*:link}の呼び出しは、
+同じ数の引数の{list!function:link}の呼び出しより、
+つねに1つ少ないコンスで生成されます。
+
+もし{list*:link}の最後の要素がリストのときは、
+{list*:link}の先行した引数の要素が前の方に追加された、
+新たなリストを構築する効果があります。
+
+{list*:link}がただひとつの*object*を受け取った場合、
+それがリストかどうかに関わらず、その*object*が返却されます。
+
+
+## {examples}
+
+```lisp
+(list 1) =>  (1)
+(list* 1) =>  1
+(setq a 1) =>  1
+(list a 2) =>  (1 2)
+'(a 2) =>  (A 2)
+(list 'a 2) =>  (A 2)
+(list* a 2) =>  (1 . 2)
+(list) =>  NIL ;i.e.,  ()
+(setq a '(1 2)) =>  (1 2)
+(eq a (list* a)) =>  true
+(list 3 4 'a (car '(b . c)) (+ 6 -2)) =>  (3 4 A B 4)
+(list* 'a 'b 'c 'd) ==  (cons 'a (cons 'b (cons 'c 'd))) =>  (A B C . D)
+(list* 'a 'b 'c '(d e f)) =>  (A B C D E F)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cons!function:link}
+
+
+## {notes}
+
+```lisp
+(list* x) ==  x
+```
+
+@end
+

@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.make-list
+@name: make-list
+@type: function
+
+Function `MAKE-LIST`
+
+
+## {syntax}
+
+`make-list` *size* &key *initial-element* => *list*
+
+
+## {arguments-and-values}
+
+*size* - 非負の整数  
+*initial-element* - オブジェクト。デフォルトは{nil!variable:link}。  
+*list* - リスト
+
+
+## {description}
+
+各要素が*initial-element*であり、長さが*size*のリストを返却します。
+
+
+## {examples}
+
+```lisp
+(make-list 5) =>  (NIL NIL NIL NIL NIL)
+(make-list 3 :initial-element 'rah) =>  (RAH RAH RAH)
+(make-list 2 :initial-element '(1 2 3)) =>  ((1 2 3) (1 2 3))
+(make-list 0) =>  NIL ;i.e.,  ()
+(make-list 0 :initial-element 'new-element) =>  NIL 
+```
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*size*が非負の整数ではなかったとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{cons!function:link},
+{list!function:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

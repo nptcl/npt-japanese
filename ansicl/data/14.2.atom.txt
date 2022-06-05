@@ -1,0 +1,89 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type ATOM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.atom!type
+@name: atom!type
+@type: type
+
+Type `ATOM`
+
+
+## {supertypes}
+
+{atom!type:link}, {t!system-class:link}
+
+
+## {description}
+
+`(not cons)`と同じです。
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ATOM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.atom!function
+@name: atom!function
+@type: function
+
+Function `ATOM`
+
+
+## {syntax}
+
+`atom` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{atom!type:link}なら*true*を、
+それ以外なら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(atom 'sss) =>  true
+(atom (cons 1 2)) =>  false
+(atom nil) =>  true
+(atom '()) =>  true
+(atom 3) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(atom object) ==  (typep object 'atom) ==  (not (consp object))
+==  (not (typep object 'cons)) ==  (typep object '(not cons))
+```
+
+@end
+

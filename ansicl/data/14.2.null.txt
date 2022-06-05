@@ -1,0 +1,38 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class NULL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.null!system-class
+@name: null!system-class
+@type: system-class
+
+System Class `NULL`
+
+
+## {class-precedence-list}
+
+{null!system-class:link},
+{symbol:link},
+{list!system-class:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{null!system-class:link}の唯一のオブジェクトは、{nil!variable:link}です。
+このオブジェクトは、空のリストの表現であり、`()`と記載することもできます。
+
+
+## {see-also}
+
+{2.3.4:ab},
+{2.4.1:ab},
+{22.1.3.3:ab}
+
+@end
+

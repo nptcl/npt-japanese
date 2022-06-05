@@ -1,0 +1,91 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TREE-EQUAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.tree-equal
+@name: tree-equal
+@type: function
+
+Function `TREE-EQUAL`
+
+
+## {syntax}
+
+`tree-equal` *tree-1* *tree-2* &key *test* *test-not* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*tree-1* - ツリー  
+*tree-2* - ツリー  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+generalized-boolean - {generalized-boolean}
+
+
+## {description}
+
+{tree-equal:link}は、2つのツリーが
+同じ形であり同じ葉を持っているかどうかをテストします。
+{tree-equal:link}は、
+*tree-1*と*tree-2*がどちらもアトムでかつ
+*test*を満たすときは*true*を返却し、
+また、どちらもコンスであり、
+*tree-1*の`car`と*tree-2*の`car`が{tree-equal:link}で等しく、
+*tree-1*の`cdr`と*tree-2*の`cdr`が{tree-equal:link}で等しいとき、
+*true*を返却を返却します。
+その他の場合は、{tree-equal:link}は*false*を返却します。
+
+{tree-equal:link}はコンスを再帰的に比較しますが、
+要素を持つ他のオブジェクトは比較しません。
+
+`:test:`と`:test-not`の関数の
+最初の引数は、*tree-1*か、*tree-1*の`car`か`cdr`です。
+二番目の引数は、*tree-2*か、*tree-2*の`car`か`cdr`です。
+
+
+## {examples}
+
+```lisp
+(setq tree1 '(1 (1 2))
+      tree2 '(1 (1 2))) =>  (1 (1 2))
+(tree-equal tree1 tree2) =>  true
+(eql tree1 tree2) =>  false
+(setq tree1 '('a ('b 'c))
+      tree2 '('a ('b 'c))) =>  ('a ('b 'c)) 
+=>  ((QUOTE A) ((QUOTE B) (QUOTE C)))
+(tree-equal tree1 tree2 :test 'eq) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*tree-1*と*tree-2*がどちらも循環しているときの結果は未定義です。
+
+
+## {see-also}
+
+{equal:link},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+@end
+

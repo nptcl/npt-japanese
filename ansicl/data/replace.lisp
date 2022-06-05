@@ -17,6 +17,7 @@
 (replace Compound-Type-Specifier-Description "型指定子の定義")
 (replace value-type "値の型")
 (replace initial-value "初期値")
+(replace pronunciation "発音")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
 (replace base-character "基本文字")

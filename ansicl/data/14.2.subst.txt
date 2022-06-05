@@ -1,0 +1,160 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SUBST
+;;  Function SUBST-IF
+;;  Function SUBST-IF-NOT
+;;  Function NSUBST
+;;  Function NSUBST-IF
+;;  Function NSUBST-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.subst
+@name: subst
+@name: subst-if
+@name: subst-if-not
+@name: nsubst
+@name: nsubst-if
+@name: nsubst-if-not
+@type: function
+
+Function `SUBST`, `SUBST-IF`, `SUBST-IF-NOT`,
+`NSUBST`, `NSUBST-IF`, `NSUBST-IF-NOT`
+
+
+## {syntax}
+
+`subst` *new* *old* *tree* &key *key* *test* *test-not* => *new-tree*  
+`subst-if` *new* *predicate* *tree* &key *key* => *new-tree*  
+`subst-if-not` *new* *predicate* *tree* &key *key* => *new-tree*  
+`nsubst` *new* *old* *tree* &key *key* *test* *test-not* => *new-tree*  
+`nsubst-if` *new* *predicate* *tree* &key *key* => *new-tree*  
+`nsubst-if-not` *new* *predicate* *tree* &key *key* => *new-tree*
+
+
+## {arguments-and-values}
+
+*new* - オブジェクト  
+*old* - オブジェクト  
+*predicate* - 関数名のシンボルか、
+1つの引数をとり{generalized-boolean}を返却する関数  
+*tree* - ツリー  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*new-tree* - ツリー
+
+
+## {description}
+
+{subst:link}, {subst-if:link}, {subst-if-not:link}は、
+*tree*の置換操作を行います。
+各関数は*tree*に対して*test*を満たすような特定の*old*要素か、
+あるいは部分式を満たすものを検索します。
+
+{nsubst:link}, {nsubst-if:link}, {nsubst-if-not:link}はそれぞれ
+{subst:link}, {subst-if:link}, {subst-if-not:link}と似ていますが、
+元の*tree*を修正するところが違っています。
+
+{subst:link}は*tree*のコピーを作成し、
+全てのサブツリー、葉、親の`car`部、`cdr`部、すべてに対して
+*old*と*test*が満たされる部分を*new*に置換します。
+
+{nsubst:link}は、{subst:link}の破壊的バージョンです。
+*tree*のリスト構造は、それぞれの*tree*の葉に対して、
+*old*と*test*が満たされる葉の部分を
+*new*で破壊的に置換することによって変更されます
+
+{subst:link}, {subst-if:link}, {subst-if-not:link}は、
+もし関数が成功すると、
+指定された要素のそれぞれの出現を*new*要素で置き換えられたものか、
+あるいは部分式で置き換えられたものの新たなコピーが返却されます。
+もし変更が生じなかったときは、元の*tree*が返却されるかもしれません。
+元の*tree*が変更されないとしても、
+返却値のツリーは元のツリーと
+ストレージを共有しているかもしれません。
+
+{nsubst:link}, {nsubst-if:link}, {nsubst-if-not:link}は、
+元の*tree*を修正し返却します。
+しかし関数の結果は、*tree*と{eq:link}で等しくないかもしれません。
+
+
+## {examples}
+
+```lisp
+(setq tree1 '(1 (1 2) (1 2 3) (1 2 3 4))) =>  (1 (1 2) (1 2 3) (1 2 3 4))
+(subst "two" 2 tree1) =>  (1 (1 "two") (1 "two" 3) (1 "two" 3 4))
+(subst "five" 5 tree1) =>  (1 (1 2) (1 2 3) (1 2 3 4))
+(eq tree1 (subst "five" 5 tree1)) =>  implementation-dependent
+(subst 'tempest 'hurricane
+       '(shakespeare wrote (the hurricane)))
+=>  (SHAKESPEARE WROTE (THE TEMPEST))
+(subst 'foo 'nil '(shakespeare wrote (twelfth night)))
+=>  (SHAKESPEARE WROTE (TWELFTH NIGHT . FOO) . FOO)
+(subst '(a . cons) '(old . pair)
+       '((old . spice) ((old . shoes) old . pair) (old . pair))
+       :test #'equal)
+=>  ((OLD . SPICE) ((OLD . SHOES) A . CONS) (A . CONS))
+
+(subst-if 5 #'listp tree1) =>  5
+(subst-if-not '(x) #'consp tree1) 
+=>  (1 X)
+
+tree1 =>  (1 (1 2) (1 2 3) (1 2 3 4))
+(nsubst 'x 3 tree1 :key #'(lambda (y) (and (listp y) (third y)))) 
+=>  (1 (1 2) X X)
+tree1 =>  (1 (1 2) X X)
+```
+
+
+## {side-effects}
+
+{nsubst:link}, {nsubst-if:link}, {nsubst-if-not:link}は、
+*tree*のツリー構造を変更するかもしれません。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{substitute:link},
+{nsubstitute:link},
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+関数{subst-if-not:link}と{nsubst-if-not:link}は非推奨です。
+
+{subst:link}は一例として次のように定義できます。
+
+```lisp
+(defun subst (old new tree &rest x &key test test-not key)
+  (cond ((satisfies-the-test old tree :test test
+                             :test-not test-not :key key)
+         new)
+        ((atom tree) tree)
+        (t (let ((a (apply #'subst old new (car tree) x))
+                 (d (apply #'subst old new (cdr tree) x)))
+             (if (and (eql a (car tree))
+                      (eql d (cdr tree)))
+                 tree
+                 (cons a d))))))
+```
+
+@end
+

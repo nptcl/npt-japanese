@@ -41,6 +41,9 @@
 ;;
 ;;  index
 ;;
+(defun replace-special (str)
+  (replace-string str "*" "\\*"))
+
 (defun dictionary-title (x)
   (let* ((inst (contents-text x))
          (name (dictionary-name inst))
@@ -64,9 +67,10 @@
     (format nil "~A. ~A" index title)))
 
 (defun index-string (x)
-  (if (eq (contents-type x) 'dictionary)
-    (dictionary-title x)
-    (index-string-title x)))
+  (replace-special
+    (if (eq (contents-type x) 'dictionary)
+      (dictionary-title x)
+      (index-string-title x))))
 
 (defun index-link (s x)
   (let* ((index (contents-string x))
@@ -111,6 +115,7 @@
 
 (defun dictionary-header (s x)
   (let ((name (dictionary-title x)))
+    (setq name (replace-special name))
     (format s "% ~A~2%" name)
     (output-header s x)
     (format s "# ~A~2%" name)))

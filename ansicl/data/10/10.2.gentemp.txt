@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GENTEMP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.gentemp
+@name: gentemp
+@type: function
+
+Function `GENTEMP`
+
+
+## {syntax}
+
+`gentemp` &optional *prefix* *package* => *new-symbol*
+
+
+## {arguments-and-values}
+
+*prefix* - 文字列。デフォルトは`"T"`  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。  
+*new-symbol* - 新しい、`intern`なシンボル
+
+
+## {description}
+
+{gentemp:link}は、指定された*package*に
+`intern`されている新しいシンボルを作成し返却します。
+そのシンボルは、これまで*package*で
+アクセスできなかったものであることが保証されます。
+それは、`bound`でも`fbound`でもなく、
+`null`のプロパティリストを持ちます。
+
+*new-symbol*の名前は、*prefix*と、
+{gentemp:link}によってのみ使用される
+内部のカウンターからなるサフィックスを、
+それぞれ結合して作成します。
+（もしその名前のシンボルが*package*内ですでにアクセス可能の場合は、
+*package*内でまだアクセスされてないシンボル名を生成するまで、
+カウンターは必要な回数だけインクリメントされます。）
+
+
+## {examples}
+
+```lisp
+(gentemp) =>  T1298
+(gentemp "FOO") =>  FOO1299
+(find-symbol "FOO1300") =>  NIL, NIL
+(gentemp "FOO") =>  FOO1300
+(find-symbol "FOO1300") =>  FOO1300, :INTERNAL
+(intern "FOO1301") =>  FOO1301, :INTERNAL
+(gentemp "FOO") =>  FOO1302
+(gentemp) =>  T1303
+```
+
+
+## {side-effects}
+
+内部カウンターは、一回かあるいは複数回インクリメントされます。
+
+
+## {affected-by}
+
+内部カウンターの現在の状態と、
+*package*の現在の状態。
+
+
+## {exceptional-situations}
+
+もし*prefix*が文字列ではないときは、
+型{type-error:link}のエラーが発生します。
+もし*package*がパッケージ指定子ではないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{gensym:link}
+
+
+## {notes}
+
+関数{gentemp:link}は非推奨です。
+
+もし*package*が`KEYWORD`パッケージのときは、
+その結果は*package*の外部シンボルです。
+その他の場合は、*package*の内部シンボルです。
+
+{gentemp:link}の内部カウンターは、
+{gensym:link}が使用する{*gensym-counter*:link}カウンターとは独立しています。
+{gentemp:link}の内部カウンターにアクセスする方法はありません。
+
+{gentemp:link}が以前存在しないシンボルを作成したからといって、
+未来にわたってもそのようなシンボルが見えないわけではありません。
+（例えばデータファイルでは、違うセッション内の同じプログラムによって、
+作成されるかもしれません。）
+このため、このシンボルは、
+{gensym:link}によって生成されあたものと同じような意味で、
+真にユニークであるということではありません。
+特に自動でコード生成を行うようなプログラムでは、
+そのように生成されたシンボルに
+グローバルな属性（例えば`special`宣言）を付与して
+ファイルに書き込まないよう注意する必要があります。
+なぜならそのようなグローバルの属性は、
+違うセッション内においては終わっており、
+別の日の、別の目的で自動的に生成された
+別のシンボルに適用されているかもしれないからです。
+
+@end
+

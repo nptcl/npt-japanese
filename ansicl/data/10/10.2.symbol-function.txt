@@ -1,0 +1,124 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor SYMBOL-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbol-function
+@name: symbol-function
+@type: accessor
+
+Accessor `SYMBOL-FUNCTION`
+
+
+## {syntax}
+
+`symbol-function` *symbol* => *contents*  
+(`setf` (`symbol-function` *symbol*) *new-contents*)
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*contents* - もし*symbol*がマクロか{special-operator}として
+グローバルに宣言されているものならば、
+{implementation-dependent}の性質と固有値であるオブジェクトが返却されます。
+もし*symbol*がマクロか{special-operator}としてグローバルに
+宣言されていないのであれば、
+その*symbol*は`fbound`であり、関数オブジェクトが返却されます。  
+*new-contents* - 関数
+
+
+## {description}
+
+*symbol*の関数セルにアクセスします。
+
+
+## {examples}
+
+```lisp
+(symbol-function 'car) =>  #<FUNCTION CAR>
+(symbol-function 'twice) はエラー   ;なぜならTWICEは定義されていない
+(defun twice (n) (* n 2)) =>  TWICE
+(symbol-function 'twice) =>  #<FUNCTION TWICE>
+(list (twice 3)
+      (funcall (function twice) 3)
+      (funcall (symbol-function 'twice) 3))
+=>  (6 6 6)
+(flet ((twice (x) (list x x)))
+  (list (twice 3)
+        (funcall (function twice) 3)
+        (funcall (symbol-function 'twice) 3)))
+=>  ((3 3) (3 3) 6)   
+(setf (symbol-function 'twice) #'(lambda (x) (list x x)))
+=>  #<FUNCTION anonymous>
+(list (twice 3)
+      (funcall (function twice) 3)
+      (funcall (symbol-function 'twice) 3))
+=>  ((3 3) (3 3) (3 3))
+(fboundp 'defun) =>  true
+(symbol-function 'defun)
+=>  implementation-dependent
+(functionp (symbol-function 'defun))
+=>  implementation-dependent
+(defun symbol-function-or-nil (symbol)
+  (if (and (fboundp symbol) 
+           (not (macro-function symbol))
+           (not (special-operator-p symbol)))
+      (symbol-function symbol)
+      nil)) =>  SYMBOL-FUNCTION-OR-NIL
+(symbol-function-or-nil 'car) =>  #<FUNCTION CAR>
+(symbol-function-or-nil 'defun) =>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{defun:link}
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+もし*symbol*が`fbound`ではなく、
+その定義を読み込もうとしたとき、
+{undefined-function:link}が通知されます。
+（その定義を書き込もうとしたときに発生するエラーはありません）
+
+
+## {see-also}
+
+{fboundp:link},
+{fmakunbound:link},
+{macro-function:link},
+{special-operator-p:link}
+
+
+## {notes}
+
+{symbol-function:link}は、
+{flet:link}か{labels:link}によって生成された
+レキシカルな関数の値にアクセスできません。
+それはただグローバルな関数の値にのみアクセスできます。
+
+{setf:link}は、{symbol-function:link}とともに使用することで、
+*symbol*の関数定義が{special-operator}として表現されていない場合は、
+グローバルな関数定義を置き換えます。
+
+```lisp
+(symbol-function symbol) ==  (fdefinition symbol)
+```
+
+しかし、{fdefinition:link}は、引数にシンボル以外を受け付けます。
+
+@end
+

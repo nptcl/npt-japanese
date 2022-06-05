@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type UNBOUND-VARIABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.unbound-variable
+@name: unbound-variable
+@type: condition-type
+
+Condition Type `UNBOUND-VARIABLE`
+
+
+## {class-precedence-list}
+
+{unbound-variable:link},
+{cell-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{unbound-variable:link}は、
+`unbound`の変数から値を読み込もうとしたときの
+エラーコンディションを表します。
+
+セルの名前（{cell-error:link}を参照）は、`unbound`であった変数名です。
+
+
+## {see-also}
+
+{cell-error-name:link}
+
+@end
+

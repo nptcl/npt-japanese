@@ -15,6 +15,8 @@
 (replace Compound-Type-Specifier-Syntax "型指定子の構文")
 (replace Compound-Type-Specifier-Arguments "型指定子の引数")
 (replace Compound-Type-Specifier-Description "型指定子の定義")
+(replace value-type "値の型")
+(replace initial-value "初期値")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
 (replace base-character "基本文字")
@@ -49,6 +51,8 @@
 (replace slot-value-using-class "`slot-value-using-class`")
 
 (replace proper-list "通常のリスト")
+(replace dotted-list "ドットリスト")
+(replace circular-list "循環リスト")
 (replace lexical-environment "レキシカルな環境")
 (replace dynamic-environment "動的な環境")
 (replace literal-object "リテラルオブジェクト")
@@ -67,4 +71,10 @@
 (replace format-directive "format指示子")
 (replace ordinary-lambda-list "通常のラムダリスト")
 (replace direct-instance "direct-instance")
+
+(replace implementation-dependent "実装依存")
+(replace lexical-variable "レキシカルな変数")
+(replace property-indicator "標識")
+
+(replace exhaustive-partition "完全な分割")
 

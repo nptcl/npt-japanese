@@ -1,0 +1,110 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REMPROP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.remprop
+@name: remprop
+@type: function
+
+Function `REMPROP`
+
+
+## {syntax}
+
+`remprop` *symbol* *indicator* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*indicator* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{remprop:link}は、*symbol*のプロパティリストから
+*indicator*と同一の{property-indicator}のプロパティを削除します。
+{property-indicator}に対してキーが同一のプロパティが複数あるときは、
+{remprop:link}は最初のプロパティを削除します。
+{property-indicator}に対するプロパティが存在しないときは*false*を、
+プロパティが見つかった時は*true*を返却します。
+
+プロパティのindicatorと対応する値は、
+プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。
+許容される副作用は、{remf:link}のものに対応します。
+つまり、下記のようになります。
+
+```lisp
+(remprop x y) ==  (remf (symbol-plist x) y)
+```
+
+
+## {examples}
+
+```lisp
+(setq test (make-symbol "PSEUDO-PI")) =>  #:PSEUDO-PI
+(symbol-plist test) =>  ()
+(setf (get test 'constant) t) =>  T
+(setf (get test 'approximation) 3.14) =>  3.14
+(setf (get test 'error-range) 'noticeable) =>  NOTICEABLE
+(symbol-plist test) 
+=>  (ERROR-RANGE NOTICEABLE APPROXIMATION 3.14 CONSTANT T)
+(setf (get test 'approximation) nil) =>  NIL
+(symbol-plist test) 
+=>  (ERROR-RANGE NOTICEABLE APPROXIMATION NIL CONSTANT T)
+(get test 'approximation) =>  NIL
+(remprop test 'approximation) =>  true
+(get test 'approximation) =>  NIL
+(symbol-plist test)
+=>  (ERROR-RANGE NOTICEABLE CONSTANT T)
+(remprop test 'approximation) =>  NIL
+(symbol-plist test)
+=>  (ERROR-RANGE NOTICEABLE CONSTANT T)
+(remprop test 'error-range) =>  true
+(setf (get test 'approximation) 3) =>  3
+(symbol-plist test)
+=>  (APPROXIMATION 3 CONSTANT T)
+```
+
+## {side-effects}
+
+シンボルのプロパティリストは修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{remf:link},
+{symbol-plist:link}
+
+
+## {notes}
+
+{remprop:link}は*indicator*のテストに
+{eql!function:link}ではなく{eq:link}を用いるため、
+移植しやすいコードとして、
+*indicator*に数と文字を使うことは推奨されません。
+そのため、そのような*indicator*を使ったときの効果は
+{implementation-dependent}です。
+もちろん、そのようなプロパティを削除する必要がある場合は、
+仕方がないことです。
+プロパティに対して{get:link}の{setf:link}を使うことを
+考えてみて下さい。
+
+@end
+

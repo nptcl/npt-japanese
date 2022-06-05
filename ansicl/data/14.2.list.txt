@@ -1,0 +1,57 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.list!system-class
+@name: list!system-class
+@type: system-class
+
+System Class `LIST`
+
+
+## {class-precedence-list}
+
+{list!system-class:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+リストは、コンスの連鎖であり、
+各コンスの`car`がリストの要素、
+各コンスの`cdr`が次の接続のリンクか、
+あるいは終端のアトムです。
+
+{proper-list}とは、終端が空のリスト`()`であり、
+空のリスト自身が{proper-list}であるという、
+コンスの連鎖です。
+{dotted-list}とは、終端が空ではなくアトムであるリストです。
+{circular-list}とは、どれかのコンスが、
+後のコンスの`cdr`に接続されているような
+終端がないコンスの連鎖のことです。
+
+{dotted-list}と{circular-list}もまたリストですが、
+本仕様では、普通は修飾子がない「リスト」という単語を
+{proper-list}という意味として使います。
+とはいえ、型{list!system-class:link}に、
+{dotted-list}と{circular-list}が含まれるのは間違いありません。
+
+リストの各要素にはコンスがあります。
+空リストは要素を持たず、コンスではありません。
+
+型{cons!system-class:link}と{null!system-class:link}は、
+型{list!system-class:link}の{exhaustive-partition}です。
+
+
+## {see-also}
+
+{2.4.1:ab},
+{22.1.3.5:ab}
+
+@end
+

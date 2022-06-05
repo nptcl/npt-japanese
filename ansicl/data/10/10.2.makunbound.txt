@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKUNBOUND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.makunbound
+@name: makunbound
+@type: function
+
+Function `MAKUNBOUND`
+
+
+## {syntax}
+
+`makunbound` *symbol* => *symbol*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル
+
+
+## {description}
+
+以前`bound`であったかどうかにかかわらず、
+*symbol*を`unbound`にします。
+
+
+## {examples}
+
+```lisp
+(setf (symbol-value 'a) 1)
+(boundp 'a) =>  true
+a =>  1
+(makunbound 'a) =>  A
+(boundp 'a) =>  false
+```
+
+
+## {side-effects}
+
+*symbol*の値のセルが修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{boundp:link},
+{fmakunbound:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -221,3 +221,17 @@
   (setf (queue-tail inst) nil)
   nil)
 
+
+;;
+;;  replace-string
+;;
+(defun replace-string (str from to &key (start 0))
+  (aif (search from str :start2 start)
+    (let* ((x (subseq str 0 it))
+           (y (subseq str (+ it (length from)))))
+      (replace-string
+        (format nil "~A~A~A" x to y)
+        from to
+        :start (+ it (length to))))
+    str))
+

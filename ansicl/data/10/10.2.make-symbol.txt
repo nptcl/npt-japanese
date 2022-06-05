@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-SYMBOL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.make-symbol
+@name: make-symbol
+@type: function
+
+Function `MAKE-SYMBOL`
+
+
+## {syntax}
+
+`make-symbol` *name* => *new-symbol*
+
+
+## {arguments-and-values}
+
+*name* - 文字列  
+*new-symbol* - 新しい、`unintern`シンボル
+
+
+## {description}
+
+{make-symbol:link}は、新しく`unintern`であり、
+名前が*name*のシンボルを作成して返却します。
+*new-symbol*は、`bound`でも`fbound`でもありません。
+そして、`null`のプロパティリストを持っています。
+
+*new-symbol*の名前の文字列が、引数*name*なのか、
+あるいはそのコピーなのかは実装依存です。
+いったん文字列が{make-symbol:link}の引数*name*として与えられたら、
+その文字を変更しようとした結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(setq temp-string "temp") =>  "temp"
+(setq temp-symbol (make-symbol temp-string)) =>  #:|temp|
+(symbol-name temp-symbol) =>  "temp"
+(eq (symbol-name temp-symbol) temp-string) =>  implementation-dependent
+(find-symbol "temp") =>  NIL, NIL
+(eq (make-symbol temp-string) (make-symbol temp-string)) =>  false
+```
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*name*が文字列ではないとき、
+型{error!condition:link}のエラーが発生します。
+
+
+## {see-also}
+
+{copy-symbol:link}
+
+
+## {notes}
+
+{make-symbol:link}は、名前のケースを大文字に変更しようとはしません。
+シンボルの大文字小文字の変換は、ただLispのリーダーが実行するだけです。
+シンボルを生成するプログラムのインターフェイスは大文字小文字を保持し、
+そしてシンボルの`intern`を行うプログラムインターフェイスは
+大文字小文字を区別します。
+
+@end
+

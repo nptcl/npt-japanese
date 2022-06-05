@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SYMBOLP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbolp
+@name: symbolp
+@type: function
+
+Function `SYMBOLP`
+
+
+## {syntax}
+
+`symbolp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*object*が型{symbol:link}なら*true*を、
+それ以外なら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(symbolp 'elephant) =>  true
+(symbolp 12) =>  false
+(symbolp nil) =>  true
+(symbolp '()) =>  true
+(symbolp :test) =>  true
+(symbolp "hello") =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{keywordp:link},
+{symbol:link},
+{typep:link}
+
+
+## {notes}
+
+```lisp
+(symbolp object) ==  (typep object 'symbol)
+```
+
+@end
+

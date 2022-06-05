@@ -1,0 +1,100 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-SYMBOL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.copy-symbol
+@name: copy-symbol
+@type: function
+
+Function `COPY-SYMBOL`
+
+
+## {syntax}
+
+`copy-symbol` *symbol* &optional *copy-properties* => *new-symbol*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*copy-properties* - {generalized-boolean}、デフォルトは*false*  
+*new-symbol* - 新しい、`unintern`なシンボル
+
+
+## {description}
+
+{copy-symbol:link}は、新しく、`unintern`であり、
+引数*symbol*の名前と{string=:link}で等しい名前を持つシンボルを返却します。
+そのシンボル名は、引数のシンボル名と同じである可能性があります。
+
+*copy-properties*が*false*のときは、
+*new-symbol*は、`bound`でも、`fbound`でもなく、
+`null`のプロパティリストを持ちます。
+*copy-properties*が*true*のときは、
+*new-symbol*の初期値は*symbol*の値であり、
+*new-symbol*の関数定義の初期値は*symbol*の関数の値であり、
+*new-symbol*のプロパティリストの初期値は
+*symbol*のプロパティリストのコピーされた値です。
+
+
+## {examples}
+
+```lisp
+(setq fred 'fred-smith) =>  FRED-SMITH
+(setf (symbol-value fred) 3) =>  3
+(setq fred-clone-1a (copy-symbol fred nil)) =>  #:FRED-SMITH
+(setq fred-clone-1b (copy-symbol fred nil)) =>  #:FRED-SMITH
+(setq fred-clone-2a (copy-symbol fred t))   =>  #:FRED-SMITH
+(setq fred-clone-2b (copy-symbol fred t))   =>  #:FRED-SMITH
+(eq fred fred-clone-1a) =>  false
+(eq fred-clone-1a fred-clone-1b) =>  false
+(eq fred-clone-2a fred-clone-2b) =>  false
+(eq fred-clone-1a fred-clone-2a) =>  false
+(symbol-value fred) =>  3
+(boundp fred-clone-1a) =>  false
+(symbol-value fred-clone-2a) =>  3
+(setf (symbol-value fred-clone-2a) 4) =>  4
+(symbol-value fred) =>  3
+(symbol-value fred-clone-2a) =>  4
+(symbol-value fred-clone-2b) =>  3
+(boundp fred-clone-1a) =>  false
+(setf (symbol-function fred) #'(lambda (x) x)) =>  #<FUNCTION anonymous>
+(fboundp fred) =>  true
+(fboundp fred-clone-1a) =>  false
+(fboundp fred-clone-2a) =>  false
+```
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発せられます。
+
+
+## {see-also}
+
+{make-symbol:link}
+
+
+## {notes}
+
+実装者は、むやみにシンボル名の文字をコピーする必要はありません。
+通常の実装においては、
+*new-symbol*の名前と引数*symbol*の名前をコピーして同一にするのは、
+良い方法とは言えません。
+
+@end
+

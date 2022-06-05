@@ -34,7 +34,7 @@ results - フォームの返却値
 
 *slot-entry*によって指定されたスロットが、
 {accessor}を通して変数のように使用できるような
-{lexical-environment}環境が作成されます。
+{lexical-environment}が作成されます。
 マクロ{with-accessors:link}は*slot-entry*で指定された
 スロットにアクセスするための適切な{accessor}を呼び出します。
 スロットの値を設定するために

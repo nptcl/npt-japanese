@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor SYMBOL-PLIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbol-plist
+@name: symbol-plist
+@type: accessor
+
+Accessor `SYMBOL-PLIST`
+
+
+## {syntax}
+
+`symbol-plist` *symbol* => *plist*  
+(`setf` (`symbol-plist` *symbol*) *new-plist*)
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*plist*, *new-plist* - プロパティリスト
+
+
+## {description}
+
+*symbol*のプロパティリストにアクセスします。
+
+
+## {examples}
+
+```lisp
+(setq sym (gensym)) =>  #:G9723
+(symbol-plist sym) =>  ()
+(setf (get sym 'prop1) 'val1) =>  VAL1
+(symbol-plist sym) =>  (PROP1 VAL1)
+(setf (get sym 'prop2) 'val2) =>  VAL2
+(symbol-plist sym) =>  (PROP2 VAL2 PROP1 VAL1)
+(setf (symbol-plist sym) (list 'prop3 'val3)) =>  (PROP3 VAL3)
+(symbol-plist sym) =>  (PROP3 VAL3)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{get:link},
+{remprop:link}
+
+
+## {notes}
+
+シンボルのプロパティリストはグローバルな資源であり、
+同じLispイメージ内の無関係なプログラムが
+操作し依存する情報を含む可能性があるため、
+{setf:link}の使用は避けるべきです。
+
+@end
+

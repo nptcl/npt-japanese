@@ -44,6 +44,7 @@
 (text 2.3.1.1 "トークンとしての潜在的数" "Potential Numbers as Tokens")
 (text 2.3.4 "トークンとしてのシンボル" "Symbols as Tokens")
 (text 2.4 "標準マクロ文字" "Standard Macro Characters")
+(text 2.4.1 "左括弧" "Left-Parenthesis")
 (text 2.4.5 "ダブルクォート" "Double-Quote")
 (text 2.4.8 "シャープサイン" "Sharpsign")
 (text 2.4.8.1 "シャープサイン バックスラッシュ" "Sharpsign Backslash")
@@ -136,6 +137,7 @@
 (dictionary 5.3.function-lambda-expression)
 (dictionary 5.3.functionp)
 (dictionary 5.3.compiled-function-p)
+(dictionary 5.3.progv)
 (dictionary 5.3.setq)
 (dictionary 5.3.nil!variable)
 (dictionary 5.3.t!variable)
@@ -147,8 +149,12 @@
 (dictionary 5.3.multiple-value-prog1)
 (dictionary 5.3.progn)
 (dictionary 5.3.setf)
-(dictionary 5.3.program-error)
+(dictionary 5.3.psetf)  ;; delete
+(dictionary 5.3.rotatef)
+(dictionary 5.3.shiftf)
 (dictionary 5.3.control-error)
+(dictionary 5.3.program-error)
+(dictionary 5.3.undefined-function)
 
 ;; Chapter 7
 (text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")
@@ -269,7 +275,7 @@
 (dictionary 10.2.make-symbol)
 (dictionary 10.2.copy-symbol)
 (dictionary 10.2.gensym)
-(dictionary 10.2.*gensym-counter*)
+(dictionary 10.2.gensym-counter)
 (dictionary 10.2.gentemp)
 (dictionary 10.2.symbol-function)
 (dictionary 10.2.symbol-name)
@@ -282,6 +288,12 @@
 (dictionary 10.2.makunbound)
 (dictionary 10.2.set)
 (dictionary 10.2.unbound-variable)
+
+;; Chapter 11
+(index 11.2 "パッケージの辞書" "Packages Dictionary")
+(dictionary 11.2.import)
+(dictionary 11.2.unintern)
+(dictionary 11.2.intern)
 
 ;; Chapger 12
 (index 12.2 "数の辞書" "Numbers Dictionary")
@@ -320,6 +332,10 @@
 
 ;; Chapter 14
 (index 14.2 "コンスの辞書" "Conses Dictionary")
+(dictionary 14.2.list!system-class)
+(dictionary 14.2.null!system-class)
+(dictionary 14.2.cons!system-class)
+(dictionary 14.2.get-properties)
 (dictionary 14.2.getf)
 (dictionary 14.2.remf)
 
@@ -365,6 +381,7 @@
 (text 22.1.3.2 "文字の印字" "Printing Characters")
 (text 22.1.3.3 "シンボルの印字" "Printing Symbols")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")
+(text 22.1.3.5 "リストとコンスの印字" "Printing Lists and Conses")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.prin1-to-string) ;; delete

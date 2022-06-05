@@ -1,0 +1,128 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor GET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.get
+@name: get
+@type: accessor
+
+Accessor `GET`
+
+
+## {syntax}
+
+`get` *symbol* *indicator* &optional *default* => *value*  
+(`setf` (`get` *symbol* *indicator* &optional *default*) *new-value*)
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*indicator* - オブジェクト  
+*default* - オブジェクト。デフォルトは{nil!variable:link}。  
+*value* - もしプロパティが存在していたらその値のオブジェクトを、
+それ以外の場合は*default*。  
+*new-value* - オブジェクト
+
+
+## {description}
+
+{get:link}は、*symbol*のプロパティリストから
+*indicator*と同一の{property-indicator}のプロパティを探し、
+対応するプロパティの値を返却します。
+{property-indicator}に対して複数のプロパティがあるときは、
+{get:link}は最初のプロパティを使います。
+{property-indicator}に対するプロパティが存在しないときは、
+*default*が返却されます。
+
+{get:link}の{setf:link}は、*symbol*のプロパティリストに、
+すでに{property-indicator}が存在するときは、
+新しいオブジェクトを関連付けます。
+もし存在しなかったときは、新しい関連を作成します。
+{property-indicator}に対して複数のプロパティがあるときは、
+{get:link}の{setf:link}は最初のプロパティに*new-value*を関連付けます。
+{get:link}フォームを{setf:link} placeで使うとき、
+引数*default*が通常の左から右へ評価されるルールに従って評価され、
+*value*は無視されます。
+
+
+## {examples}
+
+```lisp
+(defun make-person (first-name last-name)
+  (let ((person (gensym "PERSON")))
+    (setf (get person 'first-name) first-name)
+    (setf (get person 'last-name) last-name)
+    person)) =>  MAKE-PERSON
+(defvar *john* (make-person "John" "Dow")) =>  *JOHN*
+*john* =>  #:PERSON4603
+(defvar *sally* (make-person "Sally" "Jones")) =>  *SALLY*
+(get *john* 'first-name) =>  "John"
+(get *sally* 'last-name) =>  "Jones"
+(defun marry (man woman married-name)
+  (setf (get man 'wife) woman)
+  (setf (get woman 'husband) man)
+  (setf (get man 'last-name) married-name)
+  (setf (get woman 'last-name) married-name)
+  married-name) =>  MARRY
+(marry *john* *sally* "Dow-Jones") =>  "Dow-Jones"
+(get *john* 'last-name) =>  "Dow-Jones"
+(get (get *john* 'wife) 'first-name) =>  "Sally"
+(symbol-plist *john*)
+>  (WIFE #:PERSON4604 LAST-NAME "Dow-Jones" FIRST-NAME "John")
+(defmacro age (person &optional (default ''thirty-something)) 
+  `(get ,person 'age ,default)) =>  AGE
+(age *john*) =>  THIRTY-SOMETHING
+(age *john* 20) =>  20
+(setf (age *john*) 25) =>  25
+(age *john*) =>  25
+(age *john* 20) =>  25
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{getf:link},
+{symbol-plist:link},
+{remprop:link}
+
+
+## {notes}
+
+```lisp
+(get x y) ==  (getf (symbol-plist x) y)
+```
+
+{get:link}は*indicator*のテストに
+{eql!function:link}ではなく{eq:link}を用いるため、
+移植しやすいコードとして、
+*indicator*に数と文字を使うことは推奨されません。
+そのため、そのような*indicator*を使ったときの効果は
+{implementation-dependent}です。
+
+{get:link}を使用して、存在しないプロパティと
+値がデフォルトであるプロパティを区別する方法はありません。
+しかし、{get-properties:link}を利用できます。
+
+@end
+

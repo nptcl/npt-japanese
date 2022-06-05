@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type KEYWORD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.keyword
+@name: keyword
+@type: type
+
+Type `KEYWORD`
+
+
+## {supertypes}
+
+{keyword:link},
+{symbol:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{keyword:link}は、`KEYWORD`パッケージに`intern`されている
+全てのシンボルを含みます。
+
+`KEYWORD`パッケージにシンボルを`intern`すると、
+自動的に次の3つの効果が得られます。
+
+1. シンボルは自分自身を束縛する
+2. シンボルは`KEYWORD`パッケージの外部シンボルになる
+3. シンボルは定数の変数になる
+
+## {see-also}
+
+{keywordp:link}
+
+@end
+

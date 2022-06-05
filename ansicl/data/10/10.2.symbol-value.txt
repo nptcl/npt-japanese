@@ -1,0 +1,105 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor SYMBOL-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbol-value
+@name: symbol-value
+@type: accessor
+
+Accessor `SYMBOL-VALUE`
+
+
+## {syntax}
+
+`symbol-value` *symbol* => *value*  
+(`setf` (`symbol-value` *symbol*) *new-value*)
+
+
+## {arguments-and-values}
+
+*symbol* - 値を持っているシンボル  
+*value*, *new-value* - オブジェクト
+
+
+## {description}
+
+シンボルの値のセルにアクセスします。
+
+
+## {examples}
+
+```lisp
+(setf (symbol-value 'a) 1) =>  1
+(symbol-value 'a) =>  1
+;; SYMBOL-VALUEはレキシカル変数を見れない
+(let ((a 2)) (symbol-value 'a)) =>  1
+(let ((a 2)) (setq a 3) (symbol-value 'a)) =>  1
+;; SYMBOL-VALUEは動的変数を見れる
+(let ((a 2)) 
+  (declare (special a)) 
+  (symbol-value 'a)) =>  2
+(let ((a 2)) 
+  (declare (special a)) 
+  (setq a 3)
+  (symbol-value 'a)) =>  3
+(let ((a 2))
+  (setf (symbol-value 'a) 3)
+  a) =>  2
+a =>  3
+(symbol-value 'a) =>  3
+(let ((a 4))
+  (declare (special a))
+  (let ((b (symbol-value 'a)))
+    (setf (symbol-value 'a) 5)
+    (values a b))) =>  5, 4
+a =>  3
+(symbol-value :any-keyword) =>  :ANY-KEYWORD
+(symbol-value 'nil) =>  NIL
+(symbol-value '()) =>  NIL
+;; 次の値の精度は実装依存
+(symbol-value 'pi) =>  3.141592653589793d0  
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{makunbound:link},
+{set:link},
+{setq:link}
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+もし*symbol*が`unbound`で、
+その値を読み込もうとしたとき、
+{unbound-variable:link}が通知されます。
+（その値を書き込もうとしたときに発生するエラーはありません）
+
+
+## {see-also}
+
+{boundp:link},
+{makunbound:link},
+{set:link},
+{setq:link}
+
+
+## {notes}
+
+{symbol-value:link}は、定数の値を取得できます。
+{symbol-value:link}は、{lexical-variable}の値にアクセスできません。
+
+@end
+

@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function KEYWORDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.keywordp
+@name: keywordp
+@type: function
+
+Function `KEYWORDP`
+
+
+## {syntax}
+
+`keywordp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*object*が型{keyword:link}なら*true*を、
+それ以外なら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(keywordp 'elephant) =>  false
+(keywordp 12) =>  false
+(keywordp :test) =>  true
+(keywordp ':test) =>  true
+(keywordp nil) =>  false
+(keywordp :nil) =>  true
+(keywordp '(:test)) =>  false
+(keywordp "hello") =>  false
+(keywordp ":hello") =>  false
+(keywordp '&optional) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{constantp:link},
+{keyword:link},
+{symbolp:link},
+{symbol-package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+
+

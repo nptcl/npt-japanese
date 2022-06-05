@@ -232,7 +232,7 @@ declaration - 宣言式、評価はされない<br />
 forms - フォーム、暗黙のprogn<br />
 results - フォームの返却値</p>
 <h2 id="定義">定義</h2>
-<p>マクロ<a href="7.7.with-slots.html"><code>with-slots</code></a>は、<em>slot-name</em>で指定された<em>instance</em>のスロットを、 変数のように参照するためのレキシカルな環境環境が作成されます。 このような文脈では、スロットの値は、 レキシカルに束縛された変数のように、 そのスロット名を使用して使うことができます。 スロットの値を設定するために <code>setf</code>と<code>setq</code>の両方を使用することができます。</p>
+<p>マクロ<a href="7.7.with-slots.html"><code>with-slots</code></a>は、<em>slot-name</em>で指定された<em>instance</em>のスロットを、 変数のように参照するためのレキシカルな環境が作成されます。 このような文脈では、スロットの値は、 レキシカルに束縛された変数のように、 そのスロット名を使用して使うことができます。 スロットの値を設定するために <code>setf</code>と<code>setq</code>の両方を使用することができます。</p>
 <p>マクロ<a href="7.7.with-slots.html"><code>with-slots</code></a>は、スロット名が変数として現れるところを、 <a href="7.7.slot-value.html"><code>slot-value</code></a>の呼び出しに変換します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> thing </span>()</span>

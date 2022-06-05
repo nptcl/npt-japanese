@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function BOUNDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.boundp
+@name: boundp
+@type: function
+
+Function `BOUNDP`
+
+
+## {syntax}
+
+`boundp` *symbol* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*symbol*が`bound`なら*true*を、それ以外なら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(setq x 1) =>  1
+(boundp 'x) =>  true
+(makunbound 'x) =>  X
+(boundp 'x) =>  false
+(let ((x 2)) (boundp 'x)) =>  false
+(let ((x 2)) (declare (special x)) (boundp 'x)) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*symbol*がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{set:link},
+{setq:link},
+{symbol-value:link},
+{makunbound:link}
+
+
+## {notes}
+
+関数{boundp:link}はグローバル環境下において
+シンボルが値を持っているかどうかのみを決定します。
+レキシカルな束縛は無視されます。
+
+@end
+

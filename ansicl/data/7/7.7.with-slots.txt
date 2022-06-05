@@ -34,7 +34,7 @@ results - フォームの返却値
 ## {description}
 
 マクロ{with-slots:link}は、*slot-name*で指定された*instance*のスロットを、
-変数のように参照するための{lexical-environment}環境が作成されます。
+変数のように参照するための{lexical-environment}が作成されます。
 このような文脈では、スロットの値は、
 レキシカルに束縛された変数のように、
 そのスロット名を使用して使うことができます。

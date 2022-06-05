@@ -1,0 +1,103 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.set
+@name: set
+@type: function
+
+Function `SET`
+
+
+## {syntax}
+
+`set` *symbol* *value* => *value*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*value* - オブジェクト
+
+
+## {description}
+
+{set:link}は、*symbol*の値のセルの内容を、引数*value*に変更します。
+
+```lisp
+(set symbol value) ==  (setf (symbol-value symbol) value)
+```
+
+
+## {examples}
+
+```lisp
+(setf (symbol-value 'n) 1) =>  1
+(set 'n 2) =>  2
+(symbol-value 'n) =>  2
+(let ((n 3))
+  (declare (special n))
+  (setq n (+ n 1))
+  (setf (symbol-value 'n) (* n 10))
+  (set 'n (+ (symbol-value 'n) n))
+  n) =>  80
+n =>  2
+(let ((n 3))
+  (setq n (+ n 1))
+  (setf (symbol-value 'n) (* n 10))
+  (set 'n (+ (symbol-value 'n) n))
+  n) =>  4
+n =>  44
+(defvar *n* 2)
+(let ((*n* 3))
+  (setq *n* (+ *n* 1))
+  (setf (symbol-value '*n*) (* *n* 10))
+  (set '*n* (+ (symbol-value '*n*) *n*))
+  *n*) =>  80
+ *n* =>  2
+(defvar *even-count* 0) =>  *EVEN-COUNT*
+(defvar *odd-count* 0) =>  *ODD-COUNT*
+(defun tally-list (list)
+  (dolist (element list)
+    (set (if (evenp element) '*even-count* '*odd-count*)
+         (+ element (if (evenp element) *even-count* *odd-count*)))))
+(tally-list '(1 9 4 3 2 7)) =>  NIL
+*even-count* =>  6
+*odd-count* =>  20
+```
+
+
+## {side-effects}
+
+*symbol*の値が変更されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{setq:link},
+{progv:link},
+{symbol-value:link}
+
+
+## {notes}
+
+関数{set:link}は非推奨です。
+
+{set:link}は、{lexical-variable}の値を変更できません。
+
+@end
+

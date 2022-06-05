@@ -1,0 +1,57 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *GENSYM-COUNTER*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.gensym-counter
+@name: *gensym-counter*
+@type: variable
+
+Variable `*GENSYM-COUNTER*`
+
+
+## {value-type}
+
+非負の整数
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+値の数は、 関数{gensym:link}によって生成される
+次のシンボルの名前を構築する際に使われるでしょう。
+
+{*gensym-counter*:link}は、
+いつでも割り当てか束縛かを行えますが、
+その値は常に非負の整数出なければなりません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+{gensym:link}
+
+
+## {see-also}
+
+{gensym:link}
+
+
+## {notes}
+
+{gensym:link}の引数に数値を渡す機能は非推奨であり、
+明に{*gensym-counter*:link}を束縛するのが今では様式的に好まれます。
+
+@end
+

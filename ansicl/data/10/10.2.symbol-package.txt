@@ -1,0 +1,89 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  10. シンボル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SYMBOL-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 10.2.symbol-package
+@name: symbol-package
+@type: function
+
+Function `SYMBOL-PACKAGE`
+
+
+## {syntax}
+
+`symbol-package` *symbol* => *contents*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*contents - パッケージオブジェクトか、{nil!variable:link}
+
+
+## {description}
+
+シンボルのホームパッケージを返却します。
+
+
+## {examples}
+
+```lisp
+(in-package "CL-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(symbol-package 'car) =>  #<PACKAGE "COMMON-LISP">
+(symbol-package 'bus) =>  #<PACKAGE "COMMON-LISP-USER">
+(symbol-package :optional) =>  #<PACKAGE "KEYWORD">
+;; Gensyms are uninterned, so have no home package.
+(symbol-package (gensym)) =>  NIL
+(make-package 'pk1) =>  #<PACKAGE "PK1">
+(intern "SAMPLE1" "PK1") =>  PK1::SAMPLE1, NIL
+(export (find-symbol "SAMPLE1" "PK1") "PK1") =>  T
+(make-package 'pk2 :use '(pk1)) =>  #<PACKAGE "PK2">
+(find-symbol "SAMPLE1" "PK2") =>  PK1:SAMPLE1, :INHERITED
+(symbol-package 'pk1::sample1) =>  #<PACKAGE "PK1">
+(symbol-package 'pk2::sample1) =>  #<PACKAGE "PK1">
+(symbol-package 'pk1::sample2) =>  #<PACKAGE "PK1">
+(symbol-package 'pk2::sample2) =>  #<PACKAGE "PK2">
+;; 次に続くフォームは、シンボルが本当にはuninternされておらず、
+;; 「uninternされているらしい」状態で、
+;; SYMBOL-PACKAGEがNILを返却するというシナリオです。
+(setq s3 'pk1::sample3) =>  PK1::SAMPLE3
+(import s3 'pk2) =>  T
+(unintern s3 'pk1) =>  T
+(symbol-package s3) =>  NIL
+(eq s3 'pk2::sample3) =>  T
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{import:link},
+{intern:link},
+{unintern:link}
+
+
+## {exceptional-situations}
+
+もし*symbol*がシンボルでないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{intern:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

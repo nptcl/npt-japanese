@@ -242,7 +242,7 @@
 (<code>setf</code> (<code>ninth</code> <em>list</em>) <em>new-object</em>)<br />
 (<code>setf</code> (<code>tenth</code> <em>list</em>) <em>new-object</em>)</p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>list</em> - リスト。ドットリストか循環リストも可能。<br />
+<p><em>list</em> - リスト、ドットリストと循環リストも受け付けます。<br />
 <em>object</em>, <em>new-object</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p>関数<a href="14.2.first.html"><code>first</code></a>, <a href="14.2.first.html"><code>second</code></a>, <a href="14.2.first.html"><code>third</code></a>, <a href="14.2.first.html"><code>fourth</code></a>, <a href="14.2.first.html"><code>fifth</code></a>, <a href="14.2.first.html"><code>sixth</code></a>, <a href="14.2.first.html"><code>seventh</code></a>, <a href="14.2.first.html"><code>eighth</code></a>, <a href="14.2.first.html"><code>ninth</code></a>, <a href="14.2.first.html"><code>tenth</code></a>は、 それぞれリストの1番目、2番目、3番目、4番目、5番目、 6番目、7番目、8番目、9番目、10番目の要素にアクセスします。 具体的には次のようになります。</p>
@@ -275,10 +275,10 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="14.2.car.html"><code>car</code></a>, <code>nth</code></p>
+<p><a href="14.2.car.html"><code>car</code></a>, <a href="14.2.nth.html"><code>nth</code></a></p>
 <h2 id="備考">備考</h2>
 <p><a href="14.2.first.html"><code>first</code></a>は機能的には<a href="14.2.car.html"><code>car</code></a>と同じです。 <a href="14.2.first.html"><code>second</code></a>は機能的には<a href="14.2.car.html"><code>cadr</code></a>と同じです。 <a href="14.2.first.html"><code>third</code></a>は機能的には<a href="14.2.car.html"><code>caddr</code></a>と同じです。 <a href="14.2.first.html"><code>fourth</code></a>は機能的には<a href="14.2.car.html"><code>cadddr</code></a>と同じです。</p>
-<p>通常の番号付けは1から開始しますが、 <code>nth</code>によって使われる採番は0開始であり、 次の関係が成り立ちます。</p>
+<p>通常の番号付けは1から開始しますが、 <a href="14.2.nth.html"><code>nth</code></a>によって使われる採番は0開始であり、 次の関係が成り立ちます。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">fifth</span> x) == (<span class="kw">nth</span> <span class="dv">4</span> x)</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

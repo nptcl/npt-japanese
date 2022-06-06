@@ -58,7 +58,7 @@ Macro `FIRST`, `SECOND`, `THIRD`, `FOURTH`, `FIFTH`,
 
 ## {arguments-and-values}
 
-*list* - リスト。{dotted-list}か{circular-list}も可能。  
+*list* - リスト、{dotted-list}と{circular-list}も受け付けます。  
 *object*, *new-object* - オブジェクト
 
 

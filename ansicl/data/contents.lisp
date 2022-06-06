@@ -145,6 +145,7 @@
 (dictionary 5.3.progv)
 (dictionary 5.3.setq)
 (dictionary 5.3.nil!variable)
+(dictionary 5.3.not)
 (dictionary 5.3.t!variable)
 (dictionary 5.3.eq)
 (dictionary 5.3.eql!function)
@@ -418,6 +419,7 @@
 (dictionary 17.3.length)
 (dictionary 17.3.substitute)
 (dictionary 17.3.nsubstitute) ;; delete
+(dictionary 17.3.concatenate)
 
 ;; Chapter 18
 (index 18.2 "ハッシュテーブルの辞書" "Hash Tables Dictionary")

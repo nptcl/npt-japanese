@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ENDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.endp
+@name: endp
+@type: function
+
+Function `ENDP`
+
+
+## {syntax}
+
+`endp` *list* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*list* - リスト、{dotted-list}と{circular-list}も受け付けます。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*list*が空のリストなら*true*を返却します。
+*list*がコンスなら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(endp nil) =>  true
+(endp '(1 2)) =>  false
+(endp (cddr '(1 2))) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*がリストでなかったときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{endp:link}の目的は、
+{proper-list}の終わりを確認することです。
+{endp:link}はコンス内に降りて行かないので、
+{dotted-list}を与えてもうまく動作します。
+しかしもし短いリストに対して反復的に`cdr`を呼び続けられ、
+それらのリストが{endp:link}によってテストされ続けたとき、
+このような状況において、
+最終的に{nil!variable:link}ではないアトム（実際にリストではない）が
+{endp:link}の引数になったときの結果は未定義です。
+これは{endp:link}が使われる普通の方法であり、
+{endp:link}を使用する際に引数の型が{proper-list}であるか、
+あるいはアトムであるかを強制せず、
+単純な関数として{endp:link}を扱うということは、
+保守的なプログラミングスタイルであり
+{endp:link}の目的とも一致しています。
+
+@end
+

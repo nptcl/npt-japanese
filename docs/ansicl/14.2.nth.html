@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function LIST-LENGTH</title>
+  <title>Accessor NTH</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,54 +214,42 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function LIST-LENGTH</h1>
+<h1 class="title">Accessor NTH</h1>
 </header>
 <p><a href="14.2.html">UP</a></p>
 <hr />
-<h1 id="function-list-length">Function LIST-LENGTH</h1>
-<p>Function <code>LIST-LENGTH</code></p>
+<h1 id="accessor-nth">Accessor NTH</h1>
+<p>Accessor <code>NTH</code></p>
 <h2 id="構文">構文</h2>
-<p><code>list-length</code> <em>list</em> =&gt; <em>length</em></p>
+<p><code>nth</code> <em>n</em> <em>list</em> =&gt; <em>object</em><br />
+(<code>setf</code> (<code>nth</code> <em>n</em> <em>list</em>) <em>new-object</em>)</p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>list</em> - 通常のリストか循環リスト<br />
-<em>length</em> - 非負の整数か、<code>nil</code></p>
+<p><em>n</em> - 非負の整数<br />
+<em>list</em> - リスト、ドットリストと循環リストも受け付けます。<br />
+<em>object</em> - オブジェクト<br />
+<em>new-object</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
-<p><em>list</em>が通常のリストなら、<em>list</em>の長さを返却します。 <em>list</em>が循環リストなら、<code>nil</code>を返却します。</p>
+<p><a href="14.2.nth.html"><code>nth</code></a>は、 <em>list</em>の<code>car</code>部を「0番目」の要素したときの、 <em>list</em>の<em>n</em>番目の要素を示します。 具体的には次のようになります。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> n <span class="kw">list</span>) ==  (<span class="kw">car</span> (<span class="kw">nthcdr</span> n <span class="kw">list</span>))</span></code></pre></div>
+<p><a href="14.2.nth.html"><code>nth</code></a>は、<code>setf</code>の<code>place</code>として指定できます。 具体的には次のようになります。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">nth</span> n <span class="kw">list</span>) new-object) ==  (<span class="kw">setf</span> (<span class="kw">car</span> (<span class="kw">nthcdr</span> n <span class="kw">list</span>)) new-object)</span></code></pre></div>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> &#39;(a b c d)) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> &#39;(a (b c) d)) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> &#39;()) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> <span class="kw">nil</span>) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> circular-list </span>(&amp;<span class="kw">rest</span> elements)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((cycle (<span class="kw">copy-list</span> elements))) </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">nconc</span> cycle cycle)))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> (circular-list &#39;a &#39;b)) <span class="op">=&gt;</span>  NIL</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> (circular-list &#39;a)) <span class="op">=&gt;</span>  NIL</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> (circular-list)) <span class="op">=&gt;</span>  <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> <span class="dv">0</span> &#39;(foo bar baz)) <span class="op">=&gt;</span>  FOO</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> <span class="dv">1</span> &#39;(foo bar baz)) <span class="op">=&gt;</span>  BAR</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> <span class="dv">3</span> &#39;(foo bar baz)) <span class="op">=&gt;</span>  NIL</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> <span class="dv">0</span>-to<span class="dv">-3</span> (<span class="kw">list</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  (<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">nth</span> <span class="dv">2</span> <span class="dv">0</span>-to<span class="dv">-3</span>) <span class="st">&quot;two&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;two&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>-to<span class="dv">-3</span> <span class="op">=&gt;</span>  (<span class="dv">0</span> <span class="dv">1</span> <span class="st">&quot;two&quot;</span> <span class="dv">3</span>)</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>list</em>が通常のリストでも循環リストでもないときは、 型<code>type-error</code>のエラーが発生します。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>length</code></p>
+<p><code>elt</code>, <a href="14.2.first.html"><code>first</code></a>, <code>nthcdr</code></p>
 <h2 id="備考">備考</h2>
-<p><a href="14.2.list-length.html"><code>list-length</code></a>は次のように実装できます。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> list-length </span>(x)  </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">do</span> ((n <span class="dv">0</span> (<span class="op">+</span> n <span class="dv">2</span>))           <span class="co">;カウンター。</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       (fast x (<span class="kw">cddr</span> fast))    <span class="co">;Fastポインター: 2つ進める。</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>       (slow x (<span class="kw">cdr</span> slow)))    <span class="co">;Slowポインター: 1つ進める。</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">nil</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; もしfastポインターが終了なら、カウントを返却する。</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">when</span> (<span class="kw">endp</span> fast) (<span class="kw">return</span> n))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">when</span> (<span class="kw">endp</span> (<span class="kw">cdr</span> fast)) (<span class="kw">return</span> (<span class="op">+</span> n <span class="dv">1</span>)))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; もしfastポインターがslotポインターと同じなら</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; 循環リストから抜け出せていない。</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">;; （深い特性の話をすると：もし循環リストにはまったのなら</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">;;   fastポインターはやがてslotポインターと等しくなるだろう。</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">;;   このような事実がこの実装を正当化する。）</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">when</span> (<span class="kw">and</span> (<span class="kw">eq</span> fast slow) (<span class="op">&gt;</span> n <span class="dv">0</span>)) (<span class="kw">return</span> <span class="kw">nil</span>))))</span></code></pre></div>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

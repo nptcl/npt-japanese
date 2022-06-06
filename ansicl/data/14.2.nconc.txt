@@ -1,0 +1,108 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NCONC
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.nconc
+@name: nconc
+@type: function
+
+Function `NCONC`
+
+
+## {syntax}
+
+`nconc` &rest *lists* => *concatenated-list*
+
+
+## {arguments-and-values}
+
+*lists* - 最後以外はリストでなければなりません
+（{dotted-list}は許容されますが、{circular-list}は許容されません）。
+最後の*list*はどんなオブジェクトでも可能です。  
+*concatenated-list* - リスト
+
+
+## {description}
+
+*lists*を連結したリストを返却します。
+もし*lists*がないときは、`(nconc)`は{nil!variable:link}を返却します。
+{nconc:link}は下記のような再帰的関係を用いて定義されます。
+
+```lisp
+(nconc) =>  ()
+(nconc nil . lists) ==  (nconc . lists)
+(nconc list) =>  list
+(nconc list-1 list-2) ==  (progn (rplacd (last list-1) list-2) list-1)
+(nconc list-1 list-2 . lists) ==  (nconc (nconc list-1 list-2) . lists)
+```
+
+## {examples}
+
+```lisp
+(nconc) =>  NIL
+(setq x '(a b c)) =>  (A B C)
+(setq y '(d e f)) =>  (D E F)
+(nconc x y) =>  (A B C D E F)
+x =>  (A B C D E F)
+```
+
+この例では、
+*x*の最後のコンスが{rplacd:link}により値*y*に変更されたので、
+最終的な*x*の値が変更されています。
+もし`(nconc x y)`が再び評価されると、
+{circular-list}が生成されるので、
+それは`(A B C D E F D E F D E F ...)`のように印字され、
+永遠に繰り返されます。
+もし`*print-circle*`を{nil!variable:link}以外の値にすることで、
+`(A B C . #1=(D E F . #1#))`と印刷されるでしょう。
+
+```lisp
+(setq foo (list 'a 'b 'c 'd 'e)
+      bar (list 'f 'g 'h 'i 'j)
+      baz (list 'k 'l 'm)) =>  (K L M)
+(setq foo (nconc foo bar baz)) =>  (A B C D E F G H I J K L M)
+foo =>  (A B C D E F G H I J K L M)
+bar =>  (F G H I J K L M)
+baz =>  (K L M)
+
+(setq foo (list 'a 'b 'c 'd 'e)
+      bar (list 'f 'g 'h 'i 'j)
+      baz (list 'k 'l 'm)) =>  (K L M)
+(setq foo (nconc nil foo bar nil baz)) =>  (A B C D E F G H I J K L M) 
+foo =>  (A B C D E F G H I J K L M)
+bar =>  (F G H I J K L M)
+baz =>  (K L M)
+```
+
+
+## {side-effects}
+
+*list*はコピーされずに修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{append:link},
+{concatenate:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

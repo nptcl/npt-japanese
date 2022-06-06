@@ -36,3 +36,75 @@ System Class `NULL`
 
 @end
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NULL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.null!function
+@name: null!function
+@type: function
+
+Function `NULL`
+
+
+## {syntax}
+
+`null` *object* => *boolean8
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*boolean* - ブール値
+
+
+## {description}
+
+*object*が空のリストなら{t!variable:link}を、
+それ以外は{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(null '()) =>  T
+(null nil) =>  T
+(null t) =>  NIL
+(null 1) =>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{not:link}
+
+
+## {notes}
+
+{null!function:link}は、空のリストかどうかテストするときに使用され、
+一方、{not:link}はブール値（あるいは{generalized-boolean}）を
+反転させるときに使うことを意図しています。
+操作上では、{null!function:link}と{not:link}は同じ結果を計算するので、
+どちらを使うかはスタイルの問題です。
+
+```lisp
+(null object) == (typep object 'null) == (eq object '())
+```
+
+@end
+

@@ -1,0 +1,102 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LAST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.last
+@name: last
+@type: function
+
+Function `LAST`
+
+
+## {syntax}
+
+`last` *list* &optional *n* => *tail*
+
+
+## {arguments-and-values}
+
+*list* - リスト。{dotted-list}は受け付けますが、{circular-list}は受け付けません。  
+*n* - 非負の整数。デフォルトは`1`。  
+*tail* - オブジェクト
+
+
+## {description}
+
+{last:link}は、*list*の最後の*n*個のコンス
+（最後の*n*要素ではありません）を返却します
+もし*list*が`()`なら、{last:link}は`()`を返却します。
+
+もし*n*が`0`のとき、*list*を終端しているアトムが返却されます。
+もし*n*が、*list*のコンスセルの数以上のとき、
+*list*が返却されます。
+
+
+## {examples}
+
+```lisp
+(last nil) =>  NIL
+(last '(1 2 3)) =>  (3)
+(last '(1 2 . 3)) =>  (2 . 3)
+(setq x (list 'a 'b 'c 'd)) =>  (A B C D)
+(last x) =>  (D)
+(rplacd (last x) (list 'e 'f)) x =>  (A B C D E F)
+(last x) =>  (F)
+
+(last '(a b c))   =>  (C)
+
+(last '(a b c) 0) =>  ()
+(last '(a b c) 1) =>  (C)
+(last '(a b c) 2) =>  (B C)
+(last '(a b c) 3) =>  (A B C)
+(last '(a b c) 4) =>  (A B C)
+
+(last '(a . b) 0) =>  B
+(last '(a . b) 1) =>  (A . B)
+(last '(a . b) 2) =>  (A . B)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*が{circular-list}のときの結果は未定義です。
+*n*が非負の整数ではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{butlast:link},
+{nth:link}
+
+
+## {notes}
+
+下記のコードは、{last:link}の定義です。
+
+```lisp
+(defun last (list &optional (n 1))
+  (check-type n (integer 0))
+  (do ((l list (cdr l))
+       (r list)
+       (i 0 (+ i 1)))
+      ((atom l) r)
+    (if (>= i n) (pop r))))
+```
+
+@end
+

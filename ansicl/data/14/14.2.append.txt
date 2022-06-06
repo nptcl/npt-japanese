@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function APPEND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.append
+@name: append
+@type: function
+
+Function `APPEND`
+
+
+## {syntax}
+
+`append` &rest *lists* => *result*
+
+
+## {arguments-and-values}
+
+*lists* - 最後以外の各要素は{proper-list}であり、
+最後の要素はどんなオブジェクトでも可能です。  
+*result* - オブジェクト。
+*lists*の最後の要素がリストではなく、
+前のリストがすべて`null`という引数ではない限り、
+リストになります。
+
+
+## {description}
+
+{append:link}は、コピーを連結させた新しい*lists*を返却します。
+*lists*は変更されません。
+*lists*の最後以外の各リスト構造をコピーします。
+最後の要素はコピーされません。
+それは、先行して結合された*lists*の
+最後のドットペアの`cdr`部になるか、
+あるいは*lists*の先行した要素に
+空ではないリストが存在しなかったときは、
+直接その値が返却されます。
+
+
+## {examples}
+
+```lisp
+(append '(a b c) '(d e f) '() '(g)) =>  (A B C D E F G)
+(append '(a b c) 'd) =>  (A B C . D)
+(setq lst '(a b c)) =>  (A B C)
+(append lst '(d)) =>  (A B C D)
+lst =>  (A B C)
+(append) =>  NIL
+(append 'a) =>  A
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{nconc:link},
+{concatenate:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

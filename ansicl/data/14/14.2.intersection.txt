@@ -1,0 +1,132 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INTERSECTION
+;;  Function NINTERSECTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.intersection
+@name: intersection
+@name: nintersection
+@type: function
+
+Function `INTERSECTION`, `NINTERSECTION`
+
+
+## {syntax}
+
+`intersection` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*  
+`nintersection` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*
+
+
+## {arguments-and-values}
+
+*list-1* - {proper-list}  
+*list-2* - {proper-list}  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*result-list* - リスト
+
+
+## {description}
+
+{intersection:link}と{nintersection:link}は、
+*list-1*と*list-2*の両方に含まれるすべての要素を含むリストを返却します。
+
+{nintersection:link}は、{intersection:link}の破壊的バージョンです。
+それは同じ操作を行いますが、*list-1*はそのセルを使って結果を構築するときに、
+破壊するかもしれません。
+*list-2*は破壊されません。
+
+`intersection`の操作は、次のように定義されます。
+*list-1*のひとつの要素と、*list-2*のひとつの要素からなる、
+全ての順序付けされたペアに対して、
+`:test`か`:test-not`を使ってテストが満たされるかどうかを決定します。
+`:test`か`:test-not`の関数の最初の要素は*list-1*の要素であり、
+二番目の引数は*list-2*の要素です。
+もし`:test`と`:test-not`が指定されなかったときは、
+{eql!function:link}を使用します。
+もし同じ関数呼び出し内において、
+`:test`と`:test-not`の両方が指定された場合はエラーです。
+
+もし`:key`に{nil!variable:link}ではない値で与えられたときは、
+リストの要素をテストする部分を引き出すときに使われます。
+`:key`関数の引数は、*list-1*か*list-2*の要素であり、
+`:key`関数は通常与えられた要素の部分を返却します。
+もし`:key`が与えられないか、あるいは{nil!variable:link}が指定されたとき、
+*list-1*と*list-2*の要素が使われます。
+
+テストが満たされたすべてのペアは、
+そのペアの2つの要素のうち正確にひとつが結果に格納されます。
+どちらかのリストのある要素と、
+他方のリストとのテストが満たされなかったときは、
+その要素は結果のリストに現れません。
+もしリストのいずれかに重複する要素がある場合、
+結果には重複が生じるかもしれません。
+
+どんな方法で引数の順番を変えたとしても、
+結果の要素の順番に反映できる保証はありません。
+結果のリストは、適切であれば、
+*list-1*か*list-2*のどちらかとセルを共有するか、
+あるいは{eq:link}になる可能性があります。
+
+
+## {examples}
+
+```lisp
+(setq list1 (list 1 1 2 3 4 a b c "A" "B" "C" "d")
+      list2 (list 1 4 5 b c d "a" "B" "c" "D")) 
+ =>  (1 4 5 B C D "a" "B" "c" "D")
+(intersection list1 list2) =>  (C B 4 1 1)
+(intersection list1 list2 :test 'equal) =>  ("B" C B 4 1 1)
+(intersection list1 list2 :test #'equalp) =>  ("d" "C" "B" "A" C B 4 1 1) 
+(nintersection list1 list2) =>  (1 1 4 B C)
+list1 =>  implementation-dependent ;e.g.,  (1 1 4 B C)
+list2 =>  implementation-dependent ;e.g.,  (1 4 5 B C D "a" "B" "c" "D")
+(setq list1 (copy-list '((1 . 2) (2 . 3) (3 . 4) (4 . 5))))
+=>  ((1 . 2) (2 . 3) (3 . 4) (4 . 5)) 
+(setq list2 (copy-list '((1 . 3) (2 . 4) (3 . 6) (4 . 8))))
+=>  ((1 . 3) (2 . 4) (3 . 6) (4 . 8)) 
+(nintersection list1 list2 :key #'cdr) =>  ((2 . 3) (3 . 4)) 
+list1 =>  implementation-dependent ;e.g.,  ((1 . 2) (2 . 3) (3 . 4)) 
+list2 =>  implementation-dependent ;e.g.,  ((1 . 3) (2 . 4) (3 . 6) (4 . 8)) 
+```
+
+
+## {side-effects}
+
+{nintersection:link}は*list-1*を変更できますが、
+*list-2*はそうではありません。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list-1*と*list-2*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{union:link},
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+{nintersection:link}の副作用は必要ないため、
+移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。
+
+@end
+

@@ -1,0 +1,116 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REVAPPEND
+;;  Function NRECONC
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.revappend
+@name: revappend
+@name: nreconc
+@type: function
+
+Function `REVAPPEND`, `NRECONC`
+
+
+## {syntax}
+
+`revappend` *list* *tail* => *result-list*  
+`nreconc` *list* *tail* => *result-list*
+
+
+## {arguments-and-values}
+
+*list* - {proper-list}  
+*tail* - オブジェクト  
+*result-list* - オブジェクト
+
+
+## {description}
+
+{revappend:link}は、*list*の各要素を逆順でコピーします。
+そして、逆順のリストに*tail*を（{nconc:link}のように）追加し、
+その結果を返却します。
+
+{nreconc:link}は、*list*の要素を（{nreverse:link}のように）反転させます。
+そして、逆順のリストに*tail*を（{nconc:link}のように）追加し、
+その結果を返却します。
+
+結果のリストは、*tail*とリスト構造を共有します。
+
+
+## {examples}
+
+```lisp
+(let ((list-1 (list 1 2 3))
+      (list-2 (list 'a 'b 'c)))
+  (print (revappend list-1 list-2))
+  (print (equal list-1 '(1 2 3)))
+  (print (equal list-2 '(a b c))))
+>>  (3 2 1 A B C) 
+>>  T
+>>  T
+=>  T
+
+(revappend '(1 2 3) '()) =>  (3 2 1)
+(revappend '(1 2 3) '(a . b)) =>  (3 2 1 A . B)
+(revappend '() '(a b c)) =>  (A B C)
+(revappend '(1 2 3) 'a) =>  (3 2 1 . A)
+(revappend '() 'a) =>  A   ;degenerate case
+
+(let ((list-1 '(1 2 3))
+      (list-2 '(a b c)))
+  (print (nreconc list-1 list-2))
+  (print (equal list-1 '(1 2 3)))
+  (print (equal list-2 '(a b c))))
+>>  (3 2 1 A B C) 
+>>  NIL
+>>  T
+=>  T
+```
+
+
+## {side-effects}
+
+{revappend:link}は、どんな引数も修正しません。
+{nreconc:link}は、*list*の修正を許可しますが、*tail*はそうではありません。
+
+違った実装になるかもしれませんが、
+{nreconc:link}は、下記の動作と同等の副作用を持つように制限されています。
+
+```lisp
+ (nconc (nreverse list) tail)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{reverse:link},
+{nreverse:link},
+{nconc:link}
+
+
+## {notes}
+
+下記の機能の等号式は真ですが、
+良い実装は、通常同じ効果が得られるより速いアルゴリズムを使用しているでしょう。
+
+```lisp
+(revappend list tail) ==  (nconc (reverse list) tail)
+(nreconc list tail) ==  (nconc (nreverse list) tail)
+```
+
+@end
+

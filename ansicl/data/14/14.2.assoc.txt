@@ -1,0 +1,122 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ASSOC
+;;  Function ASSOC-IF
+;;  Function ASSOC-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.assoc
+@name: assoc
+@name: assoc-if
+@name: assoc-if-not
+@type: function
+
+Function `ASSOC`, `ASSOC-IF`, `ASSOC-IF-NOT`
+
+
+## {syntax}
+
+`assoc` *item* *alist* &key *key* *test* *test-not* => *entry*  
+`assoc-if` *predicate* *alist* &key *key* => *entry*  
+`assoc-if-not` *predicate* *alist* &key *key* => *entry*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*alist* - 連想リスト  
+*predicate* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*entry* - *alist*の要素であるコンスか、{nil!variable:link}
+
+
+## {description}
+
+{assoc:link}, {assoc-if:link}, {assoc-if-not:link}は、
+*alist*に`car`が*test*を満たすようなコンスがあれば返却し、
+そのようなコンスが見つからないときは{nil!variable:link}を返却します。
+
+{assoc:link}, {assoc-if:link}, {assoc-if-not:link}は、
+もし*alist*のペアが現れる場所に{nil!variable:link}あったとは無視します。
+
+
+## {examples}
+
+```lisp
+(setq values '((x . 100) (y . 200) (z . 50))) =>  ((X . 100) (Y . 200) (Z . 50))
+(assoc 'y values) =>  (Y . 200)
+(rplacd (assoc 'y values) 201) =>  (Y . 201)
+(assoc 'y values) =>  (Y . 201)
+(setq alist '((1 . "one")(2 . "two")(3 . "three"))) 
+=>  ((1 . "one") (2 . "two") (3 . "three"))
+(assoc 2 alist) =>  (2 . "two")
+(assoc-if #'evenp alist) =>  (2 . "two")
+(assoc-if-not #'(lambda(x) (< x 3)) alist) =>  (3 . "three")
+(setq alist '(("one" . 1)("two" . 2))) =>  (("one" . 1) ("two" . 2))
+(assoc "one" alist) =>  NIL
+(assoc "one" alist :test #'equalp) =>  ("one" . 1)
+(assoc "two" alist :key #'(lambda(x) (char x 2))) =>  NIL 
+(assoc #\o alist :key #'(lambda(x) (char x 2))) =>  ("two" . 2)
+(assoc 'r '((a . b) (c . d) (r . x) (s . y) (r . z))) =>   (R . X)
+(assoc 'goo '((foo . bar) (zoo . goo))) =>  NIL
+(assoc '2 '((1 a b c) (2 b c d) (-7 x y z))) =>  (2 B C D)
+(setq alist '(("one" . 1) ("2" . 2) ("three" . 3)))
+=>  (("one" . 1) ("2" . 2) ("three" . 3))
+(assoc-if-not #'alpha-char-p alist
+              :key #'(lambda (x) (char x 0))) =>  ("2" . 2)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*alist*が連想リストではないときは、
+型{type-error:link}を通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{rassoc:link},
+{find:link},
+{member:link},
+{position:link},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`は、非推奨です。
+
+関数{assoc-if-not:link}は、非推奨です。
+
+*alist*を更新するために、
+{assoc:link}の結果が{nil!variable:link}でなければ、
+{rplacd:link}を使うことができます。
+
+次の2つの式
+
+```lisp
+(assoc item list :test fn)
+(find item list :test fn :key #'car)
+```
+
+これらは、ひとつの例外を除いては同じ意味です。
+例外は、もし*alist*のペアの場所で{nil!variable:link}現れて、
+かつ*item*が{nil!variable:link}のとき、
+{find:link}の場合は、{nil!variable:link}の`car`を計算し、
+*item*と同じということで{nil!variable:link}を返却しますが、
+一方{assoc:link}は、
+*alist*の{nil!variable:link}を無視するため、
+継続して`car`が{nil!variable:link}である実際のコンスを探します。
+
+@end
+

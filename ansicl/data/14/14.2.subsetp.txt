@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SUBSETP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.subsetp
+@name: subsetp
+@type: function
+
+Function `SUBSETP`
+
+
+## {syntax}
+
+`subsetp` *list-1* *list-2* &key *key* *test* *test-not* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*list-1* - {proper-list}  
+*list-2* - {proper-list}  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{subsetp:link}は、*list-1*の全ての要素が、
+*list-2*のどれかの要素にマッチしたら*true*を、
+それ以外は*false*を返却します。
+
+あるリストの要素が、他のリスト要素と同じかどうかは、
+キーワード引数で指定された関数によって決定されます。
+`:test`か`:test-not`の関数の最初の要素は通常は*list-1*の要素であり、
+`:key`関数によって返却されたものです。
+二番目の引数は通常は*list-2*の要素であり、
+`:key`関数によって返却されたものです。
+
+`:key`関数の引数は、*list-1*か*list-2*の要素です。
+返却値は、引数で与えられたリスト要素からなる、
+判定に使われる要素の部分です。
+もし`:key`が与えられないか、あるいは{nil!variable:link}が指定されたとき、
+*list-1*と*list-2*の要素自身がが使われ、
+`:test`か`:test-not`関数に供給されます。
+
+
+## {examples}
+
+```lisp
+(setq cosmos '(1 "a" (1 2))) =>  (1 "a" (1 2))
+(subsetp '(1) cosmos) =>  true
+(subsetp '((1 2)) cosmos) =>  false
+(subsetp '((1 2)) cosmos :test 'equal) =>  true
+(subsetp '(1 "A") cosmos :test #'equalp) =>  true
+(subsetp '((1) (2)) '((1) (2))) =>  false
+(subsetp '((1) (2)) '((1) (2)) :key #'car) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list-1*と*list-2*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+@end
+

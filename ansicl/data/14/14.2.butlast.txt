@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function BUTLAST
+;;  Function NBUTLAST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.butlast
+@name: butlast
+@name: nbutlast
+@type: function
+
+Function `BUTLAST`, `NBUTLAST`
+
+
+## {syntax}
+
+`butlast` *list* &optional *n* => *result-list*  
+`nbutlast` *list* &optional *n* => *result-list*
+
+
+## {arguments-and-values}
+
+*list* - リスト。{dotted-list}は受け付けますが、{circular-list}は受け付けません。  
+*n* - 非負の整数  
+*result-list* - リスト
+
+
+## {description}
+
+{butlast:link}は、最後の*n*個のコンスを無視した*list*のコピーを返却します。
+*n*が省略されたときの値は`1`です。
+もし*list*内に*n*個もコンスがなかったときは、
+{nil!variable:link}が返却され、
+{nbutlast:link}のときは*list*は修正されません。
+
+{nbutlast:link}は、{butlast:link}と似てますが、
+{nbutlast:link}は*list*を修正するかもしれません。
+それは、*list*の終わりから*n*+1個のコンスの
+`cdr`を{nil!variable:link}に修正します。
+
+
+## {examples}
+
+```lisp
+(setq lst '(1 2 3 4 5 6 7 8 9)) =>  (1 2 3 4 5 6 7 8 9)
+(butlast lst) =>  (1 2 3 4 5 6 7 8)
+(butlast lst 5) =>  (1 2 3 4)
+(butlast lst (+ 5 5)) =>  NIL
+lst =>  (1 2 3 4 5 6 7 8 9)
+(nbutlast lst 3) =>  (1 2 3 4 5 6)
+lst =>  (1 2 3 4 5 6)
+(nbutlast lst 99) =>  NIL
+lst =>  (1 2 3 4 5 6)
+(butlast '(a b c d)) =>  (A B C)
+(butlast '((a b) (c d))) =>  ((A B))
+(butlast '(a)) =>  NIL
+(butlast nil) =>  NIL
+(setq foo (list 'a 'b 'c 'd)) =>  (A B C D)
+(nbutlast foo) =>  (A B C)
+foo =>  (A B C)
+(nbutlast (list 'a)) =>  NIL
+(nbutlast '()) =>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*が{proper-list}ではないか、
+{dotted-list}ではないとき、
+型{type-error:link}のエラーが生じます。
+*n*が非負の整数ではないとき、
+型{type-error:link}のエラーが生じます。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(butlast list n) == (ldiff list (last list n))
+```
+
+@end
+

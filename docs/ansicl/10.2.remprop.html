@@ -228,7 +228,7 @@
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
 <p><a href="10.2.remprop.html"><code>remprop</code></a>は、<em>symbol</em>のプロパティリストから <em>indicator</em>と同一の標識のプロパティを削除します。 標識に対してキーが同一のプロパティが複数あるときは、 <a href="10.2.remprop.html"><code>remprop</code></a>は最初のプロパティを削除します。 標識に対するプロパティが存在しないときは<em>false</em>を、 プロパティが見つかった時は<em>true</em>を返却します。</p>
-<p>プロパティのindicatorと対応する値は、 プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。 許容される副作用は、<code>remf</code>のものに対応します。 つまり、下記のようになります。</p>
+<p>プロパティのindicatorと対応する値は、 プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。 許容される副作用は、<a href="14.2.remf.html"><code>remf</code></a>のものに対応します。 つまり、下記のようになります。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">remprop</span> x y) ==  (<span class="kw">remf</span> (<span class="kw">symbol-plist</span> x) y)</span></code></pre></div>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> test (<span class="kw">make-symbol</span> <span class="st">&quot;PSEUDO-PI&quot;</span>)) <span class="op">=&gt;</span>  #:PSEUDO-PI</span>
@@ -260,7 +260,7 @@
 <h2 id="例外">例外</h2>
 <p><em>symbol</em>がシンボルではないとき、 型<code>type-error</code>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><code>remf</code>, <a href="10.2.symbol-plist.html"><code>symbol-plist</code></a></p>
+<p><a href="14.2.remf.html"><code>remf</code></a>, <a href="10.2.symbol-plist.html"><code>symbol-plist</code></a></p>
 <h2 id="備考">備考</h2>
 <p><a href="10.2.remprop.html"><code>remprop</code></a>は<em>indicator</em>のテストに <code>eql</code>ではなく<code>eq</code>を用いるため、 移植しやすいコードとして、 <em>indicator</em>に数と文字を使うことは推奨されません。 そのため、そのような<em>indicator</em>を使ったときの効果は 実装依存です。 もちろん、そのようなプロパティを削除する必要がある場合は、 仕方がないことです。 プロパティに対して<a href="10.2.get.html"><code>get</code></a>の<code>setf</code>を使うことを 考えてみて下さい。</p>
 <hr />

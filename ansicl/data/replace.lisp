@@ -76,7 +76,9 @@
 (replace implementation-dependent "実装依存")
 (replace lexical-variable "レキシカルな変数")
 (replace property-indicator "標識")
+(replace indicator "`indicator`")
 
 (replace exhaustive-partition "完全な分割")
 (replace place "`place`")
+(replace entry "エントリー")
 

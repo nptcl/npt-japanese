@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PAIRLIS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.pairlis
+@name: pairlis
+@type: function
+
+Function `PAIRLIS`
+
+
+## {syntax}
+
+`pairlis` *keys* *data* &optional *alist* => *new-alist*
+
+
+## {arguments-and-values}
+
+*keys* - {proper-list}  
+*data* - {proper-list}  
+*alist* - 連想リスト、デフォルトは空のリスト  
+*new-alist* - 連想リスト
+
+
+## {description}
+
+*keys*の要素と、対応する*data*の要素を関連付けた連想リストを返却します。
+*keys*と*data*が同じ長さではないときの結果は未定義です。
+
+*alist*が与えられたとき、{pairlis:link}は、
+新しいペアを先頭に追加するように*alist*を修正します。
+新しいペアは、結果の連想リストに正順か逆順のどちらかで表すことができます。
+下記の結果は、
+
+```lisp
+ (pairlis '(one two) '(1 2) '((three . 3) (four . 19)))
+```
+
+次のようになるか、
+
+```lisp
+((one . 1) (two . 2) (three . 3) (four . 19))
+```
+
+あるいは次のようになります。
+
+```lisp
+((two . 2) (one . 1) (three . 3) (four . 19))
+```
+
+
+## Examples:
+
+```lisp
+(setq keys '(1 2 3)
+       data '("one" "two" "three")
+       alist '((4 . "four"))) =>  ((4 . "four"))
+(pairlis keys data) =>  ((3 . "three") (2 . "two") (1 . "one"))
+(pairlis keys data alist)
+=>  ((3 . "three") (2 . "two") (1 . "one") (4 . "four"))
+alist =>  ((4 . "four"))
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*keys*と*data*が{proper-list}ではないとき、
+型{type-error:link}を通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{acons:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

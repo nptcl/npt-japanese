@@ -1,0 +1,121 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PUSHNEW
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.pushnew
+@name: pushnew
+@type: function
+
+Macro `PUSHNEW`
+
+
+## {syntax}
+
+`pushnew` *item* *place* &key *key* *test* *test-not*  
+=> *new-place-value*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*place* - {place}、{proper-list}の値  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*new-place-value* - リスト（{place}の新しい値）
+
+
+## {description}
+
+
+{pushnew:link}は、*item*と同じものが、
+*place*のリストの既存の要素にあるかどうかをテストします。
+もし*item*が既存の要素に存在しないときは、
+リストの前に配置し、新しいリストを{place}に保存します。
+
+{pushnew:link}は、{place}に格納された新しいリストを返却します。
+
+*item*がすでに{place}のリストのメンバーかどうかは、
+`:test`か`:test-not`が比較に使用されて決定します。
+`:test`か`:test-not`の関数の最初の引数は*item*であり、
+二番目の引数は{place}のリストの要素であり、
+`:key`が指定されていればその関数の返却値が使われます。
+
+もし`:key`が指定されていれば、{adjoin:link}のように、
+*item*とリストの要素両方からテストの部分を引き出すために使われます。
+
+`:key`関数の引数は、{place}に格納されたリストの要素です。
+`:key`関数のは、通常はリストの要素の部分を返却します。
+もし`:key`が指定されなかったか、あるいは{nil!variable:link}のときは、
+リストの要素が使用されます。
+
+{place}のサブフォームの評価についての情報は、
+{5.1.1.1:ab}をご確認ください。
+
+*iterm*がすでに{place}のリストのメンバーであった場合に、
+{pushnew:link}が実際に{place}に対して
+格納フォームを実行するかどうかは{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(setq x '(a (b c) d)) =>  (A (B C) D)
+(pushnew 5 (cadr x)) =>  (5 B C)   
+x =>  (A (5 B C) D)
+(pushnew 'b (cadr x)) =>  (5 B C)  
+x =>  (A (5 B C) D)
+(setq lst '((1) (1 2) (1 2 3))) =>  ((1) (1 2) (1 2 3))
+(pushnew '(2) lst) =>  ((2) (1) (1 2) (1 2 3))
+(pushnew '(1) lst) =>  ((1) (2) (1) (1 2) (1 2 3))
+(pushnew '(1) lst :test 'equal) =>  ((1) (2) (1) (1 2) (1 2 3))
+(pushnew '(1) lst :key #'car) =>  ((1) (2) (1) (1 2) (1 2 3)) 
+```
+
+
+## {side-effects}
+
+{place}の内容は修正されるでしょう。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{push:link},
+{adjoin:link},
+{5.1:ab}
+
+
+## {notes}
+
+下記の効果は、
+
+```lisp
+(pushnew item place :test p)
+```
+
+だいたい次と同等です。
+
+```lisp
+(setf place (adjoin item place :test p))
+```
+
+ただし、{place}のサブフォームはただ一度だけ評価され、
+*item*は{place}の前に評価されます。
+
+@end
+

@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro REMF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.remf
+@name: remf
+@type: macro
+
+Macro `REMF`
+
+
+## {syntax}
+
+`remf` *place* *indicator* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*place* - {place}  
+*indicator* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{remf:link}は、*place*に保存されているプロパティリストから
+*indicator*と同一の{property-indicator}のプロパティを削除します。
+{property-indicator}に対してキーが同一のプロパティが複数あるときは、
+{remf:link}は最初のプロパティを削除します。
+{property-indicator}に対するプロパティが存在しないときは*false*を、
+プロパティが見つかった時は*true*を返却します。
+
+プロパティのindicatorと対応する値は、
+プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。
+{remf:link}は、{place}に{setf:link}するか、
+あるいは{setf:link}に保持されているリスト構造の
+どの`car`, `cdr`部にも{setf:link}することが許されています。
+
+{place}のサブフォームの評価についての情報は、
+{5.1.1.1:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(setq x (cons () ())) =>  (NIL)
+(setf (getf (car x) 'prop1) 'val1) =>  VAL1
+(remf (car x) 'prop1) =>  true
+(remf (car x) 'prop1) =>  false
+```
+
+
+## {side-effects}
+
+{place}に保存されているプロパティリストは修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{remprop:link},
+{getf:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

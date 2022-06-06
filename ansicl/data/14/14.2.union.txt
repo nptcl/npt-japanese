@@ -1,0 +1,123 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UNION
+;;  Function NUNION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.union
+@name: union
+@name: nunion
+@type: function
+
+Function `UNION`, `NUNION`
+
+
+## {syntax}
+
+`union` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*  
+`nunion` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*
+
+
+## {arguments-and-values}
+
+*list-1* - {proper-list}  
+*list-2* - {proper-list}  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*result-list* - リスト
+
+
+## {description}
+
+{union:link}と{nunion:link}は、
+*list-1*か*list-2*のどちらかに生じたすべての要素を含むリストを返却します。
+
+*list-1*のひとつの要素と、*list-2*のひとつの要素からなる、
+全ての順序付けされたペアに対して、
+`:test`か`:test-not`を使ってテストが満たされるかどうかを決定します。
+`:test`か`:test-not`の関数の最初の要素は*list-1*の要素であり、
+`:key`関数によって返却されたものです（もし`:key`が指定されたなら）。
+二番目の引数は*list-2*の要素であり、
+`:key`関数によって返却されたものです（もし`:key`が指定されたなら）。
+
+`:key`関数の引数は、*list-1*か*list-2*の要素です。
+返却値は、引数で与えられたリスト要素からなる、
+判定に使われる要素の部分です。
+もし`:key`が与えられないか、あるいは{nil!variable:link}が指定されたとき、
+*list-1*と*list-2*の要素自身がが使われ、
+`:test`か`:test-not`関数に供給されます。
+
+全てのマッチしたペアに対して、
+そのペアの2つの要素のうちのひとつが結果に含まれます。
+*list-1*か*list-2*のどちらかの要素が、
+もう一方の要素にマッチしないものがあれば、それが結果に含まれます。
+
+*list-1*と*list-2*に重複があるとき、
+重複している要素のうちひとつだけが結果に含まれます。
+*list-1*か*list-2*のどちらかの中に重複するものがあるときは、
+その冗長な要素は結果に現れるかもしれませんし、
+現れないかもしれません。
+
+結果の要素の順番は、*list-1*と*list-2*の順番を反映する必要はありません。
+適切に評価されたのであれば、*list-1*と*list-2*は、
+結果のリストに対して{eq:link}で一致するかもしれません。
+
+
+## {examples}
+
+```lisp
+(union '(a b c) '(f a d))
+=>  (A B C F D)
+OR=>  (B C F A D)
+OR=>  (D F A B C)
+(union '((x 5) (y 6)) '((z 2) (x 4)) :key #'car)
+=>  ((X 5) (Y 6) (Z 2))
+OR=>  ((X 4) (Y 6) (Z 2))
+
+(setq lst1 (list 1 2 '(1 2) "a" "b")
+      lst2 (list 2 3 '(2 3) "B" "C"))
+=>  (2 3 (2 3) "B" "C")
+(nunion lst1 lst2)
+=>  (1 (1 2) "a" "b" 2 3 (2 3) "B" "C") 
+OR=>  (1 2 (1 2) "a" "b" "C" "B" (2 3) 3)
+```
+
+
+## {side-effects}
+
+{nunion:link}は、*list-1*か*list-2*のリスト構造の`car`, `cdr`の
+どの部分も修正することが許されています。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list-1*と*list-2*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{intersection:link},
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+{nunion:link}の副作用は必要ないため、
+移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。
+
+@end
+

@@ -340,7 +340,7 @@
 <h2 id="例外">例外</h2>
 <p>関数<a href="14.2.car.html"><code>car</code></a>と<a href="14.2.car.html"><code>cdr</code></a>は、 引数がリストではないときは、 型<code>type-error</code>のエラーが発生します。 その他の関数（<a href="14.2.car.html"><code>caar</code></a>, <a href="14.2.car.html"><code>cadr</code></a>, …, <a href="14.2.car.html"><code>cddddr</code></a>）は、 エラーチェックのために、 <a href="14.2.car.html"><code>car</code></a>と<a href="14.2.car.html"><code>cdr</code></a>が定義されているように 適切に呼び出されたかのようにふるまう必要があります。</p>
 <h2 id="参考">参考</h2>
-<p><a href="14.2.rplaca.html"><code>rplaca</code></a>, <a href="14.2.first.html"><code>first</code></a>, <code>rest</code></p>
+<p><a href="14.2.rplaca.html"><code>rplaca</code></a>, <a href="14.2.first.html"><code>first</code></a>, <a href="14.2.rest.html"><code>rest</code></a></p>
 <h2 id="備考">備考</h2>
 <p>コンスの<code>car</code>は<a href="14.2.rplaca.html"><code>rplaca</code></a>を使うことによって変更できます。 コンスの<code>cdr</code>は<a href="14.2.rplaca.html"><code>rplacd</code></a>を使うことによって変更できます。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">car</span> x)    ==  (<span class="kw">first</span> x)</span>

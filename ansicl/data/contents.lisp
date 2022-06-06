@@ -128,6 +128,8 @@
 (text 5.1.1 "{place}と一般化された参照の概要"
       "Overview of Places and Generalized Reference")
 (text 5.1.1.1 "{place}のサブフォームの評価" "Evaluation of Subforms to Places")
+(text 5.1.2 "{place}の種類" "Kinds of Places")
+(text 5.1.2.2 "{place}としての関数呼び出しフォーム" "Function Call Forms as Places")
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
 (dictionary 5.3.defun)
@@ -161,6 +163,14 @@
 (dictionary 5.3.control-error)
 (dictionary 5.3.program-error)
 (dictionary 5.3.undefined-function)
+
+;; Chapter 6
+(index 6.2 "繰り返しの辞書" "Iteration Dictionary")
+(dictionary 6.2.do)
+(dictionary 6.2.dotimes)
+(dictionary 6.2.dolist)
+(dictionary 6.2.loop)
+(dictionary 6.2.loop-finish)
 
 ;; Chapter 7
 (text 7.1 "オブジェクトの作成と初期化" "Object Creation and Initialization")
@@ -305,6 +315,7 @@
 (index 12.2 "数の辞書" "Numbers Dictionary")
 (dictionary 12.2.max)
 (dictionary 12.2.+)
+(dictionary 12.2.incf)
 
 ;; Chapter 13
 (index 13.1 "文字の説明" "Character Concepts")
@@ -413,13 +424,33 @@
 
 ;; Chapter 17
 (index 17.3 "シーケンスの辞書" "Sequences Dictionary")
+(index 17.2 "テスト関数のルール" "Rules about Test Functions")
+(text 17.2.1 "2つの引数のテスト" "Satisfying a Two-Argument Test")
 (dictionary 17.3.sequence)
 (dictionary 17.3.copy-seq)
 (dictionary 17.3.elt)
+(dictionary 17.3.fill)
+(dictionary 17.3.make-sequence)
+(dictionary 17.3.subseq)
+(dictionary 17.3.map)
+(dictionary 17.3.map-into)
+(dictionary 17.3.reduce)
+(dictionary 17.3.count)
 (dictionary 17.3.length)
+(dictionary 17.3.reverse)
+(dictionary 17.3.nreverse)  ;; delete
+(dictionary 17.3.sort)
+(dictionary 17.3.find)
+(dictionary 17.3.position)
+(dictionary 17.3.search)
+(dictionary 17.3.mismatch)
+(dictionary 17.3.replace)
 (dictionary 17.3.substitute)
 (dictionary 17.3.nsubstitute) ;; delete
 (dictionary 17.3.concatenate)
+(dictionary 17.3.merge)
+(dictionary 17.3.remove)
+(dictionary 17.3.remove-duplicates)
 
 ;; Chapter 18
 (index 18.2 "ハッシュテーブルの辞書" "Hash Tables Dictionary")

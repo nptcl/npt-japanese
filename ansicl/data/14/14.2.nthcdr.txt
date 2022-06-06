@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NTHCDR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.nthcdr
+@name: nthcdr
+@type: function
+
+Function `NTHCDR`
+
+
+## {syntax}
+
+`nthcdr` *n* *list* => *tail*
+
+
+## {arguments-and-values}
+
+*n* - 非負の整数  
+*list* - リスト。{dotted-list}と{circular-list}を受け付けます。  
+*tail* - オブジェクト
+
+
+## {description}
+
+*list*に対して{cdr:link}を*n*回連続で呼び出して得られる
+末尾を返却します。
+
+
+## {examples}
+
+```lisp
+(nthcdr 0 '()) =>  NIL
+(nthcdr 3 '()) =>  NIL
+(nthcdr 0 '(a b c)) =>  (A B C)
+(nthcdr 2 '(a b c)) =>  (C)
+(nthcdr 4 '(a b c)) =>  ()
+(nthcdr 1 '(0 . 1)) =>  1
+
+(locally (declare (optimize (safety 3)))
+  (nthcdr 3 '(0 . 1)))
+Error: 1のCDRを取得しようとしました。
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*n*が非負の整数ではないとき、型{type-error:link}が発生します。
+
+*n*が1より大きい整数のとき、
+`(nthcdr n list)`によって行われるエラーチェックは、
+`(nthcdr (- n 1) (cdr list))`によるものと同じです。
+関数{cdr:link}をご確認ください。
+
+
+## {see-also}
+
+{cdr:link},
+{nth:link},
+{rest:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

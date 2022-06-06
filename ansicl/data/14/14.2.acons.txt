@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ACONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.acons
+@name: acons
+@type: function
+
+Function `ACONS`
+
+
+## {syntax}
+
+`acons` *key* *datum* *alist* => *new-alist*
+
+
+## {arguments-and-values}
+
+*key* - オブジェクト  
+*datum* - オブジェクト  
+*alist* - 連想リスト  
+*new-alist* - 連想リスト
+
+
+## {description}
+
+新しいコンスを作成し、その`cdr`が*alist*、`car`が別の新しいコンスであり、
+その`car`が*key*、`cdr`が*datum*です。
+
+
+## {examples}
+
+```lisp
+(setq alist '()) =>  NIL
+(acons 1 "one" alist) =>  ((1 . "one"))
+alist =>  NIL
+(setq alist (acons 1 "one" (acons 2 "two" alist))) =>  ((1 . "one") (2 . "two"))
+(assoc 1 alist) =>  (1 . "one")
+(setq alist (acons 1 "uno" alist)) =>  ((1 . "uno") (1 . "one") (2 . "two"))
+(assoc 1 alist) =>  (1 . "uno")
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{assoc:link},
+{pairlis:link}
+
+
+## {notes}
+
+```lisp
+(acons key datum alist) ==  (cons (cons key datum) alist)
+```
+
+@end
+

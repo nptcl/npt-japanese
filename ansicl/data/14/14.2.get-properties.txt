@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GET-PROPERTIES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.get-properties
+@name: get-properties
+@type: function
+
+Function `GET-PROPERTIES`
+
+
+## {syntax}
+
+`get-properties` *plist* *indicator-list* => *indicator*, *value*, *tail*
+
+
+## {arguments-and-values}
+
+*plist* - プロパティリスト  
+*indicator-list* - {proper-list}（{indicator}のリスト）  
+*indicator* - オブジェクト、*indicator-list*の要素  
+*value* - オブジェクト  
+*tail* - リスト
+
+
+## {description}
+
+{get-properties:link}は、複数のプロパティリストの{entry}を
+一度にすべて探すために使われます。
+
+それは、*plist*から*indicator-list*内のオブジェクトのひとつと
+同一な{indicator}をもつ、最初の{entry}を探します。
+もし、そのような{entry}が見つかったら、
+返却値の*indicator*と*value*は、
+それぞれプロパティの値に関連づいたプロパティの{indicator}であり、
+返却値*tail*は、{entry}が見つかった
+最初の*plist*の末尾（その`car`は*indicator*）です。
+もし、そのような{entry}が見つからなかったら、
+*indicator*, *value*, *tail*はすべて{nil!variable:link}です。
+
+
+## {examples}
+
+```lisp
+(setq x '()) =>  NIL
+(setq *indicator-list* '(prop1 prop2)) =>  (PROP1 PROP2)
+(getf x 'prop1) =>  NIL
+(setf (getf x 'prop1) 'val1) =>  VAL1
+(eq (getf x 'prop1) 'val1) =>  true
+(get-properties x *indicator-list*) =>  PROP1, VAL1, (PROP1 VAL1)
+x =>  (PROP1 VAL1)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{get:link},
+{getf:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

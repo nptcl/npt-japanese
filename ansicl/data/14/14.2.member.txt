@@ -1,0 +1,108 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MEMBER
+;;  Function MEMBER-IF
+;;  Function MEMBER-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.member
+@name: member
+@name: member-if
+@name: member-if-not
+@type: function
+
+Function `MEMBER`, `MEMBER-IF`, `MEMBER-IF-NOT`
+
+
+## {syntax}
+
+`member` *item* *list* &key *key* *test* *test-not* => *tail*  
+`member-if` *predicate* *list* &key *key* => *tail*  
+`member-if-not` *predicate* *list* &key *key* => *tail*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*list* - {proper-list}  
+*predicate* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*tail* - リスト
+
+
+## {description}
+
+{member:link}, {member-if:link}, {member-if-not:link}は
+それぞれ*list*から*item*を探すか、
+あるいは*test*をみなすトップレベルの要素を探します。
+*predicate*関数の引数は、*list*の要素です。
+
+もしある要素が*test*を満たすときは、
+その要素で始まるリストの末尾を返します。
+それ以外は{nil!variable:link}を返却します。
+
+*list*はトップレベルのみで検索されます。
+
+
+## {examples}
+
+```lisp
+(member 2 '(1 2 3)) =>  (2 3)                                 
+(member 2 '((1 . 2) (3 . 4)) :test-not #'= :key #'cdr) =>  ((3 . 4))
+(member 'e '(a b c d)) =>  NIL
+(member-if #'listp '(a b nil c d)) =>  (NIL C D)
+(member-if #'numberp '(a #\Space 5/3 foo)) =>  (5/3 FOO)
+(member-if-not #'zerop 
+                '(3 6 9 11 . 12)
+                :key #'(lambda (x) (mod x 3))) =>  (11 . 12)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をする必要があります。
+
+
+## {see-also}
+
+{find:link},
+{position:link},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+関数{member-if-not:link}は非推奨です。
+
+下記の例を考えます。
+
+```lisp
+(member 'a '(g (a y) c a d e a f)) =>  (A D E A F)
+```
+
+{member:link}によって返却された値は、`a`から始まるリストの位置と同一です。
+したがって、{member:link}の結果を{rplaca:link}することで、
+`a`が発見された場所のリストの部分を変更することができます。
+（{member:link}が{nil!variable:link}を返却していないという
+チェックがされていると仮定しています。）
+
+@end
+

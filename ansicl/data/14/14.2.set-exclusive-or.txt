@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET-EXCLUSIVE-OR
+;;  Function NSET-EXCLUSIVE-OR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.set-exclusive-or
+@name: set-exclusive-or
+@name: nset-exclusive-or
+@type: function
+
+Function `SET-EXCLUSIVE-OR`, `NSET-EXCLUSIVE-OR`
+
+
+## {syntax}
+
+`set-exclusive-or` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*  
+`nset-exclusive-or` *list-1* *list-2* &key *key* *test* *test-not* => *result-list*
+
+
+## {arguments-and-values}
+
+*list-1* - {proper-list}  
+*list-2* - {proper-list}  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*result-list* - リスト
+
+
+## {description}
+
+{set-difference:link}は、*list-1*と*list-2*に
+正確に一度現れている要素をリストで返却します。
+
+{nset-exclusive-or:link}は、{set-exclusive-or:link}の破壊的バージョンです。
+
+*list-1*のひとつの要素と、*list-2*のひとつの要素からなる、
+全ての順序付けされたペアに対して、
+`:test`か`:test-not`を使ってテストが満たされるかどうかを決定します。
+
+もし`:key`が与えられたなら、
+*list-1*か*list-2*の要素をテストする部分を引き出すときに使われます。
+`:test`か`:test-not`の関数の最初の要素は*list-1*の要素であり、
+`:key`関数によって返却されたものです（もし`:key`が指定されたなら）。
+二番目の引数は*list-2*の要素であり、
+`:key`関数によって返却されたものです（もし`:key`が指定されたなら）。
+もし`:key`が与えられないか、あるいは{nil!variable:link}が指定されたとき、
+*list-1*と*list-2*の要素が使われます。
+
+結果は、*list-1*と*list-2*の要素のうち、
+マッチするペアがないものを正確に含んでいます。
+
+{set-difference:link}の結果のリストは、
+*list-1*か*list-2*のどちらかが
+ストレージ上で共有されているかもしれません。
+
+
+## {examples}
+
+```lisp
+(setq lst1 (list 1 "a" "b")
+      lst2 (list 1 "A" "b")) =>  (1 "A" "b")
+(set-exclusive-or lst1 lst2) =>  ("b" "A" "b" "a")
+(set-exclusive-or lst1 lst2 :test #'equal) =>  ("A" "a")
+(set-exclusive-or lst1 lst2 :test 'equalp) =>  NIL 
+(nset-exclusive-or lst1 lst2) =>  ("a" "b" "A" "b") 
+(setq lst1 (list (("a" . "b") ("c" . "d") ("e" . "f"))))
+=>  (("a" . "b") ("c" . "d") ("e" . "f"))
+(setq lst2 (list (("c" . "a") ("e" . "b") ("d" . "a"))))
+=>  (("c" . "a") ("e" . "b") ("d" . "a")) 
+(nset-exclusive-or lst1 lst2 :test #'string= :key #'cdr)
+=>  (("c" . "d") ("e" . "f") ("c" . "a") ("d" . "a")) 
+lst1 =>  (("a" . "b") ("c" . "d") ("e" . "f"))
+lst2 =>  (("c" . "a") ("d" . "a")) 
+```
+
+
+## {side-effects}
+
+{nset-exclusive-or:link}は、*list-1*か*list-2*のリスト構造の`car`, `cdr`の
+どの部分も修正することが許されています。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list-1*と*list-2*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{3.2.1:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+{nset-exclusive-or:link}の副作用は必要ないため、
+移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。
+
+@end
+

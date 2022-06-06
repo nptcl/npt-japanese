@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RASSOC
+;;  Function RASSOC-IF
+;;  Function RASSOC-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.rassoc
+@name: rassoc
+@name: rassoc-if
+@name: rassoc-if-not
+@type: function
+
+Function `RASSOC`, `RASSOC-IF`, `RASSOC-IF-NOT`
+
+
+## {syntax}
+
+`rassoc` *item* *alist* &key *key* *test* *test-not* => *entry*  
+`rassoc-if` *predicate* *alist* &key *key* => *entry*  
+`rassoc-if-not` *predicate* *alist* &key *key* => *entry*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*alist* - 連想リスト  
+*predicate* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*entry* - *alist*の要素であるコンスか、{nil!variable:link}
+
+
+## {description}
+
+{rassoc:link}, {rassoc-if:link}, {rassoc-if-not:link}は、
+*alist*に`cdr`が*test*を満たすようなコンスがあれば返却し、
+そのようなコンスが見つからないときは{nil!variable:link}を返却します。
+
+もし*alist*のペアが現れる場所に{nil!variable:link}あったとは無視します。
+
+
+## {examples}
+
+```lisp
+(setq alist '((1 . "one") (2 . "two") (3 . 3))) 
+=>  ((1 . "one") (2 . "two") (3 . 3))
+(rassoc 3 alist) =>  (3 . 3)
+(rassoc "two" alist) =>  NIL
+(rassoc "two" alist :test 'equal) =>  (2 . "two")
+(rassoc 1 alist :key #'(lambda (x) (if (numberp x) (/ x 3)))) =>  (3 . 3)
+(rassoc 'a '((a . b) (b . c) (c . a) (z . a))) =>  (C . A)
+(rassoc-if #'stringp alist) =>  (1 . "one")
+(rassoc-if-not #'vectorp alist) =>  (3 . 3)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{assoc:link},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`は、非推奨です。
+
+関数{rassoc-if-not:link}は、非推奨です。
+
+*alist*を更新するために、
+{rassoc:link}の結果が{nil!variable:link}でなければ、
+{rplaca:link}を使うことができます。
+
+次の2つの式
+
+```lisp
+(rassoc item list :test fn)
+(find item list :test fn :key #'cdr)
+```
+
+これらは、ひとつの例外を除いては同じ意味です。
+例外は、*item*が{nil!variable:link}であり、
+かつ*alist*のペアの場所に{nil!variable:link}が現れるときです。
+関数{assoc:link}をご確認下さい。
+
+@end
+

@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ADJOIN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.adjoin
+@name: adjoin
+@type: function
+
+Function `ADJOIN`
+
+
+## {syntax}
+
+`adjoin` *item* *list* &key *key* *test* *test-not* => *new-list*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*list* - {proper-list}  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取り{generalized-boolean}を返却する関数の指定子、
+または{nil!variable:link}  
+*new-list* - リスト
+
+
+## {description}
+
+*item*と同じものが、*list*の既存の要素にあるかどうかをテストします。
+もし*item*が既存の要素に存在しないときは、
+{adjoin:link}は、{cons!function:link}によって*list*に追加したあと、
+その結果を返却します。
+存在するときは、何も加えないまま元の*list*を返却します。
+
+*test*, *test-not*と*key*は、*list*の要素と*item*が
+同じかどうかをどのように決めるかに影響します。
+詳しい説明は{17.2.1:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(setq slist '()) =>  NIL 
+(adjoin 'a slist) =>  (A) 
+slist =>  NIL 
+(setq slist (adjoin '(test-item 1) slist)) =>  ((TEST-ITEM 1)) 
+(adjoin '(test-item 1) slist) =>  ((TEST-ITEM 1) (TEST-ITEM 1)) 
+(adjoin '(test-item 1) slist :test 'equal) =>  ((TEST-ITEM 1)) 
+(adjoin '(new-test-item 1) slist :key #'cadr) =>  ((TEST-ITEM 1)) 
+(adjoin '(new-test-item 1) slist) =>  ((NEW-TEST-ITEM 1) (TEST-ITEM 1)) 
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*list*が{proper-list}ではないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{pushnew:link},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+```lisp
+(adjoin item list :key fn)
+  ==  (if (member (fn item) list :key fn) list (cons item list))
+```
+
+@end
+

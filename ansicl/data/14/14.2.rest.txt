@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  14. コンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor REST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 14.2.rest
+@name: rest
+@type: Accessor
+
+Accessor `REST`
+
+
+## {syntax}
+
+`rest` *list* => *tail*  
+(`setf` (`rest` *list*) *new-tail*)
+
+
+## {arguments-and-values}
+
+*list* - リスト。{dotted-list}と{circular-list}を受け付けます。  
+*tail* - オブジェクト
+
+
+## {description}
+
+{rest:link}は{cdr:link}としての操作と同じ動作をします。
+覚えやすいように{first:link}を補完しています。
+具体的には下記のとおりです。
+
+```lisp
+(rest list) ==  (cdr list)
+(setf (rest list) new-tail) ==  (setf (cdr list) new-tail)
+```
+
+
+## {examples}
+
+```lisp
+(rest '(1 2)) =>  (2)
+(rest '(1 . 2)) =>  2
+(rest '(1)) =>  NIL
+(setq *cons* '(1 . 2)) =>  (1 . 2)
+(setf (rest *cons*) "two") =>  "two"
+*cons* =>  (1 . "two")
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cdr:link},
+{nthcdr:link}
+
+
+## {notes}
+
+{rest:link}は、様式上として{cdr:link}よりも好まれる場合があり、
+それは引数が主観的にコンスというよりもならリストとして見られるときです。
+
+@end
+

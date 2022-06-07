@@ -38,7 +38,7 @@
 (replace valid-array-index "有効な配列のインデックス")
 (replace valid-array-dimension "有効な配列の次元")
 (replace fill-pointer "fill-pointer")
-(replace bounding-index-designator "境界インデックス指定子")
+(replace bounding-index-designators "境界インデックス指定子")
 
 (replace method-signatures "メソッド宣言")
 (replace initialization-arguments "初期化引数")
@@ -81,4 +81,14 @@
 (replace exhaustive-partition "完全な分割")
 (replace place "`place`")
 (replace entry "エントリー")
+
+(replace proper-sequence "正常なシーケンス")
+(replace actual-array-element-type "実際のarray-element-type")
+(replace valid-sequence-index "有効なシーケンスのインデックス")
+(replace recognizable-subtype "サブタイプ")
+(replace bounding-index "境界インデックス")
+(replace displaced-array "displaced-array")
+
+(replace function-designator "関数指定子")
+(replace spreadable-argument-list-designator "広げられる引数リスト指定子")
 

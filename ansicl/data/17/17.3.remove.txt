@@ -1,0 +1,199 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REMOVE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.remove
+@name: remove
+@name: remove-if
+@name: remove-if-not
+@name: delete
+@name: delete-if
+@name: delete-if-not
+@type: function
+
+Function `REMOVE`
+
+
+## {syntax}
+
+`remove` *item* *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *count* *key*
+ => *result-sequence*  
+`remove-if` *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*
+ => *result-sequence*  
+`remove-if-not` *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*
+ => *result-sequence*  
+`delete` *item* *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *count* *key*
+ => *result-sequence*  
+`delete-if` *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*
+ => *result-sequence*  
+`delete-if-not` *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*
+ => *result-sequence*  
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+
+*sequence* - {proper-sequence}  
+*predicate* - 1つの引数をとり{generalized-boolean}を返却する関数の指定子  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*count* - 整数か{nil!variable:link}。デフォルトは{nil!variable:link}。  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*result-sequence* - シーケンス
+
+
+## {description}
+
+{remove:link}、{remove-if:link}、{remove-if-not:link}は、
+*sequence*からテストを満たした要素を削除したものを返却します。
+
+{delete:link}、{delete-if:link}、{delete-if-not:link}は、
+それぞれ{remove:link}、{remove-if:link}、{remove-if-not:link}に
+似ていますが、これらは*sequence*を修正します。
+
+もし*sequence*が`vector`のとき、返却値は`vector`であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値はリストです。
+
+*from-end*が*true*のときは、
+ただ*count*が指定されたときが重要になります。
+このような場合、右端から（左端ではなく）テストを満たす
+*count*の要素だけが削除されます。
+
+*count*が与えられたとき、削除する要素数を制限できます。
+もしテストを満たす要素が*count*を越えていたときは、
+それらの要素は左端か右端（*from-end*の値による）から、
+ただ*count*で指定された数だけ削除されます。
+もし*count*負の値が指定されたときは、
+`0`が指定されたかのようにふるまいます。
+もし*count*が{nil!variable:link}のときは、
+*item*にマッチした全てに影響します。
+
+これらの全ての関数は、削除されなかった要素は、
+結果内に*sequence*と同じ順序で現れます。
+
+{remove:link}、{remove-if:link}、{remove-if-not:link}は、
+*sequence*と同じ型をもつシーケンスであり、
+*start*, *end*に囲まれたサブシーケンスのテストを満たし
+削除されたもの以外は同じ要素を返却します。
+これは非破壊的な操作です。
+もし要素の削除が必要になった時は、コピーが返却されます。
+{remove:link}の返却値は、*sequence*を共有するかもしれません。
+もし要素に削除が生じなかったときは、
+入力の*sequence*と同一のものが返却される可能性があります。
+
+{delete:link}、{delete-if:link}、{delete-if-not:link}は、
+*sequence*と同じ型をもつシーケンスであり、
+*start*, *end*に囲まれたサブシーケンスのテストを満たし
+削除されたもの以外は同じ要素を返却します。
+*sequence*は返却値の構築のために破壊されるかもしれません。
+しかし、返却値は*sequence*と同一の場合もあれば、
+そうではない場合もあります。
+
+{delete:link}は、*sequence*がリストのときは、
+*sequence*のトップレベルのリスト構造の
+どの{car:link}, {cdr:link}でも{setf:link}することが許されています。
+もし*sequence*が`vector`のときは、
+{delete:link}は`vector`の次元を変更し、
+その要素を並べ替えをせず、新しい位置にスライドして
+返却値の`vector`を構築することが許されています。
+
+delete-ifは以下のように正確に動作するように制約されています。
+
+```lisp
+ (delete nil sequence
+             :test #'(lambda (ignore item) (funcall test item))
+             ...)
+```
+
+
+## {examples}
+
+```lisp
+(remove 4 '(1 3 4 5 9)) =>  (1 3 5 9)
+(remove 4 '(1 2 4 1 3 4 5)) =>  (1 2 1 3 5)
+(remove 4 '(1 2 4 1 3 4 5) :count 1) =>  (1 2 1 3 4 5)
+(remove 4 '(1 2 4 1 3 4 5) :count 1 :from-end t) =>  (1 2 4 1 3 5)
+(remove 3 '(1 2 4 1 3 4 5) :test #'>) =>  (4 3 4 5)
+(setq lst '(list of four elements)) =>  (LIST OF FOUR ELEMENTS)
+(setq lst2 (copy-seq lst)) =>  (LIST OF FOUR ELEMENTS)
+(setq lst3 (delete 'four lst)) =>  (LIST OF ELEMENTS)
+(equal lst lst2) =>  false
+(remove-if #'oddp '(1 2 4 1 3 4 5)) =>  (2 4 4)
+(remove-if #'evenp '(1 2 4 1 3 4 5) :count 1 :from-end t) 
+=>  (1 2 4 1 3 5)
+(remove-if-not #'evenp '(1 2 3 4 5 6 7 8 9) :count 2 :from-end t)
+=>  (1 2 3 4 5 6 8)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete 4 tester) =>  (1 2 1 3 5)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete 4 tester :count 1) =>  (1 2 1 3 4 5)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete 4 tester :count 1 :from-end t) =>  (1 2 4 1 3 5)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete 3 tester :test #'>) =>  (4 3 4 5)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete-if #'oddp tester) =>  (2 4 4)
+(setq tester (list 1 2 4 1 3 4 5)) =>  (1 2 4 1 3 4 5)
+(delete-if #'evenp tester :count 1 :from-end t) =>  (1 2 4 1 3 5)    
+(setq tester (list 1 2 3 4 5 6)) =>  (1 2 3 4 5 6) 
+(delete-if #'evenp tester) =>  (1 3 5) 
+tester =>  implementation-dependent
+(setq foo (list 'a 'b 'c)) =>  (A B C)
+(setq bar (cdr foo)) =>  (B C)
+(setq foo (delete 'b foo)) =>  (A C)
+bar =>  ((C)) or ...
+(eq (cdr foo) (car bar)) =>  T or ...
+```
+
+
+## {side-effects}
+
+{delete:link}、{delete-if:link}、{delete-if-not:link}の場合、
+*sequence*は返却値の構築のために破壊されるかもしれません。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+もし*sequence*が`vector`なら、
+返却値は`simple`かもしれませんし、そうでないかもしれません。
+また、返却値は*sequence*と同一かもしれませんし、
+そうでないかもしれません。
+
+`:test-not`パラメーターは非推奨です。
+
+関数{delete-if-not:link}と{remove-if-not:link}は非推奨です。
+
+@end
+

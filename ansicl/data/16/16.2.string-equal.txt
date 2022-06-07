@@ -58,9 +58,9 @@ Function `STRING=`, `STRING/=`,
 
 *string1* - {string-designator}  
 *string2* - {string-designator}  
-*start1*, *end1* - 文字列の{bounding-index-designator}。
+*start1*, *end1* - 文字列の{bounding-index-designators}。
 *start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
-*start2*, *end2* - 文字列の{bounding-index-designator}。
+*start2*, *end2* - 文字列の{bounding-index-designators}。
 *start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
 *generalized-boolean* - {generalized-boolean}
 *mismatch-index* - *string1*の境界内インデックスか、{nil!variable:link}

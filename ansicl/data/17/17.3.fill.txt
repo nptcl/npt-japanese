@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.fill
+@name: fill
+@type: function
+
+Function `FILL`
+
+
+## {syntax}
+
+`fill` *sequence* *item* &key *start* *end* => *sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*item* - オブジェクト  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+
+
+## {description}
+
+*start*と*end*の境界内にある*sequence*の要素を、
+*item*に置き換えます。
+
+
+## {examples}
+
+```lisp
+(fill (list 0 1 2 3 4 5) '(444)) =>  ((444) (444) (444) (444) (444) (444))
+(fill (copy-seq "01234") #\e :start 3) =>  "012ee"
+(setq x (vector 'a 'b 'c 'd 'e)) =>  #(A B C D E)
+(fill x 'z :start 1 :end 3) =>  #(A Z Z D E)
+x =>  #(A Z Z D E)
+(fill x 'p) =>  #(P P P P P)
+x =>  #(P P P P P)
+```
+
+
+## {side-effects}
+
+*sequence*は破壊的に修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*start*が非負の整数ではないとき、
+型{type-error:link}のエラーが発生します。
+*end*が非負の整数ではなく{nil!variable:link}でもないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{replace:link},
+{nsubstitute:link}
+
+
+## {notes}
+
+```lisp
+(fill sequence item) == (nsubstitute-if item (constantly t) sequence)
+```
+
+@end
+

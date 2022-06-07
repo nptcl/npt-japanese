@@ -1,0 +1,101 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MISMATCH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.mismatch
+@name: mismatch
+@type: function
+
+Function `MISMATCH`
+
+
+## {syntax}
+
+`mismatch` *sequence-1* *sequence-2*
+ &key *from-end* *test* *test-not* *key* *start1* *start2* *end1* *end2*  
+=> *position*
+
+
+## {arguments-and-values}
+
+*sequence-1* - {proper-sequence}  
+*sequence-2* - {proper-sequence}  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*start1*, *end1* - *sequence-1*の{bounding-index-designators}。
+デフォルトは*start1*, *end1*それぞれ`0`と{nil!variable:link}。  
+*start2*, *end2* - *sequence-2*の{bounding-index-designators}。
+デフォルトは*start2*, *end2*それぞれ`0`と{nil!variable:link}。  
+*position* - *sequence-2*の{bounding-index}か、{nil!variable:link}
+
+
+## {description}
+
+指定された*sequence-1*と*sequence-2*のサブシーケンスを
+要素ごとに比較します。
+
+*key*の引数は、*sequence-1*と*sequence-2*の両方が使われます。
+
+もし*sequence-1*と*sequence-2*の長さが等しく、
+全ての要素も等しいときは、*false*が返却されます。
+それ以外の場合は、返却値は非負の整数であり、
+2つのサブシーケンスがマッチしなかった、
+もっとも右側か左側（*from-end*の値による）の、
+*sequence-1*内でのインデックスを表します。
+どちらかのサブシーケンスが他方より短く、
+前の方で一致する部分がある場合、
+返却値は、最後にテストをした位置より先の、
+*sequence-1*に対する相対的なインデックスになります。
+
+もし*from-end*が*true*のときは、
+2つのシーケンスの異なった位置の右端のインデックスに
+`1`を加えた場所が返却されます。
+実際の比較は、サブシーケンスは右端で揃えられ、
+まず最後の要素が比較され、つぎに最後から2番目が比較され、
+それが繰り返されます。
+返却される値は、*sequence-1*からの相対的なインデックスです。
+
+
+## {examples}
+
+```lisp
+(mismatch "abcd" "ABCDE" :test #'char-equal) =>  4
+(mismatch '(3 2 1 1 2 3) '(1 2 3) :from-end t) =>  3
+(mismatch '(1 2 3) '(2 3 4) :test-not #'eq :key #'oddp) =>  NIL
+(mismatch '(1 2 3 4 5 6) '(3 4 5 6 7) :start1 2 :end2 4) =>  NIL 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{3.6:ab}
+
+
+## {notes}
+
+The :test-not argument is deprecated.
+
+@end
+
+

@@ -1,0 +1,91 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-SEQUENCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.make-sequence
+@name: make-sequence
+@type: function
+
+Function `MAKE-SEQUENCE`
+
+
+## {syntax}
+
+`make-sequence` *result-type* *size* &key *initial-element* => *sequence*
+
+
+## {arguments-and-values}
+
+*result-type* - {sequence:link}の{type-specifier}  
+*size* - 非負の整数  
+*initial-element* - オブジェクト。デフォルトは{implementation-dependent}。  
+*sequence* - {proper-sequence}
+
+
+## {description}
+
+型が*result-type*、長さが*size*、各要素が*initial-element*で初期化された、
+シーケンスが返却されます。
+
+もし*result-type*が{list!system-class:link}のサブタイプの場合、
+リストが返却されます。
+
+もし*result-type*が{vector!system-class:link}のサブタイプの場合、
+実装が*result-type*を要素の型として決めることができるのであれば、
+その要素の型をアップグレードした結果が返却値の配列の要素の型になります。
+しかし実装が要素の型を決定できないか、あるいは`*`のときは、
+返却値の配列の要素の型は{t!system-class:link}になります。
+その他の場合はエラーが発生します。
+
+
+## {examples}
+
+```lisp
+(make-sequence 'list 0) =>  ()
+(make-sequence 'string 26 :initial-element #\.) 
+=>  ".........................."
+(make-sequence '(vector double-float) 2
+               :initial-element 1d0)
+=>  #(1.0d0 1.0d0)
+(make-sequence '(vector * 2) 3) should signal an error
+(make-sequence '(vector * 4) 3) should signal an error
+```
+
+
+## {affected-by}
+
+実装。
+
+
+## {exceptional-situations}
+
+*initial-element*が、
+返却値の*sequence*に格納できないオブジェクトであったときの結果は不明です。
+
+*result-type*が、
+{list!system-class:link}の{recognizable-subtype}でも、
+{vector!system-class:link}の{recognizable-subtype}でもないとき、
+型{type-error:link}のエラーが発します。
+
+*result-type*で指定した要素数と*size*の値が違う場合は、
+型{type-error:link}のエラーが発します。
+
+
+## {see-also}
+
+{make-array:link},
+{make-list:link}
+
+
+## {notes}
+
+```lisp
+(make-sequence 'string 5) == (make-string 5)
+```
+
+@end
+

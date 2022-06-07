@@ -1,0 +1,102 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REPLACE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.replace
+@name: replace
+@type: function
+
+Function `REPLACE`
+
+
+## {syntax}
+
+`replace` *sequence-1* *sequence-2*
+ &key *start1* *end1* *start2* *end2* => *sequence-1*
+
+
+## {arguments-and-values}
+
+*sequence-1* - シーケンス  
+*sequence-2* - シーケンス  
+*start1*, *end1* - *sequence-1*の{bounding-index-designators}。
+デフォルトは*start1*, *end1*それぞれ`0`と{nil!variable:link}。  
+*start2*, *end2* - *sequence-2*の{bounding-index-designators}。
+デフォルトは*start2*, *end2*それぞれ`0`と{nil!variable:link}。  
+
+
+## {description}
+
+*sequence-1*の*start1*と*end1*に囲まれた要素が
+*sequence-2*の*start2*と*end2*に囲まれた要素によって
+置換されることによって、*sequence-1*が破壊的に修正されます。
+
+*sequence-1*は、*sequence-2*から連続した要素をコピーすることによって
+破壊的に修正されます。
+*sequence-2*の*start2*と*end2*に囲まれたサブシーケンスの各要素は、
+*sequence-1*の*start1*と*end1*に囲まれたサブシーケンスにコピーされます。
+もしこれらのサブシーケンスの長さが等しくないときは、
+コピーされる要素数はもっとも短い方で決定されます。
+長いサブシーケンスの終わり付近の余分な要素は、
+操作には影響されません。
+コピーされる要素数は、次のようにあらわされます。
+
+```lisp
+(min (- end1 start1) (- end2 start2))
+```
+
+*sequence-1*と*sequence-2*が同じオブジェクトであり、
+変更する領域がコピーされる領域と重複しているときは、
+コピー元の領域全体を別の場所にコピーし、
+コピー元の領域だけをコピー元に戻したように行われます。
+しかし、*sequence-1*と*sequence-2*が同じではなく、
+しかし変更される領域とコピーされる領域が重複している場合
+（おそらくリスト構造が共有されているか、{displaced-array}のとき）、
+置換操作後の*sequence-1*のサブシーケンスは
+予想できない内容になっているでしょう。
+もし*sequence-2*の要素が、
+*sequence-1*に格納できる型ではないときは
+エラーが発生します。
+
+
+## {examples}
+
+```lisp
+(replace "abcdefghij" "0123456789" :start1 4 :end1 7 :start2 4) 
+=>  "abcd456hij"
+(setq lst "012345678") =>  "012345678"
+(replace lst lst :start1 2 :start2 0) =>  "010123456"
+lst =>  "010123456"
+```
+
+
+## {side-effects}
+
+*sequence-1*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{fill:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

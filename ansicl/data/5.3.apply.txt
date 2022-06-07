@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function APPLY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.apply
+@name: apply
+@type: function
+
+Function `APPLY`
+
+
+## {syntax}
+
+`apply` *function* &rest *args+* => *result\**
+
+
+## {arguments-and-values}
+
+*function* - {function-designator}  
+*args* - {spreadable-argument-list-designator}  
+*result* - *function*の返却値
+
+
+## {description}
+
+*function*を*args*で実行します。
+
+*function*が`&rest`経由で引数を受け取るとき、
+実装は`rest`パラメーターに、
+{apply:link}の最後の引数で共有されている構造のオブジェクトを、
+束縛することが許されています
+（ただし要求されているわけではありません）。
+関数はそれが{apply:link}経由か、
+あるいは{apply:link}の最後の引数が定数で呼び出されかどうかを
+検出できないため、
+適合するプログラムは、
+`rest`のリスト構造が新しいコンスであることに頼ってはいけませんし、
+またそのリスト構造を修正してもいけません。
+
+
+## {examples}
+
+```lisp
+(setq f '+) =>  +
+(apply f '(1 2)) =>  3
+(setq f #'-) =>  #<FUNCTION ->
+(apply f '(1 2)) =>  -1
+(apply #'max 3 5 '(2 7 3)) =>  7
+(apply 'cons '((+ 2 3) 4)) =>  ((+ 2 3) . 4)
+(apply #'+ '()) =>  0
+
+(defparameter *some-list* '(a b c))
+(defun strange-test (&rest x) (eq x *some-list*))
+(apply #'strange-test *some-list*) =>  implementation-dependent
+
+(defun bad-boy (&rest x) (rplacd x 'y))
+(bad-boy 'a 'b 'c) has undefined consequences.
+(apply #'bad-boy *some-list*) has undefined consequences.
+(defun foo (size &rest keys &key double &allow-other-keys)
+  (let ((v (apply #'make-array size :allow-other-keys t keys)))
+    (if double (concatenate (type-of v) v v) v)))
+(foo 4 :initial-contents '(a b c d) :double t)
+   =>  #(A B C D A B C D)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{funcall:link},
+{fdefinition:link},
+{function:link},
+{3.1:ab},
+{5.1.2.5:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -39,7 +39,7 @@ Function `STRING-UPCASE`, `STRING-DOWNCASE`, `STRING-CAPITALIZE`,
 *string* - {string-designator}。ただし、
 {nstring-upcase:link}, {nstring-downcase:link}, {nstring-capitalize:link}の場合は、
 文字列出なければならない。  
-*start*, *end* - 文字列の{bounding-index-designator}。
+*start*, *end* - 文字列の{bounding-index-designators}。
 *start*と*end*の標準値はそれぞれ`0`と{nil!variable:link}。  
 *cased-string* - 文字列。
 

@@ -19,7 +19,7 @@
 ジェネリック関数{update-instance-for-different-class:link}は、
 {change-class:link}によって計算された引数により実行されます。
 最初の引数は、更新されるインスタンスのコピーであり、
-クラス`Cfromの`インスタンスです。
+クラス`Cfrom`のインスタンスです。
 このコピーは、ジェネリック関数{change-class:link}に動的エクステントとして保有されます。
 二番目の引数は、{change-class:link}によって更新されるインスタンスであり、
 クラス`Cto`のインスタンスです。残りの引数は、{initialization-arguments}リストです。

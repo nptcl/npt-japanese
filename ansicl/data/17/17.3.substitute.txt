@@ -1,0 +1,199 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SUBSTITUTE
+;;  Function SUBSTITUTE-IF
+;;  Function SUBSTITUTE-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.substitute
+@name: substitute
+@name: substitute-if
+@name: substitute-if-not
+@name: nsubstitute
+@name: nsubstitute-if
+@name: nsubstitute-if-not
+@type: function
+
+Function `SUBSTITUTE`, `SUBSTITUTE-IF`, `SUBSTITUTE-IF-NOT`
+
+
+## {syntax}
+
+`substitute` *newitem* *olditem* *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *count* *key*  
+=> *result-sequence*
+
+`substitute-if` *newitem* *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*  
+=> result-sequence
+
+`substitute-if-not` *newitem* *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*  
+=> result-sequence
+
+`nsubstitute` *newitem* *olditem* *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *count* *key*  
+=> *result-sequence*
+
+`nsubstitute-if` *newitem* *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*  
+=> result-sequence
+
+`nsubstitute-if-not` *newitem* *predicate* *sequence*
+ &key *from-end* *start* *end* *count* *key*  
+=> result-sequence
+
+
+## {arguments-and-values}
+
+*newitem* - オブジェクト  
+*olditem* - オブジェクト  
+*sequence* - {proper-sequence}  
+*predicate* - 1つの引数をとり{generalized-boolean}を返却する関数の指定子  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*count* - 整数か{nil!variable:link}。デフォルトは{nil!variable:link}。  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*result-sequence* - シーケンス
+
+
+## {description}
+
+{substitute:link}、{substitute-if:link}、{substitute-if-not:link}は、
+テストを満たす各要素が*newitem*に置き換えられた、
+*sequence*のコピーを返却します。
+
+{nsubstitute:link}、{nsubstitute-if:link}、{nsubstitute-if-not:link}は、
+それぞれ{substitute:link}、{substitute-if:link}、{substitute-if-not:link}と似ていますが、
+しかし*sequence*を修正するでしょう。
+
+もし*sequence*が`vector`のとき、返却値は`vector`であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値はリストです。
+
+*count*が与えられたとき、変更する要素数を制限できます。
+もしテストを満たす要素が*count*を越えていたときは、
+それらの要素は左端か右端（*from-end*の値による）から、
+ただ*count*で指定された数だけ置き換えられます。
+もし*count*負の値が指定されたときは、
+`0`が指定されたかのようにふるまいます。
+もし*count*が{nil!variable:link}のときは、
+*item*にマッチした全てに影響します。
+
+*from-end*が*true*のときは、
+ただ*count*が指定されたとき（{nil!variable:link}以外）が
+重要になります。
+このような場合、右端から（左端ではなく）テストを満たす
+*count*の要素だけが置き換えられます。
+
+*predicate*, *test*, *test-not*は、
+各シーケンスの要素に対して一回以上呼び出されるかもしれず、
+それらの副作用はどんな順番でも生じます。
+
+これらすべての関数の返却値は、
+*sequence*と同じ型をもつシーケンスであり、
+*start*, *end*に囲まれたサブシーケンスのテストを満たし
+*newitem*に置き換えが生じたもの以外は、
+同じ要素を持ちます。
+
+{substitute:link}、{substitute-if:link}、{substitute-if-not:link}は、
+もし要素に変更が生じなかったときは、
+*sequence*と共有されたシーケンスか、
+あるいは入力の*sequence*と同一のものが返却されます。
+
+{nsubstitute:link}、{nsubstitute-if:link}、{nsubstitute-if-not:link}は、
+もし*sequence*がリストのときは{setf:link}の{car:link}を、
+もし*sequence*が`vector`のときは{aref:link}を*sequence*に対して行い、
+*newitem*に置き換えます。
+もし*sequence*がリストのときは、
+トップレベルのリストのどの`cdr`も変更できません。
+
+
+## {examples}
+
+```lisp
+(substitute #\. #\SPACE "0 2 4 6") =>  "0.2.4.6"
+(substitute 9 4 '(1 2 4 1 3 4 5)) =>  (1 2 9 1 3 9 5)
+(substitute 9 4 '(1 2 4 1 3 4 5) :count 1) =>  (1 2 9 1 3 4 5)
+(substitute 9 4 '(1 2 4 1 3 4 5) :count 1 :from-end t)
+=>  (1 2 4 1 3 9 5)
+(substitute 9 3 '(1 2 4 1 3 4 5) :test #'>) =>  (9 9 4 9 3 4 5)
+
+(substitute-if 0 #'evenp '((1) (2) (3) (4)) :start 2 :key #'car)
+=>  ((1) (2) (3) 0)
+(substitute-if 9 #'oddp '(1 2 4 1 3 4 5)) =>  (9 2 4 9 9 4 9)
+(substitute-if 9 #'evenp '(1 2 4 1 3 4 5) :count 1 :from-end t)
+=>  (1 2 4 1 3 9 5)
+
+(setq some-things (list 'a 'car 'b 'cdr 'c)) =>  (A CAR B CDR C)
+(nsubstitute-if "function was here" #'fboundp some-things
+                :count 1 :from-end t) =>  (A CAR B "function was here" C)
+some-things =>  (A CAR B "function was here" C)
+(setq alpha-tester (copy-seq "ab ")) =>  "ab "
+(nsubstitute-if-not #\z #'alpha-char-p alpha-tester) =>  "abz"
+alpha-tester =>  "abz"
+```
+
+
+## {side-effects}
+
+{nsubstitute:link}、{nsubstitute-if:link}、{nsubstitute-if-not:link}は、
+*sequence*を修正します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{subst:link},
+{nsubst:link},
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+もし*sequence*が`vector`なら、
+返却値は`simple`かもしれませんし、そうでないかもしれません。
+また、返却値は*sequence*と同一かもしれませんし、
+そうでないかもしれません。
+
+`:test-not`パラメーターは非推奨です。
+
+関数{substitute-if-not:link}と{nsubstitute-if-not:link}は非推奨です。
+
+副作用による変形（{nsubstitute:link}など）は、
+通過するパスを変更する可能性があるので、
+共有構造や循環構造が現れるものでは、
+副作用による修正がないものと比べると、
+驚くべき方法で変化する可能性があります。
+このような挙動を見るために、
+いくつかの実装では見られるかもしれない、
+次のような副作用の動作を考えてみましょう。
+
+```lisp
+(defun test-it (fn)
+  (let ((x (cons 'b nil)))
+    (rplacd x x)
+    (funcall fn 'a 'b x :count 1)))
+(test-it #'substitute) =>  (A . #1=(B . #1#))
+(test-it #'nsubstitute) =>  (A . #1#)
+```
+
+@end
+

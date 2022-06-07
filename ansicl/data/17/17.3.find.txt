@@ -1,0 +1,99 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FIND
+;;  Function FIND-IF
+;;  Function FIND-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.find
+@name: find
+@name: find-if
+@name: find-if-not
+@type: function
+
+Function `FIND`, `FIND-IF`, `FIND-IF-NOT`
+
+
+## {syntax}
+
+`find` *item* *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *key* => *element*  
+`find-if` *predicate* *sequence* &key *from-end* *start* *end* *key* => *element*  
+`find-if-not` *predicate* *sequence* &key *from-end* *start* *end* *key* => *element*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*sequence* - {proper-sequence}  
+*predicate* - 1つの引数をとり{generalized-boolean}を返却する関数の指定子  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*element* - *sequence*の要素か、{nil!variable:link}
+
+
+## {description}
+
+{find:link}、{find-if:link}、{find-if-not:link}は、
+*start*と*end*で囲まれた*sequence*内で、
+*predicate*かあるいは*test*, *test-not*を適宜満たすものを検索します。
+
+もし*from-end*が*true*ならば、
+*test*を満たすもっとも右側の要素が返却されます。
+
+もし*sequence*に*test*を満たす要素がある場合、
+*from-end*によって、*sequence*のもっとも左にあるものか、
+もっとも右にあるものが返却されます。
+それ以外のときは、{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(find #\d "here are some letters that can be looked at" :test #'char>)
+=>  #\Space 
+(find-if #'oddp '(1 2 3 4 5) :end 3 :from-end t) =>  3
+(find-if-not #'complexp                                    
+            '#(3.5 2 #C(1.0 0.0) #C(0.0 1.0))
+            :start 2) =>  NIL 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{position:link},
+{17.2:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+関数{find-if-not:link}は非推奨です。
+
+@end
+

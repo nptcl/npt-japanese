@@ -37,10 +37,11 @@
 (defvar *working* nil)
 
 ;;  Finish
+(push (cons 5 'work) *working*)
 (push (cons 7 'all) *working*)
 (push (cons 10 'finish) *working*)
 (push (cons 13 'finish) *working*)
 (push (cons 14 'finish) *working*)
 (push (cons 16 'finish) *working*)
-(push (cons 17 'work) *working*)
+(push (cons 17 'finish) *working*)
 

@@ -60,9 +60,9 @@
 (text 3.4 "ラムダリスト" "Lambda Lists")
 (text 3.4.11 "ドキュメント文字と宣言の文脈的な作用"
       "Syntactic Interaction of Documentation Strings and Declarations")
-
 (index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
 (index 3.6 "横断の規則と副作用" "Traversal Rules and Side Effects")
+(index 3.7 "破壊的操作" "Destructive Operations")
 (index 3.8 "評価とコンパイルの辞書" "Evaluation and Compilation Dictionary")
 (dictionary 3.8.lambda!symbol)
 (dictionary 3.8.lambda!macro)
@@ -105,6 +105,7 @@
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
 (text 4.3.7 "型とクラスの統合" "Integrating Types and Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
+(dictionary 4.4.nil!type)
 (dictionary 4.4.generic-function)
 (dictionary 4.4.standard-generic-function)
 (dictionary 4.4.class)
@@ -130,6 +131,7 @@
 (text 5.1.1.1 "{place}のサブフォームの評価" "Evaluation of Subforms to Places")
 (text 5.1.2 "{place}の種類" "Kinds of Places")
 (text 5.1.2.2 "{place}としての関数呼び出しフォーム" "Function Call Forms as Places")
+(text 5.1.2.5 "APPLYの{place}フォーム" "APPLY Forms as Places")
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
 (dictionary 5.3.defun)
@@ -404,6 +406,7 @@
 (dictionary 15.2.array)
 (dictionary 15.2.simple-array)
 (dictionary 15.2.vector!system-class)
+(dictionary 15.2.make-array)
 (dictionary 15.2.aref)
 
 ;; Chapter 16

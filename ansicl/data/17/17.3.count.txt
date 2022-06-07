@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COUNT
+;;  Function COUNT-IF
+;;  Function COUNT-IF-NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.count
+@name: count
+@name: count-if
+@name: count-if-not
+@type: function
+
+Function `COUNT`, `COUNT-IF`, `COUNT-IF-NOT`
+
+
+## {syntax}
+
+`count` *item* *sequence* &key *from-end* *start* *end* *key* *test* *test-not* => *n*  
+`count-if` *predicate* *sequence* &key *from-end* *start* *end* *key* => *n*  
+`count-if-not` *predicate* *sequence* &key *from-end* *start* *end* *key* => *n*
+
+
+## {arguments-and-values}
+
+*item* - オブジェクト  
+*sequence* - {proper-sequence}  
+*predicate* - 1つの引数をとり{generalized-boolean}を返却する関数の指定子  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*n* - *sequence*の長さ以下の非負の整数
+
+
+## {description}
+
+{count:link}、{count-if:link}、{count-if-not:link}は、
+*sequence*の*start*, *end*の境界内にある要素のうち、
+*test*によって満たされるものの数を返却します。
+
+*from-end*は、返却値に直接な効果を持ちません。
+しかし、*from-end*が*true*のときは、
+*sequence*の要素は、
+*test*、*test-not*、*key*の引数が逆順に指定され、
+これらの関数に副作用があるのであれば、
+その効果が変更さる可能性があります。
+
+
+## {examples}
+
+```lisp
+(count #\a "how many A's are there in here?") =>  2
+(count-if-not #'oddp '((1) (2) (3) (4)) :key #'car) =>  2
+(count-if #'upper-case-p "The Crying of Lot 49" :start 4) =>  2 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{17.2:ab},
+{3.6:ab}
+
+
+## {notes}
+
+`:test-not`パラメーターは非推奨です。
+
+関数{count-if-not:link}は非推奨です。
+
+@end
+

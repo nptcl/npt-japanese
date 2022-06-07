@@ -227,7 +227,7 @@
 <em>new-alist</em> - 連想リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.copy-alist.html"><code>copy-alist</code></a>は、<em>alist</em>のコピーを返却します。</p>
-<p><em>alist</em>のリスト構造がコピーされ、 <em>alist</em>の要素のコンスもまたコピーされます （ただしコンスのみ）。 <em>alist</em>によって直接・関節に関わらず、 参照されている他のオブジェクトは、 引き続き共有されます。</p>
+<p><em>alist</em>のリスト構造がコピーされ、 <em>alist</em>の要素のコンスもまたコピーされます （ただしコンスのみ）。 <em>alist</em>によって直接・間接に関わらず、 参照されている他のオブジェクトは、 引き続き共有されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defparameter</span><span class="fu"> *alist* </span>(<span class="kw">acons</span> <span class="dv">1</span> <span class="st">&quot;one&quot;</span> (<span class="kw">acons</span> <span class="dv">2</span> <span class="st">&quot;two&quot;</span> &#39;())))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>*alist* <span class="op">=&gt;</span>  ((<span class="dv">1</span> . <span class="st">&quot;one&quot;</span>) (<span class="dv">2</span> . <span class="st">&quot;two&quot;</span>))</span>

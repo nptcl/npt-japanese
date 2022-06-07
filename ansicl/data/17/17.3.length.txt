@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LENGTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.length
+@name: length
+@type: function
+
+Function `LENGTH`
+
+
+## {syntax}
+
+`length` *sequence* => *n*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*n* - 非負の整数
+
+
+## {description}
+
+*sequence*の要素数を返却します。
+
+もし*sequence*が{fill-pointer}を持つ`vector`のとき、
+{fill-pointer}で指定された有効な長さが返却されます。
+
+
+## {examples}
+
+```lisp
+(length "abc") =>  3
+(setq str (make-array '(3) :element-type 'character 
+                           :initial-contents "abc"
+                           :fill-pointer t)) =>  "abc"
+(length str) =>  3
+(setf (fill-pointer str) 2) =>  2
+(length str) =>  2
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{list-length:link},
+{sequence:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,166 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SORT
+;;  Function STABLE-SORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.sort
+@name: sort
+@name: stable-sort
+@type: function
+
+Function `SORT`, `STABLE-SORT`
+
+
+## {syntax}
+
+`sort` *sequence* *predicate* &key *key* => *sorted-sequence*  
+`stable-sort` *sequence* *predicate* &key *key* => *sorted-sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*predicate* - 2つの引数をとり{generalized-boolean}を返却する関数の指定子  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*sorted-sequence* - シーケンス
+
+
+## {description}
+
+{sort:link}と{stable-sort:link}は、
+*predicate*関数で決められた順番に従って、
+*sequence*を破壊的にソートします。
+
+もし*sequence*が`vector`のとき、
+返却値は一次元の{simple-array}であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値はリストです。
+
+{sort:link}は、*key*による要素の展開と*predicate*の実行によって、
+2つの要素間の関係を決定します。
+*predicate*関数の最初の引数は、
+*key*関数によって展開された（もし*key*が指定されたのなら）、
+ひとつの要素の部分であり、
+二番目の引数は、
+*key*関数によって展開された（もし*key*が指定されたのなら）、
+別の要素の部分です。
+*predicate*は、第一引数が第二引数より（何らかの適切な意味で）、
+厳密に小さい場合にのみ*true*を返すべきです。
+もし最初の引数が二番目の引数が（何らかの適切な意味で）、
+以上であるときは、*predicate*は*false*を返却するべきです。
+
+*key*関数の引数は、*sequence*の要素です。
+*key*関数の返却値は、*predicate*の引数になります。
+もし*key*が与えられないか、あるいは{nil!variable:link}が指定されたとき、
+*sequence*の要素そのものが使用されます。
+*key*が呼び出される回数を保証する方法はありません。
+
+もし*key*と*predicate*が常に返却するのであれば、
+ソート操作は常に終了し、
+*sequence*として同じ要素が含んだシーケンスが生成されます
+（つまり、返却値は*seqeunce*の並べ替えです）。
+これは*predicate*が実際には全順序の表現が一貫されていなくても保証されます
+（そのような場合は、要素は予測不可能な順番でスクランブルされますが、
+要素が失われることはありません）。
+もし*key*が一貫して意味のあるキーを返却し、
+*predicate*がそれらのキーにおいて
+何らかの全順序の基準を反映したのであれば、
+*sorted-sequence*の要素は、おそらく適切にソートされます。
+
+{sort:link}によるソートの操作は、安定性が保証されません。
+*predicate*によって等しいとされた要素は、
+元の順序のままであるかもしれないし、そうでないかもしれません。
+*predicate*は、
+`(funcall predicate x y)`と`(funcall predicate y x)`が
+両方とも*false*であるときに、
+2つの要素`x`と`y`が等しいとみなすと仮定しています。
+{stable-sort:link}は、安定性を保証します。
+
+どの場合においても、ソート操作は破壊的です。
+`vector`が引数のときは、要素の場所に並べ替えることで行います。
+リストの場合は、{nreverse:link}と同じ方法で
+破壊的に並び替えられます。
+
+
+## {examples}
+
+```lisp
+(setq tester (copy-seq "lkjashd")) =>  "lkjashd"
+(sort tester #'char-lessp) =>  "adhjkls"
+(setq tester (list '(1 2 3) '(4 5 6) '(7 8 9))) =>  ((1 2 3) (4 5 6) (7 8 9))
+(sort tester #'> :key #'car)  =>  ((7 8 9) (4 5 6) (1 2 3)) 
+(setq tester (list 1 2 3 4 5 6 7 8 9 0)) =>  (1 2 3 4 5 6 7 8 9 0)
+(stable-sort tester #'(lambda (x y) (and (oddp x) (evenp y))))
+=>  (1 3 5 7 9 2 4 6 8 0)
+(sort (setq committee-data
+            (vector (list (list "JonL" "White") "Iteration")
+                    (list (list "Dick" "Waters") "Iteration")
+                    (list (list "Dick" "Gabriel") "Objects")
+                    (list (list "Kent" "Pitman") "Conditions")
+                    (list (list "Gregor" "Kiczales") "Objects")
+                    (list (list "David" "Moon") "Objects")
+                    (list (list "Kathy" "Chapman") "Editorial")
+                    (list (list "Larry" "Masinter") "Cleanup")
+                    (list (list "Sandra" "Loosemore") "Compiler")))
+      #'string-lessp :key #'cadar)
+=> #((("Kathy" "Chapman") "Editorial")
+    (("Dick" "Gabriel") "Objects")
+    (("Gregor" "Kiczales") "Objects")
+    (("Sandra" "Loosemore") "Compiler")
+    (("Larry" "Masinter") "Cleanup")
+    (("David" "Moon") "Objects")
+    (("Kent" "Pitman") "Conditions")
+    (("Dick" "Waters") "Iteration")
+    (("JonL" "White") "Iteration"))
+;; "committees"内のアルファベット順は保存されます。
+(setq committee-data 
+      (stable-sort committee-data #'string-lessp :key #'cadr))
+=> #((("Larry" "Masinter") "Cleanup")
+    (("Sandra" "Loosemore") "Compiler")
+    (("Kent" "Pitman") "Conditions")
+    (("Kathy" "Chapman") "Editorial")
+    (("Dick" "Waters") "Iteration")
+    (("JonL" "White") "Iteration")
+    (("Dick" "Gabriel") "Objects")
+    (("Gregor" "Kiczales") "Objects")
+    (("David" "Moon") "Objects"))
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{merge:link},
+{3.2.1:ab},
+{3.6:ab},
+{3.7:ab}
+
+
+## {notes}
+
+もし*sequence*が`vector`なら、
+返却値は`simple`かもしれませんし、そうでないかもしれません。
+また、返却値は*sequence*と同一かもしれませんし、
+そうでないかもしれません。
+
+@end
+

@@ -262,7 +262,7 @@
 <h2 id="例外">例外</h2>
 <p><em>alist</em>が連想リストではないときは、 型<code>type-error</code>を通知する準備をしなければなりません。</p>
 <h2 id="参考">参考</h2>
-<p><a href="14.2.rassoc.html"><code>rassoc</code></a>, <code>find</code>, <a href="14.2.member.html"><code>member</code></a>, <code>position</code>, 3.6. 横断の規則と副作用</p>
+<p><a href="14.2.rassoc.html"><code>rassoc</code></a>, <a href="17.3.find.html"><code>find</code></a>, <a href="14.2.member.html"><code>member</code></a>, <a href="17.3.position.html"><code>position</code></a>, 3.6. 横断の規則と副作用</p>
 <h2 id="備考">備考</h2>
 <p><code>:test-not</code>は、非推奨です。</p>
 <p>関数<a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、非推奨です。</p>
@@ -270,7 +270,7 @@
 <p>次の2つの式</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">assoc</span> item <span class="kw">list</span> <span class="bu">:test</span> fn)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find</span> item <span class="kw">list</span> <span class="bu">:test</span> fn <span class="bu">:key</span> #&#39;car)</span></code></pre></div>
-<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、もし<em>alist</em>のペアの場所で<code>nil</code>現れて、 かつ<em>item</em>が<code>nil</code>のとき、 <code>find</code>の場合は、<code>nil</code>の<code>car</code>を計算し、 <em>item</em>と同じということで<code>nil</code>を返却しますが、 一方<a href="14.2.assoc.html"><code>assoc</code></a>は、 <em>alist</em>の<code>nil</code>を無視するため、 継続して<code>car</code>が<code>nil</code>である実際のコンスを探します。</p>
+<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、もし<em>alist</em>のペアの場所で<code>nil</code>現れて、 かつ<em>item</em>が<code>nil</code>のとき、 <a href="17.3.find.html"><code>find</code></a>の場合は、<code>nil</code>の<code>car</code>を計算し、 <em>item</em>と同じということで<code>nil</code>を返却しますが、 一方<a href="14.2.assoc.html"><code>assoc</code></a>は、 <em>alist</em>の<code>nil</code>を無視するため、 継続して<code>car</code>が<code>nil</code>である実際のコンスを探します。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -14,7 +14,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[2.](2.html)|[Syntax](2.html)|[構文](2.html)|辞書|
 |[3.](3.html)|[Evaluation and Compilation](3.html)|[評価とコンパイル](3.html)|[辞書](3.8.html)|
 |[4.](4.html)|[Types and Classes](4.html)|[型とクラス](4.html)|[辞書](4.4.html)|
-|[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書](5.3.html)|
+|[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書 ☆作業中](5.3.html)|
 |[6.](6.html)|[Iteration](6.html)|[繰り返し](6.html)|[辞書](6.2.html)|
 |[7.](7.html)|[Objects](7.html)|[オブジェクト ★完了](7.html)|[辞書 ★完了](7.7.html)|
 |[8.](8.html)|[Structures](8.html)|[構造体](8.html)|[辞書](8.2.html)|
@@ -26,7 +26,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[14.](14.html)|[Conses](14.html)|[コンス](14.html)|[辞書 ★完了](14.2.html)|
 |[15.](15.html)|[Arrays](15.html)|[配列](15.html)|[辞書](15.2.html)|
 |[16.](16.html)|[Strings](16.html)|[文字列](16.html)|[辞書 ★完了](16.2.html)|
-|[17.](17.html)|[Sequences](17.html)|[シーケンス](17.html)|[辞書 ☆作業中](17.3.html)|
+|[17.](17.html)|[Sequences](17.html)|[シーケンス](17.html)|[辞書 ★完了](17.3.html)|
 |[18.](18.html)|[Hash Tables](18.html)|[ハッシュテーブル](18.html)|[辞書](18.2.html)|
 |19.|Filenames|ファイル名|辞書|
 |20.|Files|ファイル操作|辞書|

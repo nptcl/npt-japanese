@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor ELT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.elt
+@name: elt
+@type: accessor
+
+Accessor `ELT`
+
+
+## {syntax}
+
+`elt` *sequence* *index* => *object*  
+(`setf` (`elt` *sequence* *index*) *new-object*)
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*index* - *sequence*の{valid-sequence-index}  
+*object* - オブジェクト  
+*new-object* - オブジェクト  
+
+
+## {description}
+
+*sequence*の*index*指定の要素にアクセスします。
+
+
+## {examples}
+
+```lisp
+(setq str (copy-seq "0123456789")) =>  "0123456789"
+(elt str 6) =>  #\6
+(setf (elt str 0) #\#) =>  #\#
+str =>  "#123456789"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+*index*が、*sequence*の{valid-sequence-index}ではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{aref:link},
+{nth:link},
+{3.2.1:ab}
+
+
+## {notes}
+
+{aref:link}は、`vector`の{fill-pointer}を越えた、`vector`の要素に
+アクセスするときに使用します。
+
+@end
+

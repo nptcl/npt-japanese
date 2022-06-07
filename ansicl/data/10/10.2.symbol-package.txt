@@ -21,7 +21,7 @@ Function `SYMBOL-PACKAGE`
 ## {arguments-and-values}
 
 *symbol* - シンボル  
-*contents - パッケージオブジェクトか、{nil!variable:link}
+*contents* - パッケージオブジェクトか、{nil!variable:link}
 
 
 ## {description}

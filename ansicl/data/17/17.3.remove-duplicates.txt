@@ -1,0 +1,126 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REMOVE-DUPLICATES
+;;  Function DELETE-DUPLICATES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.remove-duplicates
+@name: remove-duplicates
+@name: delete-duplicates
+@type: function
+
+Function `REMOVE-DUPLICATES`, `DELETE-DUPLICATES`
+
+
+## {syntax}
+
+`remove-duplicates` *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *key*  
+=> *result-sequence*
+
+`delete-duplicates` *sequence*
+ &key *from-end* *test* *test-not* *start* *end* *key*  
+=> *result-sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*from-end* - {generalized-boolean}、デフォルトは*false*  
+*test* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*test-not* - 2つの引数を取り{generalized-boolean}を返却する関数の指定子  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*key* - 1つの引数を取る関数の指定子、または{nil!variable:link}  
+*result-sequence* - シーケンス
+
+
+## {description}
+
+{remove-duplicates:link}は、
+他の要素とマッチするような要素を削除した
+*sequence*のコピーを返却します。
+
+もし*sequence*が`vector`のとき、返却値は`vector`であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値はリストです。
+
+*sequence*の要素は対で比較され、
+どれか2つが一致すれば、先に発生したものが捨てられます。
+ただし，*from-end*が*true*の場合は、
+後に発生したものが捨てられます。
+
+{remove-duplicates:link}と{delete-duplicates:link}は、
+*sequence*と同じ型のシーケンスに、
+残りのどの2つの要素にもマッチしないように、
+十分に要素取り除いた内容のものを返却します。
+返却値に残った要素の順序は、*sequence*に現れるものと同じです。
+
+{remove-duplicates:link}の返却値は、*sequence*を共有するかもしれません。
+もし要素に削除が生じなかったときは、
+入力の*sequence*と同一のものが返却される可能性があります。
+
+{delete-duplicates:link}は、*sequence*がリストのときは、
+*sequence*のトップレベルのリスト構造の
+どの{car:link}, {cdr:link}でも{setf:link}することが許されています。
+もし*sequence*が`vector`のときは、
+{delete-duplicates:link}は`vector`の次元を変更し、
+その要素を並べ替えをせず、新しい位置にスライドして
+返却値の`vector`を構築することが許されています。
+
+
+## {examples}
+
+```lisp
+(remove-duplicates "aBcDAbCd" :test #'char-equal :from-end t) =>  "aBcD"
+(remove-duplicates '(a b c b d d e)) =>  (A C B D E)
+(remove-duplicates '(a b c b d d e) :from-end t) =>  (A B C D E)
+(remove-duplicates '((foo #\a) (bar #\%) (baz #\A))
+    :test #'char-equal :key #'cadr) =>  ((BAR #\%) (BAZ #\A))
+(remove-duplicates '((foo #\a) (bar #\%) (baz #\A)) 
+    :test #'char-equal :key #'cadr :from-end t) =>  ((FOO #\a) (BAR #\%))
+(setq tester (list 0 1 2 3 4 5 6))
+(delete-duplicates tester :key #'oddp :start 1 :end 6) =>  (0 4 5 6)
+```
+
+
+## {side-effects}
+
+{delete-duplicates:link}は、*sequence*を破壊的に修正するかもしれません。
+
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{3.2.1:ab},
+{3.6:ab}
+
+
+## {notes}
+
+もし*sequence*が`vector`なら、
+返却値は`simple`かもしれませんし、そうでないかもしれません。
+また、返却値は*sequence*と同一かもしれませんし、
+そうでないかもしれません。
+
+`:test-not`パラメーターは非推奨です。
+
+これらの関数は、*sequence*を集合で表現される
+標準形に変換するのに便利である。
+
+@end
+

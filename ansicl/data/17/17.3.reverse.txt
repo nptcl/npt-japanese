@@ -1,0 +1,105 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REVERSE
+;;  Function NREVERSE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.reverse
+@name: reverse
+@name: nreverse
+@type: function
+
+Function `REVERSE`, `NREVERSE`
+
+
+## {syntax}
+
+`reverse` *sequence* => *reversed-sequence*
+`nreverse` *sequence* => *reversed-sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*reversed-sequence* - シーケンス
+
+
+## {description}
+
+{reverse:link}と{nreverse:link}は、
+*sequence*と同じ種類の、同じ要素が逆順に配置された、
+新しいシーケンスを返却します。
+
+{reverse:link}と{nreverse:link}の違いは、
+{reverse:link}は常に新しいシーケンスを作成して返却するのに対して、
+{nreverse:link}はおそらく引数の*sequence*を修正して返却します。
+
+{reverse:link}は、もし*sequence*が`vector`のとき、
+返却値は新しい一次元の{simple-array}であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値は新しいリストです。
+
+{nreverse:link}は、もし*sequence*が`vector`のとき、
+返却値は一次元の{simple-array}であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストなら、返却値はリストです。
+
+{nreverse:link}は、*sequence*を破壊して再利用して、
+返却値を生成するかもしれません。
+返却値は*sequence*と同一かもしれませんし、そうでないかもしれません。
+特に、*sequence*がリストのとき、
+{nreverse:link}は、*sequence*のリスト構造の部分にあるどのコンスの
+`car`, `cdr`部分でも、{setf:link}を実行することが許されます。
+*sequence*が`vector`のとき、
+{nreverse:link}は、返却値の`vector`を求めるために、
+*sequence*の要素の順番を変更することが許されます。
+
+
+## {examples}
+
+```lisp
+(setq str "abc") =>  "abc"
+(reverse str) =>  "cba"
+str =>  "abc"
+(setq str (copy-seq str)) =>  "abc"
+(nreverse str) =>  "cba"
+str =>  implementation-dependent
+(setq l (list 1 2 3)) =>  (1 2 3)
+(nreverse l) =>  (3 2 1)
+l =>  implementation-dependent
+```
+
+
+## {side-effects}
+
+{nreverse:link}は、新しいシーケンスを作成するか、
+*sequence*の引数を変更するか、
+あるいはその両方をするかもしれません。
+（{reverse:link}は*seqeunce*の修正を行いません）
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,100 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor SUBSEQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.subseq
+@name: subseq
+@type: accessor
+
+Accessor `SUBSEQ`
+
+
+## {syntax}
+
+`subseq` *sequence* *start* &optional *end* => *subsequence*  
+(`setf` (`subseq` *sequence* *start* &optional *end*) *new-subsequence*)
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*start*, *end* - *sequence*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*subsequence* - {proper-sequence}  
+*new-subsequence* - {proper-sequence}
+
+
+## {description}
+
+{subseq:link}は、
+*sequence*の*start*と*end*の境界内の
+サブシーケンスのコピーを作成します。
+
+*start*は元の*sequence*のオフセットであり、
+サブシーケンスの開始の位置の印であり、
+*end*は最後の要素に続く位置の印です。
+
+{subseq:link}は常に結果のシーケンスを新しく確保します。
+古いシーケンスのストレージを共有することはありません。
+返却値のサブシーケンスは、常に*sequence*と同じ型です。
+
+もし*sequence*が`vector`のとき、
+返却値は一次元の新しい{simple-array}であり、
+*sequence*と同じ{actual-array-element-type}を持ちます。
+もし*sequence*がリストのときは、返却値は新しいリストです。
+
+{setf:link}の{subseq:link}は、
+サブシーケンスの要素を新しい値として受け取ったシーケンスの要素に、
+破壊的に置き換えを行います。
+もしサブシーケンスと新しいシーケンスが同じ長さではないとき、
+短い方の長さが置換の要素数になります。
+長い方のシーケンスの終わりの位置にある残りの要素は、
+この操作では修正されません。
+
+
+## {examples}
+
+```lisp
+(setq str "012345") =>  "012345"
+(subseq str 2) =>  "2345"
+(subseq str 3 5) =>  "34"
+(setf (subseq str 4) "abc") =>  "abc"
+str =>  "0123ab"
+(setf (subseq str 0 2) "A") =>  "A"
+str =>  "A123ab"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*new-sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{replace:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

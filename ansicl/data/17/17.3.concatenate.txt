@@ -1,0 +1,94 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CONCATENATE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.concatenate
+@name: concatenate
+@type: function
+
+Function `CONCATENATE`
+
+
+## {syntax}
+
+`concatenate` *result-type* &rest *sequences* => *result-sequence*
+
+
+## {arguments-and-values}
+
+*result-type* - {sequence:link}の{type-specifier}  
+*sequences* - シーケンス  
+*result-sequence* - 型*result-type*の{proper-sequence}
+
+
+## {description}
+
+{concatenate:link}は、引数に指定された順番で、
+全*sequences*の個々の全要素を含んだシーケンスを返却します。
+シーケンスは型*result-type*であり、
+それは型{sequence:link}のサブタイプでなければなりません。
+
+全ての*sequences*はコピーされ、
+結果は、どの*sequences*に対しても
+どのような構造でも共有されてはいけません。
+したがって、もしただひとつだけシーケンスが与えられ、
+その型が*result-type*であったとき、
+{concatenate:link}は単純にそれを返却するのではなく、
+*sequences*をコピーすることが要求されます。
+
+もし*sequences*のどの要素も、
+結果のシーケンスの要素になりえないときはエラーです。
+もし*result-type*が{list!system-class:link}のサブタイプのときは、
+返却値はリストでしょう。
+
+もし*result-type*が{vector!system-class:link}のサブタイプの場合、
+実装が*result-type*を要素の型として決めることができるのであれば、
+その要素の型をアップグレードした結果が返却値の配列の要素の型になります。
+しかし実装が要素の型を決定できないか、あるいは`*`のときは、
+返却値の配列の要素の型は{t!system-class:link}になります。
+その他の場合はエラーが発生します。
+
+
+## {examples}
+
+```lisp
+(concatenate 'string "all" " " "together" " " "now") =>  "all together now"
+(concatenate 'list "ABC" '(d e f) #(1 2 3) #*1011)
+=>  (#\A #\B #\C D E F 1 2 3 1 0 1 1)
+(concatenate 'list) =>  NIL
+  (concatenate '(vector * 2) "a" "bc") should signal an error
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*result-type*が、
+{list!system-class:link}の{recognizable-subtype}でも、
+{vector!system-class:link}の{recognizable-subtype}でもないとき、
+型{type-error:link}のエラーが発します。
+
+*result-type*で指定した要素数と、
+*sequences*の合計が違う場合は、
+型{type-error:link}のエラーが発します。
+
+
+## {see-also}
+
+{append:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  17. シーケンス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-SEQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 17.3.copy-seq
+@name: copy-seq
+@type: function
+
+Function `COPY-SEQ`
+
+
+## {syntax}
+
+`copy-seq` *sequence* => *copied-sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - {proper-sequence}  
+*copied-sequence* - {proper-sequence}
+
+
+## {description}
+
+シーケンスのコピーを作成します。
+新しいシーケンスの要素は、対応する引数*sequnece*の要素と同じです。
+
+もし*sequence*が`vector`なら、
+結果は*sequence*として同じ{actual-array-element-type}を持つ、
+一次元の新しい{simple-array}です。
+
+
+## {examples}
+
+```lisp
+(setq str "a string") =>  "a string"
+(equalp str (copy-seq str)) =>  true
+(eql str (copy-seq str)) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}でないとき、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+
+## {see-also}
+
+{copy-list:link}
+
+
+## {notes}
+
+機能としては、下記と同等です。
+
+```lisp
+(copy-seq x) ==  (subseq x 0)
+```
+
+しかし、プログラマーの意図は、
+この二つの場合においては大きく異なるのが一般的です。
+
+@end
+

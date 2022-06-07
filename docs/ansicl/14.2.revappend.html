@@ -229,7 +229,7 @@
 <em>result-list</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.revappend.html"><code>revappend</code></a>は、<em>list</em>の各要素を逆順でコピーします。 そして、逆順のリストに<em>tail</em>を（<a href="14.2.nconc.html"><code>nconc</code></a>のように）追加し、 その結果を返却します。</p>
-<p><a href="14.2.revappend.html"><code>nreconc</code></a>は、<em>list</em>の要素を（<code>nreverse</code>のように）反転させます。 そして、逆順のリストに<em>tail</em>を（<a href="14.2.nconc.html"><code>nconc</code></a>のように）追加し、 その結果を返却します。</p>
+<p><a href="14.2.revappend.html"><code>nreconc</code></a>は、<em>list</em>の要素を（<a href="17.3.reverse.html"><code>nreverse</code></a>のように）反転させます。 そして、逆順のリストに<em>tail</em>を（<a href="14.2.nconc.html"><code>nconc</code></a>のように）追加し、 その結果を返却します。</p>
 <p>結果のリストは、<em>tail</em>とリスト構造を共有します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((list<span class="dv">-1</span> (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>))</span>
@@ -266,7 +266,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>reverse</code>, <code>nreverse</code>, <a href="14.2.nconc.html"><code>nconc</code></a></p>
+<p><a href="17.3.reverse.html"><code>reverse</code></a>, <a href="17.3.reverse.html"><code>nreverse</code></a>, <a href="14.2.nconc.html"><code>nconc</code></a></p>
 <h2 id="備考">備考</h2>
 <p>下記の機能の等号式は真ですが、 良い実装は、通常同じ効果が得られるより速いアルゴリズムを使用しているでしょう。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">revappend</span> <span class="kw">list</span> tail) ==  (<span class="kw">nconc</span> (<span class="kw">reverse</span> <span class="kw">list</span>) tail)</span>

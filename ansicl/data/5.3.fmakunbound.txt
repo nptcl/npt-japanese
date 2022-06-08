@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FMAKUNBOUND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.fmakunbound
+@name: fmakunbound
+@type: function
+
+Function `FMAKUNBOUND`
+
+
+## {syntax}
+
+`fmakunbound` *name* => *name*
+
+
+## {pronunciation}
+
+[,ef'makuhn,band] or [,ef'maykuhn,band]
+
+
+## {arguments-and-values}
+
+*name* - 関数名
+
+
+## {description}
+
+グローバル環境での*name*の関数かマクロの定義を削除します。
+
+
+## {examples}
+
+```lisp
+(defun add-some (x) (+ x 19)) =>  ADD-SOME
+(fboundp 'add-some) =>  true
+(flet ((add-some (x) (+ x 37)))
+   (fmakunbound 'add-some)
+   (add-some 1)) =>  38
+(fboundp 'add-some) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*name*が関数名でないとき、
+型{type-error:link}のエラーが発生します。
+
+*name*が{special-operator}のときの結果は未定義です。
+
+
+## {see-also}
+
+{fboundp:link},
+{makunbound:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

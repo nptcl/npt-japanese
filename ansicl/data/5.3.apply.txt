@@ -82,7 +82,7 @@ Function `APPLY`
 
 {funcall:link},
 {fdefinition:link},
-{function:link},
+{function!special:link},
 {3.1:ab},
 {5.1.2.5:ab}
 

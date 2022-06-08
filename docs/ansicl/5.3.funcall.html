@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function APPLY</title>
+  <title>Function FUNCALL</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,50 +214,42 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function APPLY</h1>
+<h1 class="title">Function FUNCALL</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="function-apply">Function APPLY</h1>
-<p>Function <code>APPLY</code></p>
+<h1 id="function-funcall">Function FUNCALL</h1>
+<p>Function <code>FUNCALL</code></p>
 <h2 id="構文">構文</h2>
-<p><code>apply</code> <em>function</em> &amp;rest <em>args+</em> =&gt; <em>result*</em></p>
+<p><code>funcall</code> <em>function</em> &amp;rest <em>args</em> =&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>function</em> - 関数指定子<br />
-<em>args</em> - 広げられる引数リスト指定子<br />
+<em>args</em> - <em>function</em>の引数<br />
 <em>result</em> - <em>function</em>の返却値</p>
 <h2 id="定義">定義</h2>
-<p><em>function</em>を<em>args</em>で実行します。</p>
-<p><em>function</em>が<code>&amp;rest</code>経由で引数を受け取るとき、 実装は<code>rest</code>パラメーターに、 <a href="5.3.apply.html"><code>apply</code></a>の最後の引数で共有されている構造のオブジェクトを、 束縛することが許されています （ただし要求されているわけではありません）。 関数はそれが<a href="5.3.apply.html"><code>apply</code></a>経由か、 あるいは<a href="5.3.apply.html"><code>apply</code></a>の最後の引数が定数で呼び出されかどうかを 検出できないため、 適合するプログラムは、 <code>rest</code>のリスト構造が新しいコンスであることに頼ってはいけませんし、 またそのリスト構造を修正してもいけません。</p>
+<p><a href="5.3.funcall.html"><code>funcall</code></a>は、<em>args</em>を引数に<em>function</em>を実行します。 もし<em>function</em>がシンボルなら、 <em>function</em>をグローバル環境下の関数の値として探したものを 強制的に変換します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> f &#39;+) <span class="op">=&gt;</span>  <span class="op">+</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> f &#39;(<span class="dv">1</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> f #&#39;-) <span class="op">=&gt;</span>  #&lt;FUNCTION -&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> f &#39;(<span class="dv">1</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  -<span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> #&#39;max <span class="dv">3</span> <span class="dv">5</span> &#39;(<span class="dv">2</span> <span class="dv">7</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  <span class="dv">7</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> &#39;cons &#39;((<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">4</span>)) <span class="op">=&gt;</span>  ((<span class="op">+</span> <span class="dv">2</span> <span class="dv">3</span>) . <span class="dv">4</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> #&#39;+ &#39;()) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defparameter</span><span class="fu"> *some-list* </span>&#39;(a b c))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> strange-test </span>(&amp;<span class="kw">rest</span> x) (<span class="kw">eq</span> x *some-list*))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> #&#39;strange-test *some-list*) <span class="op">=&gt;</span>  implementation-dependent</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bad-boy </span>(&amp;<span class="kw">rest</span> x) (<span class="kw">rplacd</span> x &#39;y))</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(bad-boy &#39;a &#39;b &#39;c) has undefined consequences.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">apply</span> #&#39;bad-boy *some-list*) has undefined consequences.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>(size &amp;<span class="kw">rest</span> keys &amp;key double &amp;allow-other-keys)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((v (<span class="kw">apply</span> #&#39;make-array size :allow-other-keys <span class="kw">t</span> keys)))</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">if</span> double (<span class="kw">concatenate</span> (<span class="kw">type-of</span> v) v v) v)))</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>(foo <span class="dv">4</span> <span class="bu">:initial-contents</span> &#39;(a b c d) :double <span class="kw">t</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="op">=&gt;</span>  #(A B C D A B C D)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> #&#39;+ <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">6</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> &#39;car &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> &#39;position <span class="dv">1</span> &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span>) <span class="bu">:start</span> <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cons</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="op">=&gt;</span>  (<span class="dv">1</span> . <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">flet</span> ((<span class="kw">cons</span> (x y) `(kons ,x ,y)))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((<span class="kw">cons</span> (<span class="kw">symbol-function</span> &#39;+)))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">funcall</span> #&#39;cons</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">funcall</span> &#39;cons <span class="dv">1</span> <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">funcall</span> <span class="kw">cons</span> <span class="dv">1</span> <span class="dv">2</span>))))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (KONS (<span class="dv">1</span> . <span class="dv">2</span>) <span class="dv">3</span>)</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p><em>function</em>がシンボルであり、 それがグローバル定義の関数を持たなかったときか、 あるいはグローバルなマクロか特殊オペレーターであったときは、 型<code>undefined-function</code>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.funcall.html"><code>funcall</code></a>, <a href="5.3.fdefinition.html"><code>fdefinition</code></a>, <a href="5.3.function-special.html"><code>function</code></a>, 3.1. 評価, 5.1.2.5. APPLYの<code>place</code>フォーム</p>
+<p><a href="5.3.apply.html"><code>apply</code></a>, <a href="5.3.function-special.html"><code>function</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> <span class="kw">function</span> arg1 arg2 ...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">apply</span> <span class="kw">function</span> arg1 arg2 ... <span class="kw">nil</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">apply</span> <span class="kw">function</span> (<span class="kw">list</span> arg1 arg2 ...))</span></code></pre></div>
+<p><a href="5.3.funcall.html"><code>funcall</code></a>と通常の関数呼び出しの違いは、 前者はフォームの通常の評価によって<em>function</em>を取得しますが、 後者は普通に起こる関数の位置の特別な解釈によって得られます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

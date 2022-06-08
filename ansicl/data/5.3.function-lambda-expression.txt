@@ -1,0 +1,138 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FUNCTION-LAMBDA-EXPRESSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.function-lambda-expression
+@name: function-lambda-expression
+@type: function
+
+Function `FUNCTION-LAMBDA-EXPRESSION`
+
+
+## {syntax}
+
+`function-lambda-expression` *function*  
+=> *lambda-expression*, *closure-p*, *name*
+
+
+## {arguments-and-values}
+
+*function* - 関数  
+*lambda-expression* ラムダ式か、{nil!variable:link}  
+*closure-p* - {generalized-boolean}  
+*name* - オブジェクト
+
+
+## {description}
+
+下記に示すような、*function*の情報を返却します。
+
+第一返却値である*lambda-expression*は、
+*function*が定義されたラムダ式か、
+もし情報が利用できないときは{nil!variable:link}です。
+ラムダ式は何らかの方法で前処理されているかもしれませんが、
+しかし{compile:link}や{function!special:link}の引数としては
+適切のままであるべきです。
+実装は、どんな*function*の*lambda-expression*でも
+{nil!variable:link}を返却するのは正当です。
+
+第二返却値の*closure-p*は、
+*function*の定義が{null-lexical-environment}で囲まれていたか、
+あるいは*function*の定義が何らかの非{null-lexical-environment}で囲まれた
+非{nil!variable:link}の環境下であれば、
+{nil!variable:link}が返却されます
+（注釈：非{null-lexical-environment}とは、
+グローバル環境から何の追加情報もない{lexical-environment}のことです）。
+実装は、どんな*function*の*closure-p*でも、
+*true*を返却するのは正当です。
+
+第三返却値*name*は、関数の名前です。
+名前はデバッグ時にのみ使われ、
+それは、例えば{defun:link}や{function!special:link}の
+名前として使われるのに有効である必要はありません。
+慣例として、{nil!variable:link}は
+*function*が名前を持たないことを意味します。
+実装は、どんな*function*の*name*でも、
+{nil!variable:link}を返却するのは正当です。
+
+
+## {examples}
+
+下記の例はいくつか可能性のある返却値を示していますが、
+しかし全てを網羅することを意図してはいません。
+
+```lisp
+(function-lambda-expression #'(lambda (x) x))
+=>  NIL, false, NIL
+OR=>  NIL, true, NIL
+OR=>  (LAMBDA (X) X), true, NIL
+OR=>  (LAMBDA (X) X), false, NIL
+
+(function-lambda-expression
+   (funcall #'(lambda () #'(lambda (x) x))))
+=>  NIL, false, NIL
+OR=>  NIL, true, NIL
+OR=>  (LAMBDA (X) X), true, NIL
+OR=>  (LAMBDA (X) X), false, NIL
+ 
+(function-lambda-expression 
+   (funcall #'(lambda (x) #'(lambda () x)) nil))
+=>  NIL, true, NIL
+OR=>  (LAMBDA () X), true, NIL
+NOT=>  NIL, false, NIL
+NOT=>  (LAMBDA () X), false, NIL
+  
+(flet ((foo (x) x))
+  (setf (symbol-function 'bar) #'foo)
+  (function-lambda-expression #'bar))
+=>  NIL, false, NIL
+OR=>  NIL, true, NIL
+OR=>  (LAMBDA (X) (BLOCK FOO X)), true, NIL
+OR=>  (LAMBDA (X) (BLOCK FOO X)), false, FOO
+OR=>  (SI::BLOCK-LAMBDA FOO (X) X), false, FOO
+ 
+(defun foo ()
+  (flet ((bar (x) x))
+    #'bar))
+(function-lambda-expression (foo))
+=>  NIL, false, NIL
+OR=>  NIL, true, NIL
+OR=>  (LAMBDA (X) (BLOCK BAR X)), true, NIL
+OR=>  (LAMBDA (X) (BLOCK BAR X)), true, (:INTERNAL FOO 0 BAR)
+OR=>  (LAMBDA (X) (BLOCK BAR X)), false, "BAR in FOO"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+実装は全ての場合において、自由に`nil, true, nil`を返却することができますが、
+{compile:link}か{eval:link}の呼び出しによって引数が作成された場合
+（コンパイルされたファイルのロードによって生成されたものとは反対に）は、
+第一返却値にラムダ式を返却することが推奨されています。
+
+@end
+

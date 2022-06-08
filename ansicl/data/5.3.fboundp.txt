@@ -1,0 +1,101 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FBOUNDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.fboundp
+@name: fboundp
+@type: function
+
+Function `FBOUNDP`
+
+
+## {syntax}
+
+`fboundp` *name* => *generalized-boolean*
+
+
+## {pronunciation}
+
+[,ef'bandpee]
+
+
+## {arguments-and-values}
+
+*name* - 関数名  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*name*が`fbound`なら*true*を、
+それ以外なら*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(fboundp 'car) =>  true
+(fboundp 'nth-value) =>  false
+(fboundp 'with-open-file) =>  true
+(fboundp 'unwind-protect) =>  true
+(defun my-function (x) x) =>  MY-FUNCTION
+(fboundp 'my-function) =>  true
+(let ((saved-definition (symbol-function 'my-function)))
+  (unwind-protect (progn (fmakunbound 'my-function)
+                         (fboundp 'my-function))
+    (setf (symbol-function 'my-function) saved-definition)))
+=>  false
+(fboundp 'my-function) =>  true
+(defmacro my-macro (x) `',x) =>  MY-MACRO
+(fboundp 'my-macro) =>  true
+(fmakunbound 'my-function) =>  MY-FUNCTION
+(fboundp 'my-function) =>  false
+(flet ((my-function (x) x))
+  (fboundp 'my-function)) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*name*が関数名でないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{symbol-function:link},
+{fmakunbound:link},
+{fdefinition:link}
+
+
+## {notes}
+
+どんなシンボルでも`fbouund`であれば、
+{symbol-function:link}を呼び出すことができます。
+
+{fboundp:link}は、よく関数セルにアクセスするときの保護として使われます。
+例えば下記の通り。
+
+```lisp
+(if (fboundp x) (symbol-function x))
+```
+
+{setf-expander}の定義`F`は、
+`(setf F)`であらわされるsetf関数の定義にはなりません。
+
+@end
+

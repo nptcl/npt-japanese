@@ -35,7 +35,7 @@
 
 ```lisp
 (defmethod initialize-instance ((instance standard-object) &rest initargs)
-  (apply #'shared-initialize instance t initargs)))
+  (apply #'shared-initialize instance t initargs))
 ```
 
 これらのコードはカスタマイズ可能です。

@@ -159,7 +159,7 @@
 <p>ジェネリック関数は、指定された引数のクラスか、 あるいは引数の同一性に依存して動作する関数です。 ジェネリック関数オブジェクトは、メソッドの集合、 ラムダリスト、method-combination、そしてその他の情報に関連付けられます。</p>
 <p>通常の関数のように、ジェネリック関数は引数を取り、 一連のオペレーションを実行し、そしておそらくは有効な値を返却します。 通常の関数は単一のコードの実体を持ち、関数が呼び出されたときに常に実行されます。 ジェネリック関数はコードの実体を複数の集合として持ち、 その集合の一部か全部を関数実行のときに選択します。 選ばれたコードの集合とその組み合わせは、 ジェネリック関数に渡される1つか複数の引数から、 クラスかあるいは同一性により決定します。 それはmethod-combinationによって決定が行われます。</p>
 <p>通常の関数とジェネリック関数は、同一の構文により呼び出されます。</p>
-<p>ジェネリック関数は本物の関数なので、 <code>funcall</code>と<a href="5.3.apply.html"><code>apply</code></a>の最初の引数として使用されたり、 あるいは引数を渡したりすることができます。</p>
+<p>ジェネリック関数は本物の関数なので、 <a href="5.3.funcall.html"><code>funcall</code></a>と<a href="5.3.apply.html"><code>apply</code></a>の最初の引数として使用されたり、 あるいは引数を渡したりすることができます。</p>
 <p>ジェネリック関数の関数名の設定は、いくつかの手順のひとつとして確立します。 それはグローバル環境内において、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <a href="7.7.defmethod.html"><code>defmethod</code></a>（暗に<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる）, <a href="7.7.defgeneric.html"><code>defgeneric</code></a>（これもまた暗に、<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>が呼ばれる） によって確立されます。 レキシカル環境において、ジェネリック関数の関数名の束縛を確立するための 標準的な方法は提供されていません。</p>
 <p><a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームが評価されるとき、 （<a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>によって）次の3つのうちの1つの手順が取られます。</p>
 <ul>

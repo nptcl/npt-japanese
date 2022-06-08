@@ -81,8 +81,6 @@ Function `LDIFF`, `TAILP`
 
 {ldiff:link}と{tailp:link}は、どちらも引数を修正しません。
 
-Neither ldiff nor tailp modifies either of its arguments.
-
 
 ## {affected-by}
 

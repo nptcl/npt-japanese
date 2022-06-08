@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFUN</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFUN</h1>
+</header>
+<p><a href="5.3.html">UP</a></p>
+<hr />
+<h1 id="macro-defun">Macro DEFUN</h1>
+<p>Macro <code>DEFUN</code></p>
+<h2 id="構文">構文</h2>
+<p><code>defun</code> <em>function-name</em> <em>lambda-list</em> [[<em>declaration*</em> | <em>documentation</em>]] <em>form*</em><br />
+=&gt; <em>function-name</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>function-name</em> - 関数名<br />
+<em>lambda-list</em> - 通常のラムダリスト<br />
+<em>declaration</em> - 宣言式、評価されません<br />
+<em>documentation</em> - 文字列、評価されません<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>block-name</em> - <em>function-name</em>の、関数のblock名</p>
+<h2 id="定義">定義</h2>
+<p>グローバル環境下で<em>function-name</em>という名前の新しい関数を定義します。 関数のボディ部は、<a href="5.3.defun.html"><code>defun</code></a>に含まれるフォームによって定義されます。 それは関数が呼ばれたときに、暗黙のprognとして実行されます。 <a href="5.3.defun.html"><code>defun</code></a>は、 新しい関数を定義するときに使われたり、 正しくない定義の修正したバージョンを導入したり、 すでに定義されている関数を再定義したり、 関数としてマクロを再定義するときにも使用できます。</p>
+<p><a href="5.3.defun.html"><code>defun</code></a>は、暗黙的に関数定義のボディ部<em>form</em>を、 <em>block-name</em>という名前の<code>block</code>で囲みます （しかし<em>lambda-list</em>のフォームは囲みません）。</p>
+<p><em>documentation</em>は、ドキュメント文字を名前に対して <a href="5.3.function-special.html"><code>function</code></a>という種類で設定し、 関数オブジェクトにも設定します。</p>
+<p><a href="5.3.defun.html"><code>defun</code></a>を評価すると、 下記のラムダ式を<a href="5.3.defun.html"><code>defun</code></a>が実行された レキシカルな環境な環境下で処理し、 その関数を<em>function-name</em>というグローバルな名前に設定します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">lambda</span> lambda-list</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   [[declaration* | <span class="kw">documentation</span>]]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">block</span> block-name form*))</span></code></pre></div>
+<p>（引数はマクロ展開時に評価されます）</p>
+<p><a href="5.3.defun.html"><code>defun</code></a>は、コンパイル時にはどのような副作用も要求されていません。 特に<a href="5.3.defun.html"><code>defun</code></a>は、コンパイル時には関数定義を利用可能にしません。 実装者は、コンパイル時のエラーチェック （関数呼び出し時の引数の個数チェックなど）のために 関数についての情報を保存したり、 関数をインライン展開できるようにすることを選択できます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> recur </span>(x)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> (<span class="kw">when</span> (<span class="op">&gt;</span> x <span class="dv">0</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   (recur (<span class="op">1-</span> x)))) <span class="op">=&gt;</span>  RECUR </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> ex </span>(a b &amp;optional c (d <span class="dv">66</span>) &amp;<span class="kw">rest</span> keys &amp;key test (start <span class="dv">0</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">list</span> a b c d keys test start)) <span class="op">=&gt;</span>  EX </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(ex <span class="dv">1</span> <span class="dv">2</span>) <span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="dv">2</span> NIL <span class="dv">66</span> NIL NIL <span class="dv">0</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(ex <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="bu">:test</span> &#39;equal <span class="bu">:start</span> <span class="dv">50</span>) </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> (:TEST EQUAL :START <span class="dv">50</span>) EQUAL <span class="dv">50</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(ex <span class="bu">:test</span> <span class="dv">1</span> <span class="bu">:start</span> <span class="dv">2</span>) <span class="op">=&gt;</span>  (:TEST <span class="dv">1</span> :START <span class="dv">2</span> NIL NIL <span class="dv">0</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">;; この関数は呼び出し側で引数の型チェックを行うことを想定しており</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">;; コンパイラーもその仮定を認めています</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> discriminant </span>(a b c)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">number</span> a b c))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Compute the discriminant for a quadratic equation.&quot;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  (<span class="op">-</span> (<span class="op">*</span> b b) (<span class="op">*</span> <span class="dv">4</span> a c))) <span class="op">=&gt;</span>  DISCRIMINANT</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>(discriminant <span class="dv">1</span> <span class="dv">2</span>/<span class="dv">3</span> -<span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">76</span>/<span class="dv">9</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">;; この関数は呼び出し側で引数の型チェックを行わないと仮定しており</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">;; どんな仮定より先に名に型チェックを実行します</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> careful-discriminant </span>(a b c)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Compute the discriminant for a quadratic equation.&quot;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">check-type</span> a <span class="kw">number</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">check-type</span> b <span class="kw">number</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">check-type</span> c <span class="kw">number</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">locally</span> (<span class="kw">declare</span> (<span class="kw">number</span> a b c))</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    (<span class="op">-</span> (<span class="op">*</span> b b) (<span class="op">*</span> <span class="dv">4</span> a c)))) <span class="op">=&gt;</span>  CAREFUL-DISCRIMINANT</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>(careful-discriminant <span class="dv">1</span> <span class="dv">2</span>/<span class="dv">3</span> -<span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">76</span>/<span class="dv">9</span></span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.flet.html"><code>flet</code></a>, <a href="5.3.flet.html"><code>labels</code></a>, <code>block</code>, <code>return-from</code>, <code>declare</code>, <a href="25.2.documentation.html"><code>documentation</code></a>, 3.1. 評価, 3.4.1. 通常のラムダリスト, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
+<h2 id="備考">備考</h2>
+<p><code>return-from</code>は、<a href="5.3.defun.html"><code>defun</code></a>定義の関数を 普通より早く返却したいときに使用することができます。</p>
+<p>関数定義に関する追加情報（通常はデバッグ情報）が記録されると、 さらなる副作用が発生する可能性があります。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

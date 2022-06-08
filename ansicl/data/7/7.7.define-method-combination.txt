@@ -236,7 +236,7 @@ long-form-option::= :description description |
     フォームとして返却します。
     有効なメソッドは`null`の{lexical-environment}から
     加えてローカルマクロ{call-method:link}の定義と、
-    `COMON-LISP-USER`パッケージからアクセスできないシンボル名の束縛で
+    `COMMON-LISP-USER`パッケージからアクセスできないシンボル名の束縛で
     拡張された環境下で評価されます。
     メソッドグループ指定子によって生成されたリストのうちの
     ひとつのメソッドオブジェクトと、次のメソッドのリストが与えられると、

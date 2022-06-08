@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FUNCALL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.funcall
+@name: funcall
+@type: function
+
+Function `FUNCALL`
+
+
+## {syntax}
+
+`funcall` *function* &rest *args* => *result\**
+
+
+## {arguments-and-values}
+
+*function* - 関数指定子  
+*args* - *function*の引数  
+*result* - *function*の返却値
+
+
+## {description}
+
+{funcall:link}は、*args*を引数に*function*を実行します。
+もし*function*がシンボルなら、
+*function*をグローバル環境下の関数の値として探したものを
+強制的に変換します。
+
+
+## {examples}
+
+```lisp
+(funcall #'+ 1 2 3) =>  6
+(funcall 'car '(1 2 3)) =>  1
+(funcall 'position 1 '(1 2 3 2 1) :start 1) =>  4
+(cons 1 2) =>  (1 . 2)
+(flet ((cons (x y) `(kons ,x ,y)))
+  (let ((cons (symbol-function '+)))
+    (funcall #'cons
+             (funcall 'cons 1 2)
+             (funcall cons 1 2))))
+=>  (KONS (1 . 2) 3)
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*function*がシンボルであり、
+それがグローバル定義の関数を持たなかったときか、
+あるいはグローバルなマクロか{special-operator}であったときは、
+型{undefined-function:link}のエラーが発生します。
+
+
+## {see-also}
+
+{apply:link},
+{function!special:link},
+{3.1:ab}
+
+
+## {notes}
+
+```lisp
+(funcall function arg1 arg2 ...)
+==  (apply function arg1 arg2 ... nil)
+==  (apply function (list arg1 arg2 ...))
+```
+
+{funcall:link}と通常の関数呼び出しの違いは、
+前者はフォームの通常の評価によって*function*を取得しますが、
+後者は普通に起こる関数の位置の特別な解釈によって得られます。
+
+@end
+

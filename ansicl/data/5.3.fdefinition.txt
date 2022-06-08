@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor FDEFINITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.fdefinition
+@name: fdefinition
+@type: accessor
+
+Accessor `FDEFINITION`
+
+
+## {syntax}
+
+`fdefinition` *function-name* => *definition*  
+(`setf` (`fdefinition` *function-name*) *new-definition*)
+
+
+## {arguments-and-values}
+
+*function-name* - 関数名。{setf:link}ではないときは、
+グローバル関数かの`fbound`である必要があります。  
+*definition* - *function-name*という名前の現在のグローバル関数の定義  
+*new-definition* - 関数
+
+
+## {description}
+
+{fdefinition:link}は、*function-name*という名前によって定義された
+現在のグローバル関数にアクセスします。
+定義は、関数かもしれませんし、
+あるいは{special-form}かマクロを表した
+オブジェクトかもしれません。
+もし{fboundp:link}が*true*であり、
+かつ*function-name*がマクロか{special-form}のときは、
+{fdefinition:link}の返却値はちゃんと定義できていませんが、
+しかし{fdefinition:link}がエラーを発することはありません。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*function-name*が関数名でないとき、
+型{type-error:link}のエラーが発生します。
+
+{setf:link}ではない場合、
+もし*function-name*が`fbound`ではないときは、
+型{undefined-function:link}のエラーが発生します。
+
+
+## {see-also}
+
+{fboundp:link},
+{fmakunbound:link},
+{macro-function:link},
+{special-operator-p:link},
+{symbol-function:link}
+
+
+## {notes}
+
+{fdefinition:link}は、{flet:link}や{labels:link}によって
+生成されたレキシカルな関数名の値にはアクセスできません。
+グローバル環境の値にのみアクセスできます。
+
+{setf:link}は{fdefinition:link}と使うことで、
+*function-name*の関数が{special-form}ではないとき、
+グローバルな関数定義を置き換えることができます。
+{setf:link}の{fdefinition:link}は、新しい値に関数を要求します。
+*function-name*の{fdefinition:link}に、
+シンボルか、リストか、
+あるいはマクロか{special-form}の名前から
+{fdefinition:link}によって得られる値をセットするのはエラーです。
+
+@end
+

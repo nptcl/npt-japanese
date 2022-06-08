@@ -1,0 +1,259 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator FLET
+;;  Special Operator LABELS
+;;  Special Operator MACROLET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.flet
+@name: flet
+@name: labels
+@name: macrolet
+@type: special-operator
+
+Special Operator `FLET`, `LABELS`, `MACROLET`
+
+
+## {syntax}
+
+`flet` ((*function-name* *lambda-list*
+ [[*local-declaration\** | *local-documentation*]] *local-form\**)\*)
+ *declaration\** *form\**  
+=> *result\**
+
+`labels` ((*function-name* *lambda-list*
+ [[*local-declaration\** | *local-documentation*]] *local-form\**)\*)
+ *declaration* form*
+ *declaration\** *form\**  
+=> *result\**
+
+`macrolet` ((*name* *lambda-list*
+ [[*local-declaration\** | *local-documentation*]] *local-form\**)\*)
+ *declaration\** *form\**  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*function-name* - 関数名  
+*name* - シンボル  
+*lambda-list* - ラムダリスト。
+{flet:link}と{labels:link}は{ordinary-lambda-list}。
+{macrolet:link}は{macro-lambda-list}。  
+*local-declaration* - 宣言式。評価されません。  
+*declaration* - 宣言式。評価されません。  
+*local-documentation* - 文字列。評価されません。  
+*local-form*, *form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+{flet:link}、{labels:link}、{macrolet:link}は、
+ローカル関数とローカルマクロを定義し、
+そのローカルな定義を使い*form*を実行します。
+*form*は、現れた順に実行します。
+
+{flet:link}と{labels:link}によって作成された各関数と、
+{macrolet:link}によって作成された各マクロの
+それぞれのボディ部の*form*（ただしラムダリストは除く）は、
+必要に応じて、
+*function-name*の関数の`block`名か*name*を用いて、
+{implicit-block}に囲まれます。
+
+ローカル関数とマクロの定義部のリストと、
+{flet:link}および{labels:link}のボディ部*form*間における
+*declaration*のスコープは、
+ローカルの関数定義の本体が含まれません。
+ただし例外は{labels:link}の、
+{inline:link}、{notinline:link}、{ftype:link}宣言であり、
+これらはローカルの関数定義を参照し、
+そのローカル関数の本体に適用します。
+つまり、これらの宣言のスコープは、
+関数名として影響を与える範囲と同じです。
+これらの*declaration*のスコープには、
+{macrolet:link}で定義されたマクロ展開数の本体は含まれません。
+
+- {flet:link}
+  - {flet:link}は、ローカルに名前がある関数を定義し、
+    それらの定義を束縛とともに一連の*form*を実行します。
+    そのようなローカル関数はいくつでも定義できます。
+    <br><br>
+    名前が束縛されたスコープは、ただボディ部のみ含まれます。
+    {flet:link}のボディ部内では、
+    {flet:link}によって定義された*function-name*という名前は、
+    同名のグローバルに宣言されたものではなく、
+    ローカルに宣言された関数が参照されます。
+    {flet:link}のスコープ内では、
+    {flet:link}によって定義されている
+    *function-name*という名前の、
+    グローバルの{setf-expander}の定義は適用されません。
+    これは、`(defmethod (setf f) ...)`ではなく、
+    `(defsetf f ...)`に適用されることに注意してください。
+    <br><br>
+    {flet:link}によって定義された関数名は、{lexical-environment}内のものであり、
+    それらのローカルな定義は、ただ{flet:link}本体内でのみ保持されます。
+    関数定義の束縛は、{flet:link}本体でのみ見ることができ、
+    それらの定義自身では見ることができません。
+    関数定義内において、
+    ローカルの関数名で定義されているものを探すときは、
+    {flet:link}の外側で定義された関数かマクロが参照されます。
+    {flet:link}は、局所的にグローバル関数名を隠蔽することができ、
+    その新しい定義は、グローバルな定義を参照することができます。
+    <br><br>
+    どんな*local-documentation*も、
+    対応するローカル関数（もし実際に作成されたとき）に、
+    ドキュメント文字として割り当てます。
+    <br><br>
+
+- {labels:link}
+  - {labels:link}は、{flet:link}と同じですが、
+    {labels:link}の場合は定義された関数名のスコープが、
+    ボディ部と同じように関数定義自身にも囲まれるところが違っています。
+    <br><br>
+
+- {macrolet:link}
+  - {macrolet:link}は、{defmacro:link}と同じフォーマットで、
+    ローカルマクロの定義を確立します。
+    <br><br>
+    {macrolet:link}の内部では、
+    {macrolet:link}によって定義されている
+    *function-name*という名前の、
+    グローバルの{setf-expander}の定義は適用されません。
+    そうではなく、{setf:link}はマクロフォームを展開し、
+    結果のフォームを再帰的に処理します。
+    <br><br>
+    {macrolet:link}によって定義されたマクロ展開関数は、
+    {macrolet:link}のフォームに現れる、
+    {lexical-environment}によって定義されたものです。
+    宣言と、{macrolet:link}と{symbol-macrolet:link}の定義は、
+    {macrolet:link}内の、ローカルマクロ定義に影響を及ぼします。
+    しかしもしローカルマクロ定義から
+    {lexical-environment}内で見ることができる
+    ローカルな変数か関数を参照したときの結果は未定義です。
+    <br><br>
+    どんな*local-documentation*も、
+    対応するローカルマクロ関数に、
+    ドキュメント文字として割り当てます。
+    <br><br>
+
+
+## {examples}
+
+```lisp
+(defun foo (x flag)
+  (macrolet ((fudge (z)
+                ; パラメーターxとflagはこの時点ではアクセス不可です。
+                ; flagの参照はグローバル変数の名前になります。
+                ` (if flag (* ,z ,z) ,z)))
+   ; パラメーターxとflagは、ここではアクセス可能です。
+    (+ x
+       (fudge x)
+       (fudge (+ x 1)))))
+== 
+(defun foo (x flag)
+  (+ x
+     (if flag (* x x) x)
+     (if flag (* (+ x 1) (+ x 1)) (+ x 1))))
+```
+
+これは、マクロ展開が行われた後です。
+`x`と`flag`の発生は、
+関数`foo`のパラメータを合法的にに参照しています。
+なぜなら、これらのパラメータは、
+マクロが呼ばれて展開が生成された場所では
+見ることができるからです。
+
+
+```lisp
+(flet ((flet1 (n) (+ n n)))
+   (flet ((flet1 (n) (+ 2 (flet1 n))))
+     (flet1 2))) =>  6
+
+(defun dummy-function () 'top-level) =>  DUMMY-FUNCTION 
+(funcall #'dummy-function) =>  TOP-LEVEL 
+(flet ((dummy-function () 'shadow)) 
+     (funcall #'dummy-function)) =>  SHADOW 
+(eq (funcall #'dummy-function) (funcall 'dummy-function))
+=>  true 
+(flet ((dummy-function () 'shadow))
+  (eq (funcall #'dummy-function)
+      (funcall 'dummy-function)))
+=>  false 
+
+(defun recursive-times (k n)
+  (labels ((temp (n) 
+             (if (zerop n) 0 (+ k (temp (1- n))))))
+    (temp n))) =>  RECURSIVE-TIMES
+(recursive-times 2 3) =>  6
+
+(defmacro mlets (x &environment env) 
+   (let ((form `(babbit ,x)))
+     (macroexpand form env))) =>  MLETS
+(macrolet ((babbit (z) `(+ ,z ,z))) (mlets 5)) =>  10
+(flet ((safesqrt (x) (sqrt (abs x))))
+ ;; `safesqrt`関数は、二か所で使用されます。
+  (safesqrt (apply #'+ (map 'list #'safesqrt '(1 2 3 4 5 6)))))
+=>  3.291173
+(defun integer-power (n k)     
+  (declare (integer n))         
+  (declare (type (integer 0 *) k))
+  (labels ((expt0 (x k a)
+             (declare (integer x a) (type (integer 0 *) k))
+             (cond ((zerop k) a)
+                   ((evenp k) (expt1 (* x x) (floor k 2) a))
+                   (t (expt0 (* x x) (floor k 2) (* x a)))))
+           (expt1 (x k a)
+             (declare (integer x a) (type (integer 0 *) k))
+             (cond ((evenp k) (expt1 (* x x) (floor k 2) a))
+                   (t (expt0 (* x x) (floor k 2) (* x a))))))
+   (expt0 n k 1))) =>  INTEGER-POWER
+(defun example (y l)
+  (flet ((attach (x)
+           (setq l (append l (list x)))))
+    (declare (inline attach))
+    (dolist (x y)
+      (unless (null (cdr x))
+        (attach x)))
+    l))
+
+(example '((a apple apricot) (b banana) (c cherry) (d) (e))
+         '((1) (2) (3) (4 2) (5) (6 3 2)))
+=>  ((1) (2) (3) (4 2) (5) (6 3 2) (A APPLE APRICOT) (B BANANA) (C CHERRY))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+## {see-also}
+
+{declare:link},
+{defmacro:link},
+{defun:link},
+{documentation:link},
+{let:link},
+{3.1:ab},
+{3.4.11:ab}
+
+
+## {notes}
+
+{flet:link}では、再帰関数を定義することはできません。
+{labels:link}は、互いに再帰呼出できる関数を定義するのに使うことができます。
+
+もし{macrolet:link}が{top-level-form}のとき、
+ボディ部*form*もまた{top-level-form}として処理されます。
+{3.2.3:ab}をご確認ください。
+
+@end
+

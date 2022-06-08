@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>5.3. データと制御フローの辞書</title>
+  <title>Accessor FDEFINITION</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,22 +151,35 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">5.3. データと制御フローの辞書</h1>
+<h1 class="title">Accessor FDEFINITION</h1>
 </header>
-<p><a href="5.html">UP</a></p>
+<p><a href="5.3.html">UP</a></p>
 <hr />
-<p>5.3. データと制御フローの辞書</p>
-<ul>
-<li><a href="5.3.apply.html">Function APPLY</a></li>
-<li><a href="5.3.defun.html">Macro DEFUN</a></li>
-<li><a href="5.3.fdefinition.html">Accessor FDEFINITION</a></li>
-<li><a href="5.3.fboundp.html">Function FBOUNDP</a></li>
-<li><a href="5.3.fmakunbound.html">Function FMAKUNBOUND</a></li>
-<li><a href="5.3.flet.html">Special-Operator FLET, LABELS, MACROLET</a></li>
-<li><a href="5.3.funcall.html">Function FUNCALL</a></li>
-<li><a href="5.3.function-special.html">Special-Operator FUNCTION</a></li>
-<li><a href="5.3.function-lambda-expression.html">Function FUNCTION-LAMBDA-EXPRESSION</a></li>
-</ul>
+<h1 id="accessor-fdefinition">Accessor FDEFINITION</h1>
+<p>Accessor <code>FDEFINITION</code></p>
+<h2 id="構文">構文</h2>
+<p><code>fdefinition</code> <em>function-name</em> =&gt; <em>definition</em><br />
+(<code>setf</code> (<code>fdefinition</code> <em>function-name</em>) <em>new-definition</em>)</p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>function-name</em> - 関数名。<code>setf</code>ではないときは、 グローバル関数かの<code>fbound</code>である必要があります。<br />
+<em>definition</em> - <em>function-name</em>という名前の現在のグローバル関数の定義<br />
+<em>new-definition</em> - 関数</p>
+<h2 id="定義">定義</h2>
+<p><a href="5.3.fdefinition.html"><code>fdefinition</code></a>は、<em>function-name</em>という名前によって定義された 現在のグローバル関数にアクセスします。 定義は、関数かもしれませんし、 あるいは特殊フォームかマクロを表した オブジェクトかもしれません。 もし<a href="5.3.fboundp.html"><code>fboundp</code></a>が<em>true</em>であり、 かつ<em>function-name</em>がマクロか特殊フォームのときは、 <a href="5.3.fdefinition.html"><code>fdefinition</code></a>の返却値はちゃんと定義できていませんが、 しかし<a href="5.3.fdefinition.html"><code>fdefinition</code></a>がエラーを発することはありません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><em>function-name</em>が関数名でないとき、 型<code>type-error</code>のエラーが発生します。</p>
+<p><code>setf</code>ではない場合、 もし<em>function-name</em>が<code>fbound</code>ではないときは、 型<code>undefined-function</code>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.fboundp.html"><code>fboundp</code></a>, <a href="5.3.fmakunbound.html"><code>fmakunbound</code></a>, <code>macro-function</code>, <code>special-operator-p</code>, <a href="10.2.symbol-function.html"><code>symbol-function</code></a></p>
+<h2 id="備考">備考</h2>
+<p><a href="5.3.fdefinition.html"><code>fdefinition</code></a>は、<a href="5.3.flet.html"><code>flet</code></a>や<a href="5.3.flet.html"><code>labels</code></a>によって 生成されたレキシカルな関数名の値にはアクセスできません。 グローバル環境の値にのみアクセスできます。</p>
+<p><code>setf</code>は<a href="5.3.fdefinition.html"><code>fdefinition</code></a>と使うことで、 <em>function-name</em>の関数が特殊フォームではないとき、 グローバルな関数定義を置き換えることができます。 <code>setf</code>の<a href="5.3.fdefinition.html"><code>fdefinition</code></a>は、新しい値に関数を要求します。 <em>function-name</em>の<a href="5.3.fdefinition.html"><code>fdefinition</code></a>に、 シンボルか、リストか、 あるいはマクロか特殊フォームの名前から <a href="5.3.fdefinition.html"><code>fdefinition</code></a>によって得られる値をセットするのはエラーです。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

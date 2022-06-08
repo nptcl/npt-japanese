@@ -1,0 +1,138 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFUN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.defun
+@name: defun
+@type: macro
+
+Macro `DEFUN`
+
+
+## {syntax}
+
+`defun` *function-name* *lambda-list* [[*declaration\** | *documentation*]] *form\**  
+=> *function-name*
+
+
+## {arguments-and-values}
+
+*function-name* - 関数名  
+*lambda-list* - {ordinary-lambda-list}  
+*declaration* - 宣言式、評価されません  
+*documentation* - 文字列、評価されません  
+*form* - {implicit-progn}  
+*block-name* - *function-name*の、関数のblock名
+
+
+## {description}
+
+グローバル環境下で*function-name*という名前の新しい関数を定義します。
+関数のボディ部は、{defun:link}に含まれるフォームによって定義されます。
+それは関数が呼ばれたときに、{implicit-progn}として実行されます。
+{defun:link}は、
+新しい関数を定義するときに使われたり、
+正しくない定義の修正したバージョンを導入したり、
+すでに定義されている関数を再定義したり、
+関数としてマクロを再定義するときにも使用できます。
+
+{defun:link}は、暗黙的に関数定義のボディ部*form*を、
+*block-name*という名前の{block:link}で囲みます
+（しかし*lambda-list*のフォームは囲みません）。
+
+*documentation*は、ドキュメント文字を名前に対して
+{function!special:link}という種類で設定し、
+関数オブジェクトにも設定します。
+
+{defun:link}を評価すると、
+下記のラムダ式を{defun:link}が実行された
+{lexical-environment}な環境下で処理し、
+その関数を*function-name*というグローバルな名前に設定します。
+
+```lisp
+ (lambda lambda-list
+   [[declaration* | documentation]]
+   (block block-name form*))
+```
+
+（引数はマクロ展開時に評価されます）
+
+{defun:link}は、コンパイル時にはどのような副作用も要求されていません。
+特に{defun:link}は、コンパイル時には関数定義を利用可能にしません。
+実装者は、コンパイル時のエラーチェック
+（関数呼び出し時の引数の個数チェックなど）のために
+関数についての情報を保存したり、
+関数をインライン展開できるようにすることを選択できます。
+
+
+## {examples}
+
+```lisp
+(defun recur (x)
+ (when (> x 0)
+   (recur (1- x)))) =>  RECUR 
+(defun ex (a b &optional c (d 66) &rest keys &key test (start 0))
+   (list a b c d keys test start)) =>  EX 
+(ex 1 2) =>  (1 2 NIL 66 NIL NIL 0)
+(ex 1 2 3 4 :test 'equal :start 50) 
+=>  (1 2 3 4 (:TEST EQUAL :START 50) EQUAL 50)
+(ex :test 1 :start 2) =>  (:TEST 1 :START 2 NIL NIL 0)
+
+;; この関数は呼び出し側で引数の型チェックを行うことを想定しており
+;; コンパイラーもその仮定を認めています
+(defun discriminant (a b c)
+  (declare (number a b c))
+  "Compute the discriminant for a quadratic equation."
+  (- (* b b) (* 4 a c))) =>  DISCRIMINANT
+(discriminant 1 2/3 -2) =>  76/9
+
+;; この関数は呼び出し側で引数の型チェックを行わないと仮定しており
+;; どんな仮定より先に名に型チェックを実行します
+(defun careful-discriminant (a b c)
+  "Compute the discriminant for a quadratic equation."
+  (check-type a number)
+  (check-type b number)
+  (check-type c number)
+  (locally (declare (number a b c))
+    (- (* b b) (* 4 a c)))) =>  CAREFUL-DISCRIMINANT
+(careful-discriminant 1 2/3 -2) =>  76/9
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{flet:link},
+{labels:link},
+{block:link},
+{return-from:link},
+{declare:link},
+{documentation:link},
+{3.1:ab},
+{3.4.1:ab},
+{3.4.11:ab}
+
+
+## {notes}
+
+{return-from:link}は、{defun:link}定義の関数を
+普通より早く返却したいときに使用することができます。
+
+関数定義に関する追加情報（通常はデバッグ情報）が記録されると、
+さらなる副作用が発生する可能性があります。
+
+@end
+

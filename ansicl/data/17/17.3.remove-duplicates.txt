@@ -120,7 +120,7 @@ Function `REMOVE-DUPLICATES`, `DELETE-DUPLICATES`
 `:test-not`パラメーターは非推奨です。
 
 これらの関数は、*sequence*を集合で表現される
-標準形に変換するのに便利である。
+標準形に変換するのに便利です。
 
 @end
 

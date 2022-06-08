@@ -44,6 +44,7 @@
 (replace initialization-arguments "初期化引数")
 (replace qualifiers "修飾子")
 (replace special-operator "特殊オペレーター")
+(replace special-form "特殊フォーム")
 (replace dynamic-extent "動的生存期間")
 
 (replace slot-boundp-using-class "`slot-boundp-using-class`")
@@ -55,6 +56,7 @@
 (replace dotted-list "ドットリスト")
 (replace circular-list "循環リスト")
 (replace lexical-environment "レキシカルな環境")
+(replace null-lexical-environment "`null`のレキシカルな環境")
 (replace dynamic-environment "動的な環境")
 (replace literal-object "リテラルオブジェクト")
 (replace confirming-implementation "仕様に適合した実装")
@@ -71,6 +73,7 @@
 (replace format-control "format-control")
 (replace format-directive "format指示子")
 (replace ordinary-lambda-list "通常のラムダリスト")
+(replace macro-lambda-list "マクロラムダリスト")
 (replace direct-instance "direct-instance")
 
 (replace implementation-dependent "実装依存")
@@ -91,4 +94,9 @@
 
 (replace function-designator "関数指定子")
 (replace spreadable-argument-list-designator "広げられる引数リスト指定子")
+(replace setf-expander "setf-expander")
+
+(replace implicit-block "暗黙の`block`")
+(replace top-level-form "トップレベルフォーム")
+(replace lexical-closure "レキシカルクロージャー")
 

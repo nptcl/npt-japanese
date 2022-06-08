@@ -1,0 +1,104 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.function!special
+@name: function!special
+@type: special-operator
+
+Special Operator `FUNCTION`
+
+
+## {syntax}
+
+`function` *name* => *function*
+
+
+## {arguments-and-values}
+
+*name* - 関数名か、ラムダ式  
+*function* - 関数オブジェクト
+
+
+## {description}
+
+{function!special:link}の値は、
+現在の{lexical-environment}における、
+*name*の関数値です。
+
+もし*name*が関数名のとき、その名前の関数定義は、
+{flet:link}、{labels:link}、{macrolet:link}で囲まれた
+レキシカルな内部に確立されたものがもしあるのであれば、
+それが対応します。
+そうではないときは、その関数名のグローバルな関数定義が返却されます。
+
+もし*name*がラムダ式のとき、{lexical-closure}が返却されます。
+同じ束縛の集合のクロージャーが複数生成されるような状況では、
+それぞれの生成されたクロージャーは
+{eq:link}になるかもしれませんし、ならないかもしれません。
+
+{function!special:link}フォームが現れる{lexical-environment}において、
+対応する関数が存在しない*function-name*を
+{function!special:link}で使用した時はエラーが発生します。
+とくに、マクロか{special-form}を示すシンボルを
+{function!special:link}で使用した時はエラーになります。
+実装は、パフォーマンスの理由からこのエラーを通知しないことを選択できますが、
+しかし使いやすいからと言ってエラー通知を怠るように定義することは許されません。
+
+
+## {examples}
+
+```lisp
+(defun adder (x) (function (lambda (y) (+ x y))))
+```
+
+`(adder 3)`の結果は、`3`と引数を加算する関数です。
+
+```lisp
+(setq add3 (adder 3))
+(funcall add3 5) =>  8
+```
+
+これが動作する理由は、
+{function!special:link}がラムダ式のクロージャーを生成しているからであり、
+制御が関数`addr`から返却された後でさえ、
+変数`x`の値`3`を参照することができます。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defun:link},
+{fdefinition:link},
+{flet:link},
+{labels:link},
+{symbol-function:link},
+{3.1.2.1.1:ab},
+{2.4.8.2:ab},
+{22.1.3.13:ab}
+
+
+## {notes}
+
+`#'name`という表記が、`(function name)`の略語として使われます。
+
+@end
+

@@ -1,0 +1,49 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable LAMBDA-LIST-KEYWORDS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.lambda-list-keywords
+@name: lambda-list-keywords
+@type: constant-variable
+
+Constant Variable `LAMBDA-LIST-KEYWORDS`
+
+
+## {constant-value}
+
+リストであり、その要素は{implementation-dependent}です。
+しかし、少なくとも次のシンボルは含める必要があります。
+`&allow-other-keys`, `&aux`, `&body`, `&environment`,
+`&key`, `&optional`, `&rest`, `&whole`。
+
+
+## {description}
+
+実装で使われるすべてのラムダリストキーワードのリストです。
+マクロ定義フォームでのみ使われるものも追加で含まれます。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{defun:link},
+{flet:link},
+{defmacro:link},
+{macrolet:link},
+{3.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

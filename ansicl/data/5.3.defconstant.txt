@@ -1,0 +1,110 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFCONSTANT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.defconstant
+@name: defconstant
+@type: macro
+
+Macro `DEFCONSTANT`
+
+
+## {syntax}
+
+`defconstant` *name* *initial-value* [*documentation*] => *name*
+
+
+## {arguments-and-values}
+
+*name* - シンボル。評価されません。  
+*initial-value* - フォーム。評価されます。  
+*documentation* - 文字列。評価されません。
+
+
+## {description}
+
+{defconstant:link}は、
+*name*で指定されたグローバル変数に、
+*initial-value*を評価した結果の値を与えます。
+
+{defconstant:link}によって定義された定数は、
+{defconstant:link}によって再定義できます。
+しかし、他の操作を使いシンボルに値を割り当てようとしたり、
+後続の{defconstant:link}を使い違う値を割り当てようとしたときの
+結果は未定義です。
+
+*documentation*が与えられたとき、
+*name*へドキュメント文字を種類{variable!symbol:link}として割り当てます。
+
+{defconstant:link}は通常{top-level-form}に現れますが、
+{non-top-level-form}に現れても意味があります。
+しかし、下記で説明するコンパイル時の副作用は、
+{defconstant:link}が{top-level-form}として現れた場所でのみ
+効果があります。
+
+{defconstant:link}実行時に
+*name*という名前の変数の何らかの束縛がすでに存在するか、
+または*initial-value*とは違った値があるときの結果は未定義です。
+
+レキシカルか動的かどちらかで定数のシンボルを再束縛した時の結果は未定義です。
+言い換えると、{defconstant:link}で宣言されたシンボルは、
+常にグローバルな値を参照します。
+
+{defconstant:link}の実行の副作用は、
+少なくとも下記のコードの副作用と同等でなければなりません。
+
+```lisp
+(setf (symbol-value 'name) initial-value)
+(setf (documentation 'name 'variable) 'documentation)
+```
+
+{defconstant:link}フォームが{top-level-form}として現れたとき、
+コンパイラーは*name*を定数の変数として認識する必要があります。
+実装は値のフォームを、コンパイル時に評価するか、
+ロード時に評価するか、あるいは両方かを選択できます。
+したがって、
+ユーザーは*initial-value*がコンパイル時に評価可能であり、
+（ファイルに*name*が現れるかどうかに関わらず）
+それが常に同じ値で評価されるかを確認する必要があります。
+
+
+## {examples}
+
+```lisp
+(defconstant this-is-a-constant 'never-changing "for a test") =>  THIS-IS-A-CONSTANT
+this-is-a-constant =>  NEVER-CHANGING
+(documentation 'this-is-a-constant 'variable) =>  "for a test"
+(constantp 'this-is-a-constant) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+## {see-also}
+
+{declaim:link},
+{defparameter:link},
+{defvar:link},
+{documentation:link},
+{proclaim:link},
+{3.1.2.1.1.3:ab},
+{3.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

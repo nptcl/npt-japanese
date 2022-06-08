@@ -91,15 +91,15 @@ Function `NULL`
 
 ## {see-also}
 
-{not:link}
+{not!function:link}
 
 
 ## {notes}
 
 {null!function:link}は、空のリストかどうかテストするときに使用され、
-一方、{not:link}はブール値（あるいは{generalized-boolean}）を
+一方、{not!function:link}はブール値（あるいは{generalized-boolean}）を
 反転させるときに使うことを意図しています。
-操作上では、{null!function:link}と{not:link}は同じ結果を計算するので、
+操作上では、{null!function:link}と{not!function:link}は同じ結果を計算するので、
 どちらを使うかはスタイルの問題です。
 
 ```lisp

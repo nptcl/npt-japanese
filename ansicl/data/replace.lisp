@@ -98,5 +98,6 @@
 
 (replace implicit-block "暗黙の`block`")
 (replace top-level-form "トップレベルフォーム")
+(replace non-top-level-form "非トップレベルフォーム")
 (replace lexical-closure "レキシカルクロージャー")
 

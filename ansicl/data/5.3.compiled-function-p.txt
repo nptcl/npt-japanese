@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPILED-FUNCTION-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.compiled-function-p
+@name: compiled-function-p
+@type: function
+
+Function `COMPILED-FUNCTION-P`
+
+
+## {syntax}
+
+`compiled-function-p` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{compiled-function:link}なら*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(defun f (x) x) =>  F
+(compiled-function-p #'f)
+=>  false
+OR=>  true
+(compiled-function-p 'f) =>  false
+(compile 'f) =>  F
+(compiled-function-p #'f) =>  true
+(compiled-function-p 'f) =>  false
+(compiled-function-p (compile nil '(lambda (x) x)))
+=>  true
+(compiled-function-p #'(lambda (x) x))
+=>  false
+OR=>  true
+(compiled-function-p '(lambda (x) x)) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compile:link},
+{compile-file:link},
+{compiled-function:link}
+
+
+## {notes}
+
+```lisp
+(compiled-function-p object) == (typep object 'compiled-function)
+```
+
+@end
+

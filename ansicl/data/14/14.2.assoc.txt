@@ -87,7 +87,7 @@ Function `ASSOC`, `ASSOC-IF`, `ASSOC-IF-NOT`
 
 {rassoc:link},
 {find:link},
-{member:link},
+{member!function:link},
 {position:link},
 {3.6:ab}
 

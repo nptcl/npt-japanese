@@ -8,8 +8,8 @@
 ;;  Function MEMBER-IF
 ;;  Function MEMBER-IF-NOT
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@begin: 14.2.member
-@name: member
+@begin: 14.2.member!function
+@name: member!function
 @name: member-if
 @name: member-if-not
 @type: function
@@ -37,7 +37,7 @@ Function `MEMBER`, `MEMBER-IF`, `MEMBER-IF-NOT`
 
 ## {description}
 
-{member:link}, {member-if:link}, {member-if-not:link}は
+{member!function:link}, {member-if:link}, {member-if-not:link}は
 それぞれ*list*から*item*を探すか、
 あるいは*test*をみなすトップレベルの要素を探します。
 *predicate*関数の引数は、*list*の要素です。
@@ -98,10 +98,10 @@ Function `MEMBER`, `MEMBER-IF`, `MEMBER-IF-NOT`
 (member 'a '(g (a y) c a d e a f)) =>  (A D E A F)
 ```
 
-{member:link}によって返却された値は、`a`から始まるリストの位置と同一です。
-したがって、{member:link}の結果を{rplaca:link}することで、
+{member!function:link}によって返却された値は、`a`から始まるリストの位置と同一です。
+したがって、{member!function:link}の結果を{rplaca:link}することで、
 `a`が発見された場所のリストの部分を変更することができます。
-（{member:link}が{nil!variable:link}を返却していないという
+（{member!function:link}が{nil!variable:link}を返却していないという
 チェックがされていると仮定しています。）
 
 @end

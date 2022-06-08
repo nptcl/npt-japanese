@@ -1,0 +1,45 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable CALL-ARGUMENTS-LIMIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.call-arguments-limit
+@name: call-arguments-limit
+@type: constant-variable
+
+Constant Variable `CALL-ARGUMENTS-LIMIT`
+
+
+## {constant-value}
+
+整数であり、
+`50`より小さくはなく、
+少なくとも{lambda-parameters-limit:link}の値よりも大きい値であり、
+正確な値は{implementation-dependent}です。
+
+
+## {description}
+
+関数に渡すことができる引数の排他的上限数。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{lambda-parameters-limit:link},
+{multiple-values-limit:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

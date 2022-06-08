@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FUNCTIONP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.functionp
+@name: functionp
+@type: function
+
+Function `FUNCTIONP`
+
+
+## {syntax}
+
+`functionp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{function!system-class:link}なら*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(functionp 'append) =>  false
+(functionp #'append) =>  true
+(functionp (symbol-function 'append)) =>  true
+(flet ((f () 1)) (functionp #'f)) =>  true
+(functionp (compile nil '(lambda () 259))) =>  true
+(functionp nil) =>  false
+(functionp 12) =>  false
+(functionp '(lambda (x) (* x x))) =>  false
+(functionp #'(lambda (x) (* x x))) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(functionp object) == (typep object 'function)
+```
+
+@end
+

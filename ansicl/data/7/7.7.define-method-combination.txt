@@ -103,7 +103,7 @@ long-form-option::= :description description |
       この最適化は、新たに有効なメソッドを作成することがなくなり、
       また関数呼び出しのオーバーヘッドを抑えます。
       このオプションは
-      {progn:link}, {and:link}, {+:link}, {max:link}のようなオペレーターで
+      {progn:link}, {and!macro:link}, {+:link}, {max:link}のようなオペレーターで
       で使用することを想定しています。
     - `:operator`オプションは、オペレーターの名前を指定します。
       *operator*引数は、関数か、マクロか、
@@ -255,7 +255,7 @@ long-form-option::= :description description |
     全体が構成されているような場合において有効です。
     各{define-method-combination:link}のボディ部は
     この最適が必要な場合は、
-    {progn:link}, {and:link}, {multiple-value-prog1:link}などの
+    {progn:link}, {and!macro:link}, {multiple-value-prog1:link}などの
     冗長な呼び出しを削除する責任を負います。
     <br><br>
     リスト`(:arguments . lambda-list)`は、

@@ -12,6 +12,7 @@
 @name: type!symbol
 @name: function!symbol
 @name: method-combination!symbol
+@name: variable!symbol
 @type: standard-generic-function
 
 

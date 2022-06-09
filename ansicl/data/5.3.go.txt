@@ -15,7 +15,7 @@ Special Operator `GO`
 
 ## {syntax}
 
-`go` *tag* =>|
+`go` *tag* =>`|`
 
 ## {arguments-and-values}
 

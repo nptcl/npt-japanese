@@ -15,7 +15,7 @@ Macro `DEFGENERIC`
 
 ## {syntax}
 
-`defgeneric` *function-name* *gf-lambda-list* [[*option* | *method-description\**]]  
+`defgeneric` *function-name* *gf-lambda-list* [[*option* `|` *method-description\**]]  
 => *new-generic*
 
 ```

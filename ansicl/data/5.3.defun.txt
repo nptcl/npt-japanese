@@ -15,7 +15,7 @@ Macro `DEFUN`
 
 ## {syntax}
 
-`defun` *function-name* *lambda-list* [[*declaration\** | *documentation*]] *form\**  
+`defun` *function-name* *lambda-list* [[*declaration\** `|` *documentation*]] *form\**  
 => *function-name*
 
 

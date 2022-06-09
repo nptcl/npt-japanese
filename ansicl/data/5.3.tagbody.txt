@@ -15,7 +15,7 @@ Special Operator `TAGBODY`
 
 ## {syntax}
 
-`tagbody` `{`*tag* | *statement*`}`\* => {nil!variable:link}
+`tagbody` `{`*tag* `|` *statement*`}`\* => {nil!variable:link}
 
 
 ## {arguments-and-values}

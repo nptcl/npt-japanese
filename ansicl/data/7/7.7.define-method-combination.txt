@@ -22,7 +22,7 @@ Macro `DEFINE-METHOD-COMBINATION`
  (*method-group-specifier\**)
  [(:arguments . *args-lambda-list*)]
  [(:generic-function *generic-function-symbol*)]
- [[*declaration\** | *documentation*]]
+ [[*declaration\** `|` *documentation*]]
  *form\**  
 => *name*
 

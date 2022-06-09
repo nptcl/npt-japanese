@@ -15,7 +15,7 @@ Macro `RETURN`
 
 ## {syntax}
 
-`return` [*result*] =>|
+`return` [*result*] =>`|`
 
 
 ## {arguments-and-values}

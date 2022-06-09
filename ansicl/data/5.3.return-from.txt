@@ -15,7 +15,7 @@ Special Operator `RETURN-FROM`
 
 ## {syntax}
 
-`return-from` *name* [*result*] =>|
+`return-from` *name* [*result*] =>`|`
 
 
 ## {arguments-and-values}

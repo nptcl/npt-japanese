@@ -16,7 +16,7 @@ Macro `DEFMETHOD`
 ## {syntax}
 
 `defmethod` *function-name* *method-qualifier\**
- *specialized-lambda-list* [[*declaration\** | *documentation*]] *form\**  
+ *specialized-lambda-list* [[*declaration\** `|` *documentation*]] *form\**  
 => *new-method*
 
 ```

@@ -17,8 +17,8 @@ Special Operator `LET`, `LET*`
 
 ## {syntax}
 
-`let` (`{`*var* | (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**  
-`let*` (`{`*var* | (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**
+`let` (`{`*var* `|` (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**  
+`let*` (`{`*var* `|` (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**
 
 
 ## {arguments-and-values}

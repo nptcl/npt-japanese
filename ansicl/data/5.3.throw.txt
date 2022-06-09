@@ -1,0 +1,116 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator THROW
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.throw
+@name: throw
+@type: special-operator
+
+Special Operator `THROW`
+
+
+## {syntax}
+
+`throw` *tag* *result-form* =>|
+
+
+## {arguments-and-values}
+
+*tag* - `catch`のタグ、評価されます。  
+*result-form* - フォーム、下記の説明どおり評価されます。
+
+
+## {description}
+
+{throw:link}は、*tag*と{eq:link}で等しいタグの{catch:link}へ、
+非局所的な制御の遷移を行います。
+
+最初に*tag*が評価され、`throw`タグと呼ばれるオブジェクトを生成します。
+そのあと*result-form*が評価され、その値は保存されます。
+もし*result-form*が多値を生成したときは、その全ての値が保存されます。
+もっとも近くにある*tag*と{eq:link}で等しい
+`throw`タグを持つ有効な{catch:link}に対して退出が行われます。
+そのとき保存された値は、{catch:link}の返却値か多値として返されます。
+
+{throw:link}によって開始される制御の遷移の実行についての説明は、
+{5.2:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(catch 'result
+   (setq i 0 j 0)
+   (loop (incf j 3) (incf i)
+         (if (= i 3) (throw 'result (values i j))))) =>  3, 9
+
+(catch nil 
+  (unwind-protect (throw nil 1)
+    (throw nil 2))) =>  2
+```
+
+下記の例では`b`の{catch:link}の上を最初の{throw:link}によって通過しているため、
+結果は未定義であり、したがって移植可能なプログラムは
+動的エクステントが終了していると仮定してください。
+`catch`タグの束縛はまだ解除されていないので、
+これは2番目の{throw:link}のターゲットです。
+
+```lisp
+(catch 'a
+  (catch 'b
+    (unwind-protect (throw 'a 1)
+      (throw 'b 2))))
+```
+
+下記の例は「`The inner catch returns :SECOND-THROW`」が出力され、
+`:outer-catch`が返却されます。
+
+```lisp
+(catch 'foo
+        (format t "The inner catch returns ~s.~%"
+                (catch 'foo
+                    (unwind-protect (throw 'foo :first-throw)
+                        (throw 'foo :second-throw))))
+        :outer-catch)
+>>  The inner catch returns :SECOND-THROW
+=>  :OUTER-CATCH
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし`throw`タグにマッチする有効な`catch`タグがないときは、
+`unwind`のスタックが実行され、
+型{control-error:link}のエラーが発生します。
+もしエラーが発生した時は、
+動的環境は{throw:link}の地点で有効なものになります。
+
+
+## {see-also}
+
+{block:link},
+{catch:link},
+{return-from:link},
+{unwind-protect:link},
+{3.1:ab}
+
+
+## {notes}
+
+{catch:link}と{throw:link}は通常、
+退出点が動的スコープのとき（例えば、
+{throw:link}がレキシカルな{catch:link}に囲まれていないとき）に使われ、
+それに対して{block:link}と{return-from:link}は、
+レキシカルスコープで十分のときに使用されます。
+
+@end
+

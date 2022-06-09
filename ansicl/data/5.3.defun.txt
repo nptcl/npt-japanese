@@ -91,7 +91,7 @@ Macro `DEFUN`
 (discriminant 1 2/3 -2) =>  76/9
 
 ;; この関数は呼び出し側で引数の型チェックを行わないと仮定しており
-;; どんな仮定より先に名に型チェックを実行します
+;; どんな仮定より先に明に型チェックを実行します
 (defun careful-discriminant (a b c)
   "Compute the discriminant for a quadratic equation."
   (check-type a number)

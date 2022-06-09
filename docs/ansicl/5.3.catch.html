@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Special-Operator CATCH</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Special-Operator CATCH</h1>
+</header>
+<p><a href="5.3.html">UP</a></p>
+<hr />
+<h1 id="special-operator-catch">Special-Operator CATCH</h1>
+<p>Special Operator <code>CATCH</code></p>
+<h2 id="構文">構文</h2>
+<p><code>catch</code> <em>tag</em> <em>form*</em> =&gt; <em>result*</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>tag</em> - <code>catch</code>のタグ、評価されます。<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>result</em> - もし<em>form</em>が普通に終了したときは<em>form</em>の返却値が、 もし<em>tag</em>への<code>throw</code>が発生した時は<code>throw</code>の値が返却されます。</p>
+<h2 id="定義">定義</h2>
+<p><a href="5.3.catch.html"><code>catch</code></a>は、<a href="5.3.throw.html"><code>throw</code></a>による非局所的な制御の転送先として使われます。 <em>tag</em>は<a href="5.3.throw.html"><code>throw</code></a>が制御の転送するときに、 <a href="5.3.catch.html"><code>catch</code></a>を探すときに使われます。 <code>(catch 'foo form)</code>は<code>(throw 'foo form)</code>に補足されますが、 <code>(throw 'bar form)</code>では捕捉されません。</p>
+<p><a href="5.3.catch.html"><code>catch</code></a>はの実行の順番は次のとおりです。</p>
+<ol type="1">
+<li><p><em>tag</em>が評価されます。 それは<a href="5.3.catch.html"><code>catch</code></a>の名前として保存されます。</p></li>
+<li><p>それから<em>form</em>が暗黙のprognとして評価されます。 もし<a href="5.3.throw.html"><code>throw</code></a>が発生しなかったら、最後の<em>form</em>の値が返却されます。</p></li>
+<li><p>もし<a href="5.3.throw.html"><code>throw</code></a>が<em>form</em>のどれかの実行中に発生したとき、 <a href="5.3.throw.html"><code>throw</code></a>の引数のタグと<code>eq</code>で一致する、 もっとも近くで確立した<em>tag</em>の<a href="5.3.catch.html"><code>catch</code></a>に制御が転送されます。 それ以上の<em>form</em>の評価は生じません。</p></li>
+<li><p><a href="5.3.catch.html"><code>catch</code></a>によって確立されたタグは、 結果が返される直前に解除されます。</p></li>
+</ol>
+<p>もし<em>form</em>のどれかの実行中に、 <a href="5.3.catch.html"><code>catch</code></a>タグと<code>eq</code>で一致するタグを持つ<a href="5.3.throw.html"><code>throw</code></a>が実行されたとき、 <a href="5.3.throw.html"><code>throw</code></a>で指定された値がそのタグを持つ動的にもっとも近くで確立された <a href="5.3.catch.html"><code>catch</code></a>フォームの結果として返されます。</p>
+<p><a href="5.3.catch.html"><code>catch</code></a>と<a href="5.3.throw.html"><code>throw</code></a>の仕組みは、 <a href="5.3.throw.html"><code>throw</code></a>が<a href="5.3.catch.html"><code>catch</code></a>のレキシカルスコープの中にいなくても動作します。 <a href="5.3.throw.html"><code>throw</code></a>は、対応する<em>tag</em>を持つ<a href="5.3.catch.html"><code>catch</code></a>のボディ部の評価の 動的エクステント内で実行されなければなりません。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;dummy-tag <span class="dv">1</span> <span class="dv">2</span> (<span class="kw">throw</span> &#39;dummy-tag <span class="dv">3</span>) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;dummy-tag <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> throw-back </span>(tag) (<span class="kw">throw</span> tag <span class="kw">t</span>)) <span class="op">=&gt;</span>  THROW-BACK</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;dummy-tag (throw-back &#39;dummy-tag) <span class="dv">2</span>) <span class="op">=&gt;</span>  T</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">;; このサンプルは対応するBLOCKのサンプルの対比です</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;c</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">flet</span> ((c1 () (<span class="kw">throw</span> &#39;c <span class="dv">1</span>)))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">catch</span> &#39;c (c1) (<span class="kw">print</span> &#39;unreachable))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">2</span></span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>適切な<a href="5.3.catch.html"><code>catch</code></a>の<em>tag</em>がないときに<a href="5.3.throw.html"><code>throw</code></a>が実行されたときは、 型<code>control-error</code>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.throw.html"><code>throw</code></a>, 3.1. 評価</p>
+<h2 id="備考">備考</h2>
+<p>慣例として<em>tag</em>にはシンボルが使われますが、どんなオブジェクトで許されます。 しかし比較には<code>eq</code>が用いられますので、数は使うべきではありません。</p>
+<p><a href="5.3.catch.html"><code>catch</code></a>と<a href="5.3.block.html"><code>block</code></a>の違いは、 <a href="5.3.catch.html"><code>catch</code></a>のタグは動的スコープであるのに対して、 <a href="5.3.block.html"><code>block</code></a>の名前はレキシカルスコープです。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

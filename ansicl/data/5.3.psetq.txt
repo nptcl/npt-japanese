@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PSETQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.psetq
+@name: psetq
+@type: macro
+
+Macro `PSETQ`
+
+
+## {syntax}
+
+`psetq` `{`*pair*`}`\* => {nil!variable:link}
+
+```
+*pair* ::= var form 
+```
+
+
+## {pronunciation}
+
+{psetq:link}: [;pee'set,kyoo]
+
+
+## {arguments-and-values}
+
+*var* - 定数ではない変数名のシンボル  
+*form* - フォーム
+
+
+## {description}
+
+変数に値を代入します。
+
+ちょうど{setq:link}と似ていますが、代入を「並列」に行うところが違っています。
+つまり、最初にすべての*form*が評価され、
+そのあと初めて変数に返却値がセットされます。
+この方法では、ある変数への代入によって、
+{setq:link}による順次代入のときのような
+計算値への影響が生じるということはありません。
+
+もし、どの*var*でも{symbol-macrolet:link}によって
+作られた束縛を参照したときは、
+その*var*は{psetq:link}ではなく{psetf:link}として扱われます。
+
+
+## {examples}
+
+```lisp
+;; 変数へ値を代入する単純なPSETQの使用。
+;; スタイルについて、このような単純な状況においては
+;; 並列の代入は必要ないため、多くのプログラマーにとっては
+;; SETQの方が好まれます。しかしどちらも同等の効果を持ちます。
+(psetq a 1 b 2 c 3) =>  NIL
+a =>  1
+b =>  2
+c =>  3
+
+;; 値を順次代入して更新するPSETQの使用。
+;; この効果は、SETQ使用のときと全く異なります。
+(psetq a (1+ b) b (1+ a) c (+ a b)) =>  NIL
+a =>  3
+b =>  2
+c =>  3
+
+;; シンボルマクロ上でのPSETQの使用。
+(let ((x (list 10 20 30)))
+  (symbol-macrolet ((y (car x)) (z (cadr x)))
+    (psetq y (1+ z) z (1+ y))
+    (list x y z)))
+=>  ((21 11 30) 21 11)
+
+;; 並列代入の使用による値AとBの交換。
+(let ((a 1) (b 2))
+  (psetq a b  b a)
+  (values a b))
+=>  2, 1
+```
+
+
+## {side-effects}
+
+
+各*form*の値が対応する*var*に代入されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{psetf:link},
+{setq:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

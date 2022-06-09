@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator PROGV
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.progv
+@name: progv
+@type: special-operator
+
+Special Operator `PROGV`
+
+
+## {syntax}
+
+`progv` *symbols* *values* *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*symbols* シンボルのリスト、評価されます。  
+*values* - オブジェクトのリスト、評価されます。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+{progv:link}は、新しい動的変数の束縛を作成し、
+それらの束縛を使う*form*を実行します。
+各*form*は順番に実行されます。
+
+{progv:link}は、実行時に名前を決めることができる、
+ひとつか複数の動的変数の束縛をします。
+各*form*は、*symbols*内の名前の動的変数に対応する*values*を束縛した状態で、
+順番に評価されます。
+もし*values*の値が少ないときは、
+残りの*symbols*は束縛され、
+そのあとで値を持っていない状態にします。
+もし*values*の値が多いときは、余分の値は無視されます。
+動的変数の束縛は、{progv:link}の終了時に元に戻されます。
+
+
+## {examples}
+
+```lisp
+(setq *x* 1) =>  1
+(progv '(*x*) '(2) *x*) =>  2
+*x* =>  1
+
+;; *x*がグローバルでspecialではないとき、
+
+(let ((*x* 3)) 
+   (progv '(*x*) '(4) 
+     (list *x* (symbol-value '*x*)))) =>  (3 4)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{let:link},
+{3.1:ab}
+
+
+## {notes}
+
+特に、{progv:link}はLisp内に組み込まれた言語の
+インタプリタを書くときに便利で、
+動的変数を束縛する機構を提供します。
+
+@end
+

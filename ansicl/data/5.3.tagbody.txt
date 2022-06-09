@@ -1,0 +1,124 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator TAGBODY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.tagbody
+@name: tagbody
+@type: special-operator
+
+Special Operator `TAGBODY`
+
+
+## {syntax}
+
+`tagbody` `{`*tag* | *statement*`}`\* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*tag* - `go`のタグ、評価されません。  
+*statement* - {compound-form}、下記の説明通り評価されます。
+
+
+## {description}
+
+*tag*によってラベル付けされた場所へ制御を移す機能を提供するための
+レキシカル環境下において、0個か複数の*statement*を実行します。
+
+{tagbody:link}の*statement*は、左から右の順番で評価され、
+それらの値は捨てられます。
+もしどんなときでも、残りの*statement*がない場合は、
+{tagbody:link}は{nil!variable:link}を返却します。
+しかし、もし`(go tag)`が評価されたときは、
+制御が*tag*でラベル付けされたボディ部の部分にジャンプします
+（タグは{eql!function:link}によって比較されます）。
+
+{tagbody:link}で確立した*tag*は、レキシカルスコープと動的エクステントを持ちます。
+いったん{tagbody:link}を終えると、
+そのボディの*tag*に対する{go:link}はもはや有効ではありません。
+{go:link}のジャンプは、
+その{go:link}が含まれるもっとも内側の{tagbody:link}以外への
+ものも許されます。
+{tagbody:link}の*tag*の確立は、
+ただ同じ名前の他のタグをシャドウします。
+
+ボディのどの要素が*tagでどの要素が*statement*であるかの判断は、
+その要素のマクロ展開の前に行われます。
+もし*statement*がマクロフォームで、
+そのマクロ展開がアトムである場合、
+そのアトムは*tag*ではなく*statement*として扱われます。
+
+
+Examples:
+
+```lisp
+(let (val)
+   (tagbody
+     (setq val 1)
+     (go point-a)
+     (incf val 16)
+    point-c
+     (incf val 04)
+     (go point-b)
+     (incf val 32)
+    point-a
+     (incf val 02)
+     (go point-c)
+     (incf val 64)
+    point-b
+     (incf val 08))
+   val)
+=>  15
+(defun f1 (flag)
+  (let ((n 1))
+    (tagbody 
+      (setq n (f2 flag #'(lambda () (go out))))
+     out
+      (prin1 n))))
+=>  F1
+(defun f2 (flag escape)
+  (if flag (funcall escape) 2))
+=>  F2
+(f1 nil)
+>>  2
+=>  NIL
+(f1 t)
+>>  1
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{go:link}
+
+
+## {notes}
+
+次の図のマクロは、{implicit-tagbody}を持ちます。
+
+
+```
+do              do-external-symbols  dotimes  
+do*             do-symbols           prog     
+do-all-symbols  dolist               prog*    
+```
+
+Figure 5-10. {implicit-tagbody}をもつマクロ
+
+@end
+

@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator CATCH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.catch
+@name: catch
+@type: special-operator
+
+Special Operator `CATCH`
+
+
+## {syntax}
+
+`catch` *tag* *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*tag* - `catch`のタグ、評価されます。  
+*form* - {implicit-progn}  
+*result* - もし*form*が普通に終了したときは*form*の返却値が、
+もし*tag*への`throw`が発生した時は`throw`の値が返却されます。
+
+
+## {description}
+
+{catch:link}は、{throw:link}による非局所的な制御の転送先として使われます。
+*tag*は{throw:link}が制御の転送するときに、
+{catch:link}を探すときに使われます。
+`(catch 'foo form)`は`(throw 'foo form)`に補足されますが、
+`(throw 'bar form)`では捕捉されません。
+
+{catch:link}はの実行の順番は次のとおりです。
+
+1. *tag*が評価されます。
+それは{catch:link}の名前として保存されます。
+
+2. それから*form*が{implicit-progn}として評価されます。
+もし{throw:link}が発生しなかったら、最後の*form*の値が返却されます。
+
+3. もし{throw:link}が*form*のどれかの実行中に発生したとき、
+{throw:link}の引数のタグと{eq:link}で一致する、
+もっとも近くで確立した*tag*の{catch:link}に制御が転送されます。
+それ以上の*form*の評価は生じません。
+
+4. {catch:link}によって確立されたタグは、
+結果が返される直前に解除されます。
+
+もし*form*のどれかの実行中に、
+{catch:link}タグと{eq:link}で一致するタグを持つ{throw:link}が実行されたとき、
+{throw:link}で指定された値がそのタグを持つ動的にもっとも近くで確立された
+{catch:link}フォームの結果として返されます。
+
+{catch:link}と{throw:link}の仕組みは、
+{throw:link}が{catch:link}のレキシカルスコープの中にいなくても動作します。
+{throw:link}は、対応する*tag*を持つ{catch:link}のボディ部の評価の
+動的エクステント内で実行されなければなりません。
+
+## {examples}
+
+```lisp
+(catch 'dummy-tag 1 2 (throw 'dummy-tag 3) 4) =>  3
+(catch 'dummy-tag 1 2 3 4) =>  4
+(defun throw-back (tag) (throw tag t)) =>  THROW-BACK
+(catch 'dummy-tag (throw-back 'dummy-tag) 2) =>  T
+
+;; このサンプルは対応するBLOCKのサンプルの対比です
+(catch 'c
+  (flet ((c1 () (throw 'c 1)))
+    (catch 'c (c1) (print 'unreachable))
+    2)) =>  2
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+適切な{catch:link}の*tag*がないときに{throw:link}が実行されたときは、
+型{control-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{throw:link},
+{3.1:ab}
+
+
+## {notes}
+
+慣例として*tag*にはシンボルが使われますが、どんなオブジェクトで許されます。
+しかし比較には{eq:link}が用いられますので、数は使うべきではありません。
+
+{catch:link}と{block:link}の違いは、
+{catch:link}のタグは動的スコープであるのに対して、
+{block:link}の名前はレキシカルスコープです。
+
+@end
+

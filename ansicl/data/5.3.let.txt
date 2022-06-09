@@ -1,0 +1,159 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator LET
+;;  Special Operator LET*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.let
+@name: let
+@name: let*
+@type: special-operator
+
+Special Operator `LET`, `LET*`
+
+
+## {syntax}
+
+`let` (`{`*var* | (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**  
+`let*` (`{`*var* | (*var* [*init-form*])`}`\*) *declaration\** *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*var* - シンボル  
+*init-form* - フォーム  
+*declaration* - 宣言式、評価はされません。  
+*form* - フォーム  
+*result* - *form*の返却値
+
+
+## {description}
+
+{let:link}と{let*:link}は、
+新しい変数の束縛を作成し、
+それらの束縛を使用した一連の*form*を実行します。
+{let:link}は束縛を並行して行い、
+{let*:link}はそれらを連続で行います。
+
+次のフォームは、
+
+```lisp
+(let ((var1 init-form-1)
+      (var2 init-form-2)
+      ...
+      (varm init-form-m))
+  declaration1
+  declaration2
+  ...
+  declarationp
+  form1
+  form2
+  ...
+  formn)
+```
+
+最初に式*init-form-1*, *init-form-2*, ...,
+をこの順番で評価し、返却値を保存します。
+そのあと、全ての変数`varj`に対応する値を束縛します。
+各束縛はレキシカルに行われますが、
+{special:link}宣言があるときは逆になります。
+`formk`の式はその順番で評価されます。
+最後以外のすべての値は無視されます。
+（つまり{let:link}のボディ部は、{implicit-progn}です）
+
+{let*:link}は{let:link}に似ていますが、
+変数の束縛が並行ではなく、
+連続に行われるところが違っています。
+{let*:link}では、 *var*の*init-form*の式は、
+前に束縛された`vars`を参照することができます。
+
+次のフォームは、
+
+```lisp
+(let* ((var1 init-form-1)
+       (var2 init-form-2)
+       ...
+       (varm init-form-m))
+  declaration1
+  declaration2
+  ...
+  declarationp
+  form1
+  form2
+  ...
+  formn)
+```
+
+最初に*init-form-1*を評価し、
+そのあと*var1*にその値を束縛し、
+そのあと*init-form-2*を評価し、
+そのあと*var2*にその値を束縛し、
+くり返します。
+`formk`の式はその順番で評価されます。
+最後以外のすべての値は無視されます。
+（つまり{let*:link}のボディ部は、{implicit-progn}です）
+
+{let:link}と{let*:link}の両方は、
+もし*var*に関連する*init-form*が無かったときは、
+*var*は{nil!variable:link}で初期化されます。
+
+{special-form}の{let:link}は、
+どんな初期化フォームも
+名前の束縛のスコープに含まれないという性質があります。
+{let*:link}の変数のスコープは、
+それ以降の変数の束縛には残りの初期値フォームが含まれます。
+
+
+## {examples}
+
+```lisp
+(setq a 'top) =>  TOP
+(defun dummy-function () a) =>  DUMMY-FUNCTION
+(let ((a 'inside) (b a))
+   (format nil "~S ~S ~S" a b (dummy-function))) =>  "INSIDE TOP TOP" 
+(let* ((a 'inside) (b a))
+   (format nil "~S ~S ~S" a b (dummy-function))) =>  "INSIDE INSIDE TOP" 
+(let ((a 'inside) (b a))
+   (declare (special a))
+   (format nil "~S ~S ~S" a b (dummy-function))) =>  "INSIDE TOP INSIDE"
+```
+
+次のコードは正しくありません。
+
+```lisp
+(let (x)
+  (declare (integer x))
+  (setq x (gcd y z))
+  ...)
+```
+
+`x`はそれが使用される前に実際に値は代入されますし、
+その代入される値は宣言された整数の型ですが、
+`x`が初期化されるときに{nil!variable:link}が使われるので、
+宣言の型に違反しています。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{progv:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

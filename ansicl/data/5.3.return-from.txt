@@ -1,0 +1,119 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator RETURN-FROM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.return-from
+@name: return-from
+@type: special-operator
+
+Special Operator `RETURN-FROM`
+
+
+## {syntax}
+
+`return-from` *name* [*result*] =>|
+
+
+## {arguments-and-values}
+
+*name* - `block`タグ、評価はされません。  
+*result* - フォーム、評価されます。デフォルトは{nil!variable:link}です。
+
+
+## {description}
+
+レキシカルに囲まれた`block`から制御と多値を返却します。
+
+*name*という名前の`block`フォームは、
+{return-from:link}の出現場所をレキシカルに囲む必要があります。
+*result*の評価によって得られたどんな多値でも、
+`block`によってレキシカルに囲まれたもっとも内側のものから
+直ちに返却されます。
+
+{return-from:link}によって開始される制御の遷移の実行についての説明は、
+{5.2:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(block alpha (return-from alpha) 1) =>  NIL
+(block alpha (return-from alpha 1) 2) =>  1
+(block alpha (return-from alpha (values 1 2)) 3) =>  1, 2
+(let ((a 0))
+   (dotimes (i 10) (incf a) (when (oddp i) (return)))
+   a) =>  2
+(defun temp (x)
+   (if x (return-from temp 'dummy))
+   44) =>  TEMP
+(temp nil) =>  44
+(temp t) =>  DUMMY
+(block out
+  (flet ((exit (n) (return-from out n)))
+    (block out (exit 1)))
+  2) =>  1
+(block nil   
+  (unwind-protect (return-from nil 1)
+    (return-from nil 2)))
+=>  2
+(dolist (flag '(nil t))
+  (block nil
+    (let ((x 5))
+      (declare (special x))
+      (unwind-protect (return-from nil)
+        (print x))))
+  (print 'here))
+>>  5
+>>  HERE
+>>  5
+>>  HERE
+=>  NIL
+(dolist (flag '(nil t))
+  (block nil
+    (let ((x 5))
+      (declare (special x))
+      (unwind-protect
+          (if flag (return-from nil))
+        (print x))))
+  (print 'here))
+>>  5
+>>  HERE
+>>  5
+>>  HERE
+=>  NIL
+```
+
+下記の例は、{return-from:link}が適用される前に
+{block:link}フォームが通常の終了を行っているため結果は未定義です。
+
+```lisp
+(funcall (block nil #'(lambda () (return-from nil)))) ;;はエラー
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{block:link},
+{return:link},
+{3.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -16,6 +16,196 @@ Macro `DEFPARAMETER`
 
 ## {syntax}
 
+`defparameter` *name* *initial-value* [*documentation*] => *name*  
+`defvar` *name* [*initial-value* [*documentation*]] => *name*
+
+
+## {arguments-and-values}
+
+*name* - シンボル、評価されません。  
+*initial-value* - フォーム。
+{defparameter:link}は常に評価されます。
+しかし{defvar:link}は*name*が`bound`ではないときのみ評価されます。  
+*documentation* - 文字列、評価されません。
+
+
+## {description}
+
+{defparameter:link}と{defvar:link}は、*name*を動的変数として確立します。
+
+{defparameter:link}は、*name*という動的変数に*initial-value*を
+無条件に割り当てます。
+対称的に{defvar:link}は
+*name*という変数が`bound`ではない場合において、
+与えられた*initial-value*の値を割り当てます。
+
+*initial-value*が与えられなかったときは、
+{defvar:link}は*name*の動的変数に手を加えず
+値のセルをそのままにします。
+もし*name*が前に`bound`のときは古い値のままにしますし、
+以前の値が`unbound`であったときは`unbound`のままにします。
+
+*documentation*が与えられたときは、
+*name*に対してドキュメント文字を種別{variable!symbol:link}として割り当てます。
+
+{defparameter:link}と{defvar:link}は通常{top-level-form}に現れますが、
+{non-top-level-form}に現れても意味があります。
+しかし、下記で説明するコンパイル時の副作用は、
+{defconstant:link}が{top-level-form}として現れた場所でのみ
+効果があります。
+
+
+## {examples}
+
+```lisp
+(defparameter *p* 1) =>  *P*
+*p* =>  1
+(constantp '*p*) =>  false
+(setq *p* 2) =>  2
+(defparameter *p* 3) =>  *P*
+*p* =>  3
+
+(defvar *v* 1) =>  *V*
+*v* =>  1
+(constantp '*v*) =>  false
+(setq *v* 2) =>  2
+(defvar *v* 3) =>  *V*
+*v* =>  2
+
+(defun foo ()
+  (let ((*p* 'p) (*v* 'v))
+    (bar))) =>  FOO
+(defun bar () (list *p* *v*)) =>  BAR
+(foo) =>  (P V)
+```
+
+{defparameter:link}と{defvar:link}の主な捜査上の違いは、
+{defparameter:link}は*name*に無条件にアサインするのに対して、
+{defvar:link}は条件付きでそれを行うことにあります。
+実際にこれらは
+{defparameter:link}はロードやリロード時に
+定義で新しい値を変数に設定するときに便利ですし、
+{defvar:link}の場合はファイルのロードやリロード時に
+古い値をそのままにしておきたいときに便利です。
+例として、次のような内容のファイルを示します。
+
+```lisp
+(defvar *the-interesting-numbers* '())
+(defmacro define-interesting-number (name n)
+  `(progn (defvar ,name ,n)
+          (pushnew ,name *the-interesting-numbers*)
+          ',name))
+(define-interesting-number *my-height* 168) ;cm
+(define-interesting-number *my-weight* 13)  ;stones
+```
+
+この`*the-interesting-numbers*`の初期値`()`はただの種であり、
+一度そこから何かを育てたあとは
+他の何かリセットすることはないでしょう。
+そのため、{defvar:link}を使うことで、
+ファイルを二回読み込んだときに
+`*interesting-numbers*`の情報が
+リセットされないようにしています。
+確かに`define-interesting-number`の
+二回の呼び出しは処理されますが、
+しかし他のファイルで追加の呼び出しがあったときは
+その情報が損失することはありません。
+一方、次のコードを見てみます。
+
+```lisp
+(defparameter *default-beep-count* 3)
+(defun beep (&optional (n *default-beep-count*))
+  (dotimes (i n) (si:%beep 1000. 100000.) (sleep 0.1)))
+```
+
+ここでは、コードを編集して`*default-beep-count*`の初期値を変更し、
+ファイルをリロードして新しい値を取得する
+ということを簡単に想像できます。
+値の更新を簡単にするために
+{defparameter:link}を使用しました。
+
+一方で、このような状況で{defvar:link}を使うことは潜在的な価値があります。
+例えば、誰かが事前に`*default-beep-count*`の違う値を定義していたとします。
+あるいは、ファイルを読み込んでからその値を手動で変更したとします。
+どちらの場合でも、{defparameter:link}のかわりに{defvar:link}を使用していれば、
+ファイルをロード・リロードを行っても
+それらのユーザーの好みは上書きされることはありません。
+
+{defvar:link}と{defparameter:link}のどちらを選んでも、
+プログラムには目に見える結果をもたらしますが、
+それにもかかわらず主観的な理由で選択されることがあります。
+
+
+## {side-effects}
+
+もし{defvar:link}か{defparameter:link}が
+{top-level-form}として現れたときは、
+コンパイラーは*name*を{special:link}として`proclaim`されるよう
+認識しなければなりません。
+しかし、コンパイル時に*initial-value*フォームが評価されたり、
+*name*という動的変数に代入してはいけません。
+
+適合するプログラムの正しい動作を妨げない限り、
+コンパイル時または実行時に、
+追加の（実装で定義された）副作用があってもかまいません。
+
+
+## {affected-by}
+
+{defvar:link}は、*name*が`bound`であるかどうかに影響されます。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{declaim:link},
+{defconstant:link},
+{documentation:link},
+{3.2:ab}
+
+
+## {notes}
+
+慣習として動的変数の名前には
+始まりと終わりにアスタリスクを付けたものが使われます。
+例えば`*foo*`は良い動的変数の名前ですが、
+レキシカル変数には使われません。
+`foo`であれば良いレキシカル変数の名前になりますが、
+動的変数には使われません。
+この命名規則は、Common Lisp内に定義されたすべての名前で見られますが、
+適合するプログラムも適合する実装もこの規則を遵守する義務はありません。
+
+追加で副作用が許可される理由は、
+実装がその定義に付随する通常の「帳簿管理」を行えるようにすることです。
+例えば、{defvar:link}と{defparameter:link}フォームのマクロ展開には、
+定義が記載されているソースファイルの名前を記録するためにアレンジした
+コードが含まれるかもしれません。
+
+{defparameter:link}と{defvar:link}は下記のように定義されます。
+
+```lisp
+(defmacro defparameter (name initial-value 
+                        &optional (documentation nil documentation-p))
+  `(progn (declaim (special ,name))
+          (setf (symbol-value ',name) ,initial-value)
+          ,(when documentation-p
+             `(setf (documentation ',name 'variable) ',documentation))
+          ',name))
+(defmacro defvar (name &optional
+                       (initial-value nil initial-value-p)
+                       (documentation nil documentation-p))
+  `(progn (declaim (special ,name))
+          ,(when initial-value-p
+             `(unless (boundp ',name)
+                (setf (symbol-value ',name) ,initial-value)))
+          ,(when documentation-p
+             `(setf (documentation ',name 'variable) ',documentation))
+          ',name))
+```
 
 @end
 

@@ -18,6 +18,7 @@
 (replace value-type "値の型")
 (replace initial-value "初期値")
 (replace pronunciation "発音")
+(replace conditions "コンディション")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
 (replace base-character "基本文字")
@@ -74,6 +75,7 @@
 (replace format-directive "format指示子")
 (replace ordinary-lambda-list "通常のラムダリスト")
 (replace macro-lambda-list "マクロラムダリスト")
+(replace destructuring-lambda-list "分割のラムダリスト")
 (replace direct-instance "direct-instance")
 
 (replace implementation-dependent "実装依存")
@@ -100,4 +102,6 @@
 (replace top-level-form "トップレベルフォーム")
 (replace non-top-level-form "非トップレベルフォーム")
 (replace lexical-closure "レキシカルクロージャー")
+(replace compound-form "compound-form")
+(replace implicit-tagbody "暗黙の`tagbody`")
 

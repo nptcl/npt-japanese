@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator GO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.go
+@name: go
+@type: special-operator
+
+Special Operator `GO`
+
+
+## {syntax}
+
+`go` *tag* =>|
+
+## {arguments-and-values}
+
+*tag* - `go`のタグ
+
+
+## {description}
+
+{go:link}は、{tagbody:link}フォームによって囲まれたボディ部にある
+*tag*と{eql!function:link}で一致するタグによってラベル付けされている場所に
+制御を移します。
+もしボディ部にそのような*tag*が存在しないときは、
+レキシカルに含まれる{tagbody:link}フォームがもしあるなら、
+同じように検査されます。
+いくつかのタグが*tag*と{eql!function:link}で一致するときは、
+{go:link}が含まれる場所から、
+一致する*tag*を含んだもっとも内側の{tagbody:link}フォームの
+いずれかに制御が移されます。
+{go:link}の場所からレキシカルに見ることができる*tag*が
+存在しないときの結果は未定義です。
+
+{go:link}によって開始される制御の遷移の実行についての説明は、
+{5.2:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(tagbody
+  (setq val 2)
+  (go lp)
+  (incf val 3)
+  lp (incf val 4)) =>  NIL
+val =>  6 
+```
+
+下記の例は、{go:link}が実行される前に
+{tagbody:link}が通常の終了を行っているためエラーです。
+
+```lisp
+(let ((a nil)) 
+  (tagbody t (setq a #'(lambda () (go t))))
+  (funcall a))
+```
+
+下記の例は、{go:link}が実行される前に
+{tagbody:link}が上を通過しているためエラーです。
+
+```lisp
+(funcall (block nil
+           (tagbody a (return #'(lambda () (go a))))))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{tagbody:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

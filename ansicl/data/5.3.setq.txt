@@ -1,0 +1,102 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Form SETQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.setq
+@name: setq
+@type: special-form
+
+Special Form `SETQ`
+
+
+## {syntax}
+
+`setq` `{`*pair*`}`\* => *result*
+
+```
+*pair* ::= var form 
+```
+
+
+## {pronunciation}
+
+['set,kyoo]
+
+
+## {arguments-and-values}
+
+*var* - 定数ではない変数名のシンボル  
+*form* - フォーム  
+*result* - 最後の*form*の第一返却値か、*pair*がないときは{nil!variable:link}。
+
+
+## {description}
+
+変数に値を代入します。
+
+`(setq var1 form1 var2 form2 ...)`がLispの単純な変数への代入構文です。
+最初に*form1*が評価されて結果を変数*var1*に保存し、
+そのあと*form2*が評価されて結果を変数*var2*に保存し、くり返します。
+{setq:link}は、レキシカル変数と動的変数の両方の代入に使われます。
+
+もし、どの*var*でも{symbol-macrolet:link}によって
+作られた束縛を参照したときは、
+その*var*は{setq:link}ではなく{setf:link}として扱われます。
+
+
+## {examples}
+
+```lisp
+;; 変数へ値を代入する単純なSETQの使用
+(setq a 1 b 2 c 3) =>  3
+a =>  1
+b =>  2
+c =>  3
+
+;; 値を順次代入して更新するSETQの使用
+(setq a (1+ b) b (1+ a) c (+ a b)) =>  7
+a =>  3
+b =>  4
+c =>  7
+
+;; シンボルマクロ上のSETQの使用例
+(let ((x (list 10 20 30)))
+  (symbol-macrolet ((y (car x)) (z (cadr x)))
+    (setq y (1+ z) z (1+ y))
+    (list x y z)))
+=>  ((21 22 30) 21 22)
+```
+
+
+## {side-effects}
+
+各*form*の第一返却値が対応する*var*に代入されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{psetq:link},
+{set:link},
+{setf:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

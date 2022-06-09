@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro RETURN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.return
+@name: return
+@type: macro
+
+Macro `RETURN`
+
+
+## {syntax}
+
+`return` [*result*] =>|
+
+
+## {arguments-and-values}
+
+*result* - フォーム、評価されます。デフォルトは{nil!variable:link}です。
+
+
+## {description}
+
+{return-from:link}によって、
+{nil!variable:link}という名前の`block`から返却されます。
+
+
+## {examples}
+
+```lisp
+(block nil (return) 1) =>  NIL
+(block nil (return 1) 2) =>  1
+(block nil (return (values 1 2)) 3) =>  1, 2
+(block nil (block alpha (return 1) 2)) =>  1
+(block alpha (block nil (return 1)) 2) =>  2
+(block nil (block nil (return 1) 2)) =>  1
+```
+
+## {affected-by}
+
+なし。
+
+
+## {conditions}
+
+なし。
+
+
+## {see-also}
+
+{block:link},
+{return-from:link},
+{3.1:ab}
+
+
+## {notes}
+
+```lisp
+(return) == (return-from nil)
+(return form) == (return-from nil form)
+```
+
+暗黙の`block`として確立される
+{do:link}のようなマクロは、
+よく名前に{nil!variable:link}が使われるため、
+{return:link}はそのようなフォームから
+退出するときに使われます。
+
+@end
+

@@ -166,7 +166,7 @@
 <p>関数<a href="7.7.call-next-method.html"><code>call-next-method</code></a>は、 メソッド定義フォームで定義された ボディフォーム内（ただしラムダリストは除く）で、 次のメソッドを呼び出すために使用することができます。</p>
 <p>もし次のメソッドがないときは、 ジェネリック関数<a href="7.7.no-next-method.html"><code>no-next-method</code></a>が呼ばれます。</p>
 <p>使用するmethod-combinationのタイプによって、 <a href="7.7.call-next-method.html"><code>call-next-method</code></a>を実行できるメソッドが決まります。 <code>standard</code> method-combinationタイプは、 プライマリメソッドと<code>around</code>メソッドの中で <a href="7.7.call-next-method.html"><code>call-next-method</code></a>の使用が許されます。 <a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の短縮形によって定義された method-combinationを使用したジェネリック関数の場合は、 <a href="7.7.call-next-method.html"><code>call-next-method</code></a>は<code>around</code>メソッドでのみ使うことができます。</p>
-<p><a href="7.7.call-next-method.html"><code>call-next-method</code></a>が引数なしで呼ばれたとき、 現在のメソッドのもともとの引数が次のメソッドの渡されます。 引数のデフォルト値、<code>setq</code>の使用、 メソッドのパラメーターと同名の変数への再束縛の、 いずれの動作も<a href="7.7.call-next-method.html"><code>call-next-method</code></a>が呼び出す メソッドへ渡す値に影響しません。</p>
+<p><a href="7.7.call-next-method.html"><code>call-next-method</code></a>が引数なしで呼ばれたとき、 現在のメソッドのもともとの引数が次のメソッドの渡されます。 引数のデフォルト値、<a href="5.3.setq.html"><code>setq</code></a>の使用、 メソッドのパラメーターと同名の変数への再束縛の、 いずれの動作も<a href="7.7.call-next-method.html"><code>call-next-method</code></a>が呼び出す メソッドへ渡す値に影響しません。</p>
 <p><a href="7.7.call-next-method.html"><code>call-next-method</code></a>が引数とともに呼び出されたとき、 次のメソッドはそれらの引数とともに呼ばれます。</p>
 <p><a href="7.7.call-next-method.html"><code>call-next-method</code></a>が引数とともに呼び出され、 しかしオプション引数が省略されていた場合は、 次のメソッドは、それらのデフォルトの引数で呼ばれます。</p>
 <p>関数<a href="7.7.call-next-method.html"><code>call-next-method</code></a>は、 次のメソッドから返却されたどのような値でも返却します。</p>

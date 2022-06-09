@@ -143,6 +143,69 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <!--[if lt IE 9]>
@@ -158,6 +221,83 @@
 <h1 id="macro-defparameter-defvar">Macro DEFPARAMETER, DEFVAR</h1>
 <p>Macro <code>DEFPARAMETER</code></p>
 <h2 id="構文">構文</h2>
+<p><code>defparameter</code> <em>name</em> <em>initial-value</em> [<em>documentation</em>] =&gt; <em>name</em><br />
+<code>defvar</code> <em>name</em> [<em>initial-value</em> [<em>documentation</em>]] =&gt; <em>name</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>name</em> - シンボル、評価されません。<br />
+<em>initial-value</em> - フォーム。 <a href="5.3.defparameter.html"><code>defparameter</code></a>は常に評価されます。 しかし<a href="5.3.defparameter.html"><code>defvar</code></a>は<em>name</em>が<code>bound</code>ではないときのみ評価されます。<br />
+<em>documentation</em> - 文字列、評価されません。</p>
+<h2 id="定義">定義</h2>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>と<a href="5.3.defparameter.html"><code>defvar</code></a>は、<em>name</em>を動的変数として確立します。</p>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>は、<em>name</em>という動的変数に<em>initial-value</em>を 無条件に割り当てます。 対称的に<a href="5.3.defparameter.html"><code>defvar</code></a>は <em>name</em>という変数が<code>bound</code>ではない場合において、 与えられた<em>initial-value</em>の値を割り当てます。</p>
+<p><em>initial-value</em>が与えられなかったときは、 <a href="5.3.defparameter.html"><code>defvar</code></a>は<em>name</em>の動的変数に手を加えず 値のセルをそのままにします。 もし<em>name</em>が前に<code>bound</code>のときは古い値のままにしますし、 以前の値が<code>unbound</code>であったときは<code>unbound</code>のままにします。</p>
+<p><em>documentation</em>が与えられたときは、 <em>name</em>に対してドキュメント文字を種別<a href="25.2.documentation.html"><code>variable</code></a>として割り当てます。</p>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>と<a href="5.3.defparameter.html"><code>defvar</code></a>は通常トップレベルフォームに現れますが、 非トップレベルフォームに現れても意味があります。 しかし、下記で説明するコンパイル時の副作用は、 <a href="5.3.defconstant.html"><code>defconstant</code></a>がトップレベルフォームとして現れた場所でのみ 効果があります。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defparameter</span><span class="fu"> *p* </span><span class="dv">1</span>) <span class="op">=&gt;</span>  *P*</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>*p* <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">constantp</span> &#39;*p*) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> *p* <span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defparameter</span><span class="fu"> *p* </span><span class="dv">3</span>) <span class="op">=&gt;</span>  *P*</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>*p* <span class="op">=&gt;</span>  <span class="dv">3</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defvar</span><span class="fu"> *v* </span><span class="dv">1</span>) <span class="op">=&gt;</span>  *V*</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>*v* <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">constantp</span> &#39;*v*) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> *v* <span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defvar</span><span class="fu"> *v* </span><span class="dv">3</span>) <span class="op">=&gt;</span>  *V*</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>*v* <span class="op">=&gt;</span>  <span class="dv">2</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((*p* &#39;p) (*v* &#39;v))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (bar))) <span class="op">=&gt;</span>  FOO</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bar </span>() (<span class="kw">list</span> *p* *v*)) <span class="op">=&gt;</span>  BAR</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>(foo) <span class="op">=&gt;</span>  (P V)</span></code></pre></div>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>と<a href="5.3.defparameter.html"><code>defvar</code></a>の主な捜査上の違いは、 <a href="5.3.defparameter.html"><code>defparameter</code></a>は<em>name</em>に無条件にアサインするのに対して、 <a href="5.3.defparameter.html"><code>defvar</code></a>は条件付きでそれを行うことにあります。 実際にこれらは <a href="5.3.defparameter.html"><code>defparameter</code></a>はロードやリロード時に 定義で新しい値を変数に設定するときに便利ですし、 <a href="5.3.defparameter.html"><code>defvar</code></a>の場合はファイルのロードやリロード時に 古い値をそのままにしておきたいときに便利です。 例として、次のような内容のファイルを示します。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defvar</span><span class="fu"> *the-interesting-numbers* </span>&#39;())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> define-interesting-number </span>(name n)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">progn</span> (<span class="kw">defvar</span><span class="fu"> </span>,name ,n)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">pushnew</span> ,name *the-interesting-numbers*)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          &#39;,name))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(define-interesting-number *my-height* <span class="dv">168</span>) <span class="co">;cm</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(define-interesting-number *my-weight* <span class="dv">13</span>)  <span class="co">;stones</span></span></code></pre></div>
+<p>この<code>*the-interesting-numbers*</code>の初期値<code>()</code>はただの種であり、 一度そこから何かを育てたあとは 他の何かリセットすることはないでしょう。 そのため、<a href="5.3.defparameter.html"><code>defvar</code></a>を使うことで、 ファイルを二回読み込んだときに <code>*interesting-numbers*</code>の情報が リセットされないようにしています。 確かに<code>define-interesting-number</code>の 二回の呼び出しは処理されますが、 しかし他のファイルで追加の呼び出しがあったときは その情報が損失することはありません。 一方、次のコードを見てみます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defparameter</span><span class="fu"> *default-beep-count* </span><span class="dv">3</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> beep </span>(&amp;optional (n *default-beep-count*))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">dotimes</span> (i n) (si:%beep <span class="fl">1000.</span> <span class="fl">100000.</span>) (<span class="kw">sleep</span> <span class="fl">0.1</span>)))</span></code></pre></div>
+<p>ここでは、コードを編集して<code>*default-beep-count*</code>の初期値を変更し、 ファイルをリロードして新しい値を取得する ということを簡単に想像できます。 値の更新を簡単にするために <a href="5.3.defparameter.html"><code>defparameter</code></a>を使用しました。</p>
+<p>一方で、このような状況で<a href="5.3.defparameter.html"><code>defvar</code></a>を使うことは潜在的な価値があります。 例えば、誰かが事前に<code>*default-beep-count*</code>の違う値を定義していたとします。 あるいは、ファイルを読み込んでからその値を手動で変更したとします。 どちらの場合でも、<a href="5.3.defparameter.html"><code>defparameter</code></a>のかわりに<a href="5.3.defparameter.html"><code>defvar</code></a>を使用していれば、 ファイルをロード・リロードを行っても それらのユーザーの好みは上書きされることはありません。</p>
+<p><a href="5.3.defparameter.html"><code>defvar</code></a>と<a href="5.3.defparameter.html"><code>defparameter</code></a>のどちらを選んでも、 プログラムには目に見える結果をもたらしますが、 それにもかかわらず主観的な理由で選択されることがあります。</p>
+<h2 id="副作用">副作用</h2>
+<p>もし<a href="5.3.defparameter.html"><code>defvar</code></a>か<a href="5.3.defparameter.html"><code>defparameter</code></a>が トップレベルフォームとして現れたときは、 コンパイラーは<em>name</em>を<code>special</code>として<code>proclaim</code>されるよう 認識しなければなりません。 しかし、コンパイル時に<em>initial-value</em>フォームが評価されたり、 <em>name</em>という動的変数に代入してはいけません。</p>
+<p>適合するプログラムの正しい動作を妨げない限り、 コンパイル時または実行時に、 追加の（実装で定義された）副作用があってもかまいません。</p>
+<h2 id="影響">影響</h2>
+<p><a href="5.3.defparameter.html"><code>defvar</code></a>は、<em>name</em>が<code>bound</code>であるかどうかに影響されます。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><code>declaim</code>, <a href="5.3.defconstant.html"><code>defconstant</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
+<h2 id="備考">備考</h2>
+<p>慣習として動的変数の名前には 始まりと終わりにアスタリスクを付けたものが使われます。 例えば<code>*foo*</code>は良い動的変数の名前ですが、 レキシカル変数には使われません。 <code>foo</code>であれば良いレキシカル変数の名前になりますが、 動的変数には使われません。 この命名規則は、Common Lisp内に定義されたすべての名前で見られますが、 適合するプログラムも適合する実装もこの規則を遵守する義務はありません。</p>
+<p>追加で副作用が許可される理由は、 実装がその定義に付随する通常の「帳簿管理」を行えるようにすることです。 例えば、<a href="5.3.defparameter.html"><code>defvar</code></a>と<a href="5.3.defparameter.html"><code>defparameter</code></a>フォームのマクロ展開には、 定義が記載されているソースファイルの名前を記録するためにアレンジした コードが含まれるかもしれません。</p>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>と<a href="5.3.defparameter.html"><code>defvar</code></a>は下記のように定義されます。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> defparameter </span>(name initial-value </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                        &amp;optional (<span class="kw">documentation</span> <span class="kw">nil</span> documentation-p))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">progn</span> (<span class="kw">declaim</span> (<span class="kw">special</span> ,name))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">setf</span> (<span class="kw">symbol-value</span> &#39;,name) ,initial-value)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          ,(<span class="kw">when</span> documentation-p</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>             `(<span class="kw">setf</span> (<span class="kw">documentation</span> &#39;,name &#39;variable) &#39;,<span class="kw">documentation</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>          &#39;,name))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> defvar </span>(name &amp;optional</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                       (initial-value <span class="kw">nil</span> initial-value-p)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                       (<span class="kw">documentation</span> <span class="kw">nil</span> documentation-p))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">progn</span> (<span class="kw">declaim</span> (<span class="kw">special</span> ,name))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>          ,(<span class="kw">when</span> initial-value-p</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>             `(<span class="kw">unless</span> (<span class="kw">boundp</span> &#39;,name)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                (<span class="kw">setf</span> (<span class="kw">symbol-value</span> &#39;,name) ,initial-value)))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>          ,(<span class="kw">when</span> documentation-p</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>             `(<span class="kw">setf</span> (<span class="kw">documentation</span> &#39;,name &#39;variable) &#39;,<span class="kw">documentation</span>))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>          &#39;,name))</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -65,6 +65,7 @@
       "Additional Constraints on Externalizable Objects")
 (text 3.4 "ラムダリスト" "Lambda Lists")
 (text 3.4.1 "{ordinary-lambda-list}" "Ordinary Lambda Lists")
+(text 3.4.5 "{destructuring-lambda-list}" "Destructuring Lambda Lists")
 (text 3.4.11 "ドキュメント文字と宣言の文脈的な作用"
       "Syntactic Interaction of Documentation Strings and Declarations")
 (index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
@@ -152,6 +153,7 @@
 (text 5.1.2 "{place}の種類" "Kinds of Places")
 (text 5.1.2.2 "{place}としての関数呼び出しフォーム" "Function Call Forms as Places")
 (text 5.1.2.5 "APPLYの{place}フォーム" "APPLY Forms as Places")
+(text 5.2 "終了地点への制御の遷移" "Transfer of Control to an Exit Point")
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
 (dictionary 5.3.apply)
 (dictionary 5.3.defun)

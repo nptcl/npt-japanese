@@ -269,7 +269,7 @@
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  (<span class="op">+</span> x</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">if</span> flag (<span class="op">*</span> x x) x)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">if</span> flag (<span class="op">*</span> (<span class="op">+</span> x <span class="dv">1</span>) (<span class="op">+</span> x <span class="dv">1</span>)) (<span class="op">+</span> x <span class="dv">1</span>))))</span></code></pre></div>
-<p>これは、マクロ展開が行われた後です。 <code>x</code>と<code>flag</code>の発生は、 関数<code>foo</code>のパラメータを合法的にに参照しています。 なぜなら、これらのパラメータは、 マクロが呼ばれて展開が生成された場所では 見ることができるからです。</p>
+<p>これは、マクロ展開が行われた後です。 <code>x</code>と<code>flag</code>の発生は、 関数<code>foo</code>のパラメータを合法的に参照しています。 なぜなら、これらのパラメータは、 マクロが呼ばれて展開が生成された場所では 見ることができるからです。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">flet</span> ((flet1 (n) (<span class="op">+</span> n n)))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">flet</span> ((flet1 (n) (<span class="op">+</span> <span class="dv">2</span> (flet1 n))))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     (flet1 <span class="dv">2</span>))) <span class="op">=&gt;</span>  <span class="dv">6</span></span>
@@ -329,7 +329,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>declare</code>, <code>defmacro</code>, <a href="5.3.defun.html"><code>defun</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <code>let</code>, 3.1. 評価, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
+<p><code>declare</code>, <code>defmacro</code>, <a href="5.3.defun.html"><code>defun</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="5.3.let.html"><code>let</code></a>, 3.1. 評価, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
 <h2 id="備考">備考</h2>
 <p><a href="5.3.flet.html"><code>flet</code></a>では、再帰関数を定義することはできません。 <a href="5.3.flet.html"><code>labels</code></a>は、互いに再帰呼出できる関数を定義するのに使うことができます。</p>
 <p>もし<a href="5.3.flet.html"><code>macrolet</code></a>がトップレベルフォームのとき、 ボディ部<em>form</em>もまたトップレベルフォームとして処理されます。 3.2.3. ファイルのコンパイルをご確認ください。</p>

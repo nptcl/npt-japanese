@@ -232,7 +232,7 @@
 <em>block-name</em> - <em>function-name</em>の、関数のblock名</p>
 <h2 id="定義">定義</h2>
 <p>グローバル環境下で<em>function-name</em>という名前の新しい関数を定義します。 関数のボディ部は、<a href="5.3.defun.html"><code>defun</code></a>に含まれるフォームによって定義されます。 それは関数が呼ばれたときに、暗黙のprognとして実行されます。 <a href="5.3.defun.html"><code>defun</code></a>は、 新しい関数を定義するときに使われたり、 正しくない定義の修正したバージョンを導入したり、 すでに定義されている関数を再定義したり、 関数としてマクロを再定義するときにも使用できます。</p>
-<p><a href="5.3.defun.html"><code>defun</code></a>は、暗黙的に関数定義のボディ部<em>form</em>を、 <em>block-name</em>という名前の<code>block</code>で囲みます （しかし<em>lambda-list</em>のフォームは囲みません）。</p>
+<p><a href="5.3.defun.html"><code>defun</code></a>は、暗黙的に関数定義のボディ部<em>form</em>を、 <em>block-name</em>という名前の<a href="5.3.block.html"><code>block</code></a>で囲みます （しかし<em>lambda-list</em>のフォームは囲みません）。</p>
 <p><em>documentation</em>は、ドキュメント文字を名前に対して <a href="5.3.function-special.html"><code>function</code></a>という種類で設定し、 関数オブジェクトにも設定します。</p>
 <p><a href="5.3.defun.html"><code>defun</code></a>を評価すると、 下記のラムダ式を<a href="5.3.defun.html"><code>defun</code></a>が実行された レキシカルな環境な環境下で処理し、 その関数を<em>function-name</em>というグローバルな名前に設定します。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">lambda</span> lambda-list</span>
@@ -260,7 +260,7 @@
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>(discriminant <span class="dv">1</span> <span class="dv">2</span>/<span class="dv">3</span> -<span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">76</span>/<span class="dv">9</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">;; この関数は呼び出し側で引数の型チェックを行わないと仮定しており</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">;; どんな仮定より先に名に型チェックを実行します</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">;; どんな仮定より先に明に型チェックを実行します</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> careful-discriminant </span>(a b c)</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Compute the discriminant for a quadratic equation.&quot;</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">check-type</span> a <span class="kw">number</span>)</span>
@@ -274,9 +274,9 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.flet.html"><code>flet</code></a>, <a href="5.3.flet.html"><code>labels</code></a>, <code>block</code>, <code>return-from</code>, <code>declare</code>, <a href="25.2.documentation.html"><code>documentation</code></a>, 3.1. 評価, 3.4.1. 通常のラムダリスト, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
+<p><a href="5.3.flet.html"><code>flet</code></a>, <a href="5.3.flet.html"><code>labels</code></a>, <a href="5.3.block.html"><code>block</code></a>, <a href="5.3.return-from.html"><code>return-from</code></a>, <code>declare</code>, <a href="25.2.documentation.html"><code>documentation</code></a>, 3.1. 評価, 3.4.1. 通常のラムダリスト, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
 <h2 id="備考">備考</h2>
-<p><code>return-from</code>は、<a href="5.3.defun.html"><code>defun</code></a>定義の関数を 普通より早く返却したいときに使用することができます。</p>
+<p><a href="5.3.return-from.html"><code>return-from</code></a>は、<a href="5.3.defun.html"><code>defun</code></a>定義の関数を 普通より早く返却したいときに使用することができます。</p>
 <p>関数定義に関する追加情報（通常はデバッグ情報）が記録されると、 さらなる副作用が発生する可能性があります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

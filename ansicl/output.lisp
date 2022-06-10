@@ -39,48 +39,70 @@
 
 
 ;;
-;;  index
+;;  string
 ;;
+(defun reference-title (x)
+  (reference-string
+    (contents-title x)))
+
 (defun replace-special (str)
   (replace-string str "*" "\\*"))
 
-(defun dictionary-title (x)
+;;  dictionary
+(defun dictionary-values (x)
   (let* ((inst (contents-text x))
          (name (dictionary-name inst))
          (type (dictionary-type inst)))
     (let* ((list (mapcar-delete-attribute name))
            (join (join ", " list)))
-      (format nil "~:(~A~) ~:@(~A~)" type join))))
+      (values (string-capitalize type)
+              (string-upcase join)))))
 
-(defun reference-title (x)
-  (reference-string
-    (contents-title x)))
+(defun dictionary-string1 (x)
+  (mvbind (x y) (dictionary-values x)
+    (setq y (replace-special y))
+    (format nil "~A ~A" x y)))
+
+(defun dictionary-string2 (x)
+  (mvbind (x y) (dictionary-values x)
+    (setq y (replace-special y))
+    (format nil "~A **~A**" x y)))
+
+;;  linkpage
+(defun linkpage-values (x)
+  (values
+    (contents-string x)
+    (reference-title x)))
 
 (defun linkpage-title (x)
   (if (eq (contents-type x) 'dictionary)
-    (dictionary-title x)
+    (dictionary-string1 x)
     (reference-title x)))
 
-(defun index-string-title (x)
-  (let ((index (contents-string x))
-        (title (reference-title x)))
-    (format nil "~A. ~A" index title)))
+;;  index
+(defun index-string2 (x)
+  (mvbind (index title) (linkpage-values x)
+    (replace-special
+      (format nil "~A. ~A" index title))))
 
-(defun index-string (x)
-  (replace-special
-    (if (eq (contents-type x) 'dictionary)
-      (dictionary-title x)
-      (index-string-title x))))
+(defun index-string1 (x)
+  (if (eq (contents-type x) 'dictionary)
+    (dictionary-string2 x)
+    (index-string2 x)))
 
+
+;;
+;;  index
+;;
 (defun index-link (s x)
   (let* ((index (contents-string x))
-         (title (index-string x))
+         (title (index-string1 x))
          (uri (filename-html index)))
     (linkpage x)
     (format s "- [~A](~A)~%" title uri)))
 
 (defun index-nolink (s x)
-  (let ((title (index-string x)))
+  (let ((title (index-string1 x)))
     (format s "- ~A~%" title)))
 
 (defun index-root (s x)
@@ -114,11 +136,11 @@
       (ref (dictionary-reference s cdr)))))
 
 (defun dictionary-header (s x)
-  (let ((name (dictionary-title x)))
-    (setq name (replace-special name))
-    (format s "% ~A~2%" name)
+  (let ((a (dictionary-string1 x))
+        (b (dictionary-string2 x)))
+    (format s "% ~A~2%" a)
     (output-header s x)
-    (format s "# ~A~2%" name)))
+    (format s "# ~A~2%" b)))
 
 (defun dictionary-body (s x)
   (let ((dic (contents-text x)))
@@ -143,8 +165,7 @@
 ;;  linkpage
 ;;
 (defun linkpage-header (s x)
-  (let ((index (contents-string x))
-        (title (reference-title x)))
+  (mvbind (index title) (linkpage-values x)
     (format s "% ~A. ~A~2%" index title)
     (output-header s x)
     (format s "~A. ~A~2%" index title)))

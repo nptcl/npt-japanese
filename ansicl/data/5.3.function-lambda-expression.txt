@@ -22,7 +22,7 @@ Function `FUNCTION-LAMBDA-EXPRESSION`
 ## {arguments-and-values}
 
 *function* - 関数  
-*lambda-expression* ラムダ式か、{nil!variable:link}  
+*lambda-expression* - ラムダ式か、{nil!variable:link}  
 *closure-p* - {generalized-boolean}  
 *name* - オブジェクト
 

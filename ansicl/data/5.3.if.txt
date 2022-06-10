@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator IF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.if
+@name: if
+@type: special-operator
+
+Special Operator `IF`
+
+
+## {syntax}
+
+`if` *test-form* *then-form* [*else-form*] => *result\**
+
+
+## {arguments-and-values}
+
+*test-form - フォーム  
+*then-form - フォーム  
+*else-form - フォーム、デフォルトは{nil!variable:link}。  
+*result* - もし*test-form*が*true*のときは、*then-form*の返却値です。
+それ以外は*else-form*No返却値です。
+
+
+## {description}
+
+{if:link}は*test-form*単体に依存したフォームの実行を行います。
+
+最初に*test-form*が評価されます。
+もしその値が*true*のときは、*then-form*が選ばれます。
+そうでないときは、*else-form*が選ばれます。
+選ばれたフォームのどちらかが評価されます。
+
+
+## {examples}
+
+```lisp
+(if t 1) =>  1
+(if nil 1 2) =>  2 
+(defun test ()
+  (dolist (truth-value '(t nil 1 (a b c)))
+    (if truth-value (print 'true) (print 'false))
+    (prin1 truth-value))) =>  TEST
+(test)
+>>  TRUE T
+>>  FALSE NIL
+>>  TRUE 1
+>>  TRUE (A B C)
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cond:link},
+{unless:link},
+{when:link}
+
+
+## {notes}
+
+```lisp
+(if test-form then-form else-form)
+== (cond (test-form then-form) (t else-form))
+```
+
+@end
+

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function COMPLEMENT</title>
+  <title>Function EVERY, SOME, NOTEVERY, NOTANY</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,40 +214,44 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function COMPLEMENT</h1>
+<h1 class="title">Function EVERY, SOME, NOTEVERY, NOTANY</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="function-complement">Function <strong>COMPLEMENT</strong></h1>
-<p>Function <code>COMPLEMENT</code></p>
+<h1 id="function-every-some-notevery-notany">Function <strong>EVERY, SOME, NOTEVERY, NOTANY</strong></h1>
+<p>Function <code>EVERY</code>, <code>SOME</code>, <code>NOTEVERY</code>, <code>NOTANY</code></p>
 <h2 id="構文">構文</h2>
-<p><code>complement</code> <em>function</em> =&gt; <em>complement-function</em></p>
+<p><code>every</code> <em>predicate</em> &amp;rest <em>sequence</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>some</code> <em>predicate</em> &amp;rest <em>sequence</em>+ =&gt; <em>result</em><br />
+<code>notevery</code> <em>predicate</em> &amp;rest <em>sequence</em>+ =&gt; <em>generalized-boolean</em><br />
+<code>notany</code> <em>predicate</em> &amp;rest <em>sequence</em>+ =&gt; <em>generalized-boolean</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>function</em> - 関数<br />
-<em>complement-function</em> - 関数</p>
+<p><em>predicate</em> - <em>sequence</em>の数だけ引数を受け取る関数指定子<br />
+<em>sequence</em>s - シーケンス<br />
+<em>result</em> - オブジェクト<br />
+<em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><em>function</em>としていくつかの引数をとる関数を返却します。 その関数は、<em>function</em>として同じ副作用の動作をしますが ただひとつだけの値を返却します。 返却値はgeneralized-booleanであり、 <em>function</em>の第一返却値として返却されただろうものの 真偽値の反対を返却します。 つまり、<em>function</em>が<em>true</em>を返却したとき <em>complement-function</em>の第一返却値は<em>false</em>であり、 <em>function</em>が<em>false</em>を返却したとき <em>complement-function</em>の第一返却値は<em>true</em>です。</p>
+<p><a href="5.3.every.html"><code>every</code></a>、<a href="5.3.every.html"><code>some</code></a>、<a href="5.3.every.html"><code>notevery</code></a>、<a href="5.3.every.html"><code>notany</code></a>は、 引数<em>predicate</em>が<em>sequence</em>の要素を満たすかどうかをテストします。 <em>predicate</em>の最初の引数は最初の<em>sequence</em>の要素であり、 後続の引数は後続のシーケンスの要素です。</p>
+<p><em>predicate</em>は、最初は各<em>sequence</em>のインデックス0番目の要素で呼び出され、 そのあと可能であればインデックス1番目の要素で呼ばれ、 以下同様に実行し、終了の基準が満たされるか、 もっとも短い<em>sequence</em>の終わりに到達するときまで続けられます。</p>
+<p><a href="5.3.every.html"><code>every</code></a>は、<em>predicate</em>のどれかが<em>false</em>を返却したら、 すぐに<em>false</em>を返却します。 もし<em>sequence</em>の終わりに到達したら、<a href="5.3.every.html"><code>every</code></a>は<em>true</em>を返却します。 したがって<a href="5.3.every.html"><code>every</code></a>は、すべての<em>predicate</em>が<em>true</em>を返却したときのみ、 <em>true</em>を返却します。</p>
+<p><a href="5.3.every.html"><code>some</code></a>は、<em>predicate</em>の実行によって返却された 最初の非<a href="5.3.nil-variable.html"><code>nil</code></a>を値を返却します。 もし<em>predicate</em>の実行が<em>true</em>を返却することなく <em>sequence</em>の終わりに到達したら、 <a href="5.3.every.html"><code>some</code></a>は<em>false</em>を返却します。 したがって<a href="5.3.every.html"><code>some</code></a>は、 もしどれかの<em>predicate</em>の実行が<em>true</em>を返却したら、 <em>true</em>を返却します。</p>
+<p><a href="5.3.every.html"><code>notany</code></a>は、<em>predicate</em>のどれかが<em>true</em>を返却したら、 すぐに<em>false</em>を返却します。 もし<em>sequence</em>の終わりに到達したら、<a href="5.3.every.html"><code>notany</code></a>は<em>true</em>を返却します。 したがって<a href="5.3.every.html"><code>notany</code></a>は、どの<em>predicate</em>も<em>true</em>を返却しない場合にのみ、 <em>true</em>を返却します。</p>
+<p><a href="5.3.every.html"><code>notevery</code></a>は、<em>predicate</em>のどれかが<em>false</em>を返却したら、 すぐに<em>true</em>を返却します。 もし<em>sequence</em>の終わりに到達したら、<a href="5.3.every.html"><code>notany</code></a>は<em>false</em>を返却します。 したがって<a href="5.3.every.html"><code>notany</code></a>は、すべての<em>predicate</em>が<em>true</em>を返却しない場合にのみ、 <em>true</em>を返却します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;zerop) <span class="dv">1</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;characterp) <span class="ch">#\A</span>) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;member) &#39;a &#39;(a b c)) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;member) &#39;d &#39;(a b c)) <span class="op">=&gt;</span>  true</span></code></pre></div>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">every</span> #&#39;characterp <span class="st">&quot;abc&quot;</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">some</span> #&#39;= &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span>) &#39;(<span class="dv">5</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span>)) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">notevery</span> #&#39;&lt; &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>) &#39;(<span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span>) &#39;(<span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span>)) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">notany</span> #&#39;&gt; &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>) &#39;(<span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span>) &#39;(<span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span>)) <span class="op">=&gt;</span>  true </span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p>最初の引数がシンボルでも関数でもないときか、 続く引数のどれかが正常なシーケンスではなかったときは、 型<code>type-error</code>のエラーが発生します。</p>
+<p>他の例外が発生する可能性があり、それは<em>predicate</em>の性質に依存します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.not-function.html"><code>not</code></a></p>
+<p><a href="5.3.and-macro.html"><code>and</code></a>, <a href="5.3.or-macro.html"><code>or</code></a>, 3.6. 横断の規則と副作用</p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">complement</span> x) == #&#39;(<span class="kw">lambda</span> (&amp;<span class="kw">rest</span> arguments) (<span class="kw">not</span> (<span class="kw">apply</span> x arguments)))</span></code></pre></div>
-<p>Common Lispでは、 「<code>xxx-if-not</code>」のような名前を持つ関数は、 「<code>xxx-if</code>」のような名前を持つ関数と、 次のような関係があります。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(xxx-if-not f . arguments) == (xxx-if (<span class="kw">complement</span> f) . arguments)</span></code></pre></div>
-<p>例えば、次のようになります。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-if-not</span> #&#39;zerop &#39;(<span class="dv">0</span> <span class="dv">0</span> <span class="dv">3</span>)) == </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-if</span> (<span class="kw">complement</span> #&#39;zerop) &#39;(<span class="dv">0</span> <span class="dv">0</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  <span class="dv">3</span></span></code></pre></div>
-<p>「<code>xxx-if-not</code>」のような関数と<code>:test-not</code>引数は非推奨です。 「<code>xxx-if</code>」のような関数と<code>:test</code>引数を、 <a href="5.3.complement.html"><code>complement</code></a>と一緒に使うことが好まれます。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">notany</span> predicate sequence*) == (<span class="kw">not</span> (<span class="kw">some</span> predicate sequence*))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">notevery</span> predicate sequence*) == (<span class="kw">not</span> (<span class="kw">every</span> predicate sequence*))</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

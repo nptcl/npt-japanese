@@ -1,0 +1,119 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WHEN
+;;  Macro UNLESS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.when
+@name: when
+@name: unless
+@type: macro
+
+Macro `WHEN`, `UNLESS`
+
+
+## {syntax}
+
+`when` *test-form* *form\** => *result\**  
+`unless` *test-form* *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*test-form* - フォーム  
+*form* - {implicit-progn}  
+*result* - *test-form*が*true*のときは
+{when:link}フォーム内の*form*の多値。
+*test-form*が*false*のときは
+{unless:link}フォーム内の*form*No多値。
+それ以外は{nil!variable:link}。
+
+
+## {description}
+
+{when:link}と{unless:link}は、
+*test-form*単体に依存したフォームの実行を行います。
+
+{when:link}のフォーム内において、
+*test-form*が*true*のときは、*form*が左から右の順番で評価され、
+その*form*の多値が{when:link}フォームからの返却値になります。
+一方、*test-form*が*false*のときは、*form*は評価されず
+{when:link}フォームは{nil!variable:link}を返却します。
+
+{unless:link}のフォーム内において、
+*test-form*が*false*のときは、*form*が左から右の順番で評価され、
+その*form*の多値が{unless:link}フォームからの返却値になります。
+一方、*test-form*が*true*のときは、*form*は評価されず
+{unless:link}フォームは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(when t 'hello) =>  HELLO
+(unless t 'hello) =>  NIL
+(when nil 'hello) =>  NIL
+(unless nil 'hello) =>  HELLO
+(when t) =>  NIL
+(unless nil) =>  NIL
+(when t (prin1 1) (prin1 2) (prin1 3))
+>>  123
+=>  3
+(unless t (prin1 1) (prin1 2) (prin1 3)) =>  NIL
+(when nil (prin1 1) (prin1 2) (prin1 3)) =>  NIL
+(unless nil (prin1 1) (prin1 2) (prin1 3))
+>>  123
+=>  3
+(let ((x 3))
+  (list (when (oddp x) (incf x) (list x))
+        (when (oddp x) (incf x) (list x))
+        (unless (oddp x) (incf x) (list x))
+        (unless (oddp x) (incf x) (list x))
+        (if (oddp x) (incf x) (list x)) 
+        (if (oddp x) (incf x) (list x)) 
+        (if (not (oddp x)) (incf x) (list x)) 
+        (if (not (oddp x)) (incf x) (list x))))
+=>  ((4) NIL (5) NIL 6 (6) 7 (7))
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{and!macro:link},
+{cond:link},
+{if:link},
+{or!macro:link}
+
+
+## {notes}
+
+```lisp
+(when test {form}+) == (and test (progn {form}+))
+(when test {form}+) == (cond (test {form}+))
+(when test {form}+) == (if test (progn {form}+) nil)
+(when test {form}+) == (unless (not test) {form}+)
+(unless test {form}+) == (cond ((not test) {form}+))
+(unless test {form}+) == (if test nil (progn {form}+))
+(unless test {form}+) == (when (not test) {form}+)
+```
+
+@end
+

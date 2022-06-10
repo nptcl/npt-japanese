@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro AND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.and!macro
+@name: and!macro
+@type: macro
+
+Macro `AND`
+
+
+## {syntax}
+
+`and` *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*form* - フォーム  
+*result* - 最後の*form*の評価の結果の値か、
+シンボルの{nil!variable:link}か{t!variable:link}。
+
+
+## {description}
+
+マクロ{and!macro:link}は、各*form*を左から右へひとつずつ評価します。
+どれかの*form*の評価が{nil!variable:link}を返却したとき、
+{and!macro:link}は残りの*form*を評価せず
+すぐに{nil!variable:link}を返却します。
+もし最後以外の全ての*form*が*true*の値であれば、
+{and!macro:link}は、最後の*form*の評価によって生成された結果を返却します。
+
+*form*がないときは、`(and)`は{t!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(if (and (>= n 0)
+         (< n (length a-simple-vector))
+         (eq (elt a-simple-vector n) 'foo))
+    (princ "Foo!"))
+```
+
+上記の式は、もし提供された`n`が`a-simple-vector`への有効なインデックスであり、
+かつ`a-simple-vector`の要素`n`がシンボル`foo`のときは`Foo!`が印字されます。
+{and!macro:link}は、その部分が左から右へテストされることが保証されているので、
+もし`n`が範囲外のときは{elt:link}が呼び出されません。
+
+```lisp
+(setq temp1 1 temp2 1 temp3 1) =>  1 
+(and (incf temp1) (incf temp2) (incf temp3)) =>  2 
+(and (eql 2 temp1) (eql 2 temp2) (eql 2 temp3)) =>  true
+(decf temp3) =>  1 
+(and (decf temp1) (decf temp2) (eq temp3 'nil) (decf temp3)) =>  NIL 
+(and (eql temp1 temp2) (eql temp2 temp3)) =>  true
+(and) =>  T 
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cond:link},
+{every:link},
+{if:link},
+{or!macro:link},
+{when:link}
+
+
+## {notes}
+
+```lisp
+(and form) == (let () form)
+(and form1 form2 ...) == (when form1 (and form2 ...))
+```
+
+@end
+

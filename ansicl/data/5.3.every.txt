@@ -1,0 +1,116 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function EVERY
+;;  Function SOME
+;;  Function NOTEVERY
+;;  Function NOTANY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.every
+@name: every
+@name: some
+@name: notevery
+@name: notany
+@type: function
+
+Function `EVERY`, `SOME`, `NOTEVERY`, `NOTANY`
+
+
+## {syntax}
+
+`every` *predicate* &rest *sequence*+ => *generalized-boolean*  
+`some` *predicate* &rest *sequence*+ => *result*  
+`notevery` *predicate* &rest *sequence*+ => *generalized-boolean*  
+`notany` *predicate* &rest *sequence*+ => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*predicate* - *sequence*の数だけ引数を受け取る関数指定子  
+*sequence*s - シーケンス  
+*result* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{every:link}、{some:link}、{notevery:link}、{notany:link}は、
+引数*predicate*が*sequence*の要素を満たすかどうかをテストします。
+*predicate*の最初の引数は最初の*sequence*の要素であり、
+後続の引数は後続のシーケンスの要素です。
+
+*predicate*は、最初は各*sequence*のインデックス0番目の要素で呼び出され、
+そのあと可能であればインデックス1番目の要素で呼ばれ、
+以下同様に実行し、終了の基準が満たされるか、
+もっとも短い*sequence*の終わりに到達するときまで続けられます。
+
+{every:link}は、*predicate*のどれかが*false*を返却したら、
+すぐに*false*を返却します。
+もし*sequence*の終わりに到達したら、{every:link}は*true*を返却します。
+したがって{every:link}は、すべての*predicate*が*true*を返却したときのみ、
+*true*を返却します。
+
+{some:link}は、*predicate*の実行によって返却された
+最初の非{nil!variable:link}を値を返却します。
+もし*predicate*の実行が*true*を返却することなく
+*sequence*の終わりに到達したら、
+{some:link}は*false*を返却します。
+したがって{some:link}は、
+もしどれかの*predicate*の実行が*true*を返却したら、
+*true*を返却します。
+
+{notany:link}は、*predicate*のどれかが*true*を返却したら、
+すぐに*false*を返却します。
+もし*sequence*の終わりに到達したら、{notany:link}は*true*を返却します。
+したがって{notany:link}は、どの*predicate*も*true*を返却しない場合にのみ、
+*true*を返却します。
+
+{notevery:link}は、*predicate*のどれかが*false*を返却したら、
+すぐに*true*を返却します。
+もし*sequence*の終わりに到達したら、{notany:link}は*false*を返却します。
+したがって{notany:link}は、すべての*predicate*が*true*を返却しない場合にのみ、
+*true*を返却します。
+
+
+## {examples}
+
+```lisp
+(every #'characterp "abc") =>  true
+(some #'= '(1 2 3 4 5) '(5 4 3 2 1)) =>  true
+(notevery #'< '(1 2 3 4) '(5 6 7 8) '(9 10 11 12)) =>  false
+(notany #'> '(1 2 3 4) '(5 6 7 8) '(9 10 11 12)) =>  true 
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+最初の引数がシンボルでも関数でもないときか、
+続く引数のどれかが{proper-sequence}ではなかったときは、
+型{type-error:link}のエラーが発生します。
+
+他の例外が発生する可能性があり、それは*predicate*の性質に依存します。
+
+
+## {see-also}
+
+{and!macro:link},
+{or!macro:link},
+{3.6:ab}
+
+
+## {notes}
+
+```lisp
+(notany predicate sequence*) == (not (some predicate sequence*))
+(notevery predicate sequence*) == (not (every predicate sequence*))
+```
+
+@end
+

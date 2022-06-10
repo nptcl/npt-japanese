@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro OR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.or!macro
+@name: or!macro
+@type: macro
+
+Macro `OR`
+
+
+## {syntax}
+
+`or` *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*form* - フォーム  
+*result* - 多値か、最後の*form*の実行した結果の第一返却値（下記参照）か、
+{nil!variable:link}
+
+
+## {description}
+
+{or!macro:link}は、各*form*を左から右へひとつずつ評価します。
+すべての*from*の評価は、*form*のどれかの評価が
+*true*（それは{nil!variable:link}以外のなにか）を返却したときに停止します。
+
+もし最後以外の各*form*の評価の第一返却値が*true*のときは、
+{or!macro:link}は残りの*form*を評価することなく
+即座にその値（しかし多値は追加しません）を返却します。
+もし最後以外のすべての*form*が第一返却値に*false*を返却したとき、
+{or!macro:link}は最後の*form*の全ての多値を返却します。
+*form*がないときは、{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(or) =>  NIL 
+(setq temp0 nil temp1 10 temp2 20 temp3 30) =>  30
+(or temp0 temp1 (setq temp2 37)) =>  10
+temp2 =>  20
+(or (incf temp1) (incf temp2) (incf temp3)) =>  11
+temp1 =>  11
+temp2 =>  20
+temp3 =>  30
+(or (values) temp1) =>  11
+(or (values temp1 temp2) temp3) =>  11
+(or temp0 (values temp1 temp2)) =>  11, 20
+(or (values temp0 temp1) (values temp2 temp3)) =>  20, 30
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{and!macro:link},
+{some:link},
+{unless:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

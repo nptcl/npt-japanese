@@ -32,10 +32,10 @@ Function `COMPLEMENT`
 返却値は{generalized-boolean}であり、
 *function*の第一返却値として返却されただろうものの
 真偽値の反対を返却します。
-つまり、*function*が*true*を返却したとき*
-complement-function*の第一返却値は*false*であり、
-*function*が*false*を返却したとき*
-complement-function*の第一返却値は*true*です。
+つまり、*function*が*true*を返却したとき
+*complement-function*の第一返却値は*false*であり、
+*function*が*false*を返却したとき
+*complement-function*の第一返却値は*true*です。
 
 
 ## {examples}

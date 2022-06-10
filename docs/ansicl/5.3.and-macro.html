@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function COMPLEMENT</title>
+  <title>Macro AND</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,40 +214,42 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function COMPLEMENT</h1>
+<h1 class="title">Macro AND</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="function-complement">Function <strong>COMPLEMENT</strong></h1>
-<p>Function <code>COMPLEMENT</code></p>
+<h1 id="macro-and">Macro <strong>AND</strong></h1>
+<p>Macro <code>AND</code></p>
 <h2 id="構文">構文</h2>
-<p><code>complement</code> <em>function</em> =&gt; <em>complement-function</em></p>
+<p><code>and</code> <em>form*</em> =&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>function</em> - 関数<br />
-<em>complement-function</em> - 関数</p>
+<p><em>form</em> - フォーム<br />
+<em>result</em> - 最後の<em>form</em>の評価の結果の値か、 シンボルの<a href="5.3.nil-variable.html"><code>nil</code></a>か<a href="5.3.t-variable.html"><code>t</code></a>。</p>
 <h2 id="定義">定義</h2>
-<p><em>function</em>としていくつかの引数をとる関数を返却します。 その関数は、<em>function</em>として同じ副作用の動作をしますが ただひとつだけの値を返却します。 返却値はgeneralized-booleanであり、 <em>function</em>の第一返却値として返却されただろうものの 真偽値の反対を返却します。 つまり、<em>function</em>が<em>true</em>を返却したとき <em>complement-function</em>の第一返却値は<em>false</em>であり、 <em>function</em>が<em>false</em>を返却したとき <em>complement-function</em>の第一返却値は<em>true</em>です。</p>
+<p>マクロ<a href="5.3.and-macro.html"><code>and</code></a>は、各<em>form</em>を左から右へひとつずつ評価します。 どれかの<em>form</em>の評価が<a href="5.3.nil-variable.html"><code>nil</code></a>を返却したとき、 <a href="5.3.and-macro.html"><code>and</code></a>は残りの<em>form</em>を評価せず すぐに<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 もし最後以外の全ての<em>form</em>が<em>true</em>の値であれば、 <a href="5.3.and-macro.html"><code>and</code></a>は、最後の<em>form</em>の評価によって生成された結果を返却します。</p>
+<p><em>form</em>がないときは、<code>(and)</code>は<a href="5.3.t-variable.html"><code>t</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;zerop) <span class="dv">1</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;characterp) <span class="ch">#\A</span>) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;member) &#39;a &#39;(a b c)) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">complement</span> #&#39;member) &#39;d &#39;(a b c)) <span class="op">=&gt;</span>  true</span></code></pre></div>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">if</span> (<span class="kw">and</span> (<span class="op">&gt;=</span> n <span class="dv">0</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         (<span class="op">&lt;</span> n (<span class="kw">length</span> a-simple-vector))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">eq</span> (<span class="kw">elt</span> a-simple-vector n) &#39;foo))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">princ</span> <span class="st">&quot;Foo!&quot;</span>))</span></code></pre></div>
+<p>上記の式は、もし提供された<code>n</code>が<code>a-simple-vector</code>への有効なインデックスであり、 かつ<code>a-simple-vector</code>の要素<code>n</code>がシンボル<code>foo</code>のときは<code>Foo!</code>が印字されます。 <a href="5.3.and-macro.html"><code>and</code></a>は、その部分が左から右へテストされることが保証されているので、 もし<code>n</code>が範囲外のときは<a href="17.3.elt.html"><code>elt</code></a>が呼び出されません。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp1 <span class="dv">1</span> temp2 <span class="dv">1</span> temp3 <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> (<span class="kw">incf</span> temp1) (<span class="kw">incf</span> temp2) (<span class="kw">incf</span> temp3)) <span class="op">=&gt;</span>  <span class="dv">2</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> (<span class="kw">eql</span> <span class="dv">2</span> temp1) (<span class="kw">eql</span> <span class="dv">2</span> temp2) (<span class="kw">eql</span> <span class="dv">2</span> temp3)) <span class="op">=&gt;</span>  true</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">decf</span> temp3) <span class="op">=&gt;</span>  <span class="dv">1</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> (<span class="kw">decf</span> temp1) (<span class="kw">decf</span> temp2) (<span class="kw">eq</span> temp3 &#39;nil) (<span class="kw">decf</span> temp3)) <span class="op">=&gt;</span>  NIL </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> (<span class="kw">eql</span> temp1 temp2) (<span class="kw">eql</span> temp2 temp3)) <span class="op">=&gt;</span>  true</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span>) <span class="op">=&gt;</span>  T </span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.not-function.html"><code>not</code></a></p>
+<p><a href="5.3.cond.html"><code>cond</code></a>, <a href="5.3.every.html"><code>every</code></a>, <a href="5.3.if.html"><code>if</code></a>, <a href="5.3.or-macro.html"><code>or</code></a>, <a href="5.3.when.html"><code>when</code></a></p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">complement</span> x) == #&#39;(<span class="kw">lambda</span> (&amp;<span class="kw">rest</span> arguments) (<span class="kw">not</span> (<span class="kw">apply</span> x arguments)))</span></code></pre></div>
-<p>Common Lispでは、 「<code>xxx-if-not</code>」のような名前を持つ関数は、 「<code>xxx-if</code>」のような名前を持つ関数と、 次のような関係があります。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(xxx-if-not f . arguments) == (xxx-if (<span class="kw">complement</span> f) . arguments)</span></code></pre></div>
-<p>例えば、次のようになります。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-if-not</span> #&#39;zerop &#39;(<span class="dv">0</span> <span class="dv">0</span> <span class="dv">3</span>)) == </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-if</span> (<span class="kw">complement</span> #&#39;zerop) &#39;(<span class="dv">0</span> <span class="dv">0</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  <span class="dv">3</span></span></code></pre></div>
-<p>「<code>xxx-if-not</code>」のような関数と<code>:test-not</code>引数は非推奨です。 「<code>xxx-if</code>」のような関数と<code>:test</code>引数を、 <a href="5.3.complement.html"><code>complement</code></a>と一緒に使うことが好まれます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> form) == (<span class="kw">let</span> () form)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">and</span> form1 form2 ...) == (<span class="kw">when</span> form1 (<span class="kw">and</span> form2 ...))</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

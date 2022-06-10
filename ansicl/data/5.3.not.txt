@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.not!function
+@name: not!function
+@type: function
+
+Function `NOT`
+
+
+## {syntax}
+
+`not` *x* => *boolean*
+
+
+## {arguments-and-values}
+
+*x* - {generalized-boolean}（例えばどんなオブジェクトでも）  
+*boolean* - ブール値
+
+
+## {description}
+
+*x*が*false*なら{t!variable:link}を、
+それ以外なら{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(not nil) =>  T
+(not '()) =>  T
+(not (integerp 'sss)) =>  T
+(not (integerp 1)) =>  NIL
+(not 3.7) =>  NIL
+(not 'apple) =>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{null!function:link}
+
+
+## {notes}
+
+{not!function:link}はブール値（あるいは{generalized-boolean}）を
+反転させるときに使用され、
+一方、{null!function:link}は、空のリストかどうかテストするときに
+使うことを意図しています。
+操作上では、{not!function:link}と{null!function:link}は同じ結果を計算するので、
+どちらを使うかはスタイルの問題です。
+
+@end
+

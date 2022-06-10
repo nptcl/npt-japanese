@@ -15,7 +15,7 @@ Special Operator `THROW`
 
 ## {syntax}
 
-`throw` *tag* *result-form* =>|
+`throw` *tag* *result-form* =>`|`
 
 
 ## {arguments-and-values}

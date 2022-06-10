@@ -229,13 +229,13 @@
 <em>from-end</em> - generalized-boolean、デフォルトは<em>false</em><br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
-<em>start1</em>, <em>end1</em> - <em>sequence-1</em>の境界インデックス指定子。 デフォルトは<em>start1</em>, <em>end1</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>start2</em>, <em>end2</em> - <em>sequence-2</em>の境界インデックス指定子。 デフォルトは<em>start2</em>, <em>end2</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>position</em> - <em>sequence-2</em>の境界インデックスか、<code>nil</code></p>
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>start1</em>, <em>end1</em> - <em>sequence-1</em>の境界インデックス指定子。 デフォルトは<em>start1</em>, <em>end1</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>start2</em>, <em>end2</em> - <em>sequence-2</em>の境界インデックス指定子。 デフォルトは<em>start2</em>, <em>end2</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>position</em> - <em>sequence-2</em>の境界インデックスか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p><em>sequence-2</em>のサブシーケンスと<em>sequence-1</em>がマッチする場所を探します。</p>
-<p>実装は、<em>sequence-2</em>をどのような順番で検索するか選べます。 テストの回数を保証することはできません。 例えば、各<em>start</em>、<em>end</em>に値があるとき、 シーケンスは実際には右から左ではなく、 左から右に検索されるかもしれません （ただしどちらの場合でも、右側にマッチする サブシーケンスが返却されます）。 もし検索が成功したときは、<a href="17.3.search.html"><code>search</code></a>は、 <em>from-end</em>に応じて、<em>sequence-2</em>の左端または右端にマッチする サブシーケンスの最初の要素のオフセットを返却します。 それ以外の場合は、<code>nil</code>を返却します。</p>
+<p>実装は、<em>sequence-2</em>をどのような順番で検索するか選べます。 テストの回数を保証することはできません。 例えば、各<em>start</em>、<em>end</em>に値があるとき、 シーケンスは実際には右から左ではなく、 左から右に検索されるかもしれません （ただしどちらの場合でも、右側にマッチする サブシーケンスが返却されます）。 もし検索が成功したときは、<a href="17.3.search.html"><code>search</code></a>は、 <em>from-end</em>に応じて、<em>sequence-2</em>の左端または右端にマッチする サブシーケンスの最初の要素のオフセットを返却します。 それ以外の場合は、<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <p>もし<em>from-end</em>が<em>true</em>のときは、 もっとも右側にマッチしたサブシーケンスの、 左端の要素のインデックスを返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">search</span> <span class="st">&quot;dog&quot;</span> <span class="st">&quot;it&#39;s a dog&#39;s life&quot;</span>) <span class="op">=&gt;</span>  <span class="dv">7</span></span>

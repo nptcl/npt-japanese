@@ -226,7 +226,7 @@
 <p><em>object</em> - オブジェクト<br />
 <em>boolean</em> - ブール値</p>
 <h2 id="定義">定義</h2>
-<p><em>object</em>が空のリストなら<code>t</code>を、 それ以外は<code>nil</code>を返却します。</p>
+<p><em>object</em>が空のリストなら<a href="5.3.t-variable.html"><code>t</code></a>を、 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">null</span> &#39;()) <span class="op">=&gt;</span>  T</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">null</span> <span class="kw">nil</span>) <span class="op">=&gt;</span>  T</span>
@@ -239,9 +239,9 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>not</code></p>
+<p><a href="5.3.not-function.html"><code>not</code></a></p>
 <h2 id="備考">備考</h2>
-<p><a href="14.2.null-function.html"><code>null</code></a>は、空のリストかどうかテストするときに使用され、 一方、<code>not</code>はブール値（あるいはgeneralized-boolean）を 反転させるときに使うことを意図しています。 操作上では、<a href="14.2.null-function.html"><code>null</code></a>と<code>not</code>は同じ結果を計算するので、 どちらを使うかはスタイルの問題です。</p>
+<p><a href="14.2.null-function.html"><code>null</code></a>は、空のリストかどうかテストするときに使用され、 一方、<a href="5.3.not-function.html"><code>not</code></a>はブール値（あるいはgeneralized-boolean）を 反転させるときに使うことを意図しています。 操作上では、<a href="14.2.null-function.html"><code>null</code></a>と<a href="5.3.not-function.html"><code>not</code></a>は同じ結果を計算するので、 どちらを使うかはスタイルの問題です。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">null</span> object) == (<span class="kw">typep</span> object &#39;null) == (<span class="kw">eq</span> object &#39;())</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

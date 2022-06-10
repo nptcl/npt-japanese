@@ -166,7 +166,7 @@
 <em>initargs</em> - 初期化引数リスト</p>
 <h2 id="定義">定義</h2>
 <p>ジェネリック関数<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>は、 <em>instance</em>の局所スロットの値を<em>initargs</em>に従って 変更するときに使われます。 このジェネリック関数は、ユーザーによって呼び出すことができます。</p>
-<p>システムが提供する<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>のプライマリメソッドは <em>initargs</em>の有効性の確認を行い、 有効だと宣言されていないものが<em>initargs</em>で与えられていた場合は、 エラーが通知されます。 このメソッドはジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を次の引数で呼び出します。 <em>instance</em>, <code>nil</code> （これはinitformでスロットを初期化しないという意味です）, そして受け取った<em>initargs</em>。</p>
+<p>システムが提供する<a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>のプライマリメソッドは <em>initargs</em>の有効性の確認を行い、 有効だと宣言されていないものが<em>initargs</em>で与えられていた場合は、 エラーが通知されます。 このメソッドはジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を次の引数で呼び出します。 <em>instance</em>, <a href="5.3.nil-variable.html"><code>nil</code></a> （これはinitformでスロットを初期化しないという意味です）, そして受け取った<em>initargs</em>。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="副作用">副作用</h2>

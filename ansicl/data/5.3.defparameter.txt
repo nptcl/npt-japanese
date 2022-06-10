@@ -79,7 +79,7 @@ Macro `DEFPARAMETER`
 (foo) =>  (P V)
 ```
 
-{defparameter:link}と{defvar:link}の主な捜査上の違いは、
+{defparameter:link}と{defvar:link}の主な操作上の違いは、
 {defparameter:link}は*name*に無条件にアサインするのに対して、
 {defvar:link}は条件付きでそれを行うことにあります。
 実際にこれらは
@@ -128,7 +128,7 @@ Macro `DEFPARAMETER`
 例えば、誰かが事前に`*default-beep-count*`の違う値を定義していたとします。
 あるいは、ファイルを読み込んでからその値を手動で変更したとします。
 どちらの場合でも、{defparameter:link}のかわりに{defvar:link}を使用していれば、
-ファイルをロード・リロードを行っても
+ファイルのロード・リロードを行っても
 それらのユーザーの好みは上書きされることはありません。
 
 {defvar:link}と{defparameter:link}のどちらを選んでも、

@@ -228,14 +228,14 @@
 <em>place</em> - <code>place</code>、通常のリストの値<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>new-place-value</em> - リスト（<code>place</code>の新しい値）</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.pushnew.html"><code>pushnew</code></a>は、<em>item</em>と同じものが、 <em>place</em>のリストの既存の要素にあるかどうかをテストします。 もし<em>item</em>が既存の要素に存在しないときは、 リストの前に配置し、新しいリストを<code>place</code>に保存します。</p>
 <p><a href="14.2.pushnew.html"><code>pushnew</code></a>は、<code>place</code>に格納された新しいリストを返却します。</p>
 <p><em>item</em>がすでに<code>place</code>のリストのメンバーかどうかは、 <code>:test</code>か<code>:test-not</code>が比較に使用されて決定します。 <code>:test</code>か<code>:test-not</code>の関数の最初の引数は<em>item</em>であり、 二番目の引数は<code>place</code>のリストの要素であり、 <code>:key</code>が指定されていればその関数の返却値が使われます。</p>
 <p>もし<code>:key</code>が指定されていれば、<a href="14.2.adjoin.html"><code>adjoin</code></a>のように、 <em>item</em>とリストの要素両方からテストの部分を引き出すために使われます。</p>
-<p><code>:key</code>関数の引数は、<code>place</code>に格納されたリストの要素です。 <code>:key</code>関数のは、通常はリストの要素の部分を返却します。 もし<code>:key</code>が指定されなかったか、あるいは<code>nil</code>のときは、 リストの要素が使用されます。</p>
+<p><code>:key</code>関数の引数は、<code>place</code>に格納されたリストの要素です。 <code>:key</code>関数のは、通常はリストの要素の部分を返却します。 もし<code>:key</code>が指定されなかったか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 リストの要素が使用されます。</p>
 <p><code>place</code>のサブフォームの評価についての情報は、 5.1.1.1. <code>place</code>のサブフォームの評価をご確認ください。</p>
 <p><em>iterm</em>がすでに<code>place</code>のリストのメンバーであった場合に、 <a href="14.2.pushnew.html"><code>pushnew</code></a>が実際に<code>place</code>に対して 格納フォームを実行するかどうかは実装依存です。</p>
 <h2 id="例文">例文</h2>

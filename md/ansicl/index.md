@@ -21,7 +21,7 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書](9.2.html)|
 |[10.](10.html)|[Symbols](10.html)|[シンボル](10.html)|[辞書 ★完了](10.2.html)|
 |[11.](11.html)|[Packages](11.html)|[パッケージ](11.html)|[辞書](11.2.html)|
-|[12.](12.html)|[Numbers](12.html)|[数](12.html)|[辞書](12.2.html)|
+|[12.](12.html)|[Numbers](12.html)|[数](12.html)|[辞書](12.html)|
 |[13.](13.html)|[Characters](13.html)|[文字](13.html)|[辞書 ★完了](13.2.html)|
 |[14.](14.html)|[Conses](14.html)|[コンス](14.html)|[辞書 ★完了](14.2.html)|
 |[15.](15.html)|[Arrays](15.html)|[配列](15.html)|[辞書](15.2.html)|

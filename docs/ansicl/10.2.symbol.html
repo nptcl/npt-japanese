@@ -171,7 +171,7 @@
 </ul></li>
 <li>パッケージ
 <ul>
-<li>オブジェクトのこの領域は、シンボルのホームパッケージと呼ばれます。 もしホームパッケージが<code>nil</code>のときは、 シンボルはホームパッケージを持たないと言われることがあります。 <br><br> パッケージが最初に作成されたときは、ホームパッケージを持ちません。 それが最初に<code>intern</code>されたとき、 その最初に<code>intern</code>されたパッケージがホームパッケージになります。 シンボルのホームパッケージは、 関数<a href="10.2.symbol-package.html"><code>symbol-package</code></a>を使うことでアクセスできます。 <br><br> もしシンボルがホームパッケージから<code>unintern</code>されたとき、 そのホームパッケージには<code>nil</code>が設定されます。 そのシンボルが他に<code>intern</code>されているパッケージがあるかどうかによって、 シンボルが本当に<code>unintern</code>されたシンボルかもしれませんし、 そうでないかもしれません。 したがって、ホームパッケージがないシンボルは、 見かけ上は<code>unintern</code>されたと呼ばれます。 <br><br> もし<code>COMMON-LISP</code>パッケージか、<code>KEYWORD</code>パッケージの 外部シンボルのホームパッケージを変更しようとしたときの 結果は未定義です。 <br><br></li>
+<li>オブジェクトのこの領域は、シンボルのホームパッケージと呼ばれます。 もしホームパッケージが<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 シンボルはホームパッケージを持たないと言われることがあります。 <br><br> パッケージが最初に作成されたときは、ホームパッケージを持ちません。 それが最初に<code>intern</code>されたとき、 その最初に<code>intern</code>されたパッケージがホームパッケージになります。 シンボルのホームパッケージは、 関数<a href="10.2.symbol-package.html"><code>symbol-package</code></a>を使うことでアクセスできます。 <br><br> もしシンボルがホームパッケージから<code>unintern</code>されたとき、 そのホームパッケージには<a href="5.3.nil-variable.html"><code>nil</code></a>が設定されます。 そのシンボルが他に<code>intern</code>されているパッケージがあるかどうかによって、 シンボルが本当に<code>unintern</code>されたシンボルかもしれませんし、 そうでないかもしれません。 したがって、ホームパッケージがないシンボルは、 見かけ上は<code>unintern</code>されたと呼ばれます。 <br><br> もし<code>COMMON-LISP</code>パッケージか、<code>KEYWORD</code>パッケージの 外部シンボルのホームパッケージを変更しようとしたときの 結果は未定義です。 <br><br></li>
 </ul></li>
 <li>プロパティリスト
 <ul>

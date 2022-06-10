@@ -228,7 +228,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="5.3.function-special.html"><code>function</code></a>の値は、 現在のレキシカルな環境における、 <em>name</em>の関数値です。</p>
 <p>もし<em>name</em>が関数名のとき、その名前の関数定義は、 <a href="5.3.flet.html"><code>flet</code></a>、<a href="5.3.flet.html"><code>labels</code></a>、<a href="5.3.flet.html"><code>macrolet</code></a>で囲まれた レキシカルな内部に確立されたものがもしあるのであれば、 それが対応します。 そうではないときは、その関数名のグローバルな関数定義が返却されます。</p>
-<p>もし<em>name</em>がラムダ式のとき、レキシカルクロージャーが返却されます。 同じ束縛の集合のクロージャーが複数生成されるような状況では、 それぞれの生成されたクロージャーは <code>eq</code>になるかもしれませんし、ならないかもしれません。</p>
+<p>もし<em>name</em>がラムダ式のとき、レキシカルクロージャーが返却されます。 同じ束縛の集合のクロージャーが複数生成されるような状況では、 それぞれの生成されたクロージャーは <a href="5.3.eq.html"><code>eq</code></a>になるかもしれませんし、ならないかもしれません。</p>
 <p><a href="5.3.function-special.html"><code>function</code></a>フォームが現れるレキシカルな環境において、 対応する関数が存在しない<em>function-name</em>を <a href="5.3.function-special.html"><code>function</code></a>で使用した時はエラーが発生します。 とくに、マクロか特殊フォームを示すシンボルを <a href="5.3.function-special.html"><code>function</code></a>で使用した時はエラーになります。 実装は、パフォーマンスの理由からこのエラーを通知しないことを選択できますが、 しかし使いやすいからと言ってエラー通知を怠るように定義することは許されません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> adder </span>(x) (<span class="kw">function</span> (<span class="kw">lambda</span> (y) (<span class="op">+</span> x y))))</span></code></pre></div>

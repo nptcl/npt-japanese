@@ -1,0 +1,45 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable NIL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.nil!variable
+@name: nil!variable
+@type: constant-variable
+
+Constant Variable `NIL`
+
+
+## {constant-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+
+{nil!variable:link}は、ブール値（そして{generalized-boolean}）の*false*と
+空のリストの両方を表しています。
+
+
+## {examples}
+
+```lisp
+nil =>  NIL 
+```
+
+
+## {see-also}
+
+{t!variable:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

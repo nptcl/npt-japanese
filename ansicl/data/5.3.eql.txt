@@ -1,0 +1,131 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function EQL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.eql!function
+@name: eql!function
+@type: function
+
+Function `EQL`
+
+
+## {syntax}
+
+`eql` *x* *y* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*x* - オブジェクト  
+*y* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{eql!function:link}の返却値は、2つのオブジェクト`x`と`y`が
+下記の場合に*true*になります。
+
+1. もし`x`と`y`が{eq:link}のとき
+2. もし`x`と`y`が両方とも数であり、同じ型で同じ値のとき
+3. もし`x`と`y`が両方とも文字であり、同じ文字として表現されるとき
+
+それ以外のときは、{eql!function:link}の値は*false*です。
+
+もし実装が正と負のゼロを違う値としてサポートするときは、
+`(eql 0.0 -0.0)`は*false*が返却します。
+そうでなければ`-0.0`という構文を読んだとき、
+それは`0.0`という値として解釈されるので
+`(eql 0.0 -0.0)`は*true*を返却します。
+
+
+## {examples}
+
+```lisp
+(eql 'a 'b) =>  false
+(eql 'a 'a) =>  true
+(eql 3 3) =>  true
+(eql 3 3.0) =>  false
+(eql 3.0 3.0) =>  true
+(eql #c(3 -4) #c(3 -4)) =>  true
+(eql #c(3 -4.0) #c(3 -4)) =>  false
+(eql (cons 'a 'b) (cons 'a 'c)) =>  false
+(eql (cons 'a 'b) (cons 'a 'b)) =>  false
+(eql '(a . b) '(a . b))
+=>  true
+OR=>  false
+(progn (setq x (cons 'a 'b)) (eql x x)) =>  true
+(progn (setq x '(a . b)) (eql x x)) =>  true
+(eql #\A #\A) =>  true
+(eql "Foo" "Foo")
+=>  true
+OR=>  false
+(eql "Foo" (copy-seq "Foo")) =>  false
+(eql "FOO" "foo") =>  false
+```
+
+通常、`1.0s0`と`1.0d0`が違うデータの型だと仮定した場合において、
+`(eql 1.0s0 1.0d0)`は*false*です。
+しかし実装は、異なった4つの浮動小数の型を提供する必要はなく、
+4つの型をいくつかの小さい型に潰してしまっても許されます。
+そのような実装では`(eql 1.0s0 1.0d0)`は*true*になるかもしれません。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{eq:link},
+{equal:link},
+{equalp:link},
+{=:link},
+{char=:link}
+
+
+## {notes}
+
+{eql!function:link}は{eq:link}と同じですが、
+引数が文字か数の同じ型であり
+それらの値を比較するときが違っています。
+したがって、{eql!function:link}は
+2つのオブジェクトが概念的に等いかどうを言っており、
+一方{eq:link}は2つのオブジェクトが
+実装的に同一であるかどうかを言っています。
+このような理由により、
+シーケンスを引数として受け取ったオペレーターの叙述部が
+デフォルトで比較を行う際に、
+{eq:link}ではなく{eql!function:link}を使用します。
+
+{eql!function:link}は、2つの浮動小数が同じ値と表現されているときでさえ、
+真にならないかもしれません。
+{=:link}は数学的な値を比較する際に使われます。
+
+2つの複素数は、
+実部が{eql!function:link}で虚部が{eql!function:link}であれば
+{eql!function:link}とみなされます。
+例えば、`(eql #C(4 5) #C(4 5))`は*true*であり、
+`(eql #C(4 5) #C(4.0 5.0))`は*false*です。
+`(eql #C(5.0 0.0) 5.0)`は*false*であり、
+`(eql #C(5 0) 5)`は*true*であることに注意してください。
+`(eql #C(5 0) 5)`の場合は、`#C(5 0)`が複素数ではなく、
+それは整数`5`に自動的に変換されます。
+
+@end
+

@@ -224,7 +224,7 @@
 <p><code>return-from</code> <em>name</em> [<em>result</em>] =&gt;<code>|</code></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>name</em> - <code>block</code>タグ、評価はされません。<br />
-<em>result</em> - フォーム、評価されます。デフォルトは<code>nil</code>です。</p>
+<em>result</em> - フォーム、評価されます。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
 <h2 id="定義">定義</h2>
 <p>レキシカルに囲まれた<code>block</code>から制御と多値を返却します。</p>
 <p><em>name</em>という名前の<code>block</code>フォームは、 <a href="5.3.return-from.html"><code>return-from</code></a>の出現場所をレキシカルに囲む必要があります。 <em>result</em>の評価によって得られたどんな多値でも、 <code>block</code>によってレキシカルに囲まれたもっとも内側のものから 直ちに返却されます。</p>

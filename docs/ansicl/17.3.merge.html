@@ -227,12 +227,12 @@
 <em>sequences-1</em> - シーケンス<br />
 <em>sequences-2</em> - シーケンス<br />
 <em>predicate</em> - 2つの引数をとりgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>result-sequence</em> - 型<em>result-type</em>の正常なシーケンス</p>
 <h2 id="定義">定義</h2>
 <p><em>sequence-1</em>と<em>sequence-2</em>を <em>predicate</em>が決める順にしたがって 破壊的にマージします。 <a href="17.3.merge.html"><code>merge</code></a>は、<em>key</em>による要素の展開と<em>predicate</em>の実行によって、 2つの要素間の関係を決定します。</p>
 <p><em>predicate</em>関数の最初の引数は、 <em>key</em>関数によって展開された（もし<em>key</em>が指定されたのなら）、 <em>sequence-1</em>の要素の部分であり、 二番目の引数は、 <em>key</em>関数によって展開された（もし<em>key</em>が指定されたのなら）、 <em>sequence-2</em>の要素の部分です。 <em>predicate</em>は、第一引数が第二引数より（何らかの適切な意味で）、 厳密に小さい場合にのみ<em>true</em>を返すべきです。 もし最初の引数が二番目の引数が（何らかの適切な意味で）、 以上であるときは、<em>predicate</em>は<em>false</em>を返却するべきです。 <a href="17.3.merge.html"><code>merge</code></a>は、2つの要素<code>x</code>と<code>y</code> <code>(funcall predicate x y)</code>と<code>(funcall predicate y x)</code>が 両方とも<em>false</em>であるときに、等しいとみなすと仮定しています。</p>
-<p><em>key</em>関数の引数は、<em>sequence</em>の要素です。 通常、<em>key</em>関数の返却値は、<em>predicate</em>の引数になります。 もし<em>key</em>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>sequence</em>の要素そのものが使用されます。 <em>key</em>は、各シーケンスの要素に対して、 複数化呼び出される可能性があるので、 副作用は任意の順番で呼び出されるかもしれません。</p>
+<p><em>key</em>関数の引数は、<em>sequence</em>の要素です。 通常、<em>key</em>関数の返却値は、<em>predicate</em>の引数になります。 もし<em>key</em>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>sequence</em>の要素そのものが使用されます。 <em>key</em>は、各シーケンスの要素に対して、 複数化呼び出される可能性があるので、 副作用は任意の順番で呼び出されるかもしれません。</p>
 <p>もし<em>key</em>と<em>predicate</em>が返却すれば、マージ操作も終了します。 2つのシーケンス<code>x</code>と<code>y</code>のマージした結果を、 <em>result-type</em>の新しいシーケンス<code>z</code>としたとき、 <code>z</code>の長さは、<code>x</code>と<code>y</code>の長さの合計であり、 <code>z</code>には<code>x</code>と<code>y</code>の全ての要素が含まれます。 もし<code>x1</code>と<code>x2</code>が<code>x</code>の2つの要素であり、 <code>x</code>内で<code>x1</code>の方が<code>x2</code>より先行しているとき、 <code>z</code>内でも<code>x1</code>の方が<code>x2</code>より先行しており、 <code>y</code>の要素も同様です。 要するに、<code>z</code>は<code>x</code>と<code>y</code>のインターリーブです。</p>
 <p>もし<code>x</code>と<code>y</code>が<em>predicate</em>に従って正しくソートされれているならば、 <code>z</code>もまた正しくソートされています。 <code>x</code>と<code>y</code>がソートされていないのであれば、 <code>z</code>はソートされていませんが、 それでも<code>x</code>と<code>y</code>のインターリーブとなります。</p>
 <p>マージ操作は安定性が保証されます。 もし2つかそれ以上の要素が<em>predicate</em>によって等しい場合、 返却値は、<em>sequence-1</em>のそれらの要素の方が、 <em>sequence-2</em>のそれらの要素よりも優先されます。</p>

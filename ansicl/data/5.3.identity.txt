@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function IDENTITY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.identity
+@name: identity
+@type: function
+
+Function `IDENTITY`
+
+
+## {syntax}
+
+`identity` *object* => *object*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト
+
+
+## {description}
+
+引数の*object*を返却します。
+
+
+## {examples}
+
+```lisp
+(identity 101) =>  101
+(mapcan #'identity (list (list 1 2 3) '(4 5 6))) =>  (1 2 3 4 5 6)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{identity:link}は、引数として関数を必要とする関数での使用を意図しています。
+
+`(eql x (identity x))`は、`x`が全ての可能性のある値に対して*true*を返却します。
+しかし`(eq x (identity x))`は、`x`が数か文字の場合は*false*になるかもしれません。
+
+{identity:link}は、次のように定義できます。
+
+```lisp
+(defun identity (x) x)
+```
+
+@end
+

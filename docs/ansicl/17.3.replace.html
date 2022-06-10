@@ -225,8 +225,8 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>sequence-1</em> - シーケンス<br />
 <em>sequence-2</em> - シーケンス<br />
-<em>start1</em>, <em>end1</em> - <em>sequence-1</em>の境界インデックス指定子。 デフォルトは<em>start1</em>, <em>end1</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>start2</em>, <em>end2</em> - <em>sequence-2</em>の境界インデックス指定子。 デフォルトは<em>start2</em>, <em>end2</em>それぞれ<code>0</code>と<code>nil</code>。</p>
+<em>start1</em>, <em>end1</em> - <em>sequence-1</em>の境界インデックス指定子。 デフォルトは<em>start1</em>, <em>end1</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>start2</em>, <em>end2</em> - <em>sequence-2</em>の境界インデックス指定子。 デフォルトは<em>start2</em>, <em>end2</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
 <h2 id="定義">定義</h2>
 <p><em>sequence-1</em>の<em>start1</em>と<em>end1</em>に囲まれた要素が <em>sequence-2</em>の<em>start2</em>と<em>end2</em>に囲まれた要素によって 置換されることによって、<em>sequence-1</em>が破壊的に修正されます。</p>
 <p><em>sequence-1</em>は、<em>sequence-2</em>から連続した要素をコピーすることによって 破壊的に修正されます。 <em>sequence-2</em>の<em>start2</em>と<em>end2</em>に囲まれたサブシーケンスの各要素は、 <em>sequence-1</em>の<em>start1</em>と<em>end1</em>に囲まれたサブシーケンスにコピーされます。 もしこれらのサブシーケンスの長さが等しくないときは、 コピーされる要素数はもっとも短い方で決定されます。 長いサブシーケンスの終わり付近の余分な要素は、 操作には影響されません。 コピーされる要素数は、次のようにあらわされます。</p>

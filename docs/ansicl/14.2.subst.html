@@ -234,7 +234,7 @@
 <em>tree</em> - ツリー<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>new-tree</em> - ツリー</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.subst.html"><code>subst</code></a>, <a href="14.2.subst.html"><code>subst-if</code></a>, <a href="14.2.subst.html"><code>subst-if-not</code></a>は、 <em>tree</em>の置換操作を行います。 各関数は<em>tree</em>に対して<em>test</em>を満たすような特定の<em>old</em>要素か、 あるいは部分式を満たすものを検索します。</p>
@@ -242,7 +242,7 @@
 <p><a href="14.2.subst.html"><code>subst</code></a>は<em>tree</em>のコピーを作成し、 全てのサブツリー、葉、親の<code>car</code>部、<code>cdr</code>部、すべてに対して <em>old</em>と<em>test</em>が満たされる部分を<em>new</em>に置換します。</p>
 <p><a href="14.2.subst.html"><code>nsubst</code></a>は、<a href="14.2.subst.html"><code>subst</code></a>の破壊的バージョンです。 <em>tree</em>のリスト構造は、それぞれの<em>tree</em>の葉に対して、 <em>old</em>と<em>test</em>が満たされる葉の部分を <em>new</em>で破壊的に置換することによって変更されます</p>
 <p><a href="14.2.subst.html"><code>subst</code></a>, <a href="14.2.subst.html"><code>subst-if</code></a>, <a href="14.2.subst.html"><code>subst-if-not</code></a>は、 もし関数が成功すると、 指定された要素のそれぞれの出現を<em>new</em>要素で置き換えられたものか、 あるいは部分式で置き換えられたものの新たなコピーが返却されます。 もし変更が生じなかったときは、元の<em>tree</em>が返却されるかもしれません。 元の<em>tree</em>が変更されないとしても、 返却値のツリーは元のツリーと ストレージを共有しているかもしれません。</p>
-<p><a href="14.2.subst.html"><code>nsubst</code></a>, <a href="14.2.subst.html"><code>nsubst-if</code></a>, <a href="14.2.subst.html"><code>nsubst-if-not</code></a>は、 元の<em>tree</em>を修正し返却します。 しかし関数の結果は、<em>tree</em>と<code>eq</code>で等しくないかもしれません。</p>
+<p><a href="14.2.subst.html"><code>nsubst</code></a>, <a href="14.2.subst.html"><code>nsubst-if</code></a>, <a href="14.2.subst.html"><code>nsubst-if-not</code></a>は、 元の<em>tree</em>を修正し返却します。 しかし関数の結果は、<em>tree</em>と<a href="5.3.eq.html"><code>eq</code></a>で等しくないかもしれません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> tree1 &#39;(<span class="dv">1</span> (<span class="dv">1</span> <span class="dv">2</span>) (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>))) <span class="op">=&gt;</span>  (<span class="dv">1</span> (<span class="dv">1</span> <span class="dv">2</span>) (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subst</span> <span class="st">&quot;two&quot;</span> <span class="dv">2</span> tree1) <span class="op">=&gt;</span>  (<span class="dv">1</span> (<span class="dv">1</span> <span class="st">&quot;two&quot;</span>) (<span class="dv">1</span> <span class="st">&quot;two&quot;</span> <span class="dv">3</span>) (<span class="dv">1</span> <span class="st">&quot;two&quot;</span> <span class="dv">3</span> <span class="dv">4</span>))</span>

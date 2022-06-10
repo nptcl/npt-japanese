@@ -291,8 +291,8 @@
 <em>object</em> - オブジェクト<br />
 <em>new-object</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
-<p><em>x</em>がコンスなら、<a href="14.2.car.html"><code>car</code></a>は<em>cons</em>の<code>car</code>を返します。 <em>x</em>が<code>nil</code>なら、 <a href="14.2.car.html"><code>car</code></a>は<code>nil</code>を返します。</p>
-<p><em>x</em>がコンスなら、<a href="14.2.car.html"><code>cdr</code></a>は<em>cons</em>の<code>cdr</code>を返します。 <em>x</em>が<code>nil</code>なら、 <a href="14.2.car.html"><code>cdr</code></a>は<code>nil</code>を返します。</p>
+<p><em>x</em>がコンスなら、<a href="14.2.car.html"><code>car</code></a>は<em>cons</em>の<code>car</code>を返します。 <em>x</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>なら、 <a href="14.2.car.html"><code>car</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返します。</p>
+<p><em>x</em>がコンスなら、<a href="14.2.car.html"><code>cdr</code></a>は<em>cons</em>の<code>cdr</code>を返します。 <em>x</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>なら、 <a href="14.2.car.html"><code>cdr</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返します。</p>
 <p>最大4つの<code>car</code>と<code>cdr</code>の組み合わせを行う関数が用意されています。 これらの名前は、<code>C</code>に続き、2つか3つか4つの<code>A</code>か<code>D</code>が現れ、 最後の<code>R</code>で構成されます。 各関数の名前にある<code>A</code>と<code>D</code>の並びは、 その関数によって実行される一連の<code>car</code>, <code>cdr</code>のオペレーションの 識別を意味しています。 <code>A</code>と<code>D</code>の順序は、対応するオペレーションの実行順序とは逆に現れます。 次の図は、その関係を正確に定義したものです。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>これは、        ここと等価です</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>-----------------------------------------</span>
@@ -326,7 +326,7 @@
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cddddr</span> x)      (<span class="kw">cdr</span> (<span class="kw">cdr</span> (<span class="kw">cdr</span> (<span class="kw">cdr</span> x))))</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Figure <span class="dv">14</span><span class="fl">-6.</span> CARとCDRの対応</span></code></pre></div>
-<p><code>setf</code>は、これらの関数とともに使用することで <em>x</em>の既存の要素を変更することもできますが、 <code>setf</code>は新しい要素を作成しません。 よって、例えば<code>setf</code>と<a href="14.2.car.html"><code>car</code></a>はコンスの<code>car</code>を変更できますが、 しかし<code>setf</code>と<a href="14.2.car.html"><code>car</code></a>では、<code>nil</code>の<code>car</code>を変更できません。 同じように、 <code>setf</code>の<a href="14.2.car.html"><code>caar</code></a>は、 <code>car</code>がコンスであるコンスに対しては、 コンスの<code>car</code>の<code>car</code>を変更できますが、 しかし<code>setf</code>の<a href="14.2.car.html"><code>caar</code></a>では、 <code>nil</code>や、 <code>car</code>が<code>nil</code>のコンスは、 どちらも変更できません。</p>
+<p><code>setf</code>は、これらの関数とともに使用することで <em>x</em>の既存の要素を変更することもできますが、 <code>setf</code>は新しい要素を作成しません。 よって、例えば<code>setf</code>と<a href="14.2.car.html"><code>car</code></a>はコンスの<code>car</code>を変更できますが、 しかし<code>setf</code>と<a href="14.2.car.html"><code>car</code></a>では、<a href="5.3.nil-variable.html"><code>nil</code></a>の<code>car</code>を変更できません。 同じように、 <code>setf</code>の<a href="14.2.car.html"><code>caar</code></a>は、 <code>car</code>がコンスであるコンスに対しては、 コンスの<code>car</code>の<code>car</code>を変更できますが、 しかし<code>setf</code>の<a href="14.2.car.html"><code>caar</code></a>では、 <a href="5.3.nil-variable.html"><code>nil</code></a>や、 <code>car</code>が<a href="5.3.nil-variable.html"><code>nil</code></a>のコンスは、 どちらも変更できません。</p>
 <p>引数<em>x</em>は、ドットリストと循環リストが許されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">car</span> <span class="kw">nil</span>) <span class="op">=&gt;</span>  NIL  </span>

@@ -230,11 +230,11 @@
 <em>predicate</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>tail</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.member-function.html"><code>member</code></a>, <a href="14.2.member-function.html"><code>member-if</code></a>, <a href="14.2.member-function.html"><code>member-if-not</code></a>は それぞれ<em>list</em>から<em>item</em>を探すか、 あるいは<em>test</em>をみなすトップレベルの要素を探します。 <em>predicate</em>関数の引数は、<em>list</em>の要素です。</p>
-<p>もしある要素が<em>test</em>を満たすときは、 その要素で始まるリストの末尾を返します。 それ以外は<code>nil</code>を返却します。</p>
+<p>もしある要素が<em>test</em>を満たすときは、 その要素で始まるリストの末尾を返します。 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <p><em>list</em>はトップレベルのみで検索されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">member</span> <span class="dv">2</span> &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  (<span class="dv">2</span> <span class="dv">3</span>)                                 </span>
@@ -258,7 +258,7 @@
 <p>関数<a href="14.2.member-function.html"><code>member-if-not</code></a>は非推奨です。</p>
 <p>下記の例を考えます。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">member</span> &#39;a &#39;(g (a y) c a d e a f)) <span class="op">=&gt;</span>  (A D E A F)</span></code></pre></div>
-<p><a href="14.2.member-function.html"><code>member</code></a>によって返却された値は、<code>a</code>から始まるリストの位置と同一です。 したがって、<a href="14.2.member-function.html"><code>member</code></a>の結果を<a href="14.2.rplaca.html"><code>rplaca</code></a>することで、 <code>a</code>が発見された場所のリストの部分を変更することができます。 （<a href="14.2.member-function.html"><code>member</code></a>が<code>nil</code>を返却していないという チェックがされていると仮定しています。）</p>
+<p><a href="14.2.member-function.html"><code>member</code></a>によって返却された値は、<code>a</code>から始まるリストの位置と同一です。 したがって、<a href="14.2.member-function.html"><code>member</code></a>の結果を<a href="14.2.rplaca.html"><code>rplaca</code></a>することで、 <code>a</code>が発見された場所のリストの部分を変更することができます。 （<a href="14.2.member-function.html"><code>member</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>を返却していないという チェックがされていると仮定しています。）</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

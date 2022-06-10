@@ -104,4 +104,6 @@
 (replace lexical-closure "レキシカルクロージャー")
 (replace compound-form "compound-form")
 (replace implicit-tagbody "暗黙の`tagbody`")
+(replace bit-vector "ビット配列")
+(replace specialized "`specialized`")
 

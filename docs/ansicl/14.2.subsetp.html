@@ -227,12 +227,12 @@
 <em>list-2</em> - 通常のリスト<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.subsetp.html"><code>subsetp</code></a>は、<em>list-1</em>の全ての要素が、 <em>list-2</em>のどれかの要素にマッチしたら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
 <p>あるリストの要素が、他のリスト要素と同じかどうかは、 キーワード引数で指定された関数によって決定されます。 <code>:test</code>か<code>:test-not</code>の関数の最初の要素は通常は<em>list-1</em>の要素であり、 <code>:key</code>関数によって返却されたものです。 二番目の引数は通常は<em>list-2</em>の要素であり、 <code>:key</code>関数によって返却されたものです。</p>
-<p><code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素です。 返却値は、引数で与えられたリスト要素からなる、 判定に使われる要素の部分です。 もし<code>:key</code>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素自身がが使われ、 <code>:test</code>か<code>:test-not</code>関数に供給されます。</p>
+<p><code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素です。 返却値は、引数で与えられたリスト要素からなる、 判定に使われる要素の部分です。 もし<code>:key</code>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素自身がが使われ、 <code>:test</code>か<code>:test-not</code>関数に供給されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> cosmos &#39;(<span class="dv">1</span> <span class="st">&quot;a&quot;</span> (<span class="dv">1</span> <span class="dv">2</span>))) <span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="st">&quot;a&quot;</span> (<span class="dv">1</span> <span class="dv">2</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subsetp</span> &#39;(<span class="dv">1</span>) cosmos) <span class="op">=&gt;</span>  true</span>

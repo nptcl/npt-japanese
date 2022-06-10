@@ -224,10 +224,10 @@
 <p><code>char-name</code> <em>character</em> =&gt; <em>name</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>character</em> - 文字<br />
-<em>name</em> - 文字列か<code>nil</code></p>
+<em>name</em> - 文字列か<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p>文字の名前を文字列で返却します。 もし文字に名前がないときは<code>nil</code>です。</p>
-<p>全ての非図形文字文字は、 <code>nil</code>でない何らかの実装定義属性を持たない限り、 名前を持つことが要求されます。 他の文字が名前を持つかどうかは処理系依存です。</p>
+<p>文字の名前を文字列で返却します。 もし文字に名前がないときは<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
+<p>全ての非図形文字文字は、 <a href="5.3.nil-variable.html"><code>nil</code></a>でない何らかの実装定義属性を持たない限り、 名前を持つことが要求されます。 他の文字が名前を持つかどうかは処理系依存です。</p>
 <p>標準文字の<code>&lt;Newline&gt;</code>と<code>&lt;Space&gt;</code>は、 それぞれ<code>"Newline"</code>, <code>"Space"</code>という名前を持っています。 準標準文字の <code>&lt;Tab&gt;</code>, <code>&lt;Page&gt;</code>, <code>&lt;Rubout&gt;</code>, <code>&lt;Linefeed&gt;</code>, <code>&lt;Return&gt;</code>, <code>&lt;Backspace&gt;</code>は、 （もし処理系がサポートしているのであれば） それぞれ<code>"Tab"</code>, <code>"Page"</code>, <code>"Rubout"</code>, <code>"Linefeed"</code>, <code>"Return"</code>, <code>"Backspace"</code> という名前を持ちます。 （これらの場合は、<code>#\</code>による名前の検索や、 関数<a href="13.2.name-char.html"><code>name-char</code></a>の場合あっても、大文字小文字は区別されません。）</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char-name</span> <span class="ch">#\ </span>) <span class="op">=&gt;</span>  <span class="st">&quot;Space&quot;</span></span>

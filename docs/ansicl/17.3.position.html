@@ -231,12 +231,12 @@
 <em>from-end</em> - generalized-boolean、デフォルトは<em>false</em><br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
-<em>position</em> - <em>sequence</em>の境界インデックスか、<code>nil</code></p>
+<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>position</em> - <em>sequence</em>の境界インデックスか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.position.html"><code>position</code></a>、<a href="17.3.position.html"><code>position-if</code></a>、<a href="17.3.position.html"><code>position-if-not</code></a>は、 それぞれテストを満たす要素を検索します。</p>
-<p>返却値<em>position</em>は、 <em>sequence</em>内でテストを満たす もっとも左の要素（<em>from-end</em>が<em>false</em>のとき）か、 もっとも右の要素（<em>from-end</em>が<em>true</em>のとき）のインデックスです。 もし見つからなかったときは、<code>nil</code>が返却されます。 インデックスの返却値は、 <em>start</em>, <em>end</em>, <em>from-end</em>に関係なく、 <em>seqeunce</em>全体の左端から相対的なものです。</p>
+<p>返却値<em>position</em>は、 <em>sequence</em>内でテストを満たす もっとも左の要素（<em>from-end</em>が<em>false</em>のとき）か、 もっとも右の要素（<em>from-end</em>が<em>true</em>のとき）のインデックスです。 もし見つからなかったときは、<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。 インデックスの返却値は、 <em>start</em>, <em>end</em>, <em>from-end</em>に関係なく、 <em>seqeunce</em>全体の左端から相対的なものです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">position</span> <span class="ch">#\a</span> <span class="st">&quot;baobab&quot;</span> <span class="bu">:from-end</span> <span class="kw">t</span>) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">position-if</span> #&#39;oddp &#39;((<span class="dv">1</span>) (<span class="dv">2</span>) (<span class="dv">3</span>) (<span class="dv">4</span>)) <span class="bu">:start</span> <span class="dv">1</span> <span class="bu">:key</span> #&#39;car) <span class="op">=&gt;</span>  <span class="dv">2</span></span>

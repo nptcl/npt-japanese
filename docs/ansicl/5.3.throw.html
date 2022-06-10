@@ -221,13 +221,13 @@
 <h1 id="special-operator-throw">Special-Operator THROW</h1>
 <p>Special Operator <code>THROW</code></p>
 <h2 id="構文">構文</h2>
-<p><code>throw</code> <em>tag</em> <em>result-form</em> =&gt;|</p>
+<p><code>throw</code> <em>tag</em> <em>result-form</em> =&gt;<code>|</code></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>tag</em> - <code>catch</code>のタグ、評価されます。<br />
 <em>result-form</em> - フォーム、下記の説明どおり評価されます。</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.throw.html"><code>throw</code></a>は、<em>tag</em>と<code>eq</code>で等しいタグの<a href="5.3.catch.html"><code>catch</code></a>へ、 非局所的な制御の遷移を行います。</p>
-<p>最初に<em>tag</em>が評価され、<code>throw</code>タグと呼ばれるオブジェクトを生成します。 そのあと<em>result-form</em>が評価され、その値は保存されます。 もし<em>result-form</em>が多値を生成したときは、その全ての値が保存されます。 もっとも近くにある<em>tag</em>と<code>eq</code>で等しい <code>throw</code>タグを持つ有効な<a href="5.3.catch.html"><code>catch</code></a>に対して退出が行われます。 そのとき保存された値は、<a href="5.3.catch.html"><code>catch</code></a>の返却値か多値として返されます。</p>
+<p><a href="5.3.throw.html"><code>throw</code></a>は、<em>tag</em>と<a href="5.3.eq.html"><code>eq</code></a>で等しいタグの<a href="5.3.catch.html"><code>catch</code></a>へ、 非局所的な制御の遷移を行います。</p>
+<p>最初に<em>tag</em>が評価され、<code>throw</code>タグと呼ばれるオブジェクトを生成します。 そのあと<em>result-form</em>が評価され、その値は保存されます。 もし<em>result-form</em>が多値を生成したときは、その全ての値が保存されます。 もっとも近くにある<em>tag</em>と<a href="5.3.eq.html"><code>eq</code></a>で等しい <code>throw</code>タグを持つ有効な<a href="5.3.catch.html"><code>catch</code></a>に対して退出が行われます。 そのとき保存された値は、<a href="5.3.catch.html"><code>catch</code></a>の返却値か多値として返されます。</p>
 <p><a href="5.3.throw.html"><code>throw</code></a>によって開始される制御の遷移の実行についての説明は、 5.2. 終了地点への制御の遷移をご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;result</span>
@@ -257,7 +257,7 @@
 <h2 id="例外">例外</h2>
 <p>もし<code>throw</code>タグにマッチする有効な<code>catch</code>タグがないときは、 <code>unwind</code>のスタックが実行され、 型<code>control-error</code>のエラーが発生します。 もしエラーが発生した時は、 動的環境は<a href="5.3.throw.html"><code>throw</code></a>の地点で有効なものになります。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.block.html"><code>block</code></a>, <a href="5.3.catch.html"><code>catch</code></a>, <a href="5.3.return-from.html"><code>return-from</code></a>, <code>unwind-protect</code>, 3.1. 評価</p>
+<p><a href="5.3.block.html"><code>block</code></a>, <a href="5.3.catch.html"><code>catch</code></a>, <a href="5.3.return-from.html"><code>return-from</code></a>, <a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
 <p><a href="5.3.catch.html"><code>catch</code></a>と<a href="5.3.throw.html"><code>throw</code></a>は通常、 退出点が動的スコープのとき（例えば、 <a href="5.3.throw.html"><code>throw</code></a>がレキシカルな<a href="5.3.catch.html"><code>catch</code></a>に囲まれていないとき）に使われ、 それに対して<a href="5.3.block.html"><code>block</code></a>と<a href="5.3.return-from.html"><code>return-from</code></a>は、 レキシカルスコープで十分のときに使用されます。</p>
 <hr />

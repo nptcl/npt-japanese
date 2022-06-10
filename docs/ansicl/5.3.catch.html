@@ -232,10 +232,10 @@
 <ol type="1">
 <li><p><em>tag</em>が評価されます。 それは<a href="5.3.catch.html"><code>catch</code></a>の名前として保存されます。</p></li>
 <li><p>それから<em>form</em>が暗黙のprognとして評価されます。 もし<a href="5.3.throw.html"><code>throw</code></a>が発生しなかったら、最後の<em>form</em>の値が返却されます。</p></li>
-<li><p>もし<a href="5.3.throw.html"><code>throw</code></a>が<em>form</em>のどれかの実行中に発生したとき、 <a href="5.3.throw.html"><code>throw</code></a>の引数のタグと<code>eq</code>で一致する、 もっとも近くで確立した<em>tag</em>の<a href="5.3.catch.html"><code>catch</code></a>に制御が転送されます。 それ以上の<em>form</em>の評価は生じません。</p></li>
+<li><p>もし<a href="5.3.throw.html"><code>throw</code></a>が<em>form</em>のどれかの実行中に発生したとき、 <a href="5.3.throw.html"><code>throw</code></a>の引数のタグと<a href="5.3.eq.html"><code>eq</code></a>で一致する、 もっとも近くで確立した<em>tag</em>の<a href="5.3.catch.html"><code>catch</code></a>に制御が転送されます。 それ以上の<em>form</em>の評価は生じません。</p></li>
 <li><p><a href="5.3.catch.html"><code>catch</code></a>によって確立されたタグは、 結果が返される直前に解除されます。</p></li>
 </ol>
-<p>もし<em>form</em>のどれかの実行中に、 <a href="5.3.catch.html"><code>catch</code></a>タグと<code>eq</code>で一致するタグを持つ<a href="5.3.throw.html"><code>throw</code></a>が実行されたとき、 <a href="5.3.throw.html"><code>throw</code></a>で指定された値がそのタグを持つ動的にもっとも近くで確立された <a href="5.3.catch.html"><code>catch</code></a>フォームの結果として返されます。</p>
+<p>もし<em>form</em>のどれかの実行中に、 <a href="5.3.catch.html"><code>catch</code></a>タグと<a href="5.3.eq.html"><code>eq</code></a>で一致するタグを持つ<a href="5.3.throw.html"><code>throw</code></a>が実行されたとき、 <a href="5.3.throw.html"><code>throw</code></a>で指定された値がそのタグを持つ動的にもっとも近くで確立された <a href="5.3.catch.html"><code>catch</code></a>フォームの結果として返されます。</p>
 <p><a href="5.3.catch.html"><code>catch</code></a>と<a href="5.3.throw.html"><code>throw</code></a>の仕組みは、 <a href="5.3.throw.html"><code>throw</code></a>が<a href="5.3.catch.html"><code>catch</code></a>のレキシカルスコープの中にいなくても動作します。 <a href="5.3.throw.html"><code>throw</code></a>は、対応する<em>tag</em>を持つ<a href="5.3.catch.html"><code>catch</code></a>のボディ部の評価の 動的エクステント内で実行されなければなりません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">catch</span> &#39;dummy-tag <span class="dv">1</span> <span class="dv">2</span> (<span class="kw">throw</span> &#39;dummy-tag <span class="dv">3</span>) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
@@ -255,7 +255,7 @@
 <h2 id="参考">参考</h2>
 <p><a href="5.3.throw.html"><code>throw</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
-<p>慣例として<em>tag</em>にはシンボルが使われますが、どんなオブジェクトで許されます。 しかし比較には<code>eq</code>が用いられますので、数は使うべきではありません。</p>
+<p>慣例として<em>tag</em>にはシンボルが使われますが、どんなオブジェクトで許されます。 しかし比較には<a href="5.3.eq.html"><code>eq</code></a>が用いられますので、数は使うべきではありません。</p>
 <p><a href="5.3.catch.html"><code>catch</code></a>と<a href="5.3.block.html"><code>block</code></a>の違いは、 <a href="5.3.catch.html"><code>catch</code></a>のタグは動的スコープであるのに対して、 <a href="5.3.block.html"><code>block</code></a>の名前はレキシカルスコープです。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

@@ -224,9 +224,9 @@
 <p><code>code-char</code> <em>code</em> =&gt; <em>char-p</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>code</em> - 文字コード<br />
-<em>char-p</em> - 文字か<code>nil</code></p>
+<em>char-p</em> - 文字か<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p>コード属性が<em>code</em>の文字を返却します。 もしそのような文字が存在せず、作成もできない場合は<code>nil</code>が返却されます。</p>
+<p>コード属性が<em>code</em>の文字を返却します。 もしそのような文字が存在せず、作成もできない場合は<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">code-char</span> <span class="fl">65.</span>) <span class="op">=&gt;</span>  <span class="ch">#\A</span>  <span class="co">; ASCIIコードを使用している処理系の場合</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">code-char</span> (<span class="kw">char-code</span> <span class="ch">#\S</span>pace)) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace  <span class="co">; どんな処理系でも</span></span></code></pre></div>

@@ -226,7 +226,7 @@
 <p><em>lists</em> - 最後以外はリストでなければなりません （ドットリストは許容されますが、循環リストは許容されません）。 最後の<em>list</em>はどんなオブジェクトでも可能です。<br />
 <em>concatenated-list</em> - リスト</p>
 <h2 id="定義">定義</h2>
-<p><em>lists</em>を連結したリストを返却します。 もし<em>lists</em>がないときは、<code>(nconc)</code>は<code>nil</code>を返却します。 <a href="14.2.nconc.html"><code>nconc</code></a>は下記のような再帰的関係を用いて定義されます。</p>
+<p><em>lists</em>を連結したリストを返却します。 もし<em>lists</em>がないときは、<code>(nconc)</code>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 <a href="14.2.nconc.html"><code>nconc</code></a>は下記のような再帰的関係を用いて定義されます。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nconc</span>) <span class="op">=&gt;</span>  ()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nconc</span> <span class="kw">nil</span> . lists) ==  (<span class="kw">nconc</span> . lists)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nconc</span> <span class="kw">list</span>) <span class="op">=&gt;</span>  <span class="kw">list</span></span>
@@ -238,7 +238,7 @@
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> y &#39;(d e f)) <span class="op">=&gt;</span>  (D E F)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nconc</span> x y) <span class="op">=&gt;</span>  (A B C D E F)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=&gt;</span>  (A B C D E F)</span></code></pre></div>
-<p>この例では、 <em>x</em>の最後のコンスが<a href="14.2.rplaca.html"><code>rplacd</code></a>により値<em>y</em>に変更されたので、 最終的な<em>x</em>の値が変更されています。 もし<code>(nconc x y)</code>が再び評価されると、 循環リストが生成されるので、 それは<code>(A B C D E F D E F D E F ...)</code>のように印字され、 永遠に繰り返されます。 もし<code>*print-circle*</code>を<code>nil</code>以外の値にすることで、 <code>(A B C . #1=(D E F . #1#))</code>と印刷されるでしょう。</p>
+<p>この例では、 <em>x</em>の最後のコンスが<a href="14.2.rplaca.html"><code>rplacd</code></a>により値<em>y</em>に変更されたので、 最終的な<em>x</em>の値が変更されています。 もし<code>(nconc x y)</code>が再び評価されると、 循環リストが生成されるので、 それは<code>(A B C D E F D E F D E F ...)</code>のように印字され、 永遠に繰り返されます。 もし<code>*print-circle*</code>を<a href="5.3.nil-variable.html"><code>nil</code></a>以外の値にすることで、 <code>(A B C . #1=(D E F . #1#))</code>と印刷されるでしょう。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> foo (<span class="kw">list</span> &#39;a &#39;b &#39;c &#39;d &#39;e)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      bar (<span class="kw">list</span> &#39;f &#39;g &#39;h &#39;i &#39;j)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      baz (<span class="kw">list</span> &#39;k &#39;l &#39;m)) <span class="op">=&gt;</span>  (K L M)</span>

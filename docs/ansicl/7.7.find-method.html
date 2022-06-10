@@ -230,11 +230,11 @@
 <em>method-qualifiers - リスト<br />
 </em>specializers* - リスト<br />
 <em>errorp</em> - generalized-boolean、デフォルトは<em>true</em><br />
-<em>method</em> - メソッドオブジェクトか、<code>nil</code></p>
+<em>method</em> - メソッドオブジェクトか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p>ジェネリック関数<a href="7.7.find-method.html"><code>find-method</code></a>は、 引数にジェネリック関数を受け取り、 修飾子と特定パラメーターがそれぞれ <a href="7.7.find-method.html"><code>find-method</code></a>の引数<em>qualifiers</em>と<em>specializers</em>で 一致するメソッドオブジェクトを返却します。 <em>method-qualifiers</em>は、 <em>method</em>のメソッド修飾子が含まれます。 メソッド修飾子の順序は重要です。 この文脈の合致についての定義は、<a href="7.6.3.html">7.6.3. 特定パラメーターと修飾子の合致</a>をご確認ください。</p>
-<p><em>specializers</em>引数は、メソッドの特定パラメーターを含みます。 この引数は、ジェネリック関数の要求された引数の数と、 一致する長さでなければならず、 そうでない場合はエラーが発生します。 つまり、引数の<em>generic-function</em>のデフォルトメソッドを得るためには、 クラス<code>t</code>を要素とするリストを与える必要があります。</p>
-<p>そのようなメソッドが存在せず、<em>errorp</em>が<em>true</em>のときは、 <a href="7.7.find-method.html"><code>find-method</code></a>はエラーを発生します。 そのようなメソッドが存在せず、<em>errorp</em>が<em>false</em>のときは、 <a href="7.7.find-method.html"><code>find-method</code></a>は<code>nil</code>を返却します。</p>
+<p><em>specializers</em>引数は、メソッドの特定パラメーターを含みます。 この引数は、ジェネリック関数の要求された引数の数と、 一致する長さでなければならず、 そうでない場合はエラーが発生します。 つまり、引数の<em>generic-function</em>のデフォルトメソッドを得るためには、 クラス<a href="5.3.t-variable.html"><code>t</code></a>を要素とするリストを与える必要があります。</p>
+<p>そのようなメソッドが存在せず、<em>errorp</em>が<em>true</em>のときは、 <a href="7.7.find-method.html"><code>find-method</code></a>はエラーを発生します。 そのようなメソッドが存在せず、<em>errorp</em>が<em>false</em>のときは、 <a href="7.7.find-method.html"><code>find-method</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> some-operation </span>((a <span class="kw">integer</span>) (b <span class="kw">float</span>)) (<span class="kw">list</span> a b))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;STANDARD-METHOD SOME-OPERATION (INTEGER FLOAT) <span class="dv">26723357</span>&gt;</span>

@@ -230,7 +230,7 @@
 <em>tail</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.get-properties.html"><code>get-properties</code></a>は、複数のプロパティリストのエントリーを 一度にすべて探すために使われます。</p>
-<p>それは、<em>plist</em>から<em>indicator-list</em>内のオブジェクトのひとつと 同一な<code>indicator</code>をもつ、最初のエントリーを探します。 もし、そのようなエントリーが見つかったら、 返却値の<em>indicator</em>と<em>value</em>は、 それぞれプロパティの値に関連づいたプロパティの<code>indicator</code>であり、 返却値<em>tail</em>は、エントリーが見つかった 最初の<em>plist</em>の末尾（その<code>car</code>は<em>indicator</em>）です。 もし、そのようなエントリーが見つからなかったら、 <em>indicator</em>, <em>value</em>, <em>tail</em>はすべて<code>nil</code>です。</p>
+<p>それは、<em>plist</em>から<em>indicator-list</em>内のオブジェクトのひとつと 同一な<code>indicator</code>をもつ、最初のエントリーを探します。 もし、そのようなエントリーが見つかったら、 返却値の<em>indicator</em>と<em>value</em>は、 それぞれプロパティの値に関連づいたプロパティの<code>indicator</code>であり、 返却値<em>tail</em>は、エントリーが見つかった 最初の<em>plist</em>の末尾（その<code>car</code>は<em>indicator</em>）です。 もし、そのようなエントリーが見つからなかったら、 <em>indicator</em>, <em>value</em>, <em>tail</em>はすべて<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x &#39;()) <span class="op">=&gt;</span>  NIL</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> *indicator-list* &#39;(prop1 prop2)) <span class="op">=&gt;</span>  (PROP1 PROP2)</span>

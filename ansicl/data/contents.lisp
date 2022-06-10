@@ -341,8 +341,16 @@
 (dictionary 9.2.cell-error-name)
 (dictionary 9.2.method-combination-error)
 (dictionary 9.2.invalid-method-error)
+(dictionary 9.2.handler-bind)
+(dictionary 9.2.handler-case)
+(dictionary 9.2.ignore-errors)
 (dictionary 9.2.define-condition)
 (dictionary 9.2.make-condition)
+(dictionary 9.2.restart-bind)
+(dictionary 9.2.restart-case)
+(dictionary 9.2.restart-name)
+(dictionary 9.2.with-condition-restarts)
+(dictionary 9.2.with-simple-restart)
 
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")
@@ -375,9 +383,11 @@
 
 ;; Chapger 12
 (index 12.2 "数の辞書" "Numbers Dictionary")
+(dictionary 12.=)
 (dictionary 12.2.max)
 (dictionary 12.2.+)
 (dictionary 12.2.incf)
+(dictionary 12.2.decf)  ;; delete
 
 ;; Chapter 13
 (index 13.1 "文字の説明" "Character Concepts")
@@ -530,6 +540,8 @@
 (text 22.1.3.5 "リストとコンスの印字" "Printing Lists and Conses")
 (text 22.1.3.13 "他のオブジェクトの印字" "Printing Other Objects")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
+(dictionary 22.4.write)
+(dictionary 22.4.print)  ;; delete
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.prin1-to-string) ;; delete
 (dictionary 22.4.princ-to-string) ;; delete

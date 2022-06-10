@@ -228,15 +228,15 @@
 <em>list-2</em> - 通常のリスト<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>result-list</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.set-difference.html"><code>set-difference</code></a>は、<em>list-2</em>には現れない、 <em>list-1</em>の要素のリストを返却します。</p>
 <p><a href="14.2.set-difference.html"><code>nset-difference</code></a>は、<a href="14.2.set-difference.html"><code>set-difference</code></a>の破壊的バージョンです。 <em>list-1</em>はおそらく破壊されます。</p>
 <p><em>list-1</em>のひとつの要素と、<em>list-2</em>のひとつの要素からなる、 全ての順序付けされたペアに対して、 <code>:test</code>か<code>:test-not</code>を使ってテストが満たされるかどうかを決定します。 <code>:test</code>か<code>:test-not</code>の関数の最初の要素は<em>list-1</em>の要素であり、 <code>:key</code>関数によって返却されたものです（もし<code>:key</code>が指定されたなら）。 二番目の引数は<em>list-2</em>の要素であり、 <code>:key</code>関数によって返却されたものです（もし<code>:key</code>が指定されたなら）。</p>
-<p>もし<code>:key</code>が与えられたなら、 その引数は、<em>list-1</em>か<em>list-2</em>の要素です。 <code>:key</code>関数は通常与えられた要素の部分を返却します。 もし<code>:key</code>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素が使われます。</p>
+<p>もし<code>:key</code>が与えられたなら、 その引数は、<em>list-1</em>か<em>list-2</em>の要素です。 <code>:key</code>関数は通常与えられた要素の部分を返却します。 もし<code>:key</code>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素が使われます。</p>
 <p><em>list-1</em>の要素は、 <em>list-2</em>のどの要素にもマッチしないときのみ、 結果に現れます。</p>
-<p>どんな方法で引数の順番を変えたとしても、 結果の要素の順番に反映できる保証はありません。 結果のリストは、適切であれば、 <em>list-1</em>か<em>list-2</em>のどちらかとセルを共有するか、 あるいは<code>eq</code>になる可能性があります。</p>
+<p>どんな方法で引数の順番を変えたとしても、 結果の要素の順番に反映できる保証はありません。 結果のリストは、適切であれば、 <em>list-1</em>か<em>list-2</em>のどちらかとセルを共有するか、 あるいは<a href="5.3.eq.html"><code>eq</code></a>になる可能性があります。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> lst1 (<span class="kw">list</span> <span class="st">&quot;A&quot;</span> <span class="st">&quot;b&quot;</span> <span class="st">&quot;C&quot;</span> <span class="st">&quot;d&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      lst2 (<span class="kw">list</span> <span class="st">&quot;a&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;C&quot;</span> <span class="st">&quot;d&quot;</span>)) <span class="op">=&gt;</span>  (<span class="st">&quot;a&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;C&quot;</span> <span class="st">&quot;d&quot;</span>)</span>

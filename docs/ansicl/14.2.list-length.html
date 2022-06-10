@@ -224,9 +224,9 @@
 <p><code>list-length</code> <em>list</em> =&gt; <em>length</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>list</em> - 通常のリストか循環リスト<br />
-<em>length</em> - 非負の整数か、<code>nil</code></p>
+<em>length</em> - 非負の整数か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p><em>list</em>が通常のリストなら、<em>list</em>の長さを返却します。 <em>list</em>が循環リストなら、<code>nil</code>を返却します。</p>
+<p><em>list</em>が通常のリストなら、<em>list</em>の長さを返却します。 <em>list</em>が循環リストなら、<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> &#39;(a b c d)) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list-length</span> &#39;(a (b c) d)) <span class="op">=&gt;</span>  <span class="dv">3</span></span>

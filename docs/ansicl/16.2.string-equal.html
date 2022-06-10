@@ -236,9 +236,9 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>string1</em> - string-designator<br />
 <em>string2</em> - string-designator<br />
-<em>start1</em>, <em>end1</em> - 文字列の境界インデックス指定子。 <em>start</em>と<em>end</em>の標準値はそれぞれ<code>0</code>と<code>nil</code>。<br />
-<em>start2</em>, <em>end2</em> - 文字列の境界インデックス指定子。 <em>start</em>と<em>end</em>の標準値はそれぞれ<code>0</code>と<code>nil</code>。<br />
-<em>generalized-boolean</em> - generalized-boolean <em>mismatch-index</em> - <em>string1</em>の境界内インデックスか、<code>nil</code></p>
+<em>start1</em>, <em>end1</em> - 文字列の境界インデックス指定子。 <em>start</em>と<em>end</em>の標準値はそれぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>start2</em>, <em>end2</em> - 文字列の境界インデックス指定子。 <em>start</em>と<em>end</em>の標準値はそれぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>generalized-boolean</em> - generalized-boolean <em>mismatch-index</em> - <em>string1</em>の境界内インデックスか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p>これらの関数は<em>string1</em>と<em>string2</em>の辞書式比較を行います。 <a href="16.2.string-equal.html"><code>string=</code></a>と<a href="16.2.string-equal.html"><code>string-equal</code></a>は等式関数と呼ばれます。 その他の関数は不等式関数です。 これらの関数が行う比較演算は、 <em>start1</em>と<em>end1</em>で囲まれた<em>string1</em>の部分文字列と、 <em>start2</em>と<em>end2</em>で囲まれた<em>string2</em>の部分文字列に限定されます。</p>
 <p>文字列<code>a</code>と文字列<code>b</code>が等しいとは、 どちらも同じ個数の文字を保有しており、 各文字が<a href="13.2.char-equal.html"><code>char=</code></a>か<a href="13.2.char-equal.html"><code>char-equal</code></a>の適用において等しい場合です。</p>
@@ -289,7 +289,7 @@
 <h2 id="参考">参考</h2>
 <p><a href="13.2.char-equal.html"><code>char=</code></a></p>
 <h2 id="備考">備考</h2>
-<p><code>equal</code>は、2つの文字列を比較するとき<a href="16.2.string-equal.html"><code>string=</code></a>を呼び出します。</p>
+<p><a href="5.3.equal.html"><code>equal</code></a>は、2つの文字列を比較するとき<a href="16.2.string-equal.html"><code>string=</code></a>を呼び出します。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

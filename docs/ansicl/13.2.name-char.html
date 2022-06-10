@@ -224,9 +224,9 @@
 <p><code>name-char</code> <em>name</em> =&gt; <em>char-p</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>name</em> - string-designator<br />
-<em>name</em> - 文字か<code>nil</code></p>
+<em>name</em> - 文字か<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p>名前が<em>name</em>である文字オブジェクトを返却します。 名前の検索には<a href="16.2.string-equal.html"><code>string-equal</code></a>が使われるので、 大文字小文字の区別はありません。 もしそのような文字が存在しない場合は<code>nil</code>が返却されます。</p>
+<p>名前が<em>name</em>である文字オブジェクトを返却します。 名前の検索には<a href="16.2.string-equal.html"><code>string-equal</code></a>が使われるので、 大文字小文字の区別はありません。 もしそのような文字が存在しない場合は<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> &#39;space) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">name-char</span> <span class="st">&quot;space&quot;</span>) <span class="op">=&gt;</span>  <span class="ch">#\S</span>pace</span>

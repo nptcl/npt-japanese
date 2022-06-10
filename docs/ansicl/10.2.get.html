@@ -226,7 +226,7 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>symbol</em> - シンボル<br />
 <em>indicator</em> - オブジェクト<br />
-<em>default</em> - オブジェクト。デフォルトは<code>nil</code>。<br />
+<em>default</em> - オブジェクト。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
 <em>value</em> - もしプロパティが存在していたらその値のオブジェクトを、 それ以外の場合は<em>default</em>。<br />
 <em>new-value</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
@@ -271,7 +271,7 @@
 <p><a href="14.2.getf.html"><code>getf</code></a>, <a href="10.2.symbol-plist.html"><code>symbol-plist</code></a>, <a href="10.2.remprop.html"><code>remprop</code></a></p>
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get</span> x y) ==  (<span class="kw">getf</span> (<span class="kw">symbol-plist</span> x) y)</span></code></pre></div>
-<p><a href="10.2.get.html"><code>get</code></a>は<em>indicator</em>のテストに <code>eql</code>ではなく<code>eq</code>を用いるため、 移植しやすいコードとして、 <em>indicator</em>に数と文字を使うことは推奨されません。 そのため、そのような<em>indicator</em>を使ったときの効果は 実装依存です。</p>
+<p><a href="10.2.get.html"><code>get</code></a>は<em>indicator</em>のテストに <a href="5.3.eql-function.html"><code>eql</code></a>ではなく<a href="5.3.eq.html"><code>eq</code></a>を用いるため、 移植しやすいコードとして、 <em>indicator</em>に数と文字を使うことは推奨されません。 そのため、そのような<em>indicator</em>を使ったときの効果は 実装依存です。</p>
 <p><a href="10.2.get.html"><code>get</code></a>を使用して、存在しないプロパティと 値がデフォルトであるプロパティを区別する方法はありません。 しかし、<a href="14.2.get-properties.html"><code>get-properties</code></a>を利用できます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

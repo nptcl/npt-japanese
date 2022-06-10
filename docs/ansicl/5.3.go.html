@@ -225,7 +225,7 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>tag</em> - <code>go</code>のタグ</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.go.html"><code>go</code></a>は、<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームによって囲まれたボディ部にある <em>tag</em>と<code>eql</code>で一致するタグによってラベル付けされている場所に 制御を移します。 もしボディ部にそのような<em>tag</em>が存在しないときは、 レキシカルに含まれる<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームがもしあるなら、 同じように検査されます。 いくつかのタグが<em>tag</em>と<code>eql</code>で一致するときは、 <a href="5.3.go.html"><code>go</code></a>が含まれる場所から、 一致する<em>tag</em>を含んだもっとも内側の<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームの いずれかに制御が移されます。 <a href="5.3.go.html"><code>go</code></a>の場所からレキシカルに見ることができる<em>tag</em>が 存在しないときの結果は未定義です。</p>
+<p><a href="5.3.go.html"><code>go</code></a>は、<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームによって囲まれたボディ部にある <em>tag</em>と<a href="5.3.eql-function.html"><code>eql</code></a>で一致するタグによってラベル付けされている場所に 制御を移します。 もしボディ部にそのような<em>tag</em>が存在しないときは、 レキシカルに含まれる<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームがもしあるなら、 同じように検査されます。 いくつかのタグが<em>tag</em>と<a href="5.3.eql-function.html"><code>eql</code></a>で一致するときは、 <a href="5.3.go.html"><code>go</code></a>が含まれる場所から、 一致する<em>tag</em>を含んだもっとも内側の<a href="5.3.tagbody.html"><code>tagbody</code></a>フォームの いずれかに制御が移されます。 <a href="5.3.go.html"><code>go</code></a>の場所からレキシカルに見ることができる<em>tag</em>が 存在しないときの結果は未定義です。</p>
 <p><a href="5.3.go.html"><code>go</code></a>によって開始される制御の遷移の実行についての説明は、 5.2. 終了地点への制御の遷移をご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">tagbody</span></span>

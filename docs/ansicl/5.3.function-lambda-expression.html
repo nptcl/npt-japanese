@@ -225,14 +225,14 @@
 =&gt; <em>lambda-expression</em>, <em>closure-p</em>, <em>name</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>function</em> - 関数<br />
-<em>lambda-expression</em> ラムダ式か、<code>nil</code><br />
+<em>lambda-expression</em> ラムダ式か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>closure-p</em> - generalized-boolean<br />
 <em>name</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p>下記に示すような、<em>function</em>の情報を返却します。</p>
-<p>第一返却値である<em>lambda-expression</em>は、 <em>function</em>が定義されたラムダ式か、 もし情報が利用できないときは<code>nil</code>です。 ラムダ式は何らかの方法で前処理されているかもしれませんが、 しかし<code>compile</code>や<a href="5.3.function-special.html"><code>function</code></a>の引数としては 適切のままであるべきです。 実装は、どんな<em>function</em>の<em>lambda-expression</em>でも <code>nil</code>を返却するのは正当です。</p>
-<p>第二返却値の<em>closure-p</em>は、 <em>function</em>の定義が<code>null</code>のレキシカルな環境で囲まれていたか、 あるいは<em>function</em>の定義が何らかの非<code>null</code>のレキシカルな環境で囲まれた 非<code>nil</code>の環境下であれば、 <code>nil</code>が返却されます （注釈：非<code>null</code>のレキシカルな環境とは、 グローバル環境から何の追加情報もないレキシカルな環境のことです）。 実装は、どんな<em>function</em>の<em>closure-p</em>でも、 <em>true</em>を返却するのは正当です。</p>
-<p>第三返却値<em>name</em>は、関数の名前です。 名前はデバッグ時にのみ使われ、 それは、例えば<a href="5.3.defun.html"><code>defun</code></a>や<a href="5.3.function-special.html"><code>function</code></a>の 名前として使われるのに有効である必要はありません。 慣例として、<code>nil</code>は <em>function</em>が名前を持たないことを意味します。 実装は、どんな<em>function</em>の<em>name</em>でも、 <code>nil</code>を返却するのは正当です。</p>
+<p>第一返却値である<em>lambda-expression</em>は、 <em>function</em>が定義されたラムダ式か、 もし情報が利用できないときは<a href="5.3.nil-variable.html"><code>nil</code></a>です。 ラムダ式は何らかの方法で前処理されているかもしれませんが、 しかし<code>compile</code>や<a href="5.3.function-special.html"><code>function</code></a>の引数としては 適切のままであるべきです。 実装は、どんな<em>function</em>の<em>lambda-expression</em>でも <a href="5.3.nil-variable.html"><code>nil</code></a>を返却するのは正当です。</p>
+<p>第二返却値の<em>closure-p</em>は、 <em>function</em>の定義が<code>null</code>のレキシカルな環境で囲まれていたか、 あるいは<em>function</em>の定義が何らかの非<code>null</code>のレキシカルな環境で囲まれた 非<a href="5.3.nil-variable.html"><code>nil</code></a>の環境下であれば、 <a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます （注釈：非<code>null</code>のレキシカルな環境とは、 グローバル環境から何の追加情報もないレキシカルな環境のことです）。 実装は、どんな<em>function</em>の<em>closure-p</em>でも、 <em>true</em>を返却するのは正当です。</p>
+<p>第三返却値<em>name</em>は、関数の名前です。 名前はデバッグ時にのみ使われ、 それは、例えば<a href="5.3.defun.html"><code>defun</code></a>や<a href="5.3.function-special.html"><code>function</code></a>の 名前として使われるのに有効である必要はありません。 慣例として、<a href="5.3.nil-variable.html"><code>nil</code></a>は <em>function</em>が名前を持たないことを意味します。 実装は、どんな<em>function</em>の<em>name</em>でも、 <a href="5.3.nil-variable.html"><code>nil</code></a>を返却するのは正当です。</p>
 <h2 id="例文">例文</h2>
 <p>下記の例はいくつか可能性のある返却値を示していますが、 しかし全てを網羅することを意図してはいません。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function-lambda-expression</span> #&#39;(<span class="kw">lambda</span> (x) x))</span>

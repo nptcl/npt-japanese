@@ -163,7 +163,7 @@
 <p><code>shared-initialize</code> (<em>instance</em> <code>standard-object</code>) <em>slot-names</em> &amp;rest <em>initargs</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>instance</em> - オブジェクト<br />
-<em>slot-names</em> - リストか<code>t</code><br />
+<em>slot-names</em> - リストか<a href="5.3.t-variable.html"><code>t</code></a><br />
 <em>initargs</em> - keyword/valueのペアのリスト（初期化引数の名前と値）</p>
 <h2 id="定義">定義</h2>
 <p>ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>はインスタンスのスロットに、 引数<em>initargs</em>と<code>:initform</code>を用いて値を埋めるときに使われます。 この関数の呼び出しは、インスタンスが作成されるとき、 インスタンスが再初期化されるとき、 クラスの再定義によりインスタンスが更新されるとき、 違うクラスにインスタンスを従わせるときに行われます。 ジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>は、 システムにより共有されるメソッドである、 <a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>, <a href="7.7.reinitialize-instance.html"><code>reinitialize-instance</code></a>, <a href="7.7.update-instance-for-redefined-class.html"><code>update-instance-for-redefined-class</code></a>, そして<a href="7.7.update-instance-for-different-class.html"><code>update-instance-for-different-class</code></a>によって呼び出されます。</p>
@@ -174,7 +174,7 @@
 <li><p><em>slot-names</em>で指定されたどんなスロットでも、 現時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームによって初期化されます。 <code>:initform</code>フォームを持ったどんなスロットでも、 フォーム自体は<a href="7.7.defclass.html"><code>defclass</code></a>フォームが宣言されたレキシカル環境によって評価され、 結果がスロットへ格納されます。 例えば、<code>before</code>メソッドがスロットに値を格納した場合は、 <code>:initform</code>フォームはスロットへの値の供給には使用されないでしょう。</p></li>
 <li><p>規則<a href="7.1.4.html">7.1.4. 初期化引数の規則</a>に従います。</p></li>
 </ul>
-<p>もし初期化引数が指定されなかった場合、 <em>slot-names</em>引数によって指定されたスロットは <code>:initform</code>フォームに従って初期化されます。 <em>slot-names</em>はスロットの名前のリストにすることができます。 この場合は、スロットの名前の集合を指定することになります。 あるいは、<em>slot-names</em>にシンボルである<code>t</code>を指定することもできます。 この場合は、スロットのすべての集合を指定したことになります。</p>
+<p>もし初期化引数が指定されなかった場合、 <em>slot-names</em>引数によって指定されたスロットは <code>:initform</code>フォームに従って初期化されます。 <em>slot-names</em>はスロットの名前のリストにすることができます。 この場合は、スロットの名前の集合を指定することになります。 あるいは、<em>slot-names</em>にシンボルである<a href="5.3.t-variable.html"><code>t</code></a>を指定することもできます。 この場合は、スロットのすべての集合を指定したことになります。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>

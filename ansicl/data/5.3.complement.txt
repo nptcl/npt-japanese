@@ -1,0 +1,98 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPLEMENT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.complement
+@name: complement
+@type: function
+
+Function `COMPLEMENT`
+
+
+## {syntax}
+
+`complement` *function* => *complement-function*
+
+
+## {arguments-and-values}
+
+*function* - 関数  
+*complement-function* - 関数
+
+
+## {description}
+
+*function*としていくつかの引数をとる関数を返却します。
+その関数は、*function*として同じ副作用の動作をしますが
+ただひとつだけの値を返却します。
+返却値は{generalized-boolean}であり、
+*function*の第一返却値として返却されただろうものの
+真偽値の反対を返却します。
+つまり、*function*が*true*を返却したとき*
+complement-function*の第一返却値は*false*であり、
+*function*が*false*を返却したとき*
+complement-function*の第一返却値は*true*です。
+
+
+## {examples}
+
+```lisp
+(funcall (complement #'zerop) 1) =>  true
+(funcall (complement #'characterp) #\A) =>  false
+(funcall (complement #'member) 'a '(a b c)) =>  false
+(funcall (complement #'member) 'd '(a b c)) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{not!function:link}
+
+
+## {notes}
+
+```lisp
+(complement x) == #'(lambda (&rest arguments) (not (apply x arguments)))
+```
+
+Common Lispでは、
+「`xxx-if-not`」のような名前を持つ関数は、
+「`xxx-if`」のような名前を持つ関数と、
+次のような関係があります。
+
+```lisp
+(xxx-if-not f . arguments) == (xxx-if (complement f) . arguments)
+```
+
+例えば、次のようになります。
+
+```lisp
+(find-if-not #'zerop '(0 0 3)) == 
+(find-if (complement #'zerop) '(0 0 3)) =>  3
+```
+
+「`xxx-if-not`」のような関数と`:test-not`引数は非推奨です。
+「`xxx-if`」のような関数と`:test`引数を、
+{complement:link}と一緒に使うことが好まれます。
+
+@end
+

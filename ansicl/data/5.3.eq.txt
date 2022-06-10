@@ -1,0 +1,128 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function EQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.eq
+@name: eq
+@type: function
+
+Function `EQ`
+
+
+## {syntax}
+
+`eq` *x* *y* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*x* - オブジェクト  
+*y* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし引数が同じであり同一のオブジェクトであれば*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(eq 'a 'b) =>  false
+(eq 'a 'a) =>  true
+(eq 3 3)
+=>  true
+OR=>  false
+(eq 3 3.0) =>  false
+(eq 3.0 3.0)
+=>  true
+OR=>  false
+(eq #c(3 -4) #c(3 -4))
+=>  true
+OR=>  false
+(eq #c(3 -4.0) #c(3 -4)) =>  false
+(eq (cons 'a 'b) (cons 'a 'c)) =>  false
+(eq (cons 'a 'b) (cons 'a 'b)) =>  false
+(eq '(a . b) '(a . b))
+=>  true
+OR=>  false
+(progn (setq x (cons 'a 'b)) (eq x x)) =>  true
+(progn (setq x '(a . b)) (eq x x)) =>  true
+(eq #\A #\A)
+=>  true
+OR=>  false
+(let ((x "Foo")) (eq x x)) =>  true
+(eq "Foo" "Foo")
+=>  true
+OR=>  false
+(eq "Foo" (copy-seq "Foo")) =>  false
+(eq "FOO" "foo") =>  false
+(eq "string-seq" (copy-seq "string-seq")) =>  false
+(let ((x 5)) (eq x x))
+=>  true
+OR=>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{eql!function:link},
+{equal:link},
+{equalp:link},
+{=:link},
+{3.2:ab}
+
+
+## {notes}
+
+印字したときに同じに見えるオブジェクトは、
+必ずしも互いに{eq:link}で等しいとは限りません。
+印字したシンボルが同じように表示されるものは、
+{intern:link}関数を使用したものであれば、
+通常は互いに{eq:link}で等しくなります。
+しかし、同じ値を持つ数値は{eq:link}で等しい必要はありませんし、
+2つの類似したリストは通常同一ではありません。
+
+実装は、いつでも文字と数をコピーすることが許されています。
+その効果のため、Common Lispでは{eq:link}の引数の両方が「同じもの」のときでさえ、
+その「もの」が文字と数のときは、返却値が*true*であることを保証しません。
+
+Common Lispのほとんどの操作は、
+オブジェクトの比較に{eq:link}ではなく{eql!function:link}を使っているか、
+そうでなければデフォルトで{eql!function:link}を使い、
+特別に要求されたときだけ{eq:link}を使用します。
+しかし、下記に示す操作は{eql!function:link}ではなく
+{eq:link}を使うように定義されており、
+それらを使用するようなコードで上書きすることはできません。
+
+```
+catch           getf     throw  
+get             remf            
+get-properties  remprop  
+```
+
+Figure 5-11. つねにEQLよりEQを好む操作
+
+@end
+

@@ -228,15 +228,15 @@
 <em>list-2</em> - 通常のリスト<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>result-list</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.intersection.html"><code>intersection</code></a>と<a href="14.2.intersection.html"><code>nintersection</code></a>は、 <em>list-1</em>と<em>list-2</em>の両方に含まれるすべての要素を含むリストを返却します。</p>
 <p><a href="14.2.intersection.html"><code>nintersection</code></a>は、<a href="14.2.intersection.html"><code>intersection</code></a>の破壊的バージョンです。 それは同じ操作を行いますが、<em>list-1</em>はそのセルを使って結果を構築するときに、 破壊するかもしれません。 <em>list-2</em>は破壊されません。</p>
-<p><code>intersection</code>の操作は、次のように定義されます。 <em>list-1</em>のひとつの要素と、<em>list-2</em>のひとつの要素からなる、 全ての順序付けされたペアに対して、 <code>:test</code>か<code>:test-not</code>を使ってテストが満たされるかどうかを決定します。 <code>:test</code>か<code>:test-not</code>の関数の最初の要素は<em>list-1</em>の要素であり、 二番目の引数は<em>list-2</em>の要素です。 もし<code>:test</code>と<code>:test-not</code>が指定されなかったときは、 <code>eql</code>を使用します。 もし同じ関数呼び出し内において、 <code>:test</code>と<code>:test-not</code>の両方が指定された場合はエラーです。</p>
-<p>もし<code>:key</code>に<code>nil</code>ではない値で与えられたときは、 リストの要素をテストする部分を引き出すときに使われます。 <code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素であり、 <code>:key</code>関数は通常与えられた要素の部分を返却します。 もし<code>:key</code>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素が使われます。</p>
+<p><code>intersection</code>の操作は、次のように定義されます。 <em>list-1</em>のひとつの要素と、<em>list-2</em>のひとつの要素からなる、 全ての順序付けされたペアに対して、 <code>:test</code>か<code>:test-not</code>を使ってテストが満たされるかどうかを決定します。 <code>:test</code>か<code>:test-not</code>の関数の最初の要素は<em>list-1</em>の要素であり、 二番目の引数は<em>list-2</em>の要素です。 もし<code>:test</code>と<code>:test-not</code>が指定されなかったときは、 <a href="5.3.eql-function.html"><code>eql</code></a>を使用します。 もし同じ関数呼び出し内において、 <code>:test</code>と<code>:test-not</code>の両方が指定された場合はエラーです。</p>
+<p>もし<code>:key</code>に<a href="5.3.nil-variable.html"><code>nil</code></a>ではない値で与えられたときは、 リストの要素をテストする部分を引き出すときに使われます。 <code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素であり、 <code>:key</code>関数は通常与えられた要素の部分を返却します。 もし<code>:key</code>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素が使われます。</p>
 <p>テストが満たされたすべてのペアは、 そのペアの2つの要素のうち正確にひとつが結果に格納されます。 どちらかのリストのある要素と、 他方のリストとのテストが満たされなかったときは、 その要素は結果のリストに現れません。 もしリストのいずれかに重複する要素がある場合、 結果には重複が生じるかもしれません。</p>
-<p>どんな方法で引数の順番を変えたとしても、 結果の要素の順番に反映できる保証はありません。 結果のリストは、適切であれば、 <em>list-1</em>か<em>list-2</em>のどちらかとセルを共有するか、 あるいは<code>eq</code>になる可能性があります。</p>
+<p>どんな方法で引数の順番を変えたとしても、 結果の要素の順番に反映できる保証はありません。 結果のリストは、適切であれば、 <em>list-1</em>か<em>list-2</em>のどちらかとセルを共有するか、 あるいは<a href="5.3.eq.html"><code>eq</code></a>になる可能性があります。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> list1 (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> a b c <span class="st">&quot;A&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;C&quot;</span> <span class="st">&quot;d&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      list2 (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">5</span> b c d <span class="st">&quot;a&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;c&quot;</span> <span class="st">&quot;D&quot;</span>)) </span>

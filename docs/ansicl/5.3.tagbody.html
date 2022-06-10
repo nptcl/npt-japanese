@@ -221,13 +221,13 @@
 <h1 id="special-operator-tagbody">Special-Operator TAGBODY</h1>
 <p>Special Operator <code>TAGBODY</code></p>
 <h2 id="構文">構文</h2>
-<p><code>tagbody</code> <code>{</code><em>tag</em> <code>|</code> <em>statement</em><code>}</code>* =&gt; <code>nil</code></p>
+<p><code>tagbody</code> <code>{</code><em>tag</em> <code>|</code> <em>statement</em><code>}</code>* =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>tag</em> - <code>go</code>のタグ、評価されません。<br />
 <em>statement</em> - compound-form、下記の説明通り評価されます。</p>
 <h2 id="定義">定義</h2>
 <p><em>tag</em>によってラベル付けされた場所へ制御を移す機能を提供するための レキシカル環境下において、0個か複数の<em>statement</em>を実行します。</p>
-<p><a href="5.3.tagbody.html"><code>tagbody</code></a>の<em>statement</em>は、左から右の順番で評価され、 それらの値は捨てられます。 もしどんなときでも、残りの<em>statement</em>がない場合は、 <a href="5.3.tagbody.html"><code>tagbody</code></a>は<code>nil</code>を返却します。 しかし、もし<code>(go tag)</code>が評価されたときは、 制御が<em>tag</em>でラベル付けされたボディ部の部分にジャンプします （タグは<code>eql</code>によって比較されます）。</p>
+<p><a href="5.3.tagbody.html"><code>tagbody</code></a>の<em>statement</em>は、左から右の順番で評価され、 それらの値は捨てられます。 もしどんなときでも、残りの<em>statement</em>がない場合は、 <a href="5.3.tagbody.html"><code>tagbody</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 しかし、もし<code>(go tag)</code>が評価されたときは、 制御が<em>tag</em>でラベル付けされたボディ部の部分にジャンプします （タグは<a href="5.3.eql-function.html"><code>eql</code></a>によって比較されます）。</p>
 <p><a href="5.3.tagbody.html"><code>tagbody</code></a>で確立した<em>tag</em>は、レキシカルスコープと動的エクステントを持ちます。 いったん<a href="5.3.tagbody.html"><code>tagbody</code></a>を終えると、 そのボディの<em>tag</em>に対する<a href="5.3.go.html"><code>go</code></a>はもはや有効ではありません。 <a href="5.3.go.html"><code>go</code></a>のジャンプは、 その<a href="5.3.go.html"><code>go</code></a>が含まれるもっとも内側の<a href="5.3.tagbody.html"><code>tagbody</code></a>以外への ものも許されます。 <a href="5.3.tagbody.html"><code>tagbody</code></a>の<em>tag</em>の確立は、 ただ同じ名前の他のタグをシャドウします。</p>
 <p>ボディのどの要素が<em>tagでどの要素が</em>statement<em>であるかの判断は、 その要素のマクロ展開の前に行われます。 もし</em>statement<em>がマクロフォームで、 そのマクロ展開がアトムである場合、 そのアトムは</em>tag<em>ではなく</em>statement*として扱われます。</p>
 <p>Examples:</p>

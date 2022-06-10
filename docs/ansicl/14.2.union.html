@@ -228,15 +228,15 @@
 <em>list-2</em> - 通常のリスト<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<code>nil</code><br />
+<em>key</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子、 または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>result-list</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.union.html"><code>union</code></a>と<a href="14.2.union.html"><code>nunion</code></a>は、 <em>list-1</em>か<em>list-2</em>のどちらかに生じたすべての要素を含むリストを返却します。</p>
 <p><em>list-1</em>のひとつの要素と、<em>list-2</em>のひとつの要素からなる、 全ての順序付けされたペアに対して、 <code>:test</code>か<code>:test-not</code>を使ってテストが満たされるかどうかを決定します。 <code>:test</code>か<code>:test-not</code>の関数の最初の要素は<em>list-1</em>の要素であり、 <code>:key</code>関数によって返却されたものです（もし<code>:key</code>が指定されたなら）。 二番目の引数は<em>list-2</em>の要素であり、 <code>:key</code>関数によって返却されたものです（もし<code>:key</code>が指定されたなら）。</p>
-<p><code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素です。 返却値は、引数で与えられたリスト要素からなる、 判定に使われる要素の部分です。 もし<code>:key</code>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素自身がが使われ、 <code>:test</code>か<code>:test-not</code>関数に供給されます。</p>
+<p><code>:key</code>関数の引数は、<em>list-1</em>か<em>list-2</em>の要素です。 返却値は、引数で与えられたリスト要素からなる、 判定に使われる要素の部分です。 もし<code>:key</code>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>list-1</em>と<em>list-2</em>の要素自身がが使われ、 <code>:test</code>か<code>:test-not</code>関数に供給されます。</p>
 <p>全てのマッチしたペアに対して、 そのペアの2つの要素のうちのひとつが結果に含まれます。 <em>list-1</em>か<em>list-2</em>のどちらかの要素が、 もう一方の要素にマッチしないものがあれば、それが結果に含まれます。</p>
 <p><em>list-1</em>と<em>list-2</em>に重複があるとき、 重複している要素のうちひとつだけが結果に含まれます。 <em>list-1</em>か<em>list-2</em>のどちらかの中に重複するものがあるときは、 その冗長な要素は結果に現れるかもしれませんし、 現れないかもしれません。</p>
-<p>結果の要素の順番は、<em>list-1</em>と<em>list-2</em>の順番を反映する必要はありません。 適切に評価されたのであれば、<em>list-1</em>と<em>list-2</em>は、 結果のリストに対して<code>eq</code>で一致するかもしれません。</p>
+<p>結果の要素の順番は、<em>list-1</em>と<em>list-2</em>の順番を反映する必要はありません。 適切に評価されたのであれば、<em>list-1</em>と<em>list-2</em>は、 結果のリストに対して<a href="5.3.eq.html"><code>eq</code></a>で一致するかもしれません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">union</span> &#39;(a b c) &#39;(f a d))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (A B C F D)</span>

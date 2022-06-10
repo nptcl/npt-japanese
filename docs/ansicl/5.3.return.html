@@ -223,9 +223,9 @@
 <h2 id="構文">構文</h2>
 <p><code>return</code> [<em>result</em>] =&gt;<code>|</code></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>result</em> - フォーム、評価されます。デフォルトは<code>nil</code>です。</p>
+<p><em>result</em> - フォーム、評価されます。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.return-from.html"><code>return-from</code></a>によって、 <code>nil</code>という名前の<code>block</code>から返却されます。</p>
+<p><a href="5.3.return-from.html"><code>return-from</code></a>によって、 <a href="5.3.nil-variable.html"><code>nil</code></a>という名前の<code>block</code>から返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">block</span> <span class="kw">nil</span> (<span class="kw">return</span>) <span class="dv">1</span>) <span class="op">=&gt;</span>  NIL</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">block</span> <span class="kw">nil</span> (<span class="kw">return</span> <span class="dv">1</span>) <span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
@@ -242,7 +242,7 @@
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">return</span>) == (<span class="kw">return-from</span> <span class="kw">nil</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">return</span> form) == (<span class="kw">return-from</span> <span class="kw">nil</span> form)</span></code></pre></div>
-<p>暗黙の<code>block</code>として確立される <code>do</code>のようなマクロは、 よく名前に<code>nil</code>が使われるため、 <a href="5.3.return.html"><code>return</code></a>はそのようなフォームから 退出するときに使われます。</p>
+<p>暗黙の<code>block</code>として確立される <code>do</code>のようなマクロは、 よく名前に<a href="5.3.nil-variable.html"><code>nil</code></a>が使われるため、 <a href="5.3.return.html"><code>return</code></a>はそのようなフォームから 退出するときに使われます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -225,15 +225,15 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>function</em> - 引数なしか2つの引数を取る関数の指定子<br />
 <em>sequences</em> - 正常なシーケンス<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>from-end</em> - generalized-boolean、デフォルトは<em>false</em><br />
-<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<code>nil</code>。<br />
+<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
 <em>initial-value</em> - オブジェクト<br />
 <em>result</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.reduce.html"><code>reduce</code></a>は、<em>function</em>で二項演算を行うために使われ、 <em>sequence</em>の<em>stard</em>, <em>end</em>の境界内にある要素を結び付けます。</p>
 <p><em>function</em>は、引数に<em>sequence</em>の2つの要素か、 それらの要素が結合された結果を受け付ける必要があります。 <em>function</em>はまた、引数なしも受け付けなければなりません。</p>
-<p>もし<em>key</em>が与えられたとき、<code>reduce</code>された値の展開に使われます。 <em>key</em>関数は、もし<em>initial-value</em>が与えられなかったとき、 <em>sequence</em>の各要素に対して、<code>reduce</code>の実行順に、正確に一度だけ適用されます。 <em>key</em>関数は通常<em>sequence</em>の要素の、判定に使われる要素の部分を返却します。 もし<em>key</em>が与えられないか、あるいは<code>nil</code>が指定されたとき、 <em>sequence</em>の要素そのものが使われます。</p>
+<p>もし<em>key</em>が与えられたとき、<code>reduce</code>された値の展開に使われます。 <em>key</em>関数は、もし<em>initial-value</em>が与えられなかったとき、 <em>sequence</em>の各要素に対して、<code>reduce</code>の実行順に、正確に一度だけ適用されます。 <em>key</em>関数は通常<em>sequence</em>の要素の、判定に使われる要素の部分を返却します。 もし<em>key</em>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>sequence</em>の要素そのものが使われます。</p>
 <p><code>reduce</code>は左結合で行われますが、 <em>from-end</em>が<em>true</em>のときは右結合です。</p>
 <p>もし<em>initial-value</em>が与えられたとき、 それは論理的にサブシーケンスの前に配置され （ただし<em>from-end</em>が<em>true</em>の場合は後に配置されます） それを含めて<code>reduce</code>操作が行われます。</p>
 <p>通常の場合、<a href="17.3.reduce.html"><code>reduce</code></a>の返却値は、 <em>sequence</em>の要素の連続した組み合わせを <em>function</em>で適用した結果を組み合わせたものです。 もしサブシーケンスが正確にひとつの要素であり、 <em>initial-value</em>が与えられていなかったときは、 その要素が返却され、<em>function</em>は呼び出されません。 もしサブシーケンスが空であり、<em>initial-value</em>が与えられらときは、 <em>initial-value</em>が返却され、<em>function</em>は呼び出されません。 もしサブシーケンスが空であり、<em>initial-value</em>が与えられなかったときは、 <em>function</em>は引数なしで呼び出され、 <a href="17.3.reduce.html"><code>reduce</code></a>の返却値は、 どんな値であれ<em>function</em>の結果が返却されます。 <em>function</em>が2つの引数ではない方法で呼び出されるのは、 この場合のみです。</p>

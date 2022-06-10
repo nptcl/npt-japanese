@@ -260,7 +260,7 @@
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  formn)</span></code></pre></div>
 <p>最初に<em>init-form-1</em>を評価し、 そのあと<em>var1</em>にその値を束縛し、 そのあと<em>init-form-2</em>を評価し、 そのあと<em>var2</em>にその値を束縛し、 くり返します。 <code>formk</code>の式はその順番で評価されます。 最後以外のすべての値は無視されます。 （つまり<a href="5.3.let.html"><code>let*</code></a>のボディ部は、暗黙のprognです）</p>
-<p><a href="5.3.let.html"><code>let</code></a>と<a href="5.3.let.html"><code>let*</code></a>の両方は、 もし<em>var</em>に関連する<em>init-form</em>が無かったときは、 <em>var</em>は<code>nil</code>で初期化されます。</p>
+<p><a href="5.3.let.html"><code>let</code></a>と<a href="5.3.let.html"><code>let*</code></a>の両方は、 もし<em>var</em>に関連する<em>init-form</em>が無かったときは、 <em>var</em>は<a href="5.3.nil-variable.html"><code>nil</code></a>で初期化されます。</p>
 <p>特殊フォームの<a href="5.3.let.html"><code>let</code></a>は、 どんな初期化フォームも 名前の束縛のスコープに含まれないという性質があります。 <a href="5.3.let.html"><code>let*</code></a>の変数のスコープは、 それ以降の変数の束縛には残りの初期値フォームが含まれます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> a &#39;top) <span class="op">=&gt;</span>  TOP</span>
@@ -277,7 +277,7 @@
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">integer</span> x))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">setq</span> x (<span class="kw">gcd</span> y z))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  ...)</span></code></pre></div>
-<p><code>x</code>はそれが使用される前に実際に値は代入されますし、 その代入される値は宣言された整数の型ですが、 <code>x</code>が初期化されるときに<code>nil</code>が使われるので、 宣言の型に違反しています。</p>
+<p><code>x</code>はそれが使用される前に実際に値は代入されますし、 その代入される値は宣言された整数の型ですが、 <code>x</code>が初期化されるときに<a href="5.3.nil-variable.html"><code>nil</code></a>が使われるので、 宣言の型に違反しています。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>

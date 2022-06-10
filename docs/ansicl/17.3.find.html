@@ -231,13 +231,13 @@
 <em>from-end</em> - generalized-boolean、デフォルトは<em>false</em><br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
-<em>element</em> - <em>sequence</em>の要素か、<code>nil</code></p>
+<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>element</em> - <em>sequence</em>の要素か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.find.html"><code>find</code></a>、<a href="17.3.find.html"><code>find-if</code></a>、<a href="17.3.find.html"><code>find-if-not</code></a>は、 <em>start</em>と<em>end</em>で囲まれた<em>sequence</em>内で、 <em>predicate</em>かあるいは<em>test</em>, <em>test-not</em>を適宜満たすものを検索します。</p>
 <p>もし<em>from-end</em>が<em>true</em>ならば、 <em>test</em>を満たすもっとも右側の要素が返却されます。</p>
-<p>もし<em>sequence</em>に<em>test</em>を満たす要素がある場合、 <em>from-end</em>によって、<em>sequence</em>のもっとも左にあるものか、 もっとも右にあるものが返却されます。 それ以外のときは、<code>nil</code>が返却されます。</p>
+<p>もし<em>sequence</em>に<em>test</em>を満たす要素がある場合、 <em>from-end</em>によって、<em>sequence</em>のもっとも左にあるものか、 もっとも右にあるものが返却されます。 それ以外のときは、<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find</span> <span class="ch">#\d</span> <span class="st">&quot;here are some letters that can be looked at&quot;</span> <span class="bu">:test</span> #&#39;char&gt;)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="ch">#\S</span>pace </span>

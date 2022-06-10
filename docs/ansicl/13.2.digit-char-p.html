@@ -227,7 +227,7 @@
 <em>radix</em> - 基数。デフォルトは10。<br />
 <em>weight</em> - <em>radix</em>未満の非負の整数か、<em>false</em></p>
 <h2 id="定義">定義</h2>
-<p><em>char</em>が、<em>radix</em>値の数字かどうかを調べます （例えば<em>weight</em>が<em>radix</em>より小さいかどうか）。 もし<em>radix</em>内の数字であった場合、<em>weight</em>は整数が返却されます。 それ以外は<code>nil</code>が返却されます。</p>
+<p><em>char</em>が、<em>radix</em>値の数字かどうかを調べます （例えば<em>weight</em>が<em>radix</em>より小さいかどうか）。 もし<em>radix</em>内の数字であった場合、<em>weight</em>は整数が返却されます。 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">digit-char-p</span> <span class="ch">#\5</span>)    <span class="op">=&gt;</span>  <span class="dv">5</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">digit-char-p</span> <span class="ch">#\5</span> <span class="dv">2</span>)  <span class="op">=&gt;</span>  false</span>

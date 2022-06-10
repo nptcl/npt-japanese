@@ -230,11 +230,11 @@
 <em>predicate</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
-<em>entry</em> - <em>alist</em>の要素であるコンスか、<code>nil</code></p>
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>entry</em> - <em>alist</em>の要素であるコンスか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p><a href="14.2.assoc.html"><code>assoc</code></a>, <a href="14.2.assoc.html"><code>assoc-if</code></a>, <a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、 <em>alist</em>に<code>car</code>が<em>test</em>を満たすようなコンスがあれば返却し、 そのようなコンスが見つからないときは<code>nil</code>を返却します。</p>
-<p><a href="14.2.assoc.html"><code>assoc</code></a>, <a href="14.2.assoc.html"><code>assoc-if</code></a>, <a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、 もし<em>alist</em>のペアが現れる場所に<code>nil</code>あったとは無視します。</p>
+<p><a href="14.2.assoc.html"><code>assoc</code></a>, <a href="14.2.assoc.html"><code>assoc-if</code></a>, <a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、 <em>alist</em>に<code>car</code>が<em>test</em>を満たすようなコンスがあれば返却し、 そのようなコンスが見つからないときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p><a href="14.2.assoc.html"><code>assoc</code></a>, <a href="14.2.assoc.html"><code>assoc-if</code></a>, <a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、 もし<em>alist</em>のペアが現れる場所に<a href="5.3.nil-variable.html"><code>nil</code></a>あったとは無視します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> <span class="kw">values</span> &#39;((x . <span class="dv">100</span>) (y . <span class="dv">200</span>) (z . <span class="dv">50</span>))) <span class="op">=&gt;</span>  ((X . <span class="dv">100</span>) (Y . <span class="dv">200</span>) (Z . <span class="dv">50</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">assoc</span> &#39;y <span class="kw">values</span>) <span class="op">=&gt;</span>  (Y . <span class="dv">200</span>)</span>
@@ -266,11 +266,11 @@
 <h2 id="備考">備考</h2>
 <p><code>:test-not</code>は、非推奨です。</p>
 <p>関数<a href="14.2.assoc.html"><code>assoc-if-not</code></a>は、非推奨です。</p>
-<p><em>alist</em>を更新するために、 <a href="14.2.assoc.html"><code>assoc</code></a>の結果が<code>nil</code>でなければ、 <a href="14.2.rplaca.html"><code>rplacd</code></a>を使うことができます。</p>
+<p><em>alist</em>を更新するために、 <a href="14.2.assoc.html"><code>assoc</code></a>の結果が<a href="5.3.nil-variable.html"><code>nil</code></a>でなければ、 <a href="14.2.rplaca.html"><code>rplacd</code></a>を使うことができます。</p>
 <p>次の2つの式</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">assoc</span> item <span class="kw">list</span> <span class="bu">:test</span> fn)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find</span> item <span class="kw">list</span> <span class="bu">:test</span> fn <span class="bu">:key</span> #&#39;car)</span></code></pre></div>
-<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、もし<em>alist</em>のペアの場所で<code>nil</code>現れて、 かつ<em>item</em>が<code>nil</code>のとき、 <a href="17.3.find.html"><code>find</code></a>の場合は、<code>nil</code>の<code>car</code>を計算し、 <em>item</em>と同じということで<code>nil</code>を返却しますが、 一方<a href="14.2.assoc.html"><code>assoc</code></a>は、 <em>alist</em>の<code>nil</code>を無視するため、 継続して<code>car</code>が<code>nil</code>である実際のコンスを探します。</p>
+<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、もし<em>alist</em>のペアの場所で<a href="5.3.nil-variable.html"><code>nil</code></a>現れて、 かつ<em>item</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <a href="17.3.find.html"><code>find</code></a>の場合は、<a href="5.3.nil-variable.html"><code>nil</code></a>の<code>car</code>を計算し、 <em>item</em>と同じということで<a href="5.3.nil-variable.html"><code>nil</code></a>を返却しますが、 一方<a href="14.2.assoc.html"><code>assoc</code></a>は、 <em>alist</em>の<a href="5.3.nil-variable.html"><code>nil</code></a>を無視するため、 継続して<code>car</code>が<a href="5.3.nil-variable.html"><code>nil</code></a>である実際のコンスを探します。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

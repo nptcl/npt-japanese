@@ -240,7 +240,7 @@
 <h2 id="参考">参考</h2>
 <p>なし。</p>
 <h2 id="備考">備考</h2>
-<p><a href="14.2.endp.html"><code>endp</code></a>の目的は、 通常のリストの終わりを確認することです。 <a href="14.2.endp.html"><code>endp</code></a>はコンス内に降りて行かないので、 ドットリストを与えてもうまく動作します。 しかしもし短いリストに対して反復的に<code>cdr</code>を呼び続けられ、 それらのリストが<a href="14.2.endp.html"><code>endp</code></a>によってテストされ続けたとき、 このような状況において、 最終的に<code>nil</code>ではないアトム（実際にリストではない）が <a href="14.2.endp.html"><code>endp</code></a>の引数になったときの結果は未定義です。 これは<a href="14.2.endp.html"><code>endp</code></a>が使われる普通の方法であり、 <a href="14.2.endp.html"><code>endp</code></a>を使用する際に引数の型が通常のリストであるか、 あるいはアトムであるかを強制せず、 単純な関数として<a href="14.2.endp.html"><code>endp</code></a>を扱うということは、 保守的なプログラミングスタイルであり <a href="14.2.endp.html"><code>endp</code></a>の目的とも一致しています。</p>
+<p><a href="14.2.endp.html"><code>endp</code></a>の目的は、 通常のリストの終わりを確認することです。 <a href="14.2.endp.html"><code>endp</code></a>はコンス内に降りて行かないので、 ドットリストを与えてもうまく動作します。 しかしもし短いリストに対して反復的に<code>cdr</code>を呼び続けられ、 それらのリストが<a href="14.2.endp.html"><code>endp</code></a>によってテストされ続けたとき、 このような状況において、 最終的に<a href="5.3.nil-variable.html"><code>nil</code></a>ではないアトム（実際にリストではない）が <a href="14.2.endp.html"><code>endp</code></a>の引数になったときの結果は未定義です。 これは<a href="14.2.endp.html"><code>endp</code></a>が使われる普通の方法であり、 <a href="14.2.endp.html"><code>endp</code></a>を使用する際に引数の型が通常のリストであるか、 あるいはアトムであるかを強制せず、 単純な関数として<a href="14.2.endp.html"><code>endp</code></a>を扱うということは、 保守的なプログラミングスタイルであり <a href="14.2.endp.html"><code>endp</code></a>の目的とも一致しています。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

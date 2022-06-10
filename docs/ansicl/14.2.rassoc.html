@@ -230,11 +230,11 @@
 <em>predicate</em> - 1つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
-<em>entry</em> - <em>alist</em>の要素であるコンスか、<code>nil</code></p>
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>entry</em> - <em>alist</em>の要素であるコンスか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p><a href="14.2.rassoc.html"><code>rassoc</code></a>, <a href="14.2.rassoc.html"><code>rassoc-if</code></a>, <a href="14.2.rassoc.html"><code>rassoc-if-not</code></a>は、 <em>alist</em>に<code>cdr</code>が<em>test</em>を満たすようなコンスがあれば返却し、 そのようなコンスが見つからないときは<code>nil</code>を返却します。</p>
-<p>もし<em>alist</em>のペアが現れる場所に<code>nil</code>あったとは無視します。</p>
+<p><a href="14.2.rassoc.html"><code>rassoc</code></a>, <a href="14.2.rassoc.html"><code>rassoc-if</code></a>, <a href="14.2.rassoc.html"><code>rassoc-if-not</code></a>は、 <em>alist</em>に<code>cdr</code>が<em>test</em>を満たすようなコンスがあれば返却し、 そのようなコンスが見つからないときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p>もし<em>alist</em>のペアが現れる場所に<a href="5.3.nil-variable.html"><code>nil</code></a>あったとは無視します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> alist &#39;((<span class="dv">1</span> . <span class="st">&quot;one&quot;</span>) (<span class="dv">2</span> . <span class="st">&quot;two&quot;</span>) (<span class="dv">3</span> . <span class="dv">3</span>))) </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  ((<span class="dv">1</span> . <span class="st">&quot;one&quot;</span>) (<span class="dv">2</span> . <span class="st">&quot;two&quot;</span>) (<span class="dv">3</span> . <span class="dv">3</span>))</span>
@@ -256,11 +256,11 @@
 <h2 id="備考">備考</h2>
 <p><code>:test-not</code>は、非推奨です。</p>
 <p>関数<a href="14.2.rassoc.html"><code>rassoc-if-not</code></a>は、非推奨です。</p>
-<p><em>alist</em>を更新するために、 <a href="14.2.rassoc.html"><code>rassoc</code></a>の結果が<code>nil</code>でなければ、 <a href="14.2.rplaca.html"><code>rplaca</code></a>を使うことができます。</p>
+<p><em>alist</em>を更新するために、 <a href="14.2.rassoc.html"><code>rassoc</code></a>の結果が<a href="5.3.nil-variable.html"><code>nil</code></a>でなければ、 <a href="14.2.rplaca.html"><code>rplaca</code></a>を使うことができます。</p>
 <p>次の2つの式</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">rassoc</span> item <span class="kw">list</span> <span class="bu">:test</span> fn)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find</span> item <span class="kw">list</span> <span class="bu">:test</span> fn <span class="bu">:key</span> #&#39;cdr)</span></code></pre></div>
-<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、<em>item</em>が<code>nil</code>であり、 かつ<em>alist</em>のペアの場所に<code>nil</code>が現れるときです。 関数<a href="14.2.assoc.html"><code>assoc</code></a>をご確認下さい。</p>
+<p>これらは、ひとつの例外を除いては同じ意味です。 例外は、<em>item</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>であり、 かつ<em>alist</em>のペアの場所に<a href="5.3.nil-variable.html"><code>nil</code></a>が現れるときです。 関数<a href="14.2.assoc.html"><code>assoc</code></a>をご確認下さい。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

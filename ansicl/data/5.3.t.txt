@@ -1,0 +1,63 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable T
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.t!variable
+@name: t!variable
+@type: constant-variable
+
+Constant Variable `T`
+
+
+## {constant-value}
+
+{t!variable:link}
+
+
+## {description}
+
+ブール値の真を表現しており、
+また標準的な{generalized-boolean}の真を表しています。
+{nil!variable:link}ではないどんなオブジェクトも
+*true*であると考えられますが、
+{t!variable:link}は一般的に、
+そのようなオブジェクトを他のものより
+優先する特別な理由がない場合に使用されます。
+
+また、シンボル{t!variable:link}は、
+他の目的でも使われることがあります。
+例えば、クラスの名前として。
+指示子として（例えばストリーム指示子）。
+あるいは構文的な理由による特別な記号として
+（例えば{case:link}と{typecase:link}の`otherwise`句のラベル）。
+
+
+## {examples}
+
+```lisp
+t =>  T 
+(eq t 't) =>  true
+(find-class 't) =>  #<CLASS T 610703333>
+(case 'a (a 1) (t 2)) =>  1
+(case 'b (a 1) (t 2)) =>  2
+(prin1 'hello t)
+>>  HELLO
+=>  HELLO
+```
+
+
+## {see-also}
+
+{nil!variable:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

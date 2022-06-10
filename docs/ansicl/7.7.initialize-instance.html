@@ -166,7 +166,7 @@
 <em>initargs</em> - デフォルトの初期化引数リスト</p>
 <h2 id="定義">定義</h2>
 <p>新しく作成された<em>instance</em>を初期化するために、 <a href="7.7.make-instance.html"><code>make-instance</code></a>によって呼び出されます。 ジェネリック関数は、新しい<em>instance</em>と デフォルトの初期化引数リストで呼び出されます。</p>
-<p><a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>のシステムが提供するプライマリメソッドでは、 <em>instance</em>のスロットを、対応する<em>initargs</em>の値と、 スロットの<code>:initform</code>フォームで初期化します。 これはジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を 次の引数で呼び出すことによって行われます。 <em>instance</em>、<code>t</code> （これは初期化引数が与えられないすべてのスロットが、 それらの<code>:initform</code>フォームに従って初期化されるべきことを示します）、 および<em>initargs</em>です。</p>
+<p><a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>のシステムが提供するプライマリメソッドでは、 <em>instance</em>のスロットを、対応する<em>initargs</em>の値と、 スロットの<code>:initform</code>フォームで初期化します。 これはジェネリック関数<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>を 次の引数で呼び出すことによって行われます。 <em>instance</em>、<a href="5.3.t-variable.html"><code>t</code></a> （これは初期化引数が与えられないすべてのスロットが、 それらの<code>:initform</code>フォームに従って初期化されるべきことを示します）、 および<em>initargs</em>です。</p>
 <p>プログラマーは、<a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>にメソッドを定義して、 インスタンスが初期化されたときに実行されるアクションを指定することができます。 もし<code>after</code>メソッドのみが定義された場合、 それらはシステムが提供するプライマリメソッドの初期化後に実行されるため、 <a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>のデフォルトの動作を妨げることはありません。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>

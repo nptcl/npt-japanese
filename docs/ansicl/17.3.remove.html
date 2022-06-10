@@ -234,16 +234,16 @@
 <em>from-end</em> - generalized-boolean、デフォルトは<em>false</em><br />
 <em>test</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
 <em>test-not</em> - 2つの引数を取りgeneralized-booleanを返却する関数の指定子<br />
-<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<code>nil</code>。<br />
-<em>count</em> - 整数か<code>nil</code>。デフォルトは<code>nil</code>。<br />
-<em>key</em> - 1つの引数を取る関数の指定子、または<code>nil</code><br />
+<em>start</em>, <em>end</em> - <em>sequence</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>count</em> - 整数か<a href="5.3.nil-variable.html"><code>nil</code></a>。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>key</em> - 1つの引数を取る関数の指定子、または<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>result-sequence</em> - シーケンス</p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.remove.html"><code>remove</code></a>、<a href="17.3.remove.html"><code>remove-if</code></a>、<a href="17.3.remove.html"><code>remove-if-not</code></a>は、 <em>sequence</em>からテストを満たした要素を削除したものを返却します。</p>
 <p><a href="17.3.remove.html"><code>delete</code></a>、<a href="17.3.remove.html"><code>delete-if</code></a>、<a href="17.3.remove.html"><code>delete-if-not</code></a>は、 それぞれ<a href="17.3.remove.html"><code>remove</code></a>、<a href="17.3.remove.html"><code>remove-if</code></a>、<a href="17.3.remove.html"><code>remove-if-not</code></a>に 似ていますが、これらは<em>sequence</em>を修正します。</p>
 <p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
 <p><em>from-end</em>が<em>true</em>のときは、 ただ<em>count</em>が指定されたときが重要になります。 このような場合、右端から（左端ではなく）テストを満たす <em>count</em>の要素だけが削除されます。</p>
-<p><em>count</em>が与えられたとき、削除する要素数を制限できます。 もしテストを満たす要素が<em>count</em>を越えていたときは、 それらの要素は左端か右端（<em>from-end</em>の値による）から、 ただ<em>count</em>で指定された数だけ削除されます。 もし<em>count</em>負の値が指定されたときは、 <code>0</code>が指定されたかのようにふるまいます。 もし<em>count</em>が<code>nil</code>のときは、 <em>item</em>にマッチした全てに影響します。</p>
+<p><em>count</em>が与えられたとき、削除する要素数を制限できます。 もしテストを満たす要素が<em>count</em>を越えていたときは、 それらの要素は左端か右端（<em>from-end</em>の値による）から、 ただ<em>count</em>で指定された数だけ削除されます。 もし<em>count</em>負の値が指定されたときは、 <code>0</code>が指定されたかのようにふるまいます。 もし<em>count</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 <em>item</em>にマッチした全てに影響します。</p>
 <p>これらの全ての関数は、削除されなかった要素は、 結果内に<em>sequence</em>と同じ順序で現れます。</p>
 <p><a href="17.3.remove.html"><code>remove</code></a>、<a href="17.3.remove.html"><code>remove-if</code></a>、<a href="17.3.remove.html"><code>remove-if-not</code></a>は、 <em>sequence</em>と同じ型をもつシーケンスであり、 <em>start</em>, <em>end</em>に囲まれたサブシーケンスのテストを満たし 削除されたもの以外は同じ要素を返却します。 これは非破壊的な操作です。 もし要素の削除が必要になった時は、コピーが返却されます。 <a href="17.3.remove.html"><code>remove</code></a>の返却値は、<em>sequence</em>を共有するかもしれません。 もし要素に削除が生じなかったときは、 入力の<em>sequence</em>と同一のものが返却される可能性があります。</p>
 <p><a href="17.3.remove.html"><code>delete</code></a>、<a href="17.3.remove.html"><code>delete-if</code></a>、<a href="17.3.remove.html"><code>delete-if-not</code></a>は、 <em>sequence</em>と同じ型をもつシーケンスであり、 <em>start</em>, <em>end</em>に囲まれたサブシーケンスのテストを満たし 削除されたもの以外は同じ要素を返却します。 <em>sequence</em>は返却値の構築のために破壊されるかもしれません。 しかし、返却値は<em>sequence</em>と同一の場合もあれば、 そうではない場合もあります。</p>

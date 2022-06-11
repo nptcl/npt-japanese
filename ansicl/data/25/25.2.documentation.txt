@@ -9,10 +9,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @begin: 25.2.documentation
 @name: documentation
-@name: type!symbol
-@name: function!symbol
-@name: method-combination!symbol
-@name: variable!symbol
+@link: type!symbol
+@link: function!symbol
+@link: method-combination!symbol
+@link: variable!symbol
 @type: standard-generic-function
 
 

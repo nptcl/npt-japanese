@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Constant-Variable T</title>
+  <title>Macro MULTIPLE-VALUE-BIND</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,42 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Constant-Variable T</h1>
+<h1 class="title">Macro MULTIPLE-VALUE-BIND</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="constant-variable-t">Constant-Variable <strong>T</strong></h1>
-<p>Constant Variable <code>T</code></p>
-<h2 id="定数値">定数値</h2>
-<p><a href="5.3.t-variable.html"><code>t</code></a></p>
+<h1 id="macro-multiple-value-bind">Macro <strong>MULTIPLE-VALUE-BIND</strong></h1>
+<p>Macro <code>MULTIPLE-VALUE-BIND</code></p>
+<h2 id="構文">構文</h2>
+<p><code>multiple-value-bind</code> (<em>var*</em>) <em>values-form</em> <em>declaration*</em> <em>form*</em><br />
+=&gt; <em>result*</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>var</em> - 変数名のシンボル。評価されません。<br />
+<em>values-form</em> - フォーム。評価されます。<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>result</em> - <em>form</em>から返却される多値</p>
 <h2 id="定義">定義</h2>
-<p>ブール値の真を表現しており、 また標準的なgeneralized-booleanの真を表しています。 <a href="5.3.nil-variable.html"><code>nil</code></a>ではないどんなオブジェクトも <em>true</em>であると考えられますが、 <a href="5.3.t-variable.html"><code>t</code></a>は一般的に、 そのようなオブジェクトを他のものより 優先する特別な理由がない場合に使用されます。</p>
-<p>また、シンボル<a href="5.3.t-variable.html"><code>t</code></a>は、 他の目的でも使われることがあります。 例えば、クラスの名前として。 指示子として（例えばストリーム指示子）。 あるいは構文的な理由による特別な記号として （例えば<a href="5.3.case.html"><code>case</code></a>と<a href="5.3.typecase.html"><code>typecase</code></a>の<code>otherwise</code>句のラベル）。</p>
+<p><em>var</em>への新しい変数束縛を作成し、 それらの束縛を使った一連の<em>form</em>を実行します。</p>
+<p>変数の束縛は、<code>special</code>宣言がされていないのであれば、 レキシカルに行われます。</p>
+<p><em>values-form</em>は評価され、 フォームによって返却されたそれぞれの値を各<em>var</em>に束縛します。 もし<em>var</em>の方が多値より多い場合は、 残りの<em>var</em>には追加で<a href="5.3.nil-variable.html"><code>nil</code></a>が与えられます。 もし多値の方が<em>var</em>より多い場合は、 超過した多値は切り捨てられます。 <em>var</em>は多値は、暗黙のprognとして <em>form</em>が実行されているときに束縛されます。 もし<em>var</em>の型宣言が指定されていたものの、 値が<em>var</em>の型宣言に合った束縛ではなかった場合の結果は未定義です。</p>
+<p>名前の束縛と宣言のスコープは、<em>values-form</em>は含まれていません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">t</span> <span class="op">=&gt;</span>  T </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eq</span> <span class="kw">t</span> &#39;t) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-class</span> &#39;t) <span class="op">=&gt;</span>  #&lt;CLASS T <span class="dv">610703333</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;a (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;b (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prin1</span> &#39;hello <span class="kw">t</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  HELLO</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  HELLO</span></code></pre></div>
-<h2 id="参考">参考</h2>
-<p><a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-bind</span> (f r)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">floor</span> <span class="dv">130</span> <span class="dv">11</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">list</span> f r)) <span class="op">=&gt;</span>  (<span class="dv">11</span> <span class="dv">9</span>)</span></code></pre></div>
+<h2 id="影響">影響</h2>
 <p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.let.html"><code>let</code></a>, <a href="5.3.multiple-value-call.html"><code>multiple-value-call</code></a></p>
+<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-bind</span> (var*) values-form form*)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">multiple-value-call</span> #&#39;(<span class="kw">lambda</span> (&amp;optional var* &amp;<span class="kw">rest</span> #<span class="dv">1</span>=#:ignore)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                            (<span class="kw">declare</span> (<span class="kw">ignore</span> #<span class="dv">1</span>#))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                            form*)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                        values-form)</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

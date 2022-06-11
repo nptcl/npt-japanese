@@ -1,0 +1,102 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor VALUES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.values!accessor
+@name: values!accessor
+@type: accessor
+
+Accessor `VALUES`
+
+
+## {syntax}
+
+`values` &rest *object* => *object\**  
+(`setf` (`values` &rest *place*) *new-values*)
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*place* - {place}  
+*new-value* - オブジェクト
+
+
+## {description}
+
+{values!accessor:link}は多値として*object*を返却します。
+
+{setf:link}の{values!accessor:link}は、
+*new-values*の多値を{place}に格納するときに使います。
+{5.1.2.3:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(values) =>  <no values>
+(values 1) =>  1
+(values 1 2) =>  1, 2
+(values 1 2 3) =>  1, 2, 3
+(values (values 1 2 3) 4 5) =>  1, 4, 5
+(defun polar (x y)
+  (values (sqrt (+ (* x x) (* y y))) (atan y x))) =>  POLAR
+(multiple-value-bind (r theta) (polar 3.0 4.0)
+  (vector r theta))
+=>  #(5.0 0.927295)
+```
+
+よく関数の返却値を正確にひとつだけと
+明に示したいことがあるかもしれません。
+例えば、次の関数は{floor:link}が2つの値を返却するので、
+関数の返却値も2つです。
+
+```lisp
+(defun foo (x y)
+  (floor (+ x y) y)) =>  FOO
+```
+
+これは2番目の返却値が意味をなさないときもあるかもしれませんし、
+あるいは効率という理由で2番目の値を算出してほしくないときもあると思います。
+{values!accessor:link}は、返却値がただひとつだけであることを示す標準的な記載方法です。
+
+```lisp
+(defun foo (x y)
+  (values (floor (+ x y) y))) =>  FOO
+```
+
+これは、{values!accessor:link}がどんな関数呼び出しでも、
+どんな引数が複数の値を返却しても、
+最初以外の全ては切り捨てられて各引数の値を正確にひとつ返却するので、
+うまく動作します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{values-list:link},
+{multiple-value-bind:link},
+{multiple-values-limit:link},
+{3.1:ab}
+
+
+## {notes}
+
+{values!accessor:link}は関数であり、マクロや{special-form}でもないので、
+その引数のフォームはただ主値のみ引数として受け取ります。
+
+@end
+

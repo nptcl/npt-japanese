@@ -1,0 +1,194 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro TYPECASE
+;;  Macro CTYPECASE
+;;  Macro ETYPECASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.typecase
+@name: typecase
+@name: ctypecase
+@name: etypecase
+@type: macro
+
+Function `TYPECASE`, `CTYPECASE`, `ETYPECASE`
+
+
+## {syntax}
+
+`typecase` *keyform* `{`*normal-clause*`}`\* [*otherwise-clause*] => *result\**  
+`ctypecase` *keyplace* `{`*normal-clause*`}`\* => *result\**  
+`etypecase` *keyform* `{`*normal-clause*`}`\* => *result\**
+
+```
+normal-clause ::= (type form*) 
+otherwise-clause ::= ({otherwise | t} form*) 
+clause ::= normal-clause | otherwise-clause 
+```
+
+
+## {arguments-and-values}
+
+*keyform* - フォーム。評価され*test-key*を返却します。  
+*keyplace* - フォーム。評価されて最初に*test-key*を返却します。  
+*test-key* - *keyform*か*keyplace*が評価されることによって返却されるオブジェクト。  
+*type* - {type-specifier}  
+*form* - {implicit-progn}  
+*result* - マッチした*clause*の*form*の返却値
+
+
+## {description}
+
+これらのマクロは、*test-key*の型のマッチによって選択された
+*clause*内の*form*のボディを条件付きで実行します。
+
+*keyform*と*keyplace*が評価されて、*test-key*が生成されます。
+
+そのあと各*normal-clause*が順番に考慮されます。
+もし*test-key*が*clause*のどれかの型と同じであれば、
+その*clause*内の*form*が{implicit-progn}として評価され、
+{typecase:link}、{ctypecase:link}、{etypecase:link}フォームの返却値として
+その多値が返却されます。
+
+これらのマクロは、もし*normal-clause*がマッチしなかったときにだけ、
+動作が違っています。
+違いを下記に示します。
+
+- {typecase:link}
+  - もしマッチする*normal-clause*が存在せず*otherwise-clause*があるときは、
+    自動的に*otherwise-clause*がマッチします。
+    その*clause*にある*form*は{implicit-progn}として評価され、
+    その*clause*内の*form*は{implicit-progn}として評価され、
+    {typecase:link}フォームの返却値としてその多値が返却されます。
+    <br><br>
+    もし*otherwise-clause*がないときは、
+    {typecase:link}は{nil!variable:link}を返却します。
+    <br><br>
+
+- {ctypecase:link}
+  - もしマッチする*normal-clause*が存在しないときは、
+    型{type-error:link}の修正可能なエラーが発生します。
+    問題の`datum`は*test-key*であり、
+    `expected type`は`(member key1 key2 ...)`と同等の型です。
+    {store-value!restart:link} `restart`をエラーの修正に使うことができます。
+    <br><br>
+    もし{store-value!restart:link} `restart`が起動されたら、
+    その引数は新しい*test-key*であり、
+    *keyplace*への保存は`(setf keyplace test-key)`のように行われます。
+    それから{ctypecase:link}は最初から始められ、
+    各*clause*が新しく評価されます。
+    <br><br>
+    もし{store-value!restart:link} `restart`が対話形式で起動されたら、
+    ユーザーは新しい*test-key*を使用できるような
+    プロンプトが表示されます。
+    <br><br>
+    いずれのケースも成立しない場合、
+    *keyplace*のサブフォームは再度評価されるかもしれません。
+    <br><br>
+
+- {etypecase:link}
+  - もしマッチする*normal-clause*が存在しないときは、
+    型{type-error:link}の修正不可能なエラーが発生します。
+    問題の`datum`は*test-key*であり、
+    `expected type`は`(member key1 key2 ...)`と同等の型です。
+    <br><br>
+    {ctypecase:link}とは対照的に{etypecase:link}の使用者は、
+    もし*normal-clause*がマッチしなかったら
+    {etypecase:link}は戻ってこないという事実に頼っています。
+    <br><br>
+
+3つの全ての場合において、
+指定した型にマッチする*clause*が複数あっても許されます。
+特にその型が何かのサブタイプになっているような場合も同様です。
+そのような場合は、もっとも早い適切な*clause*が選ばれます。
+
+
+## {examples}
+
+```lisp
+;;; (この例で使われているTYPE-OFの部分は
+;;;  実装依存であることに注意して下さい)
+(defun what-is-it (x)
+  (format t "~&~S is ~A.~%"
+          x (typecase x
+              (float "a float")
+              (null "a symbol, boolean false, or the empty list")
+              (list "a list")
+              (t (format nil "a(n) ~(~A~)" (type-of x))))))
+=>  WHAT-IS-IT
+(map 'nil #'what-is-it '(nil (a b) 7.0 7 box))
+>>  NIL is a symbol, boolean false, or the empty list.
+>>  (A B) is a list.
+>>  7.0 is a float.
+>>  7 is a(n) integer.
+>>  BOX is a(n) symbol.
+=>  NIL
+(setq x 1/3)
+=>  1/3
+(ctypecase x
+    (integer (* x 4))
+    (symbol  (symbol-value x)))
+>>  Error: The value of X, 1/3, is neither an integer nor a symbol.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Specify a value to use instead.
+>>   2: Return to Lisp Toplevel.
+>>  Debug> :CONTINUE 1
+>>  Use value: 3.7
+>>  Error: The value of X, 3.7, is neither an integer nor a symbol.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Specify a value to use instead.
+>>   2: Return to Lisp Toplevel.
+>>  Debug> :CONTINUE 1
+>>  Use value: 12
+=>  48
+x =>  12
+```
+
+
+## {affected-by}
+
+{ctypecase:link}と{etypecase:link}がエラーを通知したときは、
+既存の`handler`と{*debug-io*:link}に影響を及ぼす可能性があります。
+
+
+## {exceptional-situations}
+
+*normal-clause*にマッチしなかったときは、
+{ccase:link}と{ecase:link}は
+型{type-error:link}のエラーが発生します。
+
+もしある*clause*がそれより早い*clause*によって完全にシャドウされ、
+決して選択されないような状況であったとき、
+コンパイラーは、型{style-warning:link}の警告を出すかどうか
+選択することができます。
+
+
+## {see-also}
+
+{case:link},
+{cond:link},
+{setf:link},
+{5.1:ab}
+
+
+## {notes}
+
+```lisp
+(typecase test-key
+  {(type form*)}*)
+== 
+(let ((#1=#:g0001 test-key))
+  (cond {((typep #1# 'type) form*)}*))
+```
+
+{etypecase:link}と{ctypecase:link}によって使われる特定のエラーメッセージは、
+実装によって変わります。
+そんな中で、エラーメッセージの特定の単語の制御が必要なときは、
+{typecase:link}の*otherwise-clause*で
+明示的に適切なエラーメッセージを発生させるのが良いでしょう。
+
+@end
+

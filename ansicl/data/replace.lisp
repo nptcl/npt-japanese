@@ -107,3 +107,6 @@
 (replace bit-vector "ビット配列")
 (replace specialized "`specialized`")
 
+(replace normal-return "通常の返却")
+(replace explicit-return "`return-from`による明示的な返却")
+

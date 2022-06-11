@@ -6,6 +6,7 @@
 (defvar *load-parse*)
 (defvar *load-list*)
 (defvar *load-name*)
+(defvar *load-link*)
 (defvar *load-type*)
 
 (defun load-begin-check ()
@@ -34,6 +35,7 @@
     (clear-queue *load-list*)
     (clear-queue *load-name*)
     (clear-markdown *load-parse*)
+    (setq *load-link* nil)
     (setq *load-type* nil)
     (setq *load-begin* (find-contents key))))
 
@@ -46,15 +48,22 @@
       (error "There is no @name line."))
     (setf (contents-text *load-begin*) x)))
 
+(defun load-end-addlink (name)
+  ;; (name 'link "[`name`](key.html)")
+  (let* ((key (read-split #\. name))
+         (name (delete-attribute name))
+         (index (contents-string *load-begin*))
+         (file (filename-html index))
+         (value (format nil "[`~A`](~A)" name file)))
+    (addlink key 'link value)))
+
 (defun load-end-reference ()
+  ;; @name
   (dolist (name (queue-root *load-name*))
-    ;; (name 'link "[`name`](key.html)")
-    (let* ((key (read-split #\. name))
-           (name (delete-attribute name))
-           (index (contents-string *load-begin*))
-           (file (filename-html index))
-           (value (format nil "[`~A`](~A)" name file)))
-      (addlink key 'link value))))
+    (load-end-addlink name))
+  ;; @link
+  (dolist (name *load-link*)
+    (load-end-addlink name)))
 
 (defun load-end (cdr)
   (when cdr
@@ -73,6 +82,13 @@
       (when (member name list :test 'equal)
         (error "@name ~S is already exist." name))
       (enqueue *load-name* name))))
+
+(defun load-link (cdr)
+  (load-begin-check)
+  (dbind (name) cdr
+    (when (member name *load-link* :test 'equal)
+      (error "@link ~S is already exist." name))
+    (push name *load-link*)))
 
 (defun load-type (cdr)
   (load-begin-check)
@@ -97,6 +113,8 @@
            (load-end cdr))
           ((string-equal car "@name")
            (load-name cdr))
+          ((string-equal car "@link")
+           (load-link cdr))
           ((string-equal car "@type")
            (load-type cdr))
           ((string-equal car "@index")
@@ -122,6 +140,7 @@
         (*load-parse* (make-markdown))
         (*load-list* (make-queue))
         (*load-name* (make-queue))
+        (*load-link* nil)
         (*load-type* nil))
     (load-textfile-file file)))
 

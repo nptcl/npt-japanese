@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function VALUES-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.values-list
+@name: values-list
+@type: function
+
+Function `VALUES-LIST`
+
+
+## {syntax}
+
+`values-list` *list* => *element\**
+
+
+## {arguments-and-values}
+
+*list* - リスト  
+*element* - *list*の要素
+
+
+## {description}
+
+*list*の要素を多値として返却します。
+
+
+## {examples}
+
+```lisp
+(values-list nil) =>  <no values>
+(values-list '(1)) =>  1
+(values-list '(1 2)) =>  1, 2
+(values-list '(1 2 3)) =>  1, 2, 3
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数が{proper-list}ではないとき、
+型{type-error:link}が発生します。
+
+
+## {see-also}
+
+{multiple-value-bind:link},
+{multiple-value-list:link},
+{multiple-values-limit:link},
+{values!accessor:link}
+
+
+## {notes}
+
+```lisp
+ (values-list list) ==  (apply #'values list)
+```
+
+`(equal x (multiple-value-list (values-list x)))`は、
+全てのリスト`x`において*true*を返却します。
+
+@end
+

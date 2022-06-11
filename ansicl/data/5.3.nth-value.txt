@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro NTH-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.nth-value
+@name: nth-value
+@type: macro
+
+Macro `NTH-VALUE`
+
+
+## {syntax}
+
+`nth-value` *n* *form* => *object*
+
+
+## {arguments-and-values}
+
+*n* - 非負の整数。評価されます。  
+*form* - フォーム。下記の説明に従って評価されます。  
+*object* - オブジェクト
+
+
+## {description}
+
+*n*が評価され、そのつぎに*form*が評価され、
+*form*によって返却された*n*番目の値のみを返却します。
+もし*n*が*form*の返却数以上の場合は{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(nth-value 0 (values 'a 'b)) =>  A
+(nth-value 1 (values 'a 'b)) =>  B
+(nth-value 2 (values 'a 'b)) =>  NIL
+(let* ((x 83927472397238947423879243432432432)
+       (y 32423489732)
+       (a (nth-value 1 (floor x y)))
+       (b (mod x y)))
+  (values a b (= a b)))
+=>  3332987528, 3332987528, true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{multiple-value-list:link},
+{nth:link}
+
+
+## {notes}
+
+操作において、下記の関数は等しいと言えますが、
+{nth-value:link}は実装によってはより効率と言えます。
+なぜなら、例えばコンス化することを回避できるからです。
+
+```lisp
+(nth-value n form) == (nth n (multiple-value-list form))
+```
+
+@end
+

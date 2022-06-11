@@ -1,0 +1,89 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro MULTIPLE-VALUE-BIND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.multiple-value-bind
+@name: multiple-value-bind
+@type: macro
+
+Macro `MULTIPLE-VALUE-BIND`
+
+
+## {syntax}
+
+`multiple-value-bind` (*var\**) *values-form* *declaration\** *form\**  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名のシンボル。評価されません。  
+*values-form* - フォーム。評価されます。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*から返却される多値
+
+
+## {description}
+
+*var*への新しい変数束縛を作成し、
+それらの束縛を使った一連の*form*を実行します。
+
+変数の束縛は、{special:link}宣言がされていないのであれば、
+レキシカルに行われます。
+
+*values-form*は評価され、
+フォームによって返却されたそれぞれの値を各*var*に束縛します。
+もし*var*の方が多値より多い場合は、
+残りの*var*には追加で{nil!variable:link}が与えられます。
+もし多値の方が*var*より多い場合は、
+超過した多値は切り捨てられます。
+*var*は多値は、{implicit-progn}として
+*form*が実行されているときに束縛されます。
+もし*var*の型宣言が指定されていたものの、
+値が*var*の型宣言に合った束縛ではなかった場合の結果は未定義です。
+
+名前の束縛と宣言のスコープは、*values-form*は含まれていません。
+
+
+## {examples}
+
+```lisp
+(multiple-value-bind (f r)
+    (floor 130 11)
+  (list f r)) =>  (11 9)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{let:link},
+{multiple-value-call:link}
+
+
+## {notes}
+
+```lisp
+(multiple-value-bind (var*) values-form form*)
+==  (multiple-value-call #'(lambda (&optional var* &rest #1=#:ignore)
+                            (declare (ignore #1#))
+                            form*)
+                        values-form)
+```
+
+@end
+

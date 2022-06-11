@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro MULTIPLE-VALUE-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.multiple-value-list
+@name: multiple-value-list
+@type: macro
+
+Macro `MULTIPLE-VALUE-LIST`
+
+
+## {syntax}
+
+`multiple-value-list` *form* => *list*
+
+
+## {arguments-and-values}
+
+*form* - フォーム。下記に示す通り評価されます。  
+*list* - *form*の返却値のリスト
+
+
+## {description}
+
+{multiple-value-list:link}は*form*を評価し、
+その返却値の多値のリストを作成します。
+
+
+## {examples}
+
+```lisp
+(multiple-value-list (floor -3 4)) =>  (-1 1)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{values-list:link},
+{multiple-value-call:link}
+
+
+## {notes}
+
+{multiple-value-list:link}と{values-list:link}は、
+お互いに逆の関係にあります。
+
+```lisp
+(multiple-value-list form) == (multiple-value-call #'list form)
+```
+
+@end
+

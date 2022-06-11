@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator MULTIPLE-VALUE-PROG1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.multiple-value-prog1
+@name: multiple-value-prog1
+@type: special-operator
+
+Special Operator `MULTIPLE-VALUE-PROG1`
+
+
+## {syntax}
+
+`multiple-value-prog1` *first-form* *form\** => *first-form-results*
+
+
+## {arguments-and-values}
+
+*first-form* - フォーム。下記に示す通り評価されます。  
+*form* - フォーム。下記に示す通り評価されます。  
+*first-form-results* - *first-form*の評価の返却値
+
+
+## {description}
+
+{multiple-value-prog1:link}は*first-form*を評価し、
+そのフォームによって生成された全ての多値を保存します。
+そのあと各*form*を左から右へ評価し、それらの返却値を廃棄します。
+
+
+## {examples}
+
+```lisp
+(setq temp '(1 2 3)) =>  (1 2 3)
+(multiple-value-prog1
+   (values-list temp)
+   (setq temp nil)
+   (values-list temp)) =>  1, 2, 3
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{prog1:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

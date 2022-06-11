@@ -1,0 +1,165 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PROG
+;;  Macro PROG*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.prog
+@name: prog
+@name: prog*
+@type: macro
+
+Macro `PROG`, `PROG*`
+
+
+## {syntax}
+
+`prog` (`{`*var* `|` (*var* [*init-form*])`}`\*)
+ *declaration\** `{`*tag* `|` *statement*`}`\*  
+=> *result\**
+
+`prog*` (`{`*var* `|` (*var* [*init-form*])`}`\*)
+ *declaration\** `{`*tag* `|` *statement*`}`\*  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名  
+*init-form* - フォーム  
+*declaration* - 宣言式。評価されません。  
+*tag* - `go`タグ。評価されません。  
+*statement* - {compound-form}。下記の説明に従って評価されます。  
+*result* - {normal-return}のときは{nil!variable:link}、
+そうではなく{explicit-return}のときは転送された返却値。
+
+
+## {description}
+
+{prog:link}と{prog*:link}によって
+3つの異なった操作が実行されます。
+それは、ローカル変数の束縛と、
+{return:link}構文の使用の許可と、
+{go:link}構文の使用の許可です。
+典型的な{prog:link}の見た目は次のようになります。
+
+```lisp
+(prog (var1 var2 (var3 init-form-3) var4 (var5 init-form-5))
+      declaration*
+      statement1
+ tag1
+      statement2
+      statement3
+      statement4
+ tag2
+      statement5
+      ...
+      )
+```
+
+{prog:link}では、
+最初に各*init-form*が指定された順に評価されます。
+そのあと*var*が対応する値と並列に束縛されます。
+もし*var*に対して*init-form*が存在しないとき、
+その*var*には{nil!variable:link}が束縛されます。
+
+{prog:link}のボディ部は
+それが{tagbody:link}フォームであるかのように実行されます。
+{go:link}構文は*tag*へ制御を移すときに使うことができます。
+*tag*は*statement*にラベル付けされます。
+
+{prog:link}は暗黙に、{prog:link}フォーム全体を囲うようにして、
+{nil!variable:link}という{block:link}が確立しており、
+{return:link}を使って{prog:link}フォームからいつでも退出できます。
+
+{prog*:link}と{prog:link}の違いは、
+{prog*:link}は*var*の束縛と初期化は連続的に行われ、
+各変数の*init-form*の値は、以前の変数の値によって使用することができます。
+
+
+## {examples}
+
+```lisp
+(prog* ((y z) (x (car y)))
+       (return x))
+```
+
+上記は`z`の値の`car`を返却します。
+
+
+```lisp
+(setq a 1) =>  1
+(prog ((a 2) (b a)) (return (if (= a b) '= '/=))) =>  /=
+(prog* ((a 2) (b a)) (return (if (= a b) '= '/=))) =>  =
+(prog () 'no-return-value) =>  NIL
+(defun king-of-confusion (w)
+  "Take a cons of two lists and make a list of conses.
+   Think of this function as being like a zipper."
+  (prog (x y z)          ;Initialize x, y, z to NIL
+       (setq y (car w) z (cdr w))
+   loop
+       (cond ((null y) (return x))
+             ((null z) (go err)))
+   rejoin
+       (setq x (cons (cons (car y) (car z)) x))
+       (setq y (cdr y) z (cdr z))
+       (go loop)
+   err
+       (cerror "Will self-pair extraneous items"
+               "Mismatch - gleep!  ~S" y)
+       (setq z y)
+       (go rejoin))) =>  KING-OF-CONFUSION 
+```
+
+これは下記に示すように、より明確に達成できます。
+
+```lisp
+(defun prince-of-clarity (w)
+  "Take a cons of two lists and make a list of conses.
+   Think of this function as being like a zipper."
+  (do ((y (car w) (cdr y))
+       (z (cdr w) (cdr z))
+       (x '() (cons (cons (car y) (car z)) x)))
+      ((null y) x)
+    (when (null z)
+      (cerror "Will self-pair extraneous items"
+             "Mismatch - gleep!  ~S" y)
+      (setq z y)))) =>  PRINCE-OF-CLARITY 
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{block:link},
+{let:link},
+{tagbody:link},
+{go:link},
+{return:link},
+{3.1:ab}
+
+
+## {notes}
+
+{prog:link}は、{block:link}と{let:link}と{tagbody:link}の語を用いて
+下記のように説明することができます。
+
+```lisp
+(prog variable-list declaration . body)
+   ==  (block nil (let variable-list declaration (tagbody . body)))
+```
+
+@end
+

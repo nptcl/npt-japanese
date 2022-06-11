@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator PROGN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.progn
+@name: progn
+@type: special-operator
+
+Special Operator `PROGN`
+
+
+## {syntax}
+
+`progn` *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+{progn:link}は*form*を与えられた順に評価します。
+
+最後以外の各*form*の値は切り捨てられます。
+
+もし{progn:link}が{top-level-form}に現れたら、
+{progn:link}内の全てのフォームは、
+コンパイラによって{top-level-form}であると見なされます。
+
+
+## {examples}
+
+```lisp
+(progn) =>  NIL
+(progn 1 2 3) =>  3
+(progn (values 1 2 3)) =>  1, 2, 3
+(setq a 1) =>  1
+(if a
+     (progn (setq a nil) 'here)
+     (progn (setq a t) 'there)) =>  HERE
+a =>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{prog1:link},
+{prog2:link},
+{3.1:ab}
+
+
+## {notes}
+
+Common Lispでは、多くの場所で{implicit-progn}という構文で使われています。
+これは、それらの構文の部分は、
+多くのフォーム書くことができ、 連続で評価され、
+最後以外のすべてのフォームの返却値は無視され、
+最後のフォームの結果が返却されるということを意味しています。
+そのような場所が制限なしに含まれる場所として、
+例えば下記のようなものがあげられます。
+ラムダ式のボディ部、
+様々な制御文や条件文のフォームのボディ部
+（例えば、{case:link}, {catch:link}, {progn:link}, {when:link}）。
+
+@end
+

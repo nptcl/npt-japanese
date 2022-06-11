@@ -1,0 +1,99 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro MULTIPLE-VALUE-SETQ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.multiple-value-setq
+@name: multiple-value-setq
+@type: macro
+
+Macro `MULTIPLE-VALUE-SETQ`
+
+
+## {syntax}
+
+`multiple-value-setq` *vars* *form* => *result*
+
+
+## {arguments-and-values}
+
+*vars* - 変数名かシンボルマクロ名どちらかのシンボルのリスト  
+*form* - フォーム  
+*result* - *form*の第一返却値
+
+
+## {description}
+
+{multiple-value-setq:link}は、*vars*に値を代入します。
+
+*form*は評価され、
+フォームによって返却されたそれぞれの値を各*var*に代入します。
+もし*var*の方が多値より多い場合は、
+残りの*var*には{nil!variable:link}が代入されます。
+もし多値の方が*var*より多い場合は、
+超過した多値は切り捨てられます。
+
+もし*var*がシンボルマクロの名前であったときは、
+{setf:link}として代入されます。
+とくに下記のような場合、
+
+```lisp
+(multiple-value-setq (symbol1 ... symboln) value-producing-form)
+```
+
+常に下記のような動作と同じであると定義されます。
+
+```lisp
+(values (setf (values symbol1 ... symboln) value-producing-form))
+```
+
+これらの評価と副作用の順序の規則は{setf:link}を使用したものと同じです。
+{5.1.2.3:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(multiple-value-setq (quotient remainder) (truncate 3.2 2)) =>  1
+quotient =>  1
+remainder =>  1.2
+(multiple-value-setq (a b c) (values 1 2)) =>  1
+a =>  1
+b =>  2
+c =>  NIL
+(multiple-value-setq (a b) (values 4 5 6)) =>  4
+a =>  4
+b =>  5
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{setq:link},
+{symbol-macrolet:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

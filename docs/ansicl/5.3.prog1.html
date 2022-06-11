@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Constant-Variable T</title>
+  <title>Macro PROG1, PROG2</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,59 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Constant-Variable T</h1>
+<h1 class="title">Macro PROG1, PROG2</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="constant-variable-t">Constant-Variable <strong>T</strong></h1>
-<p>Constant Variable <code>T</code></p>
-<h2 id="定数値">定数値</h2>
-<p><a href="5.3.t-variable.html"><code>t</code></a></p>
+<h1 id="macro-prog1-prog2">Macro <strong>PROG1, PROG2</strong></h1>
+<p>Macro <code>PROG1</code>, <code>PROG2</code></p>
+<h2 id="構文">構文</h2>
+<p><code>prog1</code> <em>first-form</em> <em>form*</em> =&gt; <em>result-1</em><br />
+<code>prog2</code> <em>first-form</em> <em>second-form</em> <em>form*</em> =&gt; <em>result-2</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>first-form</em> - フォーム。下記の説明に従って評価されます。<br />
+<em>second-form</em> - フォーム。下記の説明に従って評価されます。<br />
+<em>form</em> - フォーム。下記の説明に従って評価されます。<br />
+<em>result-1</em> - <em>first-form</em>の評価の返却値の主値<br />
+<em>result-2</em> - <em>second-form</em>の評価の返却値の主値</p>
 <h2 id="定義">定義</h2>
-<p>ブール値の真を表現しており、 また標準的なgeneralized-booleanの真を表しています。 <a href="5.3.nil-variable.html"><code>nil</code></a>ではないどんなオブジェクトも <em>true</em>であると考えられますが、 <a href="5.3.t-variable.html"><code>t</code></a>は一般的に、 そのようなオブジェクトを他のものより 優先する特別な理由がない場合に使用されます。</p>
-<p>また、シンボル<a href="5.3.t-variable.html"><code>t</code></a>は、 他の目的でも使われることがあります。 例えば、クラスの名前として。 指示子として（例えばストリーム指示子）。 あるいは構文的な理由による特別な記号として （例えば<a href="5.3.case.html"><code>case</code></a>と<a href="5.3.typecase.html"><code>typecase</code></a>の<code>otherwise</code>句のラベル）。</p>
+<p><a href="5.3.prog1.html"><code>prog1</code></a>は<em>first-form</em>を評価したあとで<em>form</em>を評価し、 <em>first-form</em>によって生成された主値のみを返却します。</p>
+<p><a href="5.3.prog1.html"><code>prog2</code></a>は最初に<em>first-form</em>を評価し、 その次に<em>second-form</em>を評価し、 そのあと<em>form</em>を評価して、 <em>second-form</em>によって生成された主値のみを返却します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">t</span> <span class="op">=&gt;</span>  T </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eq</span> <span class="kw">t</span> &#39;t) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-class</span> &#39;t) <span class="op">=&gt;</span>  #&lt;CLASS T <span class="dv">610703333</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;a (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;b (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prin1</span> &#39;hello <span class="kw">t</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  HELLO</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  HELLO</span></code></pre></div>
-<h2 id="参考">参考</h2>
-<p><a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog1</span> temp (<span class="kw">print</span> temp) (<span class="kw">incf</span> temp) (<span class="kw">print</span> temp))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog1</span> temp (<span class="kw">setq</span> temp <span class="kw">nil</span>)) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog1</span> (<span class="kw">values</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">1</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp (<span class="kw">list</span> &#39;a &#39;b &#39;c))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog1</span> (<span class="kw">car</span> temp) (<span class="kw">setf</span> (<span class="kw">car</span> temp) &#39;alpha)) <span class="op">=&gt;</span>  A</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=&gt;</span>  (ALPHA B C)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">flet</span> ((swap-symbol-values (x y)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">setf</span> (<span class="kw">symbol-value</span> x) </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>               (<span class="kw">prog1</span> (<span class="kw">symbol-value</span> y)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                      (<span class="kw">setf</span> (<span class="kw">symbol-value</span> y) (<span class="kw">symbol-value</span> x))))))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((*foo* <span class="dv">1</span>) (*bar* <span class="dv">2</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">special</span> *foo* *bar*))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (swap-symbol-values &#39;*foo* &#39;*bar*)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">values</span> *foo* *bar*)))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">2</span>, <span class="dv">1</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog2</span> (<span class="kw">incf</span> temp) (<span class="kw">incf</span> temp) (<span class="kw">incf</span> temp)) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prog2</span> <span class="dv">1</span> (<span class="kw">values</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>) <span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">2</span></span></code></pre></div>
+<h2 id="副作用">副作用</h2>
 <p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.multiple-value-prog1.html"><code>multiple-value-prog1</code></a>, <a href="5.3.progn.html"><code>progn</code></a></p>
+<h2 id="備考">備考</h2>
+<p><a href="5.3.prog1.html"><code>prog1</code></a>と<a href="5.3.prog1.html"><code>prog2</code></a>は通常、 副作用のあるひとつか複数のフォームを評価し、 その副作用の一部かあるいはすべてが起こる前に計算されなければならない 値を返すために使用されます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

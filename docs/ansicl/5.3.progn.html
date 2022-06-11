@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Constant-Variable T</title>
+  <title>Special-Operator PROGN</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,38 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Constant-Variable T</h1>
+<h1 class="title">Special-Operator PROGN</h1>
 </header>
 <p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="constant-variable-t">Constant-Variable <strong>T</strong></h1>
-<p>Constant Variable <code>T</code></p>
-<h2 id="定数値">定数値</h2>
-<p><a href="5.3.t-variable.html"><code>t</code></a></p>
+<h1 id="special-operator-progn">Special-Operator <strong>PROGN</strong></h1>
+<p>Special Operator <code>PROGN</code></p>
+<h2 id="構文">構文</h2>
+<p><code>progn</code> <em>form*</em> =&gt; <em>result*</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>form</em> - 暗黙のprogn<br />
+<em>result</em> - <em>form</em>の返却値</p>
 <h2 id="定義">定義</h2>
-<p>ブール値の真を表現しており、 また標準的なgeneralized-booleanの真を表しています。 <a href="5.3.nil-variable.html"><code>nil</code></a>ではないどんなオブジェクトも <em>true</em>であると考えられますが、 <a href="5.3.t-variable.html"><code>t</code></a>は一般的に、 そのようなオブジェクトを他のものより 優先する特別な理由がない場合に使用されます。</p>
-<p>また、シンボル<a href="5.3.t-variable.html"><code>t</code></a>は、 他の目的でも使われることがあります。 例えば、クラスの名前として。 指示子として（例えばストリーム指示子）。 あるいは構文的な理由による特別な記号として （例えば<a href="5.3.case.html"><code>case</code></a>と<a href="5.3.typecase.html"><code>typecase</code></a>の<code>otherwise</code>句のラベル）。</p>
+<p><a href="5.3.progn.html"><code>progn</code></a>は<em>form</em>を与えられた順に評価します。</p>
+<p>最後以外の各<em>form</em>の値は切り捨てられます。</p>
+<p>もし<a href="5.3.progn.html"><code>progn</code></a>がトップレベルフォームに現れたら、 <a href="5.3.progn.html"><code>progn</code></a>内の全てのフォームは、 コンパイラによってトップレベルフォームであると見なされます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">t</span> <span class="op">=&gt;</span>  T </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eq</span> <span class="kw">t</span> &#39;t) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-class</span> &#39;t) <span class="op">=&gt;</span>  #&lt;CLASS T <span class="dv">610703333</span>&gt;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;a (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">case</span> &#39;b (a <span class="dv">1</span>) (<span class="kw">t</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prin1</span> &#39;hello <span class="kw">t</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  HELLO</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  HELLO</span></code></pre></div>
-<h2 id="参考">参考</h2>
-<p><a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span>) <span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">values</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> a <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">if</span> a</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">progn</span> (<span class="kw">setq</span> a <span class="kw">nil</span>) &#39;here)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">progn</span> (<span class="kw">setq</span> a <span class="kw">t</span>) &#39;there)) <span class="op">=&gt;</span>  HERE</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>a <span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<h2 id="影響">影響</h2>
 <p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.prog1.html"><code>prog1</code></a>, <a href="5.3.prog1.html"><code>prog2</code></a>, 3.1. 評価</p>
+<h2 id="備考">備考</h2>
+<p>Common Lispでは、多くの場所で暗黙のprognという構文で使われています。 これは、それらの構文の部分は、 多くのフォーム書くことができ、 連続で評価され、 最後以外のすべてのフォームの返却値は無視され、 最後のフォームの結果が返却されるということを意味しています。 そのような場所が制限なしに含まれる場所として、 例えば下記のようなものがあげられます。 ラムダ式のボディ部、 様々な制御文や条件文のフォームのボディ部 （例えば、<a href="5.3.case.html"><code>case</code></a>, <a href="5.3.catch.html"><code>catch</code></a>, <a href="5.3.progn.html"><code>progn</code></a>, <a href="5.3.when.html"><code>when</code></a>）。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

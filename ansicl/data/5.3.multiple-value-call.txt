@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator MULTIPLE-VALUE-CALL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.multiple-value-call
+@name: multiple-value-call
+@type: special-operator
+
+Special Operator `MULTIPLE-VALUE-CALL`
+
+
+## {syntax}
+
+`multiple-value-call` *function-form* *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*function-form* - フォーム。評価され*function*が得られます。  
+*function* - 関数指定子。*function-form*の評価によって得られます。  
+*form* - フォーム  
+*result* - *function*の返却値
+
+
+## {description}
+
+*function*を、多値のグループを収集したオブジェクトをまとめた
+リストと共に実行します。
+
+{multiple-value-call:link}は最初に*function-form*を評価して
+*function*を取得し、そのあと各*form*を実行します。
+各*form*の全ての多値を一緒にまとめて（それぞれちょうどひとつずつではなく）、
+*function*の引数として与えます。
+
+
+## {examples}
+
+```lisp
+(multiple-value-call #'list 1 '/ (values 2 3) '/ (values) '/ (floor 2.5))
+=>  (1 / 2 3 / / 2 0.5)
+(+ (floor 5 3) (floor 19 4)) ==  (+ 1 4)
+=>  5
+(multiple-value-call #'+ (floor 5 3) (floor 19 4)) ==  (+ 1 2 4 3)
+=>  10
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{multiple-value-list:link},
+{multiple-value-bind:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

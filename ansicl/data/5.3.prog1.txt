@@ -1,0 +1,103 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PROG1
+;;  Macro PROG2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.prog1
+@name: prog1
+@name: prog2
+@type: macro
+
+Macro `PROG1`, `PROG2`
+
+
+## {syntax}
+
+`prog1` *first-form* *form\** => *result-1*  
+`prog2` *first-form* *second-form* *form\** => *result-2*
+
+
+## {arguments-and-values}
+
+*first-form* - フォーム。下記の説明に従って評価されます。  
+*second-form* - フォーム。下記の説明に従って評価されます。  
+*form* - フォーム。下記の説明に従って評価されます。  
+*result-1* - *first-form*の評価の返却値の主値  
+*result-2* - *second-form*の評価の返却値の主値  
+
+
+## {description}
+
+{prog1:link}は*first-form*を評価したあとで*form*を評価し、
+*first-form*によって生成された主値のみを返却します。
+
+{prog2:link}は最初に*first-form*を評価し、
+その次に*second-form*を評価し、
+そのあと*form*を評価して、
+*second-form*によって生成された主値のみを返却します。
+
+
+## {examples}
+
+```lisp
+(setq temp 1) =>  1
+(prog1 temp (print temp) (incf temp) (print temp))
+>>  1
+>>  2
+=>  1
+(prog1 temp (setq temp nil)) =>  2
+temp =>  NIL
+(prog1 (values 1 2 3) 4) =>  1 
+(setq temp (list 'a 'b 'c))
+(prog1 (car temp) (setf (car temp) 'alpha)) =>  A
+temp =>  (ALPHA B C)
+(flet ((swap-symbol-values (x y)
+         (setf (symbol-value x) 
+               (prog1 (symbol-value y)
+                      (setf (symbol-value y) (symbol-value x))))))
+  (let ((*foo* 1) (*bar* 2))
+    (declare (special *foo* *bar*))
+    (swap-symbol-values '*foo* '*bar*)
+    (values *foo* *bar*)))
+=>  2, 1
+(setq temp 1) =>  1
+(prog2 (incf temp) (incf temp) (incf temp)) =>  3
+temp =>  4
+(prog2 1 (values 2 3 4) 5) =>  2
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{multiple-value-prog1:link},
+{progn:link}
+
+
+## {notes}
+
+{prog1:link}と{prog2:link}は通常、
+副作用のあるひとつか複数のフォームを評価し、
+その副作用の一部かあるいはすべてが起こる前に計算されなければならない
+値を返すために使用されます。
+
+@end
+

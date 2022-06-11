@@ -152,6 +152,7 @@
 (text 5.1.1.1 "{place}のサブフォームの評価" "Evaluation of Subforms to Places")
 (text 5.1.2 "{place}の種類" "Kinds of Places")
 (text 5.1.2.2 "{place}としての関数呼び出しフォーム" "Function Call Forms as Places")
+(text 5.1.2.3 "{place}としてのVALUESフォーム" "VALUES Forms as Places")
 (text 5.1.2.5 "APPLYの{place}フォーム" "APPLY Forms as Places")
 (text 5.2 "終了地点への制御の遷移" "Transfer of Control to an Exit Point")
 (index 5.3 "データと制御フローの辞書" "Data and Control Flow Dictionary")
@@ -207,7 +208,7 @@
 (dictionary 5.3.multiple-value-list)
 (dictionary 5.3.multiple-value-prog1)
 (dictionary 5.3.multiple-value-setq)
-(dictionary 5.3.values)
+(dictionary 5.3.values!accessor)
 (dictionary 5.3.values-list)
 (dictionary 5.3.multiple-values-limit)
 (dictionary 5.3.nth-value)
@@ -335,6 +336,8 @@
 (text 9.1 "コンディションシステムの説明" "Condition System Concepts")
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
 (dictionary 9.2.condition)
+(dictionary 9.2.warning)
+(dictionary 9.2.style-warning)
 (dictionary 9.2.serious-condition)
 (dictionary 9.2.error!condition)
 (dictionary 9.2.cell-error)
@@ -351,6 +354,11 @@
 (dictionary 9.2.restart-name)
 (dictionary 9.2.with-condition-restarts)
 (dictionary 9.2.with-simple-restart)
+(dictionary 9.2.abort!restart)
+(dictionary 9.2.continue!restart)
+(dictionary 9.2.muffle-warning!restart)
+(dictionary 9.2.store-value!restart)
+(dictionary 9.2.use-value!restart)
 
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")
@@ -385,6 +393,7 @@
 (index 12.2 "数の辞書" "Numbers Dictionary")
 (dictionary 12.=)
 (dictionary 12.2.max)
+(dictionary 12.2.floor)
 (dictionary 12.2.+)
 (dictionary 12.2.incf)
 (dictionary 12.2.decf)  ;; delete
@@ -530,6 +539,7 @@
 ;; Chapter 21
 (index 21.2 "ストリームの辞書" "Streams Dictionary")
 (dictionary 21.2.stream)
+(dictionary 21.2.*debug-io*)
 
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")

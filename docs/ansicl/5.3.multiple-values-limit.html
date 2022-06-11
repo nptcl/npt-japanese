@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Standard-Generic-Function DOCUMENTATION</title>
+  <title>Constant-Variable MULTIPLE-VALUES-LIMIT</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,11 +151,23 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Standard-Generic-Function DOCUMENTATION</h1>
+<h1 class="title">Constant-Variable MULTIPLE-VALUES-LIMIT</h1>
 </header>
-<p><a href="25.2.html">UP</a></p>
+<p><a href="5.3.html">UP</a></p>
 <hr />
-<h1 id="standard-generic-function-documentation">Standard-Generic-Function <strong>DOCUMENTATION</strong></h1>
+<h1 id="constant-variable-multiple-values-limit">Constant-Variable <strong>MULTIPLE-VALUES-LIMIT</strong></h1>
+<p>Constant Variable <code>MULTIPLE-VALUES-LIMIT</code></p>
+<h2 id="定数値">定数値</h2>
+<p>20より小さくはない整数であり、 正確な値は実装依存です。</p>
+<h2 id="定義">定義</h2>
+<p>の排他的上限値であり、</p>
+<p>関数が返却できる多値の数、 また<a href="5.3.multiple-value-bind.html"><code>multiple-value-bind</code></a>か<a href="5.3.multiple-value-setq.html"><code>multiple-value-setq</code></a>によって 束縛か代入ができる数、 <a href="5.3.nth-value.html"><code>nth-value</code></a>の最初の引数として受け取れる数の、 排他的上限値です。 それぞれの個別の制限値が違っている場合は 最小の値が使われます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.lambda-parameters-limit.html"><code>lambda-parameters-limit</code></a>, <a href="5.3.call-arguments-limit.html"><code>call-arguments-limit</code></a></p>
+<h2 id="備考">備考</h2>
+<p>実装者にはこれらの制限値を可能な限り大きくすることを勧めます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -226,7 +226,7 @@
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>test-form</em> - フォーム<br />
 <em>form</em> - 暗黙のprogn<br />
-<em>result</em> - <em>test-form</em>が<em>true</em>のときは <a href="5.3.when.html"><code>when</code></a>フォーム内の<em>form</em>の多値。 <em>test-form</em>が<em>false</em>のときは <a href="5.3.when.html"><code>unless</code></a>フォーム内の<em>form</em>No多値。 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
+<em>result</em> - <em>test-form</em>が<em>true</em>のときは <a href="5.3.when.html"><code>when</code></a>フォーム内の<em>form</em>の多値。 <em>test-form</em>が<em>false</em>のときは <a href="5.3.when.html"><code>unless</code></a>フォーム内の<em>form</em>の多値。 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
 <h2 id="定義">定義</h2>
 <p><a href="5.3.when.html"><code>when</code></a>と<a href="5.3.when.html"><code>unless</code></a>は、 <em>test-form</em>単体に依存したフォームの実行を行います。</p>
 <p><a href="5.3.when.html"><code>when</code></a>のフォーム内において、 <em>test-form</em>が<em>true</em>のときは、<em>form</em>が左から右の順番で評価され、 その<em>form</em>の多値が<a href="5.3.when.html"><code>when</code></a>フォームからの返却値になります。 一方、<em>test-form</em>が<em>false</em>のときは、<em>form</em>は評価されず <a href="5.3.when.html"><code>when</code></a>フォームは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>

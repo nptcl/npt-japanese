@@ -228,7 +228,7 @@
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
 <p><a href="14.2.remf.html"><code>remf</code></a>は、<em>place</em>に保存されているプロパティリストから <em>indicator</em>と同一の標識のプロパティを削除します。 標識に対してキーが同一のプロパティが複数あるときは、 <a href="14.2.remf.html"><code>remf</code></a>は最初のプロパティを削除します。 標識に対するプロパティが存在しないときは<em>false</em>を、 プロパティが見つかった時は<em>true</em>を返却します。</p>
-<p>プロパティのindicatorと対応する値は、 プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。 <a href="14.2.remf.html"><code>remf</code></a>は、<code>place</code>に<code>setf</code>するか、 あるいは<code>setf</code>に保持されているリスト構造の どの<code>car</code>, <code>cdr</code>部にも<code>setf</code>することが許されています。</p>
+<p>プロパティのindicatorと対応する値は、 プロパティリストを順不同で破壊的につなぎ合わせることにより削除します。 <a href="14.2.remf.html"><code>remf</code></a>は、<code>place</code>に<a href="5.3.setf.html"><code>setf</code></a>するか、 あるいは<a href="5.3.setf.html"><code>setf</code></a>に保持されているリスト構造の どの<code>car</code>, <code>cdr</code>部にも<a href="5.3.setf.html"><code>setf</code></a>することが許されています。</p>
 <p><code>place</code>のサブフォームの評価についての情報は、 5.1.1.1. <code>place</code>のサブフォームの評価をご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (<span class="kw">cons</span> () ())) <span class="op">=&gt;</span>  (NIL)</span>

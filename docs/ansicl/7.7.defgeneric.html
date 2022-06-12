@@ -212,13 +212,13 @@ method-description ::=
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>function-name</em>が通常の関数か、マクロか、特殊オペレーターの名前のときは、 型<code>program-error</code>のエラーが発生します。</p>
-<p>引数<em>gf-lambda-list</em>として指定された各要求された引数は、 <em>parameter-name</em>として正確にひとつだけ含まれなければならず、 そうでないときは、型<code>program-error</code>のエラーが発生します。</p>
+<p>もし<em>function-name</em>が通常の関数か、マクロか、特殊オペレーターの名前のときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>引数<em>gf-lambda-list</em>として指定された各要求された引数は、 <em>parameter-name</em>として正確にひとつだけ含まれなければならず、 そうでないときは、型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
 <p><em>method-description</em>によって指定された各メソッドのラムダリストは、 <em>gf-lambda-list</em>オプションによって指定されたラムダリストと合致していなければならず、 そうでないときは型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <p>もし、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームが評価されたとき、 そのジェネリック関数にあるメソッドのラムダリストが <a href="7.7.defgeneric.html"><code>defgeneric</code></a>フォームに付与されたものと合致しない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
-<p>オプションがただひとつではなかった場合は、 型<code>program-error</code>のエラーが発生します。</p>
+<p>オプションがただひとつではなかった場合は、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
 <p>もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合は型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
-<p>実装は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>に別のオプションを含めるよう拡張できます。 もし自身が実装していないオプションが見られた場合は、 その実装は型<code>program-error</code>のエラーを発生するよう要求されます。</p>
+<p>実装は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>に別のオプションを含めるよう拡張できます。 もし自身が実装していないオプションが見られた場合は、 その実装は型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーを発生するよう要求されます。</p>
 <h2 id="参考">参考</h2>
 <p><a href="7.7.defmethod.html"><code>defmethod</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <code>generic-function</code>, <a href="7.6.4.html">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</a></p>
 <h2 id="備考">備考</h2>

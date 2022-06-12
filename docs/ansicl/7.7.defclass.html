@@ -198,7 +198,7 @@ class-option ::= (:default-initargs . initarg-list) |
 <ul>
 <li>スロットオプションの<code>:reader</code>は、 スロットの値を読み込むための <em>reader-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
 <li>スロットオプションの<code>:writer</code>は、 スロットの値を書き込むための <em>writer-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
-<li>スロットオプションの<code>:accessor</code>は、 スロットの値を読み込むための <em>accessor-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。 さらに、スロットの値を<code>setf</code>を用いて修正するための <code>(setf accessor-function-name)</code>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
+<li>スロットオプションの<code>:accessor</code>は、 スロットの値を読み込むための <em>accessor-function-name</em>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。 さらに、スロットの値を<a href="5.3.setf.html"><code>setf</code></a>を用いて修正するための <code>(setf accessor-function-name)</code>という名前のジェネリック関数と、 修飾子がないメソッドをを定義します。</li>
 <li>スロットオプションの<code>:allocation</code>は、 割り当てられたスロットが、どこのストレージを使用するかを指定します。 スロットのストレージは、各インスタンスか、 クラスオブジェクト自身に配置することができます。 引数<code>allocation-type</code>の値は、 <code>:instance</code>キーワードか、<code>:class</code>キーワードのどちらかです。 もし<code>:allocation</code>スロットオプションが指定されなかったときは、 <code>:allocation :instance</code>が指定されたと同じ効果になります。
 <ul>
 <li><em>allocation-type</em>が<code>:instance</code>のとき、 名前が<em>slot-name</em>の局所スロットは、 クラスのそれぞれのインスタンスに配置されます。</li>
@@ -236,10 +236,10 @@ class-option ::= (:default-initargs . initarg-list) |
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>もしスロットの名前に重複があった場合は、 型<code>program-error</code>のエラーが発生します。</p>
-<p>もし、クラスオプション<code>:default-initargs</code>に 初期化引数の名前が複数現れたときは、 型<code>program-error</code>のエラーが発生します。</p>
-<p>もし、スロットオプション <code>:allocation</code>, <code>:initform</code>, <code>:type</code>, <code>:documentation</code>が ひとつのスロットの定義に複数現れたときは、 型<code>program-error</code>のエラーが発生します。</p>
-<p>すべての実装は、自身が実装していない クラスオプションやスロットオプションを見た場合は、 型<code>program-error</code>のエラーが通知することを要求されています。</p>
+<p>もしスロットの名前に重複があった場合は、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>もし、クラスオプション<code>:default-initargs</code>に 初期化引数の名前が複数現れたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>もし、スロットオプション <code>:allocation</code>, <code>:initform</code>, <code>:type</code>, <code>:documentation</code>が ひとつのスロットの定義に複数現れたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>すべての実装は、自身が実装していない クラスオプションやスロットオプションを見た場合は、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが通知することを要求されています。</p>
 <h2 id="参考">参考</h2>
 <p><a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>, <a href="7.7.make-instance.html"><code>make-instance</code></a>, <a href="7.7.slot-value.html"><code>slot-value</code></a>, 4.3. クラス, 4.3.4. 継承, 4.3.6. クラスの再定義, 4.3.5. クラス優先順位リストの決定, <a href="7.1.html">7.1. オブジェクトの作成と初期化</a></p>
 <h2 id="備考">備考</h2>

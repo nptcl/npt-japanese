@@ -231,7 +231,7 @@
 <em>new-value</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p><a href="10.2.get.html"><code>get</code></a>は、<em>symbol</em>のプロパティリストから <em>indicator</em>と同一の標識のプロパティを探し、 対応するプロパティの値を返却します。 標識に対して複数のプロパティがあるときは、 <a href="10.2.get.html"><code>get</code></a>は最初のプロパティを使います。 標識に対するプロパティが存在しないときは、 <em>default</em>が返却されます。</p>
-<p><a href="10.2.get.html"><code>get</code></a>の<code>setf</code>は、<em>symbol</em>のプロパティリストに、 すでに標識が存在するときは、 新しいオブジェクトを関連付けます。 もし存在しなかったときは、新しい関連を作成します。 標識に対して複数のプロパティがあるときは、 <a href="10.2.get.html"><code>get</code></a>の<code>setf</code>は最初のプロパティに<em>new-value</em>を関連付けます。 <a href="10.2.get.html"><code>get</code></a>フォームを<code>setf</code>の<code>place</code>で使うとき、 引数<em>default</em>が通常の左から右へ評価されるルールに従って評価され、 <em>value</em>は無視されます。</p>
+<p><a href="10.2.get.html"><code>get</code></a>の<a href="5.3.setf.html"><code>setf</code></a>は、<em>symbol</em>のプロパティリストに、 すでに標識が存在するときは、 新しいオブジェクトを関連付けます。 もし存在しなかったときは、新しい関連を作成します。 標識に対して複数のプロパティがあるときは、 <a href="10.2.get.html"><code>get</code></a>の<a href="5.3.setf.html"><code>setf</code></a>は最初のプロパティに<em>new-value</em>を関連付けます。 <a href="10.2.get.html"><code>get</code></a>フォームを<a href="5.3.setf.html"><code>setf</code></a>の<code>place</code>で使うとき、 引数<em>default</em>が通常の左から右へ評価されるルールに従って評価され、 <em>value</em>は無視されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> make-person </span>(first-name last-name)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((person (<span class="kw">gensym</span> <span class="st">&quot;PERSON&quot;</span>)))</span>

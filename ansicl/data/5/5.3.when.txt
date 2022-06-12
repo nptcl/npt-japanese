@@ -28,7 +28,7 @@ Macro `WHEN`, `UNLESS`
 *result* - *test-form*が*true*のときは
 {when:link}フォーム内の*form*の多値。
 *test-form*が*false*のときは
-{unless:link}フォーム内の*form*No多値。
+{unless:link}フォーム内の*form*の多値。
 それ以外は{nil!variable:link}。
 
 

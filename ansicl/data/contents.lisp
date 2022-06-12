@@ -56,6 +56,9 @@
 (text 3.1.2.1 "フォームの評価" "Form Evaluation")
 (text 3.1.2.1.1 "フォームとしてのシンボル" "Symbols as Forms")
 (text 3.1.2.1.1.3 "定数の変数" "Constant Variables")
+(text 3.1.2.1.2 "フォームとしてのコンス" "Conses as Forms")
+(text 3.1.2.1.2.4 "ラムダフォーム" "Lambda Forms")
+(text 3.1.3 "ラムダ式" "Lambda Expressions")
 (index 3.2 "コンパイル" "Compilation")
 (text 3.2.1 "コンパイラーの用語" "Compiler Terminology")
 (text 3.2.3 "ファイルのコンパイル" "File Compilation")
@@ -65,6 +68,7 @@
       "Additional Constraints on Externalizable Objects")
 (text 3.4 "ラムダリスト" "Lambda Lists")
 (text 3.4.1 "{ordinary-lambda-list}" "Ordinary Lambda Lists")
+(text 3.4.4 "マクロのラムダリスト" "Macro Lambda Lists")
 (text 3.4.5 "{destructuring-lambda-list}" "Destructuring Lambda Lists")
 (text 3.4.11 "ドキュメント文字と宣言の文脈的な作用"
       "Syntactic Interaction of Documentation Strings and Declarations")
@@ -150,6 +154,7 @@
 (text 5.1.1 "{place}と一般化された参照の概要"
       "Overview of Places and Generalized Reference")
 (text 5.1.1.1 "{place}のサブフォームの評価" "Evaluation of Subforms to Places")
+(text 5.1.1.2 "Setfの展開" "Setf Expansions")
 (text 5.1.2 "{place}の種類" "Kinds of Places")
 (text 5.1.2.2 "{place}としての関数呼び出しフォーム" "Function Call Forms as Places")
 (text 5.1.2.3 "{place}としてのVALUESフォーム" "VALUES Forms as Places")
@@ -220,7 +225,6 @@
 (dictionary 5.3.define-setf-expander)
 (dictionary 5.3.get-setf-expansion)
 (dictionary 5.3.setf)
-(dictionary 5.3.psetf)  ;; delete
 (dictionary 5.3.shiftf)
 (dictionary 5.3.rotatef)
 (dictionary 5.3.control-error)

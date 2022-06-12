@@ -223,10 +223,10 @@
 <h2 id="構文">構文</h2>
 <p><code>if</code> <em>test-form</em> <em>then-form</em> [<em>else-form</em>] =&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>test-form - フォーム<br />
-</em>then-form - フォーム<br />
-<em>else-form - フォーム、デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
-</em>result* - もし<em>test-form</em>が<em>true</em>のときは、<em>then-form</em>の返却値です。 それ以外は<em>else-form</em>No返却値です。</p>
+<p><em>test-form</em> - フォーム<br />
+<em>then-form</em> - フォーム<br />
+<em>else-form</em> - フォーム、デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>result</em> - もし<em>test-form</em>が<em>true</em>のときは、<em>then-form</em>の返却値です。 それ以外は<em>else-form</em>の返却値です。</p>
 <h2 id="定義">定義</h2>
 <p><a href="5.3.if.html"><code>if</code></a>は<em>test-form</em>単体に依存したフォームの実行を行います。</p>
 <p>最初に<em>test-form</em>が評価されます。 もしその値が<em>true</em>のときは、<em>then-form</em>が選ばれます。 そうでないときは、<em>else-form</em>が選ばれます。 選ばれたフォームのどちらかが評価されます。</p>

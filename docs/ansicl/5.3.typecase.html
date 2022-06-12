@@ -297,7 +297,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 <p><em>normal-clause</em>にマッチしなかったときは、 <a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>は 型<code>type-error</code>のエラーが発生します。</p>
 <p>もしある<em>clause</em>がそれより早い<em>clause</em>によって完全にシャドウされ、 決して選択されないような状況であったとき、 コンパイラーは、型<code>style-warning</code>の警告を出すかどうか 選択することができます。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.case.html"><code>case</code></a>, <a href="5.3.cond.html"><code>cond</code></a>, <code>setf</code>, 5.1. 一般化された参照</p>
+<p><a href="5.3.case.html"><code>case</code></a>, <a href="5.3.cond.html"><code>cond</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, 5.1. 一般化された参照</p>
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typecase</span> test-key</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  {(<span class="kw">type</span> form*)}<span class="op">*</span>)</span>

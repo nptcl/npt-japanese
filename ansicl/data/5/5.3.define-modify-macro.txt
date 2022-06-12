@@ -1,0 +1,110 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFINE-MODIFY-MACRO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.define-modify-macro
+@name: define-modify-macro
+@type: macro
+
+Macro `DEFINE-MODIFY-MACRO`
+
+
+## {syntax}
+
+`define-modify-macro` *name* *lambda-list* *function* [*documentation*] => *name*
+
+
+## {arguments-and-values}
+
+*name* - シンボル  
+*lambda-list* - {define-modify-macro-lambda-list}  
+*function* - シンボル  
+*documentation* - 文字列。評価されません。
+
+
+## {description}
+
+{define-modify-macro:link}は、*name*という名前で
+{place}に読み書きを行うマクロを定義します。
+
+新しいマクロの引数は、最初は{place}であり、
+続く引数は指定された*lambda-list*です。
+{define-modify-macro:link}によって定義されたマクロは、
+{get-setf-expansion:link}へ正しく環境パラメーターが渡されます。
+
+マクロが起動されると、
+*function*が古い内容の{place}と*lambda-list*を引数に適用され、
+そして{place}は結果の値で更新されます。
+
+多重評価（下記を参照）を回避する問題を除けば、
+{define-modify-macro:link}の展開は下記と同等になります。
+
+```lisp
+(defmacro name (reference . lambda-list)
+  documentation
+  `(setf ,reference
+         (function ,reference ,arg1 ,arg2 ...)))
+```
+
+ここで、`arg1, arg2, ...`は*lambda-list*に現れるパラメーターであり、
+`rest`パラメーターが適切に規定されているものとしています。
+
+{define-modify-macro:link}によって定義された
+マクロ呼び出しのサブフォームは、
+{5.1.1.1:ab}によって記載されている通りに評価されます。
+
+*documentation*はドキュメント文字の種別{function!symbol:link}として、
+そのマクロ関数へ割り当てられます。
+
+もし{define-modify-macro:link}フォームが{top-level-form}に現れたとき、
+コンパイラーはコンパイル時にマクロ定義を保存しなければならないので、
+ファイル内でその後に現れたマクロを正しく展開できます。
+
+
+## {examples}
+
+```lisp
+(define-modify-macro appendf (&rest args) 
+   append "Append onto list") =>  APPENDF
+(setq x '(a b c) y x) =>  (A B C)
+(appendf x '(d e f) '(1 2 3)) =>  (A B C D E F 1 2 3)
+x =>  (A B C D E F 1 2 3)
+y =>  (A B C)
+(define-modify-macro new-incf (&optional (delta 1)) +)
+(define-modify-macro unionf (other-set &rest keywords) union)
+```
+
+
+## {side-effects}
+
+マクロ定義が*name*にアサインされます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defsetf:link},
+{define-setf-expander:link},
+{documentation:link},
+{3.4.11:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

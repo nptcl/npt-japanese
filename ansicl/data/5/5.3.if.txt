@@ -20,11 +20,11 @@ Special Operator `IF`
 
 ## {arguments-and-values}
 
-*test-form - フォーム  
-*then-form - フォーム  
-*else-form - フォーム、デフォルトは{nil!variable:link}。  
+*test-form* - フォーム  
+*then-form* - フォーム  
+*else-form* - フォーム、デフォルトは{nil!variable:link}。  
 *result* - もし*test-form*が*true*のときは、*then-form*の返却値です。
-それ以外は*else-form*No返却値です。
+それ以外は*else-form*の返却値です。
 
 
 ## {description}

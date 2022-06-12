@@ -1,0 +1,152 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFINE-SETF-EXPANDER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.define-setf-expander
+@name: define-setf-expander
+@type: macro
+
+Macro `DEFINE-SETF-EXPANDER`
+
+
+## {syntax}
+
+`define-setf-expander` *access-fn* *lambda-list*
+ [[*declaration\** `|` *documentation*]] *form\**  
+=> *access-fn*
+
+
+## {arguments-and-values}
+
+*access-fn* - 関数かマクロの名前のシンボル  
+*lambda-list* - {macro-lambda-list}  
+*declaration* - 宣言式。評価されません。  
+*documentation* - 文字列。評価されません。  
+*form* - {implicit-progn}
+
+
+## {description}
+
+{define-setf-expander:link}は、{setf:link}が*access-fn*により参照された
+{place}を更新する手段を指定します。
+
+{setf:link}は、{place}に*access-fn*という語と
+{place}への新しい値が指定されたとき、
+適切に更新を行うためのフォームを展開します。
+
+*lambda-list*は、{destructuring-lambda-list}をサポートします。
+{3.4.4:ab}をご確認ください。
+
+*documentation*は、ドキュメント文字として種類{setf!symbol:link}で
+*access-fn*に割り当てられます。
+
+*form*は{setf-expander}の定義を構成し、
+{setf:link}が呼び出され{place}に*access-fn*が与えられたときは
+その{setf-expander}を計算しなければなりません。
+{setf-expander}関数は、
+{define-setf-expander:link}フォームが現れる
+同じ{lexical-environment}によって定義されます。
+*form*が実行されている間、*lambda-list*内の変数は、
+{place}フォームの部分に束縛されます。
+{define-setf-expander:link}フォームの
+*lambda-list*以外の*form*であるボディ部は、
+暗黙的に*access-fn*という名前の`block`で囲まれます。
+
+*form*の評価は、{5.1.1.2:ab}で定義されたような
+5つの値を返却しなければなりません。
+
+もし{define-setf-expander:link}フォームが{top-level-form}として現れたときは、
+コンパイラは、そのファイルの後で{setf:link}が呼ばれたときに展開が行われるよう、
+{setf-expander}を有効にしなければなりません。
+もし同じファイルの後で{place}が*access-fn*を使用するときは、
+プログラマーは、*form*をコンパイル時に
+評価できることを保証しなければなりません。
+コンパイラーは、{get-setf-expansion:link}の環境引数が
+マクロの環境パラメータの値を受け取った場合、
+コンパイル時にこれらの{setf-expander}を
+利用できるようにしなければなりません。
+
+
+## {examples}
+
+```lisp
+(defun lastguy (x) (car (last x))) =>  LASTGUY
+(define-setf-expander lastguy (x &environment env)
+  "Set the last element in a list to the given value."
+  (multiple-value-bind (dummies vals newval setter getter)
+      (get-setf-expansion x env)
+    (let ((store (gensym)))
+      (values dummies
+              vals
+              `(,store)
+              `(progn (rplaca (last ,getter) ,store) ,store)
+              `(lastguy ,getter))))) =>  LASTGUY
+(setq a (list 'a 'b 'c 'd)
+      b (list 'x)
+      c (list 1 2 3 (list 4 5 6))) =>  (1 2 3 (4 5 6))
+(setf (lastguy a) 3) =>  3
+(setf (lastguy b) 7) =>  7
+(setf (lastguy (lastguy c)) 'lastguy-symbol) =>  LASTGUY-SYMBOL
+a =>  (A B C 3)
+b =>  (7)
+c =>  (1 2 3 (4 5 LASTGUY-SYMBOL))
+;;; (LDB bytespec int)フォームののset-expander。
+;;; intフォームは自身をSETFで適切に扱います。
+(define-setf-expander ldb (bytespec int &environment env)
+  (multiple-value-bind (temps vals stores
+                         store-form access-form)
+      (get-setf-expansion int env) ; intのsetf-expander取得
+    (let ((btemp (gensym))     ;byte指定子の一時変数
+          (store (gensym))     ;byteを保存する一時変数
+          (stemp (first stores))) ;byteを保存する一時変数
+      (if (cdr stores) (error "Can't expand this."))
+;;; LDBのsetf展開の5つの返却値
+      (values (cons btemp temps)       ;一時変数
+              (cons bytespec vals)     ;フォームの値
+              (list store)             ;保存の変数
+              `(let ((,stemp (dpb ,store ,btemp ,access-form)))
+                 ,store-form
+                 ,store)               ;保存するフォーム
+              `(ldb ,btemp ,access-form) ;アクセスするフォーム
+             ))))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{setf:link},
+{defsetf:link},
+{documentation:link},
+{get-setf-expansion:link},
+{3.4.11:ab}
+
+
+## {notes}
+
+{define-setf-expander:link}の
+{defsetf:link}の長いフォームとの違いは、
+本体を実行しているときの{place}フォームの部分で
+*lambda-list*の変数の束縛が、
+そのような部分の値を一時変数に束縛してないところです。
+さらに{define-setf-expander:link}は、
+{defsetf:link}の制限である
+*access-fn*が関数か関数のようなマクロである必要はなく、
+*lambda-list*に{defmacro:link}のような
+任意の分配のパターンが許されます。
+
+@end
+

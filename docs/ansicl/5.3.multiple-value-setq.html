@@ -229,11 +229,11 @@
 <h2 id="定義">定義</h2>
 <p><a href="5.3.multiple-value-setq.html"><code>multiple-value-setq</code></a>は、<em>vars</em>に値を代入します。</p>
 <p><em>form</em>は評価され、 フォームによって返却されたそれぞれの値を各<em>var</em>に代入します。 もし<em>var</em>の方が多値より多い場合は、 残りの<em>var</em>には<a href="5.3.nil-variable.html"><code>nil</code></a>が代入されます。 もし多値の方が<em>var</em>より多い場合は、 超過した多値は切り捨てられます。</p>
-<p>もし<em>var</em>がシンボルマクロの名前であったときは、 <code>setf</code>として代入されます。 とくに下記のような場合、</p>
+<p>もし<em>var</em>がシンボルマクロの名前であったときは、 <a href="5.3.setf.html"><code>setf</code></a>として代入されます。 とくに下記のような場合、</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-setq</span> (symbol1 ... symboln) value-producing-form)</span></code></pre></div>
 <p>常に下記のような動作と同じであると定義されます。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span> (<span class="kw">setf</span> (<span class="kw">values</span> symbol1 ... symboln) value-producing-form))</span></code></pre></div>
-<p>これらの評価と副作用の順序の規則は<code>setf</code>を使用したものと同じです。 5.1.2.3. <code>place</code>としてのVALUESフォームをご確認ください。</p>
+<p>これらの評価と副作用の順序の規則は<a href="5.3.setf.html"><code>setf</code></a>を使用したものと同じです。 5.1.2.3. <code>place</code>としてのVALUESフォームをご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-setq</span> (quotient remainder) (<span class="kw">truncate</span> <span class="fl">3.2</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>quotient <span class="op">=&gt;</span>  <span class="dv">1</span></span>

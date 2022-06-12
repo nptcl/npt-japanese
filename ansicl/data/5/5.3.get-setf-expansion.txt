@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GET-SETF-EXPANSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.get-setf-expansion
+@name: get-setf-expansion
+@type: function
+
+Function `GET-SETF-EXPANSION`
+
+
+## {syntax}
+
+`get-setf-expansion` *place* &optional *environment*  
+=> *vars*, *vals*, *store-vars*, *writer-form*, *reader-form*
+
+
+## {arguments-and-values}
+
+*place* - {place}  
+*environment* - 環境オブジェクト  
+*vars*, *vals*, *store-vars*, *writer-form*, *reader-form* - setfの展開
+
+
+## {description}
+
+*environment*下における*place*のsetfの展開を構築するための
+5つの値を返却します。
+{5.1.1.2:ab}をご確認ください。
+
+*environment*が与えられなかったか、あるいは{nil!variable:link}のときは、
+環境は{null-lexical-environment}です。
+
+
+## {examples}
+
+```lisp
+(get-setf-expansion 'x)
+=>  NIL, NIL, (#:G0001), (SETQ X #:G0001), X 
+
+;;; これはPOPに似たマクロ
+
+ (defmacro xpop (place &environment env)
+   (multiple-value-bind (dummies vals new setter getter)
+                        (get-setf-expansion place env)
+      `(let* (,@(mapcar #'list dummies vals) (,(car new) ,getter))
+         (if (cdr new) (error "Can't expand this."))
+         (prog1 (car ,(car new))
+                (setq ,(car new) (cdr ,(car new)))
+                ,setter))))
+ 
+ (defsetf frob (x) (value) 
+     `(setf (car ,x) ,value)) =>  FROB
+;;; 下記の例はエラー、エラーはマクロ展開時に発生する
+ (flet ((frob (x) (cdr x)))  ;不正
+   (xpop (frob z)))
+```
+ 
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defsetf:link},
+{define-setf-expander:link},
+{setf:link}
+
+
+## {notes}
+
+{compound-form}の操作`f`がsetf展開を持たないなら
+`(setf f)`のように展開されるので、
+どのような{compound-form}も有効な{place}になります。
+
+@end
+

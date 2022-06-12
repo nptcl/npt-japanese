@@ -1,0 +1,34 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type PROGRAM-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.program-error
+@name: program-error
+@type: condition-type
+
+Condition Type `PROGRAM-ERROR`
+
+
+## {class-precedence-list}
+
+{program-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{program-error:link}は、
+正しくないプログラムの構文に関係する
+エラーの状態で構成されています。
+`go`タグや`block`タグの名前がレキシカルに存在しない結果のエラーは、
+{program-error:link}の型になります。
+
+@end
+

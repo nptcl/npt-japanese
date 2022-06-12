@@ -1,0 +1,36 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type CONTROL-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.control-error
+@name: control-error
+@type: condition-type
+
+Condition Type `CONTROL-ERROR`
+
+
+## {class-precedence-list}
+
+{control-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{control-error:link}は、
+プログラム内において不正な動的遷移の結果による
+エラーの状態で構成されています。
+アクティブではないタグに対する{throw:link}の結果であったり、
+もはや動的に利用可能ではないタグに対する
+{go:link}や{return-from:link}の結果であったりするエラーは、
+{control-error:link}の型になります。
+
+@end
+

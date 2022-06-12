@@ -179,10 +179,10 @@ initialization-form - フォーム</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="7.7.make-load-form.html"><code>make-load-form</code></a>, <a href="7.7.make-instance.html"><code>make-instance</code></a>, <code>setf</code>, <a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a></p>
+<p><a href="7.7.make-load-form.html"><code>make-load-form</code></a>, <a href="7.7.make-instance.html"><code>make-instance</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a></p>
 <h2 id="備考">備考</h2>
 <p><a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は、 ユーザーが<a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドを作成する際に便利です。</p>
-<p>もし<em>object</em>が<code>standard-object</code>のインスタンスならば、 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は <em>creation-form</em>に<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>を呼ぶフォームを、 <em>initialization-form</em>には<a href="7.7.slot-value.html"><code>slot-value</code></a>の<code>setf</code>と、 <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>を含むフォームが返却されます。 しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。</p>
+<p>もし<em>object</em>が<code>standard-object</code>のインスタンスならば、 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は <em>creation-form</em>に<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>を呼ぶフォームを、 <em>initialization-form</em>には<a href="7.7.slot-value.html"><code>slot-value</code></a>の<a href="5.3.setf.html"><code>setf</code></a>と、 <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>を含むフォームが返却されます。 しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

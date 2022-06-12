@@ -5,6 +5,7 @@
 (replace see-also "参考")
 (replace notes "備考")
 (replace syntax "構文")
+(replace arguments "引数")
 (replace arguments-and-values "引数と戻り値")
 (replace examples "例文")
 (replace exceptional-situations "例外")
@@ -76,6 +77,8 @@
 (replace ordinary-lambda-list "通常のラムダリスト")
 (replace macro-lambda-list "マクロラムダリスト")
 (replace destructuring-lambda-list "分割のラムダリスト")
+(replace define-modify-macro-lambda-list "`define-modify-macro`ラムダリスト")
+(replace defsetf-lambda-list "`defsetf`ラムダリスト")
 (replace direct-instance "direct-instance")
 
 (replace implementation-dependent "実装依存")

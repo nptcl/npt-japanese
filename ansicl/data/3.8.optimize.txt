@@ -8,11 +8,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @begin: 3.8.optimize
 @name: optimize
-@name: compilation-speed
-@name: debug
-@name: safety
-@name: space
-@name: speed
+@link: compilation-speed
+@link: debug
+@link: safety
+@link: space
+@link: speed
 @type: declaration
 
 

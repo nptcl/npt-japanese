@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type UNDEFINED-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.undefined-function
+@name: undefined-function
+@type: condition-type
+
+Condition Type `UNDEFINED-FUNCTION`
+
+
+## {class-precedence-list}
+
+{undefined-function:link},
+{cell-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{undefined-function:link}は、
+定義されていない関数への読み込みを実施しようとしたときを表現する
+エラーの状態で構成されています。
+
+セルの名前（{cell-error:link}を参照）は`funbound`の関数名です。
+
+
+## {see-also}
+
+{cell-error-name:link}
+
+@end
+

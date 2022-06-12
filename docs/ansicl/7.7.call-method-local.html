@@ -173,7 +173,7 @@
 <p><em>next-method-list</em>は、メソッドオブジェクトか、 あるいは最初の要素はシンボル<a href="7.7.call-method-local.html"><code>make-method</code></a>であり 2番目の要素がフォームであるようなリストを含むことができます。</p>
 <p><a href="7.7.call-method-local.html"><code>make-method</code></a>が使えるのは、この2か所だけです。 <a href="7.7.call-method-local.html"><code>make-method</code></a>を使用したフォームは、 <code>null</code>のレキシカルな環境から 加えてローカルマクロ<a href="7.7.call-method-local.html"><code>call-method</code></a>の定義と、 <code>COMMON-LISP-USER</code>パッケージからアクセスできないシンボル名の束縛で 拡張された環境下で評価されます。</p>
 <p>メソッドで使用できる<a href="7.7.call-next-method.html"><code>call-next-method</code></a>関数は、 <em>next-method-list</em>の最初のメソッドを呼び出します。 そのメソッドで使用できる<a href="7.7.call-next-method.html"><code>call-next-method</code></a>関数は、 次に<em>next-method-list</em>の2番目のメソッドを呼び出し、 次のメソッドのリストを使い果たすまでこれを繰り返します。</p>
-<p><em>next-method-list</em>が与えられないときは、 メソッドで使用できる<a href="7.7.call-next-method.html"><code>call-next-method</code></a>関数は 型<code>control-error</code>のエラーを通知し、 メソッドで使用できる<a href="7.7.next-method-p.html"><code>next-method-p</code></a>関数は <a href="5.3.nil-variable.html"><code>nil</code></a>を返します。</p>
+<p><em>next-method-list</em>が与えられないときは、 メソッドで使用できる<a href="7.7.call-next-method.html"><code>call-next-method</code></a>関数は 型<a href="5.3.control-error.html"><code>control-error</code></a>のエラーを通知し、 メソッドで使用できる<a href="7.7.next-method-p.html"><code>next-method-p</code></a>関数は <a href="5.3.nil-variable.html"><code>nil</code></a>を返します。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>

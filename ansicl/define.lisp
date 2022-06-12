@@ -37,7 +37,8 @@
 (defvar *working* nil)
 
 ;;  Finish
-(push (cons 5 'work) *working*)
+(push (cons 3 'work) *working*)
+(push (cons 5 'finish) *working*)
 (push (cons 7 'all) *working*)
 (push (cons 10 'finish) *working*)
 (push (cons 13 'finish) *working*)

@@ -268,12 +268,12 @@
 <p><a href="5.3.defun.html"><code>defun</code></a></p>
 <h2 id="例外">例外</h2>
 <p><em>symbol</em>がシンボルではないとき、 型<code>type-error</code>のエラーが発生します。</p>
-<p>もし<em>symbol</em>が<code>fbound</code>ではなく、 その定義を読み込もうとしたとき、 <code>undefined-function</code>が通知されます。 （その定義を書き込もうとしたときに発生するエラーはありません）</p>
+<p>もし<em>symbol</em>が<code>fbound</code>ではなく、 その定義を読み込もうとしたとき、 <a href="5.3.undefined-function.html"><code>undefined-function</code></a>が通知されます。 （その定義を書き込もうとしたときに発生するエラーはありません）</p>
 <h2 id="参考">参考</h2>
 <p><a href="5.3.fboundp.html"><code>fboundp</code></a>, <a href="5.3.fmakunbound.html"><code>fmakunbound</code></a>, <code>macro-function</code>, <code>special-operator-p</code></p>
 <h2 id="備考">備考</h2>
 <p><a href="10.2.symbol-function.html"><code>symbol-function</code></a>は、 <a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>によって生成された レキシカルな関数の値にアクセスできません。 それはただグローバルな関数の値にのみアクセスできます。</p>
-<p><code>setf</code>は、<a href="10.2.symbol-function.html"><code>symbol-function</code></a>とともに使用することで、 <em>symbol</em>の関数定義が特殊オペレーターとして表現されていない場合は、 グローバルな関数定義を置き換えます。</p>
+<p><a href="5.3.setf.html"><code>setf</code></a>は、<a href="10.2.symbol-function.html"><code>symbol-function</code></a>とともに使用することで、 <em>symbol</em>の関数定義が特殊オペレーターとして表現されていない場合は、 グローバルな関数定義を置き換えます。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">symbol-function</span> <span class="kw">symbol</span>) ==  (<span class="kw">fdefinition</span> <span class="kw">symbol</span>)</span></code></pre></div>
 <p>しかし、<a href="5.3.fdefinition.html"><code>fdefinition</code></a>は、引数にシンボル以外を受け付けます。</p>
 <hr />

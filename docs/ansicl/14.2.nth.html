@@ -231,7 +231,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="14.2.nth.html"><code>nth</code></a>は、 <em>list</em>の<code>car</code>部を「0番目」の要素したときの、 <em>list</em>の<em>n</em>番目の要素を示します。 具体的には次のようになります。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> n <span class="kw">list</span>) ==  (<span class="kw">car</span> (<span class="kw">nthcdr</span> n <span class="kw">list</span>))</span></code></pre></div>
-<p><a href="14.2.nth.html"><code>nth</code></a>は、<code>setf</code>の<code>place</code>として指定できます。 具体的には次のようになります。</p>
+<p><a href="14.2.nth.html"><code>nth</code></a>は、<a href="5.3.setf.html"><code>setf</code></a>の<code>place</code>として指定できます。 具体的には次のようになります。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">nth</span> n <span class="kw">list</span>) new-object) ==  (<span class="kw">setf</span> (<span class="kw">car</span> (<span class="kw">nthcdr</span> n <span class="kw">list</span>)) new-object)</span></code></pre></div>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">nth</span> <span class="dv">0</span> &#39;(foo bar baz)) <span class="op">=&gt;</span>  FOO</span>

@@ -1,0 +1,124 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro SETF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.setf
+@name: setf
+@name: psetf
+@type: macro
+
+Macro `SETF`, `PSETF`
+
+
+## {syntax}
+
+`setf` `{`*pair*`}`\* => *result\**  
+`psetf` `{`*pair*`}`\* => {nil!variable:link}
+
+```
+pair ::= place newvalue 
+```
+
+
+## {arguments-and-values}
+
+*place* - {place}  
+*newvalue* - フォーム  
+*result* - 最後の{place}の格納フォームから返却された多値か、
+*pair*がないときは{nil!variable:link}。
+
+
+## {description}
+
+{setf:link}は、{place}の値を*newvalue*に変更します。
+
+`(setf place newvalue)`は、
+*newvalue*の評価結果が{place}の場所へ保存されるような
+更新フォームに展開されます。
+いくつかの{place}フォームは、
+オプションの引数を取るアクセッサを使用して実行します。
+それらのオプション引数が{setf:link}によって許可されるかどうか、
+あるいはどのように使うかは{setf:link}の展開関数次第であり、
+{setf:link}の制御下にはありません。
+{setf:link}の使用時に
+引数`&optional`, `&rest`, ..., &keyを
+受け付けるような関数のドキュメントは、
+どのようにそれらの引数を扱うのかを指定しなければなりません。
+
+もし複数の*pair*が指定されたら、
+各*pair*は順番に処理されます。
+次の式は、
+
+```lisp
+(setf place-1 newvalue-1
+      place-2 newvalue-2
+      ...
+      place-N newvalue-N)
+```
+
+下記の式と同等です。
+
+```lisp
+(progn (setf place-1 newvalue-1)
+       (setf place-2 newvalue-2)
+       ...
+       (setf place-N newvalue-N))
+```
+
+{psetf:link}は複数の*pair*が指定されたとき、
+{place}への新しい値の代入を並行に行います。
+もっと正確に言うと、
+全てのサブフォーム（*place*と*newvalue*の両方のフォーム）が
+左から右に評価され、全ての評価が実行されたあとで、
+全ての代入が順不同で行われます。
+
+{setf:link}と{psetf:link}の展開の扱いの詳細は、
+{5.1.2:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(setq x (cons 'a 'b) y (list 1 2 3)) =>  (1 2 3) 
+(setf (car x) 'x (cadr y) (car x) (cdr x) y) =>  (1 X 3) 
+x =>  (X 1 X 3) 
+y =>  (1 X 3) 
+(setq x (cons 'a 'b) y (list 1 2 3)) =>  (1 2 3) 
+(psetf (car x) 'x (cadr y) (car x) (cdr x) y) =>  NIL 
+x =>  (X 1 A 3) 
+y =>  (1 A 3) 
+```
+
+
+## {affected-by}
+
+{define-setf-expander:link},
+{defsetf:link},
+{*macroexpand-hook*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{define-setf-expander:link},
+{defsetf:link},
+{macroexpand-1:link},
+{rotatef:link},
+{shiftf:link},
+{5.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,118 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro SHIFTF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.shiftf
+@name: shiftf
+@type: macro
+
+Macro `SHIFTF`
+
+
+## {syntax}
+
+`shiftf` *place*+ *newvalue* => *old-value-1*
+
+
+## {arguments-and-values}
+
+*place* - {place}  
+*newvalue* - フォーム。評価されます。  
+*old-value-1* - オブジェクト（最初の{place}の古い値）
+
+
+## {description}
+
+{shiftf:link}は、各要素の値の変更を行いますが、
+まず*newvalue*を最後の{place}へ格納し、
+そのあと2番目から最後までの{place}の値を残りの{place}にシフトします。
+
+もし*newvalue*が格納変数より多い値を生成したときは、余分な値は無視されます。
+もし*newvalue*が格納変数より少ない値しか生成しなかったときは、
+値のないものは{nil!variable:link}がセットされます。
+
+フォームが`(shiftf place1 place2 ... placen newvalue)`のとき、
+*place1*～*placen*までの値を読み込み保存され、
+そして*newvalue*が評価され、合計で`n+1`個の値が用意されます。
+`2`～`n+1`個目の値は、それぞれ*place1*～*placen*に格納されます。
+それは全て*place*フォームがシフトレジスタであるかのように扱われます。
+*newvalue*は左からシフトされ、全ての値は左へひとつずつシフトされ、
+そしてシフトから外された*place1*値が返却されます。
+
+{place}のサブフォームの評価については、{5.1.1.1:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(setq x (list 1 2 3) y 'trash) =>  TRASH
+(shiftf y x (cdr x) '(hi there)) =>  TRASH
+x =>  (2 3)
+y =>  (1 HI THERE)
+
+(setq x (list 'a 'b 'c)) =>  (A B C)
+(shiftf (cadr x) 'z) =>  B
+x =>  (A Z C)
+(shiftf (cadr x) (cddr x) 'q) =>  Z
+x =>  (A (C) . Q)
+(setq n 0) =>  0
+(setq x (list 'a 'b 'c 'd)) =>  (A B C D)
+(shiftf (nth (setq n (+ n 1)) x) 'z) =>  B
+x =>  (A Z C D)
+```
+
+
+## {affected-by}
+
+{define-setf-expander:link},
+{defsetf:link},
+{*macroexpand-hook*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{setf:link},
+{rotatef:link},
+{5.1:ab}
+
+
+## {notes}
+
+`(shiftf place1 place2 ... placen newvalue)`の効果は、だいたい次と同等です。
+
+```lisp
+(let ((var1 place1)
+      (var2 place2)
+      ...
+      (varn placen)
+      (var0 newvalue))
+  (setf place1 var2)
+  (setf place2 var3)
+  ...
+  (setf placen var0)
+  var1)
+```
+
+ただし、これは各{place}のサブフォームを2度評価していますが、
+{shiftf:link}はただ一度だけです。
+例えば、下記の通り。
+
+```lisp
+(setq n 0) =>  0
+(setq x (list 'a 'b 'c 'd)) =>  (A B C D)
+(prog1 (nth (setq n (+ n 1)) x)
+       (setf (nth (setq n (+ n 1)) x) 'z)) =>  B
+x =>  (A B Z D)
+```
+
+@end
+

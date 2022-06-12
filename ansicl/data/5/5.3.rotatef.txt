@@ -1,0 +1,94 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  5. データと制御フロー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro ROTATEF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 5.3.rotatef
+@name: rotatef
+@type: macro
+
+Macro `ROTATEF`
+
+
+## {syntax}
+
+`rotatef` *place\** => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*place* - {place}
+
+
+## {description}
+
+{rotatef:link}は、ある{place}から他のものへ値の回転をすることで、
+各{place}を修正します。
+
+もし*newvalue*が格納変数より多い値を生成したときは、余分な値は無視されます。
+もし*newvalue*が格納変数より少ない値しか生成しなかったときは、
+値のないものは{nil!variable:link}がセットされます。
+
+フォームが`(rotatef place1 place2 ... placen newvalue)`のとき、
+*place1*～*placen*までの値を読み込み書き込まれます。
+`2`～`n`個目の値は、それぞれ*place1*～*placen*に格納されます。
+
+それは全て*place*フォームが、
+終端が周期的になっているシフトレジスタであるかのように扱われます。
+それは各{place}が左へひとつ回転され、
+*place1*の値は周期的に終わりの方である*placen*へシフトされます。
+
+{place}のサブフォームの評価については、{5.1.1.1:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(let ((n 0)
+       (x (list 'a 'b 'c 'd 'e 'f 'g)))
+   (rotatef (nth (incf n) x)
+            (nth (incf n) x)
+            (nth (incf n) x))
+   x) =>  (A C D B E F G)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{define-setf-expander:link},
+{defsetf:link},
+{setf:link},
+{shiftf:link},
+{*macroexpand-hook*:link},
+{5.1:ab}
+
+
+## {notes}
+
+`(rotatef place1 place2 ... placen newvalue)`の効果は、だいたい次と同等です。
+
+```lisp
+ (psetf place1 place2
+        place2 place3
+        ...
+        placen place1)
+```
+
+ただし、これは各{place}のサブフォームを2度評価していますが、
+{rotatef:link}はただ一度だけです。
+
+@end
+

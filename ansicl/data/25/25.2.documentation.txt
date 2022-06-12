@@ -13,6 +13,7 @@
 @link: function!symbol
 @link: method-combination!symbol
 @link: variable!symbol
+@link: setf!symbol
 @type: standard-generic-function
 
 

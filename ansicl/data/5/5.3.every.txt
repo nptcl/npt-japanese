@@ -70,8 +70,8 @@ Function `EVERY`, `SOME`, `NOTEVERY`, `NOTANY`
 
 {notevery:link}は、*predicate*のどれかが*false*を返却したら、
 すぐに*true*を返却します。
-もし*sequence*の終わりに到達したら、{notany:link}は*false*を返却します。
-したがって{notany:link}は、すべての*predicate*が*true*を返却しない場合にのみ、
+もし*sequence*の終わりに到達したら、{notevery:link}は*false*を返却します。
+したがって{notevery:link}は、すべての*predicate*が*true*を返却しない場合にのみ、
 *true*を返却します。
 
 

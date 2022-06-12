@@ -21,7 +21,7 @@ System Class `CHARACTER`
 ## {description}
 
 文字(character)とは、
-テキストを構成する集合体の、単一の要素を表すオブジェクトでです。
+テキストを構成する集合体の、単一の要素を表すオブジェクトです。
 {13.1:ab}を参照。  
 型{base-char:link}と型{extended-char:link}は、
 型{character!system-class:link}に含まれる要素です。

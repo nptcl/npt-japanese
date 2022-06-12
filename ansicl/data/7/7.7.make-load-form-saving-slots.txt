@@ -21,11 +21,11 @@ Function `MAKE-LOAD-FORM-SAVING-SLOTS`
 
 ## {arguments-and-values}
 
-object - オブジェクト  
-slot-names - リスト  
-environment - 環境オブジェクト  
-creation-form - フォーム  
-initialization-form - フォーム
+*object* - オブジェクト  
+*slot-names* - リスト  
+*environment* - 環境オブジェクト  
+*creation-form* - フォーム  
+*initialization-form* - フォーム
 
 
 ## {description}

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function COMPILED-FUNCTION-P</title>
+  <title>Function EVAL</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,44 +214,39 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function COMPILED-FUNCTION-P</h1>
+<h1 class="title">Function EVAL</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="function-compiled-function-p">Function <strong>COMPILED-FUNCTION-P</strong></h1>
-<p>Function <code>COMPILED-FUNCTION-P</code></p>
+<h1 id="function-eval">Function <strong>EVAL</strong></h1>
+<p>Function <code>EVAL</code></p>
 <h2 id="構文">構文</h2>
-<p><code>compiled-function-p</code> <em>object</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>eval</code> <em>form</em> =&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>object</em> - オブジェクト<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>form</em> - フォーム<br />
+<em>result</em> - <em>form</em>の評価によって生成された返却値</p>
 <h2 id="定義">定義</h2>
-<p><em>object</em>が型<code>compiled-function</code>なら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
+<p>現在の動的環境と<code>null</code>のレキシカルな環境で、<em>form</em>を評価します。</p>
+<p><a href="3.8.eval.html"><code>eval</code></a>は評価器のユーザーインターフェイスです。</p>
+<p>評価器はマクロの呼び出しを <code>macroexpand-1</code>を使用したかのように展開します。</p>
+<p><a href="3.8.eval.html"><code>eval</code></a>によって処理されたコードに定数が現れたとき、 それはコピーされたり合併されたりしません。 <a href="3.8.eval.html"><code>eval</code></a>の実行により返却されたコードが 参照しているオブジェクトは、 ソースコード上の対応するオブジェクトと<a href="5.3.eql-function.html"><code>eql</code></a>で一致します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x) x) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compile</span> &#39;f) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> (<span class="kw">compile</span> <span class="kw">nil</span> &#39;(<span class="kw">lambda</span> (x) x)))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;(<span class="kw">lambda</span> (x) x))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;(<span class="kw">lambda</span> (x) x)) <span class="op">=&gt;</span>  false</span></code></pre></div>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> form &#39;(<span class="op">1+</span> a) a <span class="dv">999</span>) <span class="op">=&gt;</span>  <span class="dv">999</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eval</span> form) <span class="op">=&gt;</span>  <span class="dv">1000</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eval</span> &#39;form) <span class="op">=&gt;</span>  (<span class="op">1+</span> A)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((a &#39;(this would <span class="kw">break</span> <span class="kw">if</span> <span class="kw">eval</span> used local value))) (<span class="kw">eval</span> form))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">1000</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.compile.html"><code>compile</code></a>, <code>compile-file</code>, <code>compiled-function</code></p>
+<p><code>macroexpand-1</code>, 3.1.2. 評価の規範</p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> object) == (<span class="kw">typep</span> object &#39;compiled-function)</span></code></pre></div>
+<p>シンボルの現在の動的な値を得るには、 <a href="10.2.symbol-value.html"><code>symbol-value</code></a>を使うのと <a href="3.8.eval.html"><code>eval</code></a>を使うのがそれぞれ有効であり同等です （そして普通は好ましい）。</p>
+<p><a href="3.8.eval.html"><code>eval</code></a>フォームは、その引数を2段階の評価で行うことに注意してください。 最初は、<em>form</em>をどんな呼び出しにも生じる 普通の引数の評価の仕組みで評価します。 この普通の引数の評価による返却値のオブジェクトが <em>form</em>パラメーターの値になり、 それから<a href="3.8.eval.html"><code>eval</code></a>フォームの部分として評価されます。 例えば下記の通り。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eval</span> (<span class="kw">list</span> &#39;cdr (<span class="kw">car</span> &#39;((<span class="kw">quote</span> (a . b)) c)))) <span class="op">=&gt;</span> b</span></code></pre></div>
+<p>引数のフォーム<code>(list 'cdr (car '((quote (a . b)) c)))</code>は 通常の方法により評価され、引数<code>(quote (a . b)))</code>を生成します。 それから<a href="3.8.eval.html"><code>eval</code></a>はその引数<code>(cdr (quote (a . b)))</code>を評価し<code>b</code>を生成します。 どのような関数のどんな引数でもすでに一回目の評価が生じているので、 <a href="3.8.eval.html"><code>eval</code></a>は「余分なレベルの評価」が生じたと言われることがあります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

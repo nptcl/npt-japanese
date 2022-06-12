@@ -66,6 +66,7 @@
       "Literal Objects in Compiled Files")
 (text 3.2.4.4 "外部オブジェクトの制約の追記"
       "Additional Constraints on Externalizable Objects")
+(text 3.2.5 "コンパイラーの例外状況" "Exceptional Situations in the Compiler")
 (text 3.4 "ラムダリスト" "Lambda Lists")
 (text 3.4.1 "{ordinary-lambda-list}" "Ordinary Lambda Lists")
 (text 3.4.4 "マクロのラムダリスト" "Macro Lambda Lists")
@@ -544,6 +545,7 @@
 (index 21.2 "ストリームの辞書" "Streams Dictionary")
 (dictionary 21.2.stream)
 (dictionary 21.2.*debug-io*)
+(dictionary 21.2.*error-output*)  ;; delete
 
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")
@@ -564,6 +566,7 @@
 ;; Chapter 23
 (index 23.2 "リーダーの辞書" "Reader Dictionary")
 (dictionary 23.2.read)
+(dictionary 23.2.set-macro-character)
 
 ;; Chapter 24
 (index 24.2 "システム構築の辞書" "System Construction Dictionary")

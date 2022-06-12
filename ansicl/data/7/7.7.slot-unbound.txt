@@ -25,10 +25,10 @@ Standard Generic Function `SLOT-UNBOUND`
 
 ## {arguments-and-values}
 
-class - インスタンス*instance*のクラス  
-instance - `unbound`スロットから読み込みしたインスタンス  
-slot-name - `unbound`スロットの名前  
-result - オブジェクト
+*class* - インスタンス*instance*のクラス  
+*instance* - `unbound`スロットから読み込みしたインスタンス  
+*slot-name* - `unbound`スロットの名前  
+*result* - オブジェクト
 
 
 ## {description}

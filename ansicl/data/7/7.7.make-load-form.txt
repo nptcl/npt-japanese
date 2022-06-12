@@ -29,10 +29,10 @@ Standard Generic Function `MAKE-LOAD-FORM`
 
 ## {arguments-and-values}
 
-object - オブジェクト  
-environment - 環境オブジェクト  
-creation-form - フォーム  
-initialization-form - フォーム
+*object* - オブジェクト  
+*environment* - 環境オブジェクト  
+*creation-form* - フォーム  
+*initialization-form* - フォーム
 
 
 ## {description}

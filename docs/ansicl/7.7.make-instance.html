@@ -163,9 +163,9 @@
 <p><code>make-instance</code> (<em>class</em> <code>standard-class</code>) &amp;rest <em>initargs</em><br />
 <code>make-instance</code> (<em>class</em> <a href="10.2.symbol.html"><code>symbol</code></a>) &amp;rest <em>initargs</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p>class - クラスか、クラス名のシンボル<br />
-initargs - 初期化引数リスト<br />
-instance - 新しい<em>class</em>クラスのインスタンス</p>
+<p><em>class</em> - クラスか、クラス名のシンボル<br />
+<em>initargs</em> - 初期化引数リスト<br />
+<em>instance</em> - 新しい<em>class</em>クラスのインスタンス</p>
 <h2 id="定義">定義</h2>
 <p>ジェネリック関数<a href="7.7.make-instance.html"><code>make-instance</code></a>は、 クラス<em>class</em>の新しいインスタンスを作成して返却します。</p>
 <p>もし上記メソッド定義の2番目が選ばれたとき、 そのメソッドは、第一引数を<code>(find-class class)</code>、 そのあとの引数を<em>initargs</em>として<a href="7.7.make-instance.html"><code>make-instance</code></a>を実行します。</p>

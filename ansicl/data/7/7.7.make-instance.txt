@@ -26,9 +26,9 @@ Standard Generic Function `MAKE-INSTANCE`
 
 ## {arguments-and-values}
 
-class - クラスか、クラス名のシンボル  
-initargs - {initialization-arguments}リスト  
-instance - 新しい*class*クラスのインスタンス
+*class* - クラスか、クラス名のシンボル  
+*initargs* - {initialization-arguments}リスト  
+*instance* - 新しい*class*クラスのインスタンス
 
 
 ## {description}

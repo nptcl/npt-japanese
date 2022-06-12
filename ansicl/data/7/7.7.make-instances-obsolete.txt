@@ -26,7 +26,7 @@ Standard Generic Function `MAKE-INSTANCES-OBSOLETE`
 
 ## {arguments-and-values}
 
-class - クラス指定子
+*class* - クラス指定子
 
 
 ## {description}

@@ -1,0 +1,96 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function EVAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.eval
+@name: eval
+@type: function
+
+Function `EVAL`
+
+
+## {syntax}
+
+`eval` *form* => *result\**
+
+
+## {arguments-and-values}
+
+*form* - フォーム  
+*result* - *form*の評価によって生成された返却値
+
+
+## {description}
+
+現在の動的環境と{null-lexical-environment}で、*form*を評価します。
+
+{eval:link}は評価器のユーザーインターフェイスです。
+
+評価器はマクロの呼び出しを
+{macroexpand-1:link}を使用したかのように展開します。
+
+{eval:link}によって処理されたコードに定数が現れたとき、
+それはコピーされたり合併されたりしません。
+{eval:link}の実行により返却されたコードが
+参照しているオブジェクトは、
+ソースコード上の対応するオブジェクトと{eql!function:link}で一致します。
+
+
+## {examples}
+
+```lisp
+(setq form '(1+ a) a 999) =>  999
+(eval form) =>  1000
+(eval 'form) =>  (1+ A)
+(let ((a '(this would break if eval used local value))) (eval form))
+=>  1000
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{macroexpand-1:link},
+{3.1.2:ab}
+
+
+## {notes}
+
+シンボルの現在の動的な値を得るには、
+{symbol-value:link}を使うのと
+{eval:link}を使うのがそれぞれ有効であり同等です
+（そして普通は好ましい）。
+
+{eval:link}フォームは、その引数を2段階の評価で行うことに注意してください。
+最初は、*form*をどんな呼び出しにも生じる
+普通の引数の評価の仕組みで評価します。
+この普通の引数の評価による返却値のオブジェクトが
+*form*パラメーターの値になり、
+それから{eval:link}フォームの部分として評価されます。
+例えば下記の通り。
+
+```lisp
+(eval (list 'cdr (car '((quote (a . b)) c)))) => b
+```
+
+引数のフォーム`(list 'cdr (car '((quote (a . b)) c)))`は
+通常の方法により評価され、引数`(quote (a . b)))`を生成します。
+それから{eval:link}はその引数`(cdr (quote (a . b)))`を評価し`b`を生成します。
+どのような関数のどんな引数でもすでに一回目の評価が生じているので、
+{eval:link}は「余分なレベルの評価」が生じたと言われることがあります。
+
+@end
+

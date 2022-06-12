@@ -22,12 +22,12 @@ Macro `WITH-ACCESSORS`
 
 ## {arguments-and-values}
 
-variable-name - 変数名、評価はされない  
-accessor-name - 関数名、評価はされない  
-instance-form - フォーム、評価される  
-declaration - 宣言式、評価はされない  
-forms - フォーム、{implicit-progn}  
-results - フォームの返却値
+*variable-name* - 変数名、評価はされない  
+*accessor-name* - 関数名、評価はされない  
+*instance-form* - フォーム、評価される  
+*declaration* - 宣言式、評価はされない  
+*form* - フォーム、{implicit-progn}  
+*result* - フォームの返却値
 
 
 ## {description}

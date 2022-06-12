@@ -58,7 +58,7 @@ long-form-option::= :description description |
 *predicate* - シンボルであり、
 それはひとつの引数を取り{generalized-boolean}を返却する関数名。  
 *qualifier-pattern* - リストか、シンボル`*`  
-*required-p - {generalized-boolean}
+*required-p* - {generalized-boolean}
 
 
 ## {description}

@@ -230,7 +230,7 @@
 <em>name</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p>下記に示すような、<em>function</em>の情報を返却します。</p>
-<p>第一返却値である<em>lambda-expression</em>は、 <em>function</em>が定義されたラムダ式か、 もし情報が利用できないときは<a href="5.3.nil-variable.html"><code>nil</code></a>です。 ラムダ式は何らかの方法で前処理されているかもしれませんが、 しかし<code>compile</code>や<a href="5.3.function-special.html"><code>function</code></a>の引数としては 適切のままであるべきです。 実装は、どんな<em>function</em>の<em>lambda-expression</em>でも <a href="5.3.nil-variable.html"><code>nil</code></a>を返却するのは正当です。</p>
+<p>第一返却値である<em>lambda-expression</em>は、 <em>function</em>が定義されたラムダ式か、 もし情報が利用できないときは<a href="5.3.nil-variable.html"><code>nil</code></a>です。 ラムダ式は何らかの方法で前処理されているかもしれませんが、 しかし<a href="3.8.compile.html"><code>compile</code></a>や<a href="5.3.function-special.html"><code>function</code></a>の引数としては 適切のままであるべきです。 実装は、どんな<em>function</em>の<em>lambda-expression</em>でも <a href="5.3.nil-variable.html"><code>nil</code></a>を返却するのは正当です。</p>
 <p>第二返却値の<em>closure-p</em>は、 <em>function</em>の定義が<code>null</code>のレキシカルな環境で囲まれていたか、 あるいは<em>function</em>の定義が何らかの非<code>null</code>のレキシカルな環境で囲まれた 非<a href="5.3.nil-variable.html"><code>nil</code></a>の環境下であれば、 <a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます （注釈：非<code>null</code>のレキシカルな環境とは、 グローバル環境から何の追加情報もないレキシカルな環境のことです）。 実装は、どんな<em>function</em>の<em>closure-p</em>でも、 <em>true</em>を返却するのは正当です。</p>
 <p>第三返却値<em>name</em>は、関数の名前です。 名前はデバッグ時にのみ使われ、 それは、例えば<a href="5.3.defun.html"><code>defun</code></a>や<a href="5.3.function-special.html"><code>function</code></a>の 名前として使われるのに有効である必要はありません。 慣例として、<a href="5.3.nil-variable.html"><code>nil</code></a>は <em>function</em>が名前を持たないことを意味します。 実装は、どんな<em>function</em>の<em>name</em>でも、 <a href="5.3.nil-variable.html"><code>nil</code></a>を返却するのは正当です。</p>
 <h2 id="例文">例文</h2>
@@ -282,7 +282,7 @@
 <h2 id="参考">参考</h2>
 <p>なし。</p>
 <h2 id="備考">備考</h2>
-<p>実装は全ての場合において、自由に<code>nil, true, nil</code>を返却することができますが、 <code>compile</code>か<code>eval</code>の呼び出しによって引数が作成された場合 （コンパイルされたファイルのロードによって生成されたものとは反対に）は、 第一返却値にラムダ式を返却することが推奨されています。</p>
+<p>実装は全ての場合において、自由に<code>nil, true, nil</code>を返却することができますが、 <a href="3.8.compile.html"><code>compile</code></a>か<a href="3.8.eval.html"><code>eval</code></a>の呼び出しによって引数が作成された場合 （コンパイルされたファイルのロードによって生成されたものとは反対に）は、 第一返却値にラムダ式を返却することが推奨されています。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

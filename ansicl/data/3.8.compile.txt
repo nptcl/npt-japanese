@@ -1,0 +1,116 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPILE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.compile
+@name: compile
+@type: function
+
+Function `COMPILE`
+
+
+## {syntax}
+
+`compile` *name* &optional *definition* => *function*, *warnings-p*, *failure-p*
+
+
+## {arguments-and-values}
+
+*name* - 関数名か、{nil!variable:link}  
+*definition* - ラムダ式か関数。
+デフォルトは、もし*name*が関数名のときはその関数定義、
+マクロ関数の名前のときはマクロ関数です。
+*name*が{nil!variable:link}で
+*definition*が与えられなかったときの結果は未定義です。  
+*function* - 関数名か、コンパイルされた関数  
+*warnings-p* - {generalized-boolean}  
+*failure-p* - {generalized-boolean}
+
+
+## {description}
+
+{interpreted-function}をコンパイルします。
+
+{compile:link}は、*definition*からコンパイル関数を生成します。
+もし*definition*がラムダ式のときは、それを強制的に関数へ変換します。
+もし*definition*がすでにコンパイル関数のときは、
+{compile:link}は自分自身の関数（例えば同一の操作）か、
+同等の関数を生成します。
+
+もし*name*が{nil!variable:link}のときは、
+コンパイル関数の返却は、主値に直接返却されます。
+もし*name*の{nil!variable:link}ではないときは、
+コンパイル関数は*name*に定義されている既存の関数を置き換え、
+*name*を主値に返却します。
+もし*name*がマクロ名のシンボルのときはそのマクロ関数が更新され、
+*name*を主値に返却します。
+
+コンパイル関数による処理でコードに現れた{literal-object}は、
+コピーも合体もされません。
+{compile:link}の実行により返却されたコードが
+参照しているオブジェクトは、
+ソースコード上の対応するオブジェクトと{eql!function:link}で一致します。
+
+{compile:link}は、型{error!condition:link}のコンディションへの
+`handler`を確立させることを許しますが、しかし必須ではありません。
+例えば、その`handler`は警告を発し、
+いくつかの{implementation-dependent}の部分に対して
+手動で介入することなくコンパイルを再開することができます。
+
+第二返却値の*warnings-p*は、
+もしコンパイルによって型{error!condition:link}か{warning:link}の
+コンディションが検出されなかったら*false*に、それ以外は*true*になります。
+
+第三返却値の*failer-p*は、
+もしコンパイルによって型{error!condition:link}か
+あるいは{style-warning:link}以外の{warning:link}の
+コンディションが検出されなかったら*false*に、それ以外は*true*になります。
+
+
+## {examples}
+
+```lisp
+(defun foo () "bar") =>  FOO
+(compiled-function-p #'foo) =>  implementation-dependent
+(compile 'foo) =>  FOO 
+(compiled-function-p #'foo) =>  true
+(setf (symbol-function 'foo)
+      (compile nil '(lambda () "replaced"))) =>  #<Compiled-Function>
+(foo) =>  "replaced"
+```
+
+
+## {affected-by}
+
+{*error-output*:link},
+{*macroexpand-hook*:link}
+
+マクロの定義と宣言の存在。
+
+
+## {exceptional-situations}
+
+もしレキシカルで囲まれた関数がコンパイルされ、
+その束縛にマクロとシンボルマクロと宣言以外ののもが
+含まれてたいときの結果は未定義です
+
+
+コンパイル処理中のエラーの検出の情報については、
+{3.2.5:ab}をご確認ください。
+
+
+## {see-also}
+
+{compile-file:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

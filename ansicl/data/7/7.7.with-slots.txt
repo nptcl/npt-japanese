@@ -22,13 +22,13 @@ Macro `WITH-SLOTS`
 
 ## {arguments-and-values}
 
-slot-name - スロット名、評価はされない  
-variable-name - 変数名、評価はされない  
-instance-form - フォーム、評価されて*instance*が生成される  
-instance - オブジェクト  
-declaration - 宣言式、評価はされない  
-forms - フォーム、{implicit-progn}  
-results - フォームの返却値
+*slot-name* - スロット名、評価はされない  
+*variable-name* - 変数名、評価はされない  
+*instance-form* - フォーム、評価されて*instance*が生成される  
+*instance* - オブジェクト  
+*declaration* - 宣言式、評価はされない  
+*form* - フォーム、{implicit-progn}  
+*result* - フォームの返却値
 
 
 ## {description}

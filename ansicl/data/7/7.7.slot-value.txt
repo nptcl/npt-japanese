@@ -20,9 +20,9 @@ Function `SLOT-VALUE`
 
 ## Arguments and Values:
 
-object - オブジェクト  
-name - シンボル  
-value - オブジェクト
+*object* - オブジェクト  
+*name* - シンボル  
+*value* - オブジェクト
 
 
 ## {description}

@@ -160,11 +160,11 @@
 <h2 id="構文">構文</h2>
 <p><code>make-load-form-saving-slots</code> <em>object</em> &amp;key <em>slot-names</em> <em>environment</em> =&gt; <em>creation-form</em>, <em>initialization-form</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p>object - オブジェクト<br />
-slot-names - リスト<br />
-environment - 環境オブジェクト<br />
-creation-form - フォーム<br />
-initialization-form - フォーム</p>
+<p><em>object</em> - オブジェクト<br />
+<em>slot-names</em> - リスト<br />
+<em>environment</em> - 環境オブジェクト<br />
+<em>creation-form</em> - フォーム<br />
+<em>initialization-form</em> - フォーム</p>
 <h2 id="定義">定義</h2>
 <p>返却値のフォームが評価されたとき、 <em>initialization-form</em>の実行なしに、 <em>object</em>と同等のオブジェクトが構築されます。 新しいオブジェクトのスロットの初期化は、 <em>object</em>の初期化されているスロットに対してはその値を用いて行われます。 <em>object</em>の初期化されていないスロットについては、 新しいオブジェクトでは初期化されません。 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は、 <code>standard-object</code>か<code>structure-object</code>の インスタンスであれば動作します。</p>
 <p><em>slot-names</em>は保存するスロットの名前のリストです。 <em>slot-names</em>が与えられない場合、その値はすべての局所スロットになります。</p>

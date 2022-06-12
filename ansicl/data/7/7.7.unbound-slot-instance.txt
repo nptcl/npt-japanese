@@ -21,7 +21,7 @@ Function `UNBOUND-SLOT-INSTANCE`
 ## {arguments-and-values}
 
 *condition* - {unbound-slot:link}型のコンディション  
-*instance - オブジェクト
+*instance* - オブジェクト
 
 
 ## {description}

@@ -29,7 +29,7 @@ Standard Generic Function `FIND-METHOD`
 ## {arguments-and-values}
 
 *generic-function* - ジェネリック関数  
-*method-qualifiers - リスト  
+*method-qualifiers* - リスト  
 *specializers* - リスト  
 *errorp* - {generalized-boolean}、デフォルトは*true*  
 *method* - メソッドオブジェクトか、{nil!variable:link}

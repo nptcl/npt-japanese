@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function COMPILED-FUNCTION-P</title>
+  <title>Function COMPILE</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,44 +214,46 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function COMPILED-FUNCTION-P</h1>
+<h1 class="title">Function COMPILE</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="function-compiled-function-p">Function <strong>COMPILED-FUNCTION-P</strong></h1>
-<p>Function <code>COMPILED-FUNCTION-P</code></p>
+<h1 id="function-compile">Function <strong>COMPILE</strong></h1>
+<p>Function <code>COMPILE</code></p>
 <h2 id="構文">構文</h2>
-<p><code>compiled-function-p</code> <em>object</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>compile</code> <em>name</em> &amp;optional <em>definition</em> =&gt; <em>function</em>, <em>warnings-p</em>, <em>failure-p</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>object</em> - オブジェクト<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>name</em> - 関数名か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>definition</em> - ラムダ式か関数。 デフォルトは、もし<em>name</em>が関数名のときはその関数定義、 マクロ関数の名前のときはマクロ関数です。 <em>name</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>で <em>definition</em>が与えられなかったときの結果は未定義です。<br />
+<em>function</em> - 関数名か、コンパイルされた関数<br />
+<em>warnings-p</em> - generalized-boolean<br />
+<em>failure-p</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><em>object</em>が型<code>compiled-function</code>なら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
+<p><code>interpreted-function</code>をコンパイルします。</p>
+<p><a href="3.8.compile.html"><code>compile</code></a>は、<em>definition</em>からコンパイル関数を生成します。 もし<em>definition</em>がラムダ式のときは、それを強制的に関数へ変換します。 もし<em>definition</em>がすでにコンパイル関数のときは、 <a href="3.8.compile.html"><code>compile</code></a>は自分自身の関数（例えば同一の操作）か、 同等の関数を生成します。</p>
+<p>もし<em>name</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 コンパイル関数の返却は、主値に直接返却されます。 もし<em>name</em>の<a href="5.3.nil-variable.html"><code>nil</code></a>ではないときは、 コンパイル関数は<em>name</em>に定義されている既存の関数を置き換え、 <em>name</em>を主値に返却します。 もし<em>name</em>がマクロ名のシンボルのときはそのマクロ関数が更新され、 <em>name</em>を主値に返却します。</p>
+<p>コンパイル関数による処理でコードに現れたリテラルオブジェクトは、 コピーも合体もされません。 <a href="3.8.compile.html"><code>compile</code></a>の実行により返却されたコードが 参照しているオブジェクトは、 ソースコード上の対応するオブジェクトと<a href="5.3.eql-function.html"><code>eql</code></a>で一致します。</p>
+<p><a href="3.8.compile.html"><code>compile</code></a>は、型<a href="9.2.error-condition.html"><code>error</code></a>のコンディションへの <code>handler</code>を確立させることを許しますが、しかし必須ではありません。 例えば、その<code>handler</code>は警告を発し、 いくつかの実装依存の部分に対して 手動で介入することなくコンパイルを再開することができます。</p>
+<p>第二返却値の<em>warnings-p</em>は、 もしコンパイルによって型<a href="9.2.error-condition.html"><code>error</code></a>か<code>warning</code>の コンディションが検出されなかったら<em>false</em>に、それ以外は<em>true</em>になります。</p>
+<p>第三返却値の<em>failer-p</em>は、 もしコンパイルによって型<a href="9.2.error-condition.html"><code>error</code></a>か あるいは<code>style-warning</code>以外の<code>warning</code>の コンディションが検出されなかったら<em>false</em>に、それ以外は<em>true</em>になります。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x) x) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compile</span> &#39;f) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> (<span class="kw">compile</span> <span class="kw">nil</span> &#39;(<span class="kw">lambda</span> (x) x)))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;(<span class="kw">lambda</span> (x) x))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;(<span class="kw">lambda</span> (x) x)) <span class="op">=&gt;</span>  false</span></code></pre></div>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>() <span class="st">&quot;bar&quot;</span>) <span class="op">=&gt;</span>  FOO</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;foo) <span class="op">=&gt;</span>  implementation-dependent</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compile</span> &#39;foo) <span class="op">=&gt;</span>  FOO </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;foo) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">symbol-function</span> &#39;foo)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">compile</span> <span class="kw">nil</span> &#39;(<span class="kw">lambda</span> () <span class="st">&quot;replaced&quot;</span>))) <span class="op">=&gt;</span>  #&lt;Compiled-Function&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(foo) <span class="op">=&gt;</span>  <span class="st">&quot;replaced&quot;</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p><code>*error-output*</code>, <code>*macroexpand-hook*</code></p>
+<p>マクロの定義と宣言の存在。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p>もしレキシカルで囲まれた関数がコンパイルされ、 その束縛にマクロとシンボルマクロと宣言以外ののもが 含まれてたいときの結果は未定義です</p>
+<p>コンパイル処理中のエラーの検出の情報については、 3.2.5. コンパイラーの例外状況をご確認ください。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.compile.html"><code>compile</code></a>, <code>compile-file</code>, <code>compiled-function</code></p>
+<p><code>compile-file</code></p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> object) == (<span class="kw">typep</span> object &#39;compiled-function)</span></code></pre></div>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

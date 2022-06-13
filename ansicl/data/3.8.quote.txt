@@ -1,0 +1,89 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator QUOTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.quote
+@name: quote
+@type: special-operator
+
+Special Operator `QUOTE`
+
+
+## {syntax}
+
+`quote` *object* => *object*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト。評価はされません。
+
+
+## {description}
+
+{special-operator}の{quote:link}は、*object*を返却します。
+
+もし（クォートされたオブジェクトに含まれる）
+{literal-object}が破壊的に修正された結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(setq a 1) =>  1
+(quote (setq a 3)) =>  (SETQ A 3)
+a =>  1
+'a =>  A
+''a =>  (QUOTE A) 
+'''a =>  (QUOTE (QUOTE A))
+(setq a 43) =>  43
+(list a (cons a 3)) =>  (43 (43 . 3))
+(list (quote a) (quote (cons a 3))) =>  (A (CONS A 3)) 
+1 =>  1
+'1 =>  1
+"foo" =>  "foo"
+'"foo" =>  "foo"
+(car '(a b)) =>  A
+'(car '(a b)) =>  (CAR (QUOTE (A B)))
+#(car '(a b)) =>  #(CAR (QUOTE (A B)))
+'#(car '(a b)) =>  #(CAR (QUOTE (A B)))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{3.1:ab},
+{2.4.3:ab},
+{3.2.1:ab}
+
+
+## {notes}
+
+文章としての表記`'object`は、`(quote object)`と等価です。
+{3.2.1:ab}をご確認ください。
+
+いくつかの自己評価型オブジェクトと呼ばれるものは、
+{quote:link}によるクォートを必要としません。
+しかしシンボルとリストは、
+プログラムの部分として表現するときには使われますし、
+プログラムの中においては{quote:link}なしで
+定数のデータとして利用することはできません。
+{quote:link}はそれらのオブジェクトの評価を抑制するので、
+それらはプログラムではなくデータになります。
+
+@end
+

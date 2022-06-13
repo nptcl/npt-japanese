@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor COMPILER-MACRO-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.compiler-macro-function
+@name: compiler-macro-function
+@type: accessor
+
+Accessor `COMPILER-MACRO-FUNCTION`
+
+
+## {syntax}
+
+`compiler-macro-function` *name* &optional *environment* => *function*  
+(`setf` (`compiler-macro-function` *name* &optional *environment*) *new-function*)
+
+
+## {arguments-and-values}
+
+*name* - 関数名  
+*environment* - 環境オブジェクト  
+*function*, *new-function* - コンパイラーマクロ関数か、{nil!variable:link}
+
+
+## {description}
+
+もし指定されているなら*environment*を考慮して、
+*name*というコンパイラーマクロ関数にアクセスします。
+
+値{nil!variable:link}は、
+*name*というコンパイラーマクロが存在しないことを示します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*environment*が非{nil!variable:link}の状態で
+{setf:link}の{compiler-macro-function:link}を使用したときの
+結果は未定義です。
+
+
+## {see-also}
+
+{define-compiler-macro:link},
+{3.2.2.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

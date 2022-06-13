@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>3.8. 評価とコンパイルの辞書</title>
+  <title>Accessor COMPILER-MACRO-FUNCTION</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,22 +151,32 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">3.8. 評価とコンパイルの辞書</h1>
+<h1 class="title">Accessor COMPILER-MACRO-FUNCTION</h1>
 </header>
-<p><a href="3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<p>3.8. 評価とコンパイルの辞書</p>
-<ul>
-<li><a href="3.8.lambda-symbol.html">Symbol <strong>LAMBDA</strong></a></li>
-<li><a href="3.8.lambda-macro.html">Macro <strong>LAMBDA</strong></a></li>
-<li><a href="3.8.compile.html">Function <strong>COMPILE</strong></a></li>
-<li><a href="3.8.eval.html">Function <strong>EVAL</strong></a></li>
-<li><a href="3.8.eval-when.html">Special-Operator <strong>EVAL-WHEN</strong></a></li>
-<li><a href="3.8.load-time-value.html">Special-Operator <strong>LOAD-TIME-VALUE</strong></a></li>
-<li><a href="3.8.quote.html">Special-Operator <strong>QUOTE</strong></a></li>
-<li><a href="3.8.compiler-macro-function.html">Accessor <strong>COMPILER-MACRO-FUNCTION</strong></a></li>
-<li><a href="3.8.optimize.html">Declaration <strong>OPTIMIZE</strong></a></li>
-</ul>
+<h1 id="accessor-compiler-macro-function">Accessor <strong>COMPILER-MACRO-FUNCTION</strong></h1>
+<p>Accessor <code>COMPILER-MACRO-FUNCTION</code></p>
+<h2 id="構文">構文</h2>
+<p><code>compiler-macro-function</code> <em>name</em> &amp;optional <em>environment</em> =&gt; <em>function</em><br />
+(<code>setf</code> (<code>compiler-macro-function</code> <em>name</em> &amp;optional <em>environment</em>) <em>new-function</em>)</p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>name</em> - 関数名<br />
+<em>environment</em> - 環境オブジェクト<br />
+<em>function</em>, <em>new-function</em> - コンパイラーマクロ関数か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="定義">定義</h2>
+<p>もし指定されているなら<em>environment</em>を考慮して、 <em>name</em>というコンパイラーマクロ関数にアクセスします。</p>
+<p>値<a href="5.3.nil-variable.html"><code>nil</code></a>は、 <em>name</em>というコンパイラーマクロが存在しないことを示します。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><em>environment</em>が非<a href="5.3.nil-variable.html"><code>nil</code></a>の状態で <a href="5.3.setf.html"><code>setf</code></a>の<a href="3.8.compiler-macro-function.html"><code>compiler-macro-function</code></a>を使用したときの 結果は未定義です。</p>
+<h2 id="参考">参考</h2>
+<p><code>define-compiler-macro</code>, 3.2.2.1. コンパイラーマクロ</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

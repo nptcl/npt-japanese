@@ -1,0 +1,166 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator LOAD-TIME-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.load-time-value
+@name: load-time-value
+@type: special-operator
+
+Special Operator `LOAD-TIME-VALUE`
+
+
+## {syntax}
+
+`load-time-value` *form* &optional *read-only-p* => *object*
+
+
+## {arguments-and-values}
+
+*form* - フォーム。下記の説明に従って評価されます。  
+*read-only-p* - ブール値。評価されません。
+*object* - *form*の評価の結果の主値
+
+
+## {description}
+
+{load-time-value:link}は、その式が実行環境に入るまで
+*form*の評価を遅らせる仕組みを提供します。
+{3.2:ab}をご確認ください。
+
+*read-only-p*は、結果を定数オブジェクトとみなすかどうかを指示します。
+もし{t!variable:link}のとき結果は読み込み専用の値となり、
+実装が適用可能であれば、読み込み専用の領域にコピーするか、
+あるいは同時に他のプログラムからの似た定数オブジェクトと合併します。
+もし{nil!variable:link}のとき（デフォルト）は、
+結果はコピーも合併もされません。
+それは修正される可能性のあるデータとして扱われます。
+
+もし{load-time-value:link}の式が{compile-file:link}によって処理されるとき、
+コンパイラーは、まず*form*をマクロ展開や機械語コードへの変換など、
+通常の方法で処理します。そのとき、*form*のロード実行時に
+{null-lexical-environment}であるように配置します。
+評価の結果は、実行時には{literal-object}のように扱われます。
+ファイル読み込み時には、*form*の実行はただ一度だけ行われることが保証されます。
+しかしその評価順がファイル内の{top-level-form}の評価順を
+遵守するかどうかは{implementation-dependent}です。
+
+{compile:link}によってコンパイルされた関数上に
+{load-time-value:link}があらわれたとき、
+その*form*はコンパイル時に{null-lexical-environment}として評価されます。
+コンパイル時に評価されたその結果は、
+コンパイルされたコード上では{literal-object}として扱われます。
+
+もし{load-time-value:link}の式が{eval:link}によって処理されるとき、
+その*form*は{null-lexical-environment}によって評価され、
+ひとつの値が返却されます。
+{eval:link}による式の処理の一部か全体を暗黙的にコンパイルするような実装では、
+*form*がたった一度だけ評価されるときにコンパイル処理が行われます。
+
+もし`(load-time-value form)`という同じリストが
+評価時かコンパイル時に複数現れたとき、
+*form*の評価がただ一度だけ行われるか、
+あるいは複数行われるかは{implementation-dependent}です。
+これは、式が評価とコンパイル時で部分構造を共有するときと、
+同じフォームを{eval:link}か{compile:link}で複数回実行したときの、
+両方の場合で生じます。
+{eval:link}による{load-time-value:link}の式は
+同一の場所を複数参照したり複数評価できるので、
+各実行が新しいオブジェクトとを返却するか、
+あるいは別の何かの実行によって生成された
+同じオブジェクトを返却するのかは
+{implementation-dependent}です。
+ユーザーはこの返却値のオブジェクトを破壊的に修正するときには、
+注意する必要があります。
+
+同一ではないが{equal:link}で等しい
+2つの`(load-time-value form)`というリストを
+評価かコンパイルするとき、
+それらの値は常に違った*form*の評価になります。
+それらの値は*read-only-p*が{t!variable:link}でもなければ、
+合併されません。
+
+
+## {examples}
+
+```lisp
+;;; INCR1関数は違うイメージでも常に同じ値を返却します。
+;;; INCR2関数は与えられたイメージ上で常に同じ値を返却します。
+;;; イメージによっては変更された値になるかもしれません。
+(defun incr1 (x) (+ x #.(random 17)))
+(defun incr2 (x) (+ x (load-time-value (random 17))))
+
+;;; FOO1-REF関数はロード時に利用可能になった*FOO-ARRAYS*の
+;;; 最初の要素のさらにn番目の要素を参照します。
+;;; これは配列を例えばSET-FOO1-REFなどで変更することが許されます。
+;;; FOO1-REFは更新された値を見るでしょう。
+(defvar *foo-arrays* (list (make-array 7) (make-array 8)))
+(defun foo1-ref (n) (aref (load-time-value (first *my-arrays*) nil) n))
+(defun set-foo1-ref (n val) 
+  (setf (aref (load-time-value (first *my-arrays*) nil) n) val))
+
+;;; BAR1-REF関数はロード時に利用可能になった*FOO-ARRAYS*の
+;;; 最初の要素のさらにn番目の要素を参照します。
+;;; プログラマーにはこの配列が読み込み専用で扱われるという約束があるので
+;;; システムはその配列のコピーも合併も行いません。
+(defvar *bar-arrays* (list (make-array 7) (make-array 8)))
+(defun bar1-ref (n) (aref (load-time-value (first *my-arrays*) t) n))
+
+;;; このLOAD-TIME-VALUEにはNILが指定されていますが、
+;;; 指定した配列が合併されることを許します。
+;;; なぜならそのオブジェクトはコンストラクターによって生成されたものではなく
+;;; リテラルの配列として記載されているので、すでに読み込み専用だからです。
+;;; ユーザープログラムは、配列vを読み込み専用として扱わなければなりません。
+(defun baz-ref (n)
+  (let ((v (load-time-value #(A B C) nil)))
+    (values (svref v n) v)))
+
+;;; このLOAD-TIME-VALUEは、指定された配列が、外側の状況でNIL画指定されたものと
+;;; 内側の状況でT画指定されたものとで、合併することが許されます。
+;;; ユーザープログラムは、配列vを読み込み専用として扱わなければなりません。
+(defun baz-ref (n)
+  (let ((v (load-time-value (load-time-value (vector 1 2 3) t) nil)))
+    (values (svref v n) v)))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compile-file:link},
+{compile:link},
+{eval:link},
+{3.2.2.2:ab},
+{3.2:ab}
+
+
+## {notes}
+
+{load-time-value:link}は、クォートされた構造の外側の
+「評価による」位置に現れる必要があります。
+このような状況では、
+クォートされた構造の内側で{load-time-value:link}を使って
+呼び出されるようにしたいときは、
+おそらくバッククォートリーダーマクロを呼び出します。
+{2.4.6:ab}をご確認ください。
+
+もしオブジェクトが既に読み込み専用であったときは、
+*read-only-p*に{nil!variable:link}を指定しても、
+そのオブジェクトを強制的に修正可能にするわけではありません。
+この操作は、変更可能なオブジェクトに対して
+読み取り専用にする命令ではないと言っています。
+
+@end
+

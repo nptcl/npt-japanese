@@ -1,0 +1,211 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFMACRO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.defmacro
+@name: defmacro
+@type: macro
+
+Macro `DEFMACRO`
+
+
+## {syntax}
+
+`defmacro` *name* *lambda-list* [[*declaration\** | *documentation*]] *form\**  
+=> *name*
+
+
+## {arguments-and-values}
+
+*name* - シンボル  
+*lambda-list* - {macro-lambda-list}  
+*declaration* - 宣言式。評価されません。  
+*documentation* - 文字列。評価されません。  
+*form* - フォーム
+
+
+## {description}
+
+グローバル環境下において、*name*という名前のマクロ関数を、
+*name*というマクロとして定義します。
+そのマクロ関数は、{defmacro:link}が現れたところと同じ
+{lexical-environment}で定義されます。
+
+*lambda-list*のパラーメーターの変数は、
+マクロが呼ばれた部分を分配して束縛します。
+
+展開関数はフォームと環境の2つの引数を受け付けます。
+展開関数はフォームを返却します。
+展開関数のボディ部は、*form*によって指定されます。
+*form*は順に実行されます。
+最後の*form*が実行された値が、マクロ展開としての返却値になります。
+展開関数のボディ部である*form*は（ただし*lambda-list*は除く）、
+暗黙的に*name*という`block`に囲まれます。
+
+*lambda-list*は{3.4.4:ab}に記載されている要求に準拠します。
+
+*documentation*は、ドキュメント文字として種別{function!symbol:link}を
+そのマクロ関数に割り当てます。
+
+{defmacro:link}はマクロの再定義に使われますし、
+関数定義をマクロ定義に置き換えることにも使われます。
+
+*form*の展開は再帰的に行われ、
+返却されたフォームのサブフォームにある
+他のマクロの展開も含めてから終了させなければなりません。
+
+マクロを完全に展開した結果に
+{literal-object}以外の循環リスト構造が含まれていた時の
+結果は未定義です。
+
+もし{defmacro:link}フォームが{top-level-form}として現れたときは、
+コンパイラは、そのファイルの後でマクロが呼ばれたときに展開が行われるよう、
+マクロ定義を保存しなければなりません。
+
+もしコンパイルされたファイル内でそのマクロが参照されたときは、
+ユーザーは、コンパイル時にマクロ本体を評価できるよう
+保証しなければなりません。
+
+
+## {examples}
+
+```lisp
+(defmacro mac1 (a b) "Mac1 multiplies and adds" 
+           `(+ ,a (* ,b 3))) =>  MAC1 
+(mac1 4 5) =>  19 
+(documentation 'mac1 'function) =>  "Mac1 multiplies and adds" 
+(defmacro mac2 (&optional (a 2 b) (c 3 d) &rest x) `'(,a ,b ,c ,d ,x)) =>  MAC2 
+(mac2 6) =>  (6 T 3 NIL NIL) 
+(mac2 6 3 8) =>  (6 T 3 T (8)) 
+(defmacro mac3 (&whole r a &optional (b 3) &rest x &key c (d a))
+   `'(,r ,a ,b ,c ,d ,x)) =>  MAC3 
+(mac3 1 6 :d 8 :c 9 :d 10) =>  ((MAC3 1 6 :D 8 :C 9 :D 10) 1 6 9 8 (:D 8 :C 9 :D 10)) 
+```
+
+{ordinary-lambda-list}構文の
+リストではなくパラメーター名が現れる場所に
+{destructuring-lambda-list}を埋め込むことができます。
+この規則は曖昧性を防ぐために存在します。
+例えば、次の例文は正しくありません。
+
+```lisp
+(defmacro loser (x &optional (a b &rest c) &rest z)
+   ...)
+```
+
+なぜなら{ordinary-lambda-list}の構文は、
+`&optional`の後にリストを許容するからです。
+リストである`(a b &rest c)`は、
+オプション引数の名前`a`と、デフォルト値が`b`、
+`supplied-p`パラメーターが`&rest`（正しくありません）、
+そして余分なシンボル`c`（これも正しくありません）として解釈されます。
+下記の例もまた正しくありません。
+
+```lisp
+(defmacro loser (x &optional ((a b &rest c)) &rest z)
+   ...)
+```
+
+余分なカッコをセットしたことにより、曖昧性はなくなりました。
+しかし、この定義は今でも正しくはなく、
+なぜなら`(loser (car pool))`のようなマクロ呼び出しのときに、
+ラムダリストの`(a b &rest c)`フォームの各引数に何も与えるものはなく、
+明にデフォルト引数が与えられていないため、
+そのデフォルトに{nil!variable:link}をラムダリストに
+マッチさせようとするからです。
+フォームを持っていない空リスト{nil!variable:link}を
+パラメーター`a`と`b`に対して満たそうとしたときの結果は指定されていません。
+完全に正しい定義は次のどちらかになります。
+
+```lisp
+(defmacro loser (x &optional ((a b &rest c) '(nil nil)) &rest z)
+  ...)
+```
+
+あるいは、
+
+```lisp
+(defmacro loser (x &optional ((&optional a b &rest c)) &rest z)
+  ...)
+```
+
+これらは微妙に違っています。
+最初の定義は、もしマクロ呼び出しで`a`が明に指定されたら、
+`b`もまた明に指定しなければならないと要求しています。
+それに対して二番目の定義は、そのような共有はありません。
+例えば、
+
+```lisp
+(loser (car pool) ((+ x 1)))
+```
+
+この式は二番目の定義では正しい呼び出しですが、
+最初の方はそうではありません。
+
+```lisp
+(defmacro dm1a (&whole x) `',x)
+(macroexpand '(dm1a))  =>  (QUOTE (DM1A))
+(macroexpand '(dm1a a)) is an error.
+
+(defmacro dm1b (&whole x a &optional b) `'(,x ,a ,b))
+(macroexpand '(dm1b))  is an error.
+(macroexpand '(dm1b q))  =>  (QUOTE ((DM1B Q) Q NIL))
+(macroexpand '(dm1b q r)) =>  (QUOTE ((DM1B Q R) Q R))
+(macroexpand '(dm1b q r s)) is an error.
+(defmacro dm2a (&whole form a b) `'(form ,form a ,a b ,b))
+(macroexpand '(dm2a x y)) =>  (QUOTE (FORM (DM2A X Y) A X B Y))
+(dm2a x y) =>  (FORM (DM2A X Y) A X B Y)
+
+(defmacro dm2b (&whole form a (&whole b (c . d) &optional (e 5)) 
+                &body f &environment env)
+  ``(,',form ,,a ,',b ,',(macroexpand c env) ,',d ,',e ,',f))
+;バッククォートが実行されるので、実装はわずかに本質的に違う式
+;（しかし機能的にはそうではない）を展開することに注意してくださ。
+(macroexpand '(dm2b x1 (((incf x2) x3 x4)) x5 x6))
+=>  (LIST* '(DM2B X1 (((INCF X2) X3 X4))
+                  X5 X6)
+           X1
+           '((((INCF X2) X3 X4)) (SETQ X2 (+ X2 1)) (X3 X4) 5 (X5 X6))),
+    T
+(let ((x1 5))
+  (macrolet ((segundo (x) `(cadr ,x)))
+    (dm2b x1 (((segundo x2) x3 x4)) x5 x6)))
+=>  ((DM2B X1 (((SEGUNDO X2) X3 X4)) X5 X6)
+     5 (((SEGUNDO X2) X3 X4)) (CADR X2) (X3 X4) 5 (X5 X6))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{define-compiler-macro:link},
+{destructuring-bind:link},
+{documentation:link},
+{macroexpand:link},
+{*macroexpand-hook*:link},
+{macrolet:link},
+{macro-function:link},
+{3.1:ab},
+{3.2:ab},
+{3.4.11:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -308,7 +308,7 @@
 <p>例えば下記の文を考えます。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((x <span class="dv">3</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">eval-when</span> (:execute :load-toplevel :compile-toplevel) (<span class="kw">print</span> x)))</span></code></pre></div>
-<p>この文は、 実行時（例えばロード）に<code>3</code>を印字します。 そしてコンパイル時には何も印字しません。 <a href="5.3.defun.html"><code>defun</code></a>と<code>defmacro</code>の展開は、 <a href="3.8.eval-when.html"><code>eval-when</code></a>を実行することができて、 かつ正しくレキシカルな環境を捕捉することができるということは 重要なことです。</p>
+<p>この文は、 実行時（例えばロード）に<code>3</code>を印字します。 そしてコンパイル時には何も印字しません。 <a href="5.3.defun.html"><code>defun</code></a>と<a href="3.8.defmacro.html"><code>defmacro</code></a>の展開は、 <a href="3.8.eval-when.html"><code>eval-when</code></a>を実行することができて、 かつ正しくレキシカルな環境を捕捉することができるということは 重要なことです。</p>
 <p>下記の文</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bar </span>(x) (<span class="kw">defun</span><span class="fu"> foo </span>() (<span class="op">+</span> x <span class="dv">3</span>)))</span></code></pre></div>
 <p>これは、次のように展開されます。</p>

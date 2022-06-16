@@ -1,0 +1,196 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFINE-COMPILER-MACRO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.define-compiler-macro
+@name: define-compiler-macro
+@type: macro
+
+Macro `DEFINE-COMPILER-MACRO`
+
+
+## {syntax}
+
+`define-compiler-macro` *name* *lambda-list*
+ [[*declaration\** | *documentation*]] *form\**  
+=> *name*
+
+
+## {arguments-and-values}
+
+*name* - 関数名  
+*lambda-list* - {macro-lambda-list}  
+*declaration* - 宣言式。評価はされません。
+*documentation* - 文字列。評価はされません。
+*form* - フォーム
+
+
+## {description}
+
+これはコンパイラーマクロ関数の宣言の通常の仕組みです。
+この宣言の方法は{defmacro:link}と同じですが、
+ただし下記の違いがあります。
+
+- *name*は関数名かマクロの関数名です。
+
+- 展開関数は、マクロ関数としてではなく、
+*name*というコンパイラーマクロ関数として導入されます。
+
+- `&whole`引数は、コンパイラーマクロ関数に渡されたフォームの
+引数に束縛されます。
+残りのラムダリストのパラメーターは、
+`car`部がこのフォームに含まれる関数名なので、
+使用される引数は`cdr`部になります。
+しかしもしフォームの`car`部が
+{funcall:link}というシンボルであったときは、
+引数の分配は`cddr`部が代わりに使われます。
+
+- *documentation*は、ドキュメント文字として種別{compiler-macro!symbol:link}とともに、
+コンパイラーマクロ関数へ割り当てられます。
+
+- 通常のマクロと異なり、コンパイラマクロは、
+元の形式と同じ形式（`&whole`で取得可能）を返すだけで
+展開を拒否することができます。
+
+
+## {examples}
+
+```lisp
+(defun square (x) (expt x 2)) =>  SQUARE
+(define-compiler-macro square (&whole form arg)
+  (if (atom arg)
+      `(expt ,arg 2)
+      (case (car arg)
+        (square (if (= (length arg) 2)
+                    `(expt ,(nth 1 arg) 4)
+                    form))
+        (expt   (if (= (length arg) 3)
+                    (if (numberp (nth 2 arg))
+                        `(expt ,(nth 1 arg) ,(* 2 (nth 2 arg)))
+                        `(expt ,(nth 1 arg) (* 2 ,(nth 2 arg))))
+                    form))
+        (otherwise `(expt ,arg 2))))) =>  SQUARE
+(square (square 3)) =>  81
+(macroexpand '(square x)) =>  (SQUARE X), false
+(funcall (compiler-macro-function 'square) '(square x) nil)
+=>  (EXPT X 2)
+(funcall (compiler-macro-function 'square) '(square (square x)) nil)
+=>  (EXPT X 4)
+(funcall (compiler-macro-function 'square) '(funcall #'square x) nil)
+=>  (EXPT X 2)
+
+(defun distance-positional (x1 y1 x2 y2)
+  (sqrt (+ (expt (- x2 x1) 2) (expt (- y2 y1) 2))))
+=>  DISTANCE-POSITIONAL
+(defun distance (&key (x1 0) (y1 0) (x2 x1) (y2 y1))
+  (distance-positional x1 y1 x2 y2))
+=>  DISTANCE
+(define-compiler-macro distance (&whole form
+                                 &rest key-value-pairs
+                                 &key (x1 0  x1-p)
+                                      (y1 0  y1-p)
+                                      (x2 x1 x2-p)
+                                      (y2 y1 y2-p)
+                                 &allow-other-keys
+                                 &environment env)
+  (flet ((key (n) (nth (* n 2) key-value-pairs))
+         (arg (n) (nth (1+ (* n 2)) key-value-pairs))
+         (simplep (x)
+           (let ((expanded-x (macroexpand x env)))
+             (or (constantp expanded-x env)
+                 (symbolp expanded-x)))))
+    (let ((n (/ (length key-value-pairs) 2)))
+      (multiple-value-bind (x1s y1s x2s y2s others)
+          (loop for (key) on key-value-pairs by #'cddr
+                count (eq key ':x1) into x1s
+                count (eq key ':y1) into y1s
+                count (eq key ':x2) into x2s
+                count (eq key ':y1) into y2s
+                count (not (member key '(:x1 :x2 :y1 :y2)))
+                  into others
+                finally (return (values x1s y1s x2s y2s others)))
+        (cond ((and (= n 4)
+                    (eq (key 0) :x1)
+                    (eq (key 1) :y1)
+                    (eq (key 2) :x2)
+                    (eq (key 3) :y2))
+               `(distance-positional ,x1 ,y1 ,x2 ,y2))
+              ((and (if x1-p (and (= x1s 1) (simplep x1)) t)
+                    (if y1-p (and (= y1s 1) (simplep y1)) t)
+                    (if x2-p (and (= x2s 1) (simplep x2)) t)
+                    (if y2-p (and (= y2s 1) (simplep y2)) t)
+                    (zerop others))
+               `(distance-positional ,x1 ,y1 ,x2 ,y2))
+              ((and (< x1s 2) (< y1s 2) (< x2s 2) (< y2s 2)
+                    (zerop others))
+               (let ((temps (loop repeat n collect (gensym))))
+                 `(let ,(loop for i below n
+                              collect (list (nth i temps) (arg i)))
+                    (distance
+                      ,@(loop for i below n
+                              append (list (key i) (nth i temps)))))))
+              (t form))))))
+=>  DISTANCE
+(dolist (form
+          '((distance :x1 (setq x 7) :x2 (decf x) :y1 (decf x) :y2 (decf x))
+            (distance :x1 (setq x 7) :y1 (decf x) :x2 (decf x) :y2 (decf x))
+            (distance :x1 (setq x 7) :y1 (incf x))
+            (distance :x1 (setq x 7) :y1 (incf x) :x1 (incf x))
+            (distance :x1 a1 :y1 b1 :x2 a2 :y2 b2)
+            (distance :x1 a1 :x2 a2 :y1 b1 :y2 b2)
+            (distance :x1 a1 :y1 b1 :z1 c1 :x2 a2 :y2 b2 :z2 c2)))
+  (print (funcall (compiler-macro-function 'distance) form nil)))
+>>  (LET ((#:G6558 (SETQ X 7))
+>>        (#:G6559 (DECF X))
+>>        (#:G6560 (DECF X))
+>>        (#:G6561 (DECF X)))
+>>    (DISTANCE :X1 #:G6558 :X2 #:G6559 :Y1 #:G6560 :Y2 #:G6561)) 
+>>  (DISTANCE-POSITIONAL (SETQ X 7) (DECF X) (DECF X) (DECF X)) 
+>>  (LET ((#:G6567 (SETQ X 7))
+>>        (#:G6568 (INCF X)))
+>>    (DISTANCE :X1 #:G6567 :Y1 #:G6568)) 
+>>  (DISTANCE :X1 (SETQ X 7) :Y1 (INCF X) :X1 (INCF X)) 
+>>  (DISTANCE-POSITIONAL A1 B1 A2 B2) 
+>>  (DISTANCE-POSITIONAL A1 B1 A2 B2) 
+>>  (DISTANCE :X1 A1 :Y1 B1 :Z1 C1 :X2 A2 :Y2 B2 :Z2 C2) 
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compiler-macro-function:link},
+{defmacro:link},
+{documentation:link},
+{3.4.11:ab}
+
+
+## {notes}
+
+`COMMON-LISP`パッケージにある関数の
+コンパイラーマクロを作成したときの結果は未定義です。
+いくつかの処理系では
+このような試行によりそれと同等か同様の重要な定義を
+上書きしてしまう可能性は十分にあります。
+一般に、プログラマーは自分自身が保守する関数に対してのみ
+コンパイラマクロ定義を書くことを推奨します。
+他の場所で保守されている関数に対してコンパイラマクロ定義を書くことは、
+普通はモジュール性とデータの抽象化に関する
+従来のルールに違反するものと見なされます。
+
+@end
+

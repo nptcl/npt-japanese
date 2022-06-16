@@ -251,7 +251,7 @@
 </ul></li>
 <li><a href="5.3.flet.html"><code>macrolet</code></a>
 <ul>
-<li><a href="5.3.flet.html"><code>macrolet</code></a>は、<code>defmacro</code>と同じフォーマットで、 ローカルマクロの定義を確立します。 <br><br> <a href="5.3.flet.html"><code>macrolet</code></a>の内部では、 <a href="5.3.flet.html"><code>macrolet</code></a>によって定義されている <em>function-name</em>という名前の、 グローバルのsetf-expanderの定義は適用されません。 そうではなく、<a href="5.3.setf.html"><code>setf</code></a>はマクロフォームを展開し、 結果のフォームを再帰的に処理します。 <br><br> <a href="5.3.flet.html"><code>macrolet</code></a>によって定義されたマクロ展開関数は、 <a href="5.3.flet.html"><code>macrolet</code></a>のフォームに現れる、 レキシカルな環境によって定義されたものです。 宣言と、<a href="5.3.flet.html"><code>macrolet</code></a>と<code>symbol-macrolet</code>の定義は、 <a href="5.3.flet.html"><code>macrolet</code></a>内の、ローカルマクロ定義に影響を及ぼします。 しかしもしローカルマクロ定義から レキシカルな環境内で見ることができる ローカルな変数か関数を参照したときの結果は未定義です。 <br><br> どんな<em>local-documentation</em>も、 対応するローカルマクロ関数に、 ドキュメント文字として割り当てます。 <br><br></li>
+<li><a href="5.3.flet.html"><code>macrolet</code></a>は、<a href="3.8.defmacro.html"><code>defmacro</code></a>と同じフォーマットで、 ローカルマクロの定義を確立します。 <br><br> <a href="5.3.flet.html"><code>macrolet</code></a>の内部では、 <a href="5.3.flet.html"><code>macrolet</code></a>によって定義されている <em>function-name</em>という名前の、 グローバルのsetf-expanderの定義は適用されません。 そうではなく、<a href="5.3.setf.html"><code>setf</code></a>はマクロフォームを展開し、 結果のフォームを再帰的に処理します。 <br><br> <a href="5.3.flet.html"><code>macrolet</code></a>によって定義されたマクロ展開関数は、 <a href="5.3.flet.html"><code>macrolet</code></a>のフォームに現れる、 レキシカルな環境によって定義されたものです。 宣言と、<a href="5.3.flet.html"><code>macrolet</code></a>と<code>symbol-macrolet</code>の定義は、 <a href="5.3.flet.html"><code>macrolet</code></a>内の、ローカルマクロ定義に影響を及ぼします。 しかしもしローカルマクロ定義から レキシカルな環境内で見ることができる ローカルな変数か関数を参照したときの結果は未定義です。 <br><br> どんな<em>local-documentation</em>も、 対応するローカルマクロ関数に、 ドキュメント文字として割り当てます。 <br><br></li>
 </ul></li>
 </ul>
 <h2 id="例文">例文</h2>
@@ -329,7 +329,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>declare</code>, <code>defmacro</code>, <a href="5.3.defun.html"><code>defun</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="5.3.let.html"><code>let</code></a>, 3.1. 評価, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
+<p><code>declare</code>, <a href="3.8.defmacro.html"><code>defmacro</code></a>, <a href="5.3.defun.html"><code>defun</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="5.3.let.html"><code>let</code></a>, 3.1. 評価, 3.4.11. ドキュメント文字と宣言の文脈的な作用</p>
 <h2 id="備考">備考</h2>
 <p><a href="5.3.flet.html"><code>flet</code></a>では、再帰関数を定義することはできません。 <a href="5.3.flet.html"><code>labels</code></a>は、互いに再帰呼出できる関数を定義するのに使うことができます。</p>
 <p>もし<a href="5.3.flet.html"><code>macrolet</code></a>がトップレベルフォームのとき、 ボディ部<em>form</em>もまたトップレベルフォームとして処理されます。 3.2.3. ファイルのコンパイルをご確認ください。</p>

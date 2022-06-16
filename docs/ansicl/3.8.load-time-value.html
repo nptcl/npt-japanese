@@ -224,7 +224,8 @@
 <p><code>load-time-value</code> <em>form</em> &amp;optional <em>read-only-p</em> =&gt; <em>object</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>form</em> - フォーム。下記の説明に従って評価されます。<br />
-<em>read-only-p</em> - ブール値。評価されません。 <em>object</em> - <em>form</em>の評価の結果の主値</p>
+<em>read-only-p</em> - ブール値。評価されません。<br />
+<em>object</em> - <em>form</em>の評価の結果の主値</p>
 <h2 id="定義">定義</h2>
 <p><a href="3.8.load-time-value.html"><code>load-time-value</code></a>は、その式が実行環境に入るまで <em>form</em>の評価を遅らせる仕組みを提供します。 <a href="3.2.html">3.2. コンパイル</a>をご確認ください。</p>
 <p><em>read-only-p</em>は、結果を定数オブジェクトとみなすかどうかを指示します。 もし<a href="5.3.t-variable.html"><code>t</code></a>のとき結果は読み込み専用の値となり、 実装が適用可能であれば、読み込み専用の領域にコピーするか、 あるいは同時に他のプログラムからの似た定数オブジェクトと合併します。 もし<a href="5.3.nil-variable.html"><code>nil</code></a>のとき（デフォルト）は、 結果はコピーも合併もされません。 それは修正される可能性のあるデータとして扱われます。</p>
@@ -265,8 +266,8 @@
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((v (<span class="kw">load-time-value</span> #(A B C) <span class="kw">nil</span>)))</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">values</span> (<span class="kw">svref</span> v n) v)))</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">;;; このLOAD-TIME-VALUEは、指定された配列が、外側の状況でNIL画指定されたものと</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 内側の状況でT画指定されたものとで、合併することが許されます。</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">;;; このLOAD-TIME-VALUEは、指定された配列が、外側の状況でNILが指定されたものと</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 内側の状況でTが指定されたものとで、合併することが許されます。</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">;;; ユーザープログラムは、配列vを読み込み専用として扱わなければなりません。</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> baz-ref </span>(n)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((v (<span class="kw">load-time-value</span> (<span class="kw">load-time-value</span> (<span class="kw">vector</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="kw">t</span>) <span class="kw">nil</span>)))</span>

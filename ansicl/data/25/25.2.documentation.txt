@@ -14,6 +14,7 @@
 @link: method-combination!symbol
 @link: variable!symbol
 @link: setf!symbol
+@link: compiler-macro!symbol
 @type: standard-generic-function
 
 

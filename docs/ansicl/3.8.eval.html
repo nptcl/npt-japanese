@@ -228,7 +228,7 @@
 <h2 id="定義">定義</h2>
 <p>現在の動的環境と<code>null</code>のレキシカルな環境で、<em>form</em>を評価します。</p>
 <p><a href="3.8.eval.html"><code>eval</code></a>は評価器のユーザーインターフェイスです。</p>
-<p>評価器はマクロの呼び出しを <code>macroexpand-1</code>を使用したかのように展開します。</p>
+<p>評価器はマクロの呼び出しを <a href="3.8.macroexpand.html"><code>macroexpand-1</code></a>を使用したかのように展開します。</p>
 <p><a href="3.8.eval.html"><code>eval</code></a>によって処理されたコードに定数が現れたとき、 それはコピーされたり合併されたりしません。 <a href="3.8.eval.html"><code>eval</code></a>の実行により返却されたコードが 参照しているオブジェクトは、 ソースコード上の対応するオブジェクトと<a href="5.3.eql-function.html"><code>eql</code></a>で一致します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> form &#39;(<span class="op">1+</span> a) a <span class="dv">999</span>) <span class="op">=&gt;</span>  <span class="dv">999</span></span>
@@ -241,7 +241,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>macroexpand-1</code>, 3.1.2. 評価の規範</p>
+<p><a href="3.8.macroexpand.html"><code>macroexpand-1</code></a>, 3.1.2. 評価の規範</p>
 <h2 id="備考">備考</h2>
 <p>シンボルの現在の動的な値を得るには、 <a href="10.2.symbol-value.html"><code>symbol-value</code></a>を使うのと <a href="3.8.eval.html"><code>eval</code></a>を使うのがそれぞれ有効であり同等です （そして普通は好ましい）。</p>
 <p><a href="3.8.eval.html"><code>eval</code></a>フォームは、その引数を2段階の評価で行うことに注意してください。 最初は、<em>form</em>をどんな呼び出しにも生じる 普通の引数の評価の仕組みで評価します。 この普通の引数の評価による返却値のオブジェクトが <em>form</em>パラメーターの値になり、 それから<a href="3.8.eval.html"><code>eval</code></a>フォームの部分として評価されます。 例えば下記の通り。</p>

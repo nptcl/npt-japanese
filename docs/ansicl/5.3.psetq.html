@@ -231,7 +231,7 @@
 <h2 id="定義">定義</h2>
 <p>変数に値を代入します。</p>
 <p>ちょうど<a href="5.3.setq.html"><code>setq</code></a>と似ていますが、代入を「並列」に行うところが違っています。 つまり、最初にすべての<em>form</em>が評価され、 そのあと初めて変数に返却値がセットされます。 この方法では、ある変数への代入によって、 <a href="5.3.setq.html"><code>setq</code></a>による順次代入のときのような 計算値への影響が生じるということはありません。</p>
-<p>もし、どの<em>var</em>でも<code>symbol-macrolet</code>によって 作られた束縛を参照したときは、 その<em>var</em>は<a href="5.3.psetq.html"><code>psetq</code></a>ではなく<a href="5.3.setf.html"><code>psetf</code></a>として扱われます。</p>
+<p>もし、どの<em>var</em>でも<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>によって 作られた束縛を参照したときは、 その<em>var</em>は<a href="5.3.psetq.html"><code>psetq</code></a>ではなく<a href="5.3.setf.html"><code>psetf</code></a>として扱われます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 変数へ値を代入する単純なPSETQの使用。</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; スタイルについて、このような単純な状況においては</span></span>

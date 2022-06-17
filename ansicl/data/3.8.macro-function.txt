@@ -1,0 +1,101 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor MACRO-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.macro-function
+@name: macro-function
+@type: accessor
+
+Accessor `MACRO-FUNCTION`
+
+
+## {syntax}
+
+`macro-function` *symbol* &optional *environment* => *function*  
+(`setf` (`macro-function` *symbol* &optional *environment*) *new-function*)
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*environment* - 環境オブジェクト  
+*function* - マクロ関数か、{nil!variable:link}  
+*new-function* - マクロ関数
+
+
+## {description}
+
+指定された*environment*下で、
+*symbol*がマクロとして定義されている関数を持っているかどうかを決定します。
+
+もしマクロ展開関数であれば、それは2つの引数の関数が返却されます。
+*symbol*が{lexical-environment}内の*environment*に関数が定義されていないか、
+あるいはその定義がマクロではなかったときは、
+{macro-function:link}は{nil!variable:link}を返却します。
+
+*symbol*は{macro-function:link}と{special-operator-p:link}の
+両方が*true*になることが可能です。
+
+マクロ定義は、Common Lispの標準の{special-form}のみを理解できる
+プログラムによって使うことができるようにしなければなりません。
+
+
+## {examples}
+
+```lisp
+(defmacro macfun (x) '(macro-function 'macfun)) =>  MACFUN 
+(not (macro-function 'macfun)) =>  false 
+(macrolet ((foo (&environment env)
+              (if (macro-function 'bar env)
+                 ''yes
+                 ''no)))
+   (list (foo)
+         (macrolet ((bar () :beep))
+            (foo))))
+
+=>  (NO YES)
+```
+
+
+## {affected-by}
+
+`(setf macro-function)`,
+{defmacro:link},
+{macrolet:link}
+
+
+## {exceptional-situations}
+
+{setf:link}で{macro-function:link}を使用するときに、
+*environment*が{nil!variable:link}ではなかったときの結果は未定義です。
+
+
+## {see-also}
+
+{defmacro:link},
+{3.1:ab}
+
+
+## {notes}
+
+{setf:link}は{macro-function:link}と共に使うことで、
+シンボルのグローバル関数定義としてマクロを導入できます。
+例えば下記の通り。
+
+```lisp
+(setf (macro-function symbol) fn)
+```
+
+導入するされる値は、2つの引数を受け取る*function*でなければなりません。
+引数はマクロコール全体と、環境オブジェクトであり、
+呼び出されるとその展開を計算します。
+この操作の実行は、*symbol*にグローバル関数定義として
+マクロを一つだけ持たせることであり、
+以前のマクロ定義や関数定義は失われます。
+
+@end
+

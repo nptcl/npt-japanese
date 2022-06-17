@@ -1,0 +1,121 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator SYMBOL-MACROLET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.symbol-macrolet
+@name: symbol-macrolet
+@type: special-operator
+
+Special Operator `SYMBOL-MACROLET`
+
+
+## {syntax}
+
+`symbol-macrolet` ((*symbol* *expansion*)\*) *declaration\** *form\**  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*expansion* - フォーム  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+{symbol-macrolet:link}は、シンボル*symbol*に影響を与える
+マクロ展開環境の仕組みを提供します。
+
+{symbol-macrolet:link}は、
+*symbol*という名前の各シンボルマクロの
+展開関数をレキシカルに確立します。
+
+シンボルマクロの展開関数は、
+ただフォームと環境が適用されたときに
+正しい展開を返すことが保証されています。
+（特に展開が概念的に、展開関数か環境かその両方かの、
+どこに保存されるのかは{implementation-dependent}です）
+
+{symbol-macrolet:link}のキシカルスコープ内で、
+変数として参照される各*symbol*は、
+通常のマクロ展開処理が行われます。
+{3.1.2.1.1:ab}をご確認ください。
+シンボルマクロの展開は、通常のマクロと同様に、
+シンボルマクロの参照先と同じレキシカル環境において、
+さらにマクロ展開が行われます。
+
+*declaration*は、ひとつの例外を除いて
+正確に{let:link}と同じものが許されます。
+例外は、{symbol-macrolet:link}のシンボルの定義に
+{special:link}宣言があったときはエラーが発生します。
+
+{symbol-macrolet:link}の*form*内で展開が行われるとき、
+{setq:link}を使って*symbol*に値をセットしたときは、
+それは{setf:link}を使ったかのように扱われます。
+{psetq:link}での*symbol*は、{psetf:link}のように扱われ、
+{multiple-value-setq:link}は{setf:link}の{values!accessor:link}のように扱われます。
+
+{symbol-macrolet:link}の使用は、
+{let:link}によってシャドウされます。
+言い換えると、{symbol-macrolet:link}は、
+*symbol*がレキシカルスコープの束縛で囲まれている*form*においてのみ、
+*symbol*の出現が置き換えられます。
+
+
+## {examples}
+
+```lisp
+;;; 例文は下記と等しいのであり、
+;;;   (list 'foo (let ((x 'bar)) x)),
+;;; 次と等しいのではありません。
+;;;   (list 'foo (let (('foo 'bar)) 'foo))
+(symbol-macrolet ((x 'foo))
+  (list x (let ((x 'bar)) x))) 
+=>  (foo bar)
+NOT=>  (foo foo) 
+ 
+(symbol-macrolet ((x '(foo x)))
+  (list x))
+=>  ((FOO X))
+```
+
+
+## {affected-by}o
+
+なし。
+
+
+## {exceptional-situations}
+
+グローバル変数として定義されているシンボルに束縛をしようとしたときは、
+型{program-error:link}のエラーが発生します。
+
+*declaration*に{symbol-macrolet:link}で束縛するシンボル名の
+{special:link}宣言が含まれていたときは、
+型{program-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{with-slots:link},
+{macroexpand:link}
+
+
+## {notes}
+
+{special-form}である{symbol-macrolet:link}の基本的な仕組みは、
+{with-slots:link}の実装に使用されています。
+
+{symbol-macrolet:link}フォームが{top-level-form}であるとき、
+*form*もまた{top-level-form}として処理されます。
+{3.2.3:ab}をご確認ください。
+
+@end
+

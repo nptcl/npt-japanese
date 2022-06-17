@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro ROTATEF</title>
+  <title>Macro DEFINE-SYMBOL-MACRO</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,42 +214,49 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro ROTATEF</h1>
+<h1 class="title">Macro DEFINE-SYMBOL-MACRO</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="macro-rotatef">Macro <strong>ROTATEF</strong></h1>
-<p>Macro <code>ROTATEF</code></p>
+<h1 id="macro-define-symbol-macro">Macro <strong>DEFINE-SYMBOL-MACRO</strong></h1>
+<p>Macro <code>DEFINE-SYMBOL-MACRO</code></p>
 <h2 id="構文">構文</h2>
-<p><code>rotatef</code> <em>place*</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><code>define-symbol-macro</code> <em>symbol</em> <em>expansion</em><br />
+=&gt; <em>symbol</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>place</em> - <code>place</code></p>
+<p><em>symbol</em> - シンボル<br />
+<em>expansion</em> - フォーム</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.rotatef.html"><code>rotatef</code></a>は、ある<code>place</code>から他のものへ値の回転をすることで、 各<code>place</code>を修正します。</p>
-<p>もし<em>newvalue</em>が格納変数より多い値を生成したときは、余分な値は無視されます。 もし<em>newvalue</em>が格納変数より少ない値しか生成しなかったときは、 値のないものは<a href="5.3.nil-variable.html"><code>nil</code></a>がセットされます。</p>
-<p>フォームが<code>(rotatef place1 place2 ... placen newvalue)</code>のとき、 <em>place1</em>～<em>placen</em>までの値を読み込み書き込まれます。 <code>2</code>～<code>n</code>個目の値は、それぞれ<em>place1</em>～<em>placen</em>に格納されます。</p>
-<p>それは全て<em>place</em>フォームが、 終端が周期的になっているシフトレジスタであるかのように扱われます。 それは各<code>place</code>が左へひとつ回転され、 <em>place1</em>の値は周期的に終わりの方である<em>placen</em>へシフトされます。</p>
-<p><code>place</code>のサブフォームの評価については、5.1.1.1. <code>place</code>のサブフォームの評価をご確認ください。</p>
+<p>シンボル<em>symbol</em>について、 グローバルに影響するマクロ展開の仕組みを提供します。</p>
+<p><em>symbol</em>という名前のシンボルマクロの 展開関数をグローバルに確立します。</p>
+<p>シンボルマクロの展開関数は、 ただフォームと環境が適用されたときに 正しい展開を返すことが保証されています。 （特に展開が概念的に、展開関数か環境かその両方かの、 どこに保存されるのかは実装依存です）</p>
+<p>各グローバル下で参照される<em>symbol</em>は （ただし、同じ名前<em>symbol</em>の変数かシンボルマクロの 束縛によってシャドウされていないとき）、 通常のマクロ展開処理が行われます。 3.1.2.1.1. フォームとしてのシンボルをご確認ください。 シンボルマクロの展開は、通常のマクロと同様に、 シンボルマクロの参照先と同じレキシカル環境において、 さらにマクロ展開が行われます。</p>
+<p>もしこの<em>symbol</em>の定義 （ただし、同じ名前<em>symbol</em>の変数かシンボルマクロの 束縛によってシャドウされていないとき）のスコープ内で <code>special</code>宣言が行われたときの結果は未定義です。</p>
+<p>この定義のスコープ内で <a href="5.3.setq.html"><code>setq</code></a>を使って<em>symbol</em>に値をセットしたときは、 それは<a href="5.3.setf.html"><code>setf</code></a>を使ったかのように扱われます。 <a href="5.3.psetq.html"><code>psetq</code></a>での<em>symbol</em>は、<a href="5.3.setf.html"><code>psetf</code></a>のように扱われ、 <a href="5.3.multiple-value-setq.html"><code>multiple-value-setq</code></a>は<a href="5.3.setf.html"><code>setf</code></a>の<a href="5.3.values-accessor.html"><code>values</code></a>のように扱われます。</p>
+<p>シンボルマクロの束縛は、 <a href="5.3.let.html"><code>let</code></a>と<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>によってシャドウされます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((n <span class="dv">0</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       (x (<span class="kw">list</span> &#39;a &#39;b &#39;c &#39;d &#39;e &#39;f &#39;g)))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">rotatef</span> (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   x) <span class="op">=&gt;</span>  (A C D B E F G)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defvar</span><span class="fu"> *things* </span>(<span class="kw">list</span> &#39;alpha &#39;beta &#39;gamma)) <span class="op">=&gt;</span>  *THINGS*</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-symbol-macro</span><span class="fu"> thing1 </span>(<span class="kw">first</span> *things*)) <span class="op">=&gt;</span>  THING1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-symbol-macro</span><span class="fu"> thing2 </span>(<span class="kw">second</span> *things*)) <span class="op">=&gt;</span>  THING2</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-symbol-macro</span><span class="fu"> thing3 </span>(<span class="kw">third</span> *things*)) <span class="op">=&gt;</span>  THING3</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>thing1 <span class="op">=&gt;</span>  ALPHA</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> thing1 &#39;ONE) <span class="op">=&gt;</span>  ONE</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>*things* <span class="op">=&gt;</span>  (ONE BETA GAMMA)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-setq</span> (thing2 thing3) (<span class="kw">values</span> &#39;two &#39;three)) <span class="op">=&gt;</span>  TWO</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>thing3 <span class="op">=&gt;</span>  THREE</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>*things* <span class="op">=&gt;</span>  (ONE TWO THREE)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list</span> thing2 (<span class="kw">let</span> ((thing2 <span class="dv">2</span>)) thing2)) <span class="op">=&gt;</span>  (TWO <span class="dv">2</span>)</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p><em>symbol</em>がすでにグローバル変数として定義されていたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.define-setf-expander.html"><code>define-setf-expander</code></a>, <a href="5.3.defsetf.html"><code>defsetf</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="5.3.shiftf.html"><code>shiftf</code></a>, <a href="3.8.macroexpand-hook.html"><code>*macroexpand-hook*</code></a>, 5.1. 一般化された参照</p>
+<p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>, <a href="3.8.macroexpand.html"><code>macroexpand</code></a></p>
 <h2 id="備考">備考</h2>
-<p><code>(rotatef place1 place2 ... placen newvalue)</code>の効果は、だいたい次と同等です。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">psetf</span> place1 place2</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        place2 place3</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ...</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        placen place1)</span></code></pre></div>
-<p>ただし、これは各<code>place</code>のサブフォームを2度評価していますが、 <a href="5.3.rotatef.html"><code>rotatef</code></a>はただ一度だけです。</p>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro ROTATEF</title>
+  <title>Accessor MACRO-FUNCTION</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,42 +214,47 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro ROTATEF</h1>
+<h1 class="title">Accessor MACRO-FUNCTION</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="macro-rotatef">Macro <strong>ROTATEF</strong></h1>
-<p>Macro <code>ROTATEF</code></p>
+<h1 id="accessor-macro-function">Accessor <strong>MACRO-FUNCTION</strong></h1>
+<p>Accessor <code>MACRO-FUNCTION</code></p>
 <h2 id="構文">構文</h2>
-<p><code>rotatef</code> <em>place*</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><code>macro-function</code> <em>symbol</em> &amp;optional <em>environment</em> =&gt; <em>function</em><br />
+(<code>setf</code> (<code>macro-function</code> <em>symbol</em> &amp;optional <em>environment</em>) <em>new-function</em>)</p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>place</em> - <code>place</code></p>
+<p><em>symbol</em> - シンボル<br />
+<em>environment</em> - 環境オブジェクト<br />
+<em>function</em> - マクロ関数か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>new-function</em> - マクロ関数</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.rotatef.html"><code>rotatef</code></a>は、ある<code>place</code>から他のものへ値の回転をすることで、 各<code>place</code>を修正します。</p>
-<p>もし<em>newvalue</em>が格納変数より多い値を生成したときは、余分な値は無視されます。 もし<em>newvalue</em>が格納変数より少ない値しか生成しなかったときは、 値のないものは<a href="5.3.nil-variable.html"><code>nil</code></a>がセットされます。</p>
-<p>フォームが<code>(rotatef place1 place2 ... placen newvalue)</code>のとき、 <em>place1</em>～<em>placen</em>までの値を読み込み書き込まれます。 <code>2</code>～<code>n</code>個目の値は、それぞれ<em>place1</em>～<em>placen</em>に格納されます。</p>
-<p>それは全て<em>place</em>フォームが、 終端が周期的になっているシフトレジスタであるかのように扱われます。 それは各<code>place</code>が左へひとつ回転され、 <em>place1</em>の値は周期的に終わりの方である<em>placen</em>へシフトされます。</p>
-<p><code>place</code>のサブフォームの評価については、5.1.1.1. <code>place</code>のサブフォームの評価をご確認ください。</p>
+<p>指定された<em>environment</em>下で、 <em>symbol</em>がマクロとして定義されている関数を持っているかどうかを決定します。</p>
+<p>もしマクロ展開関数であれば、それは2つの引数の関数が返却されます。 <em>symbol</em>がレキシカルな環境内の<em>environment</em>に関数が定義されていないか、 あるいはその定義がマクロではなかったときは、 <a href="3.8.macro-function.html"><code>macro-function</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p><em>symbol</em>は<a href="3.8.macro-function.html"><code>macro-function</code></a>と<code>special-operator-p</code>の 両方が<em>true</em>になることが可能です。</p>
+<p>マクロ定義は、Common Lispの標準の特殊フォームのみを理解できる プログラムによって使うことができるようにしなければなりません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((n <span class="dv">0</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       (x (<span class="kw">list</span> &#39;a &#39;b &#39;c &#39;d &#39;e &#39;f &#39;g)))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">rotatef</span> (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   x) <span class="op">=&gt;</span>  (A C D B E F G)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> macfun </span>(x) &#39;(<span class="kw">macro-function</span> &#39;macfun)) <span class="op">=&gt;</span>  MACFUN </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">not</span> (<span class="kw">macro-function</span> &#39;macfun)) <span class="op">=&gt;</span>  false </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">macrolet</span> ((foo (&amp;environment env)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              (<span class="kw">if</span> (<span class="kw">macro-function</span> &#39;bar env)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 &#39;&#39;yes</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 &#39;&#39;no)))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">list</span> (foo)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">macrolet</span> ((bar () :beep))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            (foo))))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (NO YES)</span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p><code>(setf macro-function)</code>, <a href="3.8.defmacro.html"><code>defmacro</code></a>, <a href="5.3.flet.html"><code>macrolet</code></a></p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p><a href="5.3.setf.html"><code>setf</code></a>で<a href="3.8.macro-function.html"><code>macro-function</code></a>を使用するときに、 <em>environment</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではなかったときの結果は未定義です。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.define-setf-expander.html"><code>define-setf-expander</code></a>, <a href="5.3.defsetf.html"><code>defsetf</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="5.3.shiftf.html"><code>shiftf</code></a>, <a href="3.8.macroexpand-hook.html"><code>*macroexpand-hook*</code></a>, 5.1. 一般化された参照</p>
+<p><a href="3.8.defmacro.html"><code>defmacro</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
-<p><code>(rotatef place1 place2 ... placen newvalue)</code>の効果は、だいたい次と同等です。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">psetf</span> place1 place2</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        place2 place3</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ...</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        placen place1)</span></code></pre></div>
-<p>ただし、これは各<code>place</code>のサブフォームを2度評価していますが、 <a href="5.3.rotatef.html"><code>rotatef</code></a>はただ一度だけです。</p>
+<p><a href="5.3.setf.html"><code>setf</code></a>は<a href="3.8.macro-function.html"><code>macro-function</code></a>と共に使うことで、 シンボルのグローバル関数定義としてマクロを導入できます。 例えば下記の通り。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">macro-function</span> <span class="kw">symbol</span>) fn)</span></code></pre></div>
+<p>導入するされる値は、2つの引数を受け取る<em>function</em>でなければなりません。 引数はマクロコール全体と、環境オブジェクトであり、 呼び出されるとその展開を計算します。 この操作の実行は、<em>symbol</em>にグローバル関数定義として マクロを一つだけ持たせることであり、 以前のマクロ定義や関数定義は失われます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

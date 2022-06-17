@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro ROTATEF</title>
+  <title>Variable *MACROEXPAND-HOOK*</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,42 +214,35 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro ROTATEF</h1>
+<h1 class="title">Variable *MACROEXPAND-HOOK*</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="macro-rotatef">Macro <strong>ROTATEF</strong></h1>
-<p>Macro <code>ROTATEF</code></p>
-<h2 id="構文">構文</h2>
-<p><code>rotatef</code> <em>place*</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>place</em> - <code>place</code></p>
+<h1 id="variable-macroexpand-hook">Variable <strong>*MACROEXPAND-HOOK*</strong></h1>
+<p>Variable <code>*MACROEXPAND-HOOK*</code></p>
+<h2 id="値の型">値の型</h2>
+<p>3つの引数（マクロ関数、マクロフォーム、環境オブジェクト）を 受け付ける関数指定子。</p>
+<h2 id="初期値">初期値</h2>
+<p>関数<a href="5.3.funcall.html"><code>funcall</code></a>と同等の関数指定子。 しかし追加で実装依存の副作用を持つかもしれません。</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.rotatef.html"><code>rotatef</code></a>は、ある<code>place</code>から他のものへ値の回転をすることで、 各<code>place</code>を修正します。</p>
-<p>もし<em>newvalue</em>が格納変数より多い値を生成したときは、余分な値は無視されます。 もし<em>newvalue</em>が格納変数より少ない値しか生成しなかったときは、 値のないものは<a href="5.3.nil-variable.html"><code>nil</code></a>がセットされます。</p>
-<p>フォームが<code>(rotatef place1 place2 ... placen newvalue)</code>のとき、 <em>place1</em>～<em>placen</em>までの値を読み込み書き込まれます。 <code>2</code>～<code>n</code>個目の値は、それぞれ<em>place1</em>～<em>placen</em>に格納されます。</p>
-<p>それは全て<em>place</em>フォームが、 終端が周期的になっているシフトレジスタであるかのように扱われます。 それは各<code>place</code>が左へひとつ回転され、 <em>place1</em>の値は周期的に終わりの方である<em>placen</em>へシフトされます。</p>
-<p><code>place</code>のサブフォームの評価については、5.1.1.1. <code>place</code>のサブフォームの評価をご確認ください。</p>
+<p><a href="3.8.macroexpand.html"><code>macroexpand-1</code></a>は この値を展開インターフェイスとしてフックし マクロ展開処理を制御するために使用します。 マクロフォームを展開するときに、 その関数を3つの引数（マクロ関数、マクロフォーム、環境オブジェクト）で呼び出し、 マクロフォームを展開します。 環境オブジェクトは動的生存期間を持っており、 その関数オブジェクトがマクロ展開関数の動的生存期間の外で 参照されたときの結果は未定義です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((n <span class="dv">0</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       (x (<span class="kw">list</span> &#39;a &#39;b &#39;c &#39;d &#39;e &#39;f &#39;g)))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">rotatef</span> (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (<span class="kw">nth</span> (<span class="kw">incf</span> n) x))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   x) <span class="op">=&gt;</span>  (A C D B E F G)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> hook </span>(expander form env)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;Now expanding: ~S~%&quot;</span> form)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">funcall</span> expander form env)) <span class="op">=&gt;</span>  HOOK </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> machook </span>(x y) `(<span class="op">/</span> (<span class="op">+</span> ,x ,y) <span class="dv">2</span>)) <span class="op">=&gt;</span>  MACHOOK </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">macroexpand</span> &#39;(machook <span class="dv">1</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  (<span class="op">/</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="dv">2</span>), true </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*macroexpand-hook*</span> #&#39;hook)) (<span class="kw">macroexpand</span> &#39;(machook <span class="dv">1</span> <span class="dv">2</span>)))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Now expanding (MACHOOK <span class="dv">1</span> <span class="dv">2</span>) </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (<span class="op">/</span> (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="dv">2</span>), true</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
-<h2 id="例外">例外</h2>
-<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.define-setf-expander.html"><code>define-setf-expander</code></a>, <a href="5.3.defsetf.html"><code>defsetf</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="5.3.shiftf.html"><code>shiftf</code></a>, <a href="3.8.macroexpand-hook.html"><code>*macroexpand-hook*</code></a>, 5.1. 一般化された参照</p>
+<p><a href="3.8.macroexpand.html"><code>macroexpand</code></a>, <a href="3.8.macroexpand.html"><code>macroexpand-1</code></a>, <a href="5.3.funcall.html"><code>funcall</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
-<p><code>(rotatef place1 place2 ... placen newvalue)</code>の効果は、だいたい次と同等です。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">psetf</span> place1 place2</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        place2 place3</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        ...</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        placen place1)</span></code></pre></div>
-<p>ただし、これは各<code>place</code>のサブフォームを2度評価していますが、 <a href="5.3.rotatef.html"><code>rotatef</code></a>はただ一度だけです。</p>
+<p>初期値の動作は、ただマクロ関数を起動するだけであり、 引数はマクロフォームと環境オブジェクトの2つになります。</p>
+<p>ユーザーとそのプログラムは、マクロ展開の仕組みを用いて、 変数の代入をカスタイマイズしたりトレースすることができます。 しかし、その変数がグローバルリソースであり、 複数のプログラムによって共有される可能性がある場合、 例えば2つのプログラムが変数の正しくないセッティングに依存していたときは それらのプログラムは同じLispイメージ上でも正しく実行されないかもしれません。 そのような理由で、デバッグ用途に限定して使用したほうがよいでしょう。</p>
+<p><a href="3.8.macroexpand-hook.html"><code>*macroexpand-hook*</code></a>を自分の関数に置き換えるユーザーは、 以前のフックの値を保存しておいて、 自分の関数上で以前の値を呼び出すように考える必要があります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

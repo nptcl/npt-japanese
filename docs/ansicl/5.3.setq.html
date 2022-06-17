@@ -232,7 +232,7 @@
 <h2 id="定義">定義</h2>
 <p>変数に値を代入します。</p>
 <p><code>(setq var1 form1 var2 form2 ...)</code>がLispの単純な変数への代入構文です。 最初に<em>form1</em>が評価されて結果を変数<em>var1</em>に保存し、 そのあと<em>form2</em>が評価されて結果を変数<em>var2</em>に保存し、くり返します。 <a href="5.3.setq.html"><code>setq</code></a>は、レキシカル変数と動的変数の両方の代入に使われます。</p>
-<p>もし、どの<em>var</em>でも<code>symbol-macrolet</code>によって 作られた束縛を参照したときは、 その<em>var</em>は<a href="5.3.setq.html"><code>setq</code></a>ではなく<a href="5.3.setf.html"><code>setf</code></a>として扱われます。</p>
+<p>もし、どの<em>var</em>でも<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>によって 作られた束縛を参照したときは、 その<em>var</em>は<a href="5.3.setq.html"><code>setq</code></a>ではなく<a href="5.3.setf.html"><code>setf</code></a>として扱われます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 変数へ値を代入する単純なSETQの使用</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> a <span class="dv">1</span> b <span class="dv">2</span> c <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">3</span></span>

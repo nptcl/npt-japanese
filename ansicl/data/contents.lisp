@@ -97,7 +97,7 @@
 (dictionary 3.8.macroexpand-1)  ;; delete
 (dictionary 3.8.define-symbol-macro)
 (dictionary 3.8.symbol-macrolet)
-(dictionary 3.8.*macroexpand-hook*)
+(dictionary 3.8.macroexpand-hook)
 (dictionary 3.8.proclaim)
 (dictionary 3.8.declaim)
 (dictionary 3.8.declare)
@@ -549,8 +549,7 @@
 ;; Chapter 21
 (index 21.2 "ストリームの辞書" "Streams Dictionary")
 (dictionary 21.2.stream)
-(dictionary 21.2.*debug-io*)
-(dictionary 21.2.*error-output*)  ;; delete
+(dictionary 21.2.debug-io)
 
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")

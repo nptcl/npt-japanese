@@ -287,7 +287,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 <h2 id="副作用">副作用</h2>
 <p>デバッガーに入るかもしれません。 もし<code>store-value</code> <code>restart</code>が実行されたとき、 <em>keyplace</em>の値は変更されるかもしれません。</p>
 <h2 id="影響">影響</h2>
-<p><a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>がエラーを通知したときは、 既存の<code>handler</code>と<code>*debug-io*</code>に影響を及ぼす可能性があります。</p>
+<p><a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>がエラーを通知したときは、 既存の<code>handler</code>と<a href="21.2.debug-io.html"><code>*debug-io*</code></a>に影響を及ぼす可能性があります。</p>
 <h2 id="例外">例外</h2>
 <p><em>normal-clause</em>にマッチしなかったときは、 <a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>は 型<code>type-error</code>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>

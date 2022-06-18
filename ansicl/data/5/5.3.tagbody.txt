@@ -111,12 +111,11 @@ Examples:
 
 次の図のマクロは、{implicit-tagbody}を持ちます。
 
-
-```
-do              do-external-symbols  dotimes  
-do*             do-symbols           prog     
-do-all-symbols  dolist               prog*    
-```
+|                     |                           |               |
+|---------------------|---------------------------|---------------|
+{do:link}             |{do-external-symbols:link} |{dotimes:link} |
+{do*:link}            |{do-symbols:link}          |{prog:link}    |
+{do-all-symbols:link} |{dolist:link}              |{prog*:link}   |
 
 Figure 5-10. {implicit-tagbody}をもつマクロ
 

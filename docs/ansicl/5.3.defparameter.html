@@ -276,7 +276,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>declaim</code>, <a href="5.3.defconstant.html"><code>defconstant</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
+<p><a href="3.8.declaim.html"><code>declaim</code></a>, <a href="5.3.defconstant.html"><code>defconstant</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
 <p>慣習として動的変数の名前には 始まりと終わりにアスタリスクを付けたものが使われます。 例えば<code>*foo*</code>は良い動的変数の名前ですが、 レキシカル変数には使われません。 <code>foo</code>であれば良いレキシカル変数の名前になりますが、 動的変数には使われません。 この命名規則は、Common Lisp内に定義されたすべての名前で見られますが、 適合するプログラムも適合する実装もこの規則を遵守する義務はありません。</p>
 <p>追加で副作用が許可される理由は、 実装がその定義に付随する通常の「帳簿管理」を行えるようにすることです。 例えば、<a href="5.3.defparameter.html"><code>defvar</code></a>と<a href="5.3.defparameter.html"><code>defparameter</code></a>フォームのマクロ展開には、 定義が記載されているソースファイルの名前を記録するためにアレンジした コードが含まれるかもしれません。</p>

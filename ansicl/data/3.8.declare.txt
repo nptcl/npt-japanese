@@ -1,0 +1,136 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Symbol DECLARE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.declare
+@name: declare
+@type: symbol
+
+Symbol `DECLARE`
+
+
+## {syntax}
+
+`declare` *declaration-specifier\**
+
+
+## {arguments}
+
+*declaration-specifier* - 宣言指定子。評価されません。
+
+
+## {description}
+
+{declare:link}の式は、よく宣言と呼ばれ、
+特定のフォームのボディ部の開始の部分にのみ記載することができます。
+この文脈が許されるのであれば、フォームの先行した位置にのみ
+{declare:link}かドキュメント文字が許されます。
+
+{declare:link}式は、ラムダ式か、
+下記の表のリストで示すフォームに記載することができます。
+
+|                           |                      |                                |
+|---------------------------|----------------------|--------------------------------|
+|{defgeneric:link}          |{do-external-symbols:link} |{prog:link}                |
+|{define-compiler-macro:link} |{do-symbols:link}   |{prog*:link}                    |
+|{define-method-combination:link} |{dolist:link}   |{restart-case:link}             |
+|{define-setf-expander:link} |{dotimes:link}       |{symbol-macrolet:link}          |
+|{defmacro:link}            |{flet:link}           |{with-accessors:link}           |
+|{defmethod:link}           |{handler-case:link}   |{with-hash-table-iterator:link} |
+|{defsetf:link}             |{labels:link}         |{with-input-from-string:link}   |
+|{deftype:link}             |{let:link}            |{with-open-file:link}           |
+|{defun:link}               |{let*:link}           |{with-open-stream:link}         |
+|{destructuring-bind:link}  |{locally:link}        |{with-output-to-string:link}    |
+|{do:link}                  |{macrolet:link}       |{with-package-iterator:link}    |
+|{do*:link}                 |{multiple-value-bind:link} |{with-slots:link}          |
+|{do-all-symbols:link}      |{pprint-logical-block:link} |                          |
+
+Figure 3-23. 宣言を配置できる標準フォーム
+
+{declare:link}式は、これらのフォームの構文によって
+指定できる場所のみに配置できます。
+{declare:link}式を評価しようとした結果は未定義です。
+そのような式が現れた場合は、それらの出現は暗黙的にチェックされ、
+そして実際には評価されません。
+これが「{declare:link}フォーム」ではなく
+「{declare:link}式」と呼んでいる理由です。
+
+マクロフォームは宣言を展開できません。
+{declare:link}式は、フォームが参照している
+実際のサブフォームとして現れなければなりません。
+
+次の表は、{declare:link}で使用できる宣言識別子です。
+
+|                      |                 |                |
+|----------------------|-----------------|----------------|
+|{dynamic-extent:link} |{ignore:link}    |{optimize:link} |
+|{ftype:link}          |{inline:link}    |{special:link}  |
+|{ignorable:link}      |{notinline:link} |{type:link}     |
+
+Figure 3-24. ローカル宣言指定子
+
+実装はその他の（実装定義の）宣言識別子を自由にサポートできます。
+
+
+## {examples}
+
+```lisp
+(defun nonsense (k x z)
+  (foo z x)                     ;最初のfooの呼び出し
+  (let ((j (foo k x))           ;2回目のfooの呼び出し
+        (x (* k k)))
+    (declare (inline foo) (special x z))
+    (foo x j z)))               ;3回目のfooの呼び出し
+```
+
+この例では、{inline:link}宣言は3回目のfooの呼び出しのみに適用され、
+最初と2番目には適用されません。
+{let:link}にある`x`の{special:link}宣言は`x`を動的束縛にして、
+{let:link}のボディ部にある`x`の参照を動的参照にします。
+2番目のfooの呼び出しで参照している`x`は、
+`nonsence`の2番目のパラメーターにあるローカル参照です。
+最初のfooの呼び出しで参照している`x`は、
+ローカル参照であり{special:link}ではありません。
+`z`の{special:link}宣言は、3番目のfooの呼び出しの`z`を動的参照にします。
+これは`nonsence`の`z`というパラメーターを示していません。
+なぜなら{special:link}宣言のパラメーター束縛の中には存在していないからです。
+（`z`の{special:link}宣言は{defun:link}のボディ部には現れていませんが、
+その内側のフォームには存在してます。
+つまりパラメーターの束縛には影響してないと言うことです。）
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+{declare:link}式をフォームとして評価しようとしたときの結果は未定義です。
+
+
+## {see-also}
+
+{proclaim:link},
+{4.2.3:ab},
+{declaration:link},
+{dynamic-extent:link},
+{ftype:link},
+{ignorable:link},
+{ignore:link},
+{inline:link},
+{notinline:link},
+{optimize:link},
+{type:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

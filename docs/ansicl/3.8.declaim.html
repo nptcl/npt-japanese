@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>4. 型とクラス</title>
+  <title>Macro DECLAIM</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,18 +151,30 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">4. 型とクラス</h1>
+<h1 class="title">Macro DECLAIM</h1>
 </header>
-<p><a href="index.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<ol start="4" type="1">
-<li>型とクラス</li>
-</ol>
-<ul>
-<li>4.2. 型</li>
-<li>4.3. クラス</li>
-<li><a href="4.4.html">4.4. 型とクラスの辞書</a></li>
-</ul>
+<h1 id="macro-declaim">Macro <strong>DECLAIM</strong></h1>
+<p>Macro <code>DECLAIM</code></p>
+<h2 id="構文">構文</h2>
+<p><code>declaim</code> <em>declaration-specifier*</em> =&gt; 実装依存</p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>declaration-specifier</em> - 宣言指定子。評価されません。</p>
+<h2 id="定義">定義</h2>
+<p><em>declaration-specifier</em>によって指定された宣言を確立します。</p>
+<p>このマクロが ファイルコンパイラーによって処理されているファイルの トップレベルフォームで現れたとき、 宣言はコンパイル時にも認識されます。 他の定義されているマクロと同様に、ファイルがコンパイルされた後でも <a href="3.8.declaim.html"><code>declaim</code></a>のコンパイル時の副作用が持続されるかどうかは未定です。</p>
+<h2 id="例文">例文</h2>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="3.8.declare.html"><code>declare</code></a>, <a href="3.8.proclaim.html"><code>proclaim</code></a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

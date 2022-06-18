@@ -255,43 +255,82 @@
 </ul></li>
 </ul>
 <p><a href="5.3.equalp.html"><code>equalp</code></a>は、上記で明確に指定されたもの以外の どんなオブジェクトにも降りては行きません。 次の図は、前のリストを要約した情報です。 加えて、図には<a href="5.3.equalp.html"><code>equalp</code></a>のふるまいの優先順位を載せており、 上に記載されているものの方が下のものより優先順位は高くなります。</p>
-<pre><code>型            ふるまい
-number        =を使用
-character     char-equalを使用
-cons          降りて行く
-bit vector    降りて行く
-string        降りて行く
-pathname      equalと同じ
-structure     降りて行く。上記の記載参照。
-Other array   降りて行く
-hash table    降りて行く。上記の記載参照。
-Other object  eqを使用</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>型</th>
+<th>ふるまい</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>number</td>
+<td><code>=</code>を使用</td>
+</tr>
+<tr class="even">
+<td>character</td>
+<td><a href="13.2.char-equal.html"><code>char-equal</code></a>を使用</td>
+</tr>
+<tr class="odd">
+<td>cons</td>
+<td>降りて行く</td>
+</tr>
+<tr class="even">
+<td>bit vector</td>
+<td>降りて行く</td>
+</tr>
+<tr class="odd">
+<td>string</td>
+<td>降りて行く</td>
+</tr>
+<tr class="even">
+<td>pathname</td>
+<td><a href="5.3.equal.html"><code>equal</code></a>と同じ</td>
+</tr>
+<tr class="odd">
+<td>structure</td>
+<td>降りて行く。上記の記載参照。</td>
+</tr>
+<tr class="even">
+<td>他のarray</td>
+<td>降りて行く</td>
+</tr>
+<tr class="odd">
+<td>hash table</td>
+<td>降りて行く。上記の記載参照。</td>
+</tr>
+<tr class="even">
+<td>他のobject</td>
+<td><a href="5.3.eq.html"><code>eq</code></a>を使用</td>
+</tr>
+</tbody>
+</table>
 <p>Figure 5-13. <a href="5.3.equalp.html"><code>equalp</code></a>のふるまいの要約と優先順位</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> &#39;a &#39;b) <span class="op">=&gt;</span>  false</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> &#39;a &#39;a) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="dv">3</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="dv">3</span> <span class="fl">3.0</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="fl">3.0</span> <span class="fl">3.0</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> #c(<span class="dv">3</span> -<span class="dv">4</span>) #c(<span class="dv">3</span> -<span class="dv">4</span>)) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> #c(<span class="dv">3</span> -<span class="fl">4.0</span>) #c(<span class="dv">3</span> -<span class="dv">4</span>)) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> (<span class="kw">cons</span> &#39;a &#39;b) (<span class="kw">cons</span> &#39;a &#39;c)) <span class="op">=&gt;</span>  false</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> (<span class="kw">cons</span> &#39;a &#39;b) (<span class="kw">cons</span> &#39;a &#39;b)) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="ch">#\A</span> <span class="ch">#\A</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="ch">#\A</span> <span class="ch">#\a</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;Foo&quot;</span> <span class="st">&quot;Foo&quot;</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;Foo&quot;</span> (<span class="kw">copy-seq</span> <span class="st">&quot;Foo&quot;</span>)) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;FOO&quot;</span> <span class="st">&quot;foo&quot;</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> array1 (<span class="kw">make-array</span> <span class="dv">6</span> <span class="bu">:element-type</span> &#39;integer</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">:initial-contents</span> &#39;(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>))) </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> array2 (<span class="kw">make-array</span> <span class="dv">8</span> <span class="bu">:element-type</span> &#39;integer</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">:initial-contents</span> &#39;(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">2</span> <span class="dv">6</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                           :fill-pointer <span class="dv">6</span>))</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> array1 array2) <span class="op">=&gt;</span>  true</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> vector1 (<span class="kw">vector</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)) <span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> array1 vector1) <span class="op">=&gt;</span>  true </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> &#39;a &#39;b) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> &#39;a &#39;a) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="dv">3</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="dv">3</span> <span class="fl">3.0</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="fl">3.0</span> <span class="fl">3.0</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> #c(<span class="dv">3</span> -<span class="dv">4</span>) #c(<span class="dv">3</span> -<span class="dv">4</span>)) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> #c(<span class="dv">3</span> -<span class="fl">4.0</span>) #c(<span class="dv">3</span> -<span class="dv">4</span>)) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> (<span class="kw">cons</span> &#39;a &#39;b) (<span class="kw">cons</span> &#39;a &#39;c)) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> (<span class="kw">cons</span> &#39;a &#39;b) (<span class="kw">cons</span> &#39;a &#39;b)) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="ch">#\A</span> <span class="ch">#\A</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="ch">#\A</span> <span class="ch">#\a</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;Foo&quot;</span> <span class="st">&quot;Foo&quot;</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;Foo&quot;</span> (<span class="kw">copy-seq</span> <span class="st">&quot;Foo&quot;</span>)) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> <span class="st">&quot;FOO&quot;</span> <span class="st">&quot;foo&quot;</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> array1 (<span class="kw">make-array</span> <span class="dv">6</span> <span class="bu">:element-type</span> &#39;integer</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">:initial-contents</span> &#39;(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>))) </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> array2 (<span class="kw">make-array</span> <span class="dv">8</span> <span class="bu">:element-type</span> &#39;integer</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">:initial-contents</span> &#39;(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span> <span class="dv">2</span> <span class="dv">6</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                           :fill-pointer <span class="dv">6</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> array1 array2) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> vector1 (<span class="kw">vector</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)) <span class="op">=&gt;</span>  #(<span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">5</span> <span class="dv">7</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> array1 vector1) <span class="op">=&gt;</span>  true </span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>

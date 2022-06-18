@@ -192,11 +192,11 @@ method-description ::=
 <p>次に示すオプションが提供されます。 注意書きがあるもの以外、オプションはただひとつ与えられます。</p>
 <ul>
 <li>オプション<code>:argument-precedence-order</code>は、 ジェネリック関数が呼び出だされ、特定のメソッドを選択するときに テストを行う要求された引数の順序を指定するために使用されます。 完全かつ曖昧がないような優先順序が与えられるように、 <em>gf-lambda-list</em>引数内で指定されたそれぞれのrequired-arguments}は、 正確にひとつだけ<em>parameter-name</em>として含まれなければなりません。 もしこのような条件に合わない場合は、エラーが発生します。</li>
-<li><code>declare</code>のオプションは、 ジェネリック関数に関する宣言を指定するときに使われます。
+<li><a href="3.8.declare.html"><code>declare</code></a>のオプションは、 ジェネリック関数に関する宣言を指定するときに使われます。
 <ul>
 <li><a href="3.8.optimize.html"><code>optimize</code></a>宣言指定子が許されます。 この宣言は、メソッドの選択の最適化が<code>speed</code>か<code>space</code>なのかを指定するものであり、 メソッドへの効果はありません。 メソッドの最適化をどのように制御するかについては、 <a href="3.8.optimize.html"><code>optimize</code></a>宣言を<a href="7.7.defmethod.html"><code>defmethod</code></a>かメソッドの宣言内に 直接記載する必要があります。 標準で要求される最適化の種類は<a href="3.8.optimize.html"><code>speed</code></a>と<a href="3.8.optimize.html"><code>space</code></a>だけですが、 実装によっては他の種類も認識するように、 オブジェクトシステムを拡張することもできます。 単純な実装では、メソッドの選出方法をただひとつだけ実装し、 <a href="3.8.optimize.html"><code>optimize</code></a>宣言指定子を無視するというのが有効です。</li>
-<li><code>special</code>, <code>ftype</code>, <code>function</code>, <code>inline</code>, <code>notinline</code>, <code>declaration</code>の宣言は許されていません。 各実装は、<code>declare</code>オプションを拡張して、 追加の宣言をサポートすることができます。 もしある実装が、サポートしていない宣言指定子に遭遇し、 その宣言が非標準の宣言の名前で<code>proclaim</code>されていた場合は、 警告を発生させるべきです。</li>
-<li><code>declare</code>オプションは、複数指定されるかもしれません。 宣言指定子のリストをひとつにまとめて、 単体の<code>declare</code>オプションとして指定したのと同じ効果が得られます。</li>
+<li><code>special</code>, <code>ftype</code>, <code>function</code>, <code>inline</code>, <code>notinline</code>, <code>declaration</code>の宣言は許されていません。 各実装は、<a href="3.8.declare.html"><code>declare</code></a>オプションを拡張して、 追加の宣言をサポートすることができます。 もしある実装が、サポートしていない宣言指定子に遭遇し、 その宣言が非標準の宣言の名前で<code>proclaim</code>されていた場合は、 警告を発生させるべきです。</li>
+<li><a href="3.8.declare.html"><code>declare</code></a>オプションは、複数指定されるかもしれません。 宣言指定子のリストをひとつにまとめて、 単体の<a href="3.8.declare.html"><code>declare</code></a>オプションとして指定したのと同じ効果が得られます。</li>
 </ul></li>
 <li>引数<code>:documentation</code>は、ジェネリック関数のオブジェクトにドキュメント文字を、 種類<a href="25.2.documentation.html"><code>function</code></a>で、<em>funciton-name</em>に割り当てられます。</li>
 <li><code>:generic-function-class</code>オプションは、 ジェネリック関数が、システムの提供するデフォルトのもの (<code>standard-generic-function</code>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、ジェネリック関数クラスのクラス名です。 もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合はエラーが発生します。</li>

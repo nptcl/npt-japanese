@@ -73,19 +73,18 @@ Function `EQUALP`
 加えて、図には{equalp:link}のふるまいの優先順位を載せており、
 上に記載されているものの方が下のものより優先順位は高くなります。
 
-```
-型            ふるまい
-number        =を使用
-character     char-equalを使用
-cons          降りて行く
-bit vector    降りて行く
-string        降りて行く
-pathname      equalと同じ
-structure     降りて行く。上記の記載参照。
-Other array   降りて行く
-hash table    降りて行く。上記の記載参照。
-Other object  eqを使用
-```
+|型            |ふるまい                     |
+|--------------|-----------------------------|
+|number        |{=:link}を使用               |
+|character     |{char-equal:link}を使用      |
+|cons          |降りて行く                   |
+|bit vector    |降りて行く                   |
+|string        |降りて行く                   |
+|pathname      |{equal:link}と同じ           |
+|structure     |降りて行く。上記の記載参照。 |
+|他のarray     |降りて行く                   |
+|hash table    |降りて行く。上記の記載参照。 |
+|他のobject    |{eq:link}を使用              |
 
 Figure 5-13. {equalp:link}のふるまいの要約と優先順位
 

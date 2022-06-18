@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DECLAIM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.declaim
+@name: declaim
+@type: macro
+
+Macro `DECLAIM`
+
+
+## {syntax}
+
+`declaim` *declaration-specifier\** => {implementation-dependent}
+
+
+## {arguments-and-values}
+
+*declaration-specifier* - 宣言指定子。評価されません。
+
+
+## {description}
+
+*declaration-specifier*によって指定された宣言を確立します。
+
+このマクロが
+ファイルコンパイラーによって処理されているファイルの
+{top-level-form}で現れたとき、 宣言はコンパイル時にも認識されます。
+他の定義されているマクロと同様に、ファイルがコンパイルされた後でも
+{declaim:link}のコンパイル時の副作用が持続されるかどうかは未定です。
+
+
+## {examples}
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{declare:link},
+{proclaim:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

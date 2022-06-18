@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro DEFCONSTANT</title>
+  <title>Function PROCLAIM</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,42 +214,68 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro DEFCONSTANT</h1>
+<h1 class="title">Function PROCLAIM</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="3.8.html">UP</a></p>
 <hr />
-<h1 id="macro-defconstant">Macro <strong>DEFCONSTANT</strong></h1>
-<p>Macro <code>DEFCONSTANT</code></p>
+<h1 id="function-proclaim">Function <strong>PROCLAIM</strong></h1>
+<p>Function <code>PROCLAIM</code></p>
 <h2 id="構文">構文</h2>
-<p><code>defconstant</code> <em>name</em> <em>initial-value</em> [<em>documentation</em>] =&gt; <em>name</em></p>
+<p><code>proclaim</code> <em>declaration-specifier</em> =&gt; 実装依存</p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>name</em> - シンボル。評価されません。<br />
-<em>initial-value</em> - フォーム。評価されます。<br />
-<em>documentation</em> - 文字列。評価されません。</p>
+<p><em>declaration-specifier</em> - 宣言指定子</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>は、 <em>name</em>で指定されたグローバル変数に、 <em>initial-value</em>を評価した結果の値を与えます。</p>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>によって定義された定数は、 <a href="5.3.defconstant.html"><code>defconstant</code></a>によって再定義できます。 しかし、他の操作を使いシンボルに値を割り当てようとしたり、 後続の<a href="5.3.defconstant.html"><code>defconstant</code></a>を使い違う値を割り当てようとしたときの 結果は未定義です。</p>
-<p><em>documentation</em>が与えられたとき、 <em>name</em>へドキュメント文字を種類<a href="25.2.documentation.html"><code>variable</code></a>として割り当てます。</p>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>は通常トップレベルフォームに現れますが、 非トップレベルフォームに現れても意味があります。 しかし、下記で説明するコンパイル時の副作用は、 <a href="5.3.defconstant.html"><code>defconstant</code></a>がトップレベルフォームとして現れた場所でのみ 効果があります。</p>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>実行時に <em>name</em>という名前の変数の何らかの束縛がすでに存在するか、 または<em>initial-value</em>とは違った値があるときの結果は未定義です。</p>
-<p>レキシカルか動的かどちらかで定数のシンボルを再束縛した時の結果は未定義です。 言い換えると、<a href="5.3.defconstant.html"><code>defconstant</code></a>で宣言されたシンボルは、 常にグローバルな値を参照します。</p>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>の実行の副作用は、 少なくとも下記のコードの副作用と同等でなければなりません。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">symbol-value</span> &#39;name) initial-value)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">documentation</span> &#39;name &#39;variable) &#39;documentation)</span></code></pre></div>
-<p><a href="5.3.defconstant.html"><code>defconstant</code></a>フォームがトップレベルフォームとして現れたとき、 コンパイラーは<em>name</em>を定数の変数として認識する必要があります。 実装は値のフォームを、コンパイル時に評価するか、 ロード時に評価するか、あるいは両方かを選択できます。 したがって、 ユーザーは<em>initial-value</em>がコンパイル時に評価可能であり、 （ファイルに<em>name</em>が現れるかどうかに関わらず） それが常に同じ値で評価されるかを確認する必要があります。</p>
-<h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defconstant</span><span class="fu"> this-is-a-constant </span>&#39;never-changing <span class="st">&quot;for a test&quot;</span>) <span class="op">=&gt;</span>  THIS-IS-A-CONSTANT</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>this-is-a-constant <span class="op">=&gt;</span>  NEVER-CHANGING</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">documentation</span> &#39;this-is-a-constant &#39;variable) <span class="op">=&gt;</span>  <span class="st">&quot;for a test&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">constantp</span> &#39;this-is-a-constant) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<p>グローバル環境下で<em>declaration-specifier</em>で指定された宣言を確立します。</p>
+<p>このような宣言はよくグローバル宣言か<code>proclamation</code>と呼ばれ、 ローカルでシャドウされない限り常に有効です。</p>
+<p><em>declaration-specifier</em>に含まれる変数名、関数名は、 それぞれ動的変数、グローバル関数定義として参照されます。</p>
+<p>次の表は<a href="3.8.proclaim.html"><code>proclaim</code></a>で使用可能な 宣言の識別子のリストです。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><code>declaration</code></td>
+<td><code>inline</code></td>
+<td><a href="3.8.optimize.html"><code>optimize</code></a></td>
+<td><code>type</code></td>
+</tr>
+<tr class="even">
+<td><code>ftype</code></td>
+<td><code>notinline</code></td>
+<td><code>special</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+Figure 3-22. グローバル宣言指定子
+
+実装はその他の（実装定義の）宣言識別子を自由にサポートできます。
+
+
+## {examples}
+
+```lisp
+(defun declare-variable-types-globally (type vars)
+  (proclaim `(type ,type ,@vars))
+  type)
+
+;; 一度下記のフォームを実行したら動的変数*TOLERANCE*は
+;; 常にフロートを格納しなければなりません。
+(declare-variable-types-globally &#39;float &#39;(*tolerance*))
+=&gt;  FLOAT</code></pre>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.declaim.html"><code>declaim</code></a>, <a href="5.3.defparameter.html"><code>defparameter</code></a>, <a href="5.3.defparameter.html"><code>defvar</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="3.8.proclaim.html"><code>proclaim</code></a>, 3.1.2.1.1.3. 定数の変数, <a href="3.2.html">3.2. コンパイル</a></p>
+<p><a href="3.8.declaim.html"><code>declaim</code></a>, <a href="3.8.declare.html"><code>declare</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<p><a href="3.8.proclaim.html"><code>proclaim</code></a>フォームの実行は コンパイルに影響する果を与えるかもしれませんが、 コンパイラーは<a href="3.8.proclaim.html"><code>proclaim</code></a>フォームを認識しようとはしませんし、 特別な処理を行うこともありません。 下記のような<code>proclamation</code>がトップレベルフォームにあったとしても、 実行するまで何の効果もありません。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">proclaim</span> &#39;(<span class="kw">special</span> *x*))</span></code></pre></div>
+<p>もしコンパイル時に副作用が必要なのであれば、 <a href="3.8.eval-when.html"><code>eval-when</code></a>が使用できます。 例えば下記の通り。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eval-when</span> (:execute :compile-toplevel :load-toplevel)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">proclaim</span> &#39;(<span class="kw">special</span> *x*)))</span></code></pre></div>
+<p>しかしだいたいの場合、 このような目的には<a href="3.8.declaim.html"><code>declaim</code></a>を使うことが好まれます。</p>
+<p><a href="3.8.proclaim.html"><code>proclaim</code></a>フォームは通常の関数フォームなので、 マクロフォームがそれらを展開することができます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

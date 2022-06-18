@@ -116,11 +116,11 @@ Common Lispのほとんどの操作は、
 {eq:link}を使うように定義されており、
 それらを使用するようなコードで上書きすることはできません。
 
-```
-catch           getf     throw  
-get             remf            
-get-properties  remprop  
-```
+|                      |               |             |
+|----------------------|---------------|-------------|
+|{catch:link}          |{getf:link}    |{throw:link} |
+|{get:link}            |{remf:link}    |             |
+|{get-properties:link} |{remprop:link} |             |
 
 Figure 5-11. つねにEQLよりEQを好む操作
 

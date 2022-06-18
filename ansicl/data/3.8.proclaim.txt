@@ -1,0 +1,109 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PROCLAIM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.proclaim
+@name: proclaim
+@type: function
+
+Function `PROCLAIM`
+
+
+## {syntax}
+
+`proclaim` *declaration-specifier* => {implementation-dependent}
+
+
+## {arguments-and-values}
+
+*declaration-specifier* - 宣言指定子
+
+
+## {description}
+
+グローバル環境下で*declaration-specifier*で指定された宣言を確立します。
+
+このような宣言はよくグローバル宣言か{proclamation}と呼ばれ、
+ローカルでシャドウされない限り常に有効です。
+
+*declaration-specifier*に含まれる変数名、関数名は、
+それぞれ動的変数、グローバル関数定義として参照されます。
+
+次の表は{proclaim:link}で使用可能な
+宣言の識別子のリストです。
+
+|                   |                 |                |            |
+|-------------------|-----------------|----------------|------------|
+|{declaration:link} |{inline:link}    |{optimize:link} |{type:link} |
+|{ftype:link}       |{notinline:link} |{special:link}  |            |
+```
+
+Figure 3-22. グローバル宣言指定子
+
+実装はその他の（実装定義の）宣言識別子を自由にサポートできます。
+
+
+## {examples}
+
+```lisp
+(defun declare-variable-types-globally (type vars)
+  (proclaim `(type ,type ,@vars))
+  type)
+
+;; 一度下記のフォームを実行したら動的変数*TOLERANCE*は
+;; 常にフロートを格納しなければなりません。
+(declare-variable-types-globally 'float '(*tolerance*))
+=>  FLOAT
+```
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{declaim:link},
+{declare:link},
+{3.2:ab}
+
+
+## {notes}
+
+{proclaim:link}フォームの実行は
+コンパイルに影響する果を与えるかもしれませんが、
+コンパイラーは{proclaim:link}フォームを認識しようとはしませんし、
+特別な処理を行うこともありません。
+下記のような{proclamation}が{top-level-form}にあったとしても、
+実行するまで何の効果もありません。
+
+```lisp
+(proclaim '(special *x*))
+```
+
+もしコンパイル時に副作用が必要なのであれば、
+{eval-when:link}が使用できます。
+例えば下記の通り。
+
+```lisp
+(eval-when (:execute :compile-toplevel :load-toplevel)
+  (proclaim '(special *x*)))
+```
+
+しかしだいたいの場合、
+このような目的には{declaim:link}を使うことが好まれます。
+
+{proclaim:link}フォームは通常の関数フォームなので、
+マクロフォームがそれらを展開することができます。
+
+@end
+

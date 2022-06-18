@@ -74,19 +74,18 @@ Function `EQUAL`
 加えて、図には{equal:link}のふるまいの優先順位を載せており、
 上に記載されているものの方が下のものより優先順位は高くなります。
 
-```
-型            ふるまい
-number        eqlを使用
-character     eqlを使用
-cons          降りて行く
-bit vector    降りて行く
-string        降りて行く
-pathname      機能的に同等
-structure     eqを使用
-Other array   eqを使用
-hash table    eqを使用
-Other object  eqを使用
-```
+|型            |ふるまい                  |
+|--------------|--------------------------|
+|number        |{eql!function:link}を使用 |
+|character     |{eql!function:link}を使用 |
+|cons          |降りて行く                |
+|bit vector    |降りて行く                |
+|string        |降りて行く                |
+|pathname      |機能的に同等              |
+|structure     |{eq:link}を使用           |
+|他のarray     |{eq:link}を使用           |
+|hash table    |{eq:link}を使用           |
+|他のobject    |{eq:link}を使用           |
 
 Figure 5-12. {equal:link}のふるまいの要約と優先順位
 

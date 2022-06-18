@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration IGNORE
+;;  Declaration IGNORABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.ignore
+@name: ignore
+@name: ignorable
+@type: declaration
+
+Declaration `IGNORE`, `IGNORABLE`
+
+
+## {syntax}
+
+(`ignore`    `{`*var* | ({function!system-class:link} *fn*)`}`\*)  
+(`ignorable` `{`*var* | ({function!system-class:link} *fn*)`}`\*)
+
+
+## {arguments}
+
+*var* - 変数名  
+*fn* - 関数名  
+
+
+## {valid-context}
+
+宣言
+
+
+## {binding-types-affected}
+
+変数、関数
+
+
+## {description}
+
+{ignore:link}と{ignorable:link}は、
+*vars*への変数束縛と*fn*への関数束縛に対する値への参照に関する宣言です。
+
+{ignore:link}宣言は、宣言のスコープ内において
+その束縛が示す値への参照が生じないことを指定します。
+そのような宣言のスコープ内において、
+コンパイラーは、 *var*や*fn*や{special:link}の*var*の
+値の参照が生じているものについて警告を発生させるのが望ましいです。
+
+{ignorable:link}宣言は、宣言のスコープ内において
+その束縛が示す値への参照が生じているか、
+または生じていないことを指定します。
+そのような宣言のスコープ内において、
+コンパイラーは、 *var*や*fn*や{special:link}の*var*の
+値の参照が生じていないものについて警告を発生させないことが望ましいです。
+
+{ignore:link}か{ignorable:link}宣言のスコープ範囲外では、
+コンパイラーは、 *var*や*fn*や{special:link}の*var*の
+値の参照が生じていないものについて警告を発生させることが望ましいです。
+
+「使用している」か「使用されていない」のような警告については、
+型{style-warning:link}にすることが望ましく、
+これはプログラムの意味に影響を及ぼしません。
+
+{with-open-file:link},
+{with-open-stream:link},
+{with-input-from-string:link},
+{with-output-to-string:link}によって確立される
+ストリームの変数と、
+全ての繰り返しの変数は、常に「使用されている」ものとして宣言されます。
+`(declare (ignore v))`という宣言の変数`v`が使用されたときの
+結果は未定義です。
+
+## {see-also}
+
+{declare:link}
+
+@end
+

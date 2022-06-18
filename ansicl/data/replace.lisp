@@ -20,6 +20,8 @@
 (replace initial-value "初期値")
 (replace pronunciation "発音")
 (replace conditions "コンディション")
+(replace valid-context "有効な文脈")
+(replace binding-types-affected "影響する束縛の型")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
 (replace base-character "基本文字")
@@ -113,4 +115,5 @@
 (replace explicit-return "`return-from`による明示的な返却")
 
 (replace interpreted-function "`interpreted-function`")
+(replace proclamation "`proclamation`")
 

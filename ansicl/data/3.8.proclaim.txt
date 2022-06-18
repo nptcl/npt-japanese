@@ -40,7 +40,6 @@ Function `PROCLAIM`
 |-------------------|-----------------|----------------|------------|
 |{declaration:link} |{inline:link}    |{optimize:link} |{type:link} |
 |{ftype:link}       |{notinline:link} |{special:link}  |            |
-```
 
 Figure 3-22. グローバル宣言指定子
 

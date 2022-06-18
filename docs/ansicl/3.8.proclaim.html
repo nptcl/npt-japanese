@@ -245,23 +245,17 @@
 </tr>
 </tbody>
 </table>
-<pre><code>
-Figure 3-22. グローバル宣言指定子
-
-実装はその他の（実装定義の）宣言識別子を自由にサポートできます。
-
-
-## {examples}
-
-```lisp
-(defun declare-variable-types-globally (type vars)
-  (proclaim `(type ,type ,@vars))
-  type)
-
-;; 一度下記のフォームを実行したら動的変数*TOLERANCE*は
-;; 常にフロートを格納しなければなりません。
-(declare-variable-types-globally &#39;float &#39;(*tolerance*))
-=&gt;  FLOAT</code></pre>
+<p>Figure 3-22. グローバル宣言指定子</p>
+<p>実装はその他の（実装定義の）宣言識別子を自由にサポートできます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> declare-variable-types-globally </span>(<span class="kw">type</span> vars)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">proclaim</span> `(<span class="kw">type</span> ,<span class="kw">type</span> ,@vars))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">type</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;; 一度下記のフォームを実行したら動的変数*TOLERANCE*は</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">;; 常にフロートを格納しなければなりません。</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(declare-variable-types-globally &#39;float &#39;(*tolerance*))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  FLOAT</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>

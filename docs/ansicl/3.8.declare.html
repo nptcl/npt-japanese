@@ -303,19 +303,19 @@
 <table>
 <tbody>
 <tr class="odd">
-<td><code>dynamic-extent</code></td>
+<td><a href="3.8.dynamic-extent.html"><code>dynamic-extent</code></a></td>
 <td><a href="3.8.ignore.html"><code>ignore</code></a></td>
 <td><a href="3.8.optimize.html"><code>optimize</code></a></td>
 </tr>
 <tr class="even">
 <td><code>ftype</code></td>
-<td><code>inline</code></td>
+<td><a href="3.8.inline.html"><code>inline</code></a></td>
 <td><code>special</code></td>
 </tr>
 <tr class="odd">
 <td><a href="3.8.ignore.html"><code>ignorable</code></a></td>
-<td><code>notinline</code></td>
-<td><code>type</code></td>
+<td><a href="3.8.inline.html"><code>notinline</code></a></td>
+<td><a href="3.8.type.html"><code>type</code></a></td>
 </tr>
 </tbody>
 </table>
@@ -328,13 +328,13 @@
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        (x (<span class="op">*</span> k k)))</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">inline</span> foo) (<span class="kw">special</span> x z))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    (foo x j z)))               <span class="co">;3回目のfooの呼び出し</span></span></code></pre></div>
-<p>この例では、<code>inline</code>宣言は3回目のfooの呼び出しのみに適用され、 最初と2番目には適用されません。 <a href="5.3.let.html"><code>let</code></a>にある<code>x</code>の<code>special</code>宣言は<code>x</code>を動的束縛にして、 <a href="5.3.let.html"><code>let</code></a>のボディ部にある<code>x</code>の参照を動的参照にします。 2番目のfooの呼び出しで参照している<code>x</code>は、 <code>nonsence</code>の2番目のパラメーターにあるローカル参照です。 最初のfooの呼び出しで参照している<code>x</code>は、 ローカル参照であり<code>special</code>ではありません。 <code>z</code>の<code>special</code>宣言は、3番目のfooの呼び出しの<code>z</code>を動的参照にします。 これは<code>nonsence</code>の<code>z</code>というパラメーターを示していません。 なぜなら<code>special</code>宣言のパラメーター束縛の中には存在していないからです。 （<code>z</code>の<code>special</code>宣言は<a href="5.3.defun.html"><code>defun</code></a>のボディ部には現れていませんが、 その内側のフォームには存在してます。 つまりパラメーターの束縛には影響してないと言うことです。）</p>
+<p>この例では、<a href="3.8.inline.html"><code>inline</code></a>宣言は3回目の<code>foo</code>の呼び出しのみに適用され、 最初と2番目には適用されません。 <a href="5.3.let.html"><code>let</code></a>にある<code>x</code>の<code>special</code>宣言は<code>x</code>を動的束縛にして、 <a href="5.3.let.html"><code>let</code></a>のボディ部にある<code>x</code>の参照を動的参照にします。 2番目の<code>foo</code>の呼び出しで参照している<code>x</code>は、 <code>nonsence</code>の2番目のパラメーターにあるローカル参照です。 最初の<code>foo</code>の呼び出しで参照している<code>x</code>は、 ローカル参照であり<code>special</code>ではありません。 <code>z</code>の<code>special</code>宣言は、3番目の<code>foo</code>の呼び出しの<code>z</code>を動的参照にします。 これは<code>nonsence</code>の<code>z</code>というパラメーターを示していません。 なぜなら<code>special</code>宣言のパラメーター束縛の中には存在していないからです。 （<code>z</code>の<code>special</code>宣言は<a href="5.3.defun.html"><code>defun</code></a>のボディ部には現れていませんが、 その内側のフォームには存在してます。 つまりパラメーターの束縛には影響してないと言うことです。）</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p><a href="3.8.declare.html"><code>declare</code></a>式をフォームとして評価しようとしたときの結果は未定義です。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.proclaim.html"><code>proclaim</code></a>, 4.2.3. 型指定子, <code>declaration</code>, <code>dynamic-extent</code>, <code>ftype</code>, <a href="3.8.ignore.html"><code>ignorable</code></a>, <a href="3.8.ignore.html"><code>ignore</code></a>, <code>inline</code>, <code>notinline</code>, <a href="3.8.optimize.html"><code>optimize</code></a>, <code>type</code></p>
+<p><a href="3.8.proclaim.html"><code>proclaim</code></a>, 4.2.3. 型指定子, <code>declaration</code>, <a href="3.8.dynamic-extent.html"><code>dynamic-extent</code></a>, <code>ftype</code>, <a href="3.8.ignore.html"><code>ignorable</code></a>, <a href="3.8.ignore.html"><code>ignore</code></a>, <a href="3.8.inline.html"><code>inline</code></a>, <a href="3.8.inline.html"><code>notinline</code></a>, <a href="3.8.optimize.html"><code>optimize</code></a>, <a href="3.8.type.html"><code>type</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

@@ -239,7 +239,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="5.3.flet.html"><code>flet</code></a>、<a href="5.3.flet.html"><code>labels</code></a>、<a href="5.3.flet.html"><code>macrolet</code></a>は、 ローカル関数とローカルマクロを定義し、 そのローカルな定義を使い<em>form</em>を実行します。 <em>form</em>は、現れた順に実行します。</p>
 <p><a href="5.3.flet.html"><code>flet</code></a>と<a href="5.3.flet.html"><code>labels</code></a>によって作成された各関数と、 <a href="5.3.flet.html"><code>macrolet</code></a>によって作成された各マクロの それぞれのボディ部の<em>form</em>（ただしラムダリストは除く）は、 必要に応じて、 <em>function-name</em>の関数の<code>block</code>名か<em>name</em>を用いて、 暗黙の<code>block</code>に囲まれます。</p>
-<p>ローカル関数とマクロの定義部のリストと、 <a href="5.3.flet.html"><code>flet</code></a>および<a href="5.3.flet.html"><code>labels</code></a>のボディ部<em>form</em>間における <em>declaration</em>のスコープは、 ローカルの関数定義の本体が含まれません。 ただし例外は<a href="5.3.flet.html"><code>labels</code></a>の、 <code>inline</code>、<code>notinline</code>、<code>ftype</code>宣言であり、 これらはローカルの関数定義を参照し、 そのローカル関数の本体に適用します。 つまり、これらの宣言のスコープは、 関数名として影響を与える範囲と同じです。 これらの<em>declaration</em>のスコープには、 <a href="5.3.flet.html"><code>macrolet</code></a>で定義されたマクロ展開数の本体は含まれません。</p>
+<p>ローカル関数とマクロの定義部のリストと、 <a href="5.3.flet.html"><code>flet</code></a>および<a href="5.3.flet.html"><code>labels</code></a>のボディ部<em>form</em>間における <em>declaration</em>のスコープは、 ローカルの関数定義の本体が含まれません。 ただし例外は<a href="5.3.flet.html"><code>labels</code></a>の、 <a href="3.8.inline.html"><code>inline</code></a>、<a href="3.8.inline.html"><code>notinline</code></a>、<code>ftype</code>宣言であり、 これらはローカルの関数定義を参照し、 そのローカル関数の本体に適用します。 つまり、これらの宣言のスコープは、 関数名として影響を与える範囲と同じです。 これらの<em>declaration</em>のスコープには、 <a href="5.3.flet.html"><code>macrolet</code></a>で定義されたマクロ展開数の本体は含まれません。</p>
 <ul>
 <li><a href="5.3.flet.html"><code>flet</code></a>
 <ul>

@@ -29,7 +29,7 @@ Declaration `IGNORE`, `IGNORABLE`
 
 ## {valid-context}
 
-宣言
+`declare`
 
 
 ## {binding-types-affected}
@@ -40,7 +40,7 @@ Declaration `IGNORE`, `IGNORABLE`
 ## {description}
 
 {ignore:link}と{ignorable:link}は、
-*vars*への変数束縛と*fn*への関数束縛に対する値への参照に関する宣言です。
+*var*への変数束縛と*fn*への関数束縛に対する値への参照に関する宣言です。
 
 {ignore:link}宣言は、宣言のスコープ内において
 その束縛が示す値への参照が生じないことを指定します。

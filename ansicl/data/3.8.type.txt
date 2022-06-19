@@ -1,0 +1,217 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.type
+@name: type
+@type: declaration
+
+Declaration `TYPE`
+
+
+## {syntax}
+
+(`type` *typespec* *var\**)  
+(*typespec* *var\**)
+
+
+## {arguments}
+
+*typespec* - 型指定子  
+*var* - 変数名
+
+
+## {valid-context}
+
+`declare`と`proclaim`
+
+
+## {binding-types-affected}
+
+変数
+
+
+## {description}
+
+変数の束縛にのみ影響し、
+*var*がただ指定した*typespec*の値のみ受け取ることを宣言します。
+とくに{setq:link}によって値を変数に代入するときは、
+*var*の初期値が指定した*typespec*になるようにするのと
+同様の効果があります。
+{type:link}宣言は関数束縛には適用しません
+（{ftype:link}をご確認ください）。
+
+{symbol-macrolet:link}によって定義されたシンボルの型宣言は、
+{the:link}式でそのシンボルの展開の周りを囲むことと同等です。
+しかし実際のシンボルの展開結果には影響を与えません。
+
+型宣言の意味は、宣言のスコープ内にある
+各変数*var*の参照を`(the typespec var)`に変更すること、
+またスコープ内の各変数へ代入される値*new-value*を
+`(the typespec new-value)`に変更すること、
+そして宣言のスコープに入った時点で
+`(the typespec var)`を実行すること、
+という意味と同じです。
+
+型宣言は、全ての宣言で有効です。
+型宣言の解釈については下記をご確認ください。
+
+1. 宣言スコープ内で宣言された変数の参照が実行されたとき、
+その変数の値が指定した型と一致してないときの結果は未定義です。
+
+2. 宣言スコープ内で宣言された変数が{setq:link}を実行したとき、
+その変数へ代入される新しい値が指定した型と
+一致していないときの結果は未定義です。
+
+3. 宣言スコープに入った時点で、宣言された変数の値が
+指定した型と一致していないときの結果は未定義です。
+
+4. 型宣言は、ただスコープ内の変数の参照のみに影響します。
+
+もし同じ変数に型宣言がネストされていたときは、
+変数の値は宣言された複数の型の
+共通部分の型でなければなりません。
+
+もしローカル宣言で`type`が動的変数に対して行われており、
+同じ変数のグローバルな{proclamation}もまた存在しているときは、
+ローカル宣言のスコープ内の変数の値は、
+宣言された2つの型の共通部分の型でなければなりません。
+
+{type:link}宣言は、自由宣言と境界宣言のどちらでも行えます。
+
+シンボルは型の名前と宣言の名前を両方同時にはなれません。
+あるシンボルがクラスか、構造体か、コンディションか、あるいは型の名前であり、
+そのシンボルが宣言の名前として宣言されたときか、
+あるいはその反対であったときはエラーが発生します。
+
+{array:link}の型宣言があるレキシカルスコープ内では、
+配列の要素への参照全ては{expressed-array-element-type}を満たします
+（{upgraded-array-element-type}とは対称的に）。
+コンパイラーは{array:link}の型宣言があるスコープ内では
+各配列の要素へのアクセスを{the:link}フォームを適用したかのように
+囲まれたコードとして扱うことができます。
+
+
+## {examples}
+
+```lisp
+(defun f (x y)
+  (declare (type fixnum x y))
+  (let ((z (+ x y)))
+    (declare (type fixnum z))
+    z)) =>  F
+(f 1 2) =>  3
+;; 前の定義Fは次の定義と同等です。
+(defun f (x y)
+  ;; この宣言はTYPE宣言の短縮フォームです。
+  (declare (fixnum x y))
+  ;; 返却値の型を宣言するときは名前付き変数を作成する必要はありません。
+  ;; かわりにTHE特殊フォームを使用できます。
+  (the fixnum (+ x y))) =>  F
+(f 1 2) =>  3
+(defvar *one-array* (make-array 10 :element-type '(signed-byte 5)))
+(defvar *another-array* (make-array 10 :element-type '(signed-byte 8)))
+ 
+(defun frob (an-array)
+  (declare (type (array (signed-byte 5) 1) an-array))
+  (setf (aref an-array 1) 31)
+  (setf (aref an-array 2) 127)
+  (setf (aref an-array 3) (* 2 (aref an-array 3)))
+  (let ((foo 0))
+    (declare (type (signed-byte 5) foo))
+    (setf foo (aref an-array 0))))
+ 
+(frob *one-array*)
+(frob *another-array*)
+```
+
+上記の`frob`の定義は下記と同等です。
+
+```lisp
+(defun frob (an-array)
+  (setf (the (signed-byte 5) (aref an-array 1)) 31)
+  (setf (the (signed-byte 5) (aref an-array 2)) 127)
+  (setf (the (signed-byte 5) (aref an-array 3))
+        (* 2 (the (signed-byte 5) (aref an-array 3))))
+  (let ((foo 0))
+    (declare (type (signed-byte 5) foo))
+    (setf foo (the (signed-byte 5) (aref an-array 0)))))
+```
+
+ある実装では、`fixnum`が29-bitであり
+しかし{fixnum:link}の配列が符号付き32-bitへ格上げされるものであるとき、
+下記の例は全て`fixnum`で計算されるようにコンパイルされます。
+
+```lisp
+(defun bump-counters (counters)
+  (declare (type (array fixnum *) bump-counters))
+  (dotimes (i (length counters))
+    (incf (aref counters i))))
+```
+
+
+## {see-also}
+
+{declare:link},
+{declaim:link},
+{proclaim:link}
+
+
+## {notes}
+
+`(typespec var*)`は、`(type typespec var*)`の省略形です。
+
+関数の引数の{type:link}宣言は、
+結果の型について暗に何かを意味しているわけではありません。
+下記の関数は、コンパイルされる際に
+{implementation-dependent}の`fixnum`のみでの演算を
+許可してはいません。
+
+```lisp
+(defun f (x y) (declare (fixnum x y)) (+ x y))
+```
+
+なぜかというと、`(f most-positive-fixnum 1)`を考えてみます。
+Common Lispは`F`の結果を、
+数学的に正しくない返却としてエラーを発生させるのではなく、
+ここでは`bignum`が返却するように定義します。
+もし`fixnum`のオーバーフローが生じないような特別な知識があるならば、
+返却値が`fixnum`の範囲であることを宣言することで、
+一部のコンパイラがより効率的な演算を行うようにすることができます。
+例えば下記の通り。
+
+```lisp
+(defun f (x y)
+  (declare (fixnum x y))
+  (the fixnum (+ x y)))
+```
+
+しかし、注意点として3つの引数の場合は、
+暗黙的な中間値が非常に大きくなる可能性があるため、
+下記の例文は{implementation-dependent}の`fixnum`のみの演算は
+実行されないかもしれません。
+
+```lisp
+(defun f (x y)
+  (declare (fixnum x y z))
+  (the fixnum (+ x y z)))
+```
+
+なぜなら、`(f most-positive-fixnum 1 -1)`を考えてみましょう。
+引数とその結果は全て`fixnum`ですが、中間の値は`fixnum`ではありません。
+もし、その実装が提供する{implementation-dependent}の
+`fixnum`のみの演算が重要なのであれば、
+かわりに次のような記載を考えてみて下さい。
+
+```lisp
+(defun f (x y)
+  (declare (fixnum x y z))
+  (the fixnum (+ (the fixnum (+ x y)) z)))
+```
+
+@end
+

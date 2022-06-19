@@ -1,0 +1,132 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration INLINE
+;;  Declaration NOTINLINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.inline
+@name: inline
+@name: notinline
+@type: declaration
+
+Declaration `INLINE`, `NOTINLINE`
+
+
+## {syntax}
+
+(`inline` *function-name\**)  
+(`notinline` *function-name\**)
+
+
+## {arguments}
+
+*function-name* - 関数名
+
+
+## {valid-context}
+
+`declare`か`proclaim`
+
+
+## {binding-types-affected}
+
+関数
+
+
+## {description}
+
+{inline:link}は、*function-name*という名前の関数に対して、
+コンパイラーがインラインで呼び出すようなコードを
+生成するのが望ましいと指定します。
+つまり、*function-name*で指定されたコードは、
+呼び出す処理を「行中」に現れるように、
+その場所に呼出処理を統合する必要があります。
+コンパイラーがこの宣言を無視するのは自由です。
+{inline:link}宣言は決して変数束縛を行いません。
+
+もしあるひとつの関数が宣言されており、
+その関数がレキシカルにローカル定義を持っているとき
+（{flet:link}か{labels:link}いよって作成されたもの）、
+その宣言はグローバル関数定義ではなく、
+ローカルの関数定義の方に適用されます。
+
+もし{confirming-implementation}において、
+ユーザー定義関数のインラインの展開が要求されていないとき、
+これらの実装は下記の規範のように認識しようとします。
+
+定義された関数`f`は、標準では{inline:link}ではありません。
+しかし`(declare (inline f))`宣言内では`F`がローカルで`inline`になります。
+前のものも含めて定義の列が次のような場合を考えます。
+
+```lisp
+(declaim (inline f))
+(defun f ...)
+(declaim (notinline f))
+```
+
+{defun:link}フォームの前にある{inline:link}の{proclamation}は、
+コンパイラーに、インライン展開が必要な時のための
+情報を保存する機会を保証します。
+そして{defun:link}フォームの後にある{notinline:link}の{proclamation}は、
+`f`がどこでもインライン展開しないよう抑制します。
+
+{notinline:link}は、*function-name*という名前の関数に対して、
+インラインコンパイルが望ましくないと指定します。
+コンパイラーはこの宣言を無視してはいけません。
+この指定の関数の呼び出しは、
+ラインの外のサブルーチンを呼び出すように実装しなければなりません。
+
+もしあるひとつの関数が宣言されており、
+その関数がレキシカルにローカル定義を持っているとき
+（{flet:link}か{labels:link}いよって作成されたもの）、
+その宣言はグローバル関数定義ではなく、ローカルの関数定義に適用されます。
+
+*function-name*コンパイラーマクロが現れたとき、
+{notinline:link}宣言はコンパイラーマクロの使用を禁止します。
+{inline:link}宣言はコンパイラーマクロの使用を勧めるようにします。
+{inline:link}と{notinline:link}宣言は、
+レキシカルに見える*function-name*の定義が
+マクロ定義であったときは効果がありません。
+
+{inline:link}と{notinline:link}宣言は、自由宣言と境界宣言のどちらも使えます。
+{flet:link}か{labels:link}フォーム本体の前に現れた
+関数の{inline:link}と{notinline:link}宣言は,
+関数の境界宣言として定義されます。
+その他の文脈の宣言は自由宣言です。
+
+
+## {examples}
+
+```lisp
+;; グローバルに宣言された関数DISPATCHはオープンコードであり、
+;; もし実装がinlineをサポートしているのであれば、
+;; NOTINLINEの宣言をこの効果で上書きします。
+(declaim (inline dispatch))
+(defun dispatch (x) (funcall (get (car x) 'dispatch) x))
+;; これはinlineを推奨する例です。
+(defun top-level-1 () (dispatch (read-command)))
+;; これはinlineを禁止する例です。
+(defun top-level-2 ()
+  (declare (notinline dispatch))
+  (dispatch (read-command)))
+;; これはinlineを禁止する例です。
+(declaim (notinline dispatch))
+(defun top-level-3 () (dispatch (read-command)))
+;; これはinlineを推奨する例です。
+(defun top-level-4 () 
+  (declare (inline dispatch))
+  (dispatch (read-command)))
+```
+
+
+## {see-also}
+
+{declare:link},
+{declaim:link},
+{proclaim:link}
+
+@end
+

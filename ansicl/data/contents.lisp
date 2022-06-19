@@ -101,11 +101,9 @@
 (dictionary 3.8.declaim)
 (dictionary 3.8.declare)
 (dictionary 3.8.ignore)
-(dictionary 3.8.ignorable)  ;; delete
 (dictionary 3.8.dynamic-extent)
 (dictionary 3.8.type)
 (dictionary 3.8.inline)
-(dictionary 3.8.notinline)  ;; delete
 (dictionary 3.8.ftype)
 (dictionary 3.8.declaration)
 (dictionary 3.8.optimize)
@@ -429,6 +427,8 @@
 
 ;; Chapger 12
 (index 12.2 "数の辞書" "Numbers Dictionary")
+(dictionary 12.fixnum)
+(dictionary 12.bignum)
 (dictionary 12.=)
 (dictionary 12.2.max)
 (dictionary 12.2.floor)

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Declaration DYNAMIC-EXTENT</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Declaration DYNAMIC-EXTENT</h1>
+</header>
+<p><a href="3.8.html">UP</a></p>
+<hr />
+<h1 id="declaration-dynamic-extent">Declaration <strong>DYNAMIC-EXTENT</strong></h1>
+<p>Declaration <code>DYNAMIC-EXTENT</code></p>
+<h2 id="構文">構文</h2>
+<p>(<code>dynamic-extent</code> [[<em>var*</em> | (<code>function</code> <em>fn</em>)*]])</p>
+<h2 id="引数">引数</h2>
+<p><em>var</em> - 変数名<br />
+<em>fn</em> - 関数名</p>
+<h2 id="有効な文脈">有効な文脈</h2>
+<p><code>declare</code></p>
+<h2 id="影響する束縛の型">影響する束縛の型</h2>
+<p>変数、関数</p>
+<h2 id="定義">定義</h2>
+<p>この宣言で指定された各変数<code>vari</code>が どのような扱いになるのかを説明します。 あるフォームに含まれる部分を<code>F</code>とします。 <code>F</code>によって対象の変数が束縛されている必要はありませんが、 あとでそれぞれの場合を考えます。 変数<code>vari</code>が取る値を<code>vij</code>とします。 <code>vij</code>がある時点で<code>vari</code>の値になるときに、 <code>xijk</code>を<code>vij</code>の「他からアクセス不可の部分」であるとします。 ちょうど<code>F</code>の実行が終了した直後に、 もし<code>F</code>が<code>vari</code>を束縛していた場合は、 <code>xijk</code>はアクセス不可能です。 もし<code>F</code>が<code>vari</code>を束縛していない場合は、 <code>xijk</code>は<code>vari</code>の現在の値の「他からアクセス不可の部分」です。 同じ関係が関数の名前空間の束縛について各<code>fni</code>にも生じます。</p>
+<p>コンパイラーはこの情報を処理系に適切な方法で、 かつCommon Lispの意味に衝突しないような方法で 使うことが許されます。</p>
+<p><a href="3.8.dynamic-extent.html"><code>dynamic-extent</code></a>宣言は、自由宣言と境界宣言のどちらでも利用できます。</p>
+<p><a href="3.8.dynamic-extent.html"><code>dynamic-extent</code></a>宣言にある<em>var</em>と<em>fn</em>の名前は、 シンボルマクロとマクロの束縛を参照してはいけません。</p>
+<h2 id="例文">例文</h2>
+<p>初期値をスタック領域で確保するには、 そのオブジェクトの作成時にスタック領域の確保が可能かどうかを 知る必要があるため、 レキシカルに初期値が現れてない変数に対して <a href="3.8.dynamic-extent.html"><code>dynamic-extent</code></a>宣言をするのは一般的に有効ではありません。 例えば、次のように記載します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        ...))</span></code></pre></div>
+<p>これはコンパイラーに対して、 ローカル変数<code>x</code>によって保持されるリストを スタック領域から確保して欲しいと許可を出しています。 これは許可されますが、実際にはおそらく使いやすくありません。 次の例を見てみます。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> g </span>(x) (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x)) ...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>() (g (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span></code></pre></div>
+<p>多くのコンパイラーはおそらく<code>f</code>の中では、 <code>g</code>の引数をスタック領域に確保しません。 なぜならコンパイラーが<code>f</code>内部から<code>g</code>の状況を推定する際に モジュール性の違反であるとみなすからです。 <code>g</code>の定義が互換性のないものに変更されたときに、 <code>f</code>の再コンパイルに責任を持てる実装のみが、 <code>f</code>内の<code>g</code>へのリスト引数を 正当な方法としてスタック確保できます。</p>
+<p>別の例を示します。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">inline</span> g))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> g </span>(x) (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x)) ...)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>() (g (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">flet</span> ((g (x) (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x)) ...))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    (g (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>))))</span></code></pre></div>
+<p>この例では、いくつかのコンパイラーは最適化を可能にしますし、 そうでないものもあります。</p>
+<p>別の最適化で「スタックに確保された<code>rest</code>リスト」と呼ばれるものは （実装がこの最適化をサポートしているならば）、 次のように行います。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(&amp;<span class="kw">rest</span> x)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  ...)</span></code></pre></div>
+<p>この例では<code>x</code>の初期値は明になっていないことに注意してください。 このような場合でも関数<code>f</code>は引数として渡されるリスト<code>x</code>の編成に責任を持ちます。 もし実装が最適化をサポートしているのであれば、 コンパイラーは関数<code>f</code>に対して、リストの生成をヒープ領域ではなく スタック領域に構築するような最適化を行います。</p>
+<p>下記の例を見てみます。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((x (<span class="kw">list</span> &#39;a1 &#39;b1 &#39;c1))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>      (y (<span class="kw">cons</span> &#39;a2 (<span class="kw">cons</span> &#39;b2 (<span class="kw">cons</span> &#39;c2 <span class="kw">nil</span>)))))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x y))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  ...)</span></code></pre></div>
+<p><code>x</code>の他からアクセス不可の部分は3つのコンスであり、 <code>y</code>の他からアクセス不可の部分は他の3つのコンスです。 シンボル<code>a1</code>, <code>b1</code>, <code>c1</code>, <code>a2</code>, <code>b2</code>, <code>c2</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>は、 <code>x</code>か<code>y</code>の他からアクセス不可の部分であることに注意してください。 なぜなら、それらは<code>intern</code>されており、 <code>intern</code>されているものはパッケージからアクセスできるからです。 しかし、もし<code>intern</code>されていない新しいシンボルが使われている場合、 それは、そのシンボルが含まれるリストの 他からアクセス不可の部分になります。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; この例では、Xに束縛されているリストをスタック領域に</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; 確保することを実装に許可しています。</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((x (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">print</span> x)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  :done)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  :DONE</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">;; この例では、Lに束縛されるリストがスタック確保可能です。</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> zap </span>(x y z)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">do</span> ((l (<span class="kw">list</span> x y z) (<span class="kw">cdr</span> l)))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      ((<span class="kw">null</span> l))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> l))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">prin1</span> (<span class="kw">car</span> l)))) <span class="op">=&gt;</span>  ZAP</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>(zap <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">123</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">;; いくつかの実装は、Lに束縛されるリストをスタックに確保できるよう</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">;; LIST-ALL-PACKAGESのコードを開放しているかもしれません。</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">do</span> ((l (<span class="kw">list-all-packages</span>) (<span class="kw">cdr</span> l)))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    ((<span class="kw">null</span> l))</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> l))</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((name (<span class="kw">package-name</span> (<span class="kw">car</span> l))))</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">when</span> (string-search <span class="st">&quot;COMMON-LISP&quot;</span> name) (<span class="kw">print</span> name))))</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="st">&quot;COMMON-LISP&quot;</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="st">&quot;COMMON-LISP-USER&quot;</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">;; いくつかの実装では、restのリストをスタックに確保できます。</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">;; 下記のような宣言は、そのような実装に対してrestリストを</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">;; スタック確保したいという合図になるはずです。</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> add </span>(&amp;<span class="kw">rest</span> x)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">apply</span> #&#39;+ x)) <span class="op">=&gt;</span>  ADD</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>(add <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">6</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> zap </span>(n m)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; (RANDOM (+ M 1))を計算するには、だいたいO(N)の速度になります。</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; これはとても遅いですが良いコンパイラーなら少なくとも</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">;; 大量のヒープ領域を消費することはないでしょう。 :-}</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((a (<span class="kw">make-array</span> n)))</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> a))</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">dotimes</span> (i n) </span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> i))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">setf</span> (<span class="kw">aref</span> a i) (<span class="kw">random</span> (<span class="op">+</span> i <span class="dv">1</span>))))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">aref</span> a m))) <span class="op">=&gt;</span>  ZAP</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>(<span class="op">&lt;</span> (zap <span class="dv">5</span> <span class="dv">3</span>) <span class="dv">3</span>) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<p>下記の例は値<code>x</code>がその範囲から外で使用されているためエラーです。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">length</span> (<span class="kw">list</span> (<span class="kw">let</span> ((x (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))  <span class="co">; Invalid</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>               (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               x)))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">let</span> ((x (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))  <span class="co">; Invalid</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">declare</span> (<span class="kw">dynamic-extent</span> x))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         x)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="kw">nil</span>)</span></code></pre></div>
+<h2 id="参考">参考</h2>
+<p><a href="3.8.declare.html"><code>declare</code></a></p>
+<h2 id="備考">備考</h2>
+<p>この最も一般的な最適化は、<em>var</em>変数の初期値のオブジェクトを スタック領域に確保します。</p>
+<p>実装は単純にこの宣言を無視することも許されます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

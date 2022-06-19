@@ -24,6 +24,7 @@
 (replace binding-types-affected "影響する束縛の型")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
+(replace expressed-array-element-type "expressed-array-element-type")
 (replace base-character "基本文字")
 (replace standard-character "標準文字")
 (replace base-string "基本文字列")
@@ -116,4 +117,5 @@
 
 (replace interpreted-function "`interpreted-function`")
 (replace proclamation "`proclamation`")
+(replace otherwise-inaccessible-part "他からアクセス不可の部分")
 

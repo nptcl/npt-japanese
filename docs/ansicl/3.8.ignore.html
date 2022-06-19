@@ -164,11 +164,11 @@
 <p><em>var</em> - 変数名<br />
 <em>fn</em> - 関数名</p>
 <h2 id="有効な文脈">有効な文脈</h2>
-<p>宣言</p>
+<p><code>declare</code></p>
 <h2 id="影響する束縛の型">影響する束縛の型</h2>
 <p>変数、関数</p>
 <h2 id="定義">定義</h2>
-<p><a href="3.8.ignore.html"><code>ignore</code></a>と<a href="3.8.ignore.html"><code>ignorable</code></a>は、 <em>vars</em>への変数束縛と<em>fn</em>への関数束縛に対する値への参照に関する宣言です。</p>
+<p><a href="3.8.ignore.html"><code>ignore</code></a>と<a href="3.8.ignore.html"><code>ignorable</code></a>は、 <em>var</em>への変数束縛と<em>fn</em>への関数束縛に対する値への参照に関する宣言です。</p>
 <p><a href="3.8.ignore.html"><code>ignore</code></a>宣言は、宣言のスコープ内において その束縛が示す値への参照が生じないことを指定します。 そのような宣言のスコープ内において、 コンパイラーは、 <em>var</em>や<em>fn</em>や<code>special</code>の<em>var</em>の 値の参照が生じているものについて警告を発生させるのが望ましいです。</p>
 <p><a href="3.8.ignore.html"><code>ignorable</code></a>宣言は、宣言のスコープ内において その束縛が示す値への参照が生じているか、 または生じていないことを指定します。 そのような宣言のスコープ内において、 コンパイラーは、 <em>var</em>や<em>fn</em>や<code>special</code>の<em>var</em>の 値の参照が生じていないものについて警告を発生させないことが望ましいです。</p>
 <p><a href="3.8.ignore.html"><code>ignore</code></a>か<a href="3.8.ignore.html"><code>ignorable</code></a>宣言のスコープ範囲外では、 コンパイラーは、 <em>var</em>や<em>fn</em>や<code>special</code>の<em>var</em>の 値の参照が生じていないものについて警告を発生させることが望ましいです。</p>

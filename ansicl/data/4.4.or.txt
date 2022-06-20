@@ -1,0 +1,47 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier OR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.or!type
+@name: or!type
+@type: type-specifier
+
+Type Specifier `OR`
+
+
+## {compound-type-specifier-kind}
+
+結合
+
+
+## {compound-type-specifier-syntax}
+
+`or` *typespec\**
+
+
+## {compound-type-specifier-arguments}
+
+*typespec* - 型指定子
+
+
+## {compound-type-specifier-description}
+
+型*typespec*の結合によって決定される型の
+全てのオブジェクトの集合を示します。
+例えば、型{list!system-class:link}の定義は`(or null cons)`と同じです。
+また、{position:link}の返却値は
+`(or null (integer 0 *))`の型のオブジェクトです。
+これは{nil!variable:link}か非負の整数を意味しています。
+
+引数にシンボル`*`は許されません。
+
+型指定子`(or)`は{nil!type:link}と同等です。
+シンボルとしての{or!type:link}は、有効な型指定子ではありませんし、
+とくに`(or)`の省略形ではありません。
+
+@end
+

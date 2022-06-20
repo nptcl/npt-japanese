@@ -262,7 +262,7 @@
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              &#39;setf</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              new-value)</span></code></pre></div>
 <p>（この場合、<a href="7.7.slot-missing.html"><code>slot-missing</code></a>が返却されたとき、 全ての値は無視されます。）</p>
-<p>具体的なふるまいは、<em>instance</em>のメタクラスに依存します。 もし<em>instance</em>のメタクラスが<code>standard-class</code>なら、 決してエラーは発生しません。 もし<em>instance</em>のメタクラスが<code>built-in-class</code>なら、 常にエラーが発生します。 もし<em>instance</em>が他のメタクラスなら結果は規定されておらず、 状況によってエラーが発生するかもしれませんし、 されないかもしれません。 特にコンディションと構造体についての動作は規定されていません。</p>
+<p>具体的なふるまいは、<em>instance</em>のメタクラスに依存します。 もし<em>instance</em>のメタクラスが<a href="4.4.standard-class.html"><code>standard-class</code></a>なら、 決してエラーは発生しません。 もし<em>instance</em>のメタクラスが<a href="4.4.built-in-class.html"><code>built-in-class</code></a>なら、 常にエラーが発生します。 もし<em>instance</em>が他のメタクラスなら結果は規定されておらず、 状況によってエラーが発生するかもしれませんし、 されないかもしれません。 特にコンディションと構造体についての動作は規定されていません。</p>
 <h2 id="参考">参考</h2>
 <p><a href="7.7.slot-missing.html"><code>slot-missing</code></a>, <a href="7.7.slot-unbound.html"><code>slot-unbound</code></a>, <a href="7.7.with-slots.html"><code>with-slots</code></a></p>
 <h2 id="備考">備考</h2>

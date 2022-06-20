@@ -199,8 +199,8 @@ method-description ::=
 <li><a href="3.8.declare.html"><code>declare</code></a>オプションは、複数指定されるかもしれません。 宣言指定子のリストをひとつにまとめて、 単体の<a href="3.8.declare.html"><code>declare</code></a>オプションとして指定したのと同じ効果が得られます。</li>
 </ul></li>
 <li>引数<code>:documentation</code>は、ジェネリック関数のオブジェクトにドキュメント文字を、 種類<a href="25.2.documentation.html"><code>function</code></a>で、<em>funciton-name</em>に割り当てられます。</li>
-<li><code>:generic-function-class</code>オプションは、 ジェネリック関数が、システムの提供するデフォルトのもの (<code>standard-generic-function</code>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、ジェネリック関数クラスのクラス名です。 もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合はエラーが発生します。</li>
-<li><code>:method-class</code>オプションは、 ジェネリック関数上の全てのメソッドが、 システムの提供するデフォルトのもの(<code>standard-method</code>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、メソッドのクラスとなりえるクラス名です。</li>
+<li><code>:generic-function-class</code>オプションは、 ジェネリック関数が、システムの提供するデフォルトのもの (<a href="4.4.standard-generic-function.html"><code>standard-generic-function</code></a>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、ジェネリック関数クラスのクラス名です。 もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合はエラーが発生します。</li>
+<li><code>:method-class</code>オプションは、 ジェネリック関数上の全てのメソッドが、 システムの提供するデフォルトのもの(<a href="4.4.standard-method.html"><code>standard-method</code></a>のクラス)とは 異なるクラスを持つことを指定するために使われます。 引数<em>class-name</em>は、メソッドのクラスとなりえるクラス名です。</li>
 <li><code>:method-combination</code>オプションは、 method-combinationの型の名前であるシンボルが続きます。 そのシンボルの後に続く引数があるなら、それはmethod-combinationの型に依存します。 <code>standard</code>のmethod-combinationは、引数をサポートしません。 しかし、<a href="7.7.define-method-combination.html"><code>define-method-combination</code></a>の短縮形によって宣言された method-combinationの型は全て、<em>order</em>というオプション引数を受け付けます。 デフォルトの値は<code>:most-specific-first</code>であり、 もしこの値が<code>:most-specific-last</code>のときは、 補助メソッドの順番に影響を与えずに、プライマリメソッドの順番を逆転させます。</li>
 </ul>
 <p>引数<em>method-description</em>は、ジェネリック関数に関連付けたメソッドを宣言できます。 メソッド宣言にある引数の<em>method-qualifier</em>と<em>specialized-lambda-list</em>は、 <a href="7.7.defmethod.html"><code>defmethod</code></a>と同じです。</p>
@@ -220,7 +220,7 @@ method-description ::=
 <p>もし、<em>function-name</em>が既存のジェネリック関数を示しており、 新しいジェネリック関数の<code>:generic-function-class</code>の値が 古いものと互換性がある場合は、 <a href="7.7.change-class.html"><code>change-class</code></a>が呼ばれてジェネリック関数のクラスが変更されます。 それ以外の場合は型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <p>実装は、<a href="7.7.defgeneric.html"><code>defgeneric</code></a>に別のオプションを含めるよう拡張できます。 もし自身が実装していないオプションが見られた場合は、 その実装は型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーを発生するよう要求されます。</p>
 <h2 id="参考">参考</h2>
-<p><a href="7.7.defmethod.html"><code>defmethod</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <code>generic-function</code>, <a href="7.6.4.html">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</a></p>
+<p><a href="7.7.defmethod.html"><code>defmethod</code></a>, <a href="25.2.documentation.html"><code>documentation</code></a>, <a href="7.7.ensure-generic-function.html"><code>ensure-generic-function</code></a>, <a href="4.4.generic-function.html"><code>generic-function</code></a>, <a href="7.6.4.html">7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意</a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

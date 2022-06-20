@@ -1,0 +1,52 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier SATISFIES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.satisfies
+@name: satisfies
+@type: type-specifier
+
+Type Specifier `SATISFIES`
+
+
+## {compound-type-specifier-kind}
+
+述部
+
+
+## {compound-type-specifier-syntax}
+
+`satisfies` *predicate-name*
+
+
+## {compound-type-specifier-arguments}
+
+*predicate-name* - シンボル
+
+
+## {compound-type-specifier-description}
+
+全てのオブジェクトの集合は、
+*predicate-name*の述部を満たすことを示します。
+*predicate-name*はひとつの引数を受け取る
+グローバル関数定義のシンボルでなければなりません。
+*predicate-name*は名前を要求するため、
+ラムダ式は許されません。
+例えば、型指定子`(and integer (satisfies evenp))`は、
+全ての偶数の整数を示します。
+`(typep x '(satisfies p))`フォームは、
+`(if (p x) t nil)`と同等です。
+
+引数は要求されます。
+シンボル`*`は引数に指定できますが、
+しかしそれは自分自身（つまりシンボル`*`）を示しているのであって、
+未指定の値を表現しているのではありません。
+
+シンボルとしての{satisfies:link}は、有効な型指定子ではありません。
+
+@end
+

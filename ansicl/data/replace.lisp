@@ -112,6 +112,8 @@
 (replace implicit-tagbody "暗黙の`tagbody`")
 (replace bit-vector "ビット配列")
 (replace specialized "`specialized`")
+(replace specializing "特定可能")
+(replace specialize "特定した")
 (replace normal-return "通常の返却")
 (replace explicit-return "`return-from`による明示的な返却")
 
@@ -119,4 +121,5 @@
 (replace proclamation "`proclamation`")
 (replace otherwise-inaccessible-part "他からアクセス不可の部分")
 (replace optimize-quality "最適化の性質")
+(replace method-combination "`method-combination`")
 

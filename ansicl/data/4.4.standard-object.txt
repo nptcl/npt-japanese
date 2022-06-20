@@ -1,0 +1,30 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Class STANDARD-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.standard-object
+@name: standard-object
+@type: class
+
+Class `STANDARD-OBJECT`
+
+
+## {class-precedence-list}
+
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+{standard-object:link}クラスは
+{standard-class:link}のインスタンスであり、
+自分以外の{standard-class:link}のインスタンスの
+全てのクラスのスーパークラスです。
+
+@end
+

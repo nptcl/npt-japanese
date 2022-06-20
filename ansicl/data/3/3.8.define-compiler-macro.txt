@@ -16,7 +16,7 @@ Macro `DEFINE-COMPILER-MACRO`
 ## {syntax}
 
 `define-compiler-macro` *name* *lambda-list*
- [[*declaration\** | *documentation*]] *form\**  
+ [[*declaration\** `|` *documentation*]] *form\**  
 => *name*
 
 

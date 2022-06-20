@@ -162,7 +162,7 @@
 <li><p>引数はスロットの名前のリスト（空リストでも可）であり、 スロット名の集合を指定したものです。</p></li>
 <li><p>引数はシンボル<a href="5.3.t-variable.html"><code>t</code></a>であり、すべてのスロットの集合を指定したものです。</p></li>
 </ul>
-<p>システムが提供している<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドでは、 第一引数の特定パラメーターが<code>standard-object</code>クラスのものが存在します。 このメソッドは共有か局所かに関わらず、各スロットに対して次の振る舞いを行います。</p>
+<p>システムが提供している<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>のメソッドでは、 第一引数の特定パラメーターが<a href="4.4.standard-object.html"><code>standard-object</code></a>クラスのものが存在します。 このメソッドは共有か局所かに関わらず、各スロットに対して次の振る舞いを行います。</p>
 <ul>
 <li><p>もし初期化引数リスト中の 初期化引数がスロットへの値を特定した場合は、 メソッドが実行する前に対象のスロットにすでに値が格納されていても、 スロットへ特定した値が格納されます。 影響があるスロットは、<a href="7.7.shared-initialize.html"><code>shared-initialize</code></a>の 第二引数で指定されたスロットとは独立しています。</p></li>
 <li><p>第二引数によって指定されたどんなスロットも、 この時点においてまだ<code>unbound</code>であった場合は、 <code>:initform</code>フォームに従って初期化されます。 <code>:initform</code>フォームを持つどのスロットも、 フォームは<a href="7.7.defclass.html"><code>defclass</code></a>宣言のレキシカル環境にて評価され、 その結果がスロットに格納されます。 例えば、<code>before</code>メソッドがスロットへ値を格納する場合、 <code>:initform</code>フォームはスロットへの値の格納には使用されないでしょう。 もし第二引数が指定した名前が、 インスタンスのアクセス可能なスロットに対応していなかった場合は、 結果は定義されていません。</p></li>

@@ -166,7 +166,7 @@
 <em>creation-form</em> - フォーム<br />
 <em>initialization-form</em> - フォーム</p>
 <h2 id="定義">定義</h2>
-<p>返却値のフォームが評価されたとき、 <em>initialization-form</em>の実行なしに、 <em>object</em>と同等のオブジェクトが構築されます。 新しいオブジェクトのスロットの初期化は、 <em>object</em>の初期化されているスロットに対してはその値を用いて行われます。 <em>object</em>の初期化されていないスロットについては、 新しいオブジェクトでは初期化されません。 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は、 <code>standard-object</code>か<code>structure-object</code>の インスタンスであれば動作します。</p>
+<p>返却値のフォームが評価されたとき、 <em>initialization-form</em>の実行なしに、 <em>object</em>と同等のオブジェクトが構築されます。 新しいオブジェクトのスロットの初期化は、 <em>object</em>の初期化されているスロットに対してはその値を用いて行われます。 <em>object</em>の初期化されていないスロットについては、 新しいオブジェクトでは初期化されません。 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は、 <a href="4.4.standard-object.html"><code>standard-object</code></a>か<a href="4.4.structure-object.html"><code>structure-object</code></a>の インスタンスであれば動作します。</p>
 <p><em>slot-names</em>は保存するスロットの名前のリストです。 <em>slot-names</em>が与えられない場合、その値はすべての局所スロットになります。</p>
 <p><a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は2つの値を返却するので、 循環構造を扱うことができます。 この結果がアプリケーションで有用かどうかは、 オブジェクトの型とスロットの内容が、 アプリケーションの考えるオブジェクトの状態を 完全に捉えているかどうかに依存します。</p>
 <p><em>environment</em>はフォームを処理する環境です。</p>
@@ -182,7 +182,7 @@
 <p><a href="7.7.make-load-form.html"><code>make-load-form</code></a>, <a href="7.7.make-instance.html"><code>make-instance</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a></p>
 <h2 id="備考">備考</h2>
 <p><a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は、 ユーザーが<a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドを作成する際に便利です。</p>
-<p>もし<em>object</em>が<code>standard-object</code>のインスタンスならば、 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は <em>creation-form</em>に<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>を呼ぶフォームを、 <em>initialization-form</em>には<a href="7.7.slot-value.html"><code>slot-value</code></a>の<a href="5.3.setf.html"><code>setf</code></a>と、 <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>を含むフォームが返却されます。 しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。</p>
+<p>もし<em>object</em>が<a href="4.4.standard-object.html"><code>standard-object</code></a>のインスタンスならば、 <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>は <em>creation-form</em>に<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>を呼ぶフォームを、 <em>initialization-form</em>には<a href="7.7.slot-value.html"><code>slot-value</code></a>の<a href="5.3.setf.html"><code>setf</code></a>と、 <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>を含むフォームが返却されます。 しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

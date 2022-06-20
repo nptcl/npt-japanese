@@ -15,7 +15,7 @@ Declaration `DYNAMIC-EXTENT`
 
 ## {syntax}
 
-(`dynamic-extent` [[*var\** | ({function!system-class:link} *fn*)\*]])
+(`dynamic-extent` [[*var\** `|` ({function!system-class:link} *fn*)\*]])
 
 
 ## {arguments}

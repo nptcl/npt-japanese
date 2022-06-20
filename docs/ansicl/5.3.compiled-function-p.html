@@ -226,7 +226,7 @@
 <p><em>object</em> - オブジェクト<br />
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><em>object</em>が型<code>compiled-function</code>なら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
+<p><em>object</em>が型<a href="4.4.compiled-function.html"><code>compiled-function</code></a>なら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x) x) <span class="op">=&gt;</span>  F</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f)</span>
@@ -249,7 +249,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.compile.html"><code>compile</code></a>, <code>compile-file</code>, <code>compiled-function</code></p>
+<p><a href="3.8.compile.html"><code>compile</code></a>, <code>compile-file</code>, <a href="4.4.compiled-function.html"><code>compiled-function</code></a></p>
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> object) == (<span class="kw">typep</span> object &#39;compiled-function)</span></code></pre></div>
 <hr />

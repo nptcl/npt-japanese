@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier AND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.and!type
+@name: and!type
+@type: type-specifier
+
+Type Specifier `AND`
+
+
+## {compound-type-specifier-kind}
+
+結合
+
+
+## {compound-type-specifier-syntax}
+
+`and` *typespec\**
+
+
+## {compound-type-specifier-arguments}
+
+*typespec* - 型指定子
+
+
+## {compound-type-specifier-description}
+
+型*typespec*の共通部分によって決定される型の
+全てのオブジェクトの集合を示します。
+
+引数にシンボル`*`は許されません。
+
+型指定子`(and)`は{t!system-class:link}と同等です。
+シンボルとしての{and!type:link}は、有効な型指定子ではありませんし、
+とくに`(and)`の省略形ではありません。
+
+@end
+

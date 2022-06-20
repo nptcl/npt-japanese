@@ -1,0 +1,32 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STANDARD-METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.standard-method
+@name: standard-method
+@type: system-class
+
+System Class `STANDARD-METHOD`
+
+
+## {class-precedence-list}
+
+{standard-method:link},
+{method:link},
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+{standard-method:link}クラスは、
+{defmethod:link}と{defgeneric:link}フォームによって定義された
+メソッドの標準のクラスです。
+
+@end
+
+

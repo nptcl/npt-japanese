@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier EQL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.eql!type
+@name: eql!type
+@type: type-specifier
+
+Type Specifier `EQL`
+
+
+## {compound-type-specifier-kind}
+
+結合
+
+
+## {compound-type-specifier-syntax}
+
+`eql` *object*
+
+
+## {compound-type-specifier-arguments}
+
+*object* - オブジェクト
+
+
+## {compound-type-specifier-description}
+
+`(eql object x)`が*true*である全ての`x`の集合を示します。
+
+引数は要求されます。
+シンボル`*`は引数に指定できますが、
+しかしそれは自分自身（つまりシンボル`*`）を示しているのであって、
+未指定の値を表現しているのではありません。
+シンボルとしての{eql!type:link}は、有効な型指定子ではありません。
+
+@end
+
+

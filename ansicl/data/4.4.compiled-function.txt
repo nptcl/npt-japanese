@@ -1,0 +1,38 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type COMPILED-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.compiled-function
+@name: compiled-function
+@type: type
+
+Type `COMPILED-FUNCTION`
+
+
+## {supertypes}
+
+{compiled-function:link},
+{function!system-class:link},
+{t!system-class:link}
+
+
+## {description}
+
+関数が、実行時に展開される必要があるマクロの参照を含んでおらず、
+解決されていない{load-time-value:link}の参照も含んでいないとき、
+その関数は実装によってコンパイルされた関数であると考えられます。
+
+{compile-file:link}によってコンパイルされ、
+{load:link}によってロードされたファイル内で
+関数定義によってレキシカルに現れるものは
+{compiled-function:link}型です。
+{compile:link}関数によって生成された関数は
+{compiled-function:link}型です。
+他の関数も{compiled-function:link}型になるかもしれません。
+
+@end
+

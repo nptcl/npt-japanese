@@ -169,7 +169,7 @@
 <em>new-value</em> - オブジェクト<br />
 <em>result</em> - オブジェクト</p>
 <h2 id="定義">定義</h2>
-<p>ジェネリック関数<a href="7.7.slot-missing.html"><code>slot-missing</code></a>は、 メタクラスが<code>standard-class</code>の<em>object</em>のスロットに アクセスしようとしたとき、 スロットの名前<em>slot-name</em>がそのクラスに 存在しなかったときに呼び出されます。 標準のメソッドでは、エラーが発生します。</p>
+<p>ジェネリック関数<a href="7.7.slot-missing.html"><code>slot-missing</code></a>は、 メタクラスが<a href="4.4.standard-class.html"><code>standard-class</code></a>の<em>object</em>のスロットに アクセスしようとしたとき、 スロットの名前<em>slot-name</em>がそのクラスに 存在しなかったときに呼び出されます。 標準のメソッドでは、エラーが発生します。</p>
 <p>ジェネリック関数<a href="7.7.slot-missing.html"><code>slot-missing</code></a>は、 プログラマーによって呼び出されることを想定していません。 プログラマーはメソッドを書くことができます。</p>
 <p>ジェネリック関数<a href="7.7.slot-missing.html"><code>slot-missing</code></a>は、 次の関数<a href="7.7.slot-value.html"><code>slot-value</code></a>, <code>(setf slot-value)</code>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>の評価中に 呼び出されるかもしれません。 これらの操作は、関数の引数<em>symbol</em>に、 それぞれ<a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a> で対応します。</p>
 <p><a href="7.7.slot-missing.html"><code>slot-missing</code></a>のオプションの<em>new-value</em>引数は、 操作がスロットに値をセットしようとするときに使われます。</p>

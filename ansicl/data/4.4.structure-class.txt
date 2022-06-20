@@ -1,0 +1,30 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STRUCTURE-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.structure-class
+@name: structure-class
+@type: system-class
+
+System Class `STRUCTURE-CLASS`
+
+
+## {class-precedence-list}
+
+{structure-class:link},
+{class:link},
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+{defstruct:link}によって定義された全てのクラスは、
+{structure-class:link}クラスのインスタンスです。
+
+@end
+

@@ -1,0 +1,39 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Class STRUCTURE-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.structure-object
+@name: structure-object
+@type: class
+
+Class `STRUCTURE-OBJECT`
+
+
+## {class-precedence-list}
+
+{structure-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+{structure-object:link}クラスは
+{structure-class:link}のインスタンスであり、
+自分以外の{structure-class:link}のインスタンスの
+全てのクラスのスーパークラスであり、
+{defstruct:link}によって定義された
+全てのクラスのスーパークラスです。
+
+
+## {see-also}
+
+{defstruct:link},
+{2.4.8.13:ab},
+{22.1.3.12:ab}
+
+@end
+

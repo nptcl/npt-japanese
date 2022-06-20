@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class GENERIC-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.generic-function
+@name: generic-function
+@type: system-class
+
+System Class `GENERIC-FUNCTION`
+
+
+## {class-precedence-list}
+
+{generic-function:link},
+{function!system-class:link},
+{t!system-class:link}
+
+
+## {description}
+
+ジェネリック関数は、
+指定された引数のクラスか同一性に依存した振る舞いを持つ関数のことです。
+ジェネリック関数オブジェクトは、
+メソッド、ラムダリスト、{method-combination}の型、
+そしてその他の情報を含みます。
+メソッドは、クラス指定の振る舞いと、
+メソッドが特定されたジェネリック関数の操作を定義します。
+起動したとき、ジェネリック関数は
+その引数のクラスと同一性をもとに集められた
+メソッドの部分集合を実行します。
+
+ジェネリック関数は通常の関数を使用するかのように
+同じ方法で使うことができます。
+特にジェネリック関数は、{funcall:link}と{apply:link}の
+引数としても使用することができ、
+グローバルかローカルの名前としても与えられます。
+
+@end
+

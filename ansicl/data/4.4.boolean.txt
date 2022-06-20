@@ -15,7 +15,9 @@ Type `BOOLEAN`
 
 ## {supertypes}
 
-{boolean:link}, {symbol:link}, {t!system-class:link}
+{boolean:link},
+{symbol:link},
+{t!system-class:link}
 
 
 ## {description}

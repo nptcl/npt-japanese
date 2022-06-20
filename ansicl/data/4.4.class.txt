@@ -1,0 +1,33 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.class
+@name: class
+@type: system-class
+
+System Class `CLASS`
+
+
+## {class-precedence-list}
+
+{class:link},
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{class:link}は、インスタンスの構造と振る舞いを
+決めるオブジェクトの表現です。
+型{class:link}のオブジェクトは、
+クラスの非循環有向グラフである位置情報と、
+スロットと、オプションが記載された情報によって
+関連付けられます。
+
+@end
+

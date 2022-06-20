@@ -223,10 +223,10 @@
 <h2 id="構文">構文</h2>
 <p><code>make-load-form</code> <em>object</em> &amp;optional <em>environment</em> =&gt; <em>creation-form</em>[, <em>initialization-form</em>]</p>
 <h2 id="メソッド宣言">メソッド宣言</h2>
-<p><code>make-load-form</code> (<em>object</em> <code>standard-object</code>) &amp;optional <em>environment</em><br />
-<code>make-load-form</code> (<em>object</em> <code>structure-object</code>) &amp;optional <em>environment</em><br />
+<p><code>make-load-form</code> (<em>object</em> <a href="4.4.standard-object.html"><code>standard-object</code></a>) &amp;optional <em>environment</em><br />
+<code>make-load-form</code> (<em>object</em> <a href="4.4.structure-object.html"><code>structure-object</code></a>) &amp;optional <em>environment</em><br />
 <code>make-load-form</code> (<em>object</em> <code>condition</code>) &amp;optional <em>environment</em><br />
-<code>make-load-form</code> (<em>object</em> <code>class</code>) &amp;optional <em>environment</em></p>
+<code>make-load-form</code> (<em>object</em> <a href="4.4.class.html"><code>class</code></a>) &amp;optional <em>environment</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>object</em> - オブジェクト<br />
 <em>environment</em> - 環境オブジェクト<br />
@@ -235,7 +235,7 @@
 <h2 id="定義">定義</h2>
 <p>ジェネリック関数<a href="7.7.make-load-form.html"><code>make-load-form</code></a>は、 ひとつか2つのフォームを返却します。 それぞれ<em>creation-form</em>と<em>initialization-form</em>であり、 <code>load</code>時に<em>object</em>と等価なオブジェクトを構築することができます。 <em>environment</em>は、フォームが処理されるときの レキシカルな環境に対応する環境オブジェクトです。</p>
 <p>ファイルコンパイラは、特定のクラスのリテラルオブジェクトを処理するため、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出します。 3.2.4.4. 外部オブジェクトの制約の追記を参照。</p>
-<p>仕様に適合したプログラムは、<em>object</em>が<code>standard-object</code>, <code>structure-object</code>, <code>condition</code>からなる一般的なインスタンスであれば、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を直接呼び出します。</p>
+<p>仕様に適合したプログラムは、<em>object</em>が<a href="4.4.standard-object.html"><code>standard-object</code></a>, <a href="4.4.structure-object.html"><code>structure-object</code></a>, <code>condition</code>からなる一般的なインスタンスであれば、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>を直接呼び出します。</p>
 <p><em>creation-form</em>は<code>load</code>時に評価されるフォームであり、 <em>object</em>と等価なオブジェクトを返却しなければなりません。 等価の正確な意味は<em>object</em>の型によって異なるので、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>のメソッドを定義するプログラマーに任されています。 3.2.4. ファイルコンパイル時のリテラルオブジェクトを参照。</p>
 <p>もし<em>object</em>が<em>initialization-form</em>に定数として現れたときは、 ロード時にそれは、<em>creation-form</em>によって生成されたオブジェクトと 同一なものとして置き換えられます。 これは、さらなる初期化処理でオブジェクトにアクセスする方法です。</p>
 <p><em>creation-form</em>と<em>initialization-form</em>の両方で、 外部オブジェクトの参照が含まれる場合があります。 しかし、<em>creation-forms</em>では循環的な依存関係はがあってはなりません。 循環的な依存関係とは、例えば オブジェクト<code>X</code>の<em>creation-form</em>にオブジェクト<code>Y</code>が含まれており、 オブジェクト<code>Y</code>の<em>creation-form</em>にオブジェクト<code>X</code>が 含まれているような場合です。 <em>initialization-form</em>には循環的な依存関係のような制約はありません。 これが<em>initialization-form</em>フォームが存在する理由です。 循環的なデータ構造の例は下記を参照してください。</p>
@@ -244,7 +244,7 @@
 <p>もし<em>creation-form</em>か<em>initialization-form</em>のフォームを<code>F</code>としたとき、 <code>F</code>がそのようなオブジェクトを参照を含む場合は、 それらのオブジェクトは<em>creation-form</em>は<code>F</code>の前に実行され、 また、それらが<code>F</code>によって生成と初期化が行われるオブジェクトに依存しない限り、 それらのオブジェクトの<em>initialization-form</em>も<code>F</code>の前に実行されます。 これらの規則によって、作成と初期化の2フォーム間で 評価する順序が一意に決定されない個所については、 その評価順序は決められていません。</p>
 <p>これらの作成と初期化のフォームが評価されている間の オブジェクトはおそらく初期化されていない状態であり、 例えるなら、<a href="7.7.allocate-instance.html"><code>allocate-instance</code></a>で作成され、 <a href="7.7.initialize-instance.html"><code>initialize-instance</code></a>で完全に初期化処理されるまでの オブジェクトの状態と似ています。 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>のメソッドを作成するプログラマーは、 まだ初期化されていないスロットに依存しないよう、 注意深くオブジェクトを操作しなければなりません。</p>
 <p><code>load</code>がフォームを<a href="3.8.eval.html"><code>eval</code></a>で処理するか、 あるいは同等の効果を持つ他のオペレーションを行うかは、 処理系に依存します。 例をあげると、フォームを別の違った同等の形式に変換して評価する、 それらをコンパイルした結果の関数を<code>load</code>から呼ぶ、 それらが<a href="3.8.eval.html"><code>eval</code></a>とは違う特殊な目的の関数によって実行される、 などがあります。 フォームを評価するということと同等の効果があればよいのです。</p>
-<p>型<code>class</code>に特化したメソッドは、 もしクラスがちゃんとした名前を持っているときは、 クラス名を使った<em>creation-form</em>が返却されます。 もしクラスが名前を持っていない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。 <em>creation-form</em>の評価は、<a href="7.7.find-class.html"><code>find-class</code></a>を呼び出すように、 その名前を使用してクラスを検索します。 もしその名前のクラスが定義されていないときは、 クラスは実装で定義した方法で処理されます。 もし<em>creation-form</em>を評価した結果、 クラスを返却できなかった場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>型<a href="4.4.class.html"><code>class</code></a>に特化したメソッドは、 もしクラスがちゃんとした名前を持っているときは、 クラス名を使った<em>creation-form</em>が返却されます。 もしクラスが名前を持っていない場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発せられます。 <em>creation-form</em>の評価は、<a href="7.7.find-class.html"><code>find-class</code></a>を呼び出すように、 その名前を使用してクラスを検索します。 もしその名前のクラスが定義されていないときは、 クラスは実装で定義した方法で処理されます。 もし<em>creation-form</em>を評価した結果、 クラスを返却できなかった場合は、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <p>仕様に適合した実装と仕様に適合したプログラムの両方が <a href="7.7.make-load-form.html"><code>make-load-form</code></a>をさらに特別化することができます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> obj </span>()</span>
@@ -309,13 +309,13 @@
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><code>standard-object</code>, <code>structure-object</code>, <code>condition</code> の特定メソッドは、型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p><a href="4.4.standard-object.html"><code>standard-object</code></a>, <a href="4.4.structure-object.html"><code>structure-object</code></a>, <code>condition</code> の特定メソッドは、型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <p>システムクラスの一般化されたインスタンスに対して<a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出すと、 エラーが発生するか、作成・初期化フォームが返されるかは、処理系に依存します。</p>
 <h2 id="参考">参考</h2>
 <p><code>compile-file</code>, <a href="7.7.make-load-form-saving-slots.html"><code>make-load-form-saving-slots</code></a>, 3.2.4.4. 外部オブジェクトの制約の追記, 3.1. 評価, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
 <p>ファイルコンパイラは、特定の状況下で<a href="7.7.make-load-form.html"><code>make-load-form</code></a>を呼び出します。 3.2.4.4. 外部オブジェクトの制約の追記を参照。</p>
-<p>実装によっては、システムクラスとして指定されたクラスの新しいサブクラスを 定義する機能を提供する場合があります。 （考えられる候補としては、 <code>generic-function</code>、<code>method</code>、<code>stream</code>があります。） そのような実装では、ファイルコンパイラがそのようなクラスのインスタンスを リテラルオブジェクトとして遭遇したときにどのように処理するかを文書化し、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>に関連するメソッドを文書化しなければなりません。</p>
+<p>実装によっては、システムクラスとして指定されたクラスの新しいサブクラスを 定義する機能を提供する場合があります。 （考えられる候補としては、 <a href="4.4.generic-function.html"><code>generic-function</code></a>、<a href="4.4.method.html"><code>method</code></a>、<code>stream</code>があります。） そのような実装では、ファイルコンパイラがそのようなクラスのインスタンスを リテラルオブジェクトとして遭遇したときにどのように処理するかを文書化し、 <a href="7.7.make-load-form.html"><code>make-load-form</code></a>に関連するメソッドを文書化しなければなりません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -191,8 +191,8 @@ class-option ::= (:default-initargs . initarg-list) |
 <p>マクロ<a href="7.7.defclass.html"><code>defclass</code></a>は、新しい名前の付いたクラスを定義します。 その結果として新しいクラスオブジェクトが返却されます。</p>
 <p><a href="7.7.defclass.html"><code>defclass</code></a>の構文は、 スロットの初期化引数を指定するオプション、 スロットのデフォルト初期化値を指定するオプション、 そしてスロットの値を読み書きするためのジェネリック関数のメソッドを 自動的に生成するようなオプションを提供します。 デフォルトではリーダおよびライタ関数は定義されていませんので、 その生成は明示的に要求する必要があります。 ただし、スロットは常に<a href="7.7.slot-value.html"><code>slot-value</code></a>を使用してアクセスすることができます。</p>
 <p>新しいクラスを定義すると、同じ名前の型も定義されます。 式<code>(typep object class-name)</code>は、 引数<em>object</em>のクラスが<em>class-name</em>自身の名前のクラスであるか、 あるいはクラス<em>class-name</em>のサブクラスであるならば、<em>true</em>を返します。 クラスオブジェクトは型指定子として使われることができます。 したがって<code>(typep object class)</code>は、 <em>object</em>のクラスが、クラス自体か、 クラスのサブクラスである場合に<em>true</em>を返します。</p>
-<p>引数の<em>class-name</em>は、新しいクラスの適切な名前を指定します。 もし同名のクラスが存在しており、 そのクラスが<code>standard-class</code>のインスタンスであり、 さらに<a href="7.7.defclass.html"><code>defclass</code></a>フォームによる新しいクラスの定義が、 <code>standard-class</code>クラスのクラスで指定されていた場合、 既存のクラスは再定義され、 そのクラス（サブクラスも含む）のインスタンスは、 それらが次にアクセスされたときに 新しい定義へと更新されます。 詳細は4.3.6. クラスの再定義を参照。</p>
-<p>引数<em>superclass-name</em>は、新しいクラスのダイレクトスーパークラスを指定します。 もしスーパークラスのリストが空のとき、 スーパークラスはメタクラスによって異なるデフォルト値になりますが、 <code>standard-class</code>のデフォルトは<code>standard-object</code>です。</p>
+<p>引数の<em>class-name</em>は、新しいクラスの適切な名前を指定します。 もし同名のクラスが存在しており、 そのクラスが<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスであり、 さらに<a href="7.7.defclass.html"><code>defclass</code></a>フォームによる新しいクラスの定義が、 <a href="4.4.standard-class.html"><code>standard-class</code></a>クラスのクラスで指定されていた場合、 既存のクラスは再定義され、 そのクラス（サブクラスも含む）のインスタンスは、 それらが次にアクセスされたときに 新しい定義へと更新されます。 詳細は4.3.6. クラスの再定義を参照。</p>
+<p>引数<em>superclass-name</em>は、新しいクラスのダイレクトスーパークラスを指定します。 もしスーパークラスのリストが空のとき、 スーパークラスはメタクラスによって異なるデフォルト値になりますが、 <a href="4.4.standard-class.html"><code>standard-class</code></a>のデフォルトは<a href="4.4.standard-object.html"><code>standard-object</code></a>です。</p>
 <p>新しいクラスは、各ダイレクトスーパークラスと、 それら各々のダイレクトスーパークラスの繋がりによって、 スロットとメソッドが継承されます。</p>
 <p>スロットオプションは下記のものが使用可能です。</p>
 <ul>
@@ -217,7 +217,7 @@ class-option ::= (:default-initargs . initarg-list) |
 <ul>
 <li>クラスオプション<code>:default-initargs</code>は、 名前とデフォルトの初期化値のフォームを交互に並べた 初期化引数のリストによって続けられます。 もし、これらの初期化引数のどれかが、 <a href="7.7.make-instance.html"><code>make-instance</code></a>に与えられた初期化引数リストに現れない場合、 対応するデフォルト初期値フォームが評価され、 その初期化引数名とフォームの値が 初期化引数リストの最後に追加されてからインスタンスが生成されます。 詳しくは<a href="7.1.html">7.1. オブジェクトの作成と初期化</a>をご確認ください。 デフォルト初期値フォームは、使用されるたびに評価されます。 評価されるときのレキシカルな環境は、 <a href="7.7.defclass.html"><code>defclass</code></a>フォームが評価されたときのものです。 動的な環境は、<a href="7.7.make-instance.html"><code>make-instance</code></a>が呼ばれたときのものです。 もしクラスオプション<code>:default-initargs</code>に 初期化引数名が複数現れたときは、 エラーが発生します。</li>
 <li>クラスオプション<code>:documentation</code>は、 クラスオブジェクトにドキュメント文字を、 種別<a href="25.2.documentation.html"><code>type</code></a>で、<em>class-name</em>に割り当てます。 <code>:documentation</code>は、最大ひとつ指定できます。</li>
-<li>クラスオプション<code>:metaclass</code>は、 定義するクラスのインスタンスが、 システムが提供するデフォルトのもの(<code>standard-class</code>のクラス)とは 異なるメタクラスを持つことを指定するために使われます。</li>
+<li>クラスオプション<code>:metaclass</code>は、 定義するクラスのインスタンスが、 システムが提供するデフォルトのもの(<a href="4.4.standard-class.html"><code>standard-class</code></a>のクラス)とは 異なるメタクラスを持つことを指定するために使われます。</li>
 </ul>
 <p>標準クラスにおいては、<a href="7.7.defclass.html"><code>defclass</code></a>は下記のルールに注意してください。</p>
 <ul>

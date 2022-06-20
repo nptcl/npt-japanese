@@ -1,0 +1,50 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier VALUES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.values!type
+@name: values!type
+@type: type-specifier
+
+Type Specifier `VALUES`
+
+
+## {compound-type-specifier-kind}
+
+特定化
+
+
+## {compound-type-specifier-syntax}
+
+```
+value-typespec::= typespec* [&optional typespec*] [&rest typespec] [&allow-other-keys] 
+```
+
+
+## {compound-type-specifier-arguments}
+
+*typespec* - 型指定子
+
+
+## {compound-type-specifier-description}
+
+この型指定子は{function!system-class:link}型指定子か、
+{the:link} {special-form}の
+*value-type*としてのみ使用することができます。
+これは多値が関係するときに独立した型を指定するときに使われます。
+`&optional`と`&rest`の印を*value-type*のリストに配置することができます。
+それらの値は{multiple-value-call:link}に関数と共に与えられれたとき、
+正しく受け取れるようなパラメーターを意味しています。
+
+シンボル`*`は*value-type*の中に含まれないかもしれません。
+
+シンボルとしての{values!type:link}は、有効な型指定子ではありませんし、
+とくに`(values)`の省略形ではありません。
+
+@end
+
+

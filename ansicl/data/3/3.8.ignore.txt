@@ -17,8 +17,8 @@ Declaration `IGNORE`, `IGNORABLE`
 
 ## {syntax}
 
-(`ignore`    `{`*var* | ({function!system-class:link} *fn*)`}`\*)  
-(`ignorable` `{`*var* | ({function!system-class:link} *fn*)`}`\*)
+(`ignore`    `{`*var* `|` ({function!system-class:link} *fn*)`}`\*)  
+(`ignorable` `{`*var* `|` ({function!system-class:link} *fn*)`}`\*)
 
 
 ## {arguments}

@@ -15,7 +15,7 @@ Macro `DEFMACRO`
 
 ## {syntax}
 
-`defmacro` *name* *lambda-list* [[*declaration\** | *documentation*]] *form\**  
+`defmacro` *name* *lambda-list* [[*declaration\** `|` *documentation*]] *form\**  
 => *name*
 
 

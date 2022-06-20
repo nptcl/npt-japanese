@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier NOT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.not!type
+@name: not!type
+@type: type-specifier
+
+Type Specifier `NOT`
+
+
+## {compound-type-specifier-kind}
+
+結合
+
+
+## {compound-type-specifier-syntax}
+
+`not` *typespec*
+
+
+## {compound-type-specifier-arguments}
+
+*typespec* - 型指定子
+
+
+## {compound-type-specifier-description}
+
+型*typespec*ではない全てのオブジェクトの集合を示します。
+
+引数は要求されますが、シンボル`*`は指定できません。
+
+シンボルとしての{not!type:link}は、有効な型指定子ではありません。
+
+@end
+

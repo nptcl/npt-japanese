@@ -1,0 +1,35 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class METHOD-COMBINATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.method-combination
+@name: method-combination
+@type: system-class
+
+System Class `METHOD-COMBINATION`
+
+
+## {class-precedence-list}
+
+{method-combination:link},
+{t!system-class:link}
+
+
+## {description}
+
+全ての{method-combination}オブジェクトは、
+{method-combination:link}クラスの間接的なインスタンスです。
+{method-combination}オブジェクトは
+ジェネリック関数によって使用される
+{method-combination}についての情報を表現します。
+{method-combination}オブジェクトは、
+{method-combination}の型と、
+その型で使用できる引数の、
+両方についての情報を含みます。
+
+@end
+

@@ -1,0 +1,50 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class METHOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.method
+@name: method
+@type: system-class
+
+System Class `METHOD`
+
+
+## {class-precedence-list}
+
+{method:link},
+{t!system-class:link}
+
+
+## {description}
+
+メソッド`method`は、ジェネリック関数の振る舞いの
+基本的なモジュール単位を表すオブジェクトです。
+
+メソッドは、
+メソッドのふるまいを実装したコード、
+そのメソッドが適用可能かどうかを指定する特定パラメーターの列、
+そしてメソッド間を区別するための
+{method-combination}の機能で使用される
+{qualifiers}の列を含みます。
+各メソッドのそれぞれの{required-parameter}は、
+関連付けられた{parameter-specializer}を持っており、
+そのメソッドは引数が自身の{parameter-specializer}を
+満たすときのみ実行されます。
+
+{method-combination}の機能は実行されたときに
+メソッドの選択を制御することができ、
+その返却値はジェネリック関数によって返却されます。
+オブジェクトシステムは標準の{method-combination}の型を提供しており、
+また{method-combination}の新しい型を定義する機能も提供しています。
+
+
+## {see-also}
+
+{7.6:ab}
+
+@end
+

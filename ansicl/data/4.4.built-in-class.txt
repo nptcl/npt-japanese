@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class BUILT-IN-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.built-in-class
+@name: built-in-class
+@type: system-class
+
+System Class `BUILT-IN-CLASS`
+
+
+## {class-precedence-list}
+
+{built-in-class:link},
+{class:link},
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+組み込みクラス`built-in-class`は、
+機能に制限があるか、あるいは特別な表現を持った
+インスタンスを表すのクラスです。
+{defclass:link}によって組み込みクラスのサブクラスを定義しようとしたときは、
+型{error!condition:link}のエラーが発生します。
+{make-instance:link}を呼び出して
+組み込みクラスのインスタンスを作成しようとしたときは、
+型{error!condition:link}のエラーが発生します。
+組み込みクラスのインスタンスに{slot-value:link}を呼び出したときは、
+型{error!condition:link}のエラーが発生します。
+組み込みクラスを再定義するか、
+組み込みクラスのインスタンスのクラスを
+{change-class:link}によって変更しようとしたときは、
+型{error!condition:link}のエラーが発生します。
+しかし、組み込みクラスはメソッドの特定パラメーターに使用できます。
+
+@end
+

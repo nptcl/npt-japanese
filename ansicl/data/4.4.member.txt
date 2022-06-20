@@ -1,0 +1,51 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier MEMBER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.member!type
+@name: member!type
+@type: type-specifier
+
+Type Specifier `MEMBER`
+
+
+## {compound-type-specifier-kind}
+
+結合
+
+
+## {compound-type-specifier-syntax}
+
+`member` *object\**
+
+
+## {compound-type-specifier-arguments}
+
+*object* - オブジェクト
+
+
+## {compound-type-specifier-description}
+
+*object*で示されるものを含む集合を示します。
+*object*は、
+指定された*object*と{eql!function:link}で等しいときにのみ
+この型になります。
+
+型指定子`(member)`は、{nil!type:link}と同等です。
+*object*にシンボル`*`を指定できますが、
+しかしそれは自分自身（つまりシンボル`*`）を示しているのであって、
+未指定の値を表現しているのではありません。
+シンボルとしての{member!type:link}は、有効な型指定子ではありませんし、
+とくに`(member)`や`(member *)`の省略形ではありません。
+
+
+## {see-also}
+
+{eql!type:link}（型として）
+
+@end
+

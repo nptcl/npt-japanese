@@ -1,0 +1,30 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STANDARD-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.standard-class
+@name: standard-class
+@type: system-class
+
+System Class `STANDARD-CLASS`
+
+
+## {class-precedence-list}
+
+{standard-class:link},
+{class:link},
+{standard-object:link},
+{t!system-class:link}
+
+
+## {description}
+
+{standard-class:link}クラスは、
+{defclass:link}によって定義されたクラスの標準のクラスです。
+
+@end
+

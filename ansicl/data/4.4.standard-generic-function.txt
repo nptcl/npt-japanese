@@ -1,0 +1,34 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STANDARD-GENERIC-FUNCTION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.standard-generic-function
+@name: standard-generic-function
+@type: system-class
+
+System Class `STANDARD-GENERIC-FUNCTION`
+
+
+## {class-precedence-list}
+
+{standard-generic-function:link},
+{generic-function:link},
+{function!system-class:link},
+{t!system-class:link}
+
+
+## {description}
+
+{standard-generic-function:link}クラスは、
+{defmethod:link},
+{ensure-generic-function:link},
+{defgeneric:link},
+{defclass:link}のフォームによって確立される
+ジェネリック関数の標準のクラスです。
+
+@end
+

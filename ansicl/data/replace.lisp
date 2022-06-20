@@ -118,4 +118,5 @@
 (replace interpreted-function "`interpreted-function`")
 (replace proclamation "`proclamation`")
 (replace otherwise-inaccessible-part "他からアクセス不可の部分")
+(replace optimize-quality "最適化の性質")
 

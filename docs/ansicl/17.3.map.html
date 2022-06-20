@@ -223,13 +223,13 @@
 <h2 id="構文">構文</h2>
 <p><code>map</code> <em>result-type</em> <em>function</em> &amp;rest <em>sequences+</em> =&gt; <em>result</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>result-type</em> - <a href="17.3.sequence.html"><code>sequence</code></a>の型指定子か、<code>nil</code><br />
+<p><em>result-type</em> - <a href="17.3.sequence.html"><code>sequence</code></a>の型指定子か、<a href="4.4.nil-type.html"><code>nil</code></a><br />
 <em>function</em> - <em>sequences</em>にある複数の引数を取る関数の指定子<br />
 <em>sequences</em> - 正常なシーケンス<br />
-<em>result</em> - もし<em>result-type</em>が<code>nil</code>ではない型指定子のときは、 その型のシーケンスです。 その他の場合は（あるいは<em>result-type</em>が<code>nil</code>のとき） <a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
+<em>result</em> - もし<em>result-type</em>が<a href="4.4.nil-type.html"><code>nil</code></a>ではない型指定子のときは、 その型のシーケンスです。 その他の場合は（あるいは<em>result-type</em>が<a href="4.4.nil-type.html"><code>nil</code></a>のとき） <a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
 <h2 id="定義">定義</h2>
 <p>各シーケンスから得られる引数の連続した集合に対して<em>function</em>を適用します。 <em>function</em>は最初、すべてのインデックス<code>0</code>の要素に対して呼び出され、 それから、すべてのインデックス<code>1</code>の要素に対して呼び出され、 それをくり返します。 <em>result-type</em>は、返却値のシーケンスの型を示します。</p>
-<p><a href="17.3.map.html"><code>map</code></a>は、<em>result-type</em>が<code>nil</code>のときは、 <a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 それ以外のときは、<a href="17.3.map.html"><code>map</code></a>は、 シーケンス<code>j</code>番目の要素が各<em>sequences</em>のそれぞれの’j’番目の要素に <em>function</em>を適用したものであるようなシーケンスを返却します。 返却値のシーケンスは、 <em>sequences</em>の中の最も短いものと同じ長さです。 もし<em>sequences</em>の一連の要素を <em>function</em>に適用した結果が、 <em>result-type</em>で示された型のシーケンスに 含めることができなかったときの結果は未定義です。</p>
+<p><a href="17.3.map.html"><code>map</code></a>は、<em>result-type</em>が<a href="4.4.nil-type.html"><code>nil</code></a>のときは、 <a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 それ以外のときは、<a href="17.3.map.html"><code>map</code></a>は、 シーケンス<code>j</code>番目の要素が各<em>sequences</em>のそれぞれの’j’番目の要素に <em>function</em>を適用したものであるようなシーケンスを返却します。 返却値のシーケンスは、 <em>sequences</em>の中の最も短いものと同じ長さです。 もし<em>sequences</em>の一連の要素を <em>function</em>に適用した結果が、 <em>result-type</em>で示された型のシーケンスに 含めることができなかったときの結果は未定義です。</p>
 <p>もし<em>result-type</em>が<a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプの場合、 リストが返却されます。</p>
 <p>もし<em>result-type</em>が<code>vector</code>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
 <h2 id="例文">例文</h2>

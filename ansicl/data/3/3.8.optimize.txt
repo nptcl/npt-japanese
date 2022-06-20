@@ -1,0 +1,103 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3.  評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration OPTIMIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.optimize
+@name: optimize
+@link: compilation-speed
+@link: debug
+@link: safety
+@link: space
+@link: speed
+@type: declaration
+
+
+## {syntax}
+
+(`optimize` `{`*quality* | (*quality* *value*)`}`\*)
+
+
+## {arguments}
+
+*quality* - {optimize-quality}  
+*value* - 次の整数のうちのひとつ、`0`, `1`, `2`, `3`
+
+
+## {valid-context}
+
+`declare`か`proclaim`
+
+
+## {binding-types-affected}
+
+なし。
+
+
+## {description}
+
+コンパイラーに対して、各*quality*が対応する値*value*で指定されたことの
+注意を促すように知らせます。
+各*quality*は{optimize-quality}の名前のシンボルである必要があります。
+その名前である標準の{optimize-quality}を次の表に表します。
+
+|名前                     |意味                           |
+|-------------------------|-------------------------------|
+|{compilation-speed:link} |コンパイル処理の速度           |
+|{debug:link}             |デバッグのやりやすさ           |
+|{safety:link}            |実行自エラーチェック           |
+|{space:link}             |コードサイズと実行時空間の両方 |
+|{speed:link}             |コードの速度                   |
+
+Figure 3-25. {optimize-quality}
+
+他にも実装定義の{optimize-quality}が存在します。
+
+値`0`は対応する*quality*が全体的に重要ではないことを意味します。
+値`3`は*quality*が非常に重要であることを意味します。
+値`1`と`2`はその中間の値であり、値`1`が標準の値です。
+`(quality 3)`は省略して`quality`と記載できます。
+
+最適化`(safety 3)`かただ`safety`と指定したコードは、
+安全なコードと呼ばれます。
+
+*quality*が複数違う値で現れたときの結果は指定されていません。
+
+
+## {examples}
+
+```lisp
+(defun often-used-subroutine (x y)
+  (declare (optimize (safety 2)))
+  (error-check x y)
+  (hairy-setup x)
+  (do ((i 0 (+ i 1))
+       (z x (cdr z)))
+      ((null z))
+    ;; この内部ループは本当に燃やす必要があります。
+    ;; （高負荷という意味）
+    (declare (optimize speed))
+    (declare (fixnum i))
+    ))
+```
+
+
+## {see-also}
+
+{declare:link},
+{declaim:link},
+{proclaim:link},
+{3.3.4:ab}
+
+
+## {notes}
+
+{optimize:link}宣言は、決して変数束縛にも関数束縛にも適用しません。
+{optimize:link}宣言は自由宣言にのみ使用できます。
+詳細は{3.3.4:ab}をご確認ください。
+
+@end
+

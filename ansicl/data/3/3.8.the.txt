@@ -1,0 +1,100 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator THE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.the
+@name: the
+@type: special-operator
+
+Special Operator `THE`
+
+
+## {syntax}
+
+`the` *value-type* *form* => *result\**
+
+
+## {arguments-and-values}
+
+*value-type* - 型指定子。評価されません。  
+*form* - フォーム。評価されます。  
+*result* - *form*を評価した結果の返却値。
+これらの返却値は*value-type*によって指定した型に一致しなければなりません。
+詳細は下記を参照。
+
+
+## {description}
+
+{the:link}は*form*によって返却された値が
+*value-type*の型であることを指定します。
+*result*が宣言の型ではないときの結果は未定義です。
+
+型が宣言されている値が実際にその型である限り、
+*form*が*value-type*で指定されている値とは
+異なる数の値を生成することは許されます。
+欠落している値は、その型を確認するために
+{nil!variable:link}として扱われます。
+
+*value-type*で宣言された値の数に関係なく、
+*form*が返す値の数は、
+{the:link} {special-form}が返す値の数と同じになります。
+
+
+## {examples}
+
+```lisp
+(the symbol (car (list (gensym)))) =>  #:G9876
+(the fixnum (+ 5 7)) =>  12
+(the (values) (truncate 3.2 2)) =>  1, 1.2
+(the integer (truncate 3.2 2)) =>  1, 1.2
+(the (values integer) (truncate 3.2 2)) =>  1, 1.2
+(the (values integer float) (truncate 3.2 2))   =>  1, 1.2
+(the (values integer float symbol) (truncate 3.2 2)) =>  1, 1.2
+(the (values integer float symbol t null list) 
+     (truncate 3.2 2)) =>  1, 1.2
+(let ((i 100))
+   (declare (fixnum i))
+   (the fixnum (1+ i))) =>  101
+(let* ((x (list 'a 'b 'c))
+       (y 5))
+   (setf (the fixnum (car x)) y)
+   x) =>  (5 B C)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*form*が生成した返却値が指定した*value-type*では
+なかったときの結果は未定義です。
+
+
+## {see-also}
+
+{values!type:link}
+
+
+## {notes}
+
+{values!type:link}型指定子は、多値の型を示すのに使われます。
+
+```lisp
+(the (values integer integer) (floor x y))
+(the (values string t)
+     (gethash the-key the-string-table))
+```
+
+{setf:link}は、{the:link}の型指定子を使用できます。
+この場合、宣言は新しい値を指定したフォームへ変換されます。
+その{setf:link}の結果が解析されます。
+
+@end
+

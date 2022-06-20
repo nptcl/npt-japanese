@@ -244,7 +244,7 @@
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  form2</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ...</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  formn)</span></code></pre></div>
-<p>最初に式<em>init-form-1</em>, <em>init-form-2</em>, …, をこの順番で評価し、返却値を保存します。 そのあと、全ての変数<code>varj</code>に対応する値を束縛します。 各束縛はレキシカルに行われますが、 <code>special</code>宣言があるときは逆になります。 <code>formk</code>の式はその順番で評価されます。 最後以外のすべての値は無視されます。 （つまり<a href="5.3.let.html"><code>let</code></a>のボディ部は、暗黙のprognです）</p>
+<p>最初に式<em>init-form-1</em>, <em>init-form-2</em>, …, をこの順番で評価し、返却値を保存します。 そのあと、全ての変数<code>varj</code>に対応する値を束縛します。 各束縛はレキシカルに行われますが、 <a href="3.8.special.html"><code>special</code></a>宣言があるときは逆になります。 <code>formk</code>の式はその順番で評価されます。 最後以外のすべての値は無視されます。 （つまり<a href="5.3.let.html"><code>let</code></a>のボディ部は、暗黙のprognです）</p>
 <p><a href="5.3.let.html"><code>let*</code></a>は<a href="5.3.let.html"><code>let</code></a>に似ていますが、 変数の束縛が並行ではなく、 連続に行われるところが違っています。 <a href="5.3.let.html"><code>let*</code></a>では、 <em>var</em>の<em>init-form</em>の式は、 前に束縛された<code>vars</code>を参照することができます。</p>
 <p>次のフォームは、</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let*</span> ((var1 init-form<span class="dv">-1</span>)</span>

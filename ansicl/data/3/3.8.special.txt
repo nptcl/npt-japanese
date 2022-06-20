@@ -1,0 +1,158 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration SPECIAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.special
+@name: special
+@type: declaration
+
+Declaration `SPECIAL`
+
+
+## {syntax}
+
+(`special` *var\**)
+
+
+## {arguments}
+
+*var* - シンボル
+
+
+## {valid-context}
+
+`declare`と`proclaim`
+
+
+## {binding-types-affected}
+
+変数
+
+
+## {description}
+
+全ての*var*という名前のものを動的に指定します。
+この指定子は変数の束縛と参照に影響します。
+全ての影響があった束縛変数は動的束縛になり、
+変数参照は現在の動的束縛を参照します。
+下記に例を示します。
+
+```lisp
+(defun hack (thing *mod*)    ;束縛されたパラメーター*mod*は
+  (declare (special *mod*))  ;hack1からも見ることができます。
+  (hack1 (car thing)))       ;しかしthingはそうではありません。
+(defun hack1 (arg)
+  (declare (special *mod*))  ;hack1内の宣言*mod*は
+                             ;specialで参照されます。
+  (if (atom arg) *mod*
+      (cons (hack1 (car arg)) (hack1 (cdr arg)))))
+```
+
+{special:link}宣言は、*var*の束縛の中では影響しません。
+束縛内では暗黙的に{special:link}宣言がシャドウします。
+そして明示的に{special:link}として再宣言する必要があります。
+{special:link}宣言は決して関数束縛に適用しません。
+
+{special:link}宣言は境界宣言として利用可能であり、
+束縛と参照の両方に影響します。
+他には自由宣言も利用可能であり、これは参照のみに影響し、
+変数の束縛に付随する宣言に依存します。
+
+`proclaim`が使用されたとき、{special:link}宣言指定子は
+その変数の全ての束縛と参照に適用されます。
+例えば次の通り。
+
+```lisp
+(declaim (special x))
+```
+
+この例文の後で次のような関数帝があったとします。
+
+```lisp
+(defun example (x) ...)
+```
+
+このときパラメーター`x`は
+レキシカル変数ではなく動的変数として束縛されます。
+
+
+## {examples}
+
+```lisp
+(defun declare-eg (y)                  ;このyはspecialです
+  (declare (special y))
+  (let ((y t))                         ;このyはレキシカルでｓ
+       (list y
+             (locally (declare (special y)) y)))) ;このyの参照先は
+                                                  ;special束縛のyです
+=>  DECLARE-EG 
+(declare-eg nil) =>  (T NIL) 
+(setf (symbol-value 'x) 6)
+(defun foo (x)                         ;xはレキシカル束縛
+  (print x)
+  (let ((x (1+ x)))                    ;xはspecial束縛であり
+    (declare (special x))              ;レキシカル参照
+    (bar))
+  (1+ x))
+(defun bar () 
+  (print (locally (declare (special x))
+           x)))
+(foo 10) 
+>>  10
+>>  11
+=>  11
+(setf (symbol-value 'x) 6)
+(defun bar (x y)            ;[1] 1回目のxの出現
+  (let ((old-x x)           ;[2] 2回目のxの出現 -- 1回目と同じ
+        (x y))              ;[3] 3回目のxの出現
+    (declare (special x))
+    (list old-x x)))
+(bar 'first 'second) =>  (FIRST SECOND)
+ (defun few (x &optional (y *foo*))
+   (declare (special *foo*))
+   ...)
+```
+
+この例の最初の行にある`*foo*`の参照は、
+2行目に{special:link}宣言があるにもかかわらず、
+1行目は{special:link}ではありません。
+
+```lisp
+(declaim (special prosp)) => 実装依存
+(setq prosp 1 reg 1) =>  1
+(let ((prosp 2) (reg 2))         ;prospの束縛は前のdeclaimにより
+   (set 'prosp 3) (set 'reg 3)   ;specialになります。
+   (list prosp reg))             ;reg変数はレキシカルです。
+=>  (3 2)
+(list prosp reg) =>  (1 3)
+
+(declaim (special x))          ;xは常にspecialです。
+(defun example (x y)                                 
+  (declare (special y))
+  (let ((y 3) (x (* x 2)))
+    (print (+ y (locally (declare (special y)) y)))
+    (let ((y 4)) (declare (special y)) (foo x)))) =>  EXAMPLE
+```
+
+上記のねじ曲がったコードは、
+最も外側と最も内側の`y`の束縛は動的であり、
+しかし中間の束縛はレキシカルです。
+`+`の2つの引数は違っており、
+1つ目はレキシカル変数`y`の値`3`で、
+もうひとつは動的変数`y`です
+（この束縛は偶然にも外側のレベルでレキシカルに囲まれているものです）。
+しかしながら{proclamation}によって`x`が常に{special:link}なので、
+全ての`x`の束縛と`x`の参照は動的です。
+
+
+## {see-also}
+
+{defparameter:link},
+{defvar:link}
+
+@end
+

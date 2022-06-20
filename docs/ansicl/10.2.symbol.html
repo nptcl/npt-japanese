@@ -183,7 +183,7 @@
 </ul></li>
 <li>関数
 <ul>
-<li>シンボルが関数の属性を持つ場合、それは<code>fbound</code>されていると言われ、 そのことは関数<a href="5.3.fboundp.html"><code>fboundp</code></a>によって検出できます。 もしシンボルがグローバル環境下の関数の名前である場合は、 関数のセルにはその関数が含まれ、 関数<a href="10.2.symbol-function.html"><code>symbol-function</code></a>によってアクセスできます。 もしシンボルがグローバル環境下のマクロ名か（<a href="3.8.macro-function.html"><code>macro-function</code></a>を参照）、 あるいは特殊オペレーター名（<code>special-operator-p</code>を参照）であるときは シンボルは<code>fbound</code>であり、関数<a href="10.2.symbol-function.html"><code>symbol-function</code></a>でアクセス可能です。 しかしその関数のセルに含まれるオブジェクトは実装依存の型と意味なります。 シンボルは、関数<a href="5.3.fmakunbound.html"><code>fmakunbound</code></a>によって<code>funbound</code>にすることができます。 <br><br> スペシャルフォームと名前付けられたシンボルの 関数の値を変更しようとした結果は未定義です。 <br><br></li>
+<li>シンボルが関数の属性を持つ場合、それは<code>fbound</code>されていると言われ、 そのことは関数<a href="5.3.fboundp.html"><code>fboundp</code></a>によって検出できます。 もしシンボルがグローバル環境下の関数の名前である場合は、 関数のセルにはその関数が含まれ、 関数<a href="10.2.symbol-function.html"><code>symbol-function</code></a>によってアクセスできます。 もしシンボルがグローバル環境下のマクロ名か（<a href="3.8.macro-function.html"><code>macro-function</code></a>を参照）、 あるいは特殊オペレーター名（<a href="3.8.special-operator-p.html"><code>special-operator-p</code></a>を参照）であるときは シンボルは<code>fbound</code>であり、関数<a href="10.2.symbol-function.html"><code>symbol-function</code></a>でアクセス可能です。 しかしその関数のセルに含まれるオブジェクトは実装依存の型と意味なります。 シンボルは、関数<a href="5.3.fmakunbound.html"><code>fmakunbound</code></a>によって<code>funbound</code>にすることができます。 <br><br> スペシャルフォームと名前付けられたシンボルの 関数の値を変更しようとした結果は未定義です。 <br><br></li>
 </ul></li>
 </ul>
 <p>シンボルの値のセルや関数のセルに対する操作は、 シンボル自身に対する影響という観点から説明されることがありますが、 ユーザーは、これらのセルの内容とグローバル変数やグローバル関数定義との間に 密接な関係があることを心に留めておく必要があります。</p>

@@ -231,7 +231,7 @@
 <em>result</em> - <em>form</em>から返却される多値</p>
 <h2 id="定義">定義</h2>
 <p><em>var</em>への新しい変数束縛を作成し、 それらの束縛を使った一連の<em>form</em>を実行します。</p>
-<p>変数の束縛は、<code>special</code>宣言がされていないのであれば、 レキシカルに行われます。</p>
+<p>変数の束縛は、<a href="3.8.special.html"><code>special</code></a>宣言がされていないのであれば、 レキシカルに行われます。</p>
 <p><em>values-form</em>は評価され、 フォームによって返却されたそれぞれの値を各<em>var</em>に束縛します。 もし<em>var</em>の方が多値より多い場合は、 残りの<em>var</em>には追加で<a href="5.3.nil-variable.html"><code>nil</code></a>が与えられます。 もし多値の方が<em>var</em>より多い場合は、 超過した多値は切り捨てられます。 <em>var</em>は多値は、暗黙のprognとして <em>form</em>が実行されているときに束縛されます。 もし<em>var</em>の型宣言が指定されていたものの、 値が<em>var</em>の型宣言に合った束縛ではなかった場合の結果は未定義です。</p>
 <p>名前の束縛と宣言のスコープは、<em>values-form</em>は含まれていません。</p>
 <h2 id="例文">例文</h2>

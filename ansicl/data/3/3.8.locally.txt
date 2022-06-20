@@ -1,0 +1,99 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Special Operator LOCALLY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.locally
+@name: locally
+@type: special-operator
+
+Special Operator `LOCALLY`
+
+
+## {syntax}
+
+`locally` *declaration\** *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+与えられた*declaration*の効果があるレキシカル環境下で、
+一連の*form*のボディ部を評価します。
+
+
+## {examples}
+
+```lisp
+(defun sample-function (y)  ;このyはspecialと見なされる
+  (declare (special y))                                
+  (let ((y t))              ;このyはレキシカルと見なされる
+    (list y
+          (locally (declare (special y))
+            ;; この次のyはspecialと見なされる
+            y))))
+=>  SAMPLE-FUNCTION
+(sample-function nil) =>  (T NIL) 
+(setq x '(1 2 3) y '(4 . 5)) =>  (4 . 5)
+
+;;; 下記の宣言は特に使いやすい指定ではありません。
+;;; これらはただLOCALLYを使った正しい宣言の構文の例です。
+(locally (declare (inline floor) (notinline car cdr))
+         (declare (optimize space))
+   (floor (car x) (cdr y))) =>  0, 1
+;;; この例はlocally定義による特定のOPTIMIZEの設定を持った
+;;; 関数定義の例を示したものです。
+(locally (declare (optimize (safety 3) (space 3) (speed 0)))
+  (defun frob (w x y &optional (z (foo x y)))
+    (mumble x y z w)))
+=>  FROB
+
+;;; これは前回の例と同じですが、最適化の設定がその後に続く
+;;; 同じコンパイルユニット内の定義に有効であることが違っています。
+(declaim (optimize (safety 3) (space 3) (speed 0)))
+(defun frob (w x y &optional (z (foo x y)))
+  (mumble x y z w))
+=>  FROB
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{declare:link}
+
+
+## {notes}
+
+{locally:link}の{special:link}宣言の使用は、
+変数の束縛ではなく変数への参照に影響します。
+
+もし{locally:link}フォームが{top-level-form}であれば、
+*form*本体もまた{top-level-form}として処理されます。
+{3.2.3:ab}をご確認ください。
+
+@end
+

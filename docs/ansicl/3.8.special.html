@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Declaration SPECIAL</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Declaration SPECIAL</h1>
+</header>
+<p><a href="3.8.html">UP</a></p>
+<hr />
+<h1 id="declaration-special">Declaration <strong>SPECIAL</strong></h1>
+<p>Declaration <code>SPECIAL</code></p>
+<h2 id="構文">構文</h2>
+<p>(<code>special</code> <em>var*</em>)</p>
+<h2 id="引数">引数</h2>
+<p><em>var</em> - シンボル</p>
+<h2 id="有効な文脈">有効な文脈</h2>
+<p><code>declare</code>と<code>proclaim</code></p>
+<h2 id="影響する束縛の型">影響する束縛の型</h2>
+<p>変数</p>
+<h2 id="定義">定義</h2>
+<p>全ての<em>var</em>という名前のものを動的に指定します。 この指定子は変数の束縛と参照に影響します。 全ての影響があった束縛変数は動的束縛になり、 変数参照は現在の動的束縛を参照します。 下記に例を示します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> hack </span>(thing *mod*)    <span class="co">;束縛されたパラメーター*mod*は</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">special</span> *mod*))  <span class="co">;hack1からも見ることができます。</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (hack1 (<span class="kw">car</span> thing)))       <span class="co">;しかしthingはそうではありません。</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> hack1 </span>(arg)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">special</span> *mod*))  <span class="co">;hack1内の宣言*mod*は</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                             <span class="co">;specialで参照されます。</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">if</span> (<span class="kw">atom</span> arg) *mod*</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">cons</span> (hack1 (<span class="kw">car</span> arg)) (hack1 (<span class="kw">cdr</span> arg)))))</span></code></pre></div>
+<p><a href="3.8.special.html"><code>special</code></a>宣言は、<em>var</em>の束縛の中では影響しません。 束縛内では暗黙的に<a href="3.8.special.html"><code>special</code></a>宣言がシャドウします。 そして明示的に<a href="3.8.special.html"><code>special</code></a>として再宣言する必要があります。 <a href="3.8.special.html"><code>special</code></a>宣言は決して関数束縛に適用しません。</p>
+<p><a href="3.8.special.html"><code>special</code></a>宣言は境界宣言として利用可能であり、 束縛と参照の両方に影響します。 他には自由宣言も利用可能であり、これは参照のみに影響し、 変数の束縛に付随する宣言に依存します。</p>
+<p><code>proclaim</code>が使用されたとき、<a href="3.8.special.html"><code>special</code></a>宣言指定子は その変数の全ての束縛と参照に適用されます。 例えば次の通り。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">special</span> x))</span></code></pre></div>
+<p>この例文の後で次のような関数帝があったとします。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> example </span>(x) ...)</span></code></pre></div>
+<p>このときパラメーター<code>x</code>は レキシカル変数ではなく動的変数として束縛されます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> declare-eg </span>(y)                  <span class="co">;このyはspecialです</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">special</span> y))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((y <span class="kw">t</span>))                         <span class="co">;このyはレキシカルでｓ</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">list</span> y</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">locally</span> (<span class="kw">declare</span> (<span class="kw">special</span> y)) y)))) <span class="co">;このyの参照先は</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                                  <span class="co">;special束縛のyです</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  DECLARE-EG </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>(declare-eg <span class="kw">nil</span>) <span class="op">=&gt;</span>  (T NIL) </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">symbol-value</span> &#39;x) <span class="dv">6</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>(x)                         <span class="co">;xはレキシカル束縛</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">print</span> x)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="op">1+</span> x)))                    <span class="co">;xはspecial束縛であり</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">special</span> x))              <span class="co">;レキシカル参照</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    (bar))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  (<span class="op">1+</span> x))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bar </span>() </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">print</span> (<span class="kw">locally</span> (<span class="kw">declare</span> (<span class="kw">special</span> x))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>           x)))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>(foo <span class="dv">10</span>) </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">10</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">11</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">11</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">symbol-value</span> &#39;x) <span class="dv">6</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bar </span>(x y)            <span class="co">;[1] 1回目のxの出現</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((old-x x)           <span class="co">;[2] 2回目のxの出現 -- 1回目と同じ</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        (x y))              <span class="co">;[3] 3回目のxの出現</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">special</span> x))</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">list</span> old-x x)))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>(bar &#39;first &#39;second) <span class="op">=&gt;</span>  (FIRST SECOND)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a> (<span class="kw">defun</span><span class="fu"> few </span>(x &amp;optional (y *foo*))</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">declare</span> (<span class="kw">special</span> *foo*))</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>   ...)</span></code></pre></div>
+<p>この例の最初の行にある<code>*foo*</code>の参照は、 2行目に<a href="3.8.special.html"><code>special</code></a>宣言があるにもかかわらず、 1行目は<a href="3.8.special.html"><code>special</code></a>ではありません。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">special</span> prosp)) <span class="op">=&gt;</span> 実装依存</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> prosp <span class="dv">1</span> reg <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((prosp <span class="dv">2</span>) (reg <span class="dv">2</span>))         <span class="co">;prospの束縛は前のdeclaimにより</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">set</span> &#39;prosp <span class="dv">3</span>) (<span class="kw">set</span> &#39;reg <span class="dv">3</span>)   <span class="co">;specialになります。</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">list</span> prosp reg))             <span class="co">;reg変数はレキシカルです。</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (<span class="dv">3</span> <span class="dv">2</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list</span> prosp reg) <span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="dv">3</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">special</span> x))          <span class="co">;xは常にspecialです。</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> example </span>(x y)                                 </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">special</span> y))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((y <span class="dv">3</span>) (x (<span class="op">*</span> x <span class="dv">2</span>)))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">print</span> (<span class="op">+</span> y (<span class="kw">locally</span> (<span class="kw">declare</span> (<span class="kw">special</span> y)) y)))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">let</span> ((y <span class="dv">4</span>)) (<span class="kw">declare</span> (<span class="kw">special</span> y)) (foo x)))) <span class="op">=&gt;</span>  EXAMPLE</span></code></pre></div>
+<p>上記のねじ曲がったコードは、 最も外側と最も内側の<code>y</code>の束縛は動的であり、 しかし中間の束縛はレキシカルです。 <code>+</code>の2つの引数は違っており、 1つ目はレキシカル変数<code>y</code>の値<code>3</code>で、 もうひとつは動的変数<code>y</code>です （この束縛は偶然にも外側のレベルでレキシカルに囲まれているものです）。 しかしながら<code>proclamation</code>によって<code>x</code>が常に<a href="3.8.special.html"><code>special</code></a>なので、 全ての<code>x</code>の束縛と<code>x</code>の参照は動的です。</p>
+<h2 id="参考">参考</h2>
+<p><a href="5.3.defparameter.html"><code>defparameter</code></a>, <a href="5.3.defparameter.html"><code>defvar</code></a></p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

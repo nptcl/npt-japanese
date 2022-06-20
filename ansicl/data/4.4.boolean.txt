@@ -1,0 +1,49 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type BOOLEAN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.boolean
+@name: boolean
+@type: type
+
+Type `BOOLEAN`
+
+
+## {supertypes}
+
+{boolean:link}, {symbol:link}, {t!system-class:link}
+
+
+## {description}
+
+型{boolean:link}は、それぞれ*true*と*false*を表現するシンボル
+{t!variable:link}と{nil!variable:link}を含みます。
+
+
+## {see-also}
+
+{t!variable:link}（定数変数）,
+{nil!variable:link}（定数変数）,
+{if:link},
+{not!function:link},
+{complement:link}
+
+
+## {notes}
+
+{if:link}のような条件付き演算子は、
+`boolean`（ブール値）ではなく
+{generalized-boolean}の使用が許されます。
+{generalized-boolean}では{t!variable:link}だけではなく、
+{nil!variable:link}以外の値が*true*と見なされます。
+
+しかし慣例としてシンボル{t!variable:link}は
+{generalized-boolean}であっても、
+他に良い選択肢がない場合に使用する標準的な値であるとしています。
+
+@end
+

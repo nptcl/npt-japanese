@@ -234,7 +234,7 @@
 <p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>は、 <em>symbol</em>という名前の各シンボルマクロの 展開関数をレキシカルに確立します。</p>
 <p>シンボルマクロの展開関数は、 ただフォームと環境が適用されたときに 正しい展開を返すことが保証されています。 （特に展開が概念的に、展開関数か環境かその両方かの、 どこに保存されるのかは実装依存です）</p>
 <p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>のキシカルスコープ内で、 変数として参照される各<em>symbol</em>は、 通常のマクロ展開処理が行われます。 3.1.2.1.1. フォームとしてのシンボルをご確認ください。 シンボルマクロの展開は、通常のマクロと同様に、 シンボルマクロの参照先と同じレキシカル環境において、 さらにマクロ展開が行われます。</p>
-<p><em>declaration</em>は、ひとつの例外を除いて 正確に<a href="5.3.let.html"><code>let</code></a>と同じものが許されます。 例外は、<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>のシンボルの定義に <code>special</code>宣言があったときはエラーが発生します。</p>
+<p><em>declaration</em>は、ひとつの例外を除いて 正確に<a href="5.3.let.html"><code>let</code></a>と同じものが許されます。 例外は、<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>のシンボルの定義に <a href="3.8.special.html"><code>special</code></a>宣言があったときはエラーが発生します。</p>
 <p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>の<em>form</em>内で展開が行われるとき、 <a href="5.3.setq.html"><code>setq</code></a>を使って<em>symbol</em>に値をセットしたときは、 それは<a href="5.3.setf.html"><code>setf</code></a>を使ったかのように扱われます。 <a href="5.3.psetq.html"><code>psetq</code></a>での<em>symbol</em>は、<a href="5.3.setf.html"><code>psetf</code></a>のように扱われ、 <a href="5.3.multiple-value-setq.html"><code>multiple-value-setq</code></a>は<a href="5.3.setf.html"><code>setf</code></a>の<a href="5.3.values-accessor.html"><code>values</code></a>のように扱われます。</p>
 <p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>の使用は、 <a href="5.3.let.html"><code>let</code></a>によってシャドウされます。 言い換えると、<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>は、 <em>symbol</em>がレキシカルスコープの束縛で囲まれている<em>form</em>においてのみ、 <em>symbol</em>の出現が置き換えられます。</p>
 <h2 id="例文">例文</h2>
@@ -254,7 +254,7 @@
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>グローバル変数として定義されているシンボルに束縛をしようとしたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
-<p><em>declaration</em>に<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>で束縛するシンボル名の <code>special</code>宣言が含まれていたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p><em>declaration</em>に<a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>で束縛するシンボル名の <a href="3.8.special.html"><code>special</code></a>宣言が含まれていたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="7.7.with-slots.html"><code>with-slots</code></a>, <a href="3.8.macroexpand.html"><code>macroexpand</code></a></p>
 <h2 id="備考">備考</h2>

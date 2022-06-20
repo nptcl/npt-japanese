@@ -1,0 +1,35 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type NIL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.nil!type
+@name: nil!type
+@type: type
+
+Type `NIL`
+
+
+## {supertypes}
+
+全ての型。
+
+
+## {description}
+
+型{nil!type:link}は何のオブジェクトも含まず、空の型とも呼ばれます。
+型{nil!type:link}は全ての型のサブタイプです。
+型{nil!type:link}のオブジェクトはありません。
+
+
+## {notes}
+
+オブジェクト{nil!variable:link}を含む型は
+型{null!system-class:link}ですが、
+型{nil!type:link}には含まれません。
+
+@end
+

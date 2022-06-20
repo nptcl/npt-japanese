@@ -1,0 +1,115 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CONSTANTP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.constantp
+@name: constantp
+@type: function
+
+Function `CONSTANTP`
+
+
+## {syntax}
+
+`constantp` *form* &optional *environment* => {generalized-boolean}
+
+
+## {arguments-and-values}
+
+*form* - フォーム  
+*environment* - 環境オブジェクト。デフォルトは{nil!variable:link}です。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+指定された*environment*の下で、
+*form*がその実装によって定数フォームであると決定できるとき、
+*true*が返却されます。
+それ以外の、フォームが定数フォームではないか、
+あるいはフォームが定数かどうか決定できないかの、
+どちらかの場合には*false*が返却されます。
+
+下記に定義された種類のフォームが定数フォームであると考えます。
+
+- 自己評価オブジェクト（例えば数、文字、そして多種な配列）は、
+常に定数フォームであると考えられ、
+{constantp:link}によって認識されなければなりません。
+
+- 定数変数、キーワード、
+Common Lispによって定義された定数シンボル
+（例えば{nil!variable:link}、{t!variable:link}、{pi:link}）、
+ユーザーが{defconstant:link}で*environment*に定数として指定したシンボルは、
+常に定数フォームであると考えられ、
+{constantp:link}によって認識されなければなりません。
+
+- {quote:link}フォームは
+常に定数フォームであると考えられ、
+{constantp:link}によって認識されなければなりません。
+
+- 実装はさらに追加で定数フォームを
+検出することが許されますが、必須ではありません。
+もしそれを行うのであれば、*environment*の情報を使用することができますが、
+必須ではありません。
+{constantp:link}によって*true*かもしれないし
+そうではないかもしれない定数フォームの例として次のものが挙げられます
+`(sqrt pi)`, `(+ 3 2)`, `(length '(a b c))`, `(let ((x 7)) (zerop x))`。
+
+もし実装が*environment*の情報を使用するとしたとき、
+マクロ展開や関数の`inline`といった動作は許されますが、必須ではありません。
+しかしコンパイラーマクロの展開は許されません。
+
+
+## {examples}
+
+```lisp
+(constantp 1) =>  true
+(constantp 'temp) =>  false
+(constantp ''temp)) =>  true
+(defconstant this-is-a-constant 'never-changing) =>  THIS-IS-A-CONSTANT 
+(constantp 'this-is-a-constant) =>  true
+(constantp "temp") =>  true
+(setq a 6) =>  6 
+(constantp a) =>  true
+(constantp '(sin pi)) =>  implementation-dependent
+(constantp '(car '(x))) =>  implementation-dependent
+(constantp '(eql x x)) =>  implementation-dependent
+(constantp '(typep x 'nil)) =>  implementation-dependent
+(constantp '(typep x 't)) =>  implementation-dependent
+(constantp '(values this-is-a-constant)) =>  implementation-dependent
+(constantp '(values 'x 'y)) =>  implementation-dependent
+(constantp '(let ((a '(a b c))) (+ (length a) 6))) =>  implementation-dependent
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+グローバル環境の状態
+（例えば定数変数の名前として宣言されたシンボルなど）。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defconstant:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

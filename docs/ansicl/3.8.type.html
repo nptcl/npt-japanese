@@ -231,8 +231,8 @@
 <h2 id="影響する束縛の型">影響する束縛の型</h2>
 <p>変数</p>
 <h2 id="定義">定義</h2>
-<p>変数の束縛にのみ影響し、 <em>var</em>がただ指定した<em>typespec</em>の値のみ受け取ることを宣言します。 とくに<a href="5.3.setq.html"><code>setq</code></a>によって値を変数に代入するときは、 <em>var</em>の初期値が指定した<em>typespec</em>になるようにするのと 同様の効果があります。 <a href="3.8.type.html"><code>type</code></a>宣言は関数束縛には適用しません （<code>ftype</code>をご確認ください）。</p>
-<p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>によって定義されたシンボルの型宣言は、 <code>the</code>式でそのシンボルの展開の周りを囲むことと同等です。 しかし実際のシンボルの展開結果には影響を与えません。</p>
+<p>変数の束縛にのみ影響し、 <em>var</em>がただ指定した<em>typespec</em>の値のみ受け取ることを宣言します。 とくに<a href="5.3.setq.html"><code>setq</code></a>によって値を変数に代入するときは、 <em>var</em>の初期値が指定した<em>typespec</em>になるようにするのと 同様の効果があります。 <a href="3.8.type.html"><code>type</code></a>宣言は関数束縛には適用しません （<a href="3.8.ftype.html"><code>ftype</code></a>をご確認ください）。</p>
+<p><a href="3.8.symbol-macrolet.html"><code>symbol-macrolet</code></a>によって定義されたシンボルの型宣言は、 <a href="3.8.the.html"><code>the</code></a>式でそのシンボルの展開の周りを囲むことと同等です。 しかし実際のシンボルの展開結果には影響を与えません。</p>
 <p>型宣言の意味は、宣言のスコープ内にある 各変数<em>var</em>の参照を<code>(the typespec var)</code>に変更すること、 またスコープ内の各変数へ代入される値<em>new-value</em>を <code>(the typespec new-value)</code>に変更すること、 そして宣言のスコープに入った時点で <code>(the typespec var)</code>を実行すること、 という意味と同じです。</p>
 <p>型宣言は、全ての宣言で有効です。 型宣言の解釈については下記をご確認ください。</p>
 <ol type="1">
@@ -245,7 +245,7 @@
 <p>もしローカル宣言で<code>type</code>が動的変数に対して行われており、 同じ変数のグローバルな<code>proclamation</code>もまた存在しているときは、 ローカル宣言のスコープ内の変数の値は、 宣言された2つの型の共通部分の型でなければなりません。</p>
 <p><a href="3.8.type.html"><code>type</code></a>宣言は、自由宣言と境界宣言のどちらでも行えます。</p>
 <p>シンボルは型の名前と宣言の名前を両方同時にはなれません。 あるシンボルがクラスか、構造体か、コンディションか、あるいは型の名前であり、 そのシンボルが宣言の名前として宣言されたときか、 あるいはその反対であったときはエラーが発生します。</p>
-<p><code>array</code>の型宣言があるレキシカルスコープ内では、 配列の要素への参照全てはexpressed-array-element-typeを満たします （upgraded-array-element-typeとは対称的に）。 コンパイラーは<code>array</code>の型宣言があるスコープ内では 各配列の要素へのアクセスを<code>the</code>フォームを適用したかのように 囲まれたコードとして扱うことができます。</p>
+<p><code>array</code>の型宣言があるレキシカルスコープ内では、 配列の要素への参照全てはexpressed-array-element-typeを満たします （upgraded-array-element-typeとは対称的に）。 コンパイラーは<code>array</code>の型宣言があるスコープ内では 各配列の要素へのアクセスを<a href="3.8.the.html"><code>the</code></a>フォームを適用したかのように 囲まれたコードとして扱うことができます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x y)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">type</span> <span class="kw">fixnum</span> x y))</span>

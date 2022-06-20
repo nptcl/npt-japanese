@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SPECIAL-OPERATOR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.special-operator-p
+@name: special-operator-p
+@type: function
+
+Function `SPECIAL-OPERATOR-P`
+
+
+## {syntax}
+
+`special-operator-p` *symbol* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*symbol* - シンボル  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*symbol*が{special-operator}なら*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(special-operator-p 'if) =>  true
+(special-operator-p 'car) =>  false
+(special-operator-p 'one) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数がシンボルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+歴史的にこの関数は`special-form-p`と呼ばれていました。
+この関数は`special form`ではなく`special operator`のときに*true*となるので、
+最終的に誤った名称であると考えられて変更されました。
+
+@end
+

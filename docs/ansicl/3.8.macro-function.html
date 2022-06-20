@@ -231,7 +231,7 @@
 <h2 id="定義">定義</h2>
 <p>指定された<em>environment</em>下で、 <em>symbol</em>がマクロとして定義されている関数を持っているかどうかを決定します。</p>
 <p>もしマクロ展開関数であれば、それは2つの引数の関数が返却されます。 <em>symbol</em>がレキシカルな環境内の<em>environment</em>に関数が定義されていないか、 あるいはその定義がマクロではなかったときは、 <a href="3.8.macro-function.html"><code>macro-function</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
-<p><em>symbol</em>は<a href="3.8.macro-function.html"><code>macro-function</code></a>と<code>special-operator-p</code>の 両方が<em>true</em>になることが可能です。</p>
+<p><em>symbol</em>は<a href="3.8.macro-function.html"><code>macro-function</code></a>と<a href="3.8.special-operator-p.html"><code>special-operator-p</code></a>の 両方が<em>true</em>になることが可能です。</p>
 <p>マクロ定義は、Common Lispの標準の特殊フォームのみを理解できる プログラムによって使うことができるようにしなければなりません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> macfun </span>(x) &#39;(<span class="kw">macro-function</span> &#39;macfun)) <span class="op">=&gt;</span>  MACFUN </span>

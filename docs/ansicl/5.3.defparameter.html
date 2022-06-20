@@ -269,7 +269,7 @@
 <p>一方で、このような状況で<a href="5.3.defparameter.html"><code>defvar</code></a>を使うことは潜在的な価値があります。 例えば、誰かが事前に<code>*default-beep-count*</code>の違う値を定義していたとします。 あるいは、ファイルを読み込んでからその値を手動で変更したとします。 どちらの場合でも、<a href="5.3.defparameter.html"><code>defparameter</code></a>のかわりに<a href="5.3.defparameter.html"><code>defvar</code></a>を使用していれば、 ファイルのロード・リロードを行っても それらのユーザーの好みは上書きされることはありません。</p>
 <p><a href="5.3.defparameter.html"><code>defvar</code></a>と<a href="5.3.defparameter.html"><code>defparameter</code></a>のどちらを選んでも、 プログラムには目に見える結果をもたらしますが、 それにもかかわらず主観的な理由で選択されることがあります。</p>
 <h2 id="副作用">副作用</h2>
-<p>もし<a href="5.3.defparameter.html"><code>defvar</code></a>か<a href="5.3.defparameter.html"><code>defparameter</code></a>が トップレベルフォームとして現れたときは、 コンパイラーは<em>name</em>を<code>special</code>として<code>proclaim</code>されるよう 認識しなければなりません。 しかし、コンパイル時に<em>initial-value</em>フォームが評価されたり、 <em>name</em>という動的変数に代入してはいけません。</p>
+<p>もし<a href="5.3.defparameter.html"><code>defvar</code></a>か<a href="5.3.defparameter.html"><code>defparameter</code></a>が トップレベルフォームとして現れたときは、 コンパイラーは<em>name</em>を<a href="3.8.special.html"><code>special</code></a>として<code>proclaim</code>されるよう 認識しなければなりません。 しかし、コンパイル時に<em>initial-value</em>フォームが評価されたり、 <em>name</em>という動的変数に代入してはいけません。</p>
 <p>適合するプログラムの正しい動作を妨げない限り、 コンパイル時または実行時に、 追加の（実装で定義された）副作用があってもかまいません。</p>
 <h2 id="影響">影響</h2>
 <p><a href="5.3.defparameter.html"><code>defvar</code></a>は、<em>name</em>が<code>bound</code>であるかどうかに影響されます。</p>

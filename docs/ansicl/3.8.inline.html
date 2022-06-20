@@ -231,7 +231,7 @@
 <p>関数</p>
 <h2 id="定義">定義</h2>
 <p><a href="3.8.inline.html"><code>inline</code></a>は、<em>function-name</em>という名前の関数に対して、 コンパイラーがインラインで呼び出すようなコードを 生成するのが望ましいと指定します。 つまり、<em>function-name</em>で指定されたコードは、 呼び出す処理を「行中」に現れるように、 その場所に呼出処理を統合する必要があります。 コンパイラーがこの宣言を無視するのは自由です。 <a href="3.8.inline.html"><code>inline</code></a>宣言は決して変数束縛を行いません。</p>
-<p>もしあるひとつの関数が宣言されており、 その関数がレキシカルにローカル定義を持っているとき （<a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>いよって作成されたもの）、 その宣言はグローバル関数定義ではなく、 ローカルの関数定義の方に適用されます。</p>
+<p>もしあるひとつの関数が宣言されており、 その関数がレキシカルにローカル定義を持っているとき （<a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>によって作成されたもの）、 その宣言はグローバル関数定義ではなく、 ローカルの関数定義の方に適用されます。</p>
 <p>もし仕様に適合した実装において、 ユーザー定義関数のインラインの展開が要求されていないとき、 これらの実装は下記の規範のように認識しようとします。</p>
 <p>定義された関数<code>f</code>は、標準では<a href="3.8.inline.html"><code>inline</code></a>ではありません。 しかし<code>(declare (inline f))</code>宣言内では<code>F</code>がローカルで<code>inline</code>になります。 前のものも含めて定義の列が次のような場合を考えます。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">inline</span> f))</span>
@@ -239,9 +239,9 @@
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">declaim</span> (<span class="kw">notinline</span> f))</span></code></pre></div>
 <p><a href="5.3.defun.html"><code>defun</code></a>フォームの前にある<a href="3.8.inline.html"><code>inline</code></a>の<code>proclamation</code>は、 コンパイラーに、インライン展開が必要な時のための 情報を保存する機会を保証します。 そして<a href="5.3.defun.html"><code>defun</code></a>フォームの後にある<a href="3.8.inline.html"><code>notinline</code></a>の<code>proclamation</code>は、 <code>f</code>がどこでもインライン展開しないよう抑制します。</p>
 <p><a href="3.8.inline.html"><code>notinline</code></a>は、<em>function-name</em>という名前の関数に対して、 インラインコンパイルが望ましくないと指定します。 コンパイラーはこの宣言を無視してはいけません。 この指定の関数の呼び出しは、 ラインの外のサブルーチンを呼び出すように実装しなければなりません。</p>
-<p>もしあるひとつの関数が宣言されており、 その関数がレキシカルにローカル定義を持っているとき （<a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>いよって作成されたもの）、 その宣言はグローバル関数定義ではなく、ローカルの関数定義に適用されます。</p>
+<p>もしあるひとつの関数が宣言されており、 その関数がレキシカルにローカル定義を持っているとき （<a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>によって作成されたもの）、 その宣言はグローバル関数定義ではなく、ローカルの関数定義に適用されます。</p>
 <p><em>function-name</em>コンパイラーマクロが現れたとき、 <a href="3.8.inline.html"><code>notinline</code></a>宣言はコンパイラーマクロの使用を禁止します。 <a href="3.8.inline.html"><code>inline</code></a>宣言はコンパイラーマクロの使用を勧めるようにします。 <a href="3.8.inline.html"><code>inline</code></a>と<a href="3.8.inline.html"><code>notinline</code></a>宣言は、 レキシカルに見える<em>function-name</em>の定義が マクロ定義であったときは効果がありません。</p>
-<p><a href="3.8.inline.html"><code>inline</code></a>と<a href="3.8.inline.html"><code>notinline</code></a>宣言は、自由宣言と境界宣言のどちらも使えます。 <a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>フォーム本体の前に現れた 関数の<a href="3.8.inline.html"><code>inline</code></a>と<a href="3.8.inline.html"><code>notinline</code></a>宣言は, 関数の境界宣言として定義されます。 その他の文脈の宣言は自由宣言です。</p>
+<p><a href="3.8.inline.html"><code>inline</code></a>と<a href="3.8.inline.html"><code>notinline</code></a>宣言は、自由宣言と境界宣言のどちらも使えます。 <a href="5.3.flet.html"><code>flet</code></a>か<a href="5.3.flet.html"><code>labels</code></a>フォーム本体の前に現れた 関数の<a href="3.8.inline.html"><code>inline</code></a>と<a href="3.8.inline.html"><code>notinline</code></a>宣言は、 関数の境界宣言として定義されます。 その他の文脈の宣言は自由宣言です。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; グローバルに宣言された関数DISPATCHはオープンコードであり、</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; もし実装がinlineをサポートしているのであれば、</span></span>

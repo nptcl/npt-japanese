@@ -72,6 +72,8 @@
 (text 3.2.4.4 "外部オブジェクトの制約の追記"
       "Additional Constraints on Externalizable Objects")
 (text 3.2.5 "コンパイラーの例外状況" "Exceptional Situations in the Compiler")
+(text 3.3 "宣言" "Declarations")
+(text 3.3.4 "宣言のスコープ" "Declaration Scope")
 (text 3.4 "ラムダリスト" "Lambda Lists")
 (text 3.4.1 "{ordinary-lambda-list}" "Ordinary Lambda Lists")
 (text 3.4.4 "マクロのラムダリスト" "Macro Lambda Lists")
@@ -433,6 +435,7 @@
 (dictionary 12.2.max)
 (dictionary 12.2.floor)
 (dictionary 12.2.+)
+(dictionary 12.2.pi)
 (dictionary 12.2.incf)
 (dictionary 12.2.decf)  ;; delete
 

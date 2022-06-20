@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration FTYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.ftype
+@name: ftype
+@type: declaration
+
+Declaration `FTYPE`
+
+
+## {syntax}
+
+(`ftype` *type* *function-name\**)
+
+
+## {arguments}
+
+*function-name* - 関数名  
+*type* - 型指定子
+
+
+## {valid-context}
+
+`declare`と`proclaim`
+
+
+## {binding-types-affected}
+
+関数
+
+
+## {description}
+
+*function-name*という名前の関数に対して、関数の型*type*を指定します。
+例えば下記の通り。
+
+```lisp
+(declare (ftype (function (integer list) t) ith)
+         (ftype (function (number) float) sine cosine))
+```
+
+もしあるひとつの関数が宣言されており、
+その関数がレキシカルにローカル定義を持っているとき
+（{flet:link}か{labels:link}によって作成されたもの）、
+その宣言はグローバル関数定義ではなく、ローカルの関数定義に適用されます。
+{ftype:link}宣言は変数の束縛には適用しません
+（{type:link}をご確認ください）。
+
+*function-name*のレキシカルな束縛に現れたものは、
+マクロ定義には適用しません
+（これは{ftype:link}が各関数名の関数定義について
+{function!system-class:link}の特定のサブタイプを宣言するからであり、
+マクロはそのような関数を表すものではないためです）。
+
+{ftype:link}宣言は、自由宣言と境界宣言のどちらも使えます。
+{flet:link}か{labels:link}フォーム本体の前に現れた
+関数の{ftype:link}宣言は、
+関数の境界宣言として定義されます。
+その他の文脈の宣言は自由宣言です。
+
+
+## {see-also}
+
+{declare:link},
+{declaim:link},
+{proclaim:link}
+
+@end
+

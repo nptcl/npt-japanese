@@ -1,0 +1,64 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  3. 評価とコンパイル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Declaration DECLARATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 3.8.declaration
+@name: declaration
+@type: declaration
+
+Declaration `DECLARATION`
+
+
+## {syntax}
+
+(`declaration` *name\**)
+
+
+## {arguments}
+
+*name* - シンボル
+
+
+## {binding-types-affected}
+
+なし
+
+
+## {valid-context}
+
+`proclaim`のみ
+
+
+## {description}
+
+コンパイラーに対して、各*name*が有効ではあるが
+標準ではない可能性がある宣言の名前を知らせます。
+
+この目的は、あるコンパイラーに対して、
+この宣言が他のコンパイラーか他のプログラム処理のためのものであるので
+警告を発しないように指示するものです。
+
+
+## {examples}
+
+```lisp
+(declaim (declaration author target-language target-machine))
+(declaim (target-language ada))
+(declaim (target-machine IBM-650))
+(defun strangep (x)
+  (declare (author "Harry Tweeker"))
+  (member x '(strange weird odd peculiar)))
+```
+
+
+## {see-also}
+
+{declaim:link},
+{proclaim:link}
+
+@end
+

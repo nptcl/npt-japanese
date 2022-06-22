@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function SUBTYPEP</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function SUBTYPEP</h1>
+</header>
+<p><a href="4.4.html">UP</a></p>
+<hr />
+<h1 id="function-subtypep">Function <strong>SUBTYPEP</strong></h1>
+<p>Function <code>SUBTYPEP</code></p>
+<h2 id="構文">構文</h2>
+<p><code>subtypep</code> <em>type-1</em> <em>type-2</em> <code>&amp;optional</code> <em>environment</em> =&gt; <em>subtype-p</em>, <em>valid-p</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>type-1</em> - 型指定子<br />
+<em>type-2</em> - 型指定子<br />
+<em>environment</em> - 環境オブジェクト。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>であり、 これは<code>null</code>のレキシカルな環境と現在のグローバルな環境を示します。<br />
+<em>subtype-p</em> - generalized-boolean<br />
+<em>valid-p</em> - generalized-boolean</p>
+<h2 id="定義">定義</h2>
+<p>もし<em>type-1</em>が<em>type-2</em>の認識可能なサブタイプであれば最初の値は<em>true</em>です。 そうではないときは最初の値は<em>false</em>であり、 これは<em>type-1</em>が<em>type-2</em>のサブタイプではないか、 あるいは<em>type-1</em>が<em>type-2</em>がサブタイプではあるが 認識可能なサブタイプではないことを意味します。</p>
+<p>第二返却値は、最初の値が確実であるかを示します。 もしこの値が<em>true</em>なら、 最初の値はサブタイプの関係が正確であることを示します （最初の値が<em>true</em>であれば第二返却値は常に<em>true</em>です）。</p>
+<p>次の表は、可能性のある返却値の組み合わせを要約したものです。</p>
+<table>
+<thead>
+<tr class="header">
+<th>Value 1</th>
+<th>Value 2</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>true</em></td>
+<td><em>true</em></td>
+<td><em>type-1</em>は確実に<em>type-2</em>のサブタイプ</td>
+</tr>
+<tr class="even">
+<td><em>false</em></td>
+<td><em>true</em></td>
+<td><em>type-2</em>は確実に<em>type-2</em>のサブタイプではない</td>
+</tr>
+<tr class="odd">
+<td><em>false</em></td>
+<td><em>false</em></td>
+<td><a href="4.4.subtypep.html"><code>subtypep</code></a>はこの関係を決定できないので、<em>type-1</em>は<em>type-2</em>のサブタイプかもしれないしそうではないかもしれない</td>
+</tr>
+</tbody>
+</table>
+<p>Figure 4-9. <code>subtypep</code>の返却値の可能性</p>
+<p><a href="4.4.subtypep.html"><code>subtypep</code></a>は、 次に示す型指定子のうち、少なくとものひとつを引数に含んでいたときのみ 多値である<em>false</em>、<em>false</em>を返却します。 その型指定子は、 <a href="4.4.and-type.html"><code>and</code></a>, <a href="4.4.eql-type.html"><code>eql</code></a>, リストフォームの<a href="4.4.function-system-class.html"><code>function</code></a>, <a href="4.4.member-type.html"><code>member</code></a>, <a href="4.4.not-type.html"><code>not</code></a>, <a href="4.4.or-type.html"><code>or</code></a>, <a href="4.4.satisfies.html"><code>satisfies</code></a>, <a href="4.4.values-type.html"><code>values</code></a>です （型指定子は、型展開後にそれらのシンボルが含まれる位置で 型指定子が意味のある使われ方をして呼び出されているときは、 そのようなシンボルを含むことになります）。 このような結果のひとつとして もし<em>type-1</em>も<em>type-2</em>もそれらの型指定子を含まないときは、 <a href="4.4.subtypep.html"><code>subtypep</code></a>は正確な関係を決定する義務があります。 とくに<a href="4.4.subtypep.html"><code>subtypep</code></a>は もしそれらの引数が<a href="5.3.equal.html"><code>equal</code></a>で一致しており それらの型指定子を含まないときは、 多値の<em>true</em>、<em>true</em>を返却します。</p>
+<p>もし<em>type-1</em>と<em>type-2</em>の両方が <a href="4.2.3.html"><code>figure_4.2</code></a>で表される名前のみ含まれているときか、 または型の名前が<code>defstruct</code>か <code>define-condition</code>か <a href="7.7.defclass.html"><code>defclass</code></a>か これらの名前の展開による派生型であるときは、 <a href="4.4.subtypep.html"><code>subtypep</code></a>は決して第二返却値が<a href="5.3.nil-variable.html"><code>nil</code></a>になりません。 <a href="4.2.3.html"><code>figure_4.2</code></a>のリスト内の型指定子や <a href="7.7.defclass.html"><code>defclass</code></a>と<code>defstruct</code>による名前は、 派生された型として実装される場合もありますが、 <a href="4.4.subtypep.html"><code>subtypep</code></a>はそれらの型を原始的なものとみなします。</p>
+<p><a href="4.4.subtypep.html"><code>subtypep</code></a>によって反映される型と型との関係は、 特定の実装によって指定されます。 例えば、もし実装が浮動小数の型を <code>single</code>ただひとつサポートしていた場合、 その実装は<code>(subtypep 'float 'long-float)</code>を <em>true</em>, <em>true</em>で返却します（2つの型が同一の場合）。</p>
+<p><code>*</code>以外の全てを<code>T1</code>と<code>T2</code>としたとき、 <code>(array T1)</code>と<code>(array T2)</code>は違う型指定子ですが、 もしそれらを参照する配列が正確に同じ<code>specialized</code>の表現のときは、 常に同じものの集合を参照します。 例えば、もし <code>(upgraded-array-element-type 'T1)</code>と <code>(upgraded-array-element-type 'T2)</code>が 常に同じオブジェクトの集合を参照する 違う型指定子を返却するようなときです。 別の言い方をすると、</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>`(<span class="kw">array</span> type-specifier)</span></code></pre></div>
+<p>と</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>`(<span class="kw">array</span> ,(<span class="kw">upgraded-array-element-type</span> &#39;type-specifier))</span></code></pre></div>
+<p>はどちらも同じ<code>specialized</code>配列で表現された 集合を参照しています。 <code>*</code>以外の全ての<code>T1</code>と<code>T2</code>において、 <code>(array T1)</code>と<code>(array T2)</code>が それぞれ区別できる<code>specialized</code>な表現により違った配列を参照しているときは、 2つの型の共通部分は空の集合です。</p>
+<p>つまり、</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">array</span> T1) &#39;(<span class="kw">array</span> T2)) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<p>であるというのは、</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">upgraded-array-element-type</span> &#39;T1)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">upgraded-array-element-type</span> &#39;T2) </span></code></pre></div>
+<p>上記の返却値は、 常に同じオブジェクトの集合を参照しているような 違った2つの型指定子が返却されます。</p>
+<p><code>*</code>以外の全てを<code>T1</code>と<code>T2</code>としたとき、</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">complex</span> T1) &#39;(<span class="kw">complex</span> T2)) <span class="op">=&gt;</span>  true, true</span></code></pre></div>
+<p>という結果が得られるのは、下記の2つのどちらかの条件のときです。</p>
+<ol type="1">
+<li><p><code>T1</code>は<code>T2</code>のサブタイプであるか、</p></li>
+<li><p><code>(upgraded-array-element-type 'T1)</code>と <code>(upgraded-array-element-type 'T2)</code>が 常に同じオブジェクトの集合を参照する 違う型指定子を返却するようなときです。 このような場合、<code>(complex T1)</code>と<code>(complex T2)</code>の両方は、 どちらも同じ<code>specialized</code>な表現を参照します。</p></li>
+</ol>
+<p>それ以外のときは、<em>false</em>, <em>false</em>を返却します。</p>
+<p>下記のフォームについて、</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">complex</span> <span class="kw">single-float</span>) &#39;(<span class="kw">complex</span> <span class="kw">float</span>))</span></code></pre></div>
+<p>これはすべｔの実装において<em>true</em>を返却しなければなりません。 しかし下記のフォーム</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">array</span> <span class="kw">single-float</span>) &#39;(<span class="kw">array</span> <span class="kw">float</span>))</span></code></pre></div>
+<p>こちらについては、 配列の<code>specialized</code>な表現で<code>single-float</code>と他の浮動小数を 区別できない処理系でのみ<em>true</em>が返却されます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;compiled-function &#39;function) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;null &#39;list) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;null &#39;symbol) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;integer &#39;string) <span class="op">=&gt;</span>  false, true</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">satisfies</span> dummy) <span class="kw">nil</span>) <span class="op">=&gt;</span>  false, implementation-dependent</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">integer</span> <span class="dv">1</span> <span class="dv">3</span>) &#39;(<span class="kw">integer</span> <span class="dv">1</span> <span class="dv">4</span>)) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">integer</span> (<span class="dv">0</span>) (<span class="dv">0</span>)) &#39;nil) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;nil &#39;(<span class="kw">integer</span> (<span class="dv">0</span>) (<span class="dv">0</span>))) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">integer</span> (<span class="dv">0</span>) (<span class="dv">0</span>)) &#39;(<span class="kw">member</span>)) <span class="op">=&gt;</span>  true, true <span class="co">;or false, false</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">member</span>) &#39;nil) <span class="op">=&gt;</span>  true, true <span class="co">;or false, false</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;nil &#39;(<span class="kw">member</span>)) <span class="op">=&gt;</span>  true, true <span class="co">;or false, false</span></span></code></pre></div>
+<p><code>&lt;aet-x&gt;</code>と<code>&lt;aet-y&gt;</code>は その実装において常に同じオブジェクトの集合を参照していない 2つの違った型指定子であるとします。 しかし<code>make-array</code>関数は、 同じ配列の型としてオブジェクトを返却します。</p>
+<p>したがって、次のようになります。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">subtypep</span> (<span class="kw">array-element-type</span> (<span class="kw">make-array</span> <span class="dv">0</span> <span class="bu">:element-type</span> &#39;&lt;aet-x&gt;))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">array-element-type</span> (<span class="kw">make-array</span> <span class="dv">0</span> <span class="bu">:element-type</span> &#39;&lt;aet-y&gt;)))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true, true</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a> (<span class="kw">subtypep</span> (<span class="kw">array-element-type</span> (<span class="kw">make-array</span> <span class="dv">0</span> <span class="bu">:element-type</span> &#39;&lt;aet-y&gt;))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">array-element-type</span> (<span class="kw">make-array</span> <span class="dv">0</span> <span class="bu">:element-type</span> &#39;&lt;aet-x&gt;)))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true, true</span></code></pre></div>
+<p>もし<code>(array &lt;aet-x&gt;)</code>と<code>(array &lt;aet-y&gt;)</code>が 正確に同じオブジェクトの集合のための違う名前であるとき、 それらの名前は常に同じオブジェクトの集合を参照しなければなりません。 これの意味することは、次のテストの集合もまた<em>true</em>ということです。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">array</span> &lt;aet-x&gt;) &#39;(<span class="kw">array</span> &lt;aet-y&gt;)) <span class="op">=&gt;</span>  true, true</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">subtypep</span> &#39;(<span class="kw">array</span> &lt;aet-y&gt;) &#39;(<span class="kw">array</span> &lt;aet-x&gt;)) <span class="op">=&gt;</span>  true, true</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="4.2.html">4.2. 型</a></p>
+<h2 id="備考">備考</h2>
+<p><a href="4.4.subtypep.html"><code>subtypep</code></a>の仕様の <code>array</code>と<code>complex</code>の型の間にある 小さな違いは重要です。 なぜなら、実際の部分の型と独立して 返却値の部分の型を指定できるような 複素数を作成する関数が存在しないからです。 したがって、複素数の型の場合は、 実際の部分の型はひとつ以上の型はあるものの、 その数を参照して決定されます。 例えば、<code>17</code>は<code>(mod 18)</code>の型ですし、 同様に<code>(mod 256)</code>の型であり、<code>integer</code>の型です。 そして、<code>2.3f5</code>は<code>single-float</code>の型であり、 <code>float</code>の型でもあります。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

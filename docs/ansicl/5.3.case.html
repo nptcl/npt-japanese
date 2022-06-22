@@ -247,11 +247,11 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 </ul></li>
 <li><a href="5.3.case.html"><code>ccase</code></a>
 <ul>
-<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<code>type-error</code>の修正可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <code>store-value</code> <code>restart</code>をエラーの修正に使うことができます。 <br><br> もし<code>store-value</code> <code>restart</code>が起動されたら、 その引数は新しい<em>test-key</em>であり、 <em>keyplace</em>への保存は<code>(setf keyplace test-key)</code>のように行われます。 それから<a href="5.3.case.html"><code>ccase</code></a>は最初から始められ、 各<em>clause</em>が新しく評価されます。 <br><br> いずれのケースも成立しない場合、 <em>keyplace</em>のサブフォームは再度評価されるかもしれません。 <br><br></li>
+<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>の修正可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <code>store-value</code> <code>restart</code>をエラーの修正に使うことができます。 <br><br> もし<code>store-value</code> <code>restart</code>が起動されたら、 その引数は新しい<em>test-key</em>であり、 <em>keyplace</em>への保存は<code>(setf keyplace test-key)</code>のように行われます。 それから<a href="5.3.case.html"><code>ccase</code></a>は最初から始められ、 各<em>clause</em>が新しく評価されます。 <br><br> いずれのケースも成立しない場合、 <em>keyplace</em>のサブフォームは再度評価されるかもしれません。 <br><br></li>
 </ul></li>
 <li><a href="5.3.case.html"><code>ecase</code></a>
 <ul>
-<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<code>type-error</code>の修正不可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <br><br> <a href="5.3.case.html"><code>ccase</code></a>とは対照的に<a href="5.3.case.html"><code>ecase</code></a>の使用者は、 もし<em>normal-clause</em>がマッチしなかったら <a href="5.3.case.html"><code>ecase</code></a>は戻ってこないという事実に頼っています。 <br><br></li>
+<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>の修正不可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <br><br> <a href="5.3.case.html"><code>ccase</code></a>とは対照的に<a href="5.3.case.html"><code>ecase</code></a>の使用者は、 もし<em>normal-clause</em>がマッチしなかったら <a href="5.3.case.html"><code>ecase</code></a>は戻ってこないという事実に頼っています。 <br><br></li>
 </ul></li>
 </ul>
 <h2 id="例文">例文</h2>
@@ -289,7 +289,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 <h2 id="影響">影響</h2>
 <p><a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>がエラーを通知したときは、 既存の<code>handler</code>と<a href="21.2.debug-io.html"><code>*debug-io*</code></a>に影響を及ぼす可能性があります。</p>
 <h2 id="例外">例外</h2>
-<p><em>normal-clause</em>にマッチしなかったときは、 <a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>は 型<code>type-error</code>のエラーが発生します。</p>
+<p><em>normal-clause</em>にマッチしなかったときは、 <a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>は 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="5.3.cond.html"><code>cond</code></a>, <a href="5.3.typecase.html"><code>typecase</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, 5.1. 一般化された参照</p>
 <h2 id="備考">備考</h2>

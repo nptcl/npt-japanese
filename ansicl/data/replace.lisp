@@ -82,6 +82,7 @@
 (replace destructuring-lambda-list "分割のラムダリスト")
 (replace define-modify-macro-lambda-list "`define-modify-macro`ラムダリスト")
 (replace defsetf-lambda-list "`defsetf`ラムダリスト")
+(replace deftype-lambda-list "`deftype`ラムダリスト")
 (replace direct-instance "direct-instance")
 
 (replace implementation-dependent "実装依存")
@@ -122,4 +123,5 @@
 (replace otherwise-inaccessible-part "他からアクセス不可の部分")
 (replace optimize-quality "最適化の性質")
 (replace method-combination "`method-combination`")
+(replace atomic-type-specifier "原始的な型指定子")
 

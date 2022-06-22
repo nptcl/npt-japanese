@@ -92,7 +92,7 @@ arg-typespec ::= (typespec*
 下記の宣言フォームを考えます。
 
 ```lisp
-(ftype (function (arg0-type arg1-type ...) val-type) f))
+(ftype (function (arg0-type arg1-type ...) val-type) f)
 ```
 
 この宣言のスコープ内にある
@@ -128,8 +128,8 @@ arg-typespec ::= (typespec*
 - 次の2つの{ftype:link}宣言を考えます。
 
 ```lisp
-(ftype (function (arg0-type1 arg1-type1 ...) val-type1) f))
-(ftype (function (arg0-type2 arg1-type2 ...) val-type2) f))
+(ftype (function (arg0-type1 arg1-type1 ...) val-type1) f)
+(ftype (function (arg0-type2 arg1-type2 ...) val-type2) f)
 ```
 
 もしこれらの宣言の両方に効果があるときは、
@@ -139,7 +139,7 @@ arg-typespec ::= (typespec*
 ```lisp
 (ftype (function ((and arg0-type1 arg0-type2) (and arg1-type1 arg1-type2 ...) ...)
                   (and val-type1 val-type2)) 
-       f))
+       f)
 ```
 
 これは、ひとつを無視するか、

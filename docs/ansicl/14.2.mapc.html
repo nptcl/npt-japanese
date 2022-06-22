@@ -236,7 +236,7 @@
 <em>concatenated-results</em> - リスト</p>
 <h2 id="定義">定義</h2>
 <p>マッピング操作は、 引数の各列からひとつ得たものの集合を、 連続で関数に適用した結果を返却します。 <a href="14.2.mapc.html"><code>mapc</code></a>と<a href="14.2.mapc.html"><code>mapl</code></a>以外は、関数の返却値で構成された結果を返却します。 <a href="14.2.mapc.html"><code>mapc</code></a>と<a href="14.2.mapc.html"><code>mapl</code></a>の場合は、返却値は<em>lists</em>の列です。</p>
-<p><em>function</em>は、最初はインデックス0番目の全ての要素で呼び出され、 そのあとインデックス1番目の全ての要素で呼ばれ、 以下同様に実行します。 もし<em>function</em>がシンボルのときは、 それは<a href="10.2.symbol-function.html"><code>symbol-function</code></a>が実行されたかのように 関数へ<code>coerce</code>されます。</p>
+<p><em>function</em>は、最初はインデックス0番目の全ての要素で呼び出され、 そのあとインデックス1番目の全ての要素で呼ばれ、 以下同様に実行します。 もし<em>function</em>がシンボルのときは、 それは<a href="10.2.symbol-function.html"><code>symbol-function</code></a>が実行されたかのように 関数へ<a href="4.4.coerce.html"><code>coerce</code></a>されます。</p>
 <p><a href="14.2.mapc.html"><code>mapcar</code></a>は、<em>lists</em>の連続した要素に対して操作します。 <em>function</em>は、各<em>lists</em>の最初の要素で適用し、 そのあと各<em>lists</em>の二番目の要素で適用し、 それを繰り返します。 繰り返しは最短の<em>lists</em>がなくなったときに終了し、 他の<em>lists</em>の余分な要素は無視されます。 <a href="14.2.mapc.html"><code>mapcar</code></a>の返却値は、 <em>function</em>が連続して呼び出された結果のリストです。</p>
 <p><a href="14.2.mapc.html"><code>mapc</code></a>は<a href="14.2.mapc.html"><code>mapcar</code></a>と似ていますが、 適用された<em>function</em>の結果を蓄積しない所が違っています。 <em>lists</em>引数が返却されます。</p>
 <p><a href="14.2.mapc.html"><code>maplist</code></a>は<a href="14.2.mapc.html"><code>mapcar</code></a>と似ていますが、 <em>function</em>は、<em>lists</em>のサブリストを連続して適用するところが違っています。 <em>function</em>は、最初は<em>lists</em>そのものに適用され、 そのあと各<em>lists</em>の<code>cdr</code>によって適用され、 さらに各<em>lists</em>の<code>cdr</code>の<code>cdr</code>によって適用され、 それをくり返します。</p>
@@ -282,7 +282,7 @@
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>lists</em>が通常のリストではないとき、 型<code>type-error</code>のエラーを通知する準備をしなければなりません。</p>
+<p><em>lists</em>が通常のリストではないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知する準備をしなければなりません。</p>
 <h2 id="参考">参考</h2>
 <p><code>dolist</code>, <a href="17.3.map.html"><code>map</code></a>, 3.6. 横断の規則と副作用</p>
 <h2 id="備考">備考</h2>

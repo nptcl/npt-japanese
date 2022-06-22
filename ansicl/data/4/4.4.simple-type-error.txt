@@ -1,0 +1,45 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type SIMPLE-TYPE-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.simple-type-error
+@name: simple-type-error
+@type: condition-type
+
+Condition Type `SIMPLE-TYPE-ERROR`
+
+
+## {class-precedence-list}
+
+{simple-type-error:link},
+{simple-condition:link},
+{type-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{simple-type-error:link}のコンディションは、
+型{type-error:link}のコンディションと似ていますが、
+どのようにコンディションを報告するか指定するための
+別の機能が提供されている点が違っています。
+型{simple-condition:link}をご確認ください。
+
+
+## {see-also}
+
+{simple-condition:link},
+{simple-condition-format-control:link},
+{simple-condition-format-arguments:link},
+{type-error-datum:link},
+{type-error-expected-type:link}
+
+@end
+

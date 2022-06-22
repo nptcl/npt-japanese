@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TYPE-ERROR-DATUM
+;;  Function TYPE-ERROR-EXPECTED-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.type-error-datum
+@name: type-error-datum
+@name: type-error-expected-type
+@type: function
+
+Function `TYPE-ERROR-DATUM`, `TYPE-ERROR-EXPECTED-TYPE`
+
+
+## {syntax}
+
+`type-error-datum` *condition* => *datum*  
+`type-error-expected-type` *condition* => *expected-type*
+
+
+## {arguments-and-values}
+
+*condition* - {type-error:link}型のコンディション  
+*datum* - オブジェクト  
+*expected-type* - 型指定子
+
+
+## {description}
+
+{type-error-datum:link}は、*condition*によって表現された状況の
+問題のデータを返却します。
+
+{type-error-expected-type:link}は、*condition*によって表現された状況の、
+問題のデータに対する期待した型を返却します。
+
+
+## {examples}
+
+```lisp
+(defun fix-digits (condition)
+  (check-type condition type-error)
+  (let* ((digits '(zero one two three four
+                  five six seven eight nine))
+        (val (position (type-error-datum condition) digits)))
+    (if (and val (subtypep 'fixnum (type-error-expected-type condition)))
+        (store-value 7))))
+
+(defun foo (x)
+  (handler-bind ((type-error #'fix-digits))
+    (check-type x number)
+    (+ x 3)))
+
+(foo 'seven)
+=>  10
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{type-error:link},
+{9:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

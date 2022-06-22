@@ -1,0 +1,141 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TYPEP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.typep
+@name: typep
+@type: function
+
+Function `TYPEP`
+
+
+## {syntax}
+
+`typep` *object* *type-specifier* `&optional` *environment* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*type-specifier* - 型指定子ですが、 {values!type:link}と
+最初の要素が{function!system-class:link}か{values!type:link}の
+リストは除きます。  
+*environment* - 環境オブジェクト。
+デフォルトは{nil!variable:link}であり、
+これは{null-lexical-environment}の現在のグローバルな環境を示します。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*object*が*type-specifier*によって指定された型のときは*true*を、
+それ以外は*false*を返却します。
+
+*type-specifier*が`(satisfies fn)`フォームのときは、
+関数`fn`を*object*で適用することで返却します。
+
+式`(typep object '(array type-specifier))`の
+*type-specifier*が`*`ではないときは、
+*object*が{make-array:link}関数の
+`:element-type`の引数に*type-specifier*が指定されて
+生成された配列であるときに*true*を返却します。
+`(array *)`は要素の型に関係せず全ての配列を意味し、
+`(array type-specifier)`はただ{make-array:link}関数の
+`:element-type`の引数に*type-specifier*が指定されて
+生成された配列のみを意味します。
+似たような解釈として、
+`(simple-array type-specifier)`と`(vector type-specifier)`にも
+適用されます。
+詳しくは{15.1.2.1:ab}をご確認ください。
+
+式`(typep object '(complex type-specifier)`は、
+{complex!function:link}関数に
+*type-specifier*型の数を与えた返却値による複素数か、
+加えて同じ{specialized}の表現の数を持った
+複素数のときに*true*を返却します。
+そのような複素数は、実部と虚部の両方で次の式が満たされなければなりません。
+
+```lisp
+(typep realpart 'type-specifier)
+(typep imagpart 'type-specifier)
+```
+
+{upgraded-complex-part-type:link}関数をご確認ください。
+
+
+## {examples}
+
+```lisp
+(typep 12 'integer) =>  true
+(typep (1+ most-positive-fixnum) 'fixnum) =>  false
+(typep nil t) =>  true
+(typep nil nil) =>  false
+(typep 1 '(mod 2)) =>  true
+(typep #c(1 1) '(complex (eql 1))) =>  true
+```
+
+次の例を理解するには{12.1.5.3:ab}を参照してください。
+
+```lisp
+
+(typep #c(0 0) '(complex (eql 0))) =>  false
+```
+
+`Ax`と`Ay`の2つの型指定子は違う型ですが、
+
+```lisp
+(upgraded-array-element-type 'Ax)
+```
+
+と
+
+```lisp
+(upgraded-array-element-type 'Ay)
+```
+
+はどちらも同じ型を示しているものとします。
+このとき、下記のようになることに注意してください。
+
+```lisp
+(typep (make-array 0 :element-type 'Ax) '(array Ax)) =>  true
+(typep (make-array 0 :element-type 'Ay) '(array Ay)) =>  true
+(typep (make-array 0 :element-type 'Ax) '(array Ay)) =>  true
+(typep (make-array 0 :element-type 'Ay) '(array Ax)) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*type-specifier*が{values!type:link}か、
+あるいは最初の要素が{function!system-class:link}か
+{values!type:link}のリストのときは、
+型{error!condition:link}のエラーが発生します。
+
+*type-specifier*が型指定子ではないときの結果は未定義です。
+
+
+## {see-also}
+
+{type-of:link},
+{upgraded-array-element-type:link},
+{upgraded-complex-part-type:link},
+{4.2.3:ab}
+
+
+## {notes}
+
+実装は、`(typep x (the class y))`のような式の場合は、
+実行時に{deftype:link}による展開の実行が必要無いように
+最適化を行うよう推奨されます。
+
+@end
+

@@ -34,6 +34,13 @@
       (list str))))
 
 ;;  `code`
+(defun position-escape (a str &optional (start 0))
+  (when (and (<= 0 start) (< start (length str)))
+    (let ((b (elt str start)))
+      (cond ((eql b #\\) (position-escape a str (+ 2 start)))
+            ((eql a b) start)
+            (t (position-escape a str (1+ start)))))))
+
 (defun parensis-code-markdown (str)
   (let ((x (position #\` str)))
     (when x

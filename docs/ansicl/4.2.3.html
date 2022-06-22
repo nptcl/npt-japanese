@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>4.2.3. 型指定子</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">4.2.3. 型指定子</h1>
+</header>
+<p><a href="4.2.html">UP</a></p>
+<hr />
+<p>4.2.3. 型指定子</p>
+<p>★作成中です</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><code>arithmetic-error</code></td>
+<td><a href="4.4.function-system-class.html"><code>function</code></a></td>
+<td><code>simple-condition</code></td>
+</tr>
+<tr class="even">
+<td><code>array</code></td>
+<td><a href="4.4.generic-function.html"><code>generic-function</code></a></td>
+<td><code>simple-error</code></td>
+</tr>
+<tr class="odd">
+<td><a href="14.2.atom-type.html"><code>atom</code></a></td>
+<td><code>hash-table</code></td>
+<td><a href="16.2.simple-string.html"><code>simple-string</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="13.2.base-char.html"><code>base-char</code></a></td>
+<td><code>integer</code></td>
+<td><a href="4.4.simple-type-error.html"><code>simple-type-error</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="16.2.base-string.html"><code>base-string</code></a></td>
+<td><a href="10.2.keyword.html"><code>keyword</code></a></td>
+<td><code>simple-vector</code></td>
+</tr>
+<tr class="even">
+<td><code>bignum</code></td>
+<td><a href="14.2.list-system-class.html"><code>list</code></a></td>
+<td><code>simple-warning</code></td>
+</tr>
+<tr class="odd">
+<td><code>bit</code></td>
+<td><code>logical-pathname</code></td>
+<td><code>single-float</code></td>
+</tr>
+<tr class="even">
+<td><code>bit-vector</code></td>
+<td><code>long-float</code></td>
+<td><a href="13.2.standard-char.html"><code>standard-char</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>broadcast-stream</code></td>
+<td><a href="4.4.method.html"><code>method</code></a></td>
+<td><a href="4.4.standard-class.html"><code>standard-class</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="4.4.built-in-class.html"><code>built-in-class</code></a></td>
+<td><a href="4.4.method-combination.html"><code>method-combination</code></a></td>
+<td><a href="4.4.standard-generic-function.html"><code>standard-generic-function</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>cell-error</code></td>
+<td><a href="4.4.nil-type.html"><code>nil</code></a></td>
+<td><a href="4.4.standard-method.html"><code>standard-method</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="13.2.character-system-class.html"><code>character</code></a></td>
+<td><a href="14.2.null-system-class.html"><code>null</code></a></td>
+<td><a href="4.4.standard-object.html"><code>standard-object</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="4.4.class.html"><code>class</code></a></td>
+<td><code>number</code></td>
+<td><code>storage-condition</code></td>
+</tr>
+<tr class="even">
+<td><a href="4.4.compiled-function.html"><code>compiled-function</code></a></td>
+<td><code>package</code></td>
+<td><code>stream</code></td>
+</tr>
+<tr class="odd">
+<td><code>complex</code></td>
+<td><code>package-error</code></td>
+<td><code>stream-error</code></td>
+</tr>
+<tr class="even">
+<td><code>concatenated-stream</code></td>
+<td><code>parse-error</code></td>
+<td><a href="16.2.string-system-class.html"><code>string</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>condition</code></td>
+<td><code>pathname</code></td>
+<td><code>string-stream</code></td>
+</tr>
+<tr class="even">
+<td><a href="14.2.cons-system-class.html"><code>cons</code></a></td>
+<td><code>print-not-readable</code></td>
+<td><a href="4.4.structure-class.html"><code>structure-class</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="5.3.control-error.html"><code>control-error</code></a></td>
+<td><a href="5.3.program-error.html"><code>program-error</code></a></td>
+<td><a href="4.4.structure-object.html"><code>structure-object</code></a></td>
+</tr>
+<tr class="even">
+<td><code>division-by-zero</code></td>
+<td><code>random-state</code></td>
+<td><code>style-warning</code></td>
+</tr>
+<tr class="odd">
+<td><code>double-float</code></td>
+<td><code>ratio</code></td>
+<td><a href="10.2.symbol.html"><code>symbol</code></a></td>
+</tr>
+<tr class="even">
+<td><code>echo-stream</code></td>
+<td><code>rational</code></td>
+<td><code>synonym-stream</code></td>
+</tr>
+<tr class="odd">
+<td><code>end-of-file</code></td>
+<td><code>reader-error</code></td>
+<td><a href="4.4.t-system-class.html"><code>t</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="9.2.error-condition.html"><code>error</code></a></td>
+<td><code>readtable</code></td>
+<td><code>two-way-stream</code></td>
+</tr>
+<tr class="odd">
+<td><a href="13.2.extended-char.html"><code>extended-char</code></a></td>
+<td><code>real</code></td>
+<td><a href="4.4.type-error.html"><code>type-error</code></a></td>
+</tr>
+<tr class="even">
+<td><code>file-error</code></td>
+<td><code>restart</code></td>
+<td><a href="7.7.unbound-slot.html"><code>unbound-slot</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>file-stream</code></td>
+<td><a href="17.3.sequence.html"><code>sequence</code></a></td>
+<td><a href="10.2.unbound-variable.html"><code>unbound-variable</code></a></td>
+</tr>
+<tr class="even">
+<td><code>fixnum</code></td>
+<td><code>serious-condition</code></td>
+<td><a href="5.3.undefined-function.html"><code>undefined-function</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>float</code></td>
+<td><code>short-float</code></td>
+<td><code>unsigned-byte</code></td>
+</tr>
+<tr class="even">
+<td><code>floating-point-inexact</code></td>
+<td><code>signed-byte</code></td>
+<td><code>vector</code></td>
+</tr>
+<tr class="odd">
+<td><code>floating-point-invalid-operation</code></td>
+<td><code>simple-array</code></td>
+<td><code>warning</code></td>
+</tr>
+<tr class="even">
+<td><code>floating-point-overflow</code></td>
+<td><a href="16.2.simple-base-string.html"><code>simple-base-string</code></a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>floating-point-underflow</code></td>
+<td><code>simple-bit-vector</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 4-2. 標準の原始的な型指定子</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

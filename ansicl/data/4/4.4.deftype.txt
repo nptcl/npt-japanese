@@ -1,0 +1,126 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFTYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.deftype
+@name: deftype
+@type: macro
+
+Macro `DEFTYPE`
+
+
+## {syntax}
+
+`deftype` *name* *lambda-list*
+ [[*declaration\** `|` *documentation*]] *form\** => *name*
+
+
+## {arguments-and-values}
+
+*name* - シンボル  
+*lambda-list* - {deftype-lambda-list}  
+*declaration* - 宣言式。評価されません。  
+*documentation* - 文字列。評価されません。  
+*form* - フォーム
+
+
+## {description}
+
+{deftype:link}は*name*という名前の派生した型指定子を定義します。
+新しい型指定子の意味は、
+その型指定子を別の型指定子に展開する関数で与えられ、
+展開されたもの自身が別の派生された型指定子の参照を
+含んでいればさらに展開されます。
+
+新しく定義された型指定子は、
+`(name arg1 arg2 ...)`というフォームを
+リストとして受け取り参照します。
+引数の数は*lambda-list*に適合しなければなりません。
+もし新しい型指定子が引数を取らないか、
+全ての引数がオプションのときは、
+その型指定子は{atomic-type-specifier}として使われます
+（つまり`(name)`のかわりに`name`が使用できます）。
+
+引数の式である、型指定子, `arg1`, ..., `argn`は評価されません。
+かわりにこれらの{literal-object}は
+対応するパラメーターに束縛されたオブジェクトになります。
+
+{deftype:link}フォームのボディ部（ただし*lambda-list*は除く）は、
+暗黙的に*name*という名前の`block`に囲まれ、
+{implicit-progn}として評価され、
+新しい型指定子を返却します。
+
+ボディ部の{lexical-environment}は、
+{deftype:link}フォームが評価された時点のものであり、
+*lambda-list*の変数によって拡張されます。
+
+型指定子の再帰展開は、
+その型指定子についてネストされた展開も含めて、
+展開結果を返却して終了しなければなりません。
+
+型指定子を全展開した結果に循環構造が含まれているときは、
+それが{member!type:link}か{eql!type:link}型指定子で参照されている
+オブジェクト内に含まれているのではない場合、結果は未定義です。
+
+*documentation*はドキュメント文字の種類{type!symbol:link}として
+*name*に割り当てられます。
+
+もし{deftype:link}フォームが{top-level-form}として現れたとき、
+コンパイラーは後に続く型宣言で*name*という名前が
+認識されることを保証しなければなりません。
+プログラマーは後に続く型宣言で*name*という名前が参照されるとき、
+{deftype:link}フォームのボディ部がコンパイル時に
+評価されることを保証しなければなりません。
+型指定子の展開がコンパイル時に完全に定義できないとき
+（おそらく知らない型指定子の展開か、
+コンパイル時の環境で定義されていない関数を指定した
+{satisfies:link}のため）、
+実装は宣言内のその型の参照を無視するか、
+警告を発するか、あるいはその両方かを行うでしょう。
+
+
+## {examples}
+
+```lisp
+(defun equidimensional (a)
+  (or (< (array-rank a) 2)
+      (apply #'= (array-dimensions a)))) =>  EQUIDIMENSIONAL
+(deftype square-matrix (&optional type size)
+  `(and (array ,type (,size ,size))
+        (satisfies equidimensional))) =>  SQUARE-MATRIX
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{declare:link},
+{defmacro:link},
+{documentation:link},
+{4.2.3:ab},
+{3.4.11:ab}
+
+## {notes}
+
+なし。
+
+@end
+

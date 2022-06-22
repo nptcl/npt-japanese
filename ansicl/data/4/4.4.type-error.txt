@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type TYPE-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.type-error
+@name: type-error
+@type: condition-type
+
+Condition Type `TYPE-ERROR`
+
+
+## {class-precedence-list}
+
+{type-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{type-error:link}は、オブジェクトが期待した型ではないという
+状況を表現しています。
+「問題のデータ」と「期待した型」が、
+{make-condition:link}の初期化引数によって
+それぞれ`:datum`と`:expected-type`で指定されて生成され、
+{type-error-datum:link}と{type-error-expected-type:link}という
+関数によってアクセスできます。
+
+
+## {see-also}
+
+{type-error-datum:link},
+{type-error-expected-type:link}
+
+@end
+

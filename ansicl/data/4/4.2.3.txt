@@ -1,0 +1,55 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  4.2.3 型指定子
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.2.3
+@link: figure_4.2
+@type: text
+
+★作成中です
+
+
+|                           |                          |                            |
+|---------------------------|--------------------------|----------------------------|
+|{arithmetic-error:link} |{function!system-class:link} |{simple-condition:link}     |
+|{array:link}               |{generic-function:link}   |{simple-error:link}         |
+|{atom!type:link}           |{hash-table:link}         |{simple-string:link}        |
+|{base-char:link}           |{integer:link}            |{simple-type-error:link}    |
+|{base-string:link}         |{keyword:link}            |{simple-vector:link}        |
+|{bignum:link}              |{list!system-class:link}  |{simple-warning:link}       |
+|{bit!type:link} |{logical-pathname!system-class:link} |{single-float:link}         |
+|{bit-vector:link}          |{long-float:link}         |{standard-char:link}        |
+|{broadcast-stream:link}    |{method:link}             |{standard-class:link}       |
+|{built-in-class:link} |{method-combination:link} |{standard-generic-function:link} |
+|{cell-error:link}          |{nil!type:link}           |{standard-method:link}      |
+|{character!system-class:link} |{null!system-class:link} |{standard-object:link}    |
+|{class:link}               |{number:link}             |{storage-condition:link}    |
+|{compiled-function:link} |{package!system-class:link} |{stream:link}               |
+|{complex!system-class:link} |{package-error:link}     |{stream-error:link}         |
+|{concatenated-stream:link} |{parse-error:link}        |{string!system-class:link}  |
+|{condition:link}        |{pathname!system-class:link} |{string-stream:link}        |
+|{cons!system-class:link}   |{print-not-readable:link} |{structure-class:link}      |
+|{control-error:link}       |{program-error:link}      |{structure-object:link}     |
+|{division-by-zero:link}    |{random-state:link}       |{style-warning:link}        |
+|{double-float:link}        |{ratio:link}              |{symbol:link}               |
+|{echo-stream:link}      |{rational!system-class:link} |{synonym-stream:link}       |
+|{end-of-file:link}         |{reader-error:link}       |{t!system-class:link}       |
+|{error!condition:link}     |{readtable:link}          |{two-way-stream:link}       |
+|{extended-char:link}       |{real:link}               |{type-error:link}           |
+|{file-error:link}          |{restart:link}            |{unbound-slot:link}         |
+|{file-stream:link}         |{sequence:link}           |{unbound-variable:link}     |
+|{fixnum:link}              |{serious-condition:link}  |{undefined-function:link}   |
+|{float!system-class:link}  |{short-float:link}        |{unsigned-byte:link}        |
+|{floating-point-inexact:link} |{signed-byte:link}     |{vector:link}               |
+|{floating-point-invalid-operation:link} |{simple-array:link} |{warning:link}       |
+|{floating-point-overflow:link} |{simple-base-string:link} |                        |
+|{floating-point-underflow:link} |{simple-bit-vector:link} |                        |
+
+Figure 4-2. 標準の{atomic-type-specifier}
+
+@end
+

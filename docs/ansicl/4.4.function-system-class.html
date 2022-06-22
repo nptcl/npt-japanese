@@ -223,7 +223,7 @@
 <h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
 <p><a href="4.4.function-system-class.html"><code>function</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
 <h2 id="定義">定義</h2>
-<p>関数<code>function</code>とは、適切な数の引数を供給することで 実行されるコードを表現したオブジェクトです。 関数は、<a href="5.3.function-special.html"><code>function</code></a> 特殊フォームか、 関数への<code>coerce</code>か、 関数への<a href="3.8.compile.html"><code>compile</code></a>によって生成されます。 関数は、<a href="5.3.funcall.html"><code>funcall</code></a>か<a href="5.3.apply.html"><code>apply</code></a>か<a href="5.3.multiple-value-call.html"><code>multiple-value-call</code></a>の 第一引数として使用することによって直接起動できます。</p>
+<p>関数<code>function</code>とは、適切な数の引数を供給することで 実行されるコードを表現したオブジェクトです。 関数は、<a href="5.3.function-special.html"><code>function</code></a> 特殊フォームか、 関数への<a href="4.4.coerce.html"><code>coerce</code></a>か、 関数への<a href="3.8.compile.html"><code>compile</code></a>によって生成されます。 関数は、<a href="5.3.funcall.html"><code>funcall</code></a>か<a href="5.3.apply.html"><code>apply</code></a>か<a href="5.3.multiple-value-call.html"><code>multiple-value-call</code></a>の 第一引数として使用することによって直接起動できます。</p>
 <h2 id="型指定子の種類">型指定子の種類</h2>
 <p>特定可能</p>
 <h2 id="型指定子の構文">型指定子の構文</h2>
@@ -241,7 +241,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> ((<span class="kw">integer</span> <span class="dv">0</span>) &amp;key (<span class="bu">:initial-element</span> <span class="kw">t</span>)) <span class="kw">list</span>)</span></code></pre></div>
 <p><em>value-type</em>は、多値の型を示すために、 <a href="4.4.values-type.html"><code>values</code></a>型指定子を使うことができます。</p>
 <p>下記の宣言フォームを考えます。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type arg1-type ...) val-type) f))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type arg1-type ...) val-type) f)</span></code></pre></div>
 <p>この宣言のスコープ内にある 全ての<code>(f arg0 arg1 ...)</code>フォームは 下記と同等になります。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">the</span> val-type (f (<span class="kw">the</span> arg0-type arg0) (<span class="kw">the</span> arg1-type arg1) ...))</span></code></pre></div>
 <p>これは、もし引数のどれかが指定された型と一致していないか、 返却値が指定した型と一致していなかったときの結果は未定義です。 とくに引数のどれかが正しく型と一致していないときは、 返却値が指定した型であるという保証はありません。</p>
@@ -253,12 +253,12 @@
 <ul>
 <li>次の2つの<a href="3.8.ftype.html"><code>ftype</code></a>宣言を考えます。</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type1 arg1-type1 ...) val-type1) f))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type2 arg1-type2 ...) val-type2) f))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type1 arg1-type1 ...) val-type1) f)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> (arg0-type2 arg1-type2 ...) val-type2) f)</span></code></pre></div>
 <p>もしこれらの宣言の両方に効果があるときは、 それらの宣言で囲まれた共通部分内では、 <code>f</code>の呼び出しは下記のような<code>f</code>の宣言であるかのように扱われます。</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ftype</span> (<span class="kw">function</span> ((<span class="kw">and</span> arg0-type1 arg0-type2) (<span class="kw">and</span> arg1-type1 arg1-type2 ...) ...)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  (<span class="kw">and</span> val-type1 val-type2)) </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       f))</span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       f)</span></code></pre></div>
 <p>これは、ひとつを無視するか、 あるいは全ての<a href="3.8.ftype.html"><code>ftype</code></a>を有効にするか、 どちらでも許されます。</p>
 <ul>
 <li>もし2つ（あるいはもっと）の型宣言が変数に対して効果を持っており、 それらは両方とも<a href="4.4.function-system-class.html"><code>function</code></a>の宣言であるとき、 それらの宣言は同じように結び付けられます。</li>

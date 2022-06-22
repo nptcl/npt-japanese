@@ -1,0 +1,134 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TYPE-OF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.4.type-of
+@name: type-of
+@type: function
+
+Function `TYPE-OF`
+
+
+## {syntax}
+
+`type-of` *object* => *typespec*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*typespec* - 型指定子
+
+
+## {description}
+
+*object*が要素という立場で保有されている型の
+型指定子*typespec*を返却します。
+返却値である*typespec*は下記の条件を満たします。
+
+1. *object*が組み込み型の要素であるとき
+  a. その組み込み型が認識可能なサブタイプであるならその型を返却
+  b. その型が
+     {and!type:link},
+     {eql!type:link},
+     {member!type:link},
+     {not!type:link},
+     {or!type:link},
+     {satisfies:link},
+     {values!type:link},
+     を含んでいないときは、その型自身を返却
+
+2. 全てのオブジェクト*object*について、
+`(typep object (type-of object))`は*true*を返却します。
+これは暗に、例えばリストフォームの
+{function!system-class:link}型指定子のように、
+{typep:link}で有効ではない型指定子は{type-of:link}から
+決して返却しないことを意味しています。
+
+3. {type-of:link}の返却値の型は、
+常に{class-of:link}による返却値のクラスの
+認識可能なサブタイプです。
+つまり、下記のようになります。
+```lisp
+(subtypep (type-of object) (class-of object)) =>  true, true
+```
+
+4. メタクラスが{structure-class:link},
+{standard-class:link},
+またはコンディションの*object*について、
+{class-of:link}によって返却されるクラスがが正しい名前を持つとき、
+{type-of:link}は、その名前を返却します。
+それ以外のときは、クラス自身が返却されます。
+特に、`:type`オプションなしで{defstruct:link}によって定義された
+構造体の構築関数で作られた*object*は、
+{type-of:link}関数は構造体の名前を返却します。
+また、{make-condition:link}によって作られた*object*は、
+返却値*typespec*はコンディション型の名前です。
+
+5. 次の型{short-float:link}, {single-float:link},
+{double-float:link}, {long-float:link}の*object*の返却値*typespec*は、
+その型の認識可能なサブタイプです。
+
+
+## {examples}
+
+```lisp
+(type-of 'a) =>  SYMBOL          
+(type-of '(1 . 2))
+=>  CONS
+OR=>  (CONS FIXNUM FIXNUM)
+(type-of #c(0 1))
+=>  COMPLEX
+OR=>  (COMPLEX INTEGER)
+(defstruct temp-struct x y z) =>  TEMP-STRUCT
+(type-of (make-temp-struct)) =>  TEMP-STRUCT
+(type-of "abc")
+=>  STRING
+OR=>  (STRING 3)
+(subtypep (type-of "abc") 'string) =>  true, true
+(type-of (expt 2 40))
+=>  BIGNUM
+OR=>  INTEGER
+OR=>  (INTEGER 1099511627776 1099511627776)
+OR=>  SYSTEM::TWO-WORD-BIGNUM
+OR=>  FIXNUM
+(subtypep (type-of 112312) 'integer) =>  true, true
+(defvar *foo* (make-array 5 :element-type t)) =>  *FOO*
+(class-name (class-of *foo*)) =>  VECTOR
+(type-of *foo*)
+=>  VECTOR
+OR=>  (VECTOR T 5)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{array-element-type:link},
+{class-of:link},
+{defstruct:link},
+{typecase:link},
+{typep:link},
+{4.2:ab}
+
+
+## {notes}
+
+実装は{type-of:link}が移植可能な値を返却するように
+改良することを勧められます。
+
+@end
+

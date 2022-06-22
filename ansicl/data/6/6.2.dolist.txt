@@ -1,0 +1,115 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  6. 繰り返し
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DOLIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 6.2.dolist
+@name: dolist
+@type: macro
+
+Macro `DOLIST`
+
+
+## {syntax}
+
+`dolist` (*var* *list-form* [*result-form*]) *declaration\**
+ `{`*tag* `|` *statement*`}`\*  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*var* - シンボル  
+*list-form* - フォーム  
+*result-form* - フォーム  
+*declaration* - 宣言式。評価されません。  
+*tag* - `go`のタグ。評価されません。  
+*statement* - {compound-form}。下記の説明に従って評価されます。  
+*result* - もし{return:link}か{return-from:link}が実行されたときは、
+そのフォームから渡された返却値であり、
+それ以外の場合は*result-form*による返却値です。
+
+
+## {description}
+
+{dolist:link}は、リストの要素に対して繰り返しを行います。
+{dolist:link}のボディ部は{tagbody:link}Ni似ています。
+それは*tag*と*statement*が続くものが含まれます。
+
+{dolist:link}は*list-form*を評価し、
+それはリストでなければいけません。
+そのあとボディ部がリストの各要素ごとに一度だけ実行され、
+実行は*tag*と*statement*を順番に行われ、
+その際に*var*を各要素に束縛します。
+そして*result-form*を評価します。
+*tag*は*statement*にラベル付けされます。
+
+*result-form*が実行された時点で、
+*var*には{nil!variable:link}が束縛されています。
+
+{nil!variable:link}という名前の暗黙の`block`が、
+{dolist:link}のフォーム全体を囲みます。
+{return:link}文は、それ以上の繰り返しを行うことなく
+ループを即座に終了させるときに使われ、
+そのときの返却値は0や複数の値を指定できます。
+
+*var*の束縛のスコープは、*list-form*を含みませんが
+*result-form*は含まれます。
+
+{dolist:link}が各繰り返しごとに*var*の
+新しい束縛を確立するかどうか、
+あるいは*var*が一度束縛されてからその後の繰り返しで
+代入されるのかどうかは
+{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(setq temp-two '()) =>  NIL
+(dolist (temp-one '(1 2 3 4) temp-two) (push temp-one temp-two)) =>  (4 3 2 1)
+
+(setq temp-two 0) =>  0
+(dolist (temp-one '(1 2 3 4)) (incf temp-two)) =>  NIL
+temp-two =>  4
+
+(dolist (x '(a b c d)) (prin1 x) (princ " ")) 
+>>  A B C D 
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{do:link},
+{dotimes:link},
+{tagbody:link},
+{3.6:ab}
+
+
+## {notes}
+
+{go:link}は、{dotimes:link}のボディ部で
+*tag*によってラベル付けされた文へ
+遷移を制御するために使用されます。
+
+@end
+

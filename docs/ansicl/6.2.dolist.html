@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro SETF, PSETF</title>
+  <title>Macro DOLIST</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,52 +214,51 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro SETF, PSETF</h1>
+<h1 class="title">Macro DOLIST</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="6.2.html">UP</a></p>
 <hr />
-<h1 id="macro-setf-psetf">Macro <strong>SETF, PSETF</strong></h1>
-<p>Macro <code>SETF</code>, <code>PSETF</code></p>
+<h1 id="macro-dolist">Macro <strong>DOLIST</strong></h1>
+<p>Macro <code>DOLIST</code></p>
 <h2 id="構文">構文</h2>
-<p><code>setf</code> <code>{</code><em>pair</em><code>}</code>* =&gt; <em>result*</em><br />
-<code>psetf</code> <code>{</code><em>pair</em><code>}</code>* =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<pre><code>pair ::= place newvalue </code></pre>
+<p><code>dolist</code> (<em>var</em> <em>list-form</em> [<em>result-form</em>]) <em>declaration*</em> <code>{</code><em>tag</em> <code>|</code> <em>statement</em><code>}</code>*<br />
+=&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>place</em> - <code>place</code><br />
-<em>newvalue</em> - フォーム<br />
-<em>result</em> - 最後の<code>place</code>の格納フォームから返却された多値か、 <em>pair</em>がないときは<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
+<p><em>var</em> - シンボル<br />
+<em>list-form</em> - フォーム<br />
+<em>result-form</em> - フォーム<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>tag</em> - <code>go</code>のタグ。評価されません。<br />
+<em>statement</em> - compound-form。下記の説明に従って評価されます。<br />
+<em>result</em> - もし<a href="5.3.return.html"><code>return</code></a>か<a href="5.3.return-from.html"><code>return-from</code></a>が実行されたときは、 そのフォームから渡された返却値であり、 それ以外の場合は<em>result-form</em>による返却値です。</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.setf.html"><code>setf</code></a>は、<code>place</code>の値を<em>newvalue</em>に変更します。</p>
-<p><code>(setf place newvalue)</code>は、 <em>newvalue</em>の評価結果が<code>place</code>の場所へ保存されるような 更新フォームに展開されます。 いくつかの<code>place</code>フォームは、 オプションの引数を取るアクセッサを使用して実行します。 それらのオプション引数が<a href="5.3.setf.html"><code>setf</code></a>によって許可されるかどうか、 あるいはどのように使うかは<a href="5.3.setf.html"><code>setf</code></a>の展開関数次第であり、 <a href="5.3.setf.html"><code>setf</code></a>の制御下にはありません。 <a href="5.3.setf.html"><code>setf</code></a>の使用時に 引数<code>&amp;optional</code>, <code>&amp;rest</code>, …, <code>&amp;key</code>を 受け付けるような関数のドキュメントは、 どのようにそれらの引数を扱うのかを指定しなければなりません。</p>
-<p>もし複数の<em>pair</em>が指定されたら、 各<em>pair</em>は順番に処理されます。 次の式は、</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> place<span class="dv">-1</span> newvalue<span class="dv">-1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      place<span class="dv">-2</span> newvalue<span class="dv">-2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      ...</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      place-N newvalue-N)</span></code></pre></div>
-<p>下記の式と同等です。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">setf</span> place<span class="dv">-1</span> newvalue<span class="dv">-1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setf</span> place<span class="dv">-2</span> newvalue<span class="dv">-2</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       ...</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">setf</span> place-N newvalue-N))</span></code></pre></div>
-<p><a href="5.3.setf.html"><code>psetf</code></a>は複数の<em>pair</em>が指定されたとき、 <code>place</code>への新しい値の代入を並行に行います。 もっと正確に言うと、 全てのサブフォーム（<em>place</em>と<em>newvalue</em>の両方のフォーム）が 左から右に評価され、全ての評価が実行されたあとで、 全ての代入が順不同で行われます。</p>
-<p><a href="5.3.setf.html"><code>setf</code></a>と<a href="5.3.setf.html"><code>psetf</code></a>の展開の扱いの詳細は、 5.1.2. <code>place</code>の種類をご確認ください。</p>
+<p><a href="6.2.dolist.html"><code>dolist</code></a>は、リストの要素に対して繰り返しを行います。 <a href="6.2.dolist.html"><code>dolist</code></a>のボディ部は<a href="5.3.tagbody.html"><code>tagbody</code></a>Ni似ています。 それは<em>tag</em>と<em>statement</em>が続くものが含まれます。</p>
+<p><a href="6.2.dolist.html"><code>dolist</code></a>は<em>list-form</em>を評価し、 それはリストでなければいけません。 そのあとボディ部がリストの各要素ごとに一度だけ実行され、 実行は<em>tag</em>と<em>statement</em>を順番に行われ、 その際に<em>var</em>を各要素に束縛します。 そして<em>result-form</em>を評価します。 <em>tag</em>は<em>statement</em>にラベル付けされます。</p>
+<p><em>result-form</em>が実行された時点で、 <em>var</em>には<a href="5.3.nil-variable.html"><code>nil</code></a>が束縛されています。</p>
+<p><a href="5.3.nil-variable.html"><code>nil</code></a>という名前の暗黙の<code>block</code>が、 <a href="6.2.dolist.html"><code>dolist</code></a>のフォーム全体を囲みます。 <a href="5.3.return.html"><code>return</code></a>文は、それ以上の繰り返しを行うことなく ループを即座に終了させるときに使われ、 そのときの返却値は0や複数の値を指定できます。</p>
+<p><em>var</em>の束縛のスコープは、<em>list-form</em>を含みませんが <em>result-form</em>は含まれます。</p>
+<p><a href="6.2.dolist.html"><code>dolist</code></a>が各繰り返しごとに<em>var</em>の 新しい束縛を確立するかどうか、 あるいは<em>var</em>が一度束縛されてからその後の繰り返しで 代入されるのかどうかは 実装依存です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (<span class="kw">cons</span> &#39;a &#39;b) y (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (<span class="kw">car</span> x) &#39;x (<span class="kw">cadr</span> y) (<span class="kw">car</span> x) (<span class="kw">cdr</span> x) y) <span class="op">=&gt;</span>  (<span class="dv">1</span> X <span class="dv">3</span>) </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=&gt;</span>  (X <span class="dv">1</span> X <span class="dv">3</span>) </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=&gt;</span>  (<span class="dv">1</span> X <span class="dv">3</span>) </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (<span class="kw">cons</span> &#39;a &#39;b) y (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  (<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">psetf</span> (<span class="kw">car</span> x) &#39;x (<span class="kw">cadr</span> y) (<span class="kw">car</span> x) (<span class="kw">cdr</span> x) y) <span class="op">=&gt;</span>  NIL </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=&gt;</span>  (X <span class="dv">1</span> A <span class="dv">3</span>) </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=&gt;</span>  (<span class="dv">1</span> A <span class="dv">3</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp-two &#39;()) <span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">dolist</span> (temp-one &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>) temp-two) (<span class="kw">push</span> temp-one temp-two)) <span class="op">=&gt;</span>  (<span class="dv">4</span> <span class="dv">3</span> <span class="dv">2</span> <span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> temp-two <span class="dv">0</span>) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">dolist</span> (temp-one &#39;(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span>)) (<span class="kw">incf</span> temp-two)) <span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>temp-two <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">dolist</span> (x &#39;(a b c d)) (<span class="kw">prin1</span> x) (<span class="kw">princ</span> <span class="st">&quot; &quot;</span>)) </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  A B C D </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
 <h2 id="影響">影響</h2>
-<p><a href="5.3.define-setf-expander.html"><code>define-setf-expander</code></a>, <a href="5.3.defsetf.html"><code>defsetf</code></a>, <a href="3.8.macroexpand-hook.html"><code>*macroexpand-hook*</code></a></p>
+<p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.define-setf-expander.html"><code>define-setf-expander</code></a>, <a href="5.3.defsetf.html"><code>defsetf</code></a>, <a href="3.8.macroexpand.html"><code>macroexpand-1</code></a>, <a href="5.3.rotatef.html"><code>rotatef</code></a>, <a href="5.3.shiftf.html"><code>shiftf</code></a>, 5.1. 一般化された参照</p>
+<p><a href="6.2.do.html"><code>do</code></a>, <a href="6.2.dotimes.html"><code>dotimes</code></a>, <a href="5.3.tagbody.html"><code>tagbody</code></a>, 3.6. 横断の規則と副作用</p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<p><a href="5.3.go.html"><code>go</code></a>は、<a href="6.2.dotimes.html"><code>dotimes</code></a>のボディ部で <em>tag</em>によってラベル付けされた文へ 遷移を制御するために使用されます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

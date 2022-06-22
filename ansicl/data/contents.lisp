@@ -240,9 +240,11 @@
 (dictionary 5.3.undefined-function)
 
 ;; Chapter 6
+(index 6.1 "繰り返しの機能" "LOOP Facility")
+(text 6.1.1 "繰り返しの機能の概要" "Overview of the Loop Facility")
+(text 6.1.1.7 "分配" "Destructuring")
 (index 6.2 "繰り返しの辞書" "Iteration Dictionary")
 (dictionary 6.2.do)
-(dictionary 6.2.do*)  ;; delete
 (dictionary 6.2.dotimes)
 (dictionary 6.2.dolist)
 (dictionary 6.2.loop)

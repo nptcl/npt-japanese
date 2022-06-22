@@ -1,0 +1,142 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  6. 繰り返し
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DOTIMES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 6.2.dotimes
+@name: dotimes
+@type: macro
+
+Macro `DOTIMES`
+
+
+## {syntax}
+
+`dotimes` (*var* *count-form* [*result-form*]) *declaration\**
+ `{`*tag* `|` *statement*`}`\*  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*var* - シンボル  
+*count-form* - フォーム  
+*result-form* - フォーム  
+*declaration* - 宣言式。評価されません。  
+*tag* - `go`のタグ。評価されません。  
+*statement* - {compound-form}。下記の説明に従って評価されます。  
+*result* - もし{return:link}か{return-from:link}が実行されたときは、
+そのフォームから渡された返却値であり、
+それ以外の場合は*result-form*による返却値です。
+
+
+## {description}
+
+{dotimes:link}は、一連の整数による繰り返しを行います。
+
+{dotimes:link}は*count-form*を評価し
+その返却値は整数でなければなりません。
+もし*count-form*がゼロか負の場合は、ボディ部は実行されません。
+それから{dotimes:link}はボディ部をいちど実行するごとに、
+各整数値を0から*count-form*を含まない値まで上げて行き、
+*tag*と*statement*を順番に実行し、
+その際に*var*を各整数に束縛します。
+そして*result-form*を評価します。
+*result-form*が処理された時点で、
+*var*にはボディ部が実行された回数が束縛されています。
+*tag*は*statement*にラベル付けされます。
+
+{nil!variable:link}という名前の暗黙の`block`が、
+{dotimes:link}のフォーム全体を囲みます。
+{return:link}文は、それ以上の繰り返しを行うことなく
+ループを即座に終了させるときに使われ、
+そのときの返却値は0や複数の値を指定できます。
+
+繰り返しのボディ部は{implicit-tagbody}であり、
+これは{go:link}文の遷移先としてのタグを含みます。
+宣言は繰り返しのボディ部の前に配置できます。
+
+*var*の束縛のスコープは、*count-form*を含みませんが
+*result-form*は含まれます。
+
+{dotimes:link}が各繰り返しごとに*var*の
+新しい束縛を確立するかどうか、
+あるいは*var*が一度束縛されてからその後の繰り返しで
+代入されるのかどうかは
+{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(dotimes (temp-one 10 temp-one)) =>  10
+(setq temp-two 0) =>  0
+(dotimes (temp-one 10 t) (incf temp-two)) =>  T
+temp-two =>  10
+```
+
+次に文字列を処理する{dotimes:link}の使用例を示します
+
+```lisp
+;;; もし指定された文字列のサブシーケンスが回文ならTrue。
+;;; （つまり前から読んでも後ろから読んでも同じとき）
+(defun palindromep (string &optional
+                          (start 0)
+                          (end (length string)))
+  (dotimes (k (floor (- end start) 2) t)
+   (unless (char-equal (char string (+ start k))
+                       (char string (- end k 1)))
+     (return nil))))
+(palindromep "Able was I ere I saw Elba") =>  T
+(palindromep "A man, a plan, a canal--Panama!") =>  NIL
+(remove-if-not #'alpha-char-p          ;Remove punctuation.
+              "A man, a plan, a canal--Panama!")
+=>  "AmanaplanacanalPanama"
+(palindromep
+ (remove-if-not #'alpha-char-p
+               "A man, a plan, a canal--Panama!")) =>  T
+(palindromep
+ (remove-if-not
+  #'alpha-char-p
+  "Unremarkable was I ere I saw Elba Kramer, nu?")) =>  T
+(palindromep
+ (remove-if-not
+  #'alpha-char-p
+  "A man, a plan, a cat, a ham, a yak,
+                 a yam, a hat, a canal--Panama!")) =>  T
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{do:link},
+{dolist:link},
+{tagbody:link}
+
+
+## {notes}
+
+{go:link}は、{dotimes:link}のボディ部で
+*tag*によってラベル付けされた文へ
+遷移を制御するために使用されます。
+
+@end
+

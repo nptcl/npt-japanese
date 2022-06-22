@@ -45,7 +45,7 @@ pair ::= place newvalue
 あるいはどのように使うかは{setf:link}の展開関数次第であり、
 {setf:link}の制御下にはありません。
 {setf:link}の使用時に
-引数`&optional`, `&rest`, ..., &keyを
+引数`&optional`, `&rest`, ..., `&key`を
 受け付けるような関数のドキュメントは、
 どのようにそれらの引数を扱うのかを指定しなければなりません。
 

@@ -124,4 +124,5 @@
 (replace optimize-quality "最適化の性質")
 (replace method-combination "`method-combination`")
 (replace atomic-type-specifier "原始的な型指定子")
+(replace compound-type-specifier "合成された型指定子")
 

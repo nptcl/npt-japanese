@@ -1,16 +1,21 @@
-% Macro DO, DO\*
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  6. 繰り返し
+;;
 
-[UP](6.2.html)  
-
----
-
-# Macro **DO, DO\***
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DO
+;;  Macro DO*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 6.2.do
+@name: do
+@name: do*
+@type: macro
 
 Macro `DO`, `DO*`
 
 
-## 構文
+## {syntax}
 
 `do` (`{`*var* `|` (*var* [*init-form* [*step-form*]])`}`\*)
  (*end-test-form* *result-form\**) *declaration\**
@@ -23,26 +28,26 @@ Macro `DO`, `DO*`
 => *result\**
 
 
-## 引数と戻り値
+## {arguments-and-values}
 
 *var* - シンボル  
 *init-form* - フォーム  
 *step-form* - フォーム  
 *end-test-form* - フォーム  
-*result-form* - 暗黙のprogn  
+*result-form* - {implicit-progn}  
 *declaration* - 宣言式。評価されません。  
 *tag* - `go`のタグ。評価されません。  
-*statement* - compound-form。下記の説明に従って評価されます。  
-*result* - もし[`return`](5.3.return.html)か[`return-from`](5.3.return-from.html)が実行されたときは、
+*statement* - {compound-form}。下記の説明に従って評価されます。  
+*result* - もし{return:link}か{return-from:link}が実行されたときは、
 そのフォームから渡された返却値であり、
 それ以外の場合は*result-form*による返却値です。
 
 
-## 定義
+## {description}
 
-[`do`](6.2.do.html)は、テスト条件に入っている状態のときに
+{do:link}は、テスト条件に入っている状態のときに
 *statememt*のグループを繰り返します。
-[`do`](6.2.do.html)は任意の数の繰り返し変数*var*を束縛し、
+{do:link}は任意の数の繰り返し変数*var*を束縛し、
 それは繰り返し中に並列に実行されます。
 初期値は、繰り返し変数に*init-form*を使うことによって
 与えることができます。
@@ -52,7 +57,7 @@ Macro `DO`, `DO*`
 その繰り返しは終了します。
 *tag*は*statement*にラベル付けされます。
 
-[`do*`](6.2.do.html)は正確に[`do`](6.2.do.html)と似ていますが、
+{do*:link}は正確に{do:link}と似ていますが、
 ただ*var*の束縛の進め方が
 並列ではなく順番に行われることが違っています。
 
@@ -61,11 +66,11 @@ Macro `DO`, `DO*`
 それぞれの値を束縛します。
 これは束縛であり代入ではありませんので、
 もしループが終了したらそれらの変数は古い値に復旧されるでしょう。
-[`do`](6.2.do.html)は、全ての*init-form*は
+{do:link}は、全ての*init-form*は
 どんな*var*についても束縛される前に実行されます。
-*init-form*は、[`do`](6.2.do.html)の実行が始まる前の
+*init-form*は、{do:link}の実行が始まる前の
 *var*として見えている束縛を参照することができます。
-[`do*`](6.2.do.html)は、最初の*init-form*が評価されたら、
+{do*:link}は、最初の*init-form*が評価されたら、
 最初の*var*にその値の束縛が行われ、
 2番目の*init-form*が評価されたら、
 2番目の*var*にその値が束縛され、
@@ -77,11 +82,11 @@ Macro `DO`, `DO*`
 各繰り返しが始まり、各変数の処理が終わったあと、
 *end-test-form*が評価されます。
 もし結果が*false*のときは、
-[`do`](6.2.do.html)の（あるいは[`do*`](6.2.do.html)の）フォームのボディ部が
+{do:link}の（あるいは{do*:link}の）フォームのボディ部が
 続けて実行されます。
 もし結果が*true*のときは、
-*result-form*が暗黙のprognとして順に評価されれ、
-それから[`do`](6.2.do.html)か[`do*`](6.2.do.html)が返却されます。
+*result-form*が{implicit-progn}として順に評価されれ、
+それから{do:link}か{do*:link}が返却されます。
 
 各繰り返しが始まり、最初以外の実行のとき、
 *var*は次のように更新されます。
@@ -89,51 +94,51 @@ Macro `DO`, `DO*`
 それは左から右に行われ、
 返却値は対応する*var*に代入されます。
 *step-form*を持たない*var*は、代入されません。
-[`do`](6.2.do.html)は、全ての*step-form*が*var*の更新前に評価されます。
-*var*への値の代入は、[`psetq`](5.3.psetq.html)が使用されたかのように並列で行われます。
+{do:link}は、全ての*step-form*が*var*の更新前に評価されます。
+*var*への値の代入は、{psetq:link}が使用されたかのように並列で行われます。
 全ての*step-form*は*var*が変更される前に評価されるため、
 *step-form*は、他の*step-form*の前にあっても
 全ての*var*は常に古い値を参照するような状況で評価されます。
-[`do*`](6.2.do.html)は、最初の*step-form*が評価され、
+{do*:link}は、最初の*step-form*が評価され、
 それから最初の*var*にその値が代入され、
 そのあと2番目の*step-form*が評価され、
 そして2番目の*var*にその値が代入され、
 繰り返します。
-変数への代入は[`setq`](5.3.setq.html)を使用したかのように順番に行われます。
-[`do`](6.2.do.html)と[`do*`](6.2.do.html)のどちらも、
+変数への代入は{setq:link}を使用したかのように順番に行われます。
+{do:link}と{do*:link}のどちらも、
 全ての*var*を更新したあとで
 すでに説明した通り*end-test-form*が評価されて、
 そして繰り返しが継続します。
 
-[`do`](6.2.do.html)の（そして[`do*`](6.2.do.html)も同様）残りの部分は、
-暗黙の`tagbody`で構成されます。
+{do:link}の（そして{do*:link}も同様）残りの部分は、
+{implicit-tagbody}で構成されます。
 
-*tag*は[`do`](6.2.do.html)の繰り返し内のボディ部内に出現し、
-それはボディ部に[`go`](5.3.go.html)文の出現によって使用されます
-（しかしそのような[`go`](5.3.go.html)文は、変数定義や*end-test-form*、
+*tag*は{do:link}の繰り返し内のボディ部内に出現し、
+それはボディ部に{go:link}文の出現によって使用されます
+（しかしそのような{go:link}文は、変数定義や*end-test-form*、
 *result-form*には現れないでしょう）。
-[`do`](6.2.do.html)のボディ部が終わりに到達したとき、
+{do:link}のボディ部が終わりに到達したとき、
 次の繰り返しのサイクル（各*step-form*の評価の最初）が始まります。
 
-[`nil`](5.3.nil-variable.html)という名前の暗黙の`block`が、
-[`do`](6.2.do.html)と[`do*`](6.2.do.html)のフォーム全体を囲みます。
-[`return`](5.3.return.html)文は、ループを即座に終了させるために、
+{nil!variable:link}という名前の暗黙の`block`が、
+{do:link}と{do*:link}のフォーム全体を囲みます。
+{return:link}文は、ループを即座に終了させるために、
 どこの地点でも使用することができます。
 
 *init-form*は*var*に関連付けられる初期値です。
 もし*init-form*が省略されていたときの
-*var*の初期値は[`nil`](5.3.nil-variable.html)です。
+*var*の初期値は{nil!variable:link}です。
 もし*declaration*が*var*に指定されていたときは、
 *init-form*は*declaration*に一致しなければなりません。
 
-*declaration*は、[`do`](6.2.do.html)と[`do*`](6.2.do.html)のボディ部の最初に
+*declaration*は、{do:link}と{do*:link}のボディ部の最初に
 配置することができます。
-それらは[`do`](6.2.do.html)と[`do*`](6.2.do.html)のボディ部のコードと、
-[`do`](6.2.do.html)と[`do*`](6.2.do.html)の*var*の束縛と、
+それらは{do:link}と{do*:link}のボディ部のコードと、
+{do:link}と{do*:link}の*var*の束縛と、
 *step-form*と、*end-test-form*と、*result-form*に適用します。
 
 
-## 例文
+## {examples}
 
 ```lisp
 (do ((temp-one 1 (1+ temp-one))
@@ -180,7 +185,7 @@ a-vector =>  #(1 0 3 0)
 上記は、インデックスの変数を並列に代入する例です。
 最初の繰り返しでは、
 `oldx`の値は、`x`の値が何であれ、
-[`do`](6.2.do.html)に入る前の`x`に設定されます。
+{do:link}に入る前の`x`に設定されます。
 続く繰り返しでは、`oldx`には`x`が持つ以前の繰り返しの値が含まれます。
 
 ```lisp
@@ -224,38 +229,38 @@ a-vector =>  #(1 0 3 0)
 ```
 
 
-## 影響
+## {affected-by}
 
 なし。
 
 
-## 例外
+## {exceptional-situations}
 
 なし。
 
 
-## 参考
+## {see-also}
 
-他の繰り返し関数（[`dolist`](6.2.dolist.html), [`dotimes`](6.2.dotimes.html), [`loop`](6.2.loop.html)）と、
-より原始的な機能（[`tagbody`](5.3.tagbody.html), [`go`](5.3.go.html), [`block`](5.3.block.html),
- [`return`](5.3.return.html), [`let`](5.3.let.html), [`setq`](5.3.setq.html)）。
+他の繰り返し関数（{dolist:link}, {dotimes:link}, {loop:link}）と、
+より原始的な機能（{tagbody:link}, {go:link}, {block:link},
+ {return:link}, {let:link}, {setq:link}）。
 
 
-## 備考
+## {notes}
 
-もし*end-test-form*が[`nil`](5.3.nil-variable.html)のとき、
+もし*end-test-form*が{nil!variable:link}のとき、
 テストは決して成功しないでしょう。
 これは「永久に実行」という語を提供し、
-[`do`](6.2.do.html)と[`do*`](6.2.do.html)のボディ部は繰り返し実行されます。
+{do:link}と{do*:link}のボディ部は繰り返し実行されます。
 このような無限ループは、
-[`return`](5.3.return.html),
-[`return-from`](5.3.return-from.html),
-[`go`](5.3.go.html)の外側の脱出,
-[`throw`](5.3.throw.html)によって終了させることができます。
+{return:link},
+{return-from:link},
+{go:link}の外側の脱出,
+{throw:link}によって終了させることができます。
 
-[`do`](6.2.do.html)フォームはより原始的なフォームである、
-[`block`](5.3.block.html), [`return`](5.3.return.html), [`let`](5.3.let.html),
-[`loop`](6.2.loop.html), [`tagbody`](5.3.tagbody.html), [`psetq`](5.3.psetq.html)
+{do:link}フォームはより原始的なフォームである、
+{block:link}, {return:link}, {let:link},
+{loop:link}, {tagbody:link}, {psetq:link}
 の語句によって次のように説明できます。
 
 ```lisp
@@ -273,11 +278,9 @@ a-vector =>  #(1 0 3 0)
                  varn stepn))))
 ```
 
-[`do*`](6.2.do.html)も似ていますが、
-[`let*`](5.3.let.html)と[`setq`](5.3.setq.html)を、
-それぞれ[`let`](5.3.let.html)と[`psetq`](5.3.psetq.html)に置き換えたものになります。
+{do*:link}も似ていますが、
+{let*:link}と{setq:link}を、
+それぞれ{let:link}と{psetq:link}に置き換えたものになります。
 
-
----
-[TOP](index.html),  [Github](https://github.com/nptcl/npt-japanese)
+@end
 

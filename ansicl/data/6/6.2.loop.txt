@@ -76,7 +76,7 @@ d-var-spec::= simple-var | nil | (d-var-spec . d-var-spec)
 ## {arguments-and-values}
 
 *compound-form* - {compound-form}  
-*name - シンボル  
+*name* - シンボル  
 *simple-var* - シンボル（変数名）  
 *form*, *form1*, *form2*, *form3* - フォーム  
 *step-fun* - ひとつの引数を取る関数に評価されるフォーム  

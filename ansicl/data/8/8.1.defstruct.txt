@@ -1,0 +1,1098 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  8. 構造体
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFSTRUCT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 8.1.defstruct
+@name: defstruct
+@type: macro
+
+Macro `DEFSTRUCT`
+
+
+## {syntax}
+
+`defstruct` *name-and-options* [*documentation*] `{`*slot-description*`}`\*  
+=> *structure-name*
+
+```
+name-and-options::= structure-name | (structure-name [[options]]) 
+options::= conc-name-option | 
+           {constructor-option}* | 
+           copier-option | 
+           include-option | 
+           initial-offset-option | 
+           named-option | 
+           predicate-option | 
+           printer-option | 
+           type-option 
+conc-name-option::= :conc-name | (:conc-name) | (:conc-name conc-name) 
+constructor-option::= :constructor | 
+                      (:constructor) | 
+                      (:constructor constructor-name) | 
+                      (:constructor constructor-name constructor-arglist) 
+copier-option::= :copier | (:copier) | (:copier copier-name) 
+predicate-option::= :predicate | (:predicate) | (:predicate predicate-name) 
+include-option::= (:include included-structure-name {slot-description}*) 
+printer-option::= print-object-option | print-function-option 
+print-object-option::= (:print-object printer-name) | (:print-object) 
+print-function-option::= (:print-function printer-name) | (:print-function) 
+type-option::= (:type type) 
+named-option::= :named 
+initial-offset-option::= (:initial-offset initial-offset) 
+slot-description::= slot-name |  
+                    (slot-name [slot-initform [[slot-option]]]) 
+slot-option::= :type slot-type |  
+               :read-only slot-read-only-p 
+```
+
+
+## {arguments-and-values}
+
+*conc-name* - 文字列指定子  
+*constructor-arglist* - {boa-lambda-list}  
+*constructor-name* - シンボル  
+*copier-name* - シンボル  
+*included-structure-name* - すでに定義されている構造体の名前。
+派生された型は許されず、
+構造体名に展開されるものも禁止されることに注意して下さい。  
+*initial-offset* - 非負の整数  
+*predicate-name* - シンボル  
+*printer-name* - 関数名かラムダ式  
+*slot-name* - シンボル  
+*slot-initform* - フォーム  
+*slot-read-only-p* - {generalized-boolean}  
+*structure-name* - シンボル  
+*type* - 次の型指定子のどれかであり、
+{list!system-class:link}, {vector!system-class:link},
+`(vector size)`, あるいはその他の実装で適用可能な定義された型指定子。  
+*documentation* - 文字列。評価されません。
+
+
+## {description}
+
+{defstruct:link}は構造体の型を定義し、
+その名前は*structure-type*であり、
+*slot-option*によって指定された名前付きのスロットが付きます。
+
+{defstruct:link}は、
+スロットを読み込むリーダーと、
+そのようなリーダーを{setf:link}上で正しく動作する
+修正する機能を定義します。
+無効にしない限り、
+*name*`-p`という名前の述部と、
+`make-`*constructor-name*という名前の生成関数、
+`copy-`*constructor-name*というコピーの関数が定義されます。
+これらの全ての名前の関数は自動的に生成され、
+自動的に{inline:link}として宣言されます
+（実装が区別できる場合）。
+
+*documentation*が与えられると、
+*structure-name*がドキュメント文字に与えられ、
+種別{structure!symbol:link}と共に割り当てられます。
+また`:type`が指定されていないときは、
+*structure-name*がドキュメント文字、
+種別が{type!symbol:link}という、
+クラス名が*structure-name*の
+クラスオブジェクトのための割り当てが行われます。
+
+{defstruct:link}は、
+本機能によって作成された構造体のインスタンスを生成するために使われる
+構築関数を定義します。
+標準の名前は`make-`*structure-name*です。
+引数の*constructor*オプションによって与えられた名前によって、
+違う名前を付けることができます。
+{nil!variable:link}が指定されたときは、
+構築関数は作成されません。
+
+新しい構造体の型が定義された後は、
+その型のインスタンスは通常はその型の構築関数を使うことで作成できます。
+構築関数の呼び出しは、次のようなフォームになります。
+
+```lisp
+(constructor-function-name
+ slot-keyword-1 form-1
+ slot-keyword-2 form-2
+ ...)
+```
+
+構築関数の引数は、全てキーワード引数です。
+各キーワード引数のスロットは、
+構造体のスロットの名前に対応したキーワードの
+名前でなければいけません。
+全ての*keyword*と*form*は評価されます。
+もしスロットがこの方法で初期化されないときは、
+それは構築関数呼び出し時にスロットの定義内の
+*slot-initform*を評価することによって初期化されます。
+もし*slot-initform*が与えられなかったとき、
+何かの値が明に代入される前に
+そのスロットを読み込もうとしたときの結果は未定義です。
+
+{defstruct:link}で指定された各*slot-initform*の要素は、
+構築関数が指定されてない要素以外にに対して使われたとき、
+*slot-initform*は構築関数を呼び出すたびに再評価されます。
+*slot-initform*は、
+特定の構造体インスタンスの生成に必要になるまで
+評価されません。
+もし決して必要としないのであれば、
+スロット定義の型を指定したとしても、
+決して型の不適合によるエラーは発生しません。
+この場合、警告は発生されません。
+例えば、下記の一連のフォームは、最後の呼び出しでのみエラーが生じます。
+
+```lisp
+(defstruct person (name 007 :type string)) 
+(make-person :name "James")
+(make-person)
+```
+
+これは構築関数のキーワードパラメーターが
+*slot-initform*の初期化フォームとして使用されたかのように動作します。
+
+スロットの名前のシンボルは、実装において
+構築巻子のラムダ式の変数にその名前を使用してはいけません。
+なぜならそれらのシンボルは、{special:link}に宣言されたり、
+その名前で定数変数が定義されるかもしれないからです。
+スロットのデフォルトの初期化フォームは、
+{defstruct:link}フォーム自身が現れた
+{lexical-environment}内で評価されます。
+あるいは構築関数の呼び出しが現れた
+{dynamic-environment}で評価されます。
+
+例えば、もし`(gensym)`フォームが初期化フォームとして
+構築関数の呼び出し内か、
+あるいは{defstruct:link}によるデフォルト初期化フォーム内かの
+どちらかで使われたとき、
+全ての構築関数の呼び出しにおいて、
+{gensym:link}が一度だけ呼ばれて
+新しいシンボルを生成します。
+
+{defstruct:link}の各*slot-description*は、
+ゼロかあるいは複数の*slot-option*を指定できます。
+*slot-option*はキーワードと値
+（評価されるフォームではなく値はそれ自身）
+のペアを含みます。
+例えば、
+
+```lisp
+(defstruct ship
+  (x-position 0.0 :type short-float)
+  (y-position 0.0 :type short-float)
+  (x-velocity 0.0 :type short-float)
+  (y-velocity 0.0 :type short-float)
+  (mass *default-ship-mass* :type short-float :read-only t))
+```
+
+これは、各スロットが常に`short-float`を含み、
+最後のスロットは一度`ship`を構築したら
+変更不可能なスロットとして定義されています。
+
+利用可能な*slot-option*は下記の通り。
+
+- `:type` *type*
+  - これはスロットが常に*type*型の内容であることを指定します。
+    これは変数と関数に全体的に似ており、
+    効率よくリーダー関数の返却値の型を宣言できます。
+    スロットの初期化時と代入時に型チェックを行った際の
+    結果は{implementation-dependent}です。
+    *type*は評価されません。
+    この値は有効な型指定子でなければなりません。
+    <br><br>
+
+- `:read-only` *x*
+  - *x*が*true*のとき、
+    これはスロットが変更不可能であることを指定します。
+    それは構築時に指定された値を脛に含むことを意味します。
+    そのスロットのリーダー関数を指定した{setf:link}は受け付けません。
+    もし*x*が*false*なら、その*slot-option*は効果を持ちません。
+    *x*は評価されません。
+    <br><br>
+
+下記のキーワードオプションは、{defstruct:link}で使うことができます。
+{defstruct:link}オプションは、
+キーワードか、キーワードとそのキーワードの引数のリストの
+どちらかを指定できます。
+キーワード自身が指定されたときは、
+そのキーワードと引数なしのリストを指定したことと同じです。
+{defstruct:link}オプションの構文は、
+*slot-option*が使われたペアの構文と違っています。
+これらのオプションどのどの部分も評価されません。
+
+- `:conc-name`
+  - これはリーダー（そしてアクセッサ）関数の
+    名前に自動的にプレフィックスとして付与されるものを指定します。
+    標準の動作は、構造体の全てのリーダー関数の名前の最初を
+    その構造体の名前とそれに続くハイフンで始まるようにするものです。
+    <br><br>
+    `:conc-name`は別のプレフィックスを使用するときに指定します。
+    もしセパレーターとしてハイフンを使用したいのであれば、
+    プレフィックスの部分としてそれを指定しなければなりません。
+    もし`:conc-name`が{nil!variable:link}のときか引数を指定しなかった場合は、
+    プレフィックスは使用されません。
+    したがって、リーダー関数の名前はスロットの名前と同じになります。
+    もしプレフィックスに{nil!variable:link}以外が指定されたとき、
+    各スロットのリーダー関数の名前は、
+    プレフィックスとスロットの名前を結合したもので構築され、
+    その結果のシンボルを{defstruct:link}フォームが展開された時点での
+    現在のパッケージに`intern`したもにになります。
+    <br><br>
+    `:conc-name`に何を与えても、
+    プレフィックスの付いていないスロット名とのキーワードが
+    コンストラクタ関数で使用されることに注意してください。
+    リーダー関数の名前は、{setf:link}の引数にも使用されます。
+    下記に例を示します。
+
+```lisp
+ (defstruct (door (:conc-name dr-)) knob-color width material) =>  DOOR
+ (setq my-door (make-door :knob-color 'red :width 5.0)) 
+=>  #S(DOOR :KNOB-COLOR RED :WIDTH 5.0 :MATERIAL NIL)
+ (dr-width my-door) =>  5.0
+ (setf (dr-width my-door) 43.7) =>  43.7
+ (dr-width my-door) =>  43.7
+```
+
+- - `:conc-name`オプションが明に指定されたかどうかに関わらず、
+    次の規則が生成されるリーダー（あるいはアクセッサ）の名前の
+    衝突を管理します。
+    ある構造体の型を`S1`、
+    スロットの名前が`X1`であり、
+    そのリーダー関数の名前が`R`とする。
+    これは他の構造体の`S2`によって継承されている。
+    `S2`はスロット`X2`があり、
+    同じ名前のリーダー関数`R`を指定しいる。
+    `S2`はまだ`R`の定義を生成しておらず、
+    かわりに`S1`の定義から定義`R`が継承されている。
+    （このような場合、もし`X1`と`X2`が違うスロットのときは、
+    実装は{style-warning:link}を通知するかもしれない。）
+    <br><br>
+
+- `:constructor`
+  - このオプションは、ゼロか、ひとつか、2つの引数を取ります。
+    もし少なくともひとつの引数が指定されれており、
+    最初の引数が{nil!variable:link}ではないとき、
+    その引数は構築関数の名前を指定したシンボルです。
+    もし引数が指定されなかったとき
+    （あるいはもし自身のオプションが指定されなかったとき）
+    構築の名前は、文字列`"MAKE-"`と構造体の名前を結合したものを生成し、
+    その名前を{defstruct:link}フォームが展開された時点の
+    現在のパッケージに`intern`したもにになります。
+    もし引数が{nil!variable:link}で与えられたときは、
+    構築関数は定義されません。
+    <br><br>
+    もし`:constructor`が`(constructor name arglist)`として与えられたとき、
+    キーワード駆動の構築関数の作成のかわりに、
+    {defstruct:link}は「位置的な」構築関数を定義します。
+    それは引数の位置かあるいは場合によってはキーワードによって
+    決定される意味を持つ引数を取ります。
+    *arglist*はどの引数を構築するかを定義したものとして使われます。
+    単純な場合として、
+    例えば`(:constructor make-foo (a b c))`のようなものは、
+    `make-foo`を3つの引数の構築関数として定義し、
+    それらの引数はスロットの名前`a`, `b`, `c`の初期化に使用されます。
+    <br><br>
+    このタイプの構築は、「By Order of Arguments（引数の順による）」
+    の操作と言われ、それはよく`boa`構築として知られています。
+    <br><br>
+    *arglist*である`boa`構築がどのように処理されるかの情報は、
+    {3.4.6:ab}をご確認ください。
+    <br><br>
+    `:constructor`オプションは複数許容され、
+    それぞれ違ったパラメーターを取る
+    いくつかの構築関数を定義することができます。
+    <br><br>
+    {defstruct:link}は
+    `:constructor`オプションが明に指定されていないときか、
+    `:constructor`オプションが名前の引数なしに指定されていたときのみ
+    デフォルトの名前をキーワードの構築関数を作成します。
+    <br><br>
+    `(:constructor nil)`は、
+    他の構築関数のオプションが指定されていないときにのみ意味します。
+    それは{defstruct:link}による他の全ての構築関数の生成を禁止します。
+    <br><br>
+    それ以外では、{defstruct:link}は、
+    指定された各`:constructor`オプションにしたがって
+    構築関数を生成します。
+    これは複数のキーワードによる構築関数を指定するのと同様に、
+    複数の`boa`構築を指定することも許されます。
+    <br><br>
+
+- `:copier`
+  - このオプションはひとつの引数にシンボルを受け取り、
+    これはコピー関数の名前を指定します。
+    もし引数が指定されなかったか、
+    あるいはオプション自体指定されなかったときは、
+    名前は文字列`"COPY-"`と構造体の名前を結合したものを生成し、
+    その名前を{defstruct:link}フォームが展開された時点の
+    現在のパッケージに`intern`したもにになります。
+    もし引数が{nil!variable:link}で与えられたときは、
+    コピー関数は定義されません。
+    <br><br>
+    自動的に定義されたコピー関数は、
+    引数に定義しているその構造体の型を受け取る
+    ひとつの引数の関数になります。
+    コピー関数は、その引数と同じ型を持つ
+    新しい構造体を生成し、
+    それは元の構造体と同じ要素の値を持ちます。
+    つまりその要素の値は再帰的にはコピーされません。
+    もし{defstruct:link}の`:type`オプションが使われなかったときは、
+    下記のものと同等になります。
+    <br>
+    `(copier-name x) = (copy-structure (the structure-name x))`
+    <br><br>
+
+- `:include`
+  - このオプションは、新しい構造体の定義を他の構造体の定義の拡張として
+    構築したいときに使用します。
+    例えば次の式があるとします。
+
+```lisp
+(defstruct person name age sex)
+```
+
+- - 新しい構造体の表現である`astronaut`は、
+    `name`, `age`, `sex`という属性と、
+    `person`構造体の操作関数、
+    `astronaut`が定義した`:include`を
+    次のようにして作成します。
+
+```lisp
+(defstruct (astronaut (:include person)
+                      (:conc-name astro-))
+   helmet-size
+   (favorite-beverage 'tang))
+```
+
+- - `:include`は、その構造体がincludeされた構造体と
+    同じスロットを持つように定義するものです。
+    このような方法で作成されたものは、
+    includeされた構造体のリーダー関数もまた、
+    今回定義した構造体で使用できます。
+    この例では、したがって`astronaut`では5つのスロットを持ちます。
+    その内訳は、3つが`person`の定義であり、
+    2つが`astronaut`自身のものです。
+    `person`構造体によって定義されたリーダー関数は、
+    `astronaut`構造体のインスタンスでも適用でき、
+    そしてそれは正しく動作します。
+    さらに`astronaut`はそれらの要素に対する
+    自分自身のリーダー関数も定義されます。
+    下記の例は、`astronaut`構造体を使用したものです。
+
+```lisp
+(setq x (make-astronaut :name 'buzz
+                        :age 45.
+                        :sex t
+                        :helmet-size 17.5))
+(person-name x) =>  BUZZ
+(astro-name x) =>  BUZZ
+(astro-favorite-beverage x) =>  TANG
+(reduce #'+ astros :key #'person-age) ; 空かもしれないastrosシーケンスの
+                                      ; 年齢の合計を得ます
+```
+
+- - リーダー関数の`person-name`と`astro-name`の違いは、
+    `person-name`は`astronaut`を含むどの`person`にも正しく適用できますが、
+    `astro-name`はただ`astronaut`のみ正しく適用できます。
+    実装はリーダー関数を使用するときに正しく確認しないかもしれません。
+    <br><br>
+    ひとつの{defstruct:link}に
+    多くてもひとつの`:include`を指定できます。
+    `:include`の引数は要求され、
+    以前に定義された何かの構造体の名前でなければなりません。
+    もし構造体の定義に`:type`オプションがないときは、
+    includeされる構造体もまた`:type`オプションを
+    指定されていてはいけません。
+    もし構造体の定義に`:type`オプションがあるときは、
+    includeされる構造体は
+    同じ表現の型を指定した`:type`オプションで
+    定義されていなければなりません。
+    <br><br>
+    もし`:type`オプションがないとき、
+    includeされた構造体の名前はデータ型の名前であり
+    {typep:link}によって認識できる正当な型指定子なので、
+    これはinclude構造体のサブタイプになります。
+    上記の例の場合、`astronaut`は`person`のサブタイプです。
+    したがって、
+
+```lisp
+ (typep (make-astronaut) 'person) =>  true
+```
+
+- - これは`person`の全ての操作が`astronaut`でも動作することを示しています。
+    <br><br>
+    `:include`を使用した構造体は、
+    その`:include`オプションを使用することで、
+    include構造体が指定したものとは違ったスロットの
+    デフォルト値か*slot-option*をしていることができます。
+    例えば下記の通り。
+
+```lisp
+(:include included-structure-name slot-description*)
+```
+
+- - 各*slot-description*は、include構造体のスロットと
+    同じ*slot-name*を持ったものでなければなりません。
+    もし*slot-description*が*slot-initform*を持たないとき、
+    新しい構造体のそのスロットは初期値を持ちません。
+    それ以外のときは、その初期値フォームは
+    *slot-description*の*slot-initform*に置き換わります。
+    通常は書き込み可能なスロットは読み込み専用にできます。
+    もしinclude構造体のあるスロットが読み込み専用のとき、
+    新しいものもまた読み込み専用でなければなりません。
+    もしあるスロットに型が指定されていたときは、
+    新しいものはinclude構造体で指定された型の
+    サブタイプでなければなりません。
+    <br><br>
+    例えば、`astronaut`の`age`をデフォルトを`45`にしたものは下記の通り。
+
+```lisp
+ (defstruct (astronaut (:include person (age 45)))
+    helmet-size
+    (favorite-beverage 'tang))
+```
+
+- - もし`:include`を`:type`オプションと一緒に使用したとき、
+    その効果は、まず最初にinclude構造体の表現で必要な
+    要素の数だけスキップします。
+    さらに`:initial-offset`オプションの指定による
+    追加の要素をスキップします。
+    そのあとで、この点から要素の確保が始まります。
+    例えば下記の通り。
+
+```lisp
+(defstruct (binop (:type list) :named (:initial-offset 2))
+  (operator '? :type symbol)   
+  operand-1
+  operand-2) =>  BINOP
+(defstruct (annotated-binop (:type list)
+                            (:initial-offset 3)
+                            (:include binop))
+ commutative associative identity) =>  ANNOTATED-BINOP
+(make-annotated-binop :operator '*
+                      :operand-1 'x
+                      :operand-2 5
+                      :commutative t
+                      :associative t
+                      :identity 1)
+  =>  (NIL NIL BINOP * X 5 NIL NIL NIL T T 1)
+```
+
+- - 最初の2つの{nil!variable:link}の要素は、
+    `binop`の定義にある`:initial-offset`の`2`のものです。
+    次の4つの要素は構造体の名前と、
+    `binop`の3つのスロットが含まれています。
+    その次の3つの{nil!variable:link}の要素は
+    `annotated-binop`の定義にある`:initial-offset`の`3`のものです。
+    最後の3つの要素は`annotated-binop`の追加のスロットが含まれています。
+    <br><br>
+
+- `:initial-offset`
+  - `:initial-offset`は{defstruct:link}に対して、
+    ボディ部で記述されてるスロットを確保し始める前に、
+    指定した数のスロットをスキップするように指示します。
+    このオプションの引数はスロットの数であり、
+    {defstruct:link}はスキップしなければなりません。
+    `:initial-offset`は`:type`が指定されたときのみ使用できます。
+    <br><br>
+    `:initial-offset`は、スロットを最初からではなく
+    指定した要素から確保し始めることができます。
+    例えば、下記のフォーム
+
+```lisp
+(defstruct (binop (:type list) (:initial-offset 2))
+  (operator '? :type symbol)
+  operand-1
+  operand-2) =>  BINOP
+```
+
+- - こちらの`make-binop`の動作と返却値を下記に示します。
+
+```lisp
+(make-binop :operator '+ :operand-1 'x :operand-2 5)
+=>  (NIL NIL + X 5)
+(make-binop :operand-2 4 :operator '*)
+=>  (NIL NIL * NIL 4)
+```
+
+- - 選択関数である、`binop-operator`, `binop-operand-1`, `binop-operand-2`は、
+    それぞれ{third:link}, {fourth:link}, {fifth:link}と本質的に同等です。
+    似たようなフォームとして
+
+```lisp
+(defstruct (binop (:type list) :named (:initial-offset 2))
+  (operator '? :type symbol)
+  operand-1
+  operand-2) =>  BINOP
+```
+
+- - こちらの`make-binop`の動作と返却値を下記に示します。
+
+```lisp
+(make-binop :operator '+ :operand-1 'x :operand-2 5) =>  (NIL NIL BINOP + X 5)
+(make-binop :operand-2 4 :operator '*) =>  (NIL NIL BINOP * NIL 4)
+```
+
+- - 最初の2つの{nil!variable:link}の要素は、
+    `binop`の定義にある`:initial-offset`の`2`のものです。
+    次の4つの要素は構造体の名前と、
+    `binop`の3つのスロットが含まれています。
+    <br><br>
+
+- `:named`
+  - `:name`は、構造体に名前を付けるよう指定します。
+    もし`:type`が指定されていないときは、
+    構造体は常に名前付けられます。
+    <br><br>
+    例えば、下記のフォームを考えます。
+
+```lisp
+(defstruct (binop (:type list))
+  (operator '? :type symbol)
+  operand-1
+  operand-2) =>  BINOP
+```
+
+- - この定義は、`make-binop`という構築関数と3つの選択関数である
+    `binop-operator`, `binop-operand-1`, `binop-operand-2`を定義します。
+    （しかし下記に説明する理由にて`binop-p`は定義されません）
+    <br><br>
+    `make-binop`の効果は単純に3つの長さのリストを構築します。
+
+```lisp
+(make-binop :operator '+ :operand-1 'x :operand-2 5) =>  (+ X 5)  
+(make-binop :operand-2 4 :operator '*) =>  (* NIL 4)
+```
+
+- - これはちょうど{list!function:link}関数のようですが、
+    キーワード引数を受け取ることと、
+    `binop`というデータ型という概念に適用した
+    スロットの標準値を用意する点が違っています。
+    同じように、3つの選択関数である
+    `binop-operator`, `binop-operand-1`, `binop-operand-2`は、
+    それぞれ{car:link}, {cadr:link}, {caddr:link}と本質的に同等です。
+    これらは完全には同等ではないでしょう。
+    なぜなら、例えばある実装では
+    各選択関数の引数が長さ`3`のリストであるかどうかを
+    保証するためのエラーチェックを追加するような
+    正当化を行うかもしれません。
+    <br><br>
+    `binop`はデータ型という概念であって、
+    Common Lispの型システムの一部ではありません。
+    {typep:link}は`binop`を型指定子として認識しませんし、
+    {type-of:link}は`binop`構造体を与えても
+    {list!system-class:link}と返却します。
+    `make-binop`で構築されたデータ構造と、
+    正しい構造を持つその他のリストを
+    区別する方法はありません。
+    <br><br>
+    この`make-binop`によって作成された構造体から
+    構造体名`binop`を知る方法はありません。
+    これは構造体に名前がついているときのみ行うことができます。
+    名前付き構造体は、その構造体のインスタンスが与えられたときに、
+    構造体名（型の名前）を確実に復元できるという性質を持っています。
+    `:type`オプションなしで定義された構造体では、
+    構造体名は実際にCommon Lispのデータ型システムの一部になります。
+    このような構造体を{type-of:link}に適用したとき、
+    そのオブジェクトの型の構造体名が返却されます。
+    {typep:link}は正当な型指定子として構造体名を認識します。
+    <br><br>
+    `:type`オプションと一緒に定義された構造体について、
+    {type-of:link}は、`list`か`(vector t)`のように
+    指定した`:type`オプションに依存したものが返却されます。
+    構造体名は有効な型指定子にはなりません。
+    しかし、もし`:named`オプションが指定されていたときは、
+    構造体（{defstruct:link}の構築関数によって作成されたもの）は、
+    常に構造体名を含みます。
+    これは構造体のインスタンスから構造体名を知ることができるということと、
+    概念的な型に対しての適切な`predicate`を
+    定義することができるということです。
+    自動的に定義される`name-p`という構造体の`predicate`は、
+    最初にその引数が正当な型（{list!system-class:link}, `(vector t)`, その他）で
+    あるかどうかを確認し、 そのあと最初の要素が
+    適切な型の名前を含んでいるかどうかを確認します。
+    <br><br>
+    次に示す例の`binop`を考えます。
+    これは`:named`オプションを追加しただけのものです。
+
+```lisp
+(defstruct (binop (:type list) :named)
+  (operator '? :type symbol)
+  operand-1
+  operand-2) =>  BINOP
+```
+
+- - これにより、構築関数`make-binop`と3つの選択関数
+    `binop-operator`, `binop-operand-1`, `binop-operand-2`が定義されます。
+    `make-binop`の効果は、今回のものは4つの長さのリストを構築します
+
+```lisp
+(make-binop :operator '+ :operand-1 'x :operand-2 5) =>  (BINOP + X 5)
+(make-binop :operand-2 4 :operator '*) =>  (BINOP * NIL 4)
+```
+
+- - この構造体は以前のものと同じレイアウトを持っていますが、
+    構造体名`binop`がリストの最初の要素に含まれています。
+    選択関数`binop-operator`, `binop-operand-1`, `binop-operand-2`は
+    それぞれ{cadr:link}, {caddr:link}, {cadddr:link}と本質的に同等です。
+    `predicate`である`binop-p`は、下記の定義と多かれ少なかれ同等です。
+
+```lisp
+(defun binop-p (x)
+  (and (consp x) (eq (car x) 'binop))) =>  BINOP-P
+```
+
+- - `binop`という名前はまだ{typep:link}で識別できるような
+    有効な型指定子ではありませんが、
+    しかし少なくとも`binop`構造体と他の似たような定義の構造体と
+    区別をつける方法はあります。
+    <br><br>
+
+- `:predicate`
+  - このオプションはひとつの引数を取り、
+    それは`predicate`の名前を指定したものです。
+    もし引数が指定されないか、オプション自身が指定されなかったときは、
+    `predicate`の名前は、構造体の名前と文字列`"-P-"`を結合したものを生成し、
+    その名前を{defstruct:link}フォームが展開された時点の
+    現在のパッケージに`intern`したもにになります。
+    もし引数が{nil!variable:link}で与えられたときは、
+    `predicate`関数は定義されません。
+    `predicate`を定義できるのは構造体に名前がついているときであり、
+    もし`:type`が指定されて、かつ`:named`が指定されなかったときは、
+    `:predicate`は指定しないかあるいは:{nil!variable:link}の値を
+    指定するかのどちらかでなければなりません。
+    <br><br>
+
+- `:print-function`, `:print-object`
+  - `:print-function`と`:print-object`のオプションは、
+    型*structure-name*の構造体のための
+    {print-object:link}メソッドを生成します。
+    これらのオプションは同義語ではありませんが、
+    似たような機能を提供します。
+    これらのオプションの選択（`:print-function`か`:print-object`）は、
+    どのようにして*printer-name*という関数を呼び出すのかに影響します。
+    これらのオプションはただひとつだけ使うことができます。
+    そしてこれらのオプションは`:type`が指定されなかったときのみ使用できます。
+    <br><br>
+    もし`:print-function`オプションが使われたとき、
+    構造体の名前*structure-name*が印字されるときに
+    指定された`printer`関数が次の3つの引数と共に呼び出されます。
+    
+    - 印字したい構造体（*structure-name*の一般的なインスタンス）
+    - 印字先のストリーム
+    - 現在の深さを示す整数値。この整数の値は実装によって
+      異なるかもしれませんが、それは
+      不確実な深さが適切かどうかを判断するために
+      {*print-level*:link}と比較することで
+      信頼性を高めることができます。
+
+    `(:print-function printer-name)`の指定は、
+    おおよそ次のものと同一です。
+
+```lisp
+(defmethod print-object ((object structure-name) stream)
+  (funcall (function printer-name) object stream <<current-print-depth>>))
+```
+
+- - `<<current-print-depth>>`は、現在の印字がどれくらい深いのかという
+    プリンターの値を表現したものです。
+    `<<current-print-depth>>`が常に0であり、
+    {*print-level*:link}が{nil!variable:link}でない場合、
+    印刷が再帰的に下降するにつれて順次小さな値に再束縛されるか、
+    あるいは、同じ走査中に印刷が再帰的に下降するにつれて
+    `current-print-depth`の値が変化し、
+    {*print-level*:link}が一定のままであるかは
+    {implementation-dependent}です。
+    <br><br>
+
+    もし`:print-object`オプションが使われたとき、
+    構造体の名前*structure-name*が印字されるときに
+    指定された`printer`関数が次の2つの引数と共に呼び出されます。
+    
+    - 印字したい構造体（*structure-name*の一般的なインスタンス）
+    - 印字先のストリーム
+
+    `(:print-object printer-name)`の指定は、
+    おおよそ次のものと同一です。
+
+```lisp
+(defmethod print-object ((object structure-name) stream)
+  (funcall (function printer-name) object stream))
+```
+
+- - もし`:type`オプションが指定されなかったとき、
+    さらに`:print-function`か`:print-object`オプションが指定され、
+    その*printer-name*が指定されなかったときは、
+    {print-object:link}メソッドは
+    *structure-name*で{specialized}されたメソッドを生成し、
+    実装の関数である`#S`表記を用いた構造体の
+    標準的な印刷を呼び出します。
+    {22.1.3.12:ab}をご確認ください。
+    <br><br>
+    もし`:print-function`と`:print-object`の
+    どちらのオプションも指定されなかったときは、
+    {defstruct:link}は*structure-name*に特化した
+    {print-object:link}メソッドは生成せず、
+    `:include`オプションによって指定された構造体のものか、
+    あるいは構造体の印刷のデフォルトの動作のものかが
+    標準的なふるまいとして継承されます。
+    {print-object:link}関数と、{22.1.3.12:ab}をご確認ください。
+    <br><br>
+    {*print-circle*:link}が*true*のとき、
+    ユーザーが定義した印刷関数は
+    オブジェクトを印刷するときに
+    指定されたストリームを用いて{write:link}, {prin1:link},
+    {princ:link}, {format:link}を使用できますが、
+    循環構造を検出したときは`#n#`構文を用いた印刷がされます。
+    これは、{print-object:link}に
+    `:print-function`オプションで追加されたメソッドを適用できます。
+    もしユーザーが定義した印刷関数が
+    指定されたもの以外のストリームに対して行われたとき、
+    循環構造の検出はそのストリームでやり直しされます。
+    {*print-circle*:link}変数をご確認ください。
+    <br><br>
+
+- `:type`
+  - `:type`は構造体が使用する表現を明確に指定します。
+    この引数は、下記のどれかでなければなりません。
+
+    - {vector!system-class:link}
+      - これは`(vector t)`として指定された結果と同じものが生成されます。
+        この構造体は一般的な`vector`として表現され、
+        `vector`の要素に値が保存されます。
+        もし構造体に`:name`が指定されていたときは、
+        最初の要素は`vector`の1番目の要素であり、
+        指定されていないときは0番目の要素です。
+        <br><br>
+
+    - `(vector element-type)`
+      - この構造体は（可能であれば特定化された）`vector`として表現され、
+        `vector`の要素に値が保存されます。
+        全ての要素は指定された型の`vector`に
+        格納できるような型でなければなりません。
+        もし構造体に`:name`が指定されていたときは、
+        最初の要素は`vector`の1番目の要素であり、
+        指定されていないときは0番目の要素です。
+        <br><br>
+
+    - {list!system-class:link}
+      - この構造体はリストとして表現されます。
+        もし構造体に`:name`が指定されていたときは、
+        最初の要素は{cadr:link}であり、
+        指定されていないときは{car:link}の要素です。
+        <br><br>
+
+    このオプションの指定は、
+    特定の表現へ強制する効果があり、
+    defstructで指定された順序で
+    対応する連続した要素を指定した表現で
+    格納する効果があります。
+    これは構造体名が{typep:link}によって識別できる
+    有効な型指定子になることも禁止します。
+    <br><br>
+
+    例えば下記の例を考えます。
+
+```lisp
+(defstruct (quux (:type list) :named) x y)
+```
+
+- - これは、{list!function:link}関数を使用したかのように、
+    `car`が`quux`であるようなリストを生成する
+    構築関数を作らなければいけません。
+    <br><br>
+    もし次のような型が定義されたとき
+
+```lisp
+(deftype quux () '(satisfies quux-p))
+```
+
+- - 次のフォーム
+
+```lisp
+(typep (make-quux) 'quux)
+```
+
+- - これは正確に次のようなものの実行を
+    返却しなければなりません。
+
+```lisp
+(typep (list 'quux nil nil) 'quux)
+```
+
+- - もし`:type`が指定されなかったときは、
+    構造体は型{structure-object:link}の
+    オブジェクトとして表現されます。
+    <br><br>
+    `:type`オプションがない{defstruct:link}は、
+    構造体名のクラスを定義します。
+    構造体のインスタンスのメタクラスは{structure-class:link}です。
+    <br><br>
+
+{defstruct:link}の構造体を再定義したときの結果は未定義です。
+
+{defstruct:link}に何もオプションを指定しなかった場合は、
+新しい構造体のインスタンスでは
+次のような操作を行う関数が自動的に定義されます。
+
+- 述部`predicate`
+  - *structure-name*`-p`という名前の`predicate`が定義され、
+    構造体の型のメンバーかどうかをテストします。
+    `predicate`の呼び出し`(structure-name-p object)`は、
+    *object*がその型であれば*true*を、
+    そうでなければ*false*を返却します。
+    {typep:link}もまた新しい型の名前を
+    *object*がその型に属したものかどう
+    かテストする際に使用できます。
+    このような関数の呼び出しは
+    `(typep object 'structure-name)`というフォームを持ちます。
+    <br><br>
+
+- 要素のリーダー関数(reader function)
+  - リーダー関数は、構造体の要素を読むために定義されます。
+    各スロットの名前について、対応するリーダー関数が
+    `structure-name-slot-name`という名前で生成されます。
+    この関数は指定されたスロットの内容を読み込みます。
+    各リーダー関数は引数に構造体型のインスタンスをひとつ取ります。
+    {setf:link}は、変更可能なスロットに対して
+    リーダー関数を指定することで使用できます。
+    <br><br>
+
+- 構築関数
+  - 構築関数は`make-structure-name`という名前で定義されます。
+    この関数は構造体型の新しいインスタンスを生成した返却します。
+    <br><br>
+
+- コピー関数
+  - コピー関数は`copy-structure-name`という名前で定義されます。
+    コピー関数は構造体型のオブジェクトを引数に取り、
+    同じ型の新しいオブジェクトを作成してそのコピーを行います。
+    コピー関数は元のものと全体の構成が同じである新しい構造体を作ります。
+    2つの構造体インスタンスの各要素は{eql!function:link}で等しくなります。
+    <br><br>
+
+もし{defstruct:link}フォームが{top-level-form}として現れたとき、
+コンパイラーは構造体の型を後続の宣言（例えば{deftype:link}）で
+有効な型として認識できるようにし、構造体のスロットのリーダーを
+{setf:link}で使用可能にしなければなりません。
+さらにコンパイラーは同じファイルで構造体名を参照する
+別の{defstruct:link}定義で`:include`を使用できるように
+構造体の型についての十分な情報を保存しなければなりません。
+{defstruct:link}が生成する関数はコンパイル時の環境で
+定義する必要はありませんが、 コンパイラーは後続の`inline`呼び出しのために、
+関数のコードに関する十分な情報を保存する必要があるかもしれません。
+`#S`リーダーマクロは、コンパイル時に新しく定義された構造体型については
+認識するかもしれませんししないかもしれません。
+
+
+## {examples}
+
+構造体の定義の例を下記に示します。
+
+```lisp
+(defstruct ship
+  x-position
+  y-position
+  x-velocity
+  y-velocity
+  mass)
+```
+
+これは全ての`ship`が5つの名前を持った要素持つ
+オブジェクトであると宣言しています。
+このフォームの評価は、次のことを行います。
+
+1. `ship-x-position`というひとつの引数`ship`を受け取る関数を定義し、
+   それは`ship`の`x-position`を返却します。
+   `ship-y-position`とその他の要素も似たような関数の定義が与えられます。
+   これらの関数はアクセス関数と呼ばれ、
+   構造体の要素にアクセスするときに使用されます。
+
+2. `ship`は、`ship`のインスタンスの型の名前になります。
+   `ship`は{typep:link}で使用可能であり、
+   例えば`(typep x 'ship)`は`x`が`ship`のときは*true*に、
+   `x`が`ship`以外のオブジェクトのときは*false*になります。
+
+3. `ship-p`という名前のひとつの引数を取る関数が定義されます。
+   これは`predicate`であり、引数が`ship`のときは*true*を、
+   それ以外のときは*false*を返却します。
+
+4. `make-ship`と呼ばれる関数が定義され、
+   起動されると5つの要素を持つ構造体のデータが作成されます。
+   各要素にはアクセス関数を使うのが適切です。
+   下記の実行がなされたとき、
+
+```lisp
+(setq ship2 (make-ship))
+```
+
+- `ship2`には新しい`ship`オブジェクトがセットされます。
+  初期値を希望する要素に供給したい場合は、
+  `make-ship`の呼び出しにキーワード引数を使います。
+  例えば下記の通り。
+
+```lisp
+(setq ship2 (make-ship :mass *default-ship-mass*
+                       :x-position 0
+                       :y-position 0))
+```
+
+- これは新しい`ship`が構築され、3つの要素に初期化されます。
+  この関数は新しい構造体を作成するので「構築関数」と呼ばれます。
+
+5. `copy-ship`と呼ばれる引数をひとつ受け取る関数が定義されます。
+   引数が`ship`オブジェクトのとき、新しい`ship`オブジェクトが生成され
+   引数のものをコピーします。この関数は「コピー関数」と呼ばれます。
+
+{setf:link}は`ship`の変更可能な要素に使うことができます。
+
+```lisp
+(setf (ship-x-position ship2) 100)
+```
+
+これは`ship2`の`x-position`を`100`に変更しています。
+これは{defstruct:link}の動作として、
+各アクセス関数に対して{defsetf:link}を適用するように
+生成しているので動作します。
+
+```lisp
+;;;
+;;; 例1
+;;; 構造体型townの定義
+;;; area, watertowers, firetrucks, population, elevation が要素
+;;;
+(defstruct town
+            area
+            watertowers
+            (firetrucks 1 :type fixnum)    ;初期化スロット
+            population 
+            (elevation 5128 :read-only t)) ;スロットは変更不可
+=>  TOWN
+;townインスタンスの作成
+(setq town1 (make-town :area 0 :watertowers 0)) =>  #S(TOWN...)
+;townのpredicateは新しいインスタンスを認識できる
+(town-p town1) =>  true
+;新しいtownのareaはmake-townによって設定
+(town-area town1) =>  0
+;新しいtownのelevationは初期値
+(town-elevation town1) =>  5128
+;setfはリーダー関数を認識できる
+(setf (town-population town1) 99) =>  99
+(town-population town1) =>  99
+;コピー関数はtown1のコピーを作る
+(setq town2 (copy-town town1)) =>  #S(TOWN...)
+(= (town-population town1) (town-population town2))  =>  true
+;elevationは読み込み専用スロットなのでこの値は
+;構造体が作成されたときのみ設定できる
+(setq town3 (make-town :area 0 :watertowers 3 :elevation 1200))
+=>  #S(TOWN...)
+;;;
+;;; 例2
+;;; 構造体型clownの定義
+;;; この構造体は非標準のprefixを使う
+;;;
+(defstruct (clown (:conc-name bozo-))
+            (nose-color 'red)         
+            frizzy-hair-p polkadots) =>  CLOWN
+(setq funny-clown (make-clown)) =>  #S(CLOWN)
+;非標準のリーダーの名前を使う
+(bozo-nose-color funny-clown) =>  RED        
+(defstruct (klown (:constructor make-up-klown) ;キーワードの変更以外は
+            (:copier clone-klown)              ;似たような定義
+            (:predicate is-a-bozo-p))
+            nose-color frizzy-hair-p polkadots) =>  klown
+;変更した構築関数が今存在する
+(fboundp 'make-up-klown) =>  true
+;;;
+;;; 例3
+;;; 構造体型vehicleの定義
+;;; その後vehicle構造体をincludeした
+;;; truck構造体を定義する
+;;;
+(defstruct vehicle name year (diesel t :read-only t)) =>  VEHICLE
+(defstruct (truck (:include vehicle (year 79)))
+            load-limit                          
+            (axles 6)) =>  TRUCK
+(setq x (make-truck :name 'mac :diesel t :load-limit 17))
+=>  #S(TRUCK...)
+;vehicleリーダーがtruckで動作する
+(vehicle-name x)
+=>  MAC
+;デフォルト値は:include項指定のもの
+(vehicle-year x)
+=>  79 
+(defstruct (pickup (:include truck))     ;pickup型はtruckをinclude
+            camper long-bed four-wheel-drive) =>  PICKUP
+(setq x (make-pickup :name 'king :long-bed t)) =>  #S(PICKUP...)
+;:includeのデフォルト値は継承されたもの
+(pickup-year x) =>  79
+;;;
+;;; 例4
+;;; BOA構築の使用
+;;;
+(defstruct (dfs-boa                      ;BOA構築
+              (:constructor make-dfs-boa (a b c)) 
+              (:constructor create-dfs-boa
+                (a &optional b (c 'cc) &rest d &aux e (f 'ff))))
+            a b c d e f) =>  DFS-BOA
+;a, b, cは位置によって設定し、&restは初期化しない
+(setq x (make-dfs-boa 1 2 3)) =>  #(DFS-BOA...)
+(dfs-boa-a x) =>  1
+;aとbはセット、cとfはデフォルト
+;a and b set, c and f defaulted
+(setq x (create-dfs-boa 1 2)) =>  #(DFS-BOA...)
+(dfs-boa-b x) =>  2
+(eq (dfs-boa-c x) 'cc) =>  true
+;a, b, cはセット、&restはdに集められている
+(setq x (create-dfs-boa 1 2 3 4 5 6)) =>  #(DFS-BOA...)
+(dfs-boa-d x) =>  (4 5 6)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし2つのスロットの名前が
+（直接現れたか、`:include`オプションによって継承されたかに関わらず）
+{string=:link}で等しいときは、
+{defstruct:link}は型{program-error:link}のエラーが発生します。
+
+*included-structure-name*が構造体型の名前ではないときの結果は未定義です。
+
+
+## {see-also}
+
+{documentation:link},
+{print-object:link},
+{setf:link},
+{subtypep:link},
+{type-of:link},
+{typep:link},
+{3.2:ab}
+
+
+## {notes}
+
+*printer-name*はプリンターを制御する
+{*print-escape*:link}のような変数を見なければなりません。
+
+*slot-initform*と対応するスロットの`:type`オプション間では、
+型の不一致による警告を禁止する必要があります。
+なぜなら、スロットオプションを指定するために
+*slot-initform*を指定する必要があり、
+場合よっては適切なデフォルト値が存在しないかもしれません。
+
+{defstruct:link}が{setf:link}の使用による
+スロットのアクセッサを変更する仕組みは
+{implementation-dependent}です。
+例えば、これは{setf:link}関数か、{setf:link}展開か、
+あるいはその他の{setf:link}への実装コードとして知られている
+{implementation-dependent}の仕組みなどが使われます。
+
+@end
+

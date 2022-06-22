@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  8. 構造体
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-STRUCTURE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 8.1.copy-structure
+@name: copy-structure
+@type: function
+
+Function `COPY-STRUCTURE`
+
+
+## {syntax}
+
+`copy-structure` *structure* => *copy*
+
+
+## {arguments-and-values}
+
+*structure* - 構造体  
+*copy* - 構造体のコピー
+
+
+## {description}
+
+構造体のコピーを返却します。
+
+構造体自身だけをコピーし、スロットの値はコピーしません。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{defstruct:link}の`:copier`オプション
+
+
+## {notes}
+
+*copy*は引数の*structure*と{equalp:link}で同一です。
+しかし{equal:link}はそうではありません。
+
+@end
+

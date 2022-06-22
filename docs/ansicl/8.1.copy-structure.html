@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>8. 構造体</title>
+  <title>Function COPY-STRUCTURE</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,16 +151,32 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">8. 構造体</h1>
+<h1 class="title">Function COPY-STRUCTURE</h1>
 </header>
-<p><a href="index.html">UP</a></p>
+<p><a href="8.1.html">UP</a></p>
 <hr />
-<ol start="8" type="1">
-<li>構造体</li>
-</ol>
-<ul>
-<li><a href="8.1.html">8.1. 構造体の辞書</a></li>
-</ul>
+<h1 id="function-copy-structure">Function <strong>COPY-STRUCTURE</strong></h1>
+<p>Function <code>COPY-STRUCTURE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>copy-structure</code> <em>structure</em> =&gt; <em>copy</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>structure</em> - 構造体<br />
+<em>copy</em> - 構造体のコピー</p>
+<h2 id="定義">定義</h2>
+<p>構造体のコピーを返却します。</p>
+<p>構造体自身だけをコピーし、スロットの値はコピーしません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>の<code>:copier</code>オプション</p>
+<h2 id="備考">備考</h2>
+<p><em>copy</em>は引数の<em>structure</em>と<a href="5.3.equalp.html"><code>equalp</code></a>で同一です。 しかし<a href="5.3.equal.html"><code>equal</code></a>はそうではありません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

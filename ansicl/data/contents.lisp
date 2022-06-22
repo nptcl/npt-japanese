@@ -79,6 +79,7 @@
 (text 3.4.1 "{ordinary-lambda-list}" "Ordinary Lambda Lists")
 (text 3.4.4 "マクロのラムダリスト" "Macro Lambda Lists")
 (text 3.4.5 "{destructuring-lambda-list}" "Destructuring Lambda Lists")
+(text 3.4.6 "{boa-lambda-list}" "Boa Lambda Lists")
 (text 3.4.11 "ドキュメント文字と宣言の文脈的な作用"
       "Syntactic Interaction of Documentation Strings and Declarations")
 (index 3.5 "関数呼び出しのエラーチェック" "Error Checking in Function Calls")
@@ -343,9 +344,9 @@
 (dictionary 7.7.unbound-slot-instance)
 
 ;; Chapter 8
-(index 8.2 "構造体の辞書" "Structures Dictionary")
-(dictionary 8.2.defstruct)
-(dictionary 8.2.copy-structure)
+(index 8.1 "構造体の辞書" "Structures Dictionary")
+(dictionary 8.1.defstruct)
+(dictionary 8.1.copy-structure)
 
 ;; Chapter 9
 (text 9.1 "コンディションシステムの説明" "Condition System Concepts")
@@ -849,7 +850,9 @@
 (dictionary 22.4.print-unreadable-object)
 (dictionary 22.4.set-pprint-dispatch)
 (dictionary 22.4.write)
+(dictionary 22.4.prin1)  ;; delete
 (dictionary 22.4.print)  ;; delete
+(dictionary 22.4.princ)  ;; delete
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.prin1-to-string) ;; delete
 (dictionary 22.4.princ-to-string) ;; delete

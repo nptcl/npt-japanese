@@ -17,8 +17,8 @@ ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
 |[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書 ★完了](5.3.html)|
 |[6.](6.html)|[Iteration](6.html)|[繰り返し](6.html)|[辞書 ★完了](6.2.html)|
 |[7.](7.html)|[Objects](7.html)|[オブジェクト ★完了](7.html)|[辞書 ★完了](7.7.html)|
-|[8.](8.html)|[Structures](8.html)|[構造体](8.html)|[辞書 ☆作業中](8.2.html)|
-|[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書](9.2.html)|
+|[8.](8.html)|[Structures](8.html)|[構造体 ★完了](8.html)|[辞書 ★完了](8.1.html)|
+|[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書 ☆作業中](9.2.html)|
 |[10.](10.html)|[Symbols](10.html)|[シンボル](10.html)|[辞書 ★完了](10.2.html)|
 |[11.](11.html)|[Packages](11.html)|[パッケージ](11.html)|[辞書](11.2.html)|
 |[12.](12.html)|[Numbers](12.html)|[数](12.html)|[辞書](12.2.html)|

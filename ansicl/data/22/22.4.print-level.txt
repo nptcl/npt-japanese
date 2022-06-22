@@ -1,0 +1,19 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-LEVEL*
+;;  Variable *PRINT-LENGTH*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-level
+@name: *print-level*
+@name: *print-length*
+@type: variable
+
+Variable `*PRINT-LEVEL*`, `*PRINT-LENGTH*`
+
+
+@end
+

@@ -83,6 +83,7 @@
 (replace define-modify-macro-lambda-list "`define-modify-macro`ラムダリスト")
 (replace defsetf-lambda-list "`defsetf`ラムダリスト")
 (replace deftype-lambda-list "`deftype`ラムダリスト")
+(replace boa-lambda-list "`boa`ラムダリスト")
 (replace direct-instance "direct-instance")
 
 (replace implementation-dependent "実装依存")

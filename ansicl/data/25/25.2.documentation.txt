@@ -15,6 +15,7 @@
 @link: variable!symbol
 @link: setf!symbol
 @link: compiler-macro!symbol
+@link: structure!symbol
 @type: standard-generic-function
 
 

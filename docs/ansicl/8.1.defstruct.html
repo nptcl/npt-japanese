@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFSTRUCT</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFSTRUCT</h1>
+</header>
+<p><a href="8.1.html">UP</a></p>
+<hr />
+<h1 id="macro-defstruct">Macro <strong>DEFSTRUCT</strong></h1>
+<p>Macro <code>DEFSTRUCT</code></p>
+<h2 id="構文">構文</h2>
+<p><code>defstruct</code> <em>name-and-options</em> [<em>documentation</em>] <code>{</code><em>slot-description</em><code>}</code>*<br />
+=&gt; <em>structure-name</em></p>
+<pre><code>name-and-options::= structure-name | (structure-name [[options]]) 
+options::= conc-name-option | 
+           {constructor-option}* | 
+           copier-option | 
+           include-option | 
+           initial-offset-option | 
+           named-option | 
+           predicate-option | 
+           printer-option | 
+           type-option 
+conc-name-option::= :conc-name | (:conc-name) | (:conc-name conc-name) 
+constructor-option::= :constructor | 
+                      (:constructor) | 
+                      (:constructor constructor-name) | 
+                      (:constructor constructor-name constructor-arglist) 
+copier-option::= :copier | (:copier) | (:copier copier-name) 
+predicate-option::= :predicate | (:predicate) | (:predicate predicate-name) 
+include-option::= (:include included-structure-name {slot-description}*) 
+printer-option::= print-object-option | print-function-option 
+print-object-option::= (:print-object printer-name) | (:print-object) 
+print-function-option::= (:print-function printer-name) | (:print-function) 
+type-option::= (:type type) 
+named-option::= :named 
+initial-offset-option::= (:initial-offset initial-offset) 
+slot-description::= slot-name |  
+                    (slot-name [slot-initform [[slot-option]]]) 
+slot-option::= :type slot-type |  
+               :read-only slot-read-only-p </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>conc-name</em> - 文字列指定子<br />
+<em>constructor-arglist</em> - <code>boa</code>ラムダリスト<br />
+<em>constructor-name</em> - シンボル<br />
+<em>copier-name</em> - シンボル<br />
+<em>included-structure-name</em> - すでに定義されている構造体の名前。 派生された型は許されず、 構造体名に展開されるものも禁止されることに注意して下さい。<br />
+<em>initial-offset</em> - 非負の整数<br />
+<em>predicate-name</em> - シンボル<br />
+<em>printer-name</em> - 関数名かラムダ式<br />
+<em>slot-name</em> - シンボル<br />
+<em>slot-initform</em> - フォーム<br />
+<em>slot-read-only-p</em> - generalized-boolean<br />
+<em>structure-name</em> - シンボル<br />
+<em>type</em> - 次の型指定子のどれかであり、 <a href="14.2.list-system-class.html"><code>list</code></a>, <code>vector</code>, <code>(vector size)</code>, あるいはその他の実装で適用可能な定義された型指定子。<br />
+<em>documentation</em> - 文字列。評価されません。</p>
+<h2 id="定義">定義</h2>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>は構造体の型を定義し、 その名前は<em>structure-type</em>であり、 <em>slot-option</em>によって指定された名前付きのスロットが付きます。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>は、 スロットを読み込むリーダーと、 そのようなリーダーを<a href="5.3.setf.html"><code>setf</code></a>上で正しく動作する 修正する機能を定義します。 無効にしない限り、 <em>name</em><code>-p</code>という名前の述部と、 <code>make-</code><em>constructor-name</em>という名前の生成関数、 <code>copy-</code><em>constructor-name</em>というコピーの関数が定義されます。 これらの全ての名前の関数は自動的に生成され、 自動的に<a href="3.8.inline.html"><code>inline</code></a>として宣言されます （実装が区別できる場合）。</p>
+<p><em>documentation</em>が与えられると、 <em>structure-name</em>がドキュメント文字に与えられ、 種別<a href="25.2.documentation.html"><code>structure</code></a>と共に割り当てられます。 また<code>:type</code>が指定されていないときは、 <em>structure-name</em>がドキュメント文字、 種別が<a href="25.2.documentation.html"><code>type</code></a>という、 クラス名が<em>structure-name</em>の クラスオブジェクトのための割り当てが行われます。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>は、 本機能によって作成された構造体のインスタンスを生成するために使われる 構築関数を定義します。 標準の名前は<code>make-</code><em>structure-name</em>です。 引数の<em>constructor</em>オプションによって与えられた名前によって、 違う名前を付けることができます。 <a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたときは、 構築関数は作成されません。</p>
+<p>新しい構造体の型が定義された後は、 その型のインスタンスは通常はその型の構築関数を使うことで作成できます。 構築関数の呼び出しは、次のようなフォームになります。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(constructor-function-name</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> slot-keyword<span class="dv">-1</span> form<span class="dv">-1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> slot-keyword<span class="dv">-2</span> form<span class="dv">-2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> ...)</span></code></pre></div>
+<p>構築関数の引数は、全てキーワード引数です。 各キーワード引数のスロットは、 構造体のスロットの名前に対応したキーワードの 名前でなければいけません。 全ての<em>keyword</em>と<em>form</em>は評価されます。 もしスロットがこの方法で初期化されないときは、 それは構築関数呼び出し時にスロットの定義内の <em>slot-initform</em>を評価することによって初期化されます。 もし<em>slot-initform</em>が与えられなかったとき、 何かの値が明に代入される前に そのスロットを読み込もうとしたときの結果は未定義です。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>で指定された各<em>slot-initform</em>の要素は、 構築関数が指定されてない要素以外にに対して使われたとき、 <em>slot-initform</em>は構築関数を呼び出すたびに再評価されます。 <em>slot-initform</em>は、 特定の構造体インスタンスの生成に必要になるまで 評価されません。 もし決して必要としないのであれば、 スロット定義の型を指定したとしても、 決して型の不適合によるエラーは発生しません。 この場合、警告は発生されません。 例えば、下記の一連のフォームは、最後の呼び出しでのみエラーが生じます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> person </span>(name <span class="dv">007</span> <span class="bu">:type</span> <span class="kw">string</span>)) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(make-person <span class="bu">:name</span> <span class="st">&quot;James&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(make-person)</span></code></pre></div>
+<p>これは構築関数のキーワードパラメーターが <em>slot-initform</em>の初期化フォームとして使用されたかのように動作します。</p>
+<p>スロットの名前のシンボルは、実装において 構築巻子のラムダ式の変数にその名前を使用してはいけません。 なぜならそれらのシンボルは、<a href="3.8.special.html"><code>special</code></a>に宣言されたり、 その名前で定数変数が定義されるかもしれないからです。 スロットのデフォルトの初期化フォームは、 <a href="8.1.defstruct.html"><code>defstruct</code></a>フォーム自身が現れた レキシカルな環境内で評価されます。 あるいは構築関数の呼び出しが現れた 動的な環境で評価されます。</p>
+<p>例えば、もし<code>(gensym)</code>フォームが初期化フォームとして 構築関数の呼び出し内か、 あるいは<a href="8.1.defstruct.html"><code>defstruct</code></a>によるデフォルト初期化フォーム内かの どちらかで使われたとき、 全ての構築関数の呼び出しにおいて、 <a href="10.2.gensym.html"><code>gensym</code></a>が一度だけ呼ばれて 新しいシンボルを生成します。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>の各<em>slot-description</em>は、 ゼロかあるいは複数の<em>slot-option</em>を指定できます。 <em>slot-option</em>はキーワードと値 （評価されるフォームではなく値はそれ自身） のペアを含みます。 例えば、</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> ship</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (x-position <span class="fl">0.0</span> <span class="bu">:type</span> <span class="kw">short-float</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  (y-position <span class="fl">0.0</span> <span class="bu">:type</span> <span class="kw">short-float</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  (x-velocity <span class="fl">0.0</span> <span class="bu">:type</span> <span class="kw">short-float</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  (y-velocity <span class="fl">0.0</span> <span class="bu">:type</span> <span class="kw">short-float</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  (mass *default-ship-mass* <span class="bu">:type</span> <span class="kw">short-float</span> <span class="bu">:read-only</span> <span class="kw">t</span>))</span></code></pre></div>
+<p>これは、各スロットが常に<code>short-float</code>を含み、 最後のスロットは一度<code>ship</code>を構築したら 変更不可能なスロットとして定義されています。</p>
+<p>利用可能な<em>slot-option</em>は下記の通り。</p>
+<ul>
+<li><code>:type</code> <em>type</em>
+<ul>
+<li>これはスロットが常に<em>type</em>型の内容であることを指定します。 これは変数と関数に全体的に似ており、 効率よくリーダー関数の返却値の型を宣言できます。 スロットの初期化時と代入時に型チェックを行った際の 結果は実装依存です。 <em>type</em>は評価されません。 この値は有効な型指定子でなければなりません。 <br><br></li>
+</ul></li>
+<li><code>:read-only</code> <em>x</em>
+<ul>
+<li><em>x</em>が<em>true</em>のとき、 これはスロットが変更不可能であることを指定します。 それは構築時に指定された値を脛に含むことを意味します。 そのスロットのリーダー関数を指定した<a href="5.3.setf.html"><code>setf</code></a>は受け付けません。 もし<em>x</em>が<em>false</em>なら、その<em>slot-option</em>は効果を持ちません。 <em>x</em>は評価されません。 <br><br></li>
+</ul></li>
+</ul>
+<p>下記のキーワードオプションは、<a href="8.1.defstruct.html"><code>defstruct</code></a>で使うことができます。 <a href="8.1.defstruct.html"><code>defstruct</code></a>オプションは、 キーワードか、キーワードとそのキーワードの引数のリストの どちらかを指定できます。 キーワード自身が指定されたときは、 そのキーワードと引数なしのリストを指定したことと同じです。 <a href="8.1.defstruct.html"><code>defstruct</code></a>オプションの構文は、 <em>slot-option</em>が使われたペアの構文と違っています。 これらのオプションどのどの部分も評価されません。</p>
+<ul>
+<li><code>:conc-name</code>
+<ul>
+<li>これはリーダー（そしてアクセッサ）関数の 名前に自動的にプレフィックスとして付与されるものを指定します。 標準の動作は、構造体の全てのリーダー関数の名前の最初を その構造体の名前とそれに続くハイフンで始まるようにするものです。 <br><br> <code>:conc-name</code>は別のプレフィックスを使用するときに指定します。 もしセパレーターとしてハイフンを使用したいのであれば、 プレフィックスの部分としてそれを指定しなければなりません。 もし<code>:conc-name</code>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときか引数を指定しなかった場合は、 プレフィックスは使用されません。 したがって、リーダー関数の名前はスロットの名前と同じになります。 もしプレフィックスに<a href="5.3.nil-variable.html"><code>nil</code></a>以外が指定されたとき、 各スロットのリーダー関数の名前は、 プレフィックスとスロットの名前を結合したもので構築され、 その結果のシンボルを<a href="8.1.defstruct.html"><code>defstruct</code></a>フォームが展開された時点での 現在のパッケージに<code>intern</code>したもにになります。 <br><br> <code>:conc-name</code>に何を与えても、 プレフィックスの付いていないスロット名とのキーワードが コンストラクタ関数で使用されることに注意してください。 リーダー関数の名前は、<a href="5.3.setf.html"><code>setf</code></a>の引数にも使用されます。 下記に例を示します。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">defstruct</span><span class="fu"> </span>(door (<span class="bu">:conc-name</span> dr-)) knob-color width material) <span class="op">=&gt;</span>  DOOR</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> (<span class="kw">setq</span> my-door (make-door :knob-color &#39;red :width <span class="fl">5.0</span>)) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #S(DOOR :KNOB-COLOR RED :WIDTH <span class="fl">5.0</span> :MATERIAL NIL)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> (dr-width my-door) <span class="op">=&gt;</span>  <span class="fl">5.0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> (<span class="kw">setf</span> (dr-width my-door) <span class="fl">43.7</span>) <span class="op">=&gt;</span>  <span class="fl">43.7</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> (dr-width my-door) <span class="op">=&gt;</span>  <span class="fl">43.7</span></span></code></pre></div>
+<ul>
+<li><ul>
+<li><code>:conc-name</code>オプションが明に指定されたかどうかに関わらず、 次の規則が生成されるリーダー（あるいはアクセッサ）の名前の 衝突を管理します。 ある構造体の型を<code>S1</code>、 スロットの名前が<code>X1</code>であり、 そのリーダー関数の名前が<code>R</code>とする。 これは他の構造体の<code>S2</code>によって継承されている。 <code>S2</code>はスロット<code>X2</code>があり、 同じ名前のリーダー関数<code>R</code>を指定しいる。 <code>S2</code>はまだ<code>R</code>の定義を生成しておらず、 かわりに<code>S1</code>の定義から定義<code>R</code>が継承されている。 （このような場合、もし<code>X1</code>と<code>X2</code>が違うスロットのときは、 実装は<code>style-warning</code>を通知するかもしれない。） <br><br></li>
+</ul></li>
+<li><code>:constructor</code>
+<ul>
+<li>このオプションは、ゼロか、ひとつか、2つの引数を取ります。 もし少なくともひとつの引数が指定されれており、 最初の引数が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 その引数は構築関数の名前を指定したシンボルです。 もし引数が指定されなかったとき （あるいはもし自身のオプションが指定されなかったとき） 構築の名前は、文字列<code>"MAKE-"</code>と構造体の名前を結合したものを生成し、 その名前を<a href="8.1.defstruct.html"><code>defstruct</code></a>フォームが展開された時点の 現在のパッケージに<code>intern</code>したもにになります。 もし引数が<a href="5.3.nil-variable.html"><code>nil</code></a>で与えられたときは、 構築関数は定義されません。 <br><br> もし<code>:constructor</code>が<code>(constructor name arglist)</code>として与えられたとき、 キーワード駆動の構築関数の作成のかわりに、 <a href="8.1.defstruct.html"><code>defstruct</code></a>は「位置的な」構築関数を定義します。 それは引数の位置かあるいは場合によってはキーワードによって 決定される意味を持つ引数を取ります。 <em>arglist</em>はどの引数を構築するかを定義したものとして使われます。 単純な場合として、 例えば<code>(:constructor make-foo (a b c))</code>のようなものは、 <code>make-foo</code>を3つの引数の構築関数として定義し、 それらの引数はスロットの名前<code>a</code>, <code>b</code>, <code>c</code>の初期化に使用されます。 <br><br> このタイプの構築は、「By Order of Arguments（引数の順による）」 の操作と言われ、それはよく<code>boa</code>構築として知られています。 <br><br> <em>arglist</em>である<code>boa</code>構築がどのように処理されるかの情報は、 3.4.6. <code>boa</code>ラムダリストをご確認ください。 <br><br> <code>:constructor</code>オプションは複数許容され、 それぞれ違ったパラメーターを取る いくつかの構築関数を定義することができます。 <br><br> <a href="8.1.defstruct.html"><code>defstruct</code></a>は <code>:constructor</code>オプションが明に指定されていないときか、 <code>:constructor</code>オプションが名前の引数なしに指定されていたときのみ デフォルトの名前をキーワードの構築関数を作成します。 <br><br> <code>(:constructor nil)</code>は、 他の構築関数のオプションが指定されていないときにのみ意味します。 それは<a href="8.1.defstruct.html"><code>defstruct</code></a>による他の全ての構築関数の生成を禁止します。 <br><br> それ以外では、<a href="8.1.defstruct.html"><code>defstruct</code></a>は、 指定された各<code>:constructor</code>オプションにしたがって 構築関数を生成します。 これは複数のキーワードによる構築関数を指定するのと同様に、 複数の<code>boa</code>構築を指定することも許されます。 <br><br></li>
+</ul></li>
+<li><code>:copier</code>
+<ul>
+<li>このオプションはひとつの引数にシンボルを受け取り、 これはコピー関数の名前を指定します。 もし引数が指定されなかったか、 あるいはオプション自体指定されなかったときは、 名前は文字列<code>"COPY-"</code>と構造体の名前を結合したものを生成し、 その名前を<a href="8.1.defstruct.html"><code>defstruct</code></a>フォームが展開された時点の 現在のパッケージに<code>intern</code>したもにになります。 もし引数が<a href="5.3.nil-variable.html"><code>nil</code></a>で与えられたときは、 コピー関数は定義されません。 <br><br> 自動的に定義されたコピー関数は、 引数に定義しているその構造体の型を受け取る ひとつの引数の関数になります。 コピー関数は、その引数と同じ型を持つ 新しい構造体を生成し、 それは元の構造体と同じ要素の値を持ちます。 つまりその要素の値は再帰的にはコピーされません。 もし<a href="8.1.defstruct.html"><code>defstruct</code></a>の<code>:type</code>オプションが使われなかったときは、 下記のものと同等になります。 <br> <code>(copier-name x) = (copy-structure (the structure-name x))</code> <br><br></li>
+</ul></li>
+<li><code>:include</code>
+<ul>
+<li>このオプションは、新しい構造体の定義を他の構造体の定義の拡張として 構築したいときに使用します。 例えば次の式があるとします。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> person </span>name age sex)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>新しい構造体の表現である<code>astronaut</code>は、 <code>name</code>, <code>age</code>, <code>sex</code>という属性と、 <code>person</code>構造体の操作関数、 <code>astronaut</code>が定義した<code>:include</code>を 次のようにして作成します。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(astronaut (:include person)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                      (<span class="bu">:conc-name</span> astro-))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   helmet-size</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   (favorite-beverage &#39;tang))</span></code></pre></div>
+<ul>
+<li><ul>
+<li><code>:include</code>は、その構造体がincludeされた構造体と 同じスロットを持つように定義するものです。 このような方法で作成されたものは、 includeされた構造体のリーダー関数もまた、 今回定義した構造体で使用できます。 この例では、したがって<code>astronaut</code>では5つのスロットを持ちます。 その内訳は、3つが<code>person</code>の定義であり、 2つが<code>astronaut</code>自身のものです。 <code>person</code>構造体によって定義されたリーダー関数は、 <code>astronaut</code>構造体のインスタンスでも適用でき、 そしてそれは正しく動作します。 さらに<code>astronaut</code>はそれらの要素に対する 自分自身のリーダー関数も定義されます。 下記の例は、<code>astronaut</code>構造体を使用したものです。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-astronaut <span class="bu">:name</span> &#39;buzz</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                        :age <span class="fl">45.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                        :sex <span class="kw">t</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                        :helmet-size <span class="fl">17.5</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>(person-name x) <span class="op">=&gt;</span>  BUZZ</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(astro-name x) <span class="op">=&gt;</span>  BUZZ</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>(astro-favorite-beverage x) <span class="op">=&gt;</span>  TANG</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">reduce</span> #&#39;+ astros <span class="bu">:key</span> #&#39;person-age) <span class="co">; 空かもしれないastrosシーケンスの</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="co">; 年齢の合計を得ます</span></span></code></pre></div>
+<ul>
+<li><ul>
+<li>リーダー関数の<code>person-name</code>と<code>astro-name</code>の違いは、 <code>person-name</code>は<code>astronaut</code>を含むどの<code>person</code>にも正しく適用できますが、 <code>astro-name</code>はただ<code>astronaut</code>のみ正しく適用できます。 実装はリーダー関数を使用するときに正しく確認しないかもしれません。 <br><br> ひとつの<a href="8.1.defstruct.html"><code>defstruct</code></a>に 多くてもひとつの<code>:include</code>を指定できます。 <code>:include</code>の引数は要求され、 以前に定義された何かの構造体の名前でなければなりません。 もし構造体の定義に<code>:type</code>オプションがないときは、 includeされる構造体もまた<code>:type</code>オプションを 指定されていてはいけません。 もし構造体の定義に<code>:type</code>オプションがあるときは、 includeされる構造体は 同じ表現の型を指定した<code>:type</code>オプションで 定義されていなければなりません。 <br><br> もし<code>:type</code>オプションがないとき、 includeされた構造体の名前はデータ型の名前であり <a href="4.4.typep.html"><code>typep</code></a>によって認識できる正当な型指定子なので、 これはinclude構造体のサブタイプになります。 上記の例の場合、<code>astronaut</code>は<code>person</code>のサブタイプです。 したがって、</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">typep</span> (make-astronaut) &#39;person) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<ul>
+<li><ul>
+<li>これは<code>person</code>の全ての操作が<code>astronaut</code>でも動作することを示しています。 <br><br> <code>:include</code>を使用した構造体は、 その<code>:include</code>オプションを使用することで、 include構造体が指定したものとは違ったスロットの デフォルト値か<em>slot-option</em>をしていることができます。 例えば下記の通り。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(:include included-structure-name slot-description*)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>各<em>slot-description</em>は、include構造体のスロットと 同じ<em>slot-name</em>を持ったものでなければなりません。 もし<em>slot-description</em>が<em>slot-initform</em>を持たないとき、 新しい構造体のそのスロットは初期値を持ちません。 それ以外のときは、その初期値フォームは <em>slot-description</em>の<em>slot-initform</em>に置き換わります。 通常は書き込み可能なスロットは読み込み専用にできます。 もしinclude構造体のあるスロットが読み込み専用のとき、 新しいものもまた読み込み専用でなければなりません。 もしあるスロットに型が指定されていたときは、 新しいものはinclude構造体で指定された型の サブタイプでなければなりません。 <br><br> 例えば、<code>astronaut</code>の<code>age</code>をデフォルトを<code>45</code>にしたものは下記の通り。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> (<span class="kw">defstruct</span><span class="fu"> </span>(astronaut (:include person (age <span class="dv">45</span>)))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    helmet-size</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    (favorite-beverage &#39;tang))</span></code></pre></div>
+<ul>
+<li><ul>
+<li>もし<code>:include</code>を<code>:type</code>オプションと一緒に使用したとき、 その効果は、まず最初にinclude構造体の表現で必要な 要素の数だけスキップします。 さらに<code>:initial-offset</code>オプションの指定による 追加の要素をスキップします。 そのあとで、この点から要素の確保が始まります。 例えば下記の通り。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(binop (<span class="bu">:type</span> <span class="kw">list</span>) <span class="bu">:named</span> (<span class="bu">:initial-offset</span> <span class="dv">2</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  (operator &#39;? <span class="bu">:type</span> <span class="kw">symbol</span>)   </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-2</span>) <span class="op">=&gt;</span>  BINOP</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(annotated-binop (<span class="bu">:type</span> <span class="kw">list</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                            (<span class="bu">:initial-offset</span> <span class="dv">3</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                            (:include binop))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> commutative associative <span class="kw">identity</span>) <span class="op">=&gt;</span>  ANNOTATED-BINOP</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>(make-annotated-binop :operator &#39;*</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                      :operand<span class="dv">-1</span> &#39;x</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                      :operand<span class="dv">-2</span> <span class="dv">5</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                      :commutative <span class="kw">t</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                      :associative <span class="kw">t</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                      :identity <span class="dv">1</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">=&gt;</span>  (NIL NIL BINOP <span class="op">*</span> X <span class="dv">5</span> NIL NIL NIL T T <span class="dv">1</span>)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>最初の2つの<a href="5.3.nil-variable.html"><code>nil</code></a>の要素は、 <code>binop</code>の定義にある<code>:initial-offset</code>の<code>2</code>のものです。 次の4つの要素は構造体の名前と、 <code>binop</code>の3つのスロットが含まれています。 その次の3つの<a href="5.3.nil-variable.html"><code>nil</code></a>の要素は <code>annotated-binop</code>の定義にある<code>:initial-offset</code>の<code>3</code>のものです。 最後の3つの要素は<code>annotated-binop</code>の追加のスロットが含まれています。 <br><br></li>
+</ul></li>
+<li><code>:initial-offset</code>
+<ul>
+<li><code>:initial-offset</code>は<a href="8.1.defstruct.html"><code>defstruct</code></a>に対して、 ボディ部で記述されてるスロットを確保し始める前に、 指定した数のスロットをスキップするように指示します。 このオプションの引数はスロットの数であり、 <a href="8.1.defstruct.html"><code>defstruct</code></a>はスキップしなければなりません。 <code>:initial-offset</code>は<code>:type</code>が指定されたときのみ使用できます。 <br><br> <code>:initial-offset</code>は、スロットを最初からではなく 指定した要素から確保し始めることができます。 例えば、下記のフォーム</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(binop (<span class="bu">:type</span> <span class="kw">list</span>) (<span class="bu">:initial-offset</span> <span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  (operator &#39;? <span class="bu">:type</span> <span class="kw">symbol</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-2</span>) <span class="op">=&gt;</span>  BINOP</span></code></pre></div>
+<ul>
+<li><ul>
+<li>こちらの<code>make-binop</code>の動作と返却値を下記に示します。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(make-binop :operator &#39;+ :operand<span class="dv">-1</span> &#39;x :operand<span class="dv">-2</span> <span class="dv">5</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (NIL NIL <span class="op">+</span> X <span class="dv">5</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>(make-binop :operand<span class="dv">-2</span> <span class="dv">4</span> :operator &#39;*)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (NIL NIL <span class="op">*</span> NIL <span class="dv">4</span>)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>選択関数である、<code>binop-operator</code>, <code>binop-operand-1</code>, <code>binop-operand-2</code>は、 それぞれ<a href="14.2.first.html"><code>third</code></a>, <a href="14.2.first.html"><code>fourth</code></a>, <a href="14.2.first.html"><code>fifth</code></a>と本質的に同等です。 似たようなフォームとして</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(binop (<span class="bu">:type</span> <span class="kw">list</span>) <span class="bu">:named</span> (<span class="bu">:initial-offset</span> <span class="dv">2</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  (operator &#39;? <span class="bu">:type</span> <span class="kw">symbol</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-1</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-2</span>) <span class="op">=&gt;</span>  BINOP</span></code></pre></div>
+<ul>
+<li><ul>
+<li>こちらの<code>make-binop</code>の動作と返却値を下記に示します。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(make-binop :operator &#39;+ :operand<span class="dv">-1</span> &#39;x :operand<span class="dv">-2</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  (NIL NIL BINOP <span class="op">+</span> X <span class="dv">5</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>(make-binop :operand<span class="dv">-2</span> <span class="dv">4</span> :operator &#39;*) <span class="op">=&gt;</span>  (NIL NIL BINOP <span class="op">*</span> NIL <span class="dv">4</span>)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>最初の2つの<a href="5.3.nil-variable.html"><code>nil</code></a>の要素は、 <code>binop</code>の定義にある<code>:initial-offset</code>の<code>2</code>のものです。 次の4つの要素は構造体の名前と、 <code>binop</code>の3つのスロットが含まれています。 <br><br></li>
+</ul></li>
+<li><code>:named</code>
+<ul>
+<li><code>:name</code>は、構造体に名前を付けるよう指定します。 もし<code>:type</code>が指定されていないときは、 構造体は常に名前付けられます。 <br><br> 例えば、下記のフォームを考えます。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(binop (<span class="bu">:type</span> <span class="kw">list</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  (operator &#39;? <span class="bu">:type</span> <span class="kw">symbol</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-2</span>) <span class="op">=&gt;</span>  BINOP</span></code></pre></div>
+<ul>
+<li><ul>
+<li>この定義は、<code>make-binop</code>という構築関数と3つの選択関数である <code>binop-operator</code>, <code>binop-operand-1</code>, <code>binop-operand-2</code>を定義します。 （しかし下記に説明する理由にて<code>binop-p</code>は定義されません） <br><br> <code>make-binop</code>の効果は単純に3つの長さのリストを構築します。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(make-binop :operator &#39;+ :operand<span class="dv">-1</span> &#39;x :operand<span class="dv">-2</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  (<span class="op">+</span> X <span class="dv">5</span>)  </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(make-binop :operand<span class="dv">-2</span> <span class="dv">4</span> :operator &#39;*) <span class="op">=&gt;</span>  (<span class="op">*</span> NIL <span class="dv">4</span>)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>これはちょうど<a href="14.2.list-function.html"><code>list</code></a>関数のようですが、 キーワード引数を受け取ることと、 <code>binop</code>というデータ型という概念に適用した スロットの標準値を用意する点が違っています。 同じように、3つの選択関数である <code>binop-operator</code>, <code>binop-operand-1</code>, <code>binop-operand-2</code>は、 それぞれ<a href="14.2.car.html"><code>car</code></a>, <a href="14.2.car.html"><code>cadr</code></a>, <a href="14.2.car.html"><code>caddr</code></a>と本質的に同等です。 これらは完全には同等ではないでしょう。 なぜなら、例えばある実装では 各選択関数の引数が長さ<code>3</code>のリストであるかどうかを 保証するためのエラーチェックを追加するような 正当化を行うかもしれません。 <br><br> <code>binop</code>はデータ型という概念であって、 Common Lispの型システムの一部ではありません。 <a href="4.4.typep.html"><code>typep</code></a>は<code>binop</code>を型指定子として認識しませんし、 <a href="4.4.type-of.html"><code>type-of</code></a>は<code>binop</code>構造体を与えても <a href="14.2.list-system-class.html"><code>list</code></a>と返却します。 <code>make-binop</code>で構築されたデータ構造と、 正しい構造を持つその他のリストを 区別する方法はありません。 <br><br> この<code>make-binop</code>によって作成された構造体から 構造体名<code>binop</code>を知る方法はありません。 これは構造体に名前がついているときのみ行うことができます。 名前付き構造体は、その構造体のインスタンスが与えられたときに、 構造体名（型の名前）を確実に復元できるという性質を持っています。 <code>:type</code>オプションなしで定義された構造体では、 構造体名は実際にCommon Lispのデータ型システムの一部になります。 このような構造体を<a href="4.4.type-of.html"><code>type-of</code></a>に適用したとき、 そのオブジェクトの型の構造体名が返却されます。 <a href="4.4.typep.html"><code>typep</code></a>は正当な型指定子として構造体名を認識します。 <br><br> <code>:type</code>オプションと一緒に定義された構造体について、 <a href="4.4.type-of.html"><code>type-of</code></a>は、<code>list</code>か<code>(vector t)</code>のように 指定した<code>:type</code>オプションに依存したものが返却されます。 構造体名は有効な型指定子にはなりません。 しかし、もし<code>:named</code>オプションが指定されていたときは、 構造体（<a href="8.1.defstruct.html"><code>defstruct</code></a>の構築関数によって作成されたもの）は、 常に構造体名を含みます。 これは構造体のインスタンスから構造体名を知ることができるということと、 概念的な型に対しての適切な<code>predicate</code>を 定義することができるということです。 自動的に定義される<code>name-p</code>という構造体の<code>predicate</code>は、 最初にその引数が正当な型（<a href="14.2.list-system-class.html"><code>list</code></a>, <code>(vector t)</code>, その他）で あるかどうかを確認し、 そのあと最初の要素が 適切な型の名前を含んでいるかどうかを確認します。 <br><br> 次に示す例の<code>binop</code>を考えます。 これは<code>:named</code>オプションを追加しただけのものです。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(binop (<span class="bu">:type</span> <span class="kw">list</span>) <span class="bu">:named</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  (operator &#39;? <span class="bu">:type</span> <span class="kw">symbol</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-1</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  operand<span class="dv">-2</span>) <span class="op">=&gt;</span>  BINOP</span></code></pre></div>
+<ul>
+<li><ul>
+<li>これにより、構築関数<code>make-binop</code>と3つの選択関数 <code>binop-operator</code>, <code>binop-operand-1</code>, <code>binop-operand-2</code>が定義されます。 <code>make-binop</code>の効果は、今回のものは4つの長さのリストを構築します</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(make-binop :operator &#39;+ :operand<span class="dv">-1</span> &#39;x :operand<span class="dv">-2</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  (BINOP <span class="op">+</span> X <span class="dv">5</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(make-binop :operand<span class="dv">-2</span> <span class="dv">4</span> :operator &#39;*) <span class="op">=&gt;</span>  (BINOP <span class="op">*</span> NIL <span class="dv">4</span>)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>この構造体は以前のものと同じレイアウトを持っていますが、 構造体名<code>binop</code>がリストの最初の要素に含まれています。 選択関数<code>binop-operator</code>, <code>binop-operand-1</code>, <code>binop-operand-2</code>は それぞれ<a href="14.2.car.html"><code>cadr</code></a>, <a href="14.2.car.html"><code>caddr</code></a>, <a href="14.2.car.html"><code>cadddr</code></a>と本質的に同等です。 <code>predicate</code>である<code>binop-p</code>は、下記の定義と多かれ少なかれ同等です。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> binop-p </span>(x)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">and</span> (<span class="kw">consp</span> x) (<span class="kw">eq</span> (<span class="kw">car</span> x) &#39;binop))) <span class="op">=&gt;</span>  BINOP-P</span></code></pre></div>
+<ul>
+<li><ul>
+<li><code>binop</code>という名前はまだ<a href="4.4.typep.html"><code>typep</code></a>で識別できるような 有効な型指定子ではありませんが、 しかし少なくとも<code>binop</code>構造体と他の似たような定義の構造体と 区別をつける方法はあります。 <br><br></li>
+</ul></li>
+<li><code>:predicate</code>
+<ul>
+<li>このオプションはひとつの引数を取り、 それは<code>predicate</code>の名前を指定したものです。 もし引数が指定されないか、オプション自身が指定されなかったときは、 <code>predicate</code>の名前は、構造体の名前と文字列<code>"-P-"</code>を結合したものを生成し、 その名前を<a href="8.1.defstruct.html"><code>defstruct</code></a>フォームが展開された時点の 現在のパッケージに<code>intern</code>したもにになります。 もし引数が<a href="5.3.nil-variable.html"><code>nil</code></a>で与えられたときは、 <code>predicate</code>関数は定義されません。 <code>predicate</code>を定義できるのは構造体に名前がついているときであり、 もし<code>:type</code>が指定されて、かつ<code>:named</code>が指定されなかったときは、 <code>:predicate</code>は指定しないかあるいは:<a href="5.3.nil-variable.html"><code>nil</code></a>の値を 指定するかのどちらかでなければなりません。 <br><br></li>
+</ul></li>
+<li><code>:print-function</code>, <code>:print-object</code>
+<ul>
+<li><p><code>:print-function</code>と<code>:print-object</code>のオプションは、 型<em>structure-name</em>の構造体のための <code>print-object</code>メソッドを生成します。 これらのオプションは同義語ではありませんが、 似たような機能を提供します。 これらのオプションの選択（<code>:print-function</code>か<code>:print-object</code>）は、 どのようにして<em>printer-name</em>という関数を呼び出すのかに影響します。 これらのオプションはただひとつだけ使うことができます。 そしてこれらのオプションは<code>:type</code>が指定されなかったときのみ使用できます。 <br><br> もし<code>:print-function</code>オプションが使われたとき、 構造体の名前<em>structure-name</em>が印字されるときに 指定された<code>printer</code>関数が次の3つの引数と共に呼び出されます。</p>
+<ul>
+<li>印字したい構造体（<em>structure-name</em>の一般的なインスタンス）</li>
+<li>印字先のストリーム</li>
+<li>現在の深さを示す整数値。この整数の値は実装によって 異なるかもしれませんが、それは 不確実な深さが適切かどうかを判断するために <a href="22.4.print-level.html"><code>*print-level*</code></a>と比較することで 信頼性を高めることができます。</li>
+</ul>
+<p><code>(:print-function printer-name)</code>の指定は、 おおよそ次のものと同一です。</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> print-object </span>((object structure-name) <span class="kw">stream</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">funcall</span> (<span class="kw">function</span> printer-name) object <span class="kw">stream</span> &lt;&lt;current-print-depth&gt;&gt;))</span></code></pre></div>
+<ul>
+<li><ul>
+<li><p><code>&lt;&lt;current-print-depth&gt;&gt;</code>は、現在の印字がどれくらい深いのかという プリンターの値を表現したものです。 <code>&lt;&lt;current-print-depth&gt;&gt;</code>が常に0であり、 <a href="22.4.print-level.html"><code>*print-level*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>でない場合、 印刷が再帰的に下降するにつれて順次小さな値に再束縛されるか、 あるいは、同じ走査中に印刷が再帰的に下降するにつれて <code>current-print-depth</code>の値が変化し、 <a href="22.4.print-level.html"><code>*print-level*</code></a>が一定のままであるかは 実装依存です。 <br><br></p>
+<p>もし<code>:print-object</code>オプションが使われたとき、 構造体の名前<em>structure-name</em>が印字されるときに 指定された<code>printer</code>関数が次の2つの引数と共に呼び出されます。</p>
+<ul>
+<li>印字したい構造体（<em>structure-name</em>の一般的なインスタンス）</li>
+<li>印字先のストリーム</li>
+</ul>
+<p><code>(:print-object printer-name)</code>の指定は、 おおよそ次のものと同一です。</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> print-object </span>((object structure-name) <span class="kw">stream</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">funcall</span> (<span class="kw">function</span> printer-name) object <span class="kw">stream</span>))</span></code></pre></div>
+<ul>
+<li><ul>
+<li>もし<code>:type</code>オプションが指定されなかったとき、 さらに<code>:print-function</code>か<code>:print-object</code>オプションが指定され、 その<em>printer-name</em>が指定されなかったときは、 <code>print-object</code>メソッドは <em>structure-name</em>で<code>specialized</code>されたメソッドを生成し、 実装の関数である<code>#S</code>表記を用いた構造体の 標準的な印刷を呼び出します。 22.1.3.12. 構造体の印字をご確認ください。 <br><br> もし<code>:print-function</code>と<code>:print-object</code>の どちらのオプションも指定されなかったときは、 <a href="8.1.defstruct.html"><code>defstruct</code></a>は<em>structure-name</em>に特化した <code>print-object</code>メソッドは生成せず、 <code>:include</code>オプションによって指定された構造体のものか、 あるいは構造体の印刷のデフォルトの動作のものかが 標準的なふるまいとして継承されます。 <code>print-object</code>関数と、22.1.3.12. 構造体の印字をご確認ください。 <br><br> <a href="22.4.print-circle.html"><code>*print-circle*</code></a>が<em>true</em>のとき、 ユーザーが定義した印刷関数は オブジェクトを印刷するときに 指定されたストリームを用いて<code>write</code>, <code>prin1</code>, <code>princ</code>, <code>format</code>を使用できますが、 循環構造を検出したときは<code>#n#</code>構文を用いた印刷がされます。 これは、<code>print-object</code>に <code>:print-function</code>オプションで追加されたメソッドを適用できます。 もしユーザーが定義した印刷関数が 指定されたもの以外のストリームに対して行われたとき、 循環構造の検出はそのストリームでやり直しされます。 <a href="22.4.print-circle.html"><code>*print-circle*</code></a>変数をご確認ください。 <br><br></li>
+</ul></li>
+<li><code>:type</code>
+<ul>
+<li><p><code>:type</code>は構造体が使用する表現を明確に指定します。 この引数は、下記のどれかでなければなりません。</p>
+<ul>
+<li><code>vector</code>
+<ul>
+<li>これは<code>(vector t)</code>として指定された結果と同じものが生成されます。 この構造体は一般的な<code>vector</code>として表現され、 <code>vector</code>の要素に値が保存されます。 もし構造体に<code>:name</code>が指定されていたときは、 最初の要素は<code>vector</code>の1番目の要素であり、 指定されていないときは0番目の要素です。 <br><br></li>
+</ul></li>
+<li><code>(vector element-type)</code>
+<ul>
+<li>この構造体は（可能であれば特定化された）<code>vector</code>として表現され、 <code>vector</code>の要素に値が保存されます。 全ての要素は指定された型の<code>vector</code>に 格納できるような型でなければなりません。 もし構造体に<code>:name</code>が指定されていたときは、 最初の要素は<code>vector</code>の1番目の要素であり、 指定されていないときは0番目の要素です。 <br><br></li>
+</ul></li>
+<li><a href="14.2.list-system-class.html"><code>list</code></a>
+<ul>
+<li>この構造体はリストとして表現されます。 もし構造体に<code>:name</code>が指定されていたときは、 最初の要素は<a href="14.2.car.html"><code>cadr</code></a>であり、 指定されていないときは<a href="14.2.car.html"><code>car</code></a>の要素です。 <br><br></li>
+</ul></li>
+</ul>
+<p>このオプションの指定は、 特定の表現へ強制する効果があり、 defstructで指定された順序で 対応する連続した要素を指定した表現で 格納する効果があります。 これは構造体名が<a href="4.4.typep.html"><code>typep</code></a>によって識別できる 有効な型指定子になることも禁止します。 <br><br></p>
+<p>例えば下記の例を考えます。</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(quux (<span class="bu">:type</span> <span class="kw">list</span>) <span class="bu">:named</span>) x y)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>これは、<a href="14.2.list-function.html"><code>list</code></a>関数を使用したかのように、 <code>car</code>が<code>quux</code>であるようなリストを生成する 構築関数を作らなければいけません。 <br><br> もし次のような型が定義されたとき</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">deftype</span><span class="fu"> quux </span>() &#39;(<span class="kw">satisfies</span> quux-p))</span></code></pre></div>
+<ul>
+<li><ul>
+<li>次のフォーム</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> (make-quux) &#39;quux)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>これは正確に次のようなものの実行を 返却しなければなりません。</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> (<span class="kw">list</span> &#39;quux <span class="kw">nil</span> <span class="kw">nil</span>) &#39;quux)</span></code></pre></div>
+<ul>
+<li><ul>
+<li>もし<code>:type</code>が指定されなかったときは、 構造体は型<a href="4.4.structure-object.html"><code>structure-object</code></a>の オブジェクトとして表現されます。 <br><br> <code>:type</code>オプションがない<a href="8.1.defstruct.html"><code>defstruct</code></a>は、 構造体名のクラスを定義します。 構造体のインスタンスのメタクラスは<a href="4.4.structure-class.html"><code>structure-class</code></a>です。 <br><br></li>
+</ul></li>
+</ul>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>の構造体を再定義したときの結果は未定義です。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>に何もオプションを指定しなかった場合は、 新しい構造体のインスタンスでは 次のような操作を行う関数が自動的に定義されます。</p>
+<ul>
+<li>述部<code>predicate</code>
+<ul>
+<li><em>structure-name</em><code>-p</code>という名前の<code>predicate</code>が定義され、 構造体の型のメンバーかどうかをテストします。 <code>predicate</code>の呼び出し<code>(structure-name-p object)</code>は、 <em>object</em>がその型であれば<em>true</em>を、 そうでなければ<em>false</em>を返却します。 <a href="4.4.typep.html"><code>typep</code></a>もまた新しい型の名前を <em>object</em>がその型に属したものかどう かテストする際に使用できます。 このような関数の呼び出しは <code>(typep object 'structure-name)</code>というフォームを持ちます。 <br><br></li>
+</ul></li>
+<li>要素のリーダー関数(reader function)
+<ul>
+<li>リーダー関数は、構造体の要素を読むために定義されます。 各スロットの名前について、対応するリーダー関数が <code>structure-name-slot-name</code>という名前で生成されます。 この関数は指定されたスロットの内容を読み込みます。 各リーダー関数は引数に構造体型のインスタンスをひとつ取ります。 <a href="5.3.setf.html"><code>setf</code></a>は、変更可能なスロットに対して リーダー関数を指定することで使用できます。 <br><br></li>
+</ul></li>
+<li>構築関数
+<ul>
+<li>構築関数は<code>make-structure-name</code>という名前で定義されます。 この関数は構造体型の新しいインスタンスを生成した返却します。 <br><br></li>
+</ul></li>
+<li>コピー関数
+<ul>
+<li>コピー関数は<code>copy-structure-name</code>という名前で定義されます。 コピー関数は構造体型のオブジェクトを引数に取り、 同じ型の新しいオブジェクトを作成してそのコピーを行います。 コピー関数は元のものと全体の構成が同じである新しい構造体を作ります。 2つの構造体インスタンスの各要素は<a href="5.3.eql-function.html"><code>eql</code></a>で等しくなります。 <br><br></li>
+</ul></li>
+</ul>
+<p>もし<a href="8.1.defstruct.html"><code>defstruct</code></a>フォームがトップレベルフォームとして現れたとき、 コンパイラーは構造体の型を後続の宣言（例えば<a href="4.4.deftype.html"><code>deftype</code></a>）で 有効な型として認識できるようにし、構造体のスロットのリーダーを <a href="5.3.setf.html"><code>setf</code></a>で使用可能にしなければなりません。 さらにコンパイラーは同じファイルで構造体名を参照する 別の<a href="8.1.defstruct.html"><code>defstruct</code></a>定義で<code>:include</code>を使用できるように 構造体の型についての十分な情報を保存しなければなりません。 <a href="8.1.defstruct.html"><code>defstruct</code></a>が生成する関数はコンパイル時の環境で 定義する必要はありませんが、 コンパイラーは後続の<code>inline</code>呼び出しのために、 関数のコードに関する十分な情報を保存する必要があるかもしれません。 <code>#S</code>リーダーマクロは、コンパイル時に新しく定義された構造体型については 認識するかもしれませんししないかもしれません。</p>
+<h2 id="例文">例文</h2>
+<p>構造体の定義の例を下記に示します。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> ship</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  x-position</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  y-position</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  x-velocity</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  y-velocity</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  mass)</span></code></pre></div>
+<p>これは全ての<code>ship</code>が5つの名前を持った要素持つ オブジェクトであると宣言しています。 このフォームの評価は、次のことを行います。</p>
+<ol type="1">
+<li><p><code>ship-x-position</code>というひとつの引数<code>ship</code>を受け取る関数を定義し、 それは<code>ship</code>の<code>x-position</code>を返却します。 <code>ship-y-position</code>とその他の要素も似たような関数の定義が与えられます。 これらの関数はアクセス関数と呼ばれ、 構造体の要素にアクセスするときに使用されます。</p></li>
+<li><p><code>ship</code>は、<code>ship</code>のインスタンスの型の名前になります。 <code>ship</code>は<a href="4.4.typep.html"><code>typep</code></a>で使用可能であり、 例えば<code>(typep x 'ship)</code>は<code>x</code>が<code>ship</code>のときは<em>true</em>に、 <code>x</code>が<code>ship</code>以外のオブジェクトのときは<em>false</em>になります。</p></li>
+<li><p><code>ship-p</code>という名前のひとつの引数を取る関数が定義されます。 これは<code>predicate</code>であり、引数が<code>ship</code>のときは<em>true</em>を、 それ以外のときは<em>false</em>を返却します。</p></li>
+<li><p><code>make-ship</code>と呼ばれる関数が定義され、 起動されると5つの要素を持つ構造体のデータが作成されます。 各要素にはアクセス関数を使うのが適切です。 下記の実行がなされたとき、</p></li>
+</ol>
+<div class="sourceCode" id="cb29"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> ship2 (make-ship))</span></code></pre></div>
+<ul>
+<li><code>ship2</code>には新しい<code>ship</code>オブジェクトがセットされます。 初期値を希望する要素に供給したい場合は、 <code>make-ship</code>の呼び出しにキーワード引数を使います。 例えば下記の通り。</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> ship2 (make-ship :mass *default-ship-mass*</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                       :x-position <span class="dv">0</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                       :y-position <span class="dv">0</span>))</span></code></pre></div>
+<ul>
+<li>これは新しい<code>ship</code>が構築され、3つの要素に初期化されます。 この関数は新しい構造体を作成するので「構築関数」と呼ばれます。</li>
+</ul>
+<ol start="5" type="1">
+<li><code>copy-ship</code>と呼ばれる引数をひとつ受け取る関数が定義されます。 引数が<code>ship</code>オブジェクトのとき、新しい<code>ship</code>オブジェクトが生成され 引数のものをコピーします。この関数は「コピー関数」と呼ばれます。</li>
+</ol>
+<p><a href="5.3.setf.html"><code>setf</code></a>は<code>ship</code>の変更可能な要素に使うことができます。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (ship-x-position ship2) <span class="dv">100</span>)</span></code></pre></div>
+<p>これは<code>ship2</code>の<code>x-position</code>を<code>100</code>に変更しています。 これは<a href="8.1.defstruct.html"><code>defstruct</code></a>の動作として、 各アクセス関数に対して<a href="5.3.defsetf.html"><code>defsetf</code></a>を適用するように 生成しているので動作します。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 例1</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 構造体型townの定義</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co">;;; area, watertowers, firetrucks, population, elevation が要素</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> town</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            area</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            watertowers</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>            (firetrucks <span class="dv">1</span> <span class="bu">:type</span> <span class="kw">fixnum</span>)    <span class="co">;初期化スロット</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>            population </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            (elevation <span class="dv">5128</span> <span class="bu">:read-only</span> <span class="kw">t</span>)) <span class="co">;スロットは変更不可</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  TOWN</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">;townインスタンスの作成</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> town1 (make-town :area <span class="dv">0</span> :watertowers <span class="dv">0</span>)) <span class="op">=&gt;</span>  #S(TOWN...)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co">;townのpredicateは新しいインスタンスを認識できる</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>(town-p town1) <span class="op">=&gt;</span>  true</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co">;新しいtownのareaはmake-townによって設定</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>(town-area town1) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="co">;新しいtownのelevationは初期値</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>(town-elevation town1) <span class="op">=&gt;</span>  <span class="dv">5128</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="co">;setfはリーダー関数を認識できる</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setf</span> (town-population town1) <span class="dv">99</span>) <span class="op">=&gt;</span>  <span class="dv">99</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>(town-population town1) <span class="op">=&gt;</span>  <span class="dv">99</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co">;コピー関数はtown1のコピーを作る</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> town2 (copy-town town1)) <span class="op">=&gt;</span>  #S(TOWN...)</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>(<span class="op">=</span> (town-population town1) (town-population town2))  <span class="op">=&gt;</span>  true</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="co">;elevationは読み込み専用スロットなのでこの値は</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="co">;構造体が作成されたときのみ設定できる</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> town3 (make-town :area <span class="dv">0</span> :watertowers <span class="dv">3</span> :elevation <span class="dv">1200</span>))</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #S(TOWN...)</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 例2</span></span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 構造体型clownの定義</span></span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a><span class="co">;;; この構造体は非標準のprefixを使う</span></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(clown (<span class="bu">:conc-name</span> bozo-))</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>            (nose-color &#39;red)         </span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>            frizzy-hair-p polkadots) <span class="op">=&gt;</span>  CLOWN</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> funny-clown (make-clown)) <span class="op">=&gt;</span>  #S(CLOWN)</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a><span class="co">;非標準のリーダーの名前を使う</span></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>(bozo-nose-color funny-clown) <span class="op">=&gt;</span>  RED        </span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(klown (<span class="bu">:constructor</span> make-up-klown) <span class="co">;キーワードの変更以外は</span></span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>            (<span class="bu">:copier</span> clone-klown)              <span class="co">;似たような定義</span></span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>            (<span class="bu">:predicate</span> is-a-bozo-p))</span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>            nose-color frizzy-hair-p polkadots) <span class="op">=&gt;</span>  klown</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a><span class="co">;変更した構築関数が今存在する</span></span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>(<span class="kw">fboundp</span> &#39;make-up-klown) <span class="op">=&gt;</span>  true</span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 例3</span></span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 構造体型vehicleの定義</span></span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a><span class="co">;;; その後vehicle構造体をincludeした</span></span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a><span class="co">;;; truck構造体を定義する</span></span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> vehicle </span>name year (diesel <span class="kw">t</span> <span class="bu">:read-only</span> <span class="kw">t</span>)) <span class="op">=&gt;</span>  VEHICLE</span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(truck (:include vehicle (year <span class="dv">79</span>)))</span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>            load-limit                          </span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>            (axles <span class="dv">6</span>)) <span class="op">=&gt;</span>  TRUCK</span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-truck <span class="bu">:name</span> &#39;mac :diesel <span class="kw">t</span> :load-limit <span class="dv">17</span>))</span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #S(TRUCK...)</span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a><span class="co">;vehicleリーダーがtruckで動作する</span></span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a>(vehicle-name x)</span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  MAC</span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a><span class="co">;デフォルト値は:include項指定のもの</span></span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a>(vehicle-year x)</span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">79</span> </span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(pickup (:include truck))     <span class="co">;pickup型はtruckをinclude</span></span>
+<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a>            camper long-bed four-wheel-drive) <span class="op">=&gt;</span>  PICKUP</span>
+<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-pickup <span class="bu">:name</span> &#39;king :long-bed <span class="kw">t</span>)) <span class="op">=&gt;</span>  #S(PICKUP...)</span>
+<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a><span class="co">;:includeのデフォルト値は継承されたもの</span></span>
+<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a>(pickup-year x) <span class="op">=&gt;</span>  <span class="dv">79</span></span>
+<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 例4</span></span>
+<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a><span class="co">;;; BOA構築の使用</span></span>
+<span id="cb32-74"><a href="#cb32-74" aria-hidden="true" tabindex="-1"></a><span class="co">;;;</span></span>
+<span id="cb32-75"><a href="#cb32-75" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defstruct</span><span class="fu"> </span>(dfs-boa                      <span class="co">;BOA構築</span></span>
+<span id="cb32-76"><a href="#cb32-76" aria-hidden="true" tabindex="-1"></a>              (<span class="bu">:constructor</span> make-dfs-boa (a b c)) </span>
+<span id="cb32-77"><a href="#cb32-77" aria-hidden="true" tabindex="-1"></a>              (<span class="bu">:constructor</span> create-dfs-boa</span>
+<span id="cb32-78"><a href="#cb32-78" aria-hidden="true" tabindex="-1"></a>                (a &amp;optional b (c &#39;cc) &amp;<span class="kw">rest</span> d &amp;aux e (f &#39;ff))))</span>
+<span id="cb32-79"><a href="#cb32-79" aria-hidden="true" tabindex="-1"></a>            a b c d e f) <span class="op">=&gt;</span>  DFS-BOA</span>
+<span id="cb32-80"><a href="#cb32-80" aria-hidden="true" tabindex="-1"></a><span class="co">;a, b, cは位置によって設定し、&amp;restは初期化しない</span></span>
+<span id="cb32-81"><a href="#cb32-81" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (make-dfs-boa <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)) <span class="op">=&gt;</span>  #(DFS-BOA...)</span>
+<span id="cb32-82"><a href="#cb32-82" aria-hidden="true" tabindex="-1"></a>(dfs-boa-a x) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb32-83"><a href="#cb32-83" aria-hidden="true" tabindex="-1"></a><span class="co">;aとbはセット、cとfはデフォルト</span></span>
+<span id="cb32-84"><a href="#cb32-84" aria-hidden="true" tabindex="-1"></a><span class="co">;a and b set, c and f defaulted</span></span>
+<span id="cb32-85"><a href="#cb32-85" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (create-dfs-boa <span class="dv">1</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  #(DFS-BOA...)</span>
+<span id="cb32-86"><a href="#cb32-86" aria-hidden="true" tabindex="-1"></a>(dfs-boa-b x) <span class="op">=&gt;</span>  <span class="dv">2</span></span>
+<span id="cb32-87"><a href="#cb32-87" aria-hidden="true" tabindex="-1"></a>(<span class="kw">eq</span> (dfs-boa-c x) &#39;cc) <span class="op">=&gt;</span>  true</span>
+<span id="cb32-88"><a href="#cb32-88" aria-hidden="true" tabindex="-1"></a><span class="co">;a, b, cはセット、&amp;restはdに集められている</span></span>
+<span id="cb32-89"><a href="#cb32-89" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> x (create-dfs-boa <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span>)) <span class="op">=&gt;</span>  #(DFS-BOA...)</span>
+<span id="cb32-90"><a href="#cb32-90" aria-hidden="true" tabindex="-1"></a>(dfs-boa-d x) <span class="op">=&gt;</span>  (<span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span>)</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もし2つのスロットの名前が （直接現れたか、<code>:include</code>オプションによって継承されたかに関わらず） <a href="16.2.string-equal.html"><code>string=</code></a>で等しいときは、 <a href="8.1.defstruct.html"><code>defstruct</code></a>は型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p><em>included-structure-name</em>が構造体型の名前ではないときの結果は未定義です。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.documentation.html"><code>documentation</code></a>, <code>print-object</code>, <a href="5.3.setf.html"><code>setf</code></a>, <a href="4.4.subtypep.html"><code>subtypep</code></a>, <a href="4.4.type-of.html"><code>type-of</code></a>, <a href="4.4.typep.html"><code>typep</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
+<h2 id="備考">備考</h2>
+<p><em>printer-name</em>はプリンターを制御する <a href="22.4.print-escape.html"><code>*print-escape*</code></a>のような変数を見なければなりません。</p>
+<p><em>slot-initform</em>と対応するスロットの<code>:type</code>オプション間では、 型の不一致による警告を禁止する必要があります。 なぜなら、スロットオプションを指定するために <em>slot-initform</em>を指定する必要があり、 場合よっては適切なデフォルト値が存在しないかもしれません。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>が<a href="5.3.setf.html"><code>setf</code></a>の使用による スロットのアクセッサを変更する仕組みは 実装依存です。 例えば、これは<a href="5.3.setf.html"><code>setf</code></a>関数か、<a href="5.3.setf.html"><code>setf</code></a>展開か、 あるいはその他の<a href="5.3.setf.html"><code>setf</code></a>への実装コードとして知られている 実装依存の仕組みなどが使われます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

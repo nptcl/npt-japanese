@@ -4,24 +4,30 @@
 ;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  Condition Type ERROR
+;;  Condition Type WARNING
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@begin: 9.2.error!condition
-@name: error!condition
+@begin: 9.2.warning
+@name: warning
 @type: condition-type
 
-Conditino Type `ERROR`
+Condition Type `WARNING`
 
 
 ## {class-precedence-list}
 
-{error!condition:link}, {serious-condition:link},
-{condition:link}, {t!system-class:link}
+{warning:link},
+{condition:link},
+{t!system-class:link}
 
 
 ## {description}
 
-型{error!condition:link}は、エラーを表現する全てのコンディションを含みます。
+型{warning:link}は全ての警告の型を含みます。
+
+
+## {see-also}
+
+{style-warning:link}
 
 @end
 

@@ -66,6 +66,7 @@
 (replace literal-object "リテラルオブジェクト")
 (replace confirming-implementation "仕様に適合した実装")
 (replace confirming-program "仕様に適合したプログラム")
+(replace confirming-code "仕様に適合したコード")
 (replace implicit-progn "暗黙のprogn")
 (replace accessor "アクセッサ")
 
@@ -76,6 +77,7 @@
 (replace specialized-parameter "特化したパラメーター")
 
 (replace format-control "format-control")
+(replace format-arguments "format-arguments")
 (replace format-directive "format指示子")
 (replace ordinary-lambda-list "通常のラムダリスト")
 (replace macro-lambda-list "マクロラムダリスト")
@@ -126,4 +128,6 @@
 (replace method-combination "`method-combination`")
 (replace atomic-type-specifier "原始的な型指定子")
 (replace compound-type-specifier "合成された型指定子")
+
+(replace generalized-reference "一般化された参照")
 

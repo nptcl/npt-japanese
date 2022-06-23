@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INVALID-METHOD-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.invalid-method-error
+@name: invalid-method-error
+@type: function
+
+Function `INVALID-METHOD-ERROR`
+
+
+## {syntax}
+
+`invalid-method-error` *method* *format-control* `&rest` *args*
+ => {implementation-dependent}
+
+
+## {arguments-and-values}
+
+*method* - メソッド  
+*format-control* - {format-control}  
+*args* - *format-control*に対応する`format`の引数
+
+
+## {description}
+
+{invalid-method-error:link}関数は、
+適用可能な*method*の{qualifiers}が、
+`method-combination`の型に対して有効ではなかったとき、
+型{error!condition:link}のエラーを通知する際に使用します。
+エラーメッセージは、*format-control*と*args*を
+{format:link}に使って構築します。
+実装はエラーメッセージに追加で文脈的な情報を
+追加する必要があるかもしれないので、
+{invalid-method-error:link}は`method-combination`関数の
+動的エクステント内でのみ呼び出すことができます。
+
+あるメソッドが{define-method-combination:link}フォームの
+全ての{qualifiers}か`predicate`を満たさなかったときは、
+自動的に{invalid-method-error:link}関数が呼ばれます。
+`method-combination`関数は、
+もし適用できないメソッドに遭遇した場合は、
+明確に{invalid-method-error:link}を呼び出さなければならないという
+追加の制約があることを意味しています。
+
+{invalid-method-error:link}が呼び出し元へ戻るのか、
+あるいは{throw:link}を経由して退出するかどうかは、
+{implementation-dependent}です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+デバッガーに入るかもしれません。
+
+
+## {affected-by}
+
+{*break-on-signals*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{define-method-combination:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,39 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type CELL-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.cell-error
+@name: cell-error
+@type: condition-type
+
+Condition Type `CELL-ERROR`
+
+
+## {class-precedence-list}
+
+{cell-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{cell-error:link}は、位置へアクセスする際に生じた
+エラーのコンディションを含みます。
+問題のセルの名前は、{make-condition:link}の
+初期化引数`:name`によって初期化され、
+{cell-error-name:link}関数によってアクセスできます。
+
+
+## {see-also}
+
+{cell-error-name:link}
+
+@end
+

@@ -318,7 +318,7 @@ slot-option::= :type slot-type |
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> (dr-width my-door) <span class="op">=&gt;</span>  <span class="fl">43.7</span></span></code></pre></div>
 <ul>
 <li><ul>
-<li><code>:conc-name</code>オプションが明に指定されたかどうかに関わらず、 次の規則が生成されるリーダー（あるいはアクセッサ）の名前の 衝突を管理します。 ある構造体の型を<code>S1</code>、 スロットの名前が<code>X1</code>であり、 そのリーダー関数の名前が<code>R</code>とする。 これは他の構造体の<code>S2</code>によって継承されている。 <code>S2</code>はスロット<code>X2</code>があり、 同じ名前のリーダー関数<code>R</code>を指定しいる。 <code>S2</code>はまだ<code>R</code>の定義を生成しておらず、 かわりに<code>S1</code>の定義から定義<code>R</code>が継承されている。 （このような場合、もし<code>X1</code>と<code>X2</code>が違うスロットのときは、 実装は<code>style-warning</code>を通知するかもしれない。） <br><br></li>
+<li><code>:conc-name</code>オプションが明に指定されたかどうかに関わらず、 次の規則が生成されるリーダー（あるいはアクセッサ）の名前の 衝突を管理します。 ある構造体の型を<code>S1</code>、 スロットの名前が<code>X1</code>であり、 そのリーダー関数の名前が<code>R</code>とします。 これは他の構造体の<code>S2</code>によって継承されています。 <code>S2</code>はスロット<code>X2</code>があり、 同じ名前のリーダー関数<code>R</code>を指定しています。 <code>S2</code>はまだ<code>R</code>の定義を生成しておらず、 かわりに<code>S1</code>の定義から定義<code>R</code>が継承されています。 （このような場合、もし<code>X1</code>と<code>X2</code>が違うスロットのときは、 実装は<a href="9.2.style-warning.html"><code>style-warning</code></a>を通知するかもしれません） <br><br></li>
 </ul></li>
 <li><code>:constructor</code>
 <ul>

@@ -1,0 +1,34 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type SIMPLE-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.simple-error
+@name: simple-error
+@type: condition-type
+
+Condition Type `SIMPLE-ERROR`
+
+
+## {class-precedence-list}
+
+{simple-error:link},
+{simple-condition:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{simple-error:link}は、
+{error!function:link}か{cerror:link}によって
+{format-control}が関数の最初の引数として与えられたときに
+通知されるコンディションを含みます。
+
+@end
+

@@ -295,7 +295,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 <p><a href="5.3.typecase.html"><code>ctypecase</code></a>と<a href="5.3.typecase.html"><code>etypecase</code></a>がエラーを通知したときは、 既存の<code>handler</code>と<a href="21.2.debug-io.html"><code>*debug-io*</code></a>に影響を及ぼす可能性があります。</p>
 <h2 id="例外">例外</h2>
 <p><em>normal-clause</em>にマッチしなかったときは、 <a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>は 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
-<p>もしある<em>clause</em>がそれより早い<em>clause</em>によって完全にシャドウされ、 決して選択されないような状況であったとき、 コンパイラーは、型<code>style-warning</code>の警告を出すかどうか 選択することができます。</p>
+<p>もしある<em>clause</em>がそれより早い<em>clause</em>によって完全にシャドウされ、 決して選択されないような状況であったとき、 コンパイラーは、型<a href="9.2.style-warning.html"><code>style-warning</code></a>の警告を出すかどうか 選択することができます。</p>
 <h2 id="参考">参考</h2>
 <p><a href="5.3.case.html"><code>case</code></a>, <a href="5.3.cond.html"><code>cond</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, 5.1. 一般化された参照</p>
 <h2 id="備考">備考</h2>

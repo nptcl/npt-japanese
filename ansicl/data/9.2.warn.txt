@@ -1,0 +1,125 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WARN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.warn
+@name: warn
+@type: function
+
+Function `WARN`
+
+
+## {syntax}
+
+`warn` *datum* `&rest` *arguments* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*datum*, *arguments* - コンディション指定子であり、標準の型は{simple-error:link}。
+
+
+## {description}
+
+型{warning:link}のコンディションを通知します。
+もしコンディションが捕捉されなかったときは、
+`error-output`にコンディションを報告します。
+
+警告の正確な仕組みは下記の通り。
+
+- {warning:link}コンディションを通知
+  - {warning:link}コンディションの通知を始めるとき、
+    {muffle-warning!restart:link} `restart`がハンドラーとして確立します。
+    もし起動されたら、この`restart`は{warn:link}によるアクションを素通りして、
+    その次に{warn:link}を即座に{nil!variable:link}で返却させます。
+    <br><br>
+
+- もし{warning:link}コンディションのハンドラーが見つからなかったとき
+  - もし{warning:link}コンディションのハンドラーが見つからなかったか、
+    あるいはそのようなハンドラーが全て却下されたときは、
+    そのコンディションは{warn:link}によって、
+    {implementation-dependent}のフォーマットで
+    `error-output`に報告が出力されます。
+    <br><br>
+
+- {nil!variable:link}が返却される
+  - {warn:link}が戻った時の返却値は{nil!variable:link}です。
+    <br><br>
+
+
+## {examples}
+
+```lisp
+ (defun foo (x)
+   (let ((result (* x 2)))
+     (if (not (typep result 'fixnum))
+         (warn "You're using very big numbers."))
+     result))
+=>  FOO
+
+ (foo 3)
+=>  6
+
+ (foo most-positive-fixnum)
+>>  Warning: You're using very big numbers.
+=>  4294967294
+
+ (setq *break-on-signals* t)
+=>  T
+
+ (foo most-positive-fixnum)
+>>  Break: Caveat emptor.
+>>  To continue, type :CONTINUE followed by an option number.
+>>   1: Return from Break.
+>>   2: Abort to Lisp Toplevel.
+>>  Debug> :continue 1
+>>  Warning: You're using very big numbers.
+=>  4294967294
+```
+
+
+## {side-effects}
+
+警告が表示されます。
+デバッガーに入るかもしれません。
+
+
+## {affected-by}
+
+存在するハンドラーの束縛
+
+{*break-on-signals*:link},
+{*error-output*:link}
+
+
+## {exceptional-situations}
+
+*datum*がコンディションのとき、
+そのコンディションが型{warning:link}ではなかったか、
+あるいは（*datum*がコンディションでありかつ）
+*arguments*が{nil!variable:link}でなかったときは、
+型{type-error:link}のエラーが通知されます。
+
+*datum*がコンディションの型のときは、
+`(apply #'make-condition datum arguments)`の結果は
+型{warning:link}でなければならず、
+そうでないときは型{type-error:link}おエラーが通知されます。
+
+
+## {see-also}
+
+{*break-on-signals*:link},
+{muffle-warning!function:link},
+{signal:link},
+
+
+## {notes}
+
+なし。
+
+@end
+

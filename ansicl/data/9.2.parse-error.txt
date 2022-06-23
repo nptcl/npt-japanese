@@ -1,0 +1,36 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type PARSE-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.parse-error
+@name: parse-error
+@type: condition-type
+
+Condition Type `PARSE-ERROR`
+
+
+## {class-precedence-list}
+
+{parse-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{parse-error:link}は、構文解析に関するエラーのコンディションを含みます。
+
+
+## {see-also}
+
+{parse-namestring:link},
+{reader-error:link}
+
+@end
+

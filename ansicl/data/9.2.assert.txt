@@ -1,0 +1,135 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro ASSERT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.assert
+@name: assert
+@type: macro
+
+Macro `ASSERT`
+
+
+## {syntax}
+
+`assert` *test-form* [(*place\**) [*datum-form* *argument-form\**]]  
+=> {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*test-form* - フォーム。常に評価されます。  
+*place* - {place}。もしエラーが通知されたら評価されます。  
+*datum-form* - フォームであり評価したものを*datum*とします。
+評価はエラーが通知されたたびに行われ、
+もしエラーが通知されなかったら行われません。  
+*argument-form* - フォームであり評価したものを*argument*とします。
+評価はエラーが通知されたたびに行われ、
+もしエラーが通知されなかったら行われません。  
+*datum*, *argument* - コンディション指定子であり、
+デフォルトが型{error!condition:link}。
+（これらの指定子は*datum-form*と各*argument-form*が
+評価された結果です）
+
+
+## {description}
+
+{assert:link}は*test-form*が*true*に評価されることを保証します。
+もし*test-form*が*false*に評価されたときは、
+{assert:link}は修正可能なエラー（*datum*と各*argument*による）を通知します。
+{continue!restart:link} `restart`を使用してエラーの継続を行うときは、
+{assert:link}が*test-form*を再評価する前に、
+ユーザーが*place*の値を変更することで実現します。
+もし*test-form*の値が{nil!variable:link}ではなかったときは、
+{assert:link}は{nil!variable:link}を返却します。
+
+*place*は*test-form*に依存したデータへの{generalized-reference}であり、
+その値はユーザーがエラーを修正することによって変更することができます。
+*place*のサブフォームは、エラーが通知されたときのみ評価され、
+エラーが再通知されたときにも再評価されます
+（再通知は実際のエラーが修正されずに継続した後に発生します）。
+*place*の評価順序は指定されていません。
+{5.1.1.1:ab}をご確認ください。
+もし*place*フォームが保存変数より多い値を生成して供給されたとき、
+余分の値は無視されます。
+もし指定したフォームが保存変数より少ない値を生成したとき、
+不足した値は{nil!variable:link}がセットされます。
+
+
+## {examples}
+
+```lisp
+(setq x (make-array '(3 5) :initial-element 3))
+=>  #2A((3 3 3 3 3) (3 3 3 3 3) (3 3 3 3 3))
+(setq y (make-array '(3 5) :initial-element 7))
+=>  #2A((7 7 7 7 7) (7 7 7 7 7) (7 7 7 7 7))
+(defun matrix-multiply (a b)
+  (let ((*print-array* nil))
+    (assert (and (= (array-rank a) (array-rank b) 2)
+                 (= (array-dimension a 1) (array-dimension b 0)))
+            (a b)
+            "Cannot multiply ~S by ~S." a b)
+           (really-matrix-multiply a b))) =>  MATRIX-MULTIPLY
+(matrix-multiply x y)
+>>  Correctable error in MATRIX-MULTIPLY: 
+>>  Cannot multiply #<ARRAY ...> by #<ARRAY ...>.
+>>  Restart options:
+>>   1: You will be prompted for one or more new values.
+>>   2: Top level.
+>>  Debug> :continue 1
+>>  Value for A: x
+>>  Value for B: (make-array '(5 3) :initial-element 6)
+=>  #2A((54 54 54 54 54)
+       (54 54 54 54 54)
+       (54 54 54 54 54)
+       (54 54 54 54 54)
+       (54 54 54 54 54))
+(defun double-safely (x) (assert (numberp x) (x)) (+ x x))
+(double-safely 4) 
+=>  8
+ 
+(double-safely t)
+>>  Correctable error in DOUBLE-SAFELY: The value of (NUMBERP X) must be non-NIL.
+>>  Restart options:
+>>   1: You will be prompted for one or more new values.
+>>   2: Top level.
+>>  Debug> :continue 1
+>>  Value for X: 7
+=>  14
+```
+
+
+## {affected-by}
+
+{*break-on-signals*:link}
+
+アクティブなコンディションハンドラーの集合
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{check-type:link},
+{error!function:link},
+{5.1:ab}
+
+
+## {notes}
+
+デバッガーはエラーメッセージに
+*test-form*を含める必要はなく、
+*place*はメッセージに含めるべきではありませんが、
+利用可能なユーザーの情報はしっかりと見ておく必要があります。
+もしユーザーが`continue`コマンドを提供していたら、
+参照されているどんな値も変更できます。
+この詳細は実装のユーザーインターフェイスのスタイルに依存します。
+
+@end
+

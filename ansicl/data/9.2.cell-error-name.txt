@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CELL-ERROR-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.cell-error-name
+@name: cell-error-name
+@type: function
+
+Function `CELL-ERROR-NAME`
+
+
+## {syntax}
+
+`cell-error-name` *condition* => *name*
+
+
+## {arguments-and-values}
+
+*condition* - 型{cell-error:link}のコンディション  
+*name* - オブジェクト
+
+
+## {description}
+
+*condition*によって表現された状況で生じた
+問題のセルの名前が返却されます。
+
+この結果の意味は指定した*condition*の型に依存します。
+例えば*condition*が型{unbound-variable:link}のときは、
+この結果はアクセスしようとした`unbound`変数の名前であり、
+*condition*が型{undefined-function:link}であれば、
+結果はアクセスしようとした未定義の関数の名前であり、
+*condition*が型{unbound-slot:link}であれば、
+結果はアクセスしようとしたスロットの名前です。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{cell-error:link},
+{unbound-slot:link},
+{unbound-variable:link},
+{undefined-function:link},
+{9.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

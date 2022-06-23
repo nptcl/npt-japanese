@@ -350,6 +350,7 @@
 
 ;; Chapter 9
 (text 9.1 "コンディションシステムの説明" "Condition System Concepts")
+(text 9.1.4 "コンディションの通知と捕捉" "Signaling and Handling Conditions")
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
 (dictionary 9.2.condition)
 (dictionary 9.2.warning)
@@ -370,12 +371,11 @@
 (dictionary 9.2.signal)
 (dictionary 9.2.simple-condition)
 (dictionary 9.2.simple-condition-format-control)
-(dictionary 9.2.simple-condition-format-arguments)  ;; delete
 (dictionary 9.2.warn)
 (dictionary 9.2.simple-warning)
 (dictionary 9.2.invoke-debugger)
 (dictionary 9.2.break)
-(dictionary 9.2.debugguer-hook)
+(dictionary 9.2.debugger-hook)
 (dictionary 9.2.break-on-signals)
 (dictionary 9.2.handler-bind)
 (dictionary 9.2.handler-case)
@@ -397,7 +397,7 @@
 (dictionary 9.2.muffle-warning!restart)
 (dictionary 9.2.store-value!restart)
 (dictionary 9.2.use-value!restart)
-(dictionary 9.2.abort!function)
+(dictionary 9.2.restart-function)
 
 ;; Chapter 10
 (index 10.2 "シンボルの辞書" "Symbols Dictionary")

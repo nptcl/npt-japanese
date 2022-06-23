@@ -1,0 +1,104 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SIGNAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.signal
+@name: signal
+@type: function
+
+Function `SIGNAL`
+
+
+## {syntax}
+
+`signal` *datum* &rest *arguments* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*datum*, *arguments* - コンディション指定子であり、標準の型は{simple-error:link}。
+
+
+## {description}
+
+*datum*と*arguments*で指定されたコンディションを通知します。
+もしコンディションが捕捉されなかったときは、
+{signal:link}は{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(defun handle-division-conditions (condition)
+  (format t "Considering condition for division condition handling~%")
+  (when (and (typep condition 'arithmetic-error)
+             (eq '/ (arithmetic-error-operation condition)))
+    (invoke-debugger condition)))
+HANDLE-DIVISION-CONDITIONS
+(defun handle-other-arithmetic-errors (condition)
+  (format t "Considering condition for arithmetic condition handling~%")
+  (when (typep condition 'arithmetic-error)
+    (abort)))
+HANDLE-OTHER-ARITHMETIC-ERRORS
+(define-condition a-condition-with-no-handler (condition) ())
+A-CONDITION-WITH-NO-HANDLER
+(signal 'a-condition-with-no-handler)
+NIL
+(handler-bind ((condition #'handle-division-conditions)
+                 (condition #'handle-other-arithmetic-errors))
+  (signal 'a-condition-with-no-handler))
+Considering condition for division condition handling
+Considering condition for arithmetic condition handling
+NIL
+(handler-bind ((arithmetic-error #'handle-division-conditions)
+                 (arithmetic-error #'handle-other-arithmetic-errors))
+  (signal 'arithmetic-error :operation '* :operands '(1.2 b)))
+Considering condition for division condition handling
+Considering condition for arithmetic condition handling
+Back to Lisp Toplevel
+```
+
+
+## {side-effects}
+
+{*break-on-signals*:link}により
+デバッガーに入るかもしれません。
+
+通知されたコンディションのハンドラーは
+遷移を制御するかもしれません。
+
+
+## {affected-by}
+
+存在するハンドラーの束縛
+
+{*break-on-signals*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{*break-on-signals*:link},
+{error!function:link},
+{simple-condition:link},
+{9.1.4:ab}
+
+
+## {notes}
+
+もし`(typep datum *break-on-signals*)`が*true*のときは、
+通知処理を行う前にデバッガーに入ります。
+{continue!restart:link} `restart`は通知処理を継続するときに使われます。
+このことは、条件を通知すべき、あるいは通知しなければならない
+他のすべての関数やマクロにも当てはまります。
+
+@end
+

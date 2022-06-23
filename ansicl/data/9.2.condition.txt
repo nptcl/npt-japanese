@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type CONDITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.condition
+@name: condition
+@type: condition-type
+
+Condition Type `CONDITION`
+
+
+## {class-precedence-list}
+
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+全てのコンディションの型は、
+エラーか非エラー関わらず、この型を継承しなければなりません。
+
+本文中で明示的に言及されている場合を除き、
+指定された型{condition:link}のサブタイプの間で
+追加のサブタイプの関係は許可されません。
+しかし実装であれば追加の型を導入することが許されており、
+これらの型のひとつは、
+任意の数の型{condition:link}のサブタイプの
+さらなるサブタイプであることができます。
+
+ユーザーで定義したコンディションの型が持つスロットを
+{with-slots:link}によってアクセスできるかどうかは
+{implementation-dependent}です。
+さらに実装内にあるユーザー定義のコンディション型がスロットを持っているかどうか、
+またコンディション型のドキュメントにそのようなスロットが定義されているか、
+それらのスロットが名前を持っており実際に扱っているかどうかなどは、
+すべて{implementation-dependent}です。
+移植可能なコードが参考にできるのは、
+ただ仕様書に記載されているリーダー関数のみです。
+
+{confirming-code}はコンディションに関係する
+下記の制約に従わなければなりません。
+
+- 新しいコンディション型を定義するときは
+{define-condition:link}を使用しなければならず、
+{defclass:link}ではいけません。
+
+- コンディションのオブジェクトを明に作成するときは、
+{make-condition:link}を使用しなければならず、
+{make-instance:link}ではいけません。
+
+- コンディションの報告を定義するときは
+{define-condition:link}の`:report`オプションを使用しなければならず、
+{print-object:link}の{defmethod:link}を定義してはいけません。
+
+- {slot-value:link}, {slot-boundp:link},
+{slot-makunbound:link}, {with-slots:link}は
+コンディションオブジェクトに使用してはいけません。
+かわりに（{define-condition:link}によって定義された）
+適切なアクセス関数を使用する必要があります。
+
+@end
+

@@ -1,0 +1,50 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type SERIOUS-CONDITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.serious-condition
+@name: serious-condition
+@type: condition-type
+
+Condition Type `SERIOUS-CONDITION`
+
+
+## {class-precedence-list}
+
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+もし捕捉されないと対話的な介入が必要になるくらい深刻な
+全てのコンディションは、型{serious-condition:link}を継承しなければなりません。
+この型のコンディションは、主に他のコンディションの型の
+スーパークラスとして含まれるような機能を提供します。
+これが直接通知されることは意図していません。
+
+
+## {notes}
+
+{serious-condition:link}の通知は、
+それ自身が強制的にデバッガーを起動しません。
+しかし、プログラマーが{serious-condition:link}の捕捉に失敗しても
+障害が起こらないと保証できるような異常な状況を除いて、
+そのようなコンディションは通常は{signal:link}ではなく
+{error!function:link}を用いて通知することで、
+プログラムがそのコンディションを捕捉しなかった場合は
+継続しないことを保証します。
+（そして逆に、通常{serious-condition:link}ではない
+コンディションの捕捉に失敗したときでも
+デバッガーに入るほどではないという理由があるときは、
+その{serious-condition:link}ではないコンディションを
+{error!function:link}ではなく{signal:link}を用いて
+通知するのが一般的です。）
+
+@end
+

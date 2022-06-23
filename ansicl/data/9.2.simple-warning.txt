@@ -1,0 +1,33 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type SIMPLE-WARNING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.simple-warning
+@name: simple-warning
+@type: condition-type
+
+Condition Type `SIMPLE-WARNING`
+
+
+## {class-precedence-list}
+
+{simple-warning:link},
+{simple-condition:link},
+{warning:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{simple-warning:link}は、{warn:link}関数が
+その最初の引数を*format-control*で指定して
+いつでも通知できるようなコンディションの表現です。
+
+@end
+
+

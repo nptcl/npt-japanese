@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INVOKE-DEBUGGER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.invoke-debugger
+@name: invoke-debugger
+@type: function
+
+Function `INVOKE-DEBUGGER`
+
+
+## {syntax}
+
+`invoke-debugger` *condition* => `|`
+
+
+## {arguments-and-values}
+
+*condition* - コンディションオブジェクト
+
+
+## {description}
+
+{invoke-debugger:link}は、*condition*とともにデバッガーへ入ろうと試みます。
+
+もし{*debugger-hook*:link}が{nil!variable:link}ではないとき、
+その値は関数（あるいは関数の名前）で無ければならず、
+標準のデバッガーに入る前に呼び出されます。
+その関数が呼び出されるときに
+{*debugger-hook*:link}には{nil!variable:link}が束縛され、
+その関数は2つの引数として*condition*と、
+{nil!variable:link}を束縛する前の
+{*debugger-hook*:link}の値が渡されます。
+もしその関数が普通に終わったとき、標準のデバッガーに入ります。
+
+標準のデバッガーは決して直接戻りません。
+戻るときは、`restart`関数を使用したような
+ただ非局所的な遷移の制御のみで起こります。
+
+
+## {examples}
+
+```lisp
+(ignore-errors ;Normally, this would suppress debugger entry
+  (handler-bind ((error #'invoke-debugger)) ;But this forces debugger entry
+    (error "Foo.")))
+Debug: Foo.
+To continue, type :CONTINUE followed by an option number:
+ 1: Return to Lisp Toplevel.
+Debug>
+```
+
+
+## {side-effects}
+
+{*debugger-hook*:link}は{nil!variable:link}に束縛され、
+プログラムの実行は中止となり、
+デバッガーに入ります。
+
+
+## {affected-by}
+
+{*debug-io*:link},
+{*debugger-hook*:link},
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{error!function:link},
+{break:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

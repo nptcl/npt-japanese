@@ -1,0 +1,102 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *DEBUGGER-HOOK*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.debugger-hook
+@name: *debugger-hook*
+@type: variable
+
+Variable `*DEBUGGER-HOOK*`
+
+
+## {value-type}
+
+2つの引数（コンディションと、
+デバッガーに入った時点での{*debugger-hook*:link}の値）
+の関数指定子か、{nil!variable:link}。
+
+
+## {initial-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+{*debugger-hook*:link}の値が{nil!variable:link}ではない場合、
+{invoke-debugger:link}の呼び出しによるものか、
+あるいは捕捉されないコンディションを
+{error!function:link}か{cerror:link}で呼び出して
+自動的にデバッガーに入ろうとしたとき、
+この変数の値のものが通常の方法でデバッガーに入る前に呼び出されます。
+この関数は、コンディションを捕捉するか（遷移制御）、
+あるいは普通に終了するか（標準デバッガーが実行される）の
+どちらかになります。
+デバッグ中に再帰エラーを抑えるため、
+その関数が呼ばれる前に{invoke-debugger:link}によって
+{*debugger-hook*:link}が{nil!variable:link}に束縛されます。
+
+
+## {examples}
+
+```lisp
+(defun one-of (choices &optional (prompt "Choice"))
+  (let ((n (length choices)) (i))
+    (do ((c choices (cdr c)) (i 1 (+ i 1)))
+        ((null c))
+      (format t "~&[~D] ~A~%" i (car c)))
+    (do () ((typep i `(integer 1 ,n)))
+      (format t "~&~A: " prompt)
+      (setq i (read))
+      (fresh-line))
+    (nth (- i 1) choices)))
+
+(defun my-debugger (condition me-or-my-encapsulation)
+  (format t "~&Fooey: ~A" condition)
+  (let ((restart (one-of (compute-restarts))))
+    (if (not restart) (error "My debugger got an error."))
+    (let ((*debugger-hook* me-or-my-encapsulation))
+      (invoke-restart-interactively restart))))
+
+(let ((*debugger-hook* #'my-debugger))
+  (+ 3 'a))
+>>  Fooey: The argument to +, A, is not a number.
+>>   [1] Supply a replacement for A.
+>>   [2] Return to Cloe Toplevel.
+>>  Choice: 1
+>>   Form to evaluate and use: (+ 5 'b)
+>>   Fooey: The argument to +, B, is not a number.
+>>   [1] Supply a replacement for B.
+>>   [2] Supply a replacement for A.
+>>   [3] Return to Cloe Toplevel.
+>>  Choice: 1
+>>   Form to evaluate and use: 1
+=>  9
+```
+
+
+## {affected-by}
+
+{invoke-debugger:link}
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+ユーザーが対話形式で打ち込んだコードを評価するとき、
+フック関数がその第2引数である関数に
+{*debugger-hook*:link}を束縛すると、
+同じ対話的機能を使用して再帰的エラーを処理することができるので
+便利なことがあります。
+
+@end
+
+

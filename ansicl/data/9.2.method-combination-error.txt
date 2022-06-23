@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function METHOD-COMBINATION-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.method-combination-error
+@name: method-combination-error
+@type: function
+
+Function `METHOD-COMBINATION-ERROR`
+
+
+## {syntax}
+
+`method-combination-error` *format-control* &rest *args*
+ => {implementation-dependent}
+
+
+## {arguments-and-values}
+
+*format-control* - {format-control}  
+*args* - *format-control*に対応する`format`の引数
+
+
+## {description}
+
+{method-combination-error:link}関数は、
+`method-combination`内でエラーを通知する際に使われます。
+
+エラーメッセージは、*format-control*と*args*を
+{format:link}に使って構築します。
+実装はエラーメッセージに追加で文脈的な情報を
+追加する必要があるかもしれないので、
+{method-combination-error:link}は`method-combination`関数の
+動的エクステント内でのみ呼び出すことができます。
+
+{method-combination-error:link}が呼び出し元へ戻るのか、
+あるいは{throw:link}を経由して退出するかどうかは、
+{implementation-dependent}です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+デバッガーに入るかもしれません。
+
+
+## {affected-by}
+
+{*break-on-signals*:link}
+
+
+## {exceptional-situations}j
+
+なし。
+
+
+## {see-also}
+
+{define-method-combination:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

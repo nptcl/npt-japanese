@@ -1,0 +1,109 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *BREAK-ON-SIGNALS*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.break-on-signals
+@name: *break-on-signals*
+@type: variable
+
+Variable `*BREAK-ON-SIGNALS*`
+
+
+## {value-type}
+
+型指定子
+
+
+## {initial-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+式`(typep condition *break-on-signals*)`が*true*のとき、
+{signal:link}の呼び出しや、
+その他の暗黙的に{signal:link}を呼び出す、
+{error!function:link}のような操作は、
+そのコンディションを通知する前にデバッガーに入ります。
+
+{continue!restart:link} `restart`は
+{*break-on-signals*:link}による処理の中断が生じたときに、
+通常の通知処理を継続するときに使われます。
+
+
+## {examples}
+
+```lisp
+*break-on-signals* =>  NIL
+(ignore-errors (error 'simple-error :format-control "Fooey!"))
+=>  NIL, #<SIMPLE-ERROR 32207172>
+
+(let ((*break-on-signals* 'error))
+  (ignore-errors (error 'simple-error :format-control "Fooey!")))
+>>  Break: Fooey!
+>>  BREAK entered because of *BREAK-ON-SIGNALS*.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Continue to signal.
+>>   2: Top level.
+>>  Debug> :CONTINUE 1
+>>  Continue to signal.
+=>  NIL, #<SIMPLE-ERROR 32212257>
+
+(let ((*break-on-signals* 'error))
+  (error 'simple-error :format-control "Fooey!"))
+>>  Break: Fooey!
+>>  BREAK entered because of *BREAK-ON-SIGNALS*.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Continue to signal.
+>>   2: Top level.
+>>  Debug> :CONTINUE 1
+>>  Continue to signal.
+>>  Error: Fooey!
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Top level.
+>>  Debug> :CONTINUE 1
+>>  Top level.
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{break:link},
+{signal:link},
+{warn:link},
+{error!function:link},
+{typep:link},
+{9.1:ab}
+
+
+## {notes}
+
+{*break-on-signals*:link}は、
+主に通知したコードのデバッグに使う意図があります。
+{*break-on-signals*:link}が設定されたとき、
+ユーザは最も厳しい仕様を選択することが推奨されます。
+{*break-on-signals*:link}を設定することは、
+コンディションの通知を捕捉することのモジュラー処理に違反します。
+実際には{*break-on-signals*:link}を設定することの完全な効果は、
+場合によっては予測できないかもしれません。
+なぜなら、ユーザーは{signal:link}がコード内で、
+どれくらいの種類や数で呼び出されているのか
+気が付いていないかもしれないからです。
+
+{*break-on-signals*:link}は、
+デバッガーに早く入ることができますが、
+このような場合でも{error!function:link}や{cerror:link}のような操作で起こる
+追加のデバッガーの起動を排除するようなものではありません。
+
+@end
+

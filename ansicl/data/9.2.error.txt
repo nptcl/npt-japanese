@@ -1,0 +1,165 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.error!condition
+@name: error!condition
+@type: condition-type
+
+Condition Type `ERROR`
+
+
+## {class-precedence-list}
+
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{error!condition:link}は、エラーを表現する全てのコンディションを含みます。
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.error!function
+@name: error!function
+@type: function
+
+Function `ERROR`
+
+
+## {syntax}
+
+`error` *datum* `&rest` *arguments* => `|`
+
+
+## {arguments-and-values}
+
+*datum*, *arguments* - コンディション指定子であり、標準の型は{simple-error:link}。
+
+
+## {description}
+
+{error!function:link}は、コンディションを効果的に{signal:link}で実行します。
+
+もしコンディションが捕捉されないときは、
+`(invoke-debugger condition)`が実行されます。
+{invoke-debugger:link}が呼び出された結果、
+{error!function:link}は直接戻ることはできず、
+{error!function:link}からの退出は
+ただハンドラーによる非局所的な遷移の制御か、
+あるいは対話的なデバッガーのコマンドを使うことにのみ
+実現できます。
+
+
+## {examples}
+
+```lisp
+(defun factorial (x)
+  (cond ((or (not (typep x 'integer)) (minusp x))
+         (error "~S is not a valid argument to FACTORIAL." x))
+        ((zerop x) 1)
+        (t (* x (factorial (- x 1))))))
+=>  FACTORIAL
+(factorial 20)
+=>  2432902008176640000
+(factorial -1)
+>>  Error: -1 is not a valid argument to FACTORIAL.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Return to Lisp Toplevel.
+>>  Debug> 
+ (setq a 'fred)
+=>  FRED
+ (if (numberp a) (1+ a) (error "~S is not a number." A))
+>>  Error: FRED is not a number.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Return to Lisp Toplevel.
+>>  Debug> :Continue 1
+>>  Return to Lisp Toplevel.
+
+(define-condition not-a-number (error) 
+                  ((argument :reader not-a-number-argument :initarg :argument))
+  (:report (lambda (condition stream)
+             (format stream "~S is not a number."
+                     (not-a-number-argument condition)))))
+=>  NOT-A-NUMBER
+
+(if (numberp a) (1+ a) (error 'not-a-number :argument a))
+>>  Error: FRED is not a number.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Return to Lisp Toplevel.
+>>  Debug> :Continue 1
+>>  Return to Lisp Toplevel.
+```
+
+
+## {side-effects}
+
+指定されたコンディションのハンドラーは
+もし起動された場合は副作用を持つかもしれません。
+プログラムの実行は停止してデバッガーに入るかもしれません。
+
+
+## {affected-by}
+
+存在するハンドラーの束縛
+
+{*break-on-signals*:link}
+
+
+## {exceptional-situations}
+
+もし*datum*と*arguments*がコンディション指定子ではないときは
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{cerror:link},
+{signal:link},
+{format:link},
+{ignore-errors:link},
+{*break-on-signals*:link},
+{handler-bind:link},
+{9.1:ab}
+
+
+## {notes}
+
+いくつかの実装では、デバッガーは独立したスタックフレームから
+対話的に戻るためのコマンドを提供しています。
+しかしプログラマーは次のようなコードを書くことに
+自身を持たなければなりません。
+
+```lisp
+(defun wargames:no-win-scenario ()
+  (if (error "pushing the button would be stupid."))
+  (push-the-button))
+```
+
+このシナリオでは、{error!function:link}から戻って
+ボタンが押される`push-the-button`ような機会はありません。
+
+このプログラムの意味は明確であり、
+形式的な定理の証明によって「安全」であることが証明されるかもしれませんが、
+そのような証明はプログラムが実行されても
+安全であることを保証するものではありません。
+コンパイラにはバグがあり、コンピュータには信号の不具合があり、
+人間には常に予測不可能な方法で手動で介入することが知られています。
+このような種類のエラーは、
+コンディションシステムの正式なモデルの範囲を超えていますが、
+この例で示唆されているような重大な影響を及ぼしうるコードを書くときに
+真剣に検討すべきことの範囲を超えてはいません。
+
+@end
+

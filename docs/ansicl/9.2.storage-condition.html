@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Condition-Type STORAGE-CONDITION</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Condition-Type STORAGE-CONDITION</h1>
+</header>
+<p><a href="9.2.html">UP</a></p>
+<hr />
+<h1 id="condition-type-storage-condition">Condition-Type <strong>STORAGE-CONDITION</strong></h1>
+<p>Condition Type <code>STORAGE-CONDITION</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="9.2.storage-condition.html"><code>storage-condition</code></a>, <a href="9.2.serious-condition.html"><code>serious-condition</code></a>, <a href="9.2.condition.html"><code>condition</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>型<a href="9.2.storage-condition.html"><code>storage-condition</code></a>は、 メモリ管理の問題に関連するものであったり、 仕様に適合したプログラムの意味的なエラーではなく 実装依存の限界の可能性であったり、 捕捉されなかった時にデバッガーへ入るという典型的なものであったりといった、 深刻なコンディションの内容を含みます。 実装の詳細に依存しており、 これらのものはスタックオーバーフローや、 メモリ領域のオーバーフロー、 記憶領域の超過などの問題を含みます。</p>
+<h2 id="備考">備考</h2>
+<p>いくつかのCommon Lispの操作はオブジェクトの生成の定義によって <a href="9.2.storage-condition.html"><code>storage-condition</code></a>を通知するかもしれませんが、 オブジェクトの生成が定義されていない操作であっても とにかく何かの生成が発生する可能性があり、 そのような時に<a href="9.2.storage-condition.html"><code>storage-condition</code></a>を通知するかどうかは指定されていません。 同じように評価器自身が何らかのオブジェクトを作成し <a href="9.2.storage-condition.html"><code>storage-condition</code></a>を通知するかもしれません。 （このようなオブジェクトの生成は当然非効率と 考えるのが自然かもしれませんが、 それ自体も実装依存です。） 一般的に、ストレージの確保をどのようにして行うかという質問は 全体的に実装依存で行われます。 そしてどんな操作でもいつでも<a href="9.2.storage-condition.html"><code>storage-condition</code></a>が 通知されるかもしれません。 このようなコンディションは実装の制限の指標であり、 プログラムのエラーというよりは実装のイメージであるため、 <a href="9.2.storage-condition.html"><code>storage-condition</code></a>の型のオブジェクトは <a href="9.2.error-condition.html"><code>error</code></a>の型になってはいません。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

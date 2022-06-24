@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro LAMBDA</title>
+  <title>Function INVOKE-RESTART</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,40 +214,41 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro LAMBDA</h1>
+<h1 class="title">Function INVOKE-RESTART</h1>
 </header>
-<p><a href="3.8.html">UP</a></p>
+<p><a href="9.2.html">UP</a></p>
 <hr />
-<h1 id="macro-lambda">Macro <strong>LAMBDA</strong></h1>
-<p>Macro <code>LAMBDA</code></p>
+<h1 id="function-invoke-restart">Function <strong>INVOKE-RESTART</strong></h1>
+<p>Function <code>INVOKE-RESTART</code></p>
 <h2 id="構文">構文</h2>
-<p><code>lambda</code> <em>lambda-list</em> [[<em>declaration*</em> <code>|</code> <em>documentation</em>]] <em>form*</em> =&gt; <em>function</em></p>
+<p><code>invoke-restart</code> <em>restart</em> <code>&amp;rest</code> <em>arguments</em> =&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>lambda-list</em> - 通常のラムダリスト<br />
-<em>declaration</em> - 宣言式。評価されません。<br />
-<em>documentation</em> - 文字列。評価されません。<br />
-<em>form</em> - フォーム<br />
-function - 関数</p>
+<p><em>restart</em> - <code>restart</code>指定子<br />
+<em>argument</em> - オブジェクト<br />
+<em>result</em> - <em>restart</em>に関係づいた関数による返却値（もしあるなら）。</p>
 <h2 id="定義">定義</h2>
-<p>ラムダ式を呼び出すための<a href="5.3.function-special.html"><code>function</code></a>の特殊フォームの 短縮形を提供します。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">function</span> (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>==  #&#39;(<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span></code></pre></div>
+<p><em>restart</em>に関連づいた関数を引数<em>arguments</em>とともに呼び出します。 <em>restart</em>は現在の動的環境下で有効なものでなければなりません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">lambda</span> (x) (<span class="op">+</span> x <span class="dv">3</span>)) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> add3 </span>(x) (<span class="kw">check-type</span> x <span class="kw">number</span>) (<span class="op">+</span> x <span class="dv">3</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(foo &#39;seven)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Error: The value SEVEN was <span class="kw">not</span> of <span class="kw">type</span> NUMBER.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  To <span class="kw">continue</span>, <span class="kw">type</span> :CONTINUE followed by an option number:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">1</span>: Specify a different value to use.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">2</span>: Return to Lisp Toplevel.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Debug&gt; (<span class="kw">invoke-restart</span> &#39;store-value <span class="dv">7</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">10</span></span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<p><code>restart</code>によって非局所的な背にの制御が行われるかもしれません。</p>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p>存在する<code>restart</code>。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p>もし<em>restart</em>が有効でないときは、 型<a href="5.3.control-error.html"><code>control-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.lambda-symbol.html"><code>lambda</code></a>（シンボル）</p>
+<p><a href="9.2.find-restart.html"><code>find-restart</code></a>, <code>restart-bind</code>, <code>restart-case</code>, <code>invoke-restart-interactively</code></p>
 <h2 id="備考">備考</h2>
-<p>このマクロは下記のように定義できます。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> lambda </span>(&amp;whole form &amp;<span class="kw">rest</span> bvl-decls-and-body)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> bvl-decls-and-body))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  `#&#39;,form)</span></code></pre></div>
+<p>もっとも一般的には、<a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>はハンドラーの中で使用されます。 それは明示的に使用されるかもしれませんし、 または暗黙的に<code>invoke-restart-interactively</code>か <code>restart</code>関数を通して使用されるかもしれません。</p>
+<p><code>restart</code>関数あは<a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>を呼び出しますし、 逆もまた成り立ちます。 これは、<a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>が原始的な機能を提供しており、 <code>restasrt</code>関数は本質ではない「糖衣構文」です。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

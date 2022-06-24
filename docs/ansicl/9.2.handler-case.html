@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro HANDLER-CASE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro HANDLER-CASE</h1>
+</header>
+<p><a href="9.2.html">UP</a></p>
+<hr />
+<h1 id="macro-handler-case">Macro <strong>HANDLER-CASE</strong></h1>
+<p>Macro <code>HANDLER-CASE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>handler-case</code> <em>expression</em> [[<code>{</code><em>error-clause</em><code>}</code>* <code>|</code> <em>no-error-clause</em>]] =&gt; <em>result*</em></p>
+<pre><code>clause::= error-clause | no-error-clause 
+error-clause::= (typespec ([var]) declaration* form*) 
+no-error-clause::= (:no-error lambda-list declaration* form*) </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>expression</em> - フォーム<br />
+<em>typespec</em> - 型指定子<br />
+<em>var</em> - 変数名<br />
+<em>lambda-list</em> - 通常のラムダリスト<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>form</em> - フォーム<br />
+<em>result</em> - 通常の状況では<em>expression</em>の評価による結果が返却されます。 例外的な状況では制御が<em>clause</em>に遷移したときに、 <em>clause</em>内の最後の<em>form</em>お値が返却されます。</p>
+<h2 id="定義">定義</h2>
+<p><a href="9.2.handler-case.html"><code>handler-case</code></a>は 様々なハンドラーがアクティブになっている動的環境下で <em>expression</em>を実行します。 各<em>error-clause</em>は、 どのようなコンディションを捕捉するのか、 <em>typespec</em>でマッチされたものとして指定します。 <em>no-error-clause</em>は、制御が通常の返却をしたときに 特定のアクションを指定することが許されます。</p>
+<p>もし<em>expression</em>が実行中に <em>error-clause</em>に適用できるコンディションが通知されたとき （例えば、<code>(typep condition 'typespec)</code>が<em>true</em>になるような 何らかの<em>condition</em>）、 さらにその型のコンディションが介入できるハンドラーがないときは、 関係する<em>error-clause</em>の ボディ部に制御が遷移します。 このような場合、動的な状態を適切に巻き戻し、 （つまり<em>expression</em>周りに確立されたハンドラーは もうアクティブではありません）、 <em>var</em>に通知されたコンディションを束縛します。 もし複数の場合が提供されたときは、 そのような場合は並列にアクセスされます。 例えば次のような場合、</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">handler-case</span> form</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (typespec1 (var1) form1)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (typespec2 (var2) form2))</span></code></pre></div>
+<p>もし最初の<em>clause</em>が（<em>form1</em>が含まれているもの）選ばれたとき、 2番目のハンドラーは見ることができません（そしてその反対も同様）。</p>
+<p><em>clause</em>は上から下に順番に検索されます。 もし<em>typespec</em>間で重複する型があるときは、 <em>classe</em>の早い方が選択されます。</p>
+<p>もし<em>var</em>が必要ないときは、それは省略できます。 つまり<em>clause</em>は次のようなもの</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(typespec (var) (<span class="kw">declare</span> (<span class="kw">ignore</span> var)) form)</span></code></pre></div>
+<p>これを<code>(typespec () form)</code>のように書くことができます。</p>
+<p>もし<em>form</em>がない<em>clause</em>が選択されたとき、 このような場合は<a href="9.2.handler-case.html"><code>handler-case</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 もし<em>expression</em>の実行が普通に返却され、 <em>no-error-clause</em>がないときは、 <a href="9.2.handler-case.html"><code>handler-case</code></a>は<em>expression</em>の結果が返却されます。 もし<em>expression</em>の実行が普通に返却され、 <em>no-error-clause</em>があるときは、 返却値は<em>no-error-clause</em>から<code>(lambda lambda-list form*)</code>の 生成によって定義された関数の引数として使用され、 その関数の呼び出しの値が<a href="9.2.handler-case.html"><code>handler-case</code></a>による返却値になります。 この呼び出しの時点では、<em>expression</em>周りに確立されたハンドラーは もうアクティブではありません。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> assess-condition </span>(<span class="kw">condition</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">handler-case</span> (<span class="kw">signal</span> <span class="kw">condition</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">warning</span> () <span class="st">&quot;Lots of smoke, but no fire.&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    ((<span class="kw">or</span> <span class="kw">arithmetic-error</span> <span class="kw">control-error</span> <span class="kw">cell-error</span> <span class="kw">stream-error</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">condition</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">format</span> <span class="kw">nil</span> <span class="st">&quot;~S looks especially bad.&quot;</span> <span class="kw">condition</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">serious-condition</span> (<span class="kw">condition</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">format</span> <span class="kw">nil</span> <span class="st">&quot;~S looks serious.&quot;</span> <span class="kw">condition</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">condition</span> () <span class="st">&quot;Hardly worth mentioning.&quot;</span>)))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  ASSESS-CONDITION</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>(assess-condition (<span class="kw">make-condition</span> &#39;stream-error <span class="bu">:stream</span> <span class="va">*terminal-io*</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;#&lt;STREAM-ERROR 12352256&gt; looks especially bad.&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-condition</span><span class="fu"> random-condition </span>(<span class="kw">condition</span>) () </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  (:report (<span class="kw">lambda</span> (<span class="kw">condition</span> <span class="kw">stream</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">declare</span> (<span class="kw">ignore</span> <span class="kw">condition</span>))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">princ</span> <span class="st">&quot;Yow&quot;</span> <span class="kw">stream</span>))))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  RANDOM-CONDITION</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>(assess-condition (<span class="kw">make-condition</span> &#39;random-condition))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;Hardly worth mentioning.&quot;</span></span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="9.2.handler-bind.html"><code>handler-bind</code></a>, <a href="9.2.ignore-errors.html"><code>ignore-errors</code></a>, 9.1. コンディションシステムの説明</p>
+<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">handler-case</span> form</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  (type1 (var1) . body1)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (type2 (var2) . body2) ...)</span></code></pre></div>
+<p>上記の式はおおよそ下記のものと同等です。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">block</span> #<span class="dv">1</span>=#:g0001</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((#<span class="dv">2</span>=#:g0002 <span class="kw">nil</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">tagbody</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">handler-bind</span> ((type1 #&#39;(<span class="kw">lambda</span> (temp)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                      (<span class="kw">setq</span> #<span class="dv">1</span># temp)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                      (<span class="kw">go</span> #<span class="dv">3</span>=#:g0003)))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                     (type2 #&#39;(<span class="kw">lambda</span> (temp)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                      (<span class="kw">setq</span> #<span class="dv">2</span># temp)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                      (<span class="kw">go</span> #<span class="dv">4</span>=#:g0004))) ...)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">return-from</span> #<span class="dv">1</span># form))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        #<span class="dv">3</span># (<span class="kw">return-from</span> #<span class="dv">1</span># (<span class="kw">let</span> ((var1 #<span class="dv">2</span>#)) . body1))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        #<span class="dv">4</span># (<span class="kw">return-from</span> #<span class="dv">1</span># (<span class="kw">let</span> ((var2 #<span class="dv">2</span>#)) . body2)) ...)))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">handler-case</span> form</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  (type1 (var1) . body1)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  (:no-error (varN<span class="dv">-1</span> varN<span class="dv">-2</span> ...) . bodyN))</span></code></pre></div>
+<p>上記の式はおおよそ下記のものと同等です。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">block</span> #<span class="dv">1</span>=#:error-return</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> (<span class="kw">multiple-value-call</span> #&#39;(<span class="kw">lambda</span> (varN<span class="dv">-1</span> varN<span class="dv">-2</span> ...) . bodyN)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">block</span> #<span class="dv">2</span>=#:normal-return</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">return-from</span> #<span class="dv">1</span>#</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">handler-case</span> (<span class="kw">return-from</span> #<span class="dv">2</span># form)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          (type1 (var1) . body1) ...)))))</span></code></pre></div>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

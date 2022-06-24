@@ -1,0 +1,337 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DEFINE-CONDITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.define-condition
+@name: define-condition
+@type: macro
+
+Macro `DEFINE-CONDITION`
+
+
+## {syntax}
+
+`define-condition` *name* (*parent-type\**) (`{`*slot-spec*`}`\*) *option\**
+ => *name*
+
+```
+slot-spec::= slot-name | (slot-name slot-option) 
+slot-option::= [[{:reader symbol}* |  
+               {:writer function-name}* |  
+               {:accessor symbol}* |  
+               {:allocation allocation-type} |  
+               {:initarg symbol}* |  
+               {:initform form} |  
+               {:type type-specifier} ]] 
+option::= [[(:default-initargs . initarg-list) |  
+          (:documentation string) |  
+          (:report report-name) ]] 
+function-name::= {symbol | (setf symbol)} 
+allocation-type::= :instance | :class 
+report-name::= string | symbol | lambda expression 
+```
+
+
+## {arguments-and-values}
+
+*name* - シンボル  
+*parent-type* - コンディションの型の名前であるシンボル。
+もし*parent-type*が指定されなかったときは、
+*parent-types*はデフォルトで`(condition)`です。  
+*default-initargs* - キーワードと値のペアのリスト  
+*slot-spec* - スロットの名前か、
+*slot-name*に続いてゼロか複数の*slot-option*を含むリスト。  
+*slot-name - スロットの名前（シンボル）か、
+スロットの名前のリストか、
+【翻訳者注釈】名前とスロットのフォームのペアのリスト。  
+*option - 下記のどれかのもの
+
+- `:reader`
+  - `:reader`は1つのスロットに対し1つ以上指定できますが、
+    {nil!variable:link}は指定できません。
+- `:writer`
+  - `:writer`は1つのスロットに対し1つ以上指定できますが、
+    ジェネリック関数の名前でなければいけません。
+- `:accessor`
+  - `:accessor`は1つのスロットに対し1つ以上指定できますが、
+    {nil!variable:link}は指定できません。
+- `:allocation`
+  - `:allocation`は1つのスロットに対し1つ指定できます。
+    `:allocation`が指定されなかったときのデフォルト値は`:instance`です。
+- `:initarg`
+  - `:initarg`は1つのスロットに対し1つ以上指定できます。
+- `:initform`
+  - `:initform`は1つのスロットに対し1つ指定できます。
+- `:type`
+  - `:type`は1つのスロットに対し1つ指定できます。
+- `:documentation`
+  - `:documentation`は1つのスロットに対し1つ指定できます。
+- `:report`
+  - `:report`は1つ指定できます。
+
+
+※翻訳者注釈：名前とスロットフォームは許可されないかもしれません。
+
+
+## {description}
+
+{define-condition:link}は新しいコンディションの型を定義します。
+それは*name*という名前であり、
+*parent-type*によって名付けられた型か
+あるいは型の集合のサブタイプになります。
+各*parent-type*引数は、新しいコンディションの
+直接的なスーパータイプとして指定されます。
+新しいコンディションは各直接的なスーパータイプから
+スロットとメソッドが継承されます。
+
+もしスロットに名前とスロットのフォームのペアが指定されたとき、
+スロットのフォームは
+{make-condition:link}に明に値が指定されなかったときの
+デフォルト値を提供するためにその*form*を評価できます。
+もしスロットフォームが指定されなかったときは、
+そのスロットの値は{implementation-dependent}の方法で初期化されます。
+（※翻訳者注釈：名前とスロットフォームは許可されないかもしれません）
+
+もし*type*が定義されるとき、
+その型が同じ名前のスロットを持つ他のを継承するとき、
+そのコンディションではただひとつのスロットだけが確保され、
+そのスロットフォームは*parent-type*によって継承された
+他のスロットフォームによって上書きされます。
+もしスロットフォームが指定されなかったときは、
+継承されたスロットフォームは（あるならば）まだ見ることができます。
+
+アクセッサは{defclass:link}が使われたときと
+同じルールに従って生成されます。
+
+*slot-option*の定義は下記の通り。
+
+- `:reader`
+  - `:reader`スロットオプションは、{qualifiers}がないメソッドを
+    `:reader`引数で指定した名前のジェネリック関数に定義し、
+    その関数はスロットの値を読み込みます。
+    <br><br>
+
+- `:intiform`
+  - `:initform`スロットオプションは、そのスロットが初期化されるときの
+    デフォルトの初期値フォームを提供するときに使われます。
+    このフォームはスロットが初期化するときに毎回評価されて使われます。
+    このフォームが評価されるときの{lexical-environment}は、
+    {define-condition:link}フォームが評価されたときの
+    {lexical-environment}です。
+    この{lexical-environment}は、
+    変数と関数の両方を参照することに注意してください。
+    ローカルスロットの動的環境は、
+    {make-condition:link}が呼び出されたときの動的環境です。
+    共有スロットの動的環境は、
+    {define-condition:link}フォームが評価されたときの動的環境です。
+    <br><br>
+
+- `:initarg`
+  - `:initarg`スロットオプションは、引数のシンボルを
+    初期化引数の名前にするように宣言します。
+    この初期化引数によって指定したスロットが初期化されます。
+    もし{initialize-instance:link}の呼び出し時に
+    この初期化引数が値を持っているときは、
+    指定のスロットに値がか格納され、
+    そのスロットオプションに`:initform`があるなら
+    それは評価されません。
+    もし指定したスロットで定義された
+    初期化引数が値を持っていないときは、
+    もし指定があるなら`:initform`スロットオプションに従った値で
+    初期化されます。
+    <br><br>
+
+- `:type`
+  - `:type`スロットオプションは、スロットの内容が
+    常に指定された型であることを指定します。
+    この宣言は、このコンディションの型のオブジェクトに適用される
+    ジェネリック関数であるリーダーの返却値の型を
+    効率よく宣言できます。
+    このスロットに安全ではない型の値を格納しようとしたときの
+    結果は未定義です。
+    <br><br>
+
+- `:default-initargs`
+  - このオプションは{defclass:link}と同じように扱われます。
+    <br><br>
+
+- `:documentation`
+  - `:documentation`スロットオプションは、
+    そのスロットのドキュメント文字を提供します。
+    <br><br>
+
+- `:report`
+  - コンディションの報告は、そのコンディションの型の質問に対して
+    {*print-escape*:link}が{nil!variable:link}に指定されているときはいつでも
+    {print-object:link}メソッドを仲介します。
+    そのコンディションの型`C`の定義に`(:report report-name)`が指定されたときは、
+    それは下記のものと同等です。
+
+```lisp
+(defmethod print-object ((x c) stream)
+  (if *print-escape* (call-next-method) (report-name x stream)))
+```
+
+- - もし引数`:report (report-name)`で指定された値が
+    シンボルかラムダ式のときは、
+    それは{function!special:link}を受け付けなければなりません。
+    `(function report-name)`が現在の{lexical-environment}内で評価されます。
+    それは2つの引数のコンディションとストリームを受け取り、
+    コンディションの定義をストリームに印刷するような
+    関数でなければなりません。
+    この関数は{*print-escape*:link}が{nil!variable:link}のときは
+    いつでもコンディションの印刷のときに呼び出されます。
+    <br><br>
+    もし*report-name*が文字列のときは次の省略形になります。
+
+```lisp
+(lambda (condition stream)
+  (declare (ignore condition))
+  (write-string report-name stream))
+```
+
+- - このオプションは新しいコンディションの型が
+    定義された後で処理されるので、
+    `:report`関数の内部でスロットのアクセッサを
+    使用することが許されます。
+    もしこのオプションが指定されなかったときは、
+    このコンディションの型がどのようにして
+    報告されるのかについての情報は、
+    *parent-type*から継承されます。
+    <br><br>
+
+明に初期化されなかったスロットか、
+あるいはデフォルト値を与えられなかったスロットについて
+読み込みをしようとしたときの結果は未定義です。
+
+スロットへの代入を{setf:link}によって
+行おうとしようとしたときの結果は未定義です。
+
+もし{define-condition:link}フォームが{top-level-form}に現れたとき、
+コンパイラーはその型の名前を有効なものとして認識しなければならず、
+そのコンパイルされているファイル内の
+後続の{define-condition:link}が
+その他のコンディションの*parent-type*に
+そのコンディションの型が参照できるようにしなければなりません。
+
+
+## {examples}
+
+下記の例は`peg/hole-mismatch`というコンディションの型の定義であり、
+これは`blocks-world-error`と呼ばれるコンディションの型を継承しています。
+
+```lisp
+(define-condition peg/hole-mismatch 
+                  (blocks-world-error)
+                  ((peg-shape  :initarg :peg-shape
+                               :reader peg/hole-mismatch-peg-shape)
+                   (hole-shape :initarg :hole-shape
+                               :reader peg/hole-mismatch-hole-shape))
+  (:report (lambda (condition stream)
+             (format stream "A ~A peg cannot go in a ~A hole."
+                     (peg/hole-mismatch-peg-shape  condition)
+                     (peg/hole-mismatch-hole-shape condition)))))
+```
+
+新しい型は`peg-shape`と`hole-shape`というスロットを持っており、
+よって{make-condition:link}は`:peg-shape`と`:hole-shape`という
+キーワードを受け付けます。
+リーダーである`peg/hole-mismatch-peg-shape`と`peg/hole-mismatch-hole-shape`は
+その型のオブジェクトを受付、
+`:report`はその型の情報を出力します。
+
+次のフォームは`machine-error`という名前のコンディションの型を定義しており、
+これは{error!condition:link}を継承しています。
+
+```lisp
+(define-condition machine-error 
+                  (error)
+                  ((machine-name :initarg :machine-name
+                                 :reader machine-error-machine-name))
+  (:report (lambda (condition stream)
+             (format stream "There is a problem with ~A."
+                     (machine-error-machine-name condition)))))
+```
+
+次の定義の構築は、`machine-error`のサブタイプとして
+定義された新しいエラーのコンディションとして定義されたものであり、
+もし機械が利用できないときに使われるものです。
+
+```lisp
+(define-condition machine-not-available-error (machine-error) ()
+  (:report (lambda (condition stream)
+             (format stream "The machine ~A is not available."
+                     (machine-error-machine-name condition)))))
+```
+
+この定義はまだより詳しいコンディションが定義でき、
+`machine-not-available-error`は
+`machine-name`の初期化フォームを提供していますが、
+しかし新しいスロットも報告情報も提供していません。
+ただ`machine-name`のスロットのデフォルト初期化フォームだけ指定しています。
+
+```lisp
+(define-condition my-favorite-machine-not-available-error
+                  (machine-not-available-error)
+  ((machine-name :initform "mc.lcs.mit.edu")))
+```
+
+注意してほしいのは、`:report`オプションが与えられなくても、
+その型の情報を報告する際には
+継承された`machine-not-available-error`の情報が使われます。
+
+```lisp
+(define-condition ate-too-much (error) 
+    ((person :initarg :person :reader ate-too-much-person)
+     (weight :initarg :weight :reader ate-too-much-weight)
+     (kind-of-food :initarg :kind-of-food
+                   :reader :ate-too-much-kind-of-food)))
+=>  ATE-TOO-MUCH
+(define-condition ate-too-much-ice-cream (ate-too-much)
+  ((kind-of-food :initform 'ice-cream)
+   (flavor       :initarg :flavor
+                 :reader ate-too-much-ice-cream-flavor
+                 :initform 'vanilla ))
+  (:report (lambda (condition stream)
+             (format stream "~A ate too much ~A ice-cream"
+                     (ate-too-much-person condition)
+                     (ate-too-much-ice-cream-flavor condition)))))
+=>  ATE-TOO-MUCH-ICE-CREAM
+(make-condition 'ate-too-much-ice-cream
+                :person 'fred
+                :weight 300
+                :flavor 'chocolate)
+=>  #<ATE-TOO-MUCH-ICE-CREAM 32236101>
+(format t "~A" *)
+>>  FRED ate too much CHOCOLATE ice-cream
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-condition:link},
+{defclass:link},
+{9.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

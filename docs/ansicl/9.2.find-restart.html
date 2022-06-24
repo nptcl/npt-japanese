@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro LAMBDA</title>
+  <title>Function FIND-RESTART</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,40 +214,45 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro LAMBDA</h1>
+<h1 class="title">Function FIND-RESTART</h1>
 </header>
-<p><a href="3.8.html">UP</a></p>
+<p><a href="9.2.html">UP</a></p>
 <hr />
-<h1 id="macro-lambda">Macro <strong>LAMBDA</strong></h1>
-<p>Macro <code>LAMBDA</code></p>
+<h1 id="function-find-restart">Function <strong>FIND-RESTART</strong></h1>
+<p>Function <code>FIND-RESTART</code></p>
 <h2 id="構文">構文</h2>
-<p><code>lambda</code> <em>lambda-list</em> [[<em>declaration*</em> <code>|</code> <em>documentation</em>]] <em>form*</em> =&gt; <em>function</em></p>
+<p><code>find-restart</code> <em>identifier</em> <code>&amp;optional</code> <em>condition</em> =&gt; <em>restart</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>lambda-list</em> - 通常のラムダリスト<br />
-<em>declaration</em> - 宣言式。評価されません。<br />
-<em>documentation</em> - 文字列。評価されません。<br />
-<em>form</em> - フォーム<br />
-function - 関数</p>
+<p><em>identifier</em> - <a href="5.3.nil-variable.html"><code>nil</code></a>ではなシンボルか、<code>restart</code><br />
+<em>condition</em> - コンディションオブジェクトか、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>restart</em> - <code>restart</code>か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p>ラムダ式を呼び出すための<a href="5.3.function-special.html"><code>function</code></a>の特殊フォームの 短縮形を提供します。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">function</span> (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>==  #&#39;(<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span></code></pre></div>
+<p><a href="9.2.find-restart.html"><code>find-restart</code></a>は、現在の動的環境下で特定の<em>restart</em>を探します。</p>
+<p>もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないときは、 それらの<code>restart</code>は、明に<em>condition</em>と関連付けられているものか、 あるいはどのコンディションにも関連付けられてないものかの どちらかのみが集められます。 これは、排他された<code>restart</code>というのは、 関連付けられたコンディションの集合が空ではなく、 その要素に指定した<em>condition</em>が含まれていないということです。 もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 全ての<code>restart</code>が集められます。</p>
+<p><em>identifier</em>がシンボルのとき、 もっとも内側の（より最近確立されたもの） その名前の適用可能な<code>restart</code>が返却されます。 そのような<code>restart</code>がない場合は<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
+<p>もし<em>identifier</em>が現在の有効な<code>restart</code>のときは、 それが返却されます。 そうでないときは<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">lambda</span> (x) (<span class="op">+</span> x <span class="dv">3</span>)) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">7</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">let</span> ((r (<span class="kw">find-restart</span> &#39;my-restart)))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~S is named ~S&quot;</span> r (<span class="kw">restart-name</span> r)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (my-restart () <span class="kw">nil</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  #&lt;RESTART <span class="dv">32307325</span>&gt; is named MY-RESTART</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-restart</span> &#39;my-restart)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p>存在する<code>restart</code></p>
+<p><code>restart-case</code>, <code>restart-bind</code>, <code>with-condition-restarts</code></p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.lambda-symbol.html"><code>lambda</code></a>（シンボル）</p>
+<p><a href="9.2.compute-restarts.html"><code>compute-restarts</code></a></p>
 <h2 id="備考">備考</h2>
-<p>このマクロは下記のように定義できます。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> lambda </span>(&amp;whole form &amp;<span class="kw">rest</span> bvl-decls-and-body)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> bvl-decls-and-body))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  `#&#39;,form)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-restart</span> identifier)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">find</span> identifier (<span class="kw">compute-restarts</span>) <span class="bu">:key</span> :restart-name)</span></code></pre></div>
+<p>匿名の<code>restart</code>は<a href="5.3.nil-variable.html"><code>nil</code></a>という名前ですが、 <em>identifier</em>に<a href="5.3.nil-variable.html"><code>nil</code></a>を指定したときの結果は未定義です。 たまにプログラマーは<em>identifier</em>の引数に <a href="5.3.nil-variable.html"><code>nil</code></a>は許されないと主張します。 そのような場合、<a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>で おそらく似たような効果を行うことができます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

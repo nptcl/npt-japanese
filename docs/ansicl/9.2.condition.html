@@ -165,10 +165,10 @@
 <p>ユーザーで定義したコンディションの型が持つスロットを <a href="7.7.with-slots.html"><code>with-slots</code></a>によってアクセスできるかどうかは 実装依存です。 さらに実装内にあるユーザー定義のコンディション型がスロットを持っているかどうか、 またコンディション型のドキュメントにそのようなスロットが定義されているか、 それらのスロットが名前を持っており実際に扱っているかどうかなどは、 すべて実装依存です。 移植可能なコードが参考にできるのは、 ただ仕様書に記載されているリーダー関数のみです。</p>
 <p>仕様に適合したコードはコンディションに関係する 下記の制約に従わなければなりません。</p>
 <ul>
-<li><p>新しいコンディション型を定義するときは <code>define-condition</code>を使用しなければならず、 <a href="7.7.defclass.html"><code>defclass</code></a>ではいけません。</p></li>
-<li><p>コンディションのオブジェクトを明に作成するときは、 <code>make-condition</code>を使用しなければならず、 <a href="7.7.make-instance.html"><code>make-instance</code></a>ではいけません。</p></li>
-<li><p>コンディションの報告を定義するときは <code>define-condition</code>の<code>:report</code>オプションを使用しなければならず、 <code>print-object</code>の<a href="7.7.defmethod.html"><code>defmethod</code></a>を定義してはいけません。</p></li>
-<li><p><a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>, <a href="7.7.with-slots.html"><code>with-slots</code></a>は コンディションオブジェクトに使用してはいけません。 かわりに（<code>define-condition</code>によって定義された） 適切なアクセス関数を使用する必要があります。</p></li>
+<li><p>新しいコンディション型を定義するときは <a href="9.2.define-condition.html"><code>define-condition</code></a>を使用しなければならず、 <a href="7.7.defclass.html"><code>defclass</code></a>ではいけません。</p></li>
+<li><p>コンディションのオブジェクトを明に作成するときは、 <a href="9.2.make-condition.html"><code>make-condition</code></a>を使用しなければならず、 <a href="7.7.make-instance.html"><code>make-instance</code></a>ではいけません。</p></li>
+<li><p>コンディションの報告を定義するときは <a href="9.2.define-condition.html"><code>define-condition</code></a>の<code>:report</code>オプションを使用しなければならず、 <code>print-object</code>の<a href="7.7.defmethod.html"><code>defmethod</code></a>を定義してはいけません。</p></li>
+<li><p><a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>, <a href="7.7.with-slots.html"><code>with-slots</code></a>は コンディションオブジェクトに使用してはいけません。 かわりに（<a href="9.2.define-condition.html"><code>define-condition</code></a>によって定義された） 適切なアクセス関数を使用する必要があります。</p></li>
 </ul>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

@@ -1,0 +1,190 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro HANDLER-CASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.handler-case
+@name: handler-case
+@type: macro
+
+Macro `HANDLER-CASE`
+
+
+## {syntax}
+
+`handler-case` *expression*
+ [[`{`*error-clause*`}`\* `|` *no-error-clause*]]
+ => *result\**
+
+```
+clause::= error-clause | no-error-clause 
+error-clause::= (typespec ([var]) declaration* form*) 
+no-error-clause::= (:no-error lambda-list declaration* form*) 
+```
+
+
+## {arguments-and-values}
+
+*expression* - フォーム  
+*typespec* - 型指定子  
+*var* - 変数名  
+*lambda-list* - {ordinary-lambda-list}  
+*declaration* - 宣言式。評価されません。  
+*form* - フォーム  
+*result* - 通常の状況では*expression*の評価による結果が返却されます。
+例外的な状況では制御が*clause*に遷移したときに、
+*clause*内の最後の*form*お値が返却されます。
+
+
+## {description}
+
+{handler-case:link}は
+様々なハンドラーがアクティブになっている動的環境下で
+*expression*を実行します。
+各*error-clause*は、
+どのようなコンディションを捕捉するのか、
+*typespec*でマッチされたものとして指定します。
+*no-error-clause*は、制御が通常の返却をしたときに
+特定のアクションを指定することが許されます。
+
+もし*expression*が実行中に
+*error-clause*に適用できるコンディションが通知されたとき
+（例えば、`(typep condition 'typespec)`が*true*になるような
+何らかの*condition*）、
+さらにその型のコンディションが介入できるハンドラーがないときは、
+関係する*error-clause*の
+ボディ部に制御が遷移します。
+このような場合、動的な状態を適切に巻き戻し、
+（つまり*expression*周りに確立されたハンドラーは
+もうアクティブではありません）、
+*var*に通知されたコンディションを束縛します。
+もし複数の場合が提供されたときは、
+そのような場合は並列にアクセスされます。
+例えば次のような場合、
+
+```lisp
+(handler-case form
+  (typespec1 (var1) form1)
+  (typespec2 (var2) form2))
+```
+
+もし最初の*clause*が（*form1*が含まれているもの）選ばれたとき、
+2番目のハンドラーは見ることができません（そしてその反対も同様）。
+
+*clause*は上から下に順番に検索されます。
+もし*typespec*間で重複する型があるときは、
+*classe*の早い方が選択されます。
+
+もし*var*が必要ないときは、それは省略できます。
+つまり*clause*は次のようなもの
+
+```lisp
+(typespec (var) (declare (ignore var)) form)
+```
+
+これを`(typespec () form)`のように書くことができます。
+
+もし*form*がない*clause*が選択されたとき、
+このような場合は{handler-case:link}は{nil!variable:link}を返却します。
+もし*expression*の実行が普通に返却され、
+*no-error-clause*がないときは、
+{handler-case:link}は*expression*の結果が返却されます。
+もし*expression*の実行が普通に返却され、
+*no-error-clause*があるときは、
+返却値は*no-error-clause*から`(lambda lambda-list form*)`の
+生成によって定義された関数の引数として使用され、
+その関数の呼び出しの値が{handler-case:link}による返却値になります。
+この呼び出しの時点では、*expression*周りに確立されたハンドラーは
+もうアクティブではありません。
+
+
+## {examples}
+
+```lisp
+(defun assess-condition (condition)
+  (handler-case (signal condition)
+    (warning () "Lots of smoke, but no fire.")
+    ((or arithmetic-error control-error cell-error stream-error)
+       (condition)
+      (format nil "~S looks especially bad." condition))
+    (serious-condition (condition)
+      (format nil "~S looks serious." condition))
+    (condition () "Hardly worth mentioning.")))
+=>  ASSESS-CONDITION
+(assess-condition (make-condition 'stream-error :stream *terminal-io*))
+=>  "#<STREAM-ERROR 12352256> looks especially bad."
+(define-condition random-condition (condition) () 
+  (:report (lambda (condition stream)
+             (declare (ignore condition))
+             (princ "Yow" stream))))
+=>  RANDOM-CONDITION
+(assess-condition (make-condition 'random-condition))
+=>  "Hardly worth mentioning."
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{handler-bind:link},
+{ignore-errors:link},
+{9.1:ab}
+
+
+## {notes}
+
+```lisp
+(handler-case form
+  (type1 (var1) . body1)
+  (type2 (var2) . body2) ...)
+```
+
+上記の式はおおよそ下記のものと同等です。
+
+```lisp
+(block #1=#:g0001
+  (let ((#2=#:g0002 nil))
+    (tagbody
+      (handler-bind ((type1 #'(lambda (temp)
+                                      (setq #1# temp)
+                                      (go #3=#:g0003)))
+                     (type2 #'(lambda (temp)
+                                      (setq #2# temp)
+                                      (go #4=#:g0004))) ...)
+      (return-from #1# form))
+        #3# (return-from #1# (let ((var1 #2#)) . body1))
+        #4# (return-from #1# (let ((var2 #2#)) . body2)) ...)))
+```
+
+```lisp
+(handler-case form
+  (type1 (var1) . body1)
+  ...
+  (:no-error (varN-1 varN-2 ...) . bodyN))
+```
+
+上記の式はおおよそ下記のものと同等です。
+
+```lisp
+(block #1=#:error-return
+ (multiple-value-call #'(lambda (varN-1 varN-2 ...) . bodyN)
+    (block #2=#:normal-return
+      (return-from #1#
+        (handler-case (return-from #2# form)
+          (type1 (var1) . body1) ...)))))
+```
+
+@end
+

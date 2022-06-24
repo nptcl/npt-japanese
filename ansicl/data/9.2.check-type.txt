@@ -116,7 +116,7 @@ aardvarks
 >>  Debug> :Continue 1
 >>  Type a form to be evaluated and used instead: 5
 =>  (defun add5 (x) (+ x 5))
-```lisp
+```
  
 
 ## {side-effects}

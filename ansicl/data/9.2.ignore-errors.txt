@@ -1,0 +1,97 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro IGNORE-ERRORS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.ignore-errors
+@name: ignore-errors
+@type: macro
+
+Macro `IGNORE-ERRORS`
+
+
+## {syntax}
+
+`ignore-errors` *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*form* - {implicit-progn}  
+*result* - 通常の状態のときは*form*の返却値です。
+例外の状態のときは2つの多値である{nil!variable:link}とコンディションが返却されます。
+
+
+## {description}
+
+{ignore-errors:link}は型{error!condition:link}のコンディションによる
+デバッガーへの入場を禁止するときに使われます。
+
+とくに{ignore-errors:link}は型{error!condition:link}の
+コンディションのハンドラーが確立された動的環境下で*form*を実行し、
+もし該当するものが起動されたとき、
+そのようなコンディションは、
+{ignore-errors:link}フォームから
+{nil!variable:link}と通知されたコンディションを
+2つの多値で返却することによって処理されます。
+
+もし*form*から通常の返却が生じたときは、
+そのどのような返却値も{ignore-errors:link}によって返却されます。
+
+
+## {examples}
+
+```lisp
+(defun load-init-file (program)
+  (let ((win nil))
+    (ignore-errors ;もし失敗してもデバッガーに入らない
+      (load (merge-pathnames (make-pathname :name program :type :lisp)
+                             (user-homedir-pathname)))
+      (setq win t))
+    (unless win (format t "~&Init file failed to load.~%"))
+    win))
+
+(load-init-file "no-such-program")
+>>  Init file failed to load.
+NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{handler-case:link},
+{9.1:ab}
+
+
+## {notes}
+
+```lisp
+(ignore-errors . forms)
+```
+
+これは下記のものと同等です。　
+
+```lisp
+(handler-case (progn . forms)
+  (error (condition) (values nil condition)))
+```
+
+例外の状況では第二返却値がコンディションであるので、
+通常の場合は第二返却値を省略するか{nil!variable:link}にして、
+2つの状況を区別できるようにするのが一般的です（ただし必須ではありません）。
+
+@end
+

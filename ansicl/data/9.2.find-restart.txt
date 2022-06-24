@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FIND-RESTART
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.find-restart
+@name: find-restart
+@type: function
+
+Function `FIND-RESTART`
+
+
+## {syntax}
+
+`find-restart` *identifier* `&optional` *condition*
+ => *restart*
+
+
+## {arguments-and-values}
+
+*identifier* - {nil!variable:link}ではなシンボルか、`restart`  
+*condition* - コンディションオブジェクトか、{nil!variable:link}  
+*restart* - `restart`か、{nil!variable:link}
+
+
+## {description}
+
+{find-restart:link}は、現在の動的環境下で特定の*restart*を探します。
+
+もし*condition*が{nil!variable:link}ではないときは、
+それらの`restart`は、明に*condition*と関連付けられているものか、
+あるいはどのコンディションにも関連付けられてないものかの
+どちらかのみが集められます。
+これは、排他された`restart`というのは、
+関連付けられたコンディションの集合が空ではなく、
+その要素に指定した*condition*が含まれていないということです。
+もし*condition*が{nil!variable:link}のときは、
+全ての`restart`が集められます。
+
+*identifier*がシンボルのとき、
+もっとも内側の（より最近確立されたもの）
+その名前の適用可能な`restart`が返却されます。
+そのような`restart`がない場合は{nil!variable:link}です。
+
+もし*identifier*が現在の有効な`restart`のときは、
+それが返却されます。
+そうでないときは{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(restart-case
+    (let ((r (find-restart 'my-restart)))
+      (format t "~S is named ~S" r (restart-name r)))
+  (my-restart () nil))
+>>  #<RESTART 32307325> is named MY-RESTART
+=>  NIL
+(find-restart 'my-restart)
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+存在する`restart`
+
+{restart-case:link},
+{restart-bind:link},
+{with-condition-restarts:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compute-restarts:link}
+
+
+## {notes}
+
+```lisp
+(find-restart identifier)
+==  (find identifier (compute-restarts) :key :restart-name)
+```
+
+匿名の`restart`は{nil!variable:link}という名前ですが、
+*identifier*に{nil!variable:link}を指定したときの結果は未定義です。
+たまにプログラマーは*identifier*の引数に
+{nil!variable:link}は許されないと主張します。
+そのような場合、{compute-restarts:link}で
+おそらく似たような効果を行うことができます。
+
+@end
+

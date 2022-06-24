@@ -271,7 +271,7 @@
 <h2 id="例外">例外</h2>
 <p>もし<em>datum</em>と<em>arguments</em>がコンディション指定子ではないときは 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="9.2.cerror.html"><code>cerror</code></a>, <a href="9.2.signal.html"><code>signal</code></a>, <code>format</code>, <code>ignore-errors</code>, <a href="9.2.break-on-signals.html"><code>*break-on-signals*</code></a>, <code>handler-bind</code>, 9.1. コンディションシステムの説明</p>
+<p><a href="9.2.cerror.html"><code>cerror</code></a>, <a href="9.2.signal.html"><code>signal</code></a>, <code>format</code>, <a href="9.2.ignore-errors.html"><code>ignore-errors</code></a>, <a href="9.2.break-on-signals.html"><code>*break-on-signals*</code></a>, <a href="9.2.handler-bind.html"><code>handler-bind</code></a>, 9.1. コンディションシステムの説明</p>
 <h2 id="備考">備考</h2>
 <p>いくつかの実装では、デバッガーは独立したスタックフレームから 対話的に戻るためのコマンドを提供しています。 しかしプログラマーは次のようなコードを書くことに 自身を持たなければなりません。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> wargames</span>:no-win-scenario ()</span>

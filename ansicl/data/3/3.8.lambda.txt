@@ -128,7 +128,7 @@ function - 関数
 
 ## {notes}
 
-個のマクロは下記のように定義できます。
+このマクロは下記のように定義できます。
 
 ```lisp
 (defmacro lambda (&whole form &rest bvl-decls-and-body)

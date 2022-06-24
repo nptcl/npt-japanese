@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Condition-Type TYPE-ERROR</title>
+  <title>System-Class RESTART</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,18 +151,17 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Condition-Type TYPE-ERROR</h1>
+<h1 class="title">System-Class RESTART</h1>
 </header>
-<p><a href="4.4.html">UP</a></p>
+<p><a href="9.2.html">UP</a></p>
 <hr />
-<h1 id="condition-type-type-error">Condition-Type <strong>TYPE-ERROR</strong></h1>
-<p>Condition Type <code>TYPE-ERROR</code></p>
+<h1 id="system-class-restart">System-Class <strong>RESTART</strong></h1>
+<p>System Class <code>RESTART</code></p>
 <h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
-<p><a href="4.4.type-error.html"><code>type-error</code></a>, <a href="9.2.error-condition.html"><code>error</code></a>, <a href="9.2.serious-condition.html"><code>serious-condition</code></a>, <a href="9.2.condition.html"><code>condition</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<p><a href="9.2.restart.html"><code>restart</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
 <h2 id="定義">定義</h2>
-<p>型<a href="4.4.type-error.html"><code>type-error</code></a>は、オブジェクトが期待した型ではないという 状況を表現しています。 「問題のデータ」と「期待した型」が、 <a href="9.2.make-condition.html"><code>make-condition</code></a>の初期化引数によって それぞれ<code>:datum</code>と<code>:expected-type</code>で指定されて生成され、 <a href="4.4.type-error-datum.html"><code>type-error-datum</code></a>と<a href="4.4.type-error-datum.html"><code>type-error-expected-type</code></a>という 関数によってアクセスできます。</p>
-<h2 id="参考">参考</h2>
-<p><a href="4.4.type-error-datum.html"><code>type-error-datum</code></a>, <a href="4.4.type-error-datum.html"><code>type-error-expected-type</code></a></p>
+<p>型<a href="9.2.restart.html"><code>restart</code></a>のオブジェクトは いくつかの回復アクションのフォームを 実行するために呼ばれる関数を表現しており、 通常は実行しているプログラムの外側のポイントに 制御を遷移させることで行います。</p>
+<p>実装は<code>restart</code>の実装をもっともやりやすい方法で自由に実装できます。 <code>restart</code>はそれが確立して束縛されるフォームのスコープと関係している 動的エクステントだけを持ちます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

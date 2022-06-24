@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INVOKE-RESTART
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.invoke-restart
+@name: invoke-restart
+@type: function
+
+Function `INVOKE-RESTART`
+
+
+## {syntax}
+
+`invoke-restart` *restart* `&rest` *arguments* => *result\**
+
+
+## {arguments-and-values}
+
+*restart* - `restart`指定子  
+*argument* - オブジェクト  
+*result* - *restart*に関係づいた関数による返却値（もしあるなら）。
+
+
+## {description}
+
+*restart*に関連づいた関数を引数*arguments*とともに呼び出します。
+*restart*は現在の動的環境下で有効なものでなければなりません。
+
+
+## {examples}
+
+```lisp
+(defun add3 (x) (check-type x number) (+ x 3))
+
+(foo 'seven)
+>>  Error: The value SEVEN was not of type NUMBER.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Specify a different value to use.
+>>   2: Return to Lisp Toplevel.
+>>  Debug> (invoke-restart 'store-value 7)
+=>  10
+```
+
+
+## {side-effects}
+
+`restart`によって非局所的な背にの制御が行われるかもしれません。
+
+
+## {affected-by}
+
+存在する`restart`。
+
+
+## {exceptional-situations}
+
+もし*restart*が有効でないときは、
+型{control-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{find-restart:link},
+{restart-bind:link},
+{restart-case:link},
+{invoke-restart-interactively:link}
+
+
+## {notes}
+
+もっとも一般的には、{invoke-restart:link}はハンドラーの中で使用されます。
+それは明示的に使用されるかもしれませんし、
+または暗黙的に{invoke-restart-interactively:link}か
+`restart`関数を通して使用されるかもしれません。
+
+`restart`関数あは{invoke-restart:link}を呼び出しますし、
+逆もまた成り立ちます。
+これは、{invoke-restart:link}が原始的な機能を提供しており、
+`restasrt`関数は本質ではない「糖衣構文」です。
+
+@end
+

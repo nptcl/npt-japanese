@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Macro LAMBDA</title>
+  <title>Macro HANDLER-BIND</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,27 +214,47 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Macro LAMBDA</h1>
+<h1 class="title">Macro HANDLER-BIND</h1>
 </header>
-<p><a href="3.8.html">UP</a></p>
+<p><a href="9.2.html">UP</a></p>
 <hr />
-<h1 id="macro-lambda">Macro <strong>LAMBDA</strong></h1>
-<p>Macro <code>LAMBDA</code></p>
+<h1 id="macro-handler-bind">Macro <strong>HANDLER-BIND</strong></h1>
+<p>Macro <code>HANDLER-BIND</code></p>
 <h2 id="構文">構文</h2>
-<p><code>lambda</code> <em>lambda-list</em> [[<em>declaration*</em> <code>|</code> <em>documentation</em>]] <em>form*</em> =&gt; <em>function</em></p>
+<p><code>handler-bind</code> (<code>{</code><em>binding</em><code>}</code>*) <em>form*</em> =&gt; <em>result*</em></p>
+<pre><code>binding::= (type handler) </code></pre>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>lambda-list</em> - 通常のラムダリスト<br />
-<em>declaration</em> - 宣言式。評価されません。<br />
-<em>documentation</em> - 文字列。評価されません。<br />
-<em>form</em> - フォーム<br />
-function - 関数</p>
+<p><em>type</em> - 型指定子<br />
+<em>handler</em> - フォーム。評価されたら<em>handler-function</em>を生成します。<br />
+<em>handler-function</em> - ひとつの引数を取る関数指定子<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>result</em> - <em>form</em>による返却値</p>
 <h2 id="定義">定義</h2>
-<p>ラムダ式を呼び出すための<a href="5.3.function-special.html"><code>function</code></a>の特殊フォームの 短縮形を提供します。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">function</span> (<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>==  #&#39;(<span class="kw">lambda</span> lambda-list [[declaration* | <span class="kw">documentation</span>]] form*)</span></code></pre></div>
+<p><em>handler</em>が束縛されている効果がある 動的環境の下で<em>form</em>を評価します。</p>
+<p>各<em>handler</em>は評価されて<em>handler-function</em>にならなければならず、 <em>form</em>を評価している間は、 指定された<em>type</em>のコンディションが捕捉されたときに その関数が使用されます この関数はひとつの引数を受け取れなければならず、 その引数には通知されたコンディションが渡されます。</p>
+<p>もし複数の<em>handler</em>の束縛が指定されたとき、 <em>handler</em>の束縛は、順番に上から下へ （視覚的に<a href="5.3.typecase.html"><code>typecase</code></a>に似た方法で） マッチするものを探します。 もし適切な型が見つかったときは、 その関連するハンドラーは、 これらの<em>handler</em>の束縛が見えないような動的環境下で （再帰的なエラーを回避するため）実行されます。 もし<em>handler</em>が下がると、他に続く<em>handler</em>を探します。</p>
+<p>もし適切な<em>handler</em>が無かったときは、 動的に囲まれた部分から他のハンドラを探します。 もし外側にも<em>handler</em>がなかったときは、 <a href="9.2.signal.html"><code>signal</code></a>は戻るか、あるいは<a href="9.2.error-function.html"><code>error</code></a>はデバッガーに入ります。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">funcall</span> (<span class="kw">lambda</span> (x) (<span class="op">+</span> x <span class="dv">3</span>)) <span class="dv">4</span>) <span class="op">=&gt;</span>  <span class="dv">7</span></span></code></pre></div>
+<p>下記のコードは、もしボディ部で<code>unbound</code>な変数のエラーが通知されたら （そしてハンドラーの介入が無かったら）、 最初の関数が呼ばれます。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">handler-bind</span> ((<span class="kw">unbound-variable</span> #&#39;(<span class="kw">lambda</span> ...))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               (<span class="kw">error</span> #&#39;(<span class="kw">lambda</span> ...)))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  ...)</span></code></pre></div>
+<p>もしそれ以外の何らかのエラーが通知されたら、 二番目の関数が呼び出されます。 いずれの場合も、関連する関数のコードを実行している間委は、 どちらのハンドラーもアクティブになりません。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> trap-error-handler </span>(<span class="kw">condition</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">format</span> <span class="va">*error-output*</span> <span class="st">&quot;~&amp;~A~&amp;&quot;</span> <span class="kw">condition</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">throw</span> &#39;trap-errors <span class="kw">nil</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> trap-errors </span>(&amp;<span class="kw">rest</span> forms)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  `(<span class="kw">catch</span> &#39;trap-errors</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">handler-bind</span> ((<span class="kw">error</span> #&#39;trap-error-handler))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       ,@forms)))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>(<span class="kw">list</span> (trap-errors (<span class="kw">signal</span> <span class="st">&quot;Foo.&quot;</span>) <span class="dv">1</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      (trap-errors (<span class="kw">error</span>  <span class="st">&quot;Bar.&quot;</span>) <span class="dv">2</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      (<span class="op">+</span> <span class="dv">1</span> <span class="dv">2</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Bar.</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (<span class="dv">1</span> NIL <span class="dv">3</span>)</span></code></pre></div>
+<p><code>"FOO"</code>は印刷されませんが、 これは<a href="9.2.signal.html"><code>signal</code></a>によって<a href="9.2.simple-condition.html"><code>simple-condition</code></a>を通知したためであり、 型<a href="9.2.error-condition.html"><code>error</code></a>ではないため、 <code>trap-errors</code>によって用意された<a href="9.2.error-condition.html"><code>error</code></a>のハンドラーが トリガーされないのです。</p>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
@@ -242,12 +262,9 @@ function - 関数</p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.lambda-symbol.html"><code>lambda</code></a>（シンボル）</p>
+<p><a href="9.2.handler-case.html"><code>handler-case</code></a></p>
 <h2 id="備考">備考</h2>
-<p>このマクロは下記のように定義できます。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmacro</span><span class="fu"> lambda </span>(&amp;whole form &amp;<span class="kw">rest</span> bvl-decls-and-body)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">ignore</span> bvl-decls-and-body))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  `#&#39;,form)</span></code></pre></div>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

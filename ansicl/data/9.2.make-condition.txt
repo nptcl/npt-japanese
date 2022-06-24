@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-CONDITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.make-condition
+@name: make-condition
+@type: function
+
+Function `MAKE-CONDITION`
+
+
+## {syntax}
+
+`make-condition` *type* `&rest` *slot-initializations* => *condition*
+
+
+## {arguments-and-values}
+
+*type* - 型指定子（{condition:link}のサブタイプ）  
+*slot-initializations* - 初期化引数リスト  
+*condition* - コンディション
+
+
+## {description}
+
+型が*type*でスロットの初期値が*slot-initializations*の
+コンディションを構築して返却します。
+新しく作成されたコンディションが返却されます。
+
+
+## {examples}
+
+```lisp
+(defvar *oops-count* 0)
+
+(setq a (make-condition 'simple-error
+                        :format-control "This is your ~:R error."
+                        :format-arguments (list (incf *oops-count*))))
+=>  #<SIMPLE-ERROR 32245104>
+
+(format t "~&~A~%" a)
+>>  This is your first error.
+=>  NIL
+
+(error a)
+>>  Error: This is your first error.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Return to Lisp Toplevel.
+>>  Debug> 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+定義されたコンディションの型の集合
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{define-condition:link},
+{9.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

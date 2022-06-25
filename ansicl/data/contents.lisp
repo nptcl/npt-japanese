@@ -351,6 +351,10 @@
 ;; Chapter 9
 (text 9.1 "コンディションシステムの説明" "Condition System Concepts")
 (text 9.1.4 "コンディションの通知と捕捉" "Signaling and Handling Conditions")
+(text 9.1.4.2 "`restart`" "Restarts")
+(text 9.1.4.2.2 "`restart`のインターフェイス" "Interfaces to Restarts")
+(text 9.1.4.2.4 "コンディションと`restart`の関連付け"
+      "Associating a Restart with a Condition")
 (index 9.2 "コンディションの辞書" "Conditions Dictionary")
 (dictionary 9.2.condition)
 (dictionary 9.2.warning)
@@ -423,8 +427,9 @@
 (dictionary 10.2.unbound-variable)
 
 ;; Chapter 11
+(index 11.1 "パッケージの説明" "Package Concepts")
 (index 11.2 "パッケージの辞書" "Packages Dictionary")
-(dictionary 11.2.package!system-class)
+(dictionary 11.2.package)
 (dictionary 11.2.export)
 (dictionary 11.2.find-symbol)
 (dictionary 11.2.find-package)

@@ -232,7 +232,7 @@ no-error-clause::= (:no-error lambda-list declaration* form*) </code></pre>
 <em>lambda-list</em> - 通常のラムダリスト<br />
 <em>declaration</em> - 宣言式。評価されません。<br />
 <em>form</em> - フォーム<br />
-<em>result</em> - 通常の状況では<em>expression</em>の評価による結果が返却されます。 例外的な状況では制御が<em>clause</em>に遷移したときに、 <em>clause</em>内の最後の<em>form</em>お値が返却されます。</p>
+<em>result</em> - 通常の状況では<em>expression</em>の評価による結果が返却されます。 例外的な状況では制御が<em>clause</em>に遷移したときに、 <em>clause</em>内の最後の<em>form</em>の値が返却されます。</p>
 <h2 id="定義">定義</h2>
 <p><a href="9.2.handler-case.html"><code>handler-case</code></a>は 様々なハンドラーがアクティブになっている動的環境下で <em>expression</em>を実行します。 各<em>error-clause</em>は、 どのようなコンディションを捕捉するのか、 <em>typespec</em>でマッチされたものとして指定します。 <em>no-error-clause</em>は、制御が通常の返却をしたときに 特定のアクションを指定することが許されます。</p>
 <p>もし<em>expression</em>が実行中に <em>error-clause</em>に適用できるコンディションが通知されたとき （例えば、<code>(typep condition 'typespec)</code>が<em>true</em>になるような 何らかの<em>condition</em>）、 さらにその型のコンディションが介入できるハンドラーがないときは、 関係する<em>error-clause</em>の ボディ部に制御が遷移します。 このような場合、動的な状態を適切に巻き戻し、 （つまり<em>expression</em>周りに確立されたハンドラーは もうアクティブではありません）、 <em>var</em>に通知されたコンディションを束縛します。 もし複数の場合が提供されたときは、 そのような場合は並列にアクセスされます。 例えば次のような場合、</p>

@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RESTART-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.restart-name
+@name: restart-name
+@type: function
+
+Function `RESTART-NAME`
+
+
+## {syntax}
+
+`restart-name` *restart* => *name*
+
+
+## {arguments-and-values}
+
+*restart* - `restart`  
+*name* - シンボル
+
+
+## {description}
+
+*restart*の名前を返却しますが、
+もし*restart*が名前を持っていなかったときは、
+{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(restart-case 
+    (loop for restart in (compute-restarts)
+              collect (restart-name restart))
+  (case1 () :report "Return 1." 1)
+  (nil   () :report "Return 2." 2)
+  (case3 () :report "Return 3." 3)
+  (case1 () :report "Return 4." 4))
+=>  (CASE1 NIL CASE3 CASE1 ABORT)
+;; 上記の例はABORTという名前のrestartを明に作成していませんが
+;; しかし暗黙的にシステムによって提供されます。
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compute-restarts:link},
+{find-restart:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

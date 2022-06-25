@@ -1,0 +1,147 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro RESTART-BIND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.restart-bind
+@name: restart-bind
+@type: macro
+
+Macro `RESTART-BIND`
+
+
+## {syntax}
+
+`restart-bind` (`{`(*name* *function* `{`*key-val-pair*`}`\*)`}`) *form\**  
+=> *result\**
+
+```
+key-val-pair::= :interactive-function interactive-function |  
+                :report-function report-function |  
+                :test-function test-function 
+```
+
+
+## {arguments-and-values}
+
+*name* - シンボル。評価されません。  
+*function* - フォーム。評価されます。  
+*form* - {implicit-progn}  
+*interactive-function* - フォーム。評価されます。  
+*report-function* - フォーム。評価されます。  
+*test-function* - フォーム。評価されます。  
+*result* - *form*による返却値
+
+
+## {description}
+
+{restart-bind:link}は、
+与えられた*name*の`restart`の効果がある
+動的環境下で*form*を実行します。
+
+もし*name*が{nil!variable:link}なら、
+それは匿名の`restart`を意味しており、
+*name*が{nil!variable:link}でないシンボルのときは、
+名前付き`restart`を意味しています。
+
+*function*, *interactive-function*, *report-function*は、
+現在の{lexical-environment}と
+ボディ部を評価する前の動的環境下で
+無条件に評価されます。
+これらの各フォームは、関数に評価しなければなりません。
+
+もし{invoke-restart:link}がその`restart`を実行したとき、
+*function*を評価された結果の関数を、
+{invoke-restart:link}の動的環境下で
+{invoke-restart:link}に与えた引数ともに呼び出します。
+その関数は、非局所的な遷移の制御が行われるか、
+あるいは通常の返却をするかのどちらかになります。
+
+もし`restart`がデバッガーから
+（{invoke-restart-interactively:link}を使って）
+対話的に起動されたとき、
+その引数は、*interactive-function*を評価した結果の引数を
+呼び出すことによって指定します。
+`restart`が起動されたとき、その関数はオプションで
+対話的に`query-io`からプロンプトで問い合わせを行い、
+{invoke-restart-interactively:link}によって使われる
+引数のリストを返却しなければなりません。
+
+もし`restart`が対話的に実行されたものの、
+*interactive-function*がなかったときは、
+引数のリストは{nil!variable:link}が使用されます。
+このよう場合、関数は空の引数リストと互換がなければなりません。
+
+もし`restart`の表示が対話中に行われたとき（例えばデバッガーによって）、
+その表示は*report-function*が評価された結果の関数を
+呼び出すことによって行われます。
+その関数はひとつの引数にストリームを取る関数でなければなりません。
+それはストリームを受け取った`restart`が行うことの
+説明の印刷を期待しています。
+この関数は、{*print-escape*:link}が{nil!variable:link}で
+`restart`が印刷されるときはいつでも呼ばれます。
+
+対話式の介入があるときは、 その結果は下記で説明するような
+`:interactive-function`の値に依存します。
+
+- `:interactive-function`
+  - 値は現在の{lexical-environment}で評価され、
+    引数なしの関数を返却しなければなりません。
+    その関数は、この`restart`が実行されたとき、
+    {invoke-restart-interactively:link}によって使われる
+    引数のリストの構築を行います。
+    <br><br>
+
+- `:report-function`
+  - 値は現在の{lexical-environment}で評価され、
+    ひとつの引数にストリームを受け取る関数を返却しなければなりません。
+    その関数は、ストリームにこの`restart`が取る行動の
+    要約を印刷します。
+    <br><br>
+
+- `:test-function`
+  - 値は現在の{lexical-environment}で評価され、
+    ひとつの引数にコンディションを受け取る関数を返却しなければなりません。
+    その関数は、もしこの`restart`が見えていると
+    考えられるときは*true*を返却します。
+    <br><br>
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*query-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{restart-case:link},
+{with-simple-restart:link}
+
+
+## {notes}
+
+{restart-bind:link}は、
+主に{restart-case:link}を実装するときに
+使用されることを意図しており、
+他のマクロを実装するときにも有用である可能性があります。
+{restart-case:link}と{restart-bind:link}のどちらを使うか
+迷っているプログラマーは、
+{restart-case:link}がこのような場合には十分に強力で好まれますし、
+完全な一般性が本当に必要な場合のみ
+{restart-bind:link}を使うことをお勧めします。
+
+@end
+

@@ -1,0 +1,291 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro RESTART-CASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.restart-case
+@name: restart-case
+@type: macro
+
+Macro `RESTART-CASE`
+
+
+## {syntax}
+
+`restart-case` *restartable-form* `{`*clause*`}` 
+=> *result\**
+
+```
+clause::= (case-name lambda-list  
+           [[:interactive interactive-expression | :report report-expression | :test test-expression]]  
+           declaration* form*) 
+```
+
+
+## {arguments-and-values}
+
+*restartable-form* - フォーム  
+*case-name* - シンボルか、{nil!variable:link}  
+*lambda-list* - {ordinary-lambda-list}  
+*interactive-expression* - シンボルか、ラムダ式  
+*report-expression* - 文字列か、シンボルか、ラムダ式  
+*test-expression* - シンボルか、ラムダ式  
+*declaration* - 宣言式。評価されません。  
+*form* - フォーム  
+*result* - *restartable-form*の評価の返却値か、
+選択された*clause*内の最後の*form*の返却値か、{nil!variable:link}
+
+
+## {description}
+
+{restart-case:link}は、
+*clause*制御の遷移先として特別な意味を持つ動的環境下で
+*restartable-form*を評価します。
+もし*restartable-form*の実行が終わり何らかの値を返却したときは、
+そのすべての値は{restart-case:link}の返却値となり処理が完了します
+*restartable-form*が実行中に、
+どんなコードでも*clause*のどれかに
+制御を遷移するかもしれません（{invoke-restart:link}を参照）。
+もし遷移が起こったとき、その*clause*本体内の*form*は評価され、
+そして最後の*form*の返却値が{restart-case:link}によって返却されます。
+この場合、動的状態は*clause*を実行する前に適切に巻き戻されます
+（つまり*restartable-form*の周りで確立された`restart`は
+もはや有効ではありません）。
+
+もし*form*が存在しない*clause*が選択された場合、
+{restart-case:link}は{nil!variable:link}が返却されます。
+
+もし*case-name*がシンボルなら、それは`restart`の名前です。
+
+同じ名前の*case-name*を使った*clause*は複数存在できます。
+このような場合、その名前の最初の*clause*が
+{find-restart:link}によって発見されます。
+他の*clause*は{compute-restarts:link}を使うことでアクセスできます。
+
+各*arglist*は{ordinary-lambda-list}、
+対応する*form*を実行中に束縛されます。
+これらのパラメーターは{restart-case:link}の*clause*が
+{invoke-restart:link}呼び出しから必要なデータを受け取って使われます。
+
+標準では、{invoke-restart-interactively:link}は引数を受け取らず、
+全ての引数は`restart`から対話式で集めるための
+オプションでなければなりません。
+しかし、もし{invoke-restart-interactively:link}へ
+どのように正しい引数リストを計算するのかについて
+知らせるときに使われる`:interactive`キーワードを持っている場合は、
+その引数はオプションである必要はありません。
+
+キーワードオプションは次のような意味を持ちます。
+
+- `:interactive`
+  - `:interactive`によって指定された値は、
+    適切な引数を取る関数でなければなりません。
+    `(function value)`が現在の{lexical-environment}上で評価されます。
+    これは引数なしの関数を返却しなければならず、
+    その関数が起動されると{invoke-restart-interactively:link}によって
+    使われる引数を返却します。
+    {invoke-restart-interactively:link}は、
+    `restart`が試行される前にその利用可能な動的環境下で呼び出され、
+    `query-io`がユーザーとの対話で使用されます。
+    <br><br>
+    もし`restart`が対話式に呼ばれたものの
+    `:interactive`オプションが指定されていなかったときは、
+    その引数リストは空リストのものが呼び出しに使われます。
+    <br><br>
+
+- `:report`
+  - もし`:report`による値がラムダ式かシンボルのとき、
+    それは{function!special:link}で受け付けられるものでなければなりません。
+    `(function value)`が現在の{lexical-environment}上で評価されます。
+    これは引数をストリームひとつ取る関数を返却しなければならず、
+    その関数は`restart`の定義をストリームへ印刷するものです。
+    この関数は`restart`が印刷されるとき
+    {*print-escape*:link}が{nil!variable:link}であれば
+    いつでも呼び出されます。
+    <br><br>
+    もし値が文字列のとき、これは次の省略形です。  
+    `(lambda (stream) (write-string value stream))`  
+    もし名前付きの`restart`が報告を尋ねられたものの
+    引数に`:report`が指定されていなかったときは、
+    その`restart`の名前がデフォルトの報告のテキストを
+    生成するときに使用されます。
+    <br><br>
+    {*print-escape*:link}が{nil!variable:link}のとき、
+    プリンターは`restart`の報告情報を使います。
+    例えば、デバッガーは`continue`コマンドが
+    入力されたときのアクションを次のように説明するかもしれません。  
+    `(format t "~&~S -- ~A~%" ':continue some-restart)`  
+    これは次のように表示されるでしょう。  
+    `:CONTINUE -- Return to command level`  
+    指定された名前なしの`restart`に
+    `:report`オプションが提供されていなかったときの
+    結果は未定義です。
+    <br><br>
+
+- `:test`
+  - `:test`によって指定された値は、
+    適切な引数を取る関数でなければなりません。
+    `(function value)`が現在の{lexical-environment}上で評価されます。
+    これは引数をコンディションひとつ取る関数を返却しなければならず、
+    その関数はもしその`restart`が見えていると考えられるなら
+    *true*を返却するようなものです。
+    <br><br>
+    このオプションのデフォルトは
+    `(lambda (c) (declare (ignore c)) t)`と同等です。
+    <br><br>
+
+もし*restartable-form*がリストであり、
+`car`部が{signal:link}, {error!function:link}, {cerror:link},
+ {warn:link}のシンボルののどれか出るとき
+（またはマクロフォームで展開したらこのようなリストになるとき）、
+{with-condition-restarts:link}が暗黙的に使用され、
+指定した`restart`と通知されるコンディションが関連付けられます。
+
+
+## {examples}
+
+```lisp
+(restart-case
+    (handler-bind ((error #'(lambda (c)
+                            (declare (ignore condition))
+                            (invoke-restart 'my-restart 7))))
+      (error "Foo."))
+  (my-restart (&optional v) v))
+=>  7
+
+(define-condition food-error (error) ())
+=>  FOOD-ERROR
+(define-condition bad-tasting-sundae (food-error) 
+  ((ice-cream :initarg :ice-cream :reader bad-tasting-sundae-ice-cream)
+   (sauce :initarg :sauce :reader bad-tasting-sundae-sauce)
+   (topping :initarg :topping :reader bad-tasting-sundae-topping))
+  (:report (lambda (condition stream)
+             (format stream "Bad tasting sundae with ~S, ~S, and ~S"
+                     (bad-tasting-sundae-ice-cream condition)
+                     (bad-tasting-sundae-sauce condition)
+                     (bad-tasting-sundae-topping condition)))))
+=>  BAD-TASTING-SUNDAE
+(defun all-start-with-same-letter (symbol1 symbol2 symbol3)
+  (let ((first-letter (char (symbol-name symbol1) 0)))
+    (and (eql first-letter (char (symbol-name symbol2) 0))
+         (eql first-letter (char (symbol-name symbol3) 0)))))
+=>  ALL-START-WITH-SAME-LETTER
+(defun read-new-value ()
+  (format t "Enter a new value: ")
+  (multiple-value-list (eval (read))))
+=>  READ-NEW-VALUE
+(defun verify-or-fix-perfect-sundae (ice-cream sauce topping)
+  (do ()
+     ((all-start-with-same-letter ice-cream sauce topping))
+    (restart-case
+      (error 'bad-tasting-sundae
+             :ice-cream ice-cream
+             :sauce sauce
+             :topping topping)
+      (use-new-ice-cream (new-ice-cream)
+        :report "Use a new ice cream."
+        :interactive read-new-value  
+        (setq ice-cream new-ice-cream))
+      (use-new-sauce (new-sauce)
+        :report "Use a new sauce."
+        :interactive read-new-value
+        (setq sauce new-sauce))
+      (use-new-topping (new-topping)
+        :report "Use a new topping."
+        :interactive read-new-value
+        (setq topping new-topping))))
+  (values ice-cream sauce topping))
+=>  VERIFY-OR-FIX-PERFECT-SUNDAE
+(verify-or-fix-perfect-sundae 'vanilla 'caramel 'cherry)
+>>  Error: Bad tasting sundae with VANILLA, CARAMEL, and CHERRY.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Use a new ice cream.
+>>   2: Use a new sauce.
+>>   3: Use a new topping.
+>>   4: Return to Lisp Toplevel.
+>>  Debug> :continue 1
+>>  Use a new ice cream.
+>>  Enter a new ice cream: 'chocolate
+=>  CHOCOLATE, CARAMEL, CHERRY
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{restart-bind:link},
+{with-simple-restart:link},
+
+
+## {notes}
+
+```lisp
+(restart-case expression
+   (name1 arglist1 ...options1... . body1)
+   (name2 arglist2 ...options2... . body2))
+```
+
+上記のフォームは下記のものと同等です。
+```lisp
+(block #1=#:g0001
+  (let ((#2=#:g0002 nil))
+       (tagbody
+       (restart-bind ((name1 #'(lambda (&rest temp)
+                               (setq #2# temp)
+                               (go #3=#:g0003))
+                         ...slightly-transformed-options1...)
+                      (name2 #'(lambda (&rest temp)
+                               (setq #2# temp)
+                               (go #4=#:g0004))
+                         ...slightly-transformed-options2...))
+       (return-from #1# expression))
+         #3# (return-from #1#
+                 (apply #'(lambda arglist1 . body1) #2#))
+         #4# (return-from #1#
+                 (apply #'(lambda arglist2 . body2) #2#)))))
+```
+
+名前なしの`restart`は一般的に対話式でのみ使用され、
+`:interactive`オプションは定義を持たず小さな値です。
+実装は名前なしの`restart`が`:report`情報なしで
+コンパイル時に提供されていたときは、警告を出すことが推奨されます。
+実行時では、このエラーはデバッガーに入ったときに通知されるかもしれません。
+エラーを通知すると、
+デバッガーに再帰的に入場される可能性があるため
+（さらに別の再帰的なエラーを引き起こすなど）、
+デバッガーはエラーが起こっても実際にはエラーを通知せず、
+その問題の何らかの指示を印刷するようにお勧めします。
+
+```lisp
+(restart-case (signal fred)
+  (a ...)
+  (b ...))
+== 
+(restart-case
+    (with-condition-restarts fred 
+                             (list (find-restart 'a) 
+                                   (find-restart 'b))
+      (signal fred))
+  (a ...)
+  (b ...))
+```
+
+@end
+

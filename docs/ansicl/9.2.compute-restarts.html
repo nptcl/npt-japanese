@@ -227,7 +227,7 @@
 <em>restarts</em> - <code>restart</code>のリスト</p>
 <h2 id="定義">定義</h2>
 <p><a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>はそのプログラムの動的状態から 現在有効の<code>restart</code>のリストを計算するときに使われます。</p>
-<p>結果のリストには順番があり、 もっとも内側の（より最近確立されたもの）<code>restart</code>が リストの先頭に近いものになります。</p>
+<p>結果のリストには順番があり、 もっとも内側（より最近確立されたもの）の<code>restart</code>が リストの先頭に近いものになります。</p>
 <p>もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないときは、 それらの<code>restart</code>は、明に<em>condition</em>と関連付けられているものか、 あるいはどのコンディションにも関連付けられてないものかの どちらかのみが集められます。 これは、排他された<code>restart</code>というのは、 関連付けられたコンディションの集合が空ではなく、 その要素に指定した<em>condition</em>が含まれていないということです。 もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 全ての<code>restart</code>が集められます。</p>
 <p><a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>は全ての適用可能な<code>restart</code>が返却され、 それには匿名のものや、 あるものが他のものと同じ名前のものも含まれるため、 したがって<a href="9.2.find-restart.html"><code>find-restart</code></a>の引数にシンボルを指定したものでは 見つけることができないものも含まれます。</p>
 <p>実装は、同じ動的環境下で<a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>を繰り返し呼び出したときに、 違うリストを返却することが許されますが、必須ではありません。 <a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>によって返却されたリストを 全て変更したときの結果は未定義です。</p>
@@ -271,7 +271,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="9.2.find-restart.html"><code>find-restart</code></a>, <a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>, <code>restart-bind</code></p>
+<p><a href="9.2.find-restart.html"><code>find-restart</code></a>, <a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>, <a href="9.2.restart-bind.html"><code>restart-bind</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

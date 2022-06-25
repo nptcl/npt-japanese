@@ -22,6 +22,7 @@
 (replace conditions "コンディション")
 (replace valid-context "有効な文脈")
 (replace binding-types-affected "影響する束縛の型")
+(replace data-arguments-required "要求される引数のデータ")
 
 (replace upgraded-array-element-type "upgraded-array-element-type")
 (replace expressed-array-element-type "expressed-array-element-type")

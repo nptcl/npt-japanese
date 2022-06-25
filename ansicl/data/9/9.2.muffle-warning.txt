@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Restart MUFFLE-WARNING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.muffle-warning!restart
+@name: muffle-warning!restart
+@type: restart
+
+Restart `MUFFLE-WARNING`
+
+
+## {data-arguments-required}
+
+なし。
+
+
+## {description}
+
+この`restart`は{warn:link}によって確立され、
+{warning:link}コンディションのハンドラーは
+{warn:link}に対して警告はすでに実行されており
+それ以上のアクションが必要ないということを伝える方法を持っています。
+
+
+## {examples}
+
+```lisp
+(defvar *all-quiet* nil) =>  *ALL-QUIET*
+(defvar *saved-warnings* '()) =>  *SAVED-WARNINGS*
+(defun quiet-warning-handler (c)
+  (when *all-quiet*
+    (let ((r (find-restart 'muffle-warning c)))
+      (when r 
+        (push c *saved-warnings*)
+        (invoke-restart r)))))
+=>  CUSTOM-WARNING-HANDLER
+(defmacro with-quiet-warnings (&body forms)
+  `(let ((*all-quiet* t)
+         (*saved-warnings* '()))
+     (handler-bind ((warning #'quiet-warning-handler))
+       ,@forms
+       *saved-warnings*)))
+=>  WITH-QUIET-WARNINGS
+(setq saved
+  (with-quiet-warnings
+    (warn "Situation #1.")
+    (let ((*all-quiet* nil))
+      (warn "Situation #2."))
+    (warn "Situation #3.")))
+>>  Warning: Situation #2.
+=>  (#<SIMPLE-WARNING 42744421> #<SIMPLE-WARNING 42744365>)
+(dolist (s saved) (format t "~&~A~%" s))
+>>  Situation #3.
+>>  Situation #1.
+=>  NIL
+```
+
+
+## {see-also}
+
+{9.1.4.2:ab},
+{9.1.4.2.2:ab},
+{invoke-restart:link},
+{muffle-warning!function:link}（関数）,
+{warn:link},
+
+@end
+

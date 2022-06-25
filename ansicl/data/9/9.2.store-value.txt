@@ -1,0 +1,60 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Restart STORE-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.store-value!restart
+@name: store-value!restart
+@type: restart
+
+Restart `STORE-VALUE`
+
+
+## {data-arguments-required}
+
+かわりに使う値（基本的に使い続ける）
+
+
+## {description}
+
+{store-value!restart:link} `restart`は、
+一般的には{cell-error:link}か{type-error:link}のような
+エラーの型から回復を試みるハンドラーによって使用されます。
+回復は置き換えるデータの希望を指定して
+それに永久に置き換えることによって行います。
+
+
+## {examples}
+
+```lisp
+(defun type-error-auto-coerce (c)
+  (when (typep c 'type-error)
+    (let ((r (find-restart 'store-value c)))
+      (handler-case (let ((v (coerce (type-error-datum c)
+                                     (type-error-expected-type c))))
+                      (invoke-restart r v))
+        (error ()))))) =>  TYPE-ERROR-AUTO-COERCE
+(let ((x 3))
+  (handler-bind ((type-error #'type-error-auto-coerce))
+    (check-type x float)
+    x)) =>  3.0
+```
+
+
+## {see-also}
+
+{9.1.4.2:ab},
+{9.1.4.2.2:ab},
+{invoke-restart:link},
+{store-value!function:link}（関数）,
+{ccase:link},
+{check-type:link},
+{ctypecase:link},
+{use-value!function:link}（関数）,
+{use-value!restart:link}（`restart`）
+
+@end
+

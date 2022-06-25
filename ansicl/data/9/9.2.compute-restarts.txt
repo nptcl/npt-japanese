@@ -30,7 +30,7 @@ Function `COMPUTE-RESTARTS`
 現在有効の`restart`のリストを計算するときに使われます。
 
 結果のリストには順番があり、
-もっとも内側の（より最近確立されたもの）`restart`が
+もっとも内側（より最近確立されたもの）の`restart`が
 リストの先頭に近いものになります。
 
 もし*condition*が{nil!variable:link}ではないときは、

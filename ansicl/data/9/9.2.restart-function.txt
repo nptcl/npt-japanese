@@ -1,0 +1,225 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ABORT
+;;  Function CONTINUE
+;;  Function MUFFLE-WARNING
+;;  Function STORE-VALUE
+;;  Function USE-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.restart-function
+@name: abort!function
+@name: continue!function
+@name: muffle-warning!function
+@name: store-value!function
+@name: use-value!function
+@type: function
+
+Function `ABORT`, `CONTINUE`, `MUFFLE-WARNING`, `STORE-VALUE`, `USE-VALUE`
+
+
+## {syntax}
+
+`abort` `&optional` *condition* => `|`  
+`continue` `&optional` *condition* => {nil!variable:link}  
+`muffle-warning` `&optional` *condition* => `|`  
+`store-value` *value* `&optional` *condition* => {nil!variable:link}  
+`use-value` *value* `&optional` *condition* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*value* - オブジェクト  
+*condition* - コンディションオブジェクトか、{nil!variable:link}
+
+
+## {description}
+
+もっとも最近確立された適用可能な`restart`のうち、
+関数と同じ名前を持つものへ制御が遷移されます。
+つまり、{abort!function:link}関数は
+適用可能な{abort!restart:link} `restart`を探し、
+{continue!function:link}関数は
+適用可能な{continue!restart:link} `restart`を探し、
+他も同様です。
+
+もしそのような`restart`が存在しないときは、
+{continue!function:link}, {store-value!function:link},
+{use-value!function:link}は{nil!variable:link}を返却し、
+{abort!function:link}と{muffle-warning!function:link}は
+型{control-error:link}のエラーを発生します。
+
+もし*condition*が{nil!variable:link}ではないときは、
+それらの`restart`は、明に*condition*と関連付けられているものか、
+あるいはどのコンディションにも関連付けられてないものかの
+どちらかのみが集められます。
+これは、排他された`restart`というのは、
+関連付けられたコンディションの集合が空ではなく、
+その要素に指定した*condition*が含まれていないということです。
+もし*condition*が{nil!variable:link}のときは、
+全ての`restart`が集められます。
+
+
+## {examples}
+
+```lisp
+;;; ABORT restartの例
+
+(defmacro abort-on-error (&body forms)
+  `(handler-bind ((error #'abort))
+     ,@forms)) =>  ABORT-ON-ERROR
+(abort-on-error (+ 3 5)) =>  8
+(abort-on-error (error "You lose."))
+>>  Returned to Lisp Top Level.
+
+;;; CONTINUE restartの例
+
+(defun real-sqrt (n)
+  (when (minusp n)
+    (setq n (- n))
+    (cerror "Return sqrt(~D) instead." "Tried to take sqrt(-~D)." n))
+  (sqrt n))
+
+(real-sqrt 4) =>  2
+(real-sqrt -9)
+>>  Error: Tried to take sqrt(-9).
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Return sqrt(9) instead.
+>>   2: Return to Lisp Toplevel.
+>>  Debug> (continue)
+>>  Return sqrt(9) instead.
+=>  3
+ 
+ (handler-bind ((error #'(lambda (c) (continue))))
+   (real-sqrt -9)) =>  3
+
+;;; MUFFLE-WARNING restartの例
+
+(defun count-down (x)
+  (do ((counter x (1- counter)))
+      ((= counter 0) 'done)
+    (when (= counter 1)
+      (warn "Almost done"))
+    (format t "~&~D~%" counter)))
+=>  COUNT-DOWN
+(count-down 3)
+>>  3
+>>  2
+>>  Warning: Almost done
+>>  1
+=>  DONE
+(defun ignore-warnings-while-counting (x)
+  (handler-bind ((warning #'ignore-warning))
+    (count-down x)))
+=>  IGNORE-WARNINGS-WHILE-COUNTING
+(defun ignore-warning (condition)
+  (declare (ignore condition))
+  (muffle-warning))
+=>  IGNORE-WARNING
+ (ignore-warnings-while-counting 3)
+>>  3
+>>  2
+>>  1
+=>  DONE
+
+;;; STORE-VALUE restartとUSE-VALUE restartの例
+
+(defun careful-symbol-value (symbol)
+  (check-type symbol symbol)
+  (restart-case (if (boundp symbol)
+                    (return-from careful-symbol-value 
+                                 (symbol-value symbol))
+                    (error 'unbound-variable
+                           :name symbol))
+    (use-value (value)
+      :report "Specify a value to use this time."
+      value)
+    (store-value (value)
+      :report "Specify a value to store and use in the future."
+      (setf (symbol-value symbol) value))))
+(setq a 1234) =>  1234
+(careful-symbol-value 'a) =>  1234
+(makunbound 'a) =>  A
+(careful-symbol-value 'a)
+>>  Error: A is not bound.
+>>  To continue, type :CONTINUE followed by an option number.
+>>   1: Specify a value to use this time.
+>>   2: Specify a value to store and use in the future.
+>>   3: Return to Lisp Toplevel.
+>>  Debug> (use-value 12)
+=>  12
+(careful-symbol-value 'a)
+>>  Error: A is not bound.
+>>  To continue, type :CONTINUE followed by an option number.
+>>    1: Specify a value to use this time.
+>>    2: Specify a value to store and use in the future.
+>>    3: Return to Lisp Toplevel.
+>>  Debug> (store-value 24)
+=>  24
+ (careful-symbol-value 'a)
+=>  24
+
+;;; USE-VALUE restartの例
+
+(defun add-symbols-with-default (default &rest symbols)
+  (handler-bind ((sys:unbound-symbol
+                   #'(lambda (c)
+                       (declare (ignore c)) 
+                       (use-value default))))
+    (apply #'+ (mapcar #'careful-symbol-value symbols))))
+=>  ADD-SYMBOLS-WITH-DEFAULT
+(setq x 1 y 2) =>  2
+(add-symbols-with-default 3 'x 'y 'z) =>  6
+```
+
+
+## {side-effects}
+
+適用可能な`restart`が使用可能なときに
+制御の遷移が起こるかもしれませんし、
+あるいは（{abort!function:link}関数か
+{muffle-warning!function:link}関数の場合は）
+実行が停止するかもしれません。
+
+
+## {affected-by}
+
+もし適用可能な{abort!restart:link} `restart`が
+利用不可の状態で{abort!function:link}関数が実行されれたときか、
+適用可能な{muffle-warning!restart:link} `restart`が
+利用不可の状態で{muffle-warning!function:link}関数が実行されれたときは、
+型{control-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{invoke-restart:link},
+{9.1.4.2:ab},
+{9.1.4.2.2:ab},
+{assert:link},
+{ccase:link},
+{cerror:link},
+{check-type:link},
+{ctypecase:link},
+{use-value!function:link},
+{warn:link}
+
+
+## {notes}
+
+```lisp
+(abort condition) ==  (invoke-restart 'abort)
+(muffle-warning)  ==  (invoke-restart 'muffle-warning)
+(continue)        ==  (let ((r (find-restart 'continue))) (if r (invoke-restart r)))
+(use-value x) ==  (let ((r (find-restart 'use-value))) (if r (invoke-restart r x)))
+(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))
+```
+
+この仕様書で{use-value!restart:link} `restart`の提供に
+要求される関数定義はありません。
+
+@end
+

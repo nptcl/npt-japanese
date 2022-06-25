@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Restart USE-VALUE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.use-value!restart
+@name: use-value!restart
+@type: restart
+
+Restart `USE-VALUE`
+
+
+## {data-arguments-required}
+
+かわりに使う値（一度だけ）
+
+
+## {description}
+
+{use-value!restart:link} `restart`は、
+一般的には{cell-error:link}か{type-error:link}のような
+エラーの型から回復を試みるハンドラーによって使用されます。
+回復はハンドラーが置き換えるデータの希望を指定して
+その値を一度だけ使用することによって行います。
+
+
+See Also:
+
+{9.1.4.2:ab},
+{9.1.4.2.2:ab},
+{invoke-restart:link},
+{use-value!function:link}（関数）,
+{store-value!function:link}（関数）,
+{store-value!restart:link}（`restart`）
+
+@end
+

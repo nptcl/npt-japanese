@@ -221,7 +221,8 @@
 <h1 id="function-find-restart">Function <strong>FIND-RESTART</strong></h1>
 <p>Function <code>FIND-RESTART</code></p>
 <h2 id="構文">構文</h2>
-<p><code>find-restart</code> <em>identifier</em> <code>&amp;optional</code> <em>condition</em> =&gt; <em>restart</em></p>
+<p><code>find-restart</code> <em>identifier</em> <code>&amp;optional</code> <em>condition</em><br />
+=&gt; <em>restart</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>identifier</em> - <a href="5.3.nil-variable.html"><code>nil</code></a>ではなシンボルか、<code>restart</code><br />
 <em>condition</em> - コンディションオブジェクトか、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
@@ -229,7 +230,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="9.2.find-restart.html"><code>find-restart</code></a>は、現在の動的環境下で特定の<em>restart</em>を探します。</p>
 <p>もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないときは、 それらの<code>restart</code>は、明に<em>condition</em>と関連付けられているものか、 あるいはどのコンディションにも関連付けられてないものかの どちらかのみが集められます。 これは、排他された<code>restart</code>というのは、 関連付けられたコンディションの集合が空ではなく、 その要素に指定した<em>condition</em>が含まれていないということです。 もし<em>condition</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 全ての<code>restart</code>が集められます。</p>
-<p><em>identifier</em>がシンボルのとき、 もっとも内側の（より最近確立されたもの） その名前の適用可能な<code>restart</code>が返却されます。 そのような<code>restart</code>がない場合は<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
+<p><em>identifier</em>がシンボルのとき、 もっとも内側（より最近確立されたもの）の その名前の適用可能な<code>restart</code>が返却されます。 そのような<code>restart</code>がない場合は<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
 <p>もし<em>identifier</em>が現在の有効な<code>restart</code>のときは、 それが返却されます。 そうでないときは<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span></span>
@@ -244,7 +245,7 @@
 <p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>存在する<code>restart</code></p>
-<p><code>restart-case</code>, <code>restart-bind</code>, <code>with-condition-restarts</code></p>
+<p><a href="9.2.restart-case.html"><code>restart-case</code></a>, <a href="9.2.restart-bind.html"><code>restart-bind</code></a>, <a href="9.2.with-condition-restarts.html"><code>with-condition-restarts</code></a></p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>

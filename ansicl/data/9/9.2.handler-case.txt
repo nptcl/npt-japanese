@@ -36,7 +36,7 @@ no-error-clause::= (:no-error lambda-list declaration* form*)
 *form* - フォーム  
 *result* - 通常の状況では*expression*の評価による結果が返却されます。
 例外的な状況では制御が*clause*に遷移したときに、
-*clause*内の最後の*form*お値が返却されます。
+*clause*内の最後の*form*の値が返却されます。
 
 
 ## {description}

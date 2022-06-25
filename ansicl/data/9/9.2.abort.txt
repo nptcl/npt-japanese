@@ -1,0 +1,50 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Restart ABORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.abort!restart
+@name: abort!restart
+@type: restart
+
+Restart `ABORT`
+
+
+## {data-arguments-required}
+
+なし。
+
+
+## {description}
+
+{abort!restart:link} `restart`の意味は、
+もっとも内側の「コマンドレベル」に戻ることを許すことです。
+実装者は、どんなユーザーコードでも
+常に{abort!restart:link}という名前の`restart`で
+囲むことを確実に推奨します。
+なぜなら、ユーザーコードではいつでも
+{abort!function:link}を呼ぶことができ、
+合理的な何かが起こることを期待することができます。
+正確に何が合理的なことなのかは多少変わるかもしれません。
+
+
+通常、対話型で処理しているときは、
+{abort!function:link}を実行すると
+Lispの`read-eval-print`ループのLisp readerフェーズに戻りますが、
+バッチ処理やマルチプロセス処理では、
+実行中のプロセスを`kill`させる方が適切な場合があります。
+
+
+
+## {see-also}
+
+{9.1.4.2:ab},
+{9.1.4.2.2:ab},
+{invoke-restart:link},
+{abort!function:link}（関数）
+
+@end
+

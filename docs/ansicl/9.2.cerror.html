@@ -227,7 +227,7 @@
 <em>datum</em>, <em>arguments</em> - コンディション指定子であり、標準の型は<a href="9.2.simple-error.html"><code>simple-error</code></a>。</p>
 <h2 id="定義">定義</h2>
 <p><a href="9.2.cerror.html"><code>cerror</code></a>は、<em>datum</em>によって指定されたコンディションを 効果的に<a href="9.2.error-function.html"><code>error</code></a>で実行します。</p>
-<p>どこかの関数で暗黙的に<a href="9.2.error-function.html"><code>error</code></a>が呼ばれたとき、 もしそのコンディションが捕捉されなかったときは、 <code>(invoke-debugger condition)</code>が実行されます。 シグナルが通知され、 そしてデバッガーに到達したとき、 <code>continue</code> <code>restart</code>を使うことで コードの実行を継続することができます （例えば<a href="9.2.cerror.html"><code>cerror</code></a>から戻ります）。</p>
+<p>どこかの関数で暗黙的に<a href="9.2.error-function.html"><code>error</code></a>が呼ばれたとき、 もしそのコンディションが捕捉されなかったときは、 <code>(invoke-debugger condition)</code>が実行されます。 シグナルが通知され、 そしてデバッガーに到達したとき、 <a href="9.2.continue-restart.html"><code>continue</code></a> <code>restart</code>を使うことで コードの実行を継続することができます （例えば<a href="9.2.cerror.html"><code>cerror</code></a>から戻ります）。</p>
 <p>もし<em>datum</em>がコンディションなら<em>arguments</em>を指定できますが、 それは<em>continue-format-control</em>との組み合わせでのみ使用されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> real-sqrt </span>(n)</span>

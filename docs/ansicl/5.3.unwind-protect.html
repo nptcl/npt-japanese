@@ -229,7 +229,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>は、 <em>protected-form</em>を評価し、 <a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>を退出したあとで それが通常の終了か、何かの種類の制御遷移による中断かに関わらず、 <em>cleanup-form</em>を実行することを保証します。 <a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>は、<em>protected-form</em>評価後に 確実に特定の副作用を実行することを意図しています。</p>
 <p>もし非ローカル退出が<em>cleanup-form</em>実行中にで生じたときは、 何の特殊なアクションも行いません。 <a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>の<em>cleanup-form</em>は、 <a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>によって保護されているわけではありません。</p>
-<p><a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>は、<em>protected-form</em>から 全ての退出の実行に対して保護されます。 退出は、<a href="5.3.go.html"><code>go</code></a>、<a href="9.2.ignore-errors.html"><code>ignore-errors</code></a>、 <code>restart-case</code>、<a href="5.3.return-from.html"><code>return-from</code></a>、 <a href="5.3.throw.html"><code>throw</code></a>、<code>with-simple-restart</code>が含まれます。</p>
+<p><a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>は、<em>protected-form</em>から 全ての退出の実行に対して保護されます。 退出は、<a href="5.3.go.html"><code>go</code></a>、<a href="9.2.ignore-errors.html"><code>ignore-errors</code></a>、 <a href="9.2.restart-case.html"><code>restart-case</code></a>、<a href="5.3.return-from.html"><code>return-from</code></a>、 <a href="5.3.throw.html"><code>throw</code></a>、<a href="9.2.with-simple-restart.html"><code>with-simple-restart</code></a>が含まれます。</p>
 <p>退出による<code>handler</code>と<code>restart</code>の束縛の解除は、 動的変数と<code>catch</code>タグの束縛の解除と並行して、 それらの確立とは逆順に行われます。 この効果は、<a href="5.3.unwind-protect.html"><code>unwind-protect</code></a>に入ったときに、 <em>cleanup-form</em>を<code>handler</code>と<code>restart</code>の束縛や 動的変数の束縛および<code>catch</code>タグと 同じように見ることができるというものです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">tagbody</span></span>
@@ -339,7 +339,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.catch.html"><code>catch</code></a>, <a href="5.3.go.html"><code>go</code></a>, <a href="9.2.handler-case.html"><code>handler-case</code></a>, <code>restart-case</code>, <a href="5.3.return.html"><code>return</code></a>, <a href="5.3.return-from.html"><code>return-from</code></a>, <a href="5.3.throw.html"><code>throw</code></a>, 3.1. 評価</p>
+<p><a href="5.3.catch.html"><code>catch</code></a>, <a href="5.3.go.html"><code>go</code></a>, <a href="9.2.handler-case.html"><code>handler-case</code></a>, <a href="9.2.restart-case.html"><code>restart-case</code></a>, <a href="5.3.return.html"><code>return</code></a>, <a href="5.3.return-from.html"><code>return-from</code></a>, <a href="5.3.throw.html"><code>throw</code></a>, 3.1. 評価</p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

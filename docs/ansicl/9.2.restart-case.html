@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro RESTART-CASE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro RESTART-CASE</h1>
+</header>
+<p><a href="9.2.html">UP</a></p>
+<hr />
+<h1 id="macro-restart-case">Macro <strong>RESTART-CASE</strong></h1>
+<p>Macro <code>RESTART-CASE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>restart-case</code> <em>restartable-form</em> <code>{</code><em>clause</em><code>}</code> =&gt; <em>result*</em></p>
+<pre><code>clause::= (case-name lambda-list  
+           [[:interactive interactive-expression | :report report-expression | :test test-expression]]  
+           declaration* form*) </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>restartable-form</em> - フォーム<br />
+<em>case-name</em> - シンボルか、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>lambda-list</em> - 通常のラムダリスト<br />
+<em>interactive-expression</em> - シンボルか、ラムダ式<br />
+<em>report-expression</em> - 文字列か、シンボルか、ラムダ式<br />
+<em>test-expression</em> - シンボルか、ラムダ式<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>form</em> - フォーム<br />
+<em>result</em> - <em>restartable-form</em>の評価の返却値か、 選択された<em>clause</em>内の最後の<em>form</em>の返却値か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="定義">定義</h2>
+<p><a href="9.2.restart-case.html"><code>restart-case</code></a>は、 <em>clause</em>制御の遷移先として特別な意味を持つ動的環境下で <em>restartable-form</em>を評価します。 もし<em>restartable-form</em>の実行が終わり何らかの値を返却したときは、 そのすべての値は<a href="9.2.restart-case.html"><code>restart-case</code></a>の返却値となり処理が完了します <em>restartable-form</em>が実行中に、 どんなコードでも<em>clause</em>のどれかに 制御を遷移するかもしれません（<a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>を参照）。 もし遷移が起こったとき、その<em>clause</em>本体内の<em>form</em>は評価され、 そして最後の<em>form</em>の返却値が<a href="9.2.restart-case.html"><code>restart-case</code></a>によって返却されます。 この場合、動的状態は<em>clause</em>を実行する前に適切に巻き戻されます （つまり<em>restartable-form</em>の周りで確立された<code>restart</code>は もはや有効ではありません）。</p>
+<p>もし<em>form</em>が存在しない<em>clause</em>が選択された場合、 <a href="9.2.restart-case.html"><code>restart-case</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</p>
+<p>もし<em>case-name</em>がシンボルなら、それは<code>restart</code>の名前です。</p>
+<p>同じ名前の<em>case-name</em>を使った<em>clause</em>は複数存在できます。 このような場合、その名前の最初の<em>clause</em>が <a href="9.2.find-restart.html"><code>find-restart</code></a>によって発見されます。 他の<em>clause</em>は<a href="9.2.compute-restarts.html"><code>compute-restarts</code></a>を使うことでアクセスできます。</p>
+<p>各<em>arglist</em>は通常のラムダリスト、 対応する<em>form</em>を実行中に束縛されます。 これらのパラメーターは<a href="9.2.restart-case.html"><code>restart-case</code></a>の<em>clause</em>が <a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>呼び出しから必要なデータを受け取って使われます。</p>
+<p>標準では、<a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>は引数を受け取らず、 全ての引数は<code>restart</code>から対話式で集めるための オプションでなければなりません。 しかし、もし<a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>へ どのように正しい引数リストを計算するのかについて 知らせるときに使われる<code>:interactive</code>キーワードを持っている場合は、 その引数はオプションである必要はありません。</p>
+<p>キーワードオプションは次のような意味を持ちます。</p>
+<ul>
+<li><code>:interactive</code>
+<ul>
+<li><code>:interactive</code>によって指定された値は、 適切な引数を取る関数でなければなりません。 <code>(function value)</code>が現在のレキシカルな環境上で評価されます。 これは引数なしの関数を返却しなければならず、 その関数が起動されると<a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>によって 使われる引数を返却します。 <a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>は、 <code>restart</code>が試行される前にその利用可能な動的環境下で呼び出され、 <code>query-io</code>がユーザーとの対話で使用されます。 <br><br> もし<code>restart</code>が対話式に呼ばれたものの <code>:interactive</code>オプションが指定されていなかったときは、 その引数リストは空リストのものが呼び出しに使われます。 <br><br></li>
+</ul></li>
+<li><code>:report</code>
+<ul>
+<li>もし<code>:report</code>による値がラムダ式かシンボルのとき、 それは<a href="5.3.function-special.html"><code>function</code></a>で受け付けられるものでなければなりません。 <code>(function value)</code>が現在のレキシカルな環境上で評価されます。 これは引数をストリームひとつ取る関数を返却しなければならず、 その関数は<code>restart</code>の定義をストリームへ印刷するものです。 この関数は<code>restart</code>が印刷されるとき <a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>であれば いつでも呼び出されます。 <br><br> もし値が文字列のとき、これは次の省略形です。<br />
+<code>(lambda (stream) (write-string value stream))</code><br />
+もし名前付きの<code>restart</code>が報告を尋ねられたものの 引数に<code>:report</code>が指定されていなかったときは、 その<code>restart</code>の名前がデフォルトの報告のテキストを 生成するときに使用されます。 <br><br> <a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 プリンターは<code>restart</code>の報告情報を使います。 例えば、デバッガーは<code>continue</code>コマンドが 入力されたときのアクションを次のように説明するかもしれません。<br />
+<code>(format t "~&amp;~S -- ~A~%" ':continue some-restart)</code><br />
+これは次のように表示されるでしょう。<br />
+<code>:CONTINUE -- Return to command level</code><br />
+指定された名前なしの<code>restart</code>に <code>:report</code>オプションが提供されていなかったときの 結果は未定義です。 <br><br></li>
+</ul></li>
+<li><code>:test</code>
+<ul>
+<li><code>:test</code>によって指定された値は、 適切な引数を取る関数でなければなりません。 <code>(function value)</code>が現在のレキシカルな環境上で評価されます。 これは引数をコンディションひとつ取る関数を返却しなければならず、 その関数はもしその<code>restart</code>が見えていると考えられるなら <em>true</em>を返却するようなものです。 <br><br> このオプションのデフォルトは <code>(lambda (c) (declare (ignore c)) t)</code>と同等です。 <br><br></li>
+</ul></li>
+</ul>
+<p>もし<em>restartable-form</em>がリストであり、 <code>car</code>部が<a href="9.2.signal.html"><code>signal</code></a>, <a href="9.2.error-function.html"><code>error</code></a>, <a href="9.2.cerror.html"><code>cerror</code></a>, <a href="9.2.warn.html"><code>warn</code></a>のシンボルののどれか出るとき （またはマクロフォームで展開したらこのようなリストになるとき）、 <a href="9.2.with-condition-restarts.html"><code>with-condition-restarts</code></a>が暗黙的に使用され、 指定した<code>restart</code>と通知されるコンディションが関連付けられます。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">handler-bind</span> ((<span class="kw">error</span> #&#39;(<span class="kw">lambda</span> (c)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                            (<span class="kw">declare</span> (<span class="kw">ignore</span> <span class="kw">condition</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                            (<span class="kw">invoke-restart</span> &#39;my-restart <span class="dv">7</span>))))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">error</span> <span class="st">&quot;Foo.&quot;</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (my-restart (&amp;optional v) v))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">7</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-condition</span><span class="fu"> food-error </span>(<span class="kw">error</span>) ())</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  FOOD-ERROR</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-condition</span><span class="fu"> bad-tasting-sundae </span>(food-error) </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  ((ice-cream :initarg :ice-cream :reader bad-tasting-sundae-ice-cream)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   (sauce :initarg :sauce :reader bad-tasting-sundae-sauce)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>   (topping :initarg :topping :reader bad-tasting-sundae-topping))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  (:report (<span class="kw">lambda</span> (<span class="kw">condition</span> <span class="kw">stream</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;Bad tasting sundae with ~S, ~S, and ~S&quot;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                     (bad-tasting-sundae-ice-cream <span class="kw">condition</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                     (bad-tasting-sundae-sauce <span class="kw">condition</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                     (bad-tasting-sundae-topping <span class="kw">condition</span>)))))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  BAD-TASTING-SUNDAE</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> all-start-with-same-letter </span>(symbol1 symbol2 symbol3)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((first-letter (<span class="kw">char</span> (<span class="kw">symbol-name</span> symbol1) <span class="dv">0</span>)))</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">and</span> (<span class="kw">eql</span> first-letter (<span class="kw">char</span> (<span class="kw">symbol-name</span> symbol2) <span class="dv">0</span>))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>         (<span class="kw">eql</span> first-letter (<span class="kw">char</span> (<span class="kw">symbol-name</span> symbol3) <span class="dv">0</span>)))))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  ALL-START-WITH-SAME-LETTER</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> read-new-value </span>()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;Enter a new value: &quot;</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">multiple-value-list</span> (<span class="kw">eval</span> (<span class="kw">read</span>))))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  READ-NEW-VALUE</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> verify-or-fix-perfect-sundae </span>(ice-cream sauce topping)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">do</span> ()</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>     ((all-start-with-same-letter ice-cream sauce topping))</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">restart-case</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">error</span> &#39;bad-tasting-sundae</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>             :ice-cream ice-cream</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>             :sauce sauce</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>             :topping topping)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>      (use-new-ice-cream (new-ice-cream)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        :report <span class="st">&quot;Use a new ice cream.&quot;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        :interactive read-new-value  </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">setq</span> ice-cream new-ice-cream))</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>      (use-new-sauce (new-sauce)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        :report <span class="st">&quot;Use a new sauce.&quot;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        :interactive read-new-value</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">setq</span> sauce new-sauce))</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>      (use-new-topping (new-topping)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        :report <span class="st">&quot;Use a new topping.&quot;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        :interactive read-new-value</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        (<span class="kw">setq</span> topping new-topping))))</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">values</span> ice-cream sauce topping))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  VERIFY-OR-FIX-PERFECT-SUNDAE</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>(verify-or-fix-perfect-sundae &#39;vanilla &#39;caramel &#39;cherry)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Error: Bad tasting sundae with VANILLA, CARAMEL, <span class="kw">and</span> CHERRY.</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  To <span class="kw">continue</span>, <span class="kw">type</span> :CONTINUE followed by an option number:</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">1</span>: Use a new ice cream.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">2</span>: Use a new sauce.</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">3</span>: Use a new topping.</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   <span class="dv">4</span>: Return to Lisp Toplevel.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Debug&gt; :continue <span class="dv">1</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Use a new ice cream.</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Enter a new ice cream: &#39;chocolate</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  CHOCOLATE, CARAMEL, CHERRY</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="9.2.restart-bind.html"><code>restart-bind</code></a>, <a href="9.2.with-simple-restart.html"><code>with-simple-restart</code></a>,</p>
+<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span> expression</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   (name1 arglist1 ...options1... . body1)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>   (name2 arglist2 ...options2... . body2))</span></code></pre></div>
+<p>上記のフォームは下記のものと同等です。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">block</span> #<span class="dv">1</span>=#:g0001</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((#<span class="dv">2</span>=#:g0002 <span class="kw">nil</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">tagbody</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">restart-bind</span> ((name1 #&#39;(<span class="kw">lambda</span> (&amp;<span class="kw">rest</span> temp)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">setq</span> #<span class="dv">2</span># temp)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">go</span> #<span class="dv">3</span>=#:g0003))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                         ...slightly-transformed-options1...)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                      (name2 #&#39;(<span class="kw">lambda</span> (&amp;<span class="kw">rest</span> temp)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">setq</span> #<span class="dv">2</span># temp)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">go</span> #<span class="dv">4</span>=#:g0004))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                         ...slightly-transformed-options2...))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">return-from</span> #<span class="dv">1</span># expression))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>         #<span class="dv">3</span># (<span class="kw">return-from</span> #<span class="dv">1</span>#</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                 (<span class="kw">apply</span> #&#39;(<span class="kw">lambda</span> arglist1 . body1) #<span class="dv">2</span>#))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>         #<span class="dv">4</span># (<span class="kw">return-from</span> #<span class="dv">1</span>#</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                 (<span class="kw">apply</span> #&#39;(<span class="kw">lambda</span> arglist2 . body2) #<span class="dv">2</span>#)))))</span></code></pre></div>
+<p>名前なしの<code>restart</code>は一般的に対話式でのみ使用され、 <code>:interactive</code>オプションは定義を持たず小さな値です。 実装は名前なしの<code>restart</code>が<code>:report</code>情報なしで コンパイル時に提供されていたときは、警告を出すことが推奨されます。 実行時では、このエラーはデバッガーに入ったときに通知されるかもしれません。 エラーを通知すると、 デバッガーに再帰的に入場される可能性があるため （さらに別の再帰的なエラーを引き起こすなど）、 デバッガーはエラーが起こっても実際にはエラーを通知せず、 その問題の何らかの指示を印刷するようにお勧めします。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span> (<span class="kw">signal</span> fred)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  (a ...)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (b ...))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>== </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">restart-case</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">with-condition-restarts</span> fred </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                             (<span class="kw">list</span> (<span class="kw">find-restart</span> &#39;a) </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                   (<span class="kw">find-restart</span> &#39;b))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">signal</span> fred))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  (a ...)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  (b ...))</span></code></pre></div>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

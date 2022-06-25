@@ -1,0 +1,110 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INVOKE-RESTART-INTERACTIVELY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.invoke-restart-interactively
+@name: invoke-restart-interactively
+@type: function
+
+Function `INVOKE-RESTART-INTERACTIVELY`
+
+
+## {syntax}
+
+`invoke-restart-interactively` *restart* => *result\**
+
+
+## {arguments-and-values}
+
+*restart* - `restart`指定子  
+*result* - *restart*に関係づいた関数による返却値（もしあるなら）。
+
+
+## {description}
+
+{invoke-restart-interactively:link}は、
+`restart`に関連づいた関数を呼び出し、
+呼び出しに必要な引数はプロンプトによって問い合わせます。
+*restart*は現在の動的環境下で有効なものでなければなりません。
+
+{invoke-restart-interactively:link}は、
+引数の問い合わせを
+{restart-case:link}の`:interactive`キーワードか、
+{restart-bind:link}の`:interactive-function`キーワードで
+提供されたコードを実行することで行います。
+
+もしそのようなオプションが
+対応する{restart-bind:link}と{restart-case:link}に
+指定されなかったときは、
+もし`restart`が要求引数を取っていたときの結果は未定義です。
+もし引数がオプションであるときは、
+リストの{nil!variable:link}が使用されます。
+
+いったん引数が決定すると、
+{invoke-restart-interactively:link}は
+次のように実行を行います。
+
+```lisp
+(apply #'invoke-restart restart arguments)
+```
+
+
+## {examples}
+
+```lisp
+(defun add3 (x) (check-type x number) (+ x 3))
+
+(add3 'seven)
+>>  Error: The value SEVEN was not of type NUMBER.
+>>  To continue, type :CONTINUE followed by an option number:
+>>   1: Specify a different value to use.
+>>   2: Return to Lisp Toplevel.
+>>  Debug> (invoke-restart-interactively 'store-value)
+>>  Type a form to evaluate and use: 7
+=>  10
+```
+
+
+## {side-effects}
+
+もし必要な引数の問い合わせが生じると、
+キーボードなどのタイプによる入力が生じます（`query-io`上で）。
+
+`restart`によって非局所的な遷移の制御が行われるかもしれません。
+
+
+## {affected-by}
+
+{*query-io*:link}
+
+有効な`restart`
+
+
+## {exceptional-situations}
+
+*restart*が有効なものでないときは、
+型{control-error:link}のエラーが生じます。
+
+
+
+## {see-also}
+
+{find-restart:link},
+{invoke-restart:link},
+{restart-case:link},
+{restart-bind:link}
+
+
+## {notes}
+
+{invoke-restart-interactively:link}は
+デバッガーの内部で使用されますし、
+他の移植可能な対話式デバッグツールが実装されて、
+使用されるかもしれません。
+
+@end
+

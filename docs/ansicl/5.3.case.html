@@ -247,7 +247,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 </ul></li>
 <li><a href="5.3.case.html"><code>ccase</code></a>
 <ul>
-<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>の修正可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <code>store-value</code> <code>restart</code>をエラーの修正に使うことができます。 <br><br> もし<code>store-value</code> <code>restart</code>が起動されたら、 その引数は新しい<em>test-key</em>であり、 <em>keyplace</em>への保存は<code>(setf keyplace test-key)</code>のように行われます。 それから<a href="5.3.case.html"><code>ccase</code></a>は最初から始められ、 各<em>clause</em>が新しく評価されます。 <br><br> いずれのケースも成立しない場合、 <em>keyplace</em>のサブフォームは再度評価されるかもしれません。 <br><br></li>
+<li>もしマッチする<em>normal-clause</em>が存在しないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>の修正可能なエラーが発生します。 問題の<code>datum</code>は<em>test-key</em>であり、 <code>expected type</code>は<code>(member key1 key2 ...)</code>と同等の型です。 <a href="9.2.store-value-restart.html"><code>store-value</code></a> <code>restart</code>をエラーの修正に使うことができます。 <br><br> もし<a href="9.2.store-value-restart.html"><code>store-value</code></a> <code>restart</code>が起動されたら、 その引数は新しい<em>test-key</em>であり、 <em>keyplace</em>への保存は<code>(setf keyplace test-key)</code>のように行われます。 それから<a href="5.3.case.html"><code>ccase</code></a>は最初から始められ、 各<em>clause</em>が新しく評価されます。 <br><br> いずれのケースも成立しない場合、 <em>keyplace</em>のサブフォームは再度評価されるかもしれません。 <br><br></li>
 </ul></li>
 <li><a href="5.3.case.html"><code>ecase</code></a>
 <ul>
@@ -285,7 +285,7 @@ clause ::= normal-clause | otherwise-clause </code></pre>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Value to evaluate <span class="kw">and</span> use for X: &#39;IV</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">5</span></span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>デバッガーに入るかもしれません。 もし<code>store-value</code> <code>restart</code>が実行されたとき、 <em>keyplace</em>の値は変更されるかもしれません。</p>
+<p>デバッガーに入るかもしれません。 もし<a href="9.2.store-value-restart.html"><code>store-value</code></a> <code>restart</code>が実行されたとき、 <em>keyplace</em>の値は変更されるかもしれません。</p>
 <h2 id="影響">影響</h2>
 <p><a href="5.3.case.html"><code>ccase</code></a>と<a href="5.3.case.html"><code>ecase</code></a>がエラーを通知したときは、 既存の<code>handler</code>と<a href="21.2.debug-io.html"><code>*debug-io*</code></a>に影響を及ぼす可能性があります。</p>
 <h2 id="例外">例外</h2>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro RESTART-BIND</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro RESTART-BIND</h1>
+</header>
+<p><a href="9.2.html">UP</a></p>
+<hr />
+<h1 id="macro-restart-bind">Macro <strong>RESTART-BIND</strong></h1>
+<p>Macro <code>RESTART-BIND</code></p>
+<h2 id="構文">構文</h2>
+<p><code>restart-bind</code> (<code>{</code>(<em>name</em> <em>function</em> <code>{</code><em>key-val-pair</em><code>}</code>*)<code>}</code>) <em>form*</em><br />
+=&gt; <em>result*</em></p>
+<pre><code>key-val-pair::= :interactive-function interactive-function |  
+                :report-function report-function |  
+                :test-function test-function </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>name</em> - シンボル。評価されません。<br />
+<em>function</em> - フォーム。評価されます。<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>interactive-function</em> - フォーム。評価されます。<br />
+<em>report-function</em> - フォーム。評価されます。<br />
+<em>test-function</em> - フォーム。評価されます。<br />
+<em>result</em> - <em>form</em>による返却値</p>
+<h2 id="定義">定義</h2>
+<p><a href="9.2.restart-bind.html"><code>restart-bind</code></a>は、 与えられた<em>name</em>の<code>restart</code>の効果がある 動的環境下で<em>form</em>を実行します。</p>
+<p>もし<em>name</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>なら、 それは匿名の<code>restart</code>を意味しており、 <em>name</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>でないシンボルのときは、 名前付き<code>restart</code>を意味しています。</p>
+<p><em>function</em>, <em>interactive-function</em>, <em>report-function</em>は、 現在のレキシカルな環境と ボディ部を評価する前の動的環境下で 無条件に評価されます。 これらの各フォームは、関数に評価しなければなりません。</p>
+<p>もし<a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>がその<code>restart</code>を実行したとき、 <em>function</em>を評価された結果の関数を、 <a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>の動的環境下で <a href="9.2.invoke-restart.html"><code>invoke-restart</code></a>に与えた引数ともに呼び出します。 その関数は、非局所的な遷移の制御が行われるか、 あるいは通常の返却をするかのどちらかになります。</p>
+<p>もし<code>restart</code>がデバッガーから （<a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>を使って） 対話的に起動されたとき、 その引数は、<em>interactive-function</em>を評価した結果の引数を 呼び出すことによって指定します。 <code>restart</code>が起動されたとき、その関数はオプションで 対話的に<code>query-io</code>からプロンプトで問い合わせを行い、 <a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>によって使われる 引数のリストを返却しなければなりません。</p>
+<p>もし<code>restart</code>が対話的に実行されたものの、 <em>interactive-function</em>がなかったときは、 引数のリストは<a href="5.3.nil-variable.html"><code>nil</code></a>が使用されます。 このよう場合、関数は空の引数リストと互換がなければなりません。</p>
+<p>もし<code>restart</code>の表示が対話中に行われたとき（例えばデバッガーによって）、 その表示は<em>report-function</em>が評価された結果の関数を 呼び出すことによって行われます。 その関数はひとつの引数にストリームを取る関数でなければなりません。 それはストリームを受け取った<code>restart</code>が行うことの 説明の印刷を期待しています。 この関数は、<a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>で <code>restart</code>が印刷されるときはいつでも呼ばれます。</p>
+<p>対話式の介入があるときは、 その結果は下記で説明するような <code>:interactive-function</code>の値に依存します。</p>
+<ul>
+<li><code>:interactive-function</code>
+<ul>
+<li>値は現在のレキシカルな環境で評価され、 引数なしの関数を返却しなければなりません。 その関数は、この<code>restart</code>が実行されたとき、 <a href="9.2.invoke-restart-interactively.html"><code>invoke-restart-interactively</code></a>によって使われる 引数のリストの構築を行います。 <br><br></li>
+</ul></li>
+<li><code>:report-function</code>
+<ul>
+<li>値は現在のレキシカルな環境で評価され、 ひとつの引数にストリームを受け取る関数を返却しなければなりません。 その関数は、ストリームにこの<code>restart</code>が取る行動の 要約を印刷します。 <br><br></li>
+</ul></li>
+<li><code>:test-function</code>
+<ul>
+<li>値は現在のレキシカルな環境で評価され、 ひとつの引数にコンディションを受け取る関数を返却しなければなりません。 その関数は、もしこの<code>restart</code>が見えていると 考えられるときは<em>true</em>を返却します。 <br><br></li>
+</ul></li>
+</ul>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p><a href="21.2.debug-io.html"><code>*query-io*</code></a></p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="9.2.restart-case.html"><code>restart-case</code></a>, <a href="9.2.with-simple-restart.html"><code>with-simple-restart</code></a></p>
+<h2 id="備考">備考</h2>
+<p><a href="9.2.restart-bind.html"><code>restart-bind</code></a>は、 主に<a href="9.2.restart-case.html"><code>restart-case</code></a>を実装するときに 使用されることを意図しており、 他のマクロを実装するときにも有用である可能性があります。 <a href="9.2.restart-case.html"><code>restart-case</code></a>と<a href="9.2.restart-bind.html"><code>restart-bind</code></a>のどちらを使うか 迷っているプログラマーは、 <a href="9.2.restart-case.html"><code>restart-case</code></a>がこのような場合には十分に強力で好まれますし、 完全な一般性が本当に必要な場合のみ <a href="9.2.restart-bind.html"><code>restart-bind</code></a>を使うことをお勧めします。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

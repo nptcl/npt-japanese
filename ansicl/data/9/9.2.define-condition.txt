@@ -15,8 +15,8 @@ Macro `DEFINE-CONDITION`
 
 ## {syntax}
 
-`define-condition` *name* (*parent-type\**) (`{`*slot-spec*`}`\*) *option\**
- => *name*
+`define-condition` *name* (*parent-type\**) (`{`*slot-spec*`}`\*) *option\**  
+=> *name*
 
 ```
 slot-spec::= slot-name | (slot-name slot-option) 
@@ -45,10 +45,10 @@ report-name::= string | symbol | lambda expression
 *default-initargs* - キーワードと値のペアのリスト  
 *slot-spec* - スロットの名前か、
 *slot-name*に続いてゼロか複数の*slot-option*を含むリスト。  
-*slot-name - スロットの名前（シンボル）か、
+*slot-name* - スロットの名前（シンボル）か、
 スロットの名前のリストか、
 【翻訳者注釈】名前とスロットのフォームのペアのリスト。  
-*option - 下記のどれかのもの
+*option* - 下記のどれかのもの
 
 - `:reader`
   - `:reader`は1つのスロットに対し1つ以上指定できますが、
@@ -241,7 +241,7 @@ report-name::= string | symbol | lambda expression
 よって{make-condition:link}は`:peg-shape`と`:hole-shape`という
 キーワードを受け付けます。
 リーダーである`peg/hole-mismatch-peg-shape`と`peg/hole-mismatch-hole-shape`は
-その型のオブジェクトを受付、
+その型のオブジェクトを受付け、
 `:report`はその型の情報を出力します。
 
 次のフォームは`machine-error`という名前のコンディションの型を定義しており、
@@ -259,7 +259,7 @@ report-name::= string | symbol | lambda expression
 
 次の定義の構築は、`machine-error`のサブタイプとして
 定義された新しいエラーのコンディションとして定義されたものであり、
-もし機械が利用できないときに使われるものです。
+機械が利用できないときに使われるものです。
 
 ```lisp
 (define-condition machine-not-available-error (machine-error) ()

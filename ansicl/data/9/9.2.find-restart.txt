@@ -15,8 +15,8 @@ Function `FIND-RESTART`
 
 ## {syntax}
 
-`find-restart` *identifier* `&optional` *condition*
- => *restart*
+`find-restart` *identifier* `&optional` *condition*  
+=> *restart*
 
 
 ## {arguments-and-values}
@@ -41,7 +41,7 @@ Function `FIND-RESTART`
 全ての`restart`が集められます。
 
 *identifier*がシンボルのとき、
-もっとも内側の（より最近確立されたもの）
+もっとも内側（より最近確立されたもの）の
 その名前の適用可能な`restart`が返却されます。
 そのような`restart`がない場合は{nil!variable:link}です。
 

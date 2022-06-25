@@ -221,7 +221,8 @@
 <h1 id="macro-define-condition">Macro <strong>DEFINE-CONDITION</strong></h1>
 <p>Macro <code>DEFINE-CONDITION</code></p>
 <h2 id="構文">構文</h2>
-<p><code>define-condition</code> <em>name</em> (<em>parent-type*</em>) (<code>{</code><em>slot-spec</em><code>}</code>*) <em>option*</em> =&gt; <em>name</em></p>
+<p><code>define-condition</code> <em>name</em> (<em>parent-type*</em>) (<code>{</code><em>slot-spec</em><code>}</code>*) <em>option*</em><br />
+=&gt; <em>name</em></p>
 <pre><code>slot-spec::= slot-name | (slot-name slot-option) 
 slot-option::= [[{:reader symbol}* |  
                {:writer function-name}* |  
@@ -241,8 +242,8 @@ report-name::= string | symbol | lambda expression </code></pre>
 <em>parent-type</em> - コンディションの型の名前であるシンボル。 もし<em>parent-type</em>が指定されなかったときは、 <em>parent-types</em>はデフォルトで<code>(condition)</code>です。<br />
 <em>default-initargs</em> - キーワードと値のペアのリスト<br />
 <em>slot-spec</em> - スロットの名前か、 <em>slot-name</em>に続いてゼロか複数の<em>slot-option</em>を含むリスト。<br />
-<em>slot-name - スロットの名前（シンボル）か、 スロットの名前のリストか、 【翻訳者注釈】名前とスロットのフォームのペアのリスト。<br />
-</em>option - 下記のどれかのもの</p>
+<em>slot-name</em> - スロットの名前（シンボル）か、 スロットの名前のリストか、 【翻訳者注釈】名前とスロットのフォームのペアのリスト。<br />
+<em>option</em> - 下記のどれかのもの</p>
 <ul>
 <li><code>:reader</code>
 <ul>
@@ -348,7 +349,7 @@ report-name::= string | symbol | lambda expression </code></pre>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;A ~A peg cannot go in a ~A hole.&quot;</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                     (peg/hole-mismatch-peg-shape  <span class="kw">condition</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                     (peg/hole-mismatch-hole-shape <span class="kw">condition</span>)))))</span></code></pre></div>
-<p>新しい型は<code>peg-shape</code>と<code>hole-shape</code>というスロットを持っており、 よって<a href="9.2.make-condition.html"><code>make-condition</code></a>は<code>:peg-shape</code>と<code>:hole-shape</code>という キーワードを受け付けます。 リーダーである<code>peg/hole-mismatch-peg-shape</code>と<code>peg/hole-mismatch-hole-shape</code>は その型のオブジェクトを受付、 <code>:report</code>はその型の情報を出力します。</p>
+<p>新しい型は<code>peg-shape</code>と<code>hole-shape</code>というスロットを持っており、 よって<a href="9.2.make-condition.html"><code>make-condition</code></a>は<code>:peg-shape</code>と<code>:hole-shape</code>という キーワードを受け付けます。 リーダーである<code>peg/hole-mismatch-peg-shape</code>と<code>peg/hole-mismatch-hole-shape</code>は その型のオブジェクトを受付け、 <code>:report</code>はその型の情報を出力します。</p>
 <p>次のフォームは<code>machine-error</code>という名前のコンディションの型を定義しており、 これは<a href="9.2.error-condition.html"><code>error</code></a>を継承しています。</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-condition</span><span class="fu"> machine-error </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                  (<span class="kw">error</span>)</span>
@@ -357,7 +358,7 @@ report-name::= string | symbol | lambda expression </code></pre>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  (:report (<span class="kw">lambda</span> (<span class="kw">condition</span> <span class="kw">stream</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;There is a problem with ~A.&quot;</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                     (machine-error-machine-name <span class="kw">condition</span>)))))</span></code></pre></div>
-<p>次の定義の構築は、<code>machine-error</code>のサブタイプとして 定義された新しいエラーのコンディションとして定義されたものであり、 もし機械が利用できないときに使われるものです。</p>
+<p>次の定義の構築は、<code>machine-error</code>のサブタイプとして 定義された新しいエラーのコンディションとして定義されたものであり、 機械が利用できないときに使われるものです。</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">define-condition</span><span class="fu"> machine-not-available-error </span>(machine-error) ()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  (:report (<span class="kw">lambda</span> (<span class="kw">condition</span> <span class="kw">stream</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;The machine ~A is not available.&quot;</span></span>

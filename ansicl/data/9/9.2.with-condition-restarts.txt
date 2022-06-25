@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  9. コンディション
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-CONDITION-RESTARTS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 9.2.with-condition-restarts
+@name: with-condition-restarts
+@type: macro
+
+Macro `WITH-CONDITION-RESTARTS`
+
+
+## {syntax}
+
+`with-condition-restarts` *condition-form* *restarts-form* *form\**  
+=> *result\**
+
+
+## {arguments-and-values}
+
+*condition-form* - フォーム。評価されて*condition*を生成します。  
+*condition* - *condition-form*の評価結果のコンディションオブジェクト  
+*restart-form* - フォーム。評価されて*restart-list*を生成します。  
+*restart-list* - *restart-form*の評価結果の`restart`オブジェクトのリスト  
+*form* - {implicit-progn}。評価されます。  
+*result* - *form*の返却値
+
+
+## {description}
+
+最初に*condition-form*と*restart-form*が
+通常の左から右の順に評価され、
+それらの評価の主値がそれぞれ
+*condition*と*restart-list*に対応します。
+
+次に*condition*に対応する*restart-list*内の各`restart`がある
+動的環境下で*form*が評価されます。
+{9.1.4.2.4:ab}をご確認ください。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{restart-case:link}
+
+
+## {notes}
+
+{restart-case:link}の捕捉が
+この機能を文法的により簡潔にあらわす
+もっとも一般的な場合であり、
+通常このマクロはコードに明確に使用されません。
+
+@end
+

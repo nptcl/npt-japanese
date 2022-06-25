@@ -227,7 +227,7 @@
 <em>format-arguments</em> - format-arguments</p>
 <h2 id="定義">定義</h2>
 <p><a href="9.2.break.html"><code>break</code></a>は、<em>format-control</em>と<em>format-arguments</em>を<code>format</code>で出力し、 そのあとプログラムによるエラー捕捉の機能による 割り込みの可能性を一切許さずに 直接デバッガーに入ります。</p>
-<p>もし<code>continue</code> <code>restart</code>がデバッガー内で使用されたときは、 何の異常状態の回復処理を行わずに <a href="9.2.break.html"><code>break</code></a>は即座に<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p>もし<a href="9.2.continue-restart.html"><code>continue</code></a> <code>restart</code>がデバッガー内で使用されたときは、 何の異常状態の回復処理を行わずに <a href="9.2.break.html"><code>break</code></a>は即座に<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <p><a href="9.2.break.html"><code>break</code></a>はデバッガーに入ろうとする前に <a href="9.2.debugger-hook.html"><code>*debugger-hook*</code></a>に<a href="5.3.nil-variable.html"><code>nil</code></a>を束縛します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">break</span> <span class="st">&quot;You got here with arguments: ~:S.&quot;</span> &#39;(FOO <span class="dv">37</span> A))</span>

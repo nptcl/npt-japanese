@@ -226,7 +226,7 @@
 <p><a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
 <p>式<code>(typep condition *break-on-signals*)</code>が<em>true</em>のとき、 <a href="9.2.signal.html"><code>signal</code></a>の呼び出しや、 その他の暗黙的に<a href="9.2.signal.html"><code>signal</code></a>を呼び出す、 <a href="9.2.error-function.html"><code>error</code></a>のような操作は、 そのコンディションを通知する前にデバッガーに入ります。</p>
-<p><code>continue</code> <code>restart</code>は <a href="9.2.break-on-signals.html"><code>*break-on-signals*</code></a>による処理の中断が生じたときに、 通常の通知処理を継続するときに使われます。</p>
+<p><a href="9.2.continue-restart.html"><code>continue</code></a> <code>restart</code>は <a href="9.2.break-on-signals.html"><code>*break-on-signals*</code></a>による処理の中断が生じたときに、 通常の通知処理を継続するときに使われます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">*break-on-signals*</span> <span class="op">=&gt;</span>  NIL</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">ignore-errors</span> (<span class="kw">error</span> &#39;simple-error :format-control <span class="st">&quot;Fooey!&quot;</span>))</span>

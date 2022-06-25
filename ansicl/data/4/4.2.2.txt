@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  4.2.2 型の関係
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.2.2
+@type: text
+
+- 次の型
+{cons!system-class:link},
+{symbol:link},
+{array:link},
+{number:link},
+{character!system-class:link},
+{hash-table:link},
+{function!system-class:link},
+{readtable:link},
+{package:link},
+{pathname!system-class:link},
+{stream:link},
+{random-state:link},
+{condition:link},
+{restart:link}と、
+その他に{defstruct:link}, {define-condition:link}, {defclass:link}で
+作成された単体の型は、
+{defclass:link}か{define-condition:link}でスーパークラスを指定するか
+{defstruct:link}の`:include`オプションを指定して
+明示的に型の関係性を確立させたもの以外は、
+それぞれのペアで型が不一致になります。
+
+- {defstruct:link}によって作成された2つの型は、
+{defstruct:link}の`:include`オプションによって
+ひとつが他のもののスーパータイプになっていない限り
+不一致です。
+
+- {defclass:link}か{define-condition:link}によって作成された
+2つの不一致なクラスは、
+それらが共通のサブクラスを持っているか、
+あるいはひとつが他のもののサブクラスになっていない限り
+不一致です。
+
+- 実装は、指定した型の間において他のサブタイプの関係を
+追加で拡張するかもしれませんが、
+それらの型の関係性とここで指定された不一致の要求に違反してはいけません。
+実装は、定義されている型のサブタイプか
+スーパータイプの型を追加で定義したいかもしれませんが、
+追加する各型は型{t!system-class:link}のサブタイプであり、
+型{nil!type:link}のスーパータイプであり、
+さらに不一致の要求を違反してはいけません。
+
+  - 実装の最良として{standard-object:link}か{structure-object:link}が、
+どのシステムクラスの{class-precedence-list}にも現れており、
+{standard-object:link}か{structure-object:link}が
+まだ指定されていないものでも現れているかもしれません。
+もしそうであるなら、クラス{t!system-class:link}より先行して、
+続いて他の全ての標準クラスが現れなければなりません。
+
+@end
+

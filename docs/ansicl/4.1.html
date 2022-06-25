@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>4.2. 型</title>
+  <title>4.1. 紹介</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,16 +151,19 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">4.2. 型</h1>
+<h1 class="title">4.1. 紹介</h1>
 </header>
 <p><a href="4.html">UP</a></p>
 <hr />
-<p>4.2. 型</p>
-<ul>
-<li><a href="4.2.1.html">4.2.1. データの型の定義</a></li>
-<li><a href="4.2.2.html">4.2.2. 型の関係</a></li>
-<li><a href="4.2.3.html">4.2.3. 型指定子</a></li>
-</ul>
+<p>4.1. 紹介</p>
+<p>型<code>type</code>はオブジェクトの（可能であれば無限の）集合です。 オブジェクトはひとつ以上の型に属することができます。 型は決してCommon Lispのオブジェクトとして明確に表現されません。 かわりに、これらは型指定子という型を示すオブジェクトを使うことで 間接的に参照されます。</p>
+<p>新しい型は、<a href="4.4.deftype.html"><code>deftype</code></a>, <a href="8.1.defstruct.html"><code>defstruct</code></a>, <a href="7.7.defclass.html"><code>defclass</code></a>, <a href="9.2.define-condition.html"><code>define-condition</code></a>を使うことによって定義できます。</p>
+<p>集合のメンバーをテストに使われる<a href="4.4.typep.html"><code>typep</code></a>関数は、 オブジェクトがその型であるかどうかを決定するときに使用されます。 部分集合かテストするのに使われる<a href="4.4.subtypep.html"><code>subtypep</code></a>関数は、 型が別の型のサブタイプかどうかを決定するときに使用されます。 <a href="4.4.type-of.html"><code>type-of</code></a>関数はオブジェクトが属している特定の型を返却しますが、 そのオブジェクトがひとつか複数の型に属している場合でも同様に返却します （例えば全てのオブジェクトは型<a href="4.4.t-system-class.html"><code>t</code></a>ですが、 しかし<a href="4.4.type-of.html"><code>type-of</code></a>は常に<a href="4.4.t-system-class.html"><code>t</code></a>ではない 指定された型の型指定子を返却します）。</p>
+<p>変数ではないオブジェクトは型を持っています。 通常、どんな変数でもその値としてどんな値も持つことができます。 明示的な型宣言を行うことで ある変数が指定した型の値のみを取るように宣言することが可能です。 型は、同値の存在を除いては非循環有向グラフとして直接表せます。</p>
+<p>型についての宣言は、<a href="3.8.declare.html"><code>declare</code></a>, <a href="3.8.proclaim.html"><code>proclaim</code></a>, <a href="3.8.declare.html"><code>declare</code></a>, <a href="3.8.the.html"><code>the</code></a>を使うことで行うことができます。 より詳しい宣言の情報については3.3. 宣言をご確認ください。</p>
+<p>オブジェクトシステムの基本的なオブジェクトにクラスがあります。 クラスは、インスタンスと呼ばれる他のオブジェクトの集合の 構造と振る舞いを決定します。 全てのオブジェクトはクラスの直接的なインスタンスです。 オブジェクトのクラスは、そのオブジェクトが実行できる操作の集合を決定します。 より詳しい情報は<a href="4.3.html">4.3. クラス</a>をご確認ください。</p>
+<p>関数呼び出しのときに指定した引数のクラスによって 特定化された振る舞いを持つ関数を作成することができます。 より詳しい情報は<a href="7.6.html">7.6. ジェネリック関数とメソッド</a>をご確認ください。</p>
+<p>オブジェクトのクラスのクラスは、そのメタオブジェクトと呼ばれます。 メタクラスに関するより詳しい情報は<a href="7.4.html">7.4. メタオブジェクト</a>をご確認ください。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

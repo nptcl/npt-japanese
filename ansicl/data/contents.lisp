@@ -118,9 +118,15 @@
 (dictionary 3.8.constantp)
 
 ;; Chapter 4
+(text 4.1 "紹介" "Introduction")
 (index 4.2 "型" "Types")
+(text 4.2.1 "データの型の定義" "Data Type Definition")
+(text 4.2.2 "型の関係" "Type Relationships")
 (text 4.2.3 "型指定子" "Type Specifiers")
 (text 4.3 "クラス" "Classes")
+(text 4.3.1 "クラスの紹介" "Introduction to Classes")
+(text 4.3.2 "クラスの定義" "Defining Classes")
+(text 4.3.3 "クラスのインスタンスの作成" "Creating Instances of Classes")
 (text 4.3.4 "継承" "Inheritance")
 (text 4.3.5 "{class-precedence-list}の決定" "Determining the Class Precedence List")
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
@@ -350,6 +356,7 @@
 
 ;; Chapter 9
 (text 9.1 "コンディションシステムの説明" "Condition System Concepts")
+(text 9.1.1 "コンディションの型" "Condition Types")
 (text 9.1.4 "コンディションの通知と捕捉" "Signaling and Handling Conditions")
 (text 9.1.4.2 "`restart`" "Restarts")
 (text 9.1.4.2.2 "`restart`のインターフェイス" "Interfaces to Restarts")

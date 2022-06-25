@@ -1,0 +1,110 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FIND-SYMBOL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.find-symbol
+@name: find-symbol
+@type: function
+
+Function `FIND-SYMBOL`
+
+
+## {syntax}
+
+`find-symbol` *string* `&optional` *package* => *symbol*, *status*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。  
+*symbol* - *package*でアクセス可能なシンボルか、{nil!variable:link}  
+*status* - 次のどれか。`:inherited`, `:external`, `:internal`, {nil!variable:link}
+
+
+## {description}
+
+{find-symbol:link}は、*package*内の*string*という名前のシンボルの
+場所を返却します。
+もし*string*という名前のシンボルが*package*内で
+直接のものかか継承によるものかのものが見つかったときは、
+そのシンボルが最初の値として返却されます。
+2番目の値は下記のようなものが返却されます。
+
+- `:internal`
+  - もしそのシンボルが内部シンボルとして*package*に現れているとき
+
+- `:external`
+  - もしそのシンボルが外部シンボルとして*package*に現れているとき
+
+- `:inherited`
+  - もしそのシンボルが*package*の{use-package:link}を通して継承されており、
+    しかし*package*内には現れてないとき
+
+もし*package*にはそのようなシンボルが無かったときは、
+両方とも{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(find-symbol "NEVER-BEFORE-USED") =>  NIL, NIL
+(find-symbol "NEVER-BEFORE-USED") =>  NIL, NIL
+(intern "NEVER-BEFORE-USED") =>  NEVER-BEFORE-USED, NIL
+(intern "NEVER-BEFORE-USED") =>  NEVER-BEFORE-USED, :INTERNAL
+(find-symbol "NEVER-BEFORE-USED") =>  NEVER-BEFORE-USED, :INTERNAL
+(find-symbol "never-before-used") =>  NIL, NIL
+(find-symbol "CAR" 'common-lisp-user) =>  CAR, :INHERITED
+(find-symbol "CAR" 'common-lisp) =>  CAR, :EXTERNAL
+(find-symbol "NIL" 'common-lisp-user) =>  NIL, :INHERITED
+(find-symbol "NIL" 'common-lisp) =>  NIL, :EXTERNAL
+(find-symbol "NIL" (prog1 (make-package "JUST-TESTING" :use '())
+                          (intern "NIL" "JUST-TESTING")))
+=>  JUST-TESTING::NIL, :INTERNAL
+(export 'just-testing::nil 'just-testing)
+(find-symbol "NIL" 'just-testing) =>  JUST-TESTING:NIL, :EXTERNAL
+(find-symbol "NIL" "KEYWORD")
+=>  NIL, NIL
+OR=>  :NIL, :EXTERNAL
+(find-symbol (symbol-name :nil) "KEYWORD") =>  :NIL, :EXTERNAL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{intern:link},
+{import:link},
+{export:link},
+{use-package:link},
+{unintern:link},
+{unexport:link},
+{unuse-package:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{intern:link},
+{find-all-symbols:link}
+
+
+## {notes}
+
+{find-symbol:link}は操作としては{intern:link}と同等ですが、
+新しいシンボルを決して生成しない所が違っています。
+
+@end
+

@@ -261,9 +261,9 @@
 
 (defun toppage-header (s)
   (format s "% ANSI Common Lisp~2%")
-  (format s "ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。~2%")
+  (format s "ANSI Common Lisp仕様書のDictionaryの日本語訳をめざします。~2%")
   (format s "**★★翻訳の対象はDictionaryだけです★★**  ~%")
-  (format s "現時点であまり完成していません。  ~%")
+  (format s "Dictionaryを約半分翻訳しました。  ~%")
   (format s "気が向いたら更新します。~2%"))
 
 (defun toppage-footer (s)

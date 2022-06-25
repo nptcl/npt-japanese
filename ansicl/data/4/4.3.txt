@@ -1,0 +1,31 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  4.3 クラス
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.3
+@link: figure_4-7
+@type: text
+
+オブジェクトシステムは、
+全ての標準化されたクラス（例えば{number:link}, {hash-table:link},
+{symbol:link}を含む）を記述するのに十分一般的ですが、
+次の表はオブジェクトシステムを理解するうえで
+特に関係があるクラスのリストです。
+
+|                       |                                |                       |
+|-----------------------|--------------------------------|-----------------------|
+|{built-in-class:link}  |{method-combination:link}       |{standard-object:link} |
+|{class:link}           |{standard-class:link}           |{structure-class:link} |
+|{generic-function:link}|{standard-generic-function:link}|{structure-object:link}|
+|{method:link}          |{standard-method:link}          |                       |
+
+Figure 4-7. オブジェクトシステムのクラス
+
+@index
+
+@end
+

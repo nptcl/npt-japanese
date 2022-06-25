@@ -129,6 +129,7 @@
 (replace method-combination "`method-combination`")
 (replace atomic-type-specifier "原始的な型指定子")
 (replace compound-type-specifier "合成された型指定子")
+(replace compound-only-type-specifier "合成のみの型指定子")
 
 (replace generalized-reference "一般化された参照")
 

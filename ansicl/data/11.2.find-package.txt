@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FIND-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.find-package
+@name: find-package
+@type: function
+
+Function `FIND-PACKAGE`
+
+
+## {syntax}
+
+`find-package` *name* => *package*
+
+
+## {arguments-and-values}
+
+*name* - 文字列指定子か、パッケージオブジェクト  
+*package* - パッケージオブジェクトか、{nil!variable:link}
+
+
+## {description}
+
+もし*name*が文字列指定子のとき、
+{find-package:link}は名前かニックネームが
+*name*であるパッケージを探して返却します。
+検索は大文字小文字を区別します。
+もしそのようなパッケージがないときは、
+{find-package:link}は{nil!variable:link}を返却します。
+
+もし*name*がパッケージオブジェクトのときは、
+そのパッケージオブジェクトを返却します。
+
+
+## {examples}
+
+```lisp
+(find-package 'common-lisp) =>  #<PACKAGE "COMMON-LISP">
+(find-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(find-package 'not-there) =>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+実装によって作成されたパッケージの集合
+
+{defpackage:link},
+{delete-package:link},
+{make-package:link},
+{rename-package:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

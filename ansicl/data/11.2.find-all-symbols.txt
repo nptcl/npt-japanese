@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FIND-ALL-SYMBOLS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.find-all-symbols
+@name: find-all-symbols
+@type: function
+
+Function `FIND-ALL-SYMBOLS`
+
+
+## {syntax}
+
+`find-all-symbols` *string* => *symbols*
+
+
+## {arguments-and-values}
+
+*string* - 文字列指定子  
+*symbols* - シンボルのリスト
+
+
+## {description}
+
+{find-all-symbols:link}は、全ての登録されているパッケージから、
+名前が（{string=:link}にて）*string*と同じシンボルを検索します。
+そのような全てのシンボルはリストとして返却されます。
+リストがどのような順番になるかは{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(find-all-symbols 'car)
+=>  (CAR)
+OR=>  (CAR VEHICLES:CAR)
+OR=>  (VEHICLES:CAR CAR)
+(intern "CAR" (make-package 'temp :use nil)) =>  TEMP::CAR, NIL
+(find-all-symbols 'car)
+=>  (TEMP::CAR CAR)
+OR=>  (CAR TEMP::CAR)
+OR=>  (TEMP::CAR CAR VEHICLES:CAR)
+OR=>  (CAR TEMP::CAR VEHICLES:CAR)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{find-symbol:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

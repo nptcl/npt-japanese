@@ -7,11 +7,19 @@
 ;;  4.2.3 型指定子
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @begin: 4.2.3
-@link: figure_4.2
+@link: figure_4-2
+@link: figure_4-3
+@link: figure_4-4
+@link: figure_4-5
+@link: figure_4-6
 @type: text
 
-★作成中です
-
+型指定子はシンボル、クラス、リストになれます。
+{figure_4-2:link}は、標準の{atomic-type-specifier}であるシンボルのリストです。
+{figure_4-3:link}は、標準の{compound-type-specifier}の名前のリストです。
+構文の情報は、対応する型指定子の辞書の説明をみて下さい。
+これは{defclass:link}, {define-condition:link}, {defstruct:link},
+{deftype:link}を使うことで新しい型指定子を定義することができます。
 
 |                           |                          |                            |
 |---------------------------|--------------------------|----------------------------|
@@ -50,6 +58,141 @@
 |{floating-point-underflow:link} |{simple-bit-vector:link} |                        |
 
 Figure 4-2. 標準の{atomic-type-specifier}
+
+もし型指定子がリストであり、そのリストの`car`がシンボルのとき、
+リストの`rest`部は型の補助的な情報です。
+そのような型指定子は{compound-type-specifier}と呼ばれます。
+明示的に別段の定めがある場合を除き、
+補助的な項目は不特定とすることができます。
+不特定の補助的な項目は、`*`と書くことで指定します。
+例えば`vector`の完全な指定は、
+要素の型と`vector`の長さが現れます。
+
+```lisp
+(vector double-float 100)
+```
+
+下記に長さを不特定にしたものを示します。
+
+```lisp
+(vector double-float *)
+```
+
+下記に要素の型を不特定にしたものを示します。
+
+```lisp
+(vector * 100)
+```
+
+2つの型指定子が同じで、
+最初の型指定子が`*`を持つのに対して、
+2番目の型指定子はより明示的な指定をしているとします。
+このとき、2番目の型指定子は1番目の型指定子のサブタイプを表します。
+
+もしリストがひとつか複数の不特定な項目で終わっていたとき、
+それらの項目は省略できます。
+もし補助的なリスト全てに`*`が現れてそれらを省略したときは、
+かっこもまた省略可能です（そのリストはシンボルの`car`部に置き換えられます）。
+例えば、`(vector double-float *)`は`(vector double-float)`に省略できますし、
+`(vector * *)`は`(vector)`に省略でき、さらに`vector`に省略できます。
+
+|                            |                         |                           |
+|----------------------------|-------------------------|---------------------------|
+{and!type:link}              |{long-float:link}        |{simple-base-string:link}  |
+{array:link}                 |{member!type:link}       |{simple-bit-vector:link}   |
+{base-string:link}           |{mod!type:link}          |{simple-string:link}       |
+{bit-vector:link}            |{not!type:link}          |{simple-vector:link}       |
+{complex!system-class:link}  |{or!type:link}           |{single-float:link}        |
+{cons!system-class:link} |{rational!system-class:link} |{string!system-class:link} |
+{double-float:link}          |{real:link}              |{unsigned-byte:link}       |
+{eql!type:link}              |{satisfies:link}         |{values!type:link}         |
+{float!system-class:link}    |{short-float:link}       |{vector:link}              |
+{function!system-class:link} |{signed-byte:link}       |                           |
+{integer:link}               |{simple-array:link}      |                           |
+
+Figure 4-3. 標準の{compound-type-specifier}の名前
+
+次の表は{atomic-type-specifier}としては使えない
+{compound-type-specifier}の名前として使われる
+定義された名前を表します。
+
+|                   |                |                   |
+|-------------------|----------------|-------------------|
+|{and!type:link}    |{mod!type:link} |{satisfies:link}   |
+|{eql!type:link}    |{not!type:link} |{values!type:link} |
+|{member!type:link} |{or!type:link}  |                   |
+
+Figure 4-4. 標準の{compound-only-type-specifier}の名前
+
+新しい型指定子は、次の2つの方法で定義できます。
+
+- {defstruct:link}を使い`:type`オプションを使用せずに
+構造体を定義することか、
+あるいは{defclass:link}か{define-condition:link}を使い
+クラスを定義することで、
+自動的にクラスか構造体の名前が
+新しい型指定子のシンボルになります。
+- {deftype:link}は、他の型指定子をの省略形として、
+派生された型指定子を定義するときに使用できます。
+
+クラスオブジェクトは型指定子として使用できます。
+この方法で使ったとき、それはクラスの全てのメンバーの集合を示します。
+
+次の表は、型と宣言に関係する定義された名前を示します。
+
+|                        |                 |                |
+|------------------------|-----------------|----------------|
+|{coerce:link}           |{defstruct:link} |{subtypep:link} |
+|{declaim:link}          |{deftype:link}   |{the:link}      |
+|{declare:link}          |{ftype:link}     |{type:link}     |
+|{defclass:link}         |{locally:link}   |{type-of:link}  |
+|{define-condition:link} |{proclaim:link}  |{typep:link}    |
+
+Figure 4-5. 型と宣言に関係する定義された名前
+
+次の表は、{atomic-type-specifier}と{compound-type-specifier}の
+両方の型指定子として使われる定義された名前を示します。
+これは、{figure_4-2:link}と{figure_4-3:link}を合わせたリストです。
+
+|                            |                         |                            |
+|----------------------------|-------------------------|----------------------------|
+|{and!type:link}             |{function!system-class:link} |{simple-array:link}     |
+|{arithmetic-error:link}     |{generic-function:link}  |{simple-base-string:link}   |
+|{array:link}                |{hash-table:link}        |{simple-bit-vector:link}    |
+|{atom!type:link}            |{integer:link}           |{simple-condition:link}     |
+|{base-char:link}            |{keyword:link}           |{simple-error:link}         |
+|{base-string:link}          |{list!system-class:link} |{simple-string:link}        |
+|{bignum:link}    |{logical-pathname!system-class:link}|{simple-type-error:link}    |
+|{bit!type:link}             |{long-float:link}        |{simple-vector:link}        |
+|{bit-vector:link}           |{member!type:link}       |{simple-warning:link}       |
+|{broadcast-stream:link}     |{method:link}            |{single-float:link}         |
+|{built-in-class:link}       |{method-combination:link}|{standard-char:link}        |
+|{cell-error:link}           |{mod!type:link}          |{standard-class:link}       |
+|{character!system-class:link}|{nil!type:link}|{standard-generic-function:link}     |
+|{class:link}                |{not!type:link}          |{standard-method:link}      |
+|{compiled-function:link}    |{null!system-class:link} |{standard-object:link}      |
+|{complex!system-class:link} |{number:link}            |{storage-condition:link}    |
+|{concatenated-stream:link}  |{or!type:link}           |{stream:link}               |
+|{condition:link}            |{package:link}           |{stream-error:link}         |
+|{cons!system-class:link}    |{package-error:link}     |{string!system-class:link}  |
+|{control-error:link}        |{parse-error:link}       |{string-stream:link}        |
+|{division-by-zero:link}     |{pathname!system-class:link}|{structure-class:link}   |
+|{double-float:link}         |{print-not-readable:link}|{structure-object:link}     |
+|{echo-stream:link}          |{program-error:link}     |{style-warning:link}        |
+|{end-of-file:link}          |{random-state:link}      |{symbol:link}               |
+|{eql!type:link}             |{ratio:link}             |{synonym-stream:link}       |
+|{error!condition:link}      |{rational!system-class:link}|{t!system-class:link}    |
+|{extended-char:link}        |{reader-error:link}      |{two-way-stream:link}       |
+|{file-error:link}           |{readtable:link}         |{type-error:link}           |
+|{file-stream:link}          |{real:link}              |{unbound-slot:link}         |
+|{fixnum:link}               |{restart:link}           |{unbound-variable:link}     |
+|{float!system-class:link}   |{satisfies:link}         |{undefined-function:link}   |
+|{floating-point-inexact:link} |{sequence:link}        |{unsigned-byte:link}        |
+|{floating-point-invalid-operation:link}|{serious-condition:link}|{values!type:link}|
+|{floating-point-overflow:link} |{short-float:link}    |{vector:link}               |
+|{floating-point-underflow:link} |{signed-byte:link}   |{warning:link}              |
+
+Figure 4-6. 標準の型指定子の名前
 
 @end
 

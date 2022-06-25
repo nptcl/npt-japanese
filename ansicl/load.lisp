@@ -8,6 +8,7 @@
 (defvar *load-name*)
 (defvar *load-link*)
 (defvar *load-type*)
+(defvar *load-ignore*)
 
 (defun load-begin-check ()
   (unless *load-begin*
@@ -119,6 +120,8 @@
            (load-type cdr))
           ((string-equal car "@index")
            (load-index cdr))
+          ((string-equal car "@end-of-file")
+           (setq *load-ignore* t))
           (t (error "Invalid operator, ~S." car)))))
 
 (defun string-first-p (str char)
@@ -127,9 +130,10 @@
          (char= (char x 0) char))))
 
 (defun load-textfile-line (x)
-  (if (string-first-p x #\@)
-    (load-command x)
-    (load-push x)))
+  (unless *load-ignore*
+    (if (string-first-p x #\@)
+      (load-command x)
+      (load-push x))))
 
 (defun load-textfile-file (file)
   (with-open-file (stream file)
@@ -141,6 +145,7 @@
         (*load-list* (make-queue))
         (*load-name* (make-queue))
         (*load-link* nil)
-        (*load-type* nil))
+        (*load-type* nil)
+        (*load-ignore* nil))
     (load-textfile-file file)))
 

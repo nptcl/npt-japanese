@@ -1,9 +1,9 @@
 % ANSI Common Lisp
 
-ANSI Common Lisp仕様書のDictionaryの日本語訳を目指します。
+ANSI Common Lisp仕様書のDictionaryの日本語訳をめざします。
 
 **★★翻訳の対象はDictionaryだけです★★**  
-現時点であまり完成していません。  
+Dictionaryを約半分翻訳しました。  
 気が向いたら更新します。
 
 # 目次

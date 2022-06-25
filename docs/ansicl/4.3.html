@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Standard-Generic-Function (SETF CLASS-NAME)</title>
+  <title>4.3. クラス</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,31 +151,46 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Standard-Generic-Function (SETF CLASS-NAME)</h1>
+<h1 class="title">4.3. クラス</h1>
 </header>
-<p><a href="7.7.html">UP</a></p>
+<p><a href="4.html">UP</a></p>
 <hr />
-<h1 id="standard-generic-function-setf-class-name">Standard-Generic-Function <strong>(SETF CLASS-NAME)</strong></h1>
-<p>Standard Generic Function <code>(SETF CLASS-NAME)</code></p>
-<h2 id="構文">構文</h2>
-<p><code>(setf class-name)</code> <em>new-value</em> <em>class</em> =&gt; <em>new-value</em></p>
-<h2 id="メソッド宣言">メソッド宣言</h2>
-<p><code>(setf class-name)</code> <em>new-value</em> (<em>class</em> <a href="4.4.class.html"><code>class</code></a>)</p>
-<h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>new-value</em> - シンボル<br />
-<em>class</em> - クラス</p>
-<h2 id="定義">定義</h2>
-<p>ジェネリック関数<code>setf-class-name</code>は、 <em>class</em>オブジェクトの名前を設定します。</p>
-<h2 id="例文">例文</h2>
-<p>なし。</p>
-<h2 id="影響">影響</h2>
-<p>なし。</p>
-<h2 id="例外">例外</h2>
-<p>なし。</p>
-<h2 id="参考">参考</h2>
-<p><a href="7.7.find-class.html"><code>find-class</code></a>, proper name（正しい名前）, <a href="4.3.html">4.3. クラス</a></p>
-<h2 id="備考">備考</h2>
-<p>なし。</p>
+<p>4.3. クラス</p>
+<p>オブジェクトシステムは、 全ての標準化されたクラス（例えば<code>number</code>, <code>hash-table</code>, <a href="10.2.symbol.html"><code>symbol</code></a>を含む）を記述するのに十分一般的ですが、 次の表はオブジェクトシステムを理解するうえで 特に関係があるクラスのリストです。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><a href="4.4.built-in-class.html"><code>built-in-class</code></a></td>
+<td><a href="4.4.method-combination.html"><code>method-combination</code></a></td>
+<td><a href="4.4.standard-object.html"><code>standard-object</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="4.4.class.html"><code>class</code></a></td>
+<td><a href="4.4.standard-class.html"><code>standard-class</code></a></td>
+<td><a href="4.4.structure-class.html"><code>structure-class</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="4.4.generic-function.html"><code>generic-function</code></a></td>
+<td><a href="4.4.standard-generic-function.html"><code>standard-generic-function</code></a></td>
+<td><a href="4.4.structure-object.html"><code>structure-object</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="4.4.method.html"><code>method</code></a></td>
+<td><a href="4.4.standard-method.html"><code>standard-method</code></a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 4-7. オブジェクトシステムのクラス</p>
+<ul>
+<li>4.3.1. クラスの紹介</li>
+<li>4.3.2. クラスの定義</li>
+<li>4.3.3. クラスのインスタンスの作成</li>
+<li>4.3.4. 継承</li>
+<li>4.3.5. クラス優先順位リストの決定</li>
+<li>4.3.6. クラスの再定義</li>
+<li>4.3.7. 型とクラスの統合</li>
+</ul>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

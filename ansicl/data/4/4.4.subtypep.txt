@@ -76,13 +76,13 @@ Figure 4-9. `subtypep`の返却値の可能性
 多値の*true*、*true*を返却します。
 
 もし*type-1*と*type-2*の両方が
-{figure_4.2:link}で表される名前のみ含まれているときか、
+{figure_4-2:link}で表される名前のみ含まれているときか、
 または型の名前が{defstruct:link}か
 {define-condition:link}か
 {defclass:link}か
 これらの名前の展開による派生型であるときは、
 {subtypep:link}は決して第二返却値が{nil!variable:link}になりません。
-{figure_4.2:link}のリスト内の型指定子や
+{figure_4-2:link}のリスト内の型指定子や
 {defclass:link}と{defstruct:link}による名前は、
 派生された型として実装される場合もありますが、
 {subtypep:link}はそれらの型を原始的なものとみなします。

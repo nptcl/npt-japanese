@@ -1,0 +1,111 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function IMPORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.import
+@name: import
+@type: function
+
+Function `IMPORT`
+
+
+## {syntax}
+
+`import` *symbols* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*symbols* - シンボルのリストの指定子  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。
+
+
+## {description}
+
+{import:link}は、*symbol*か*symbols*を*package*の内部に追加し、
+存在するシンボルに対して、*package*に現れているか、
+それにアクセス可能かという点について
+名前の衝突チェックを行います。
+いったん*symbols*が`import`されると、
+それらはLispリーダーを使うときに`import`された*package*内では
+パッケージの接頭辞を使うことなく参照できます。
+
+{import:link}を行おうとしたときに
+`import`される*symbol*と
+他の*package*から継承されたシンボルの間で
+名前の衝突が生じたとき、
+それは`import`される*symbol*を選び
+それを`shadowing`シンボルにするか、
+あるいはすでにアクセス可能なシンボルを選び
+{import:link}を実行しないかのどちらかで解決できます。
+{import:link}を行おうとしたときに
+*package*の内部にシンボルがすでに表れていたため
+名前の衝突が生じたときは、
+そのシンボルを`unintern`するか、
+あるいは{import:link}を実行しないかのどちらかで解決できます。
+
+`import`されるシンボルは、現在のパッケージから
+自動的には`export`されませんが、
+しかしそれがすでに外部として存在しているときは、
+それが外部であることが変更されることはありません。
+もし`import`されるどんなシンボルでも
+ホームパッケージを持ってなかったら
+（つまり`(symbol-package symbol) => nil`）、
+{import:link}はその*symbol*のホームパッケージを*package*にセットします。
+
+もし*symbol*がすでに`import`しようとしている*package*に存在しているときは、
+{import:link}は何も効果がありません。
+
+
+## {examples}
+
+```lisp
+(import 'common-lisp::car (make-package 'temp :use nil)) =>  T
+(find-symbol "CAR" 'temp) =>  CAR, :INTERNAL
+(find-symbol "CDR" 'temp) =>  NIL, NIL 
+```
+
+`(import 'editor:buffer)`というフォームは、
+`EDITOR`というパッケージ内にある`BUFFER`という名前の外部のシンボル
+（このシンボルはそのフォームを
+Lispリーダーによって読み込んだときに配置される）
+を受け取り、
+現在のパッケージに内部シンボルとして追加します。
+その結果、このシンボル`buffer`は現在のパッケージに現れるようになります。
+
+
+## {side-effects}
+
+パッケージシステムは変更されます。
+
+
+## {affected-by}
+
+パッケージシステムの現在の状態。
+
+
+## {exceptional-situations}
+
+もし`import`されるどの*symbols*も、
+*package*内のアクセス可能な別のシンボル（{eql!function:link}判定による）と
+同じ名前であったとき（{string=:link}判定による）、
+それが*package*の`shadowing`シンボルとの衝突であったとしても、
+{import:link}は型{package-error:link}の修正可能なエラーを通知します。
+
+
+## {see-also}
+
+{shadow:link},
+{export:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UNEXPORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.unexport
+@name: unexport
+@type: function
+
+Function `UNEXPORT`
+
+
+## {syntax}
+
+`unexport` *symbols* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*symbols* - シンボルのリストの指定子  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。
+
+
+## {description}
+
+{unexport:link}は、*package*の外部シンボルを内部状態に戻します。
+それは{export:link}の効果を取り消します。
+
+{unexport:link}は、*package*に現れるシンボルのみに動作し、
+それらを内部状態へと戻します。
+もし{unexport:link}に与えられたシンボルが
+すでに*package*の内部シンボルとしてアクセス可能であれば、
+何もしません。
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(export (intern "CONTRABAND" (make-package 'temp)) 'temp) =>  T
+(find-symbol "CONTRABAND") =>  NIL, NIL 
+(use-package 'temp) =>  T 
+(find-symbol "CONTRABAND") =>  CONTRABAND, :INHERITED
+(unexport 'contraband 'temp) =>  T
+(find-symbol "CONTRABAND") =>  NIL, NIL
+```
+
+
+## {side-effects}
+
+パッケージシステムは修正されます。
+
+
+## {affected-by}
+
+ぱっけーにすステムの現座の状態。
+
+
+## {exceptional-situations}
+
+{unexport:link}に与えられたシンボルが
+*package*で全くアクセスできないものであったら、
+型{package-error:link}のエラーが発生します。
+
+*package*が`KEYWORD`パッケージか、
+`COMMON-LISP`パッケージのときの結果は未定義です。
+
+
+## {see-also}
+
+{export:link},
+{11.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

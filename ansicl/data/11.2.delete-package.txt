@@ -1,0 +1,171 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DELETE-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.delete-package
+@name: delete-package
+@type: function
+
+Function `DELETE-PACKAGE`
+
+
+## {syntax}
+
+`delete-package` *package* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{delete-package:link}は*package*を
+全てのパッケージシステムのデータ構造から削除します。
+もし操作が成功したとき、{delete-package:link}は*true*を、
+それ以外は{nil!variable:link}を返却します。
+{delete-package:link}の効果は、
+*package*の名前とニックネームが
+認識されたパッケージの名前ではなくなるというものです。
+そのパッケージオブジェクトは、まだパッケージです
+（例えば{packagep:link}は*true*になります）が、
+{package-name:link}は{nil!variable:link}を返却します。
+`COMMON-LISP`パッケージか`KEYWORD`パッケージを削除した結果は未定義です。
+いったん削除された*package*に対して
+他のパッケージの操作を行った結果は未定義です。
+とくに削除された*package*を{*package*:link}に束縛したときか、
+あるいは削除された*package*を引数に指定したときに、
+{find-symbol:link}や{intern:link}や、
+パッケージからシンボル名を探すような他の関数によって
+実行されたときの結果は未定義です。
+
+もし*package*がすでに削除されたパッケージオブジェクトであったときは、
+{delete-package:link}は即座に{nil!variable:link}を返却します。
+
+この操作が完了したあと、
+前のホームパッケージが*package*であったシンボルの
+ホームパッケージは{implementation-dependent}です。
+例外として、*package*内のアクセス可能なシンボルは、
+ホームパッケージが*package*ではないシンボルは変更されません。
+
+
+## {examples}
+
+```lisp
+(setq *foo-package* (make-package "FOO" :use nil))
+(setq *foo-symbol*  (intern "FOO" *foo-package*))
+(export *foo-symbol* *foo-package*)
+
+(setq *bar-package* (make-package "BAR" :use '("FOO")))
+(setq *bar-symbol*  (intern "BAR" *bar-package*))
+(export *foo-symbol* *bar-package*)
+(export *bar-symbol* *bar-package*)
+
+(setq *baz-package* (make-package "BAZ" :use '("BAR")))
+
+(symbol-package *foo-symbol*) =>  #<PACKAGE "FOO">
+(symbol-package *bar-symbol*) =>  #<PACKAGE "BAR">
+
+(prin1-to-string *foo-symbol*) =>  "FOO:FOO"
+(prin1-to-string *bar-symbol*) =>  "BAR:BAR"
+
+(find-symbol "FOO" *bar-package*) =>  FOO:FOO, :EXTERNAL
+
+(find-symbol "FOO" *baz-package*) =>  FOO:FOO, :INHERITED
+(find-symbol "BAR" *baz-package*) =>  BAR:BAR, :INHERITED
+
+(packagep *foo-package*) =>  true
+(packagep *bar-package*) =>  true
+(packagep *baz-package*) =>  true
+
+(package-name *foo-package*) =>  "FOO"
+(package-name *bar-package*) =>  "BAR"
+(package-name *baz-package*) =>  "BAZ"
+
+(package-use-list *foo-package*) =>  ()
+(package-use-list *bar-package*) =>  (#<PACKAGE "FOO">)
+(package-use-list *baz-package*) =>  (#<PACKAGE "BAR">)
+
+(package-used-by-list *foo-package*) =>  (#<PACKAGE "BAR">)
+(package-used-by-list *bar-package*) =>  (#<PACKAGE "BAZ">)
+(package-used-by-list *baz-package*) =>  ()
+
+(delete-package *bar-package*)
+>>  Error: Package BAZ uses package BAR.
+>>  If continued, BAZ will be made to unuse-package BAR,
+>>  and then BAR will be deleted.
+>>  Type :CONTINUE to continue.
+>>  Debug> :CONTINUE
+=>  T
+
+(symbol-package *foo-symbol*) =>  #<PACKAGE "FOO">
+(symbol-package *bar-symbol*) is unspecified
+
+(prin1-to-string *foo-symbol*) =>  "FOO:FOO"
+(prin1-to-string *bar-symbol*) is unspecified
+
+(find-symbol "FOO" *bar-package*) is unspecified
+
+(find-symbol "FOO" *baz-package*) =>  NIL, NIL
+(find-symbol "BAR" *baz-package*) =>  NIL, NIL
+
+(packagep *foo-package*) =>  T
+(packagep *bar-package*) =>  T
+(packagep *baz-package*) =>  T
+
+(package-name *foo-package*) =>  "FOO"
+(package-name *bar-package*) =>  NIL
+(package-name *baz-package*) =>  "BAZ"
+
+(package-use-list *foo-package*) =>  ()
+(package-use-list *bar-package*) is unspecified
+(package-use-list *baz-package*) =>  ()
+
+(package-used-by-list *foo-package*) =>  ()
+(package-used-by-list *bar-package*) is unspecified
+(package-used-by-list *baz-package*) =>  ()
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*package*指定子が現在有効な名前ではなかったとき、
+修正可能な型{program-error:link}のエラーが通知されます。
+もし修正がされたとき、削除の処理は実施されず、
+かわりに{delete-package:link}は即座に{nil!variable:link}を返却します。
+
+もし*package*が他のパッケージに使われていたときは、
+修正可能な型{program-error:link}のエラーが通知されます。
+もし修正がされたとき、
+{unuse-package:link}は効果的に呼ばれて
+依存しているものを取り除き、
+*package*の外部シンボルは
+*package*を使っているそれらのパッケージで
+アクセスできなくなります。
+したがって{delete-package:link}は
+ちょうどそれを使うパッケージが存在しなくなるかのように
+*package*を削除します。
+
+
+## {see-also}
+
+{unuse-package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

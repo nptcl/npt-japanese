@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LIST-ALL-PACKAGES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.list-all-packages
+@name: list-all-packages
+@type: function
+
+Function `LIST-ALL-PACKAGES`
+
+
+## {syntax}
+
+`list-all-packages` `<引数なし>` => *packages*
+
+
+## {arguments-and-values}
+
+*packages* - パッケージオブジェクトのリスト
+
+
+## {description}
+
+{list-all-packages:link}は
+全ての登録されているパッケージの
+新しいリストを返却します。
+
+
+## {examples}
+
+```lisp
+(let ((before (list-all-packages)))
+   (make-package 'temp)
+   (set-difference (list-all-packages) before)) =>  (#<PACKAGE "TEMP">)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{defpackage:link},
+{delete-package:link},
+{make-package:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

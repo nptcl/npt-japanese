@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SHADOW
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.shadow
+@name: shadow
+@type: function
+
+Function `SHADOW`
+
+
+## {syntax}
+
+`shadow` *symbol-names* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*symbol-names* - 文字列指定子のリストの指定子  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。
+
+
+## {description}
+
+{shadow:link}は、*symbol-names*によって与えられ名前のシンボルが
+*package*内に存在することを保証します。
+
+とくに*package*は*symbol-names*によって指定された名前を持つシンボルを探します。
+そのようなそれぞれの名前に対して、
+もし*package*の中に対応するシンボルが現れなかったとき
+（直接としてであり、継承によるものではないとき）、
+対応するシンボルはその名前で作成され、
+*pacakge*へ内部シンボルとして挿入されます。
+対応するシンボルは、
+既存のものでも新しく作成されたものでもまだ存在していなければ、
+*package*の`shadowing`シンボルリストに追加されます。
+
+
+## {examples}
+
+```lisp
+(package-shadowing-symbols (make-package 'temp)) =>  NIL
+(find-symbol 'car 'temp) =>  CAR, :INHERITED
+(shadow 'car 'temp) =>  T
+(find-symbol 'car 'temp) =>  TEMP::CAR, :INTERNAL
+(package-shadowing-symbols 'temp) =>  (TEMP::CAR)
+(make-package 'test-1) =>  #<PACKAGE "TEST-1">
+(intern "TEST" (find-package 'test-1)) =>  TEST-1::TEST, NIL
+(shadow 'test-1::test (find-package 'test-1)) =>  T
+(shadow 'TEST (find-package 'test-1)) =>  T
+(assert (not (null (member 'test-1::test (package-shadowing-symbols
+                                           (find-package 'test-1))))))
+
+(make-package 'test-2) =>  #<PACKAGE "TEST-2">
+(intern "TEST" (find-package 'test-2)) =>  TEST-2::TEST, NIL
+(export 'test-2::test (find-package 'test-2)) =>  T
+(use-package 'test-2 (find-package 'test-1))    ;should not error
+```
+
+ 
+## {side-effects}
+
+{shadow:link}は、パッケージの一貫したルールが
+その変更によって保持されないような方法で、
+パッケージシステムの状態を変更します。
+
+
+## {affected-by}
+
+パッケージシステムの現在の状態。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{package-shadowing-symbols:link},
+{11.1:ab}
+
+
+## {notes}
+
+もし*package*内に*symbol-names*という名前のシンボルが既に存在していたときは、
+それが継承によるものであったときは、
+継承されたシンボルは新しく作成された内部シンボルによってシャドウされます。
+
+@end
+

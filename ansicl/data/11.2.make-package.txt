@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.make-package
+@name: make-package
+@type: function
+
+Function `MAKE-PACKAGE`
+
+
+## {syntax}
+
+`make-package` *package-name* `&key` *nicknames* *use* => *package*
+
+
+## {arguments-and-values}
+
+*package-name* - 文字列指定子  
+*nicknames* - 文字列指定子のリスト。デフォルトは空のリスト。  
+*use* - パッケージ指定子のリスト。デフォルトは{implementation-dependent}。  
+*package* - パッケージ
+
+
+## {description}
+
+*packagen-name*という名前の新しいパッケージを作成します。
+
+*nicknames*は新しいパッケージを参照するときに使われる
+追加の名前です。
+
+*use*によって指定されたゼロか複数のパッケージの外部シンボルは
+新しいパッケージによって継承されます。
+{use-package:link}関数をご確認ください。
+
+
+## {examples}
+
+```lisp
+(make-package 'temporary :nicknames '("TEMP" "temp")) =>  #<PACKAGE "TEMPORARY">
+(make-package "OWNER" :use '("temp")) =>  #<PACKAGE "OWNER">
+(package-used-by-list 'temp) =>  (#<PACKAGE "OWNER">)
+(package-use-list 'owner) =>  (#<PACKAGE "TEMPORARY">)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+システムにある他の既存のパッケージ
+
+
+## {exceptional-situations}
+
+もし*package*が*use*で存在しないものを示していたときの結果は指定されていません。
+
+*package-name*か*nicknames*のどれかが
+すでに既存のパッケージの名前かニックネームであったときは、
+修正可能なエラーが通知されます。
+
+
+## {see-also}
+
+{defpackage:link},
+{use-package:link}
+
+
+## {notes}
+
+複数のパッケージが`use`されるような状況で
+衝突が発生するシンボルを含んでいるとき、
+最初に`:use '()`でパッケージを作成し、
+それから{shadow:link}か{shadowing-import:link}で
+衝突した場所に対して使用し、
+そのあと衝突が発生したものに対して{use-package:link}を
+使う必要があります。
+
+パッケージをプログラムによって動的に作成するのではなく、
+プログラムの静的な宣言の部分として作成したいときは、
+一般的に考えて{make-package:link}ではなく{defpackage:link}を
+使うことがより文法的に適しています。
+
+@end
+

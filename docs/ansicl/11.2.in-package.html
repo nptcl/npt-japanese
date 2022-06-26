@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>11.2. パッケージの辞書</title>
+  <title>Macro IN-PACKAGE</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,31 +151,32 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">11.2. パッケージの辞書</h1>
+<h1 class="title">Macro IN-PACKAGE</h1>
 </header>
-<p><a href="11.html">UP</a></p>
+<p><a href="11.2.html">UP</a></p>
 <hr />
-<p>11.2. パッケージの辞書</p>
-<ul>
-<li><a href="11.2.package.html">System-Class <strong>PACKAGE</strong></a></li>
-<li><a href="11.2.export.html">Function <strong>EXPORT</strong></a></li>
-<li><a href="11.2.find-symbol.html">Function <strong>FIND-SYMBOL</strong></a></li>
-<li><a href="11.2.find-package.html">Function <strong>FIND-PACKAGE</strong></a></li>
-<li><a href="11.2.find-all-symbols.html">Function <strong>FIND-ALL-SYMBOLS</strong></a></li>
-<li><a href="11.2.import.html">Function <strong>IMPORT</strong></a></li>
-<li><a href="11.2.list-all-packages.html">Function <strong>LIST-ALL-PACKAGES</strong></a></li>
-<li><a href="11.2.rename-package.html">Function <strong>RENAME-PACKAGE</strong></a></li>
-<li><a href="11.2.shadow.html">Function <strong>SHADOW</strong></a></li>
-<li><a href="11.2.shadowing-import.html">Function <strong>SHADOWING-IMPORT</strong></a></li>
-<li><a href="11.2.delete-package.html">Function <strong>DELETE-PACKAGE</strong></a></li>
-<li><a href="11.2.make-package.html">Function <strong>MAKE-PACKAGE</strong></a></li>
-<li><a href="11.2.with-package-iterator.html">Macro <strong>WITH-PACKAGE-ITERATOR</strong></a></li>
-<li><a href="11.2.unexport.html">Function <strong>UNEXPORT</strong></a></li>
-<li><a href="11.2.unintern.html">Function <strong>UNINTERN</strong></a></li>
-<li><a href="11.2.in-package.html">Macro <strong>IN-PACKAGE</strong></a></li>
-<li><a href="11.2.do-symbols.html">Macro <strong>DO-SYMBOLS, DO-EXTERNAL-SYMBOLS, DO-ALL-SYMBOLS</strong></a></li>
-<li><a href="11.2.package-variable.html">Variable <strong>*PACKAGE*</strong></a></li>
-</ul>
+<h1 id="macro-in-package">Macro <strong>IN-PACKAGE</strong></h1>
+<p>Macro <code>IN-PACKAGE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>in-package</code> <em>name</em> =&gt; <em>package</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>name</em> - 文字列指定子。評価されません。<br />
+<em>package</em> - <em>name</em>という名前のパッケージ</p>
+<h2 id="定義">定義</h2>
+<p><em>name</em>というパッケージを現在のパッケージにします。 つまり<a href="11.2.package-variable.html"><code>*package*</code></a>の値にパッケージを設定します。 もしそのようなパッケージが存在しないときは、 型<code>package-error</code>のエラーが発生します。</p>
+<p>全ての<a href="11.2.in-package.html"><code>in-package</code></a>の実行は トップレベルフォームにとして呼ばれたときは、 コンパイル時もまた実行されます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>変数<a href="11.2.package-variable.html"><code>*package*</code></a>にに代入されます。 もし<a href="11.2.in-package.html"><code>in-package</code></a>フォームがトップレベルフォームならば、 代入はコンパイル時にも行われます。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>指定したパッケージが存在しないときは、 型<code>package-error</code>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><a href="11.2.package-variable.html"><code>*package*</code></a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

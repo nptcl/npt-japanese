@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro IN-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.in-package
+@name: in-package
+@type: macro
+
+Macro `IN-PACKAGE`
+
+
+## {syntax}
+
+`in-package` *name* => *package*
+
+
+## {arguments-and-values}
+
+*name* - 文字列指定子。評価されません。  
+*package* - *name*という名前のパッケージ
+
+
+## {description}
+
+*name*というパッケージを現在のパッケージにします。
+つまり{*package*:link}の値にパッケージを設定します。
+もしそのようなパッケージが存在しないときは、
+型{package-error:link}のエラーが発生します。
+
+全ての{in-package:link}の実行は
+{top-level-form}にとして呼ばれたときは、
+コンパイル時もまた実行されます。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+変数{*package*:link}にに代入されます。
+もし{in-package:link}フォームが{top-level-form}ならば、
+代入はコンパイル時にも行われます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+指定したパッケージが存在しないときは、
+型{package-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{*package*:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

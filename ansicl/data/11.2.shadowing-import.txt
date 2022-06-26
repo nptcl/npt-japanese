@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SHADOWING-IMPORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.shadowing-import
+@name: shadowing-import
+@type: function
+
+Function `SHADOWING-IMPORT`
+
+
+## {syntax}
+
+`shadowing-import` *symbols* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*symbols* - シンボルのリストの指定子  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。
+
+
+## {description}
+
+{shadowing-import:link}は{import:link}と似ていますが、
+もし`import`するシンボルが
+*package*内ですでにアクセス可能ないくつかのシンボルに隠蔽されるようなときでも
+エラーを通知しません。
+
+{shadowing-import:link}は、
+この操作によって他の同じ名前のシンボルが隠蔽されるかどうかに関わらず、
+各*symbols*を*package*へ内部シンボルとして追加します。
+もし*package*に同じ名前の違うシンボルが現れていたときは、
+そのシンボルは最初に*package*から`unintern`します。
+新しいシンボルは、*package*の`shadowing`シンボルリストに追加されます。
+
+{shadowing-import:link}は、
+同じ名前を持つ既存の別のシンボルがアクセス可能かどうかという範囲で
+名前の衝突チェックを行います。
+もしそうなら、それは新しいシンボルに`shadow`され、
+もしそれが*package*内に存在しているならば、
+それは`unintern`されなければならないことを意味します。
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(setq sym (intern "CONFLICT")) =>  CONFLICT
+(intern "CONFLICT" (make-package 'temp)) =>  TEMP::CONFLICT, NIL
+(package-shadowing-symbols 'temp) =>  NIL
+(shadowing-import sym 'temp) =>  T 
+(package-shadowing-symbols 'temp) =>  (CONFLICT)
+```
+
+
+## {side-effects}
+
+{shadowing-import:link}は、パッケージの一貫したルールが
+その変更によって保持されないような方法で、
+パッケージシステムの状態を変更します。
+
+*package*の`shadowing`シンボルリストは変更されます。
+
+
+## {affected-by}
+
+パッケージシステムの現在の状態。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{import:link},
+{unintern:link},
+{package-shadowing-symbols:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

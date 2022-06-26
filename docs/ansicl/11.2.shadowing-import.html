@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function EXPORT</title>
+  <title>Function SHADOWING-IMPORT</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,38 +214,37 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function EXPORT</h1>
+<h1 class="title">Function SHADOWING-IMPORT</h1>
 </header>
 <p><a href="11.2.html">UP</a></p>
 <hr />
-<h1 id="function-export">Function <strong>EXPORT</strong></h1>
-<p>Function <code>EXPORT</code></p>
+<h1 id="function-shadowing-import">Function <strong>SHADOWING-IMPORT</strong></h1>
+<p>Function <code>SHADOWING-IMPORT</code></p>
 <h2 id="構文">構文</h2>
-<p><code>export</code> <em>symbols</em> <code>&amp;optional</code> <em>package</em> =&gt; <a href="5.3.t-variable.html"><code>t</code></a></p>
+<p><code>shadowing-import</code> <em>symbols</em> <code>&amp;optional</code> <em>package</em> =&gt; <a href="5.3.t-variable.html"><code>t</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>symbols</em> - シンボルのリストの指定子<br />
 <em>package</em> - パッケージ指定子。デフォルトは現在のパッケージ。</p>
 <h2 id="定義">定義</h2>
-<p><a href="11.2.export.html"><code>export</code></a>はひとつか複数のシンボルを <em>package</em>（直接か間接によってか）内で その<em>package</em>の外部シンボルとしてアクセス可能にします。</p>
-<p>もしある<em>symbols</em>がすでに<em>package</em>の外部シンボルとしてアクセス可能であるとき、 <a href="11.2.export.html"><code>export</code></a>はそのシンボルに対して何の効果も持ちません。 もし<em>symbol</em>が<em>package</em>内に内部シンボルとして存在するときは、 それは単純に外部の状態に変更されます。 もしそれが<code>use-package</code>を経由して内部シンボルとして アクセス可能であるときは、それは最初にその<em>package</em>内で<code>import</code>され、 それから<code>export</code>されます （<em>symbol</em>は、継承元の<em>symbol</em>がその<em>package</em>で 使い続けるかどうかに関わらず、<em>package</em>に存在されます）。</p>
-<p><a href="11.2.export.html"><code>export</code></a>は、<em>package</em>を<code>use</code>している全てのパッケージで 各<em>symbol</em>をアクセス可能な状態にします。 そのような全てのパッケージは、名前の衝突チェックが行われます。 チェックは<code>(export s p)</code>が実行されたとき、 <code>(package-used-by-list p)</code>で得られる各パッケージ<code>q</code>に対して <code>(find-symbol (symbol-name s) q)</code>で確認します。 通常の場合、<a href="11.2.export.html"><code>export</code></a>は<em>package</em>の初期定義のときに行われるため、 <code>package-used-by-list</code>の結果は<a href="5.3.nil-variable.html"><code>nil</code></a>であり 名前の衝突チェックは無視できることに注意してください。</p>
-<p>複数の変更が行われるとき、 例えば<a href="11.2.export.html"><code>export</code></a>にシンボルのリストが与えられたとき、 実装がそれぞれの変更を別々に処理することが許されます。 そのため、リストの最初の<em>symbol</em>以外によって引き起こされる 名前の衝突から中止しても、 リストの最初<em>symbol</em>を<code>unexport</code>することはありません。 しかし、ある<em>symbol</em>の<a href="11.2.export.html"><code>export</code></a>による名前衝突エラーで中断しても、 その<em>symbol</em>はあるパッケージからはアクセス可能で、 他のパッケージからはアクセス不能になるようなことはありません。 処理される<em>symbol</em>のそれぞれについて、 <a href="11.2.export.html"><code>export</code></a>はアトミック操作のように動作します。</p>
-<p><a href="11.2.export.html"><code>export</code></a>の名前の衝突が、 <code>export</code>される<em>symbols</em>のひとつと 新たに<code>export</code>されるシンボルを継承する<em>package</em>に すでに存在しているシンボルとの間に生じるとき、 その衝突は、<code>export</code>されるシンボルを選びもう片方を<code>unintern</code>するか、 あるいはすでに存在しているシンボルを選び、 それを<code>shadowing-symbol</code>にするか どちらかで解決できます。</p>
+<p><a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>は<a href="11.2.import.html"><code>import</code></a>と似ていますが、 もし<code>import</code>するシンボルが <em>package</em>内ですでにアクセス可能ないくつかのシンボルに隠蔽されるようなときでも エラーを通知しません。</p>
+<p><a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>は、 この操作によって他の同じ名前のシンボルが隠蔽されるかどうかに関わらず、 各<em>symbols</em>を<em>package</em>へ内部シンボルとして追加します。 もし<em>package</em>に同じ名前の違うシンボルが現れていたときは、 そのシンボルは最初に<em>package</em>から<code>unintern</code>します。 新しいシンボルは、<em>package</em>の<code>shadowing</code>シンボルリストに追加されます。</p>
+<p><a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>は、 同じ名前を持つ既存の別のシンボルがアクセス可能かどうかという範囲で 名前の衝突チェックを行います。 もしそうなら、それは新しいシンボルに<code>shadow</code>され、 もしそれが<em>package</em>内に存在しているならば、 それは<code>unintern</code>されなければならないことを意味します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-package</span> &#39;temp <span class="bu">:use</span> <span class="kw">nil</span>) <span class="op">=&gt;</span>  #&lt;PACKAGE <span class="st">&quot;TEMP&quot;</span>&gt;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">use-package</span> &#39;temp) <span class="op">=&gt;</span>  T</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">intern</span> <span class="st">&quot;TEMP-SYM&quot;</span> &#39;temp) <span class="op">=&gt;</span>  TEMP::TEMP-SYM, NIL</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-symbol</span> <span class="st">&quot;TEMP-SYM&quot;</span>) <span class="op">=&gt;</span>  NIL, NIL</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">export</span> (<span class="kw">find-symbol</span> <span class="st">&quot;TEMP-SYM&quot;</span> &#39;temp) &#39;temp) <span class="op">=&gt;</span>  T</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">find-symbol</span> <span class="st">&quot;TEMP-SYM&quot;</span>) <span class="op">=&gt;</span>  TEMP-SYM, :INHERITED</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">in-package</span> <span class="st">&quot;COMMON-LISP-USER&quot;</span>) <span class="op">=&gt;</span>  #&lt;PACKAGE <span class="st">&quot;COMMON-LISP-USER&quot;</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> sym (<span class="kw">intern</span> <span class="st">&quot;CONFLICT&quot;</span>)) <span class="op">=&gt;</span>  CONFLICT</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">intern</span> <span class="st">&quot;CONFLICT&quot;</span> (<span class="kw">make-package</span> &#39;temp)) <span class="op">=&gt;</span>  TEMP::CONFLICT, NIL</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">package-shadowing-symbols</span> &#39;temp) <span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">shadowing-import</span> sym &#39;temp) <span class="op">=&gt;</span>  T </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">package-shadowing-symbols</span> &#39;temp) <span class="op">=&gt;</span>  (CONFLICT)</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>パッケージシステムは変更されます。</p>
+<p><a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>は、パッケージの一貫したルールが その変更によって保持されないような方法で、 パッケージシステムの状態を変更します。</p>
+<p><em>package</em>の<code>shadowing</code>シンボルリストは変更されます。</p>
 <h2 id="影響">影響</h2>
-<p>アクセス可能なシンボル</p>
+<p>パッケージシステムの現在の状態。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>symbols</em>のどれかが<em>package</em>内でアクセス不可のとき、 型<code>package-error</code>のエラーが通知されますが、 これは修正可能であることが許されており、 ユーザーは対話式でシンボルを<code>import</code>するべきかどうかを指定できます。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="11.2.import.html"><code>import</code></a>, <a href="11.2.unexport.html"><code>unexport</code></a>, 11.1. パッケージの説明</p>
+<p><a href="11.2.import.html"><code>import</code></a>, <a href="11.2.unintern.html"><code>unintern</code></a>, <code>package-shadowing-symbols</code></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

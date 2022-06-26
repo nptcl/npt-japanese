@@ -463,6 +463,7 @@
 (dictionary 11.2.package-use-list)
 (dictionary 11.2.package-used-by-list)
 (dictionary 11.2.packagep)
+(dictionary 11.2.package-variable)
 (dictionary 11.2.package-error)
 (dictionary 11.2.package-error-package)
 

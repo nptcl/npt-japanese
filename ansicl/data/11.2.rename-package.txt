@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RENAME-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.rename-package
+@name: rename-package
+@type: function
+
+Function `RENAME-PACKAGE`
+
+
+## {syntax}
+
+`rename-package` *package* *new-name* `&optional` *new-nicknames*
+ => *package-object*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*new-name* - パッケージ指定子  
+*new-nicknames* - 文字列指定子のリスト。デフォルトは空のリスト。  
+*package-object* - 名前が変更されたパッケージオブジェクト
+
+
+## {description}
+
+*package*の名前とニックネームを置き換えます。
+*package*の古い名前と全ての古いニックネームは消滅し、
+*new-name*と*new-nicknames*によって置き換わります。
+
+*new-name*か*new-nicknames*のどれかが、
+存在するパッケージのどれかの名前と衝突していたときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(make-package 'temporary :nicknames '("TEMP")) =>  #<PACKAGE "TEMPORARY">
+(rename-package 'temp 'ephemeral) =>  #<PACKAGE "EPHEMERAL">
+(package-nicknames (find-package 'ephemeral)) =>  ()
+(find-package 'temporary) =>  NIL
+(rename-package 'ephemeral 'temporary '(temp fleeting))
+=>  #<PACKAGE "TEMPORARY">
+(package-nicknames (find-package 'temp)) =>  ("TEMP" "FLEETING")
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

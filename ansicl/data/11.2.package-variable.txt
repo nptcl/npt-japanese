@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PACKAGE*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-variable
+@name: *package*
+@type: variable
+
+Variable `*PACKAGE*`
+
+
+## {value-type}
+
+パッケージオブジェクト
+
+
+## {initial-value}
+
+`COMMON-LISP-USER`パッケージ
+
+
+## {description}
+
+{*package*:link}の現在の値のパッケージオブジェクトは、
+現在のパッケージとして参照されます。
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+*package* =>  #<PACKAGE "COMMON-LISP-USER">
+(make-package "SAMPLE-PACKAGE" :use '("COMMON-LISP"))
+=>  #<PACKAGE "SAMPLE-PACKAGE">
+(list 
+  (symbol-package
+    (let ((*package* (find-package 'sample-package)))
+      (setq *some-symbol* (read-from-string "just-testing"))))
+  *package*)
+=>  (#<PACKAGE "SAMPLE-PACKAGE"> #<PACKAGE "COMMON-LISP-USER">)
+(list (symbol-package (read-from-string "just-testing"))
+      *package*)
+=>  (#<PACKAGE "COMMON-LISP-USER"> #<PACKAGE "COMMON-LISP-USER">)
+(eq 'foo (intern "FOO")) =>  true
+(eq 'foo (let ((*package* (find-package 'sample-package)))
+           (intern "FOO")))
+=>  false
+```
+
+
+## {affected-by}
+
+{load:link},
+{compile-file:link},
+{in-package:link}
+
+
+## {see-also}
+
+{compile-file:link},
+{in-package:link},
+{load:link},
+{package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

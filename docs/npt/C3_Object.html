@@ -389,7 +389,7 @@
 <h2 id="脱出関数lisp_package_">脱出関数<code>lisp_package_</code></h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_package_<span class="op">(</span>addr x<span class="op">,</span> addr pos<span class="op">);</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos package<span class="op">-</span>designer</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> pos package<span class="op">-</span>designator</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
 <p><code>pos</code>が表す名前のpackageを返却します。<br />
@@ -417,7 +417,7 @@ Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認くだ�
 <h2 id="脱出関数lisp_intern_">脱出関数<code>lisp_intern_</code></h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_intern_<span class="op">(</span>addr x<span class="op">,</span> addr package<span class="op">,</span> addr name<span class="op">);</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> package package<span class="op">-</span>designerかnil</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> package package<span class="op">-</span>designatorかnil</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name 文字列</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
@@ -484,7 +484,7 @@ Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認くだ�
 <h2 id="脱出関数lisp_pathname_">脱出関数<code>lisp_pathname_</code></h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_pathname_<span class="op">(</span>addr x<span class="op">,</span> addr name<span class="op">);</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name pathname<span class="op">-</span>designer</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> name pathname<span class="op">-</span>designator</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時は<span class="dv">0</span>以外</span></code></pre></div>
 <p>文字列<code>name</code>をpathnameに変換します。<br />
@@ -508,7 +508,7 @@ Unicode文字列の詳細は<code>lisp_string8_</code>関数をご確認くだ�
 <h2 id="脱出関数lisp_namestring_">脱出関数<code>lisp_namestring_</code></h2>
 <div class="sourceCode" id="cb29"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lisp_namestring_<span class="op">(</span>addr x<span class="op">,</span> addr path<span class="op">);</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> path pathname<span class="op">-</span>designer</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>入力<span class="op">:</span> path pathname<span class="op">-</span>designator</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>出力<span class="op">:</span> x hold変数</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>戻り値<span class="op">:</span> 脱出時に<span class="dv">0</span>以外</span></code></pre></div>
 <p>pathnameオブジェクトで<code>path</code>を文字列に変換します。<br />

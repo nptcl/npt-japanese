@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UNUSE-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.unuse-package
+@name: unuse-package
+@type: function
+
+Function `UNUSE-PACKAGE`
+
+
+## {syntax}
+
+`unuse-package` *packages-to-unuse* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*packages-to-unuse* - パッケージ指定子のリストの指定子  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ
+
+
+## {description}
+
+{unuse-package:link}は、*package*に対して、
+*packages-to-unuse*の全ての外部シンボルの継承をやめます。
+{unuse-package:link}は、{use-package:link}の効果を取り消します。
+*packages-to-unuse*は、*package*の`use`リストから取り除かれます。
+
+*package*内部に`import`されているどんなシンボルも
+*package*内に存在し続けます。
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(export (intern "SHOES" (make-package 'temp)) 'temp) =>  T
+(find-symbol "SHOES") =>  NIL, NIL
+(use-package 'temp) =>  T
+(find-symbol "SHOES") =>  SHOES, :INHERITED
+(find (find-package 'temp) (package-use-list 'common-lisp-user)) =>  #<PACKAGE "TEMP">
+(unuse-package 'temp) =>  T
+(find-symbol "SHOES") =>  NIL, NIL
+```
+
+
+## {side-effects}
+
+*package*の`use`リストが修正されます。
+
+
+## {affected-by}
+
+パッケージシステムの現在の状態。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{use-package:link},
+{package-use-list:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type EXPORT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-error
+@name: package-error
+@type: condition-type
+
+Condition Type `EXPORT`
+
+
+## {class-precedence-list}
+
+{package-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{package-error:link}は、
+パッケージの操作に関連するエラーのコンディションを含みます。
+問題のあるパッケージ（あるいはパッケージの名前）は
+{make-condition:link}の初期化引数`:package`によって初期化され、
+それは{package-error-package:link}関数によってアクセスされます。
+
+
+## {see-also}
+
+{package-error-package:link},
+{9:ab}
+
+@end
+

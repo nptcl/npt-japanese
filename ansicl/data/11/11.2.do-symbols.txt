@@ -1,0 +1,153 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro DO-SYMBOLS
+;;  Macro DO-EXTERNAL-SYMBOLS
+;;  Macro DO-ALL-SYMBOLS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.do-symbols
+@name: do-symbols
+@name: do-external-symbols
+@name: do-all-symbols
+@type: macro
+
+Macro `DO-SYMBOLS`, `DO-EXTERNAL-SYMBOLS`, `DO-ALL-SYMBOLS`
+
+
+## {syntax}
+
+`do-symbols` (*var* [*package* [*result-form*]]) *declaration\**
+ `{`*tag* `|` *statement*`}`\*
+ => *result\**
+
+`do-external-symbols` (*var* [*package* [*result-form*]]) *declaration\**
+ `{`*tag* `|` *statement*`}`\*
+ => *result\**
+
+`do-all-symbols` (*var* [*result-form*]) *declaration\**
+ `{`*tag* `|` *statement*`}`\*
+ => *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名。評価されません。  
+*package* - パッケージ指定子。評価されます。
+{do-symbols:link}と{do-external-symbols:link}の
+デフォルトは現在のパッケージ。  
+*result-form* - フォーム。下記の説明に従って評価されます。
+デフォルトは{nil!variable:link}。  
+*declaration* - 宣言式。評価されません。  
+*tag* - `go`タグ。評価されません。  
+*statement* - {compound-form}。下記の説明に従って評価されます。  
+*result* - 通常の返却が生じたときは*return-from*の返却値であり、
+例外的な返却が生じたときは遷移が生じた値が返却されます。
+
+
+## {description}
+
+{do-symbols:link}, {do-external-symbols:link}, {do-all-symbols:link}は、
+パッケージのシンボルに対して繰り返しを行います。
+選択されたパッケージの集合内の各シンボルについて、
+*var*にシンボルが束縛されて、
+ボディ部の*statement*が実行されます。
+全てのシンボルが処理されたとき、
+*result-form*が評価されてマクロの値として返却されます。
+
+{do-symbols:link}は、*package*でアクセス可能な
+シンボルに対して繰り返しを行います。
+複数のパッケージから継承されているシンボルは、
+*statement*が一回以上実行されるでしょう。
+
+{do-all-symbols:link}は、
+全ての登録されているパッケージで繰り返しを行います。
+{do-all-symbols:link}は、どの登録されたパッケージに対しても
+アクセス可能ではないシンボルは処理されないので、
+全てのシンボルが何であれ実行するわけではありません。
+{do-all-symbols:link}は、
+いくつかのパッケージに現れるシンボルは
+複数回処理されるかもしれません。
+
+{do-external-symbols:link}は、
+*package*の外部シンボルに対して繰り返しを行います。
+
+*result-form*が評価されるとき、
+*var*は束縛されており{nil!variable:link}の値を持っています。
+
+{nil!variable:link}という名前の暗黙の`block`が
+{do-symbols:link}, {do-external-symbols:link},
+{do-all-symbols:link}フォーム全体を囲みます。
+{return:link}か{return-from:link}は
+繰り返しを早期に終わらせるときに使用されます。
+
+もしボディ部の実行が、
+{unintern:link}の使用によって
+*var*の現在の値からシンボルを取り除く以外に、
+繰り返しが行われているパッケージの
+集合に含まれるシンボルに影響を与えるのであれば、
+その結果は未定義です。
+
+それぞれのマクロについて、
+名前が束縛されているスコープは、
+初期値フォームは含まれませんが、
+しかしオプションの結果のフォームは含まれます。
+
+ボディ部のどんな*tag*も、{tagbody:link}とものとして扱われます。
+
+
+## {examples}
+
+```lisp
+(make-package 'temp :use nil) =>  #<PACKAGE "TEMP">
+(intern "SHY" 'temp) =>  TEMP::SHY, NIL ;SHY will be an internal symbol
+                                        ;in the package TEMP
+(export (intern "BOLD" 'temp) 'temp)  =>  T  ;BOLD will be external  
+(let ((lst ()))
+  (do-symbols (s (find-package 'temp)) (push s lst))
+  lst)
+=>  (TEMP::SHY TEMP:BOLD)
+OR=>  (TEMP:BOLD TEMP::SHY)
+(let ((lst ()))
+  (do-external-symbols (s (find-package 'temp) lst) (push s lst))
+  lst) 
+=>  (TEMP:BOLD)
+(let ((lst ()))                                                     
+  (do-all-symbols (s lst)
+    (when (eq (find-package 'temp) (symbol-package s)) (push s lst)))
+  lst)
+=>  (TEMP::SHY TEMP:BOLD)
+OR=>  (TEMP:BOLD TEMP::SHY)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{intern:link},
+{export:link},
+{3.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

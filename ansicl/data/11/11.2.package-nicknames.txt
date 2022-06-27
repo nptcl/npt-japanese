@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PACKAGE-NICKNAMES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-nicknames
+@name: package-nicknames
+@type: function
+
+Function `PACKAGE-NICKNAMES`
+
+
+## {syntax}
+
+`package-nicknames` *package* => *nicknames*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*nicknames* - 文字列のリスト
+
+
+## {description}
+
+*package*のニックネームである文字列のリストを返却しますが、
+それに*package*の名前は含まれません。
+
+
+## {examples}
+
+```lisp
+(package-nicknames (make-package 'temporary
+                                  :nicknames '("TEMP" "temp")))
+=>  ("temp" "TEMP") 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*package*がパッケージ指定子ではないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

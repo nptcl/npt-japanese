@@ -56,7 +56,7 @@ Function `UNEXPORT`
 
 ## {affected-by}
 
-ぱっけーにすステムの現座の状態。
+パッケージシステムの現在の状態。
 
 
 ## {exceptional-situations}

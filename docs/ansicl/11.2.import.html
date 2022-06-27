@@ -240,7 +240,7 @@
 <h2 id="影響">影響</h2>
 <p>パッケージシステムの現在の状態。</p>
 <h2 id="例外">例外</h2>
-<p>もし<code>import</code>されるどの<em>symbols</em>も、 <em>package</em>内のアクセス可能な別のシンボル（<a href="5.3.eql-function.html"><code>eql</code></a>判定による）と 同じ名前であったとき（<a href="16.2.string-equal.html"><code>string=</code></a>判定による）、 それが<em>package</em>の<code>shadowing</code>シンボルとの衝突であったとしても、 <a href="11.2.import.html"><code>import</code></a>は型<code>package-error</code>の修正可能なエラーを通知します。</p>
+<p>もし<code>import</code>されるどの<em>symbols</em>も、 <em>package</em>内のアクセス可能な別のシンボル（<a href="5.3.eql-function.html"><code>eql</code></a>判定による）と 同じ名前であったとき（<a href="16.2.string-equal.html"><code>string=</code></a>判定による）、 それが<em>package</em>の<code>shadowing</code>シンボルとの衝突であったとしても、 <a href="11.2.import.html"><code>import</code></a>は型<a href="11.2.package-error.html"><code>package-error</code></a>の修正可能なエラーを通知します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="11.2.shadow.html"><code>shadow</code></a>, <a href="11.2.export.html"><code>export</code></a></p>
 <h2 id="備考">備考</h2>

@@ -227,7 +227,7 @@
 <em>package</em> - パッケージ指定子。デフォルトは現在のパッケージ。<br />
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><a href="11.2.unintern.html"><code>unintern</code></a>は、<em>package</em>から<em>symbol</em>を取り除きます。 もし<em>symbol</em>が<em>package</em>に存在するとき、 それは<em>package</em>から取り除かれ、 <em>packaeg</em>の<code>shadowing</code>シンボルリストに存在するなら それも削除されます。 もし<em>package</em>が<em>symbol</em>のホームパッケージであったときは、 <em>symbol</em>はホームパッケージを持たない状態になります。 <em>symbol</em>は継承によって<em>package</em>からアクセスし続けることができるかもしれません。</p>
+<p><a href="11.2.unintern.html"><code>unintern</code></a>は、<em>package</em>から<em>symbol</em>を取り除きます。 もし<em>symbol</em>が<em>package</em>に存在するとき、 それは<em>package</em>から取り除かれ、 <em>package</em>の<code>shadowing</code>シンボルリストに存在するなら それも削除されます。 もし<em>package</em>が<em>symbol</em>のホームパッケージであったときは、 <em>symbol</em>はホームパッケージを持たない状態になります。 <em>symbol</em>は継承によって<em>package</em>からアクセスし続けることができるかもしれません。</p>
 <p><a href="11.2.unintern.html"><code>unintern</code></a>の使用すると、 シンボルが記録されているホームパッケージを持たなくなりますが、 しかし実際にはいくつかのパッケージからはアクセスできます。 Common Lispはこのような病的なケースをチェックしないので、 そのようなシンボルは常に<code>#:</code>が先頭に印刷されます。</p>
 <p>もし<em>symbol</em>が取り除かれたら<a href="11.2.unintern.html"><code>unintern</code></a>は<em>true</em>を返却し、 それ以外の場合は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>

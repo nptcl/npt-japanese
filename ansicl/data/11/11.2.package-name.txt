@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PACKAGE-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-name
+@name: package-name
+@type: function
+
+Function `PACKAGE-NAME`
+
+
+## {syntax}
+
+`package-name` *package* => *name*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*name* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+{package-name:link}は*package*に名付けられている文字列を返却するか、
+もし*package*指定子が名前を持たないパッケージの場合は
+{nil!variable:link}を返却します
+（{delete-package:link}関数をご確認ください）。
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(package-name *package*) =>  "COMMON-LISP-USER"
+(package-name (symbol-package :test)) =>  "KEYWORD"
+(package-name (find-package 'common-lisp)) =>  "COMMON-LISP"
+(defvar *foo-package* (make-package "FOO"))
+(rename-package "FOO" "FOO0")
+(package-name *foo-package*) =>  "FOO0"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*package*がパッケージ指定子ではないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

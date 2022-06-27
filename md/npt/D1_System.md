@@ -13,6 +13,7 @@ nptのドキュメントです。
 ```lisp
 defun gc
 defun savecore
+defun loadcore
 defun exit
 defun quit
 ```
@@ -160,9 +161,11 @@ NIL
 Lispを終了させてから、コアファイルを作成します。
 
 ```lisp
-(defun savecore (pathname-designer) ...) -> null
+(defun savecore (output &key input (exit t)) ...) -> null
 
-入力: pathname-designer 出力先パス
+入力: output, pathname-designer, 出力コアファイル
+入力: input, pathname-designer, 入力コアファイル
+入力: exit, T  ;; General boolean
 出力: null 戻り値無し
 ```
 
@@ -175,7 +178,15 @@ npt起動時に`--core`引数および`--corefile`引数を指定すると、
 
 本関数が正常に動作した場合はLispが終了するので、
 通常はプロセス自体が終了します。  
-モジュールとして使用している場合は、C言語の`lisp_argv_run`関数から制御が戻ります。  
+モジュールとして使用している場合は、C言語の`lisp_argv_run`関数から制御が戻ります。
+
+ただし、引数`input`と`exit`の内容によっては、
+コアファイルを出力した後にLispに復帰します。  
+引数`input`が指定された場合は、
+コアファイル生成後に`input`のコアファイルを読み込みます。  
+また、引数`input`が指定されておらず、かつ`exit`が`nil`の場合は、
+コアファイル生成後にLispを再起動します。
+
 
 ### 実行例
 
@@ -194,6 +205,32 @@ $ npt --core --corefile hello-core-image.core
 1234
 *
 ```
+
+
+## 関数`loadcore`
+
+Lispを終了させてから、コアファイルを作成します。
+
+```lisp
+(defun loadcore (input &key output (exit t)) ...) -> null
+
+入力: input, pathname-designer, 入力コアファイル
+入力: output, pathname-designer, 出力コアファイル
+入力: exit, T  ;; General boolean
+出力: null 戻り値無し
+```
+
+`loadcore`関数は、`savecore`関数とほぼ同じです。  
+次のような動作をします。
+
+```lisp
+(defun loadcore (input &key output (exit t))
+  (savecore output :input input :exit exit))
+```
+
+本関数の意味はコアファイルを読み込むことですが、
+`savecore`と同様必ずLispが終了します。
+
 
 ## 関数`exit`
 ## 関数`quit`
@@ -1228,9 +1265,9 @@ defun eastasian-width
 `package`の`export`リストを取得します。
 
 ```lisp
-(defun package-export-list (package-designer) ...) -> list
+(defun package-export-list (package-designator) ...) -> list
 
-入力: package-designer
+入力: package-designator
 出力: list
 ```
 
@@ -1368,16 +1405,16 @@ CPUがbig endianの場合は、上位バイトが`#x00`で、下位バイトが`
 East Asian Widthのカテゴリ別に、文字数を設定します。
 
 ```lisp
-(defun eastasian-set (string-designer intplus &optional error) ...) -> boolean) */
+(defun eastasian-set (string-designator intplus &optional error) ...) -> boolean) */
 
-入力: string-designer
+入力: string-designator
 入力: intplus (integer 0 *)
 入力: error boolean
 出力: boolean
 ```
 
 East Asian Widthとは、日本語で言う半角/全角を定義したものです。  
-入力の`string-designer`は、`N`, `A`, `H`, `W`, `F`, `NA`の6種類指定できます。  
+入力の`string-designator`は、`N`, `A`, `H`, `W`, `F`, `NA`の6種類指定できます。  
 それぞれのカテゴリに対して、`intplus`で指定した文字数を設定します。
 
 `intplus`には、半角`1`か全角`2`を指定することになると思います。  
@@ -1390,15 +1427,15 @@ East Asian Widthとは、日本語で言う半角/全角を定義したもので
 East Asian Widthのカテゴリに対応する文字数を取得します。
 
 ```lisp
-(defun eastasian-get (string-designer) ...) -> (values IntplusNull symbol)
+(defun eastasian-get (string-designator) ...) -> (values IntplusNull symbol)
 
-入力: string-designer
+入力: string-designator
 出力: intplusNull 文字数かnil
 出力: symbol カテゴリのsymbol
 ```
 
 East Asian Widthとは、日本語で言う半角/全角を定義したものです。  
-入力の`string-designer`は、`N`, `A`, `H`, `W`, `F`, `NA`の6種類指定できます。  
+入力の`string-designator`は、`N`, `A`, `H`, `W`, `F`, `NA`の6種類指定できます。  
 それぞれのカテゴリに対応した文字数が返却されます。  
 エラーの場合は`NIL`が返却されます。
 

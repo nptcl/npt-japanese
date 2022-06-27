@@ -45,9 +45,10 @@
 (push (cons 8 'all) *working*)
 (push (cons 9 'finish) *working*)
 (push (cons 10 'finish) *working*)
-(push (cons 11 'work) *working*)
+(push (cons 11 'finish) *working*)
 (push (cons 13 'finish) *working*)
 (push (cons 14 'finish) *working*)
+(push (cons 15 'work) *working*)
 (push (cons 16 'finish) *working*)
 (push (cons 17 'finish) *working*)
 

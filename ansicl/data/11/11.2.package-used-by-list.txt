@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PACKAGE-USED-BY-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-used-by-list
+@name: package-used-by-list
+@type: function
+
+Function `PACKAGE-USED-BY-LIST`
+
+
+## {syntax}
+
+`package-used-by-list` *package* => *used-by-list*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*used-by-list* - パッケージオブジェクトのリスト
+
+
+## {description}
+
+{package-used-by-list:link}は、
+*package*を`use`している他のパッケージのリストを返却します。
+
+
+## {examples}
+
+```lisp
+(package-used-by-list (make-package 'temp)) =>  ()
+(make-package 'trash :use '(temp)) =>  #<PACKAGE "TRASH">
+(package-used-by-list 'temp) =>  (#<PACKAGE "TRASH">)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*package*がパッケージ指定子ではないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{use-package:link},
+{unuse-package:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

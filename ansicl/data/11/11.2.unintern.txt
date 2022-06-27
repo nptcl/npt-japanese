@@ -30,7 +30,7 @@ Function `UNINTERN`
 {unintern:link}は、*package*から*symbol*を取り除きます。
 もし*symbol*が*package*に存在するとき、
 それは*package*から取り除かれ、
-*packaeg*の`shadowing`シンボルリストに存在するなら
+*package*の`shadowing`シンボルリストに存在するなら
 それも削除されます。
 もし*package*が*symbol*のホームパッケージであったときは、
 *symbol*はホームパッケージを持たない状態になります。

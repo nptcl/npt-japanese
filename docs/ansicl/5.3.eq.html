@@ -271,7 +271,7 @@
 <h2 id="参考">参考</h2>
 <p><a href="5.3.eql-function.html"><code>eql</code></a>, <a href="5.3.equal.html"><code>equal</code></a>, <a href="5.3.equalp.html"><code>equalp</code></a>, <code>=</code>, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
-<p>印字したときに同じに見えるオブジェクトは、 必ずしも互いに<a href="5.3.eq.html"><code>eq</code></a>で等しいとは限りません。 印字したシンボルが同じように表示されるものは、 <code>intern</code>関数を使用したものであれば、 通常は互いに<a href="5.3.eq.html"><code>eq</code></a>で等しくなります。 しかし、同じ値を持つ数値は<a href="5.3.eq.html"><code>eq</code></a>で等しい必要はありませんし、 2つの類似したリストは通常同一ではありません。</p>
+<p>印字したときに同じに見えるオブジェクトは、 必ずしも互いに<a href="5.3.eq.html"><code>eq</code></a>で等しいとは限りません。 印字したシンボルが同じように表示されるものは、 <a href="11.2.intern.html"><code>intern</code></a>関数を使用したものであれば、 通常は互いに<a href="5.3.eq.html"><code>eq</code></a>で等しくなります。 しかし、同じ値を持つ数値は<a href="5.3.eq.html"><code>eq</code></a>で等しい必要はありませんし、 2つの類似したリストは通常同一ではありません。</p>
 <p>実装は、いつでも文字と数をコピーすることが許されています。 その効果のため、Common Lispでは<a href="5.3.eq.html"><code>eq</code></a>の引数の両方が「同じもの」のときでさえ、 その「もの」が文字と数のときは、返却値が<em>true</em>であることを保証しません。</p>
 <p>Common Lispのほとんどの操作は、 オブジェクトの比較に<a href="5.3.eq.html"><code>eq</code></a>ではなく<a href="5.3.eql-function.html"><code>eql</code></a>を使っているか、 そうでなければデフォルトで<a href="5.3.eql-function.html"><code>eql</code></a>を使い、 特別に要求されたときだけ<a href="5.3.eq.html"><code>eq</code></a>を使用します。 しかし、下記に示す操作は<a href="5.3.eql-function.html"><code>eql</code></a>ではなく <a href="5.3.eq.html"><code>eq</code></a>を使うように定義されており、 それらを使用するようなコードで上書きすることはできません。</p>
 <table>

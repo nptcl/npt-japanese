@@ -1,0 +1,94 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function USE-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.use-package
+@name: use-package
+@type: function
+
+Function `USE-PACKAGE`
+
+
+## {syntax}
+
+`use-package` *packages-to-use* `&optional` *package* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*packages-to-use* - パッケージ指定子のリストの指定子。
+`KEYWORD`パッケージは指定されません。  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。
+*package*には`KEYWORD`パッケージは指定できません。
+
+
+## {description}
+
+{use-package:link}は、*package*に対して、
+*packages-to-use*の全ての外部シンボルを継承します。
+継承されたシンボルは、*package*の内部シンボルとして
+アクセスできるようになります。
+
+*packages-to-use*は、*package*の`use`リストに、
+もしそれらが現れていないときは追加されます。
+*packages-to-use*の全ての外部シンボルは、
+*package*の内部シンボルとしてアクセスできるようになります。
+{use-package:link}は*package*に新しいシンボルが現れるようなことはせず、
+ただそれらを継承によってアクセス可能にするだけです。
+
+{use-package:link}は、新しく入ってくるシンボルと、
+それらが*package*内ですでにアクセス可能なものとの間で
+名前の衝突のチェックを行います。
+*packages-to-use*から*package*によって継承される
+2つの外部シンボル間に生じた{use-package:link}の名前衝突は、
+それらの*package*内に入ってくるどちらかのシンボルを選び、
+それを`shadowing`シンボルにすることで解決できます。
+
+
+## {examples}
+
+```lisp
+(export (intern "LAND-FILL" (make-package 'trash)) 'trash) =>  T
+(find-symbol "LAND-FILL" (make-package 'temp)) =>  NIL, NIL
+(package-use-list 'temp) =>  (#<PACKAGE "TEMP">)
+(use-package 'trash 'temp) =>  T
+(package-use-list 'temp) =>  (#<PACKAGE "TEMP"> #<PACKAGE "TRASH">)
+(find-symbol "LAND-FILL" 'temp) =>  TRASH:LAND-FILL, :INHERITED
+```
+
+
+## {side-effects}
+
+*package*の`use`リストは修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{unuse-package:link},
+{package-use-list:link},
+{11.1:ab}
+
+
+## {notes}
+
+パッケージ`P2`がすでにパッケージ`P1`を使用していたときでさえ、
+`P1`が`P2`を使用することは許されます。
+パッケージの`use`は推移的ではないので、
+循環構造が現れても問題がありません。
+
+@end
+

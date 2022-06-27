@@ -278,7 +278,7 @@ int lisp_package32_(addr x, const void *str);
 ```c
 int lisp_package_(addr x, addr pos);
 
-入力: pos package-designer
+入力: pos package-designator
 出力: x hold変数
 戻り値: 脱出時は0以外
 ```
@@ -330,7 +330,7 @@ int lisp_intern32_(addr x, const void *package, const void *name);
 ```c
 int lisp_intern_(addr x, addr package, addr name);
 
-入力: package package-designerかnil
+入力: package package-designatorかnil
 入力: name 文字列
 出力: x hold変数
 戻り値: 脱出時は0以外
@@ -445,7 +445,7 @@ int lisp_namestring_(addr x, addr path);
 ```c
 int lisp_pathname_(addr x, addr name);
 
-入力: name pathname-designer
+入力: name pathname-designator
 出力: x hold変数
 戻り値: 脱出時は0以外
 ```
@@ -487,7 +487,7 @@ Unicode文字列の詳細は`lisp_string8_`関数をご確認ください。
 ```c
 int lisp_namestring_(addr x, addr path);
 
-入力: path pathname-designer
+入力: path pathname-designator
 出力: x hold変数
 戻り値: 脱出時に0以外
 ```

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>4.3.1. クラスの紹介</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">4.3.1. クラスの紹介</h1>
+</header>
+<p><a href="4.3.html">UP</a></p>
+<hr />
+<p>4.3.1. クラスの紹介</p>
+<p>クラスは、インスタンスと呼ばれる他のオブジェクトの集合の 構造と動作を決定するためのオブジェクトです。</p>
+<p>クラスは他のひとつ以上のクラスから構造と動作を継承できます。 クラスが継承する目的で他のクラスを参照しているようなクラスは、 それら各クラスのサブクラスであると言われます。 継承の目的で指定されているクラスは、 継承しているクラスのスーパークラスであると言われます。</p>
+<p>クラスは名前を持つことができます。 <a href="7.7.class-name.html"><code>class-name</code></a>関数はクラスオブジェクトを引数に取り、 その名前を返却します。 匿名のクラスの名前は<a href="5.3.nil-variable.html"><code>nil</code></a>です。 シンボルはクラスの名前になれます。 <a href="7.7.find-class.html"><code>find-class</code></a>関数はシンボルを受け取り、 そのシンボルの名前のクラスを返却します。 もしあるクラスにおいて、 その名前がシンボルであり、 その名前のクラスが、あるクラスの名前を指定しているときは、 そのあるクラスは正しい名前を持っていると言います。 つまり、クラス<code>C</code>が正しい名前を持つとは、 <code>S = (class-name C)</code>でありかつ<code>C = (find-class S)</code>のときです。 注意しなければならないとは、 <code>(find-class S1) = (find-class S2)</code> でありかつ<code>S1 /= S2</code>の可能性もあるということです。 もし<code>C = (find-class S)</code>であるなら、 <code>C</code>は<code>S</code>という名前を持ったクラスであると言います。</p>
+<p>もしクラス<code>C2</code>がクラス<code>C1</code>のスーパークラスであると その定義で明示的に指定されたとき、 クラス<code>C1</code>はクラス<code>C2</code>の<code>direct</code>スーパークラスです。 このような場合、<code>C2</code>は<code>C1</code>の<code>direct</code>サブクラスです。 もし<code>1 &lt;= i&lt;n</code>の<code>Ci+1</code>が<code>Ci</code>の<code>direct</code>スーパークラスのようなとき クラス<code>C2, ..., Cn-1</code>という順列が存在するのであれば、 クラス<code>Cn</code>はクラス<code>C1</code>のスーパークラスです。 このような場合、<code>C1</code>は<code>Cn</code>のサブクラスです。 クラスは自分自身がスーパークラスでもなければ サブクラスでもないことを考慮されます。 つまり、<code>C1</code>が<code>C2</code>のスーパークラスのときは<code>C1 /= C2</code>です。 クラス<code>C</code>とその全てのスーパークラスを含む集合は、 「<code>C</code>とそのスーパークラス」と呼ばれます。</p>
+<p>各クラスはクラス優先順位リストを持っており、 それは与えられたクラスとそのスーパークラスの集合の 全体の順序を表すものです。 全体の順序はもっとも特定的なものから そうでないものの順番のリストで表現されます。 クラス優先順位リストはいろいろなところで使われます。 一般的にはもっとも特定的なクラスが、 継承によって他の特定的ではないクラスの機能を シャドウするのに使います。 メソッドの選択と<code>method-combination</code>の処理は、 もっとも徳敵的なものからそうではないもののメソッドの順番を クラス優先順位リストから使います。</p>
+<p>クラスが定義されたとき、定義フォームに記載される <code>direct</code>スーパークラスの順番が重要になります。 各クラスは、その定義フォームに記載される <code>direct</code>スーパークラスに従ったクラスが含まれるリストである、 ローカルの優先順位を持ちます。</p>
+<p>クラス優先順位リストは常に各クラスのローカルの優先順位を リストとして含みます。 各ローカルの優先順位の中のクラスは、 同じ順番でクラス優先順位リストの中に現れます。 もしローカルの優先順位にお互いが含まれていないときは、 クラス優先順位リストは構築することができず、 エラーが発生します。 クラス優先順位リストとそれらの計算は、4.3.5. クラス優先順位リストの決定で説明されます。</p>
+<p>クラスは非循環有向グラフで編成されます。 <a href="4.4.t-system-class.html"><code>t</code></a>と<a href="4.4.standard-object.html"><code>standard-object</code></a>という名前の 2つの特別なクラスがあります。 <a href="4.4.t-system-class.html"><code>t</code></a>というクラスはスーパークラスを持ちません。 これは自分自身を除く全てのクラスのスーパークラスです。 <a href="4.4.standard-object.html"><code>standard-object</code></a>というクラスは、 クラス<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスであり、 これは自分自身を除くクラス<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスである、 全てのクラスのスーパークラスです。</p>
+<p>オブジェクトシステムのクラス空間は、型空間と対応があります。 この説明で指定されている多くの標準の型は、 その型として同じ名前を持つ対応したクラスがあります。 いくつかの型は、対応したクラスを持っていません。 型とクラスシステムの等号については、<a href="4.3.7.html">4.3.7. 型とクラスの統合</a>で説明されています。</p>
+<p>クラスはそれ自身がクラスのインスタンスである オブジェクトによって表現されます。 オブジェクトのクラスのクラスは、 そのオブジェクトのメタクラスという語で表現されます。 誤解が生じてないならば、メタクラスという語は、 それ自身がクラスであるというインスタンスを持つ クラスを示すときに使われます。 メタクラスは、そのインスタンスであるクラスによって使用される継承の形式と、 それらのクラスのインスタンスの表現を決定します。 オブジェクトシステムはデフォルトのメタクラスである <a href="4.4.standard-class.html"><code>standard-class</code></a>を提供しており、 それは多くのプログラムに適しています。</p>
+<p>特に指定された場合を除いて、 全てのクラスは標準で<a href="4.4.standard-class.html"><code>standard-class</code></a>クラスのインスタンスであり、 全てのジェネリック関数は標準で <a href="4.4.standard-generic-function.html"><code>standard-generic-function</code></a>クラスのインスタンスであり、 全てのメソッドは<a href="4.4.standard-method.html"><code>standard-method</code></a>クラスのインスタンスです。</p>
+<ul>
+<li><a href="4.3.1.1.html">4.3.1.1. 標準のメタクラス</a></li>
+</ul>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

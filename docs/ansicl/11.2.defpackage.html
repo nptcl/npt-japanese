@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Macro DEFPACKAGE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Macro DEFPACKAGE</h1>
+</header>
+<p><a href="11.2.html">UP</a></p>
+<hr />
+<h1 id="macro-defpackage">Macro <strong>DEFPACKAGE</strong></h1>
+<p>Macro <code>DEFPACKAGE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>defpackage</code> <em>defined-package-name</em> [[<em>option</em>]] =&gt; <em>package</em></p>
+<pre><code>option::= (:nicknames nickname*)* |  
+          (:documentation string) |  
+          (:use package-name*)* |  
+          (:shadow {symbol-name}*)* |  
+          (:shadowing-import-from package-name {symbol-name}*)* |  
+          (:import-from package-name {symbol-name}*)* |  
+          (:export {symbol-name}*)* |  
+          (:intern {symbol-name}*)* |  
+          (:size integer) </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>defined-package-name</em> - 文字列指定子<br />
+<em>package-name</em> - パッケージ指定子<br />
+<em>nickname</em> - 文字列指定子<br />
+<em>symbol-name</em> - 文字列指定子<br />
+<em>package</em> - <em>package-name</em>という名前のパッケージ</p>
+<h2 id="定義">定義</h2>
+<p><a href="11.2.defpackage.html"><code>defpackage</code></a>は指定されたパッケージを作成し、 そのパッケージを返却します。</p>
+<p>もし<em>defined-package-name</em>がすでに存在しているパッケージを示していたら、 その名前とパッケージのマッピングの対応は変更されません。 もし新しい定義がパッケージの現在の状況と変わっていたときは、 その結果は定義されていません。 実装によっては、新しい定義を反映するよう、 既存のパッケージを修正するか選択するかもしれません。 もし<em>defined-package-name</em>がシンボルのときは、その名前が使われます。</p>
+<p>標準のオプションを下記に示します。</p>
+<ul>
+<li><code>:nicknames</code>
+<ul>
+<li><code>:nicknames</code>の引数はパッケージのニックネームに指定した名前をセットします。 <br><br></li>
+</ul></li>
+<li><code>:documentation</code>
+<ul>
+<li><code>:documentation</code>の引数は、ドキュメント文字を指定します。 それはパッケージのドキュメント文字に割り当てます。 ひとつの<a href="11.2.defpackage.html"><code>defpackage</code></a>フォームに 最大ひとつの<code>:documentation</code>オプションを記載することができます。 <br><br></li>
+</ul></li>
+<li><code>:use</code>
+<ul>
+<li><code>:use</code>引数は、<em>package-name</em>という名前のパッケージが継承するように、 パッケージに対して設定を行います。 <br><br></li>
+</ul></li>
+<li><code>:shadow</code>
+<ul>
+<li><code>:shadow</code>引数は、<em>symbol-names</em>という名前のシンボルを パッケージ内に作成するように定義します。 それらのシンボルは、<a href="11.2.shadow.html"><code>shadow</code></a>によるもののように 効果的に<code>shadowing</code>シンボルのリストに追加されます。 <br><br></li>
+</ul></li>
+<li><code>:shadowing-import-from</code>
+<ul>
+<li>引数の<em>symbol-names</em>によって名前が付いたシンボルを 指定した<em>package-name</em>内に探します （<a href="11.2.find-symbol.html"><code>find-symbol</code></a>によるもののように検索が実行されます）。 その結果のシンボルがそのパッケージ内に<code>import</code>されるように定義し、 <a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>によるもののように <code>shadowing</code>シンボルのリストに配置されます。 <br><br></li>
+</ul></li>
+<li><code>:import-from</code>
+<ul>
+<li>引数の<em>symbol-names</em>によって名前が付いたシンボルを <em>package-name</em>という名前のパッケージ内から探し、 それらが定義しているパッケージに<code>import</code>されます。 どのような場合でも、定義されているパッケージ以外の パッケージでシンボルを作成してはいけません。 <br><br></li>
+</ul></li>
+<li><code>:export</code>
+<ul>
+<li>引数の<em>symbol-names</em>によって名前が付いたシンボルを <em>package-name</em>という名前のパッケージ内から探すか、 あるいは定義しているパッケージに作成し、それを<code>export</code>します。 継承されるシンボルが作成されるのではなく使用されるとき、 <code>:export</code>オプションは<code>:use</code>オプションと互いに作用します。 <code>import</code>されるシンボルが作成されるのではなく使用されるとき、 <code>:export</code>オプションは<code>:import-from</code>および <code>shadowing-import-from</code>オプションと互いに作用します。 もし<code>:export</code>オプションの引数が <a href="11.2.use-package.html"><code>use-package</code></a>によって（継承された）内部シンボルとして アクセス可能であるとき、 <em>symbol-name</em>という名前のシンボルは、 最初に定義されているパッケージに<code>import</code>され、 そのあとそのパッケージから<code>export</code>されます。 <br><br></li>
+</ul></li>
+<li><code>:intern</code>
+<ul>
+<li>引数の<em>symbol-names</em>によって名前が付いたシンボルを <em>package-name</em>という名前のパッケージ内から探すか、 あるいは定義しているパッケージに作成します。 継承されるシンボルが作成されるのではなく使用されるとき、 <code>:intern</code>オプションは<code>:use</code>オプションと互いに作用します。 <br><br></li>
+</ul></li>
+<li><code>:size</code>
+<ul>
+<li><code>:size</code>オプションの引数は、予想されるパッケージ内の シンボルの数の近似値を宣言します。 これはただの効率化のヒントであり、実装によっては無視されるかもしれません。 <br><br></li>
+</ul></li>
+</ul>
+<p><a href="11.2.defpackage.html"><code>defpackage</code></a>フォームに現れるオプションの順番は無関係です。 それらが実行される順番は下記のようになります。</p>
+<ol type="1">
+<li><code>:shadow</code>と<code>:shadowing-import-from</code></li>
+<li><code>:use</code></li>
+<li><code>:import-from</code>と<code>:intern</code></li>
+<li><code>:export</code></li>
+</ol>
+<p><code>:use</code>オプションが処理されるときに 衝突による偽りの名前をブロックする必要があるため、 最初に<code>shadow</code>を確立させます。 <code>:use</code>オプションが次に実行されるので、 <code>:intern</code>と<code>:export</code>オプションが継承されたシンボルを普通に参照できます。 <code>:export</code>オプションが最後に実行されるとき、 それは他のオプションの何かによって作成された シンボルを参照することができます。 とくに<code>shadowing</code>シンボルと<code>import</code>シンボルを 外部シンボルにすることができます。</p>
+<p>もし<a href="11.2.defpackage.html"><code>defpackage</code></a>フォームがトップレベルフォームとして現れたとき、 ロード時にこのマクロによって実行される全ての通常のアクションは、 コンパイル時にもまた実行されなければいけません。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defpackage</span><span class="fu"> </span><span class="st">&quot;MY-PACKAGE&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:nicknames</span> <span class="st">&quot;MYPKG&quot;</span> <span class="st">&quot;MY-PKG&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:use</span> <span class="st">&quot;COMMON-LISP&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  (:shadow <span class="st">&quot;CAR&quot;</span> <span class="st">&quot;CDR&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  (:shadowing-import-from <span class="st">&quot;VENDOR-COMMON-LISP&quot;</span>  <span class="st">&quot;CONS&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (:import-from <span class="st">&quot;VENDOR-COMMON-LISP&quot;</span>  <span class="st">&quot;GC&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  (:export <span class="st">&quot;EQ&quot;</span> <span class="st">&quot;CONS&quot;</span> <span class="st">&quot;FROBOLA&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defpackage</span><span class="fu"> my-package</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:nicknames</span> mypkg :MY-PKG)  <span class="co">; Common Lispの大文字小文字の慣習を思い出そう</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:use</span> common-lisp)          <span class="co">; シンボルの慣習</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  (:shadow CAR :cdr #:cons)                              </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  (:export <span class="st">&quot;CONS&quot;</span>)            <span class="co">; これはshadowされる</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>存在するパッケージ</p>
+<h2 id="例外">例外</h2>
+<p><code>:nicknames</code>で指定したひとつが すでに既存のパッケージで参照されていたときは、 型<a href="11.2.package-error.html"><code>package-error</code></a>のエラーが発生します。</p>
+<p>もし<code>:size</code>か<code>:documentation</code>が複数現れていたときは 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>実装が拡張のオプションを許すとき、 あるオプションが実際にはその実装でサポートされていないものとして現れたとき、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p>オプションの<code>:shadow</code>, <code>:intern</code>, <code>:import-from</code>, <code>:shadowing-import-from</code>に 指定された<em>symbol-name</em>引数の集まりは、 全てが互いに素でなければいけません。 加えて、<code>:export</code>と<code>:intern</code>のに指定された<em>symbol-name</em>引数は 互いに素でなければいけません。</p>
+<p>この文脈での互いに素というのは、 2つの<em>symbol-names</em>が互いに<a href="16.2.string-equal.html"><code>string=</code></a>で 等しくないものとして定義されます。 このどちらかの条件に違反していたときは、 型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが発生します。</p>
+<p><code>:shadowing-import-from</code>と<code>:import-from</code>オプションについて、 <em>package-name</em>という名前のパッケージに 引数<em>symbol-names</em>のうちのひとつが アクセス可能なシンボルではないとき、 修正可能な型<a href="11.2.package-error.html"><code>package-error</code></a>のエラーが発生します。</p>
+<p>名前の衝突エラーは、 <a href="11.2.make-package.html"><code>make-package</code></a>, <a href="11.2.use-package.html"><code>use-package</code></a>, <a href="11.2.import.html"><code>import</code></a>, <a href="11.2.export.html"><code>export</code></a>の 基本的な呼び出しによって捕捉されます。 11.1. パッケージの説明をご確認ください。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.documentation.html"><code>documentation</code></a>, 11.1. パッケージの説明, <a href="3.2.html">3.2. コンパイル</a></p>
+<h2 id="備考">備考</h2>
+<p>いくつかの他のパッケージの作成に続く<a href="11.2.defpackage.html"><code>defpackage</code></a>の呼び出しで、 <code>:import-from</code>か<code>:shadowing-import-from</code>オプションを用いて それらのシンボルをアクセス可能な状態にしたいものの 外部シンボルにする必要はないときは、 <code>:intern</code>オプションが便利です。</p>
+<p>パッケージの全体の定義を一か所に配置し、 全てのパッケージの定義のプログラムを ひとつのファイルにしたいとき <a href="11.2.defpackage.html"><code>defpackage</code></a>の使用をお勧めします。 このファイルは、 これらのパッケージに依存する他の何かを ロードしたりコンパイルしたりする前に ロードすることができます。 このようなファイルは 初期状態の異常を回避するために、 <code>COMMON-LISP-USER</code>パッケージで読み込むことができます。</p>
+<p><a href="11.2.defpackage.html"><code>defpackage</code></a>は、2つの「互いに再帰的」なパッケージを 作成するときには使えません。 例えば次の通り。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defpackage</span><span class="fu"> my-package</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:use</span> common-lisp your-package)    <span class="co">;最初にyour-packageの存在が必要</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (:export <span class="st">&quot;MY-FUN&quot;</span>))                </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defpackage</span><span class="fu"> your-package</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  (<span class="bu">:use</span> common-lisp)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  (:import-from my-package <span class="st">&quot;MY-FUN&quot;</span>) <span class="co">;最初にmy-packageの存在が必要</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  (:export <span class="st">&quot;MY-FUN&quot;</span>))</span></code></pre></div>
+<p>しかし、<a href="11.2.defpackage.html"><code>defpackage</code></a>をより標準的に使ったあとで、 <a href="11.2.use-package.html"><code>use-package</code></a>、<a href="11.2.import.html"><code>import</code></a>、<a href="11.2.export.html"><code>export</code></a>などの パッケージに影響を与える関数を使って、 そのようなリンクを確立することを妨げるものは何もありません。</p>
+<p><a href="11.2.defpackage.html"><code>defpackage</code></a>のマクロ展開は、 通常は名前を文字列に正規化するので、 ソースファイルにランダムなシンボルが含まれる<a href="11.2.defpackage.html"><code>defpackage</code></a>フォームが 配置されているようなときでさえ、 コンパイルファイルにはただ文字列だけが配置されます。</p>
+<p>よく追加で実装依存のオプションに、 キーワードそれ自身のフォームで<code>(keyword T)</code>という リストの省略形を表すことがあります。 この構文は、これをサポートしていない実装では、 認識できないオプションとして適切に報告されるべきです。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

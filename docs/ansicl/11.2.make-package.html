@@ -230,7 +230,7 @@
 <h2 id="定義">定義</h2>
 <p><em>packagen-name</em>という名前の新しいパッケージを作成します。</p>
 <p><em>nicknames</em>は新しいパッケージを参照するときに使われる 追加の名前です。</p>
-<p><em>use</em>によって指定されたゼロか複数のパッケージの外部シンボルは 新しいパッケージによって継承されます。 <code>use-package</code>関数をご確認ください。</p>
+<p><em>use</em>によって指定されたゼロか複数のパッケージの外部シンボルは 新しいパッケージによって継承されます。 <a href="11.2.use-package.html"><code>use-package</code></a>関数をご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-package</span> &#39;temporary <span class="bu">:nicknames</span> &#39;(<span class="st">&quot;TEMP&quot;</span> <span class="st">&quot;temp&quot;</span>)) <span class="op">=&gt;</span>  #&lt;PACKAGE <span class="st">&quot;TEMPORARY&quot;</span>&gt;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-package</span> <span class="st">&quot;OWNER&quot;</span> <span class="bu">:use</span> &#39;(<span class="st">&quot;temp&quot;</span>)) <span class="op">=&gt;</span>  #&lt;PACKAGE <span class="st">&quot;OWNER&quot;</span>&gt;</span>
@@ -244,10 +244,10 @@
 <p>もし<em>package</em>が<em>use</em>で存在しないものを示していたときの結果は指定されていません。</p>
 <p><em>package-name</em>か<em>nicknames</em>のどれかが すでに既存のパッケージの名前かニックネームであったときは、 修正可能なエラーが通知されます。</p>
 <h2 id="参考">参考</h2>
-<p><code>defpackage</code>, <code>use-package</code></p>
+<p><a href="11.2.defpackage.html"><code>defpackage</code></a>, <a href="11.2.use-package.html"><code>use-package</code></a></p>
 <h2 id="備考">備考</h2>
-<p>複数のパッケージが<code>use</code>されるような状況で 衝突が発生するシンボルを含んでいるとき、 最初に<code>:use '()</code>でパッケージを作成し、 それから<a href="11.2.shadow.html"><code>shadow</code></a>か<a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>で 衝突した場所に対して使用し、 そのあと衝突が発生したものに対して<code>use-package</code>を 使う必要があります。</p>
-<p>パッケージをプログラムによって動的に作成するのではなく、 プログラムの静的な宣言の部分として作成したいときは、 一般的に考えて<a href="11.2.make-package.html"><code>make-package</code></a>ではなく<code>defpackage</code>を 使うことがより文法的に適しています。</p>
+<p>複数のパッケージが<code>use</code>されるような状況で 衝突が発生するシンボルを含んでいるとき、 最初に<code>:use '()</code>でパッケージを作成し、 それから<a href="11.2.shadow.html"><code>shadow</code></a>か<a href="11.2.shadowing-import.html"><code>shadowing-import</code></a>で 衝突した場所に対して使用し、 そのあと衝突が発生したものに対して<a href="11.2.use-package.html"><code>use-package</code></a>を 使う必要があります。</p>
+<p>パッケージをプログラムによって動的に作成するのではなく、 プログラムの静的な宣言の部分として作成したいときは、 一般的に考えて<a href="11.2.make-package.html"><code>make-package</code></a>ではなく<a href="11.2.defpackage.html"><code>defpackage</code></a>を 使うことがより文法的に適しています。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

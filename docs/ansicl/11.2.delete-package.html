@@ -226,7 +226,7 @@
 <p><em>package</em> - パッケージ指定子<br />
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><a href="11.2.delete-package.html"><code>delete-package</code></a>は<em>package</em>を 全てのパッケージシステムのデータ構造から削除します。 もし操作が成功したとき、<a href="11.2.delete-package.html"><code>delete-package</code></a>は<em>true</em>を、 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 <a href="11.2.delete-package.html"><code>delete-package</code></a>の効果は、 <em>package</em>の名前とニックネームが 認識されたパッケージの名前ではなくなるというものです。 そのパッケージオブジェクトは、まだパッケージです （例えば<code>packagep</code>は<em>true</em>になります）が、 <code>package-name</code>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 <code>COMMON-LISP</code>パッケージか<code>KEYWORD</code>パッケージを削除した結果は未定義です。 いったん削除された<em>package</em>に対して 他のパッケージの操作を行った結果は未定義です。 とくに削除された<em>package</em>を<a href="11.2.package-variable.html"><code>*package*</code></a>に束縛したときか、 あるいは削除された<em>package</em>を引数に指定したときに、 <a href="11.2.find-symbol.html"><code>find-symbol</code></a>や<code>intern</code>や、 パッケージからシンボル名を探すような他の関数によって 実行されたときの結果は未定義です。</p>
+<p><a href="11.2.delete-package.html"><code>delete-package</code></a>は<em>package</em>を 全てのパッケージシステムのデータ構造から削除します。 もし操作が成功したとき、<a href="11.2.delete-package.html"><code>delete-package</code></a>は<em>true</em>を、 それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 <a href="11.2.delete-package.html"><code>delete-package</code></a>の効果は、 <em>package</em>の名前とニックネームが 認識されたパッケージの名前ではなくなるというものです。 そのパッケージオブジェクトは、まだパッケージです （例えば<a href="11.2.packagep.html"><code>packagep</code></a>は<em>true</em>になります）が、 <a href="11.2.package-name.html"><code>package-name</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 <code>COMMON-LISP</code>パッケージか<code>KEYWORD</code>パッケージを削除した結果は未定義です。 いったん削除された<em>package</em>に対して 他のパッケージの操作を行った結果は未定義です。 とくに削除された<em>package</em>を<a href="11.2.package-variable.html"><code>*package*</code></a>に束縛したときか、 あるいは削除された<em>package</em>を引数に指定したときに、 <a href="11.2.find-symbol.html"><code>find-symbol</code></a>や<a href="11.2.intern.html"><code>intern</code></a>や、 パッケージからシンボル名を探すような他の関数によって 実行されたときの結果は未定義です。</p>
 <p>もし<em>package</em>がすでに削除されたパッケージオブジェクトであったときは、 <a href="11.2.delete-package.html"><code>delete-package</code></a>は即座に<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <p>この操作が完了したあと、 前のホームパッケージが<em>package</em>であったシンボルの ホームパッケージは実装依存です。 例外として、<em>package</em>内のアクセス可能なシンボルは、 ホームパッケージが<em>package</em>ではないシンボルは変更されません。</p>
 <h2 id="例文">例文</h2>
@@ -306,9 +306,9 @@
 <p>なし。</p>
 <h2 id="例外">例外</h2>
 <p>もし<em>package</em>指定子が現在有効な名前ではなかったとき、 修正可能な型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが通知されます。 もし修正がされたとき、削除の処理は実施されず、 かわりに<a href="11.2.delete-package.html"><code>delete-package</code></a>は即座に<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
-<p>もし<em>package</em>が他のパッケージに使われていたときは、 修正可能な型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが通知されます。 もし修正がされたとき、 <code>unuse-package</code>は効果的に呼ばれて 依存しているものを取り除き、 <em>package</em>の外部シンボルは <em>package</em>を使っているそれらのパッケージで アクセスできなくなります。 したがって<a href="11.2.delete-package.html"><code>delete-package</code></a>は ちょうどそれを使うパッケージが存在しなくなるかのように <em>package</em>を削除します。</p>
+<p>もし<em>package</em>が他のパッケージに使われていたときは、 修正可能な型<a href="5.3.program-error.html"><code>program-error</code></a>のエラーが通知されます。 もし修正がされたとき、 <a href="11.2.unuse-package.html"><code>unuse-package</code></a>は効果的に呼ばれて 依存しているものを取り除き、 <em>package</em>の外部シンボルは <em>package</em>を使っているそれらのパッケージで アクセスできなくなります。 したがって<a href="11.2.delete-package.html"><code>delete-package</code></a>は ちょうどそれを使うパッケージが存在しなくなるかのように <em>package</em>を削除します。</p>
 <h2 id="参考">参考</h2>
-<p><code>unuse-package</code></p>
+<p><a href="11.2.unuse-package.html"><code>unuse-package</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

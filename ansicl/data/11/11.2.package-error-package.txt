@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PACKAGE-ERROR-PACKAGE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-error-package
+@name: package-error-package
+@type: function
+
+Function `PACKAGE-ERROR-PACKAGE`
+
+
+## {syntax}
+
+`package-error-package` *condition* => *package8
+
+
+## {arguments-and-values}
+
+*condition* - 型{package-error:link}のコンディション  
+*package* - パッケージ指定子
+
+
+## {description}
+
+*condition*によって表された状況の
+問題のあるパッケージの指定子を返却します。
+
+
+## {examples}
+
+```lisp
+(package-error-package 
+  (make-condition 'package-error
+    :package (find-package "COMMON-LISP")))
+=>  #<Package "COMMON-LISP">
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{package-error:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

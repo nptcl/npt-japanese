@@ -1,0 +1,111 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INTERN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.intern
+@name: intern
+@type: function
+
+Function `INTERN`
+
+
+## {syntax}
+
+`intern` *string* `&optional` *package* => *symbol*, *status*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*package* - パッケージ指定子。デフォルトは現在のパッケージ。  
+*symbol* - シンボル  
+*status* - 次のうちのどれか、
+`:inherited`, `:external`, `:internal`, {nil!variable:link}
+
+
+## {description}
+
+{intern:link}は、*package*に*string*という名前のシンボルを挿入します。
+もし*package*に*string*という同じ名前のシンボルが
+すでにアクセス可能であったときは、それが返却されます。
+*package*にそのようなシンボルがアクセス可能になっていないときは、
+新しいシンボルを指定した名前で作成し、
+*package*へ内部シンボルとして挿入するか、
+もし*package*が`KEYWORD`パッケージであったときは
+外部シンボルとして挿入します。
+作成されたシンボルのホームパッケージは*package*になります。
+
+{intern:link}の最初の返却値*symbol*は
+検索されたものか作成されたシンボルです。
+2番目の返却値*status*は次の値になります。
+
+- `:internal`
+  - シンボルは*package*に内部シンボルとしてあるものが見つかった。
+    <br><br>
+
+- `:external`
+  - シンボルは外部シンボルとしてあるものが見つかった。
+    <br><br>
+
+- `:inherited`
+  - シンボルは{use-package:link}経由で継承されているものが見つかった
+  （これはシンボルが内部のものであることを意味します）。
+    <br><br>
+
+- {nil!variable:link}
+  - シンボルは見つからなかったので作成した。
+    <br><br>
+    新しいシンボルの名前が*string*になるかそれのコピーになるかは
+    {implementation-dependent}です。
+    このような新しくシンボルが作成された状況で
+    いったん文字列が{intern:link}の引数*string*のとして与えらえれたとき、
+    続いてその文字列を変更しようとしたときの結果は未定義です。
+    <br><br>
+
+
+## {examples}
+
+```lisp
+(in-package "COMMON-LISP-USER") =>  #<PACKAGE "COMMON-LISP-USER">
+(intern "Never-Before") =>  |Never-Before|, NIL
+(intern "Never-Before") =>  |Never-Before|, :INTERNAL 
+(intern "NEVER-BEFORE" "KEYWORD") =>  :NEVER-BEFORE, NIL
+(intern "NEVER-BEFORE" "KEYWORD") =>  :NEVER-BEFORE, :EXTERNAL
+```
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{find-symbol:link},
+{read:link},
+{symbol:link},
+{unintern:link},
+{2.3.4:ab}
+
+
+## {notes}
+
+{intern:link}が名前の衝突チェックを行う必要はなく、
+なぜなら指定した名前のシンボルがすでにアクセス可能であるときに
+新しいシンボルを作成するようなことはないからです。
+
+@end
+

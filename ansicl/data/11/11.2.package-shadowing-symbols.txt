@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  11. パッケージ
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PACKAGE-SHADOWING-SYMBOLS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 11.2.package-shadowing-symbols
+@name: package-shadowing-symbols
+@type: function
+
+Function `PACKAGE-SHADOWING-SYMBOLS`
+
+
+## {syntax}
+
+`package-shadowing-symbols` *package* => *symbols*
+
+
+## {arguments-and-values}
+
+*package* - パッケージ指定子  
+*symbols* - シンボルのリスト
+
+
+## {description}
+
+{shadow:link}か{shadowing-import:link}によって
+（または同等の{defpackage:link}オプションによって）
+*package*に`shadowing`シンボルとして宣言された
+シンボルのリストを返却します。
+
+
+## {examples}
+
+```lisp
+(package-shadowing-symbols (make-package 'temp)) =>  ()
+(shadow 'cdr 'temp) =>  T
+(package-shadowing-symbols 'temp) =>  (TEMP::CDR)
+(intern "PILL" 'temp) =>  TEMP::PILL, NIL
+(shadowing-import 'pill 'temp) =>  T
+(package-shadowing-symbols 'temp) =>  (PILL TEMP::CDR)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*package*がパッケージ指定子ではないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{shadow:link},
+{shadowing-import:link}
+
+
+## {notes}
+
+シンボルのリストが新しいものかどうかは{implementation-dependent}です。
+
+@end
+

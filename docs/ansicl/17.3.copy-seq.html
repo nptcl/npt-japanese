@@ -227,7 +227,7 @@
 <em>copied-sequence</em> - 正常なシーケンス</p>
 <h2 id="定義">定義</h2>
 <p>シーケンスのコピーを作成します。 新しいシーケンスの要素は、対応する引数<em>sequnece</em>の要素と同じです。</p>
-<p>もし<em>sequence</em>が<code>vector</code>なら、 結果は<em>sequence</em>として同じ実際のarray-element-typeを持つ、 一次元の新しいsimple-arrayです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>なら、 結果は<em>sequence</em>として同じ実際の配列の要素の型を持つ、 一次元の新しいsimple-arrayです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> str <span class="st">&quot;a string&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;a string&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">equalp</span> str (<span class="kw">copy-seq</span> str)) <span class="op">=&gt;</span>  true</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Type SIMPLE-STRING</title>
+  <title>4.3.5. クラス優先順位リストの決定</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,25 +151,25 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Type SIMPLE-STRING</h1>
+<h1 class="title">4.3.5. クラス優先順位リストの決定</h1>
 </header>
-<p><a href="16.2.html">UP</a></p>
+<p><a href="4.3.html">UP</a></p>
 <hr />
-<h1 id="type-simple-string">Type <strong>SIMPLE-STRING</strong></h1>
-<p>Type <code>SIMPLE-STRING</code></p>
-<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
-<p><a href="16.2.simple-string.html"><code>simple-string</code></a>, <a href="16.2.string-system-class.html"><code>string</code></a>, <code>vector</code>, <a href="15.2.simple-array.html"><code>simple-array</code></a>, <a href="15.2.array.html"><code>array</code></a>, <a href="17.3.sequence.html"><code>sequence</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
-<h2 id="定義">定義</h2>
-<p>simple-stringとは、一次元に特化したsimple-arrayであり、 その要素は<a href="13.2.character-system-class.html"><code>character</code></a>か、 あるいは<a href="13.2.character-system-class.html"><code>character</code></a>のサブタイプです。</p>
-<p>オブジェクトの生成時に型指定子として使用された場合、 <a href="16.2.simple-string.html"><code>simple-string</code></a>は<code>(simple-array character (size))</code>を意味します。</p>
-<h2 id="型指定子の種類">型指定子の種類</h2>
-<p>省略。</p>
-<h2 id="型指定子の構文">型指定子の構文</h2>
-<p><code>simple-string</code> <em>[size]</em></p>
-<h2 id="型指定子の引数">型指定子の引数</h2>
-<p><em>size</em> - 非負の<code>fixnum</code>か、シンボル<code>*</code></p>
-<h2 id="型指定子の定義">型指定子の定義</h2>
-<p><a href="13.2.character-system-class.html"><code>character</code></a>の全てのサブタイプを<code>c</code>としたとき、 全ての<code>(simple-array c (size))</code>の和集合を示します。 このとき、<em>size</em>はsimple-stringの集合のサイズです。</p>
+<p>4.3.5. クラス優先順位リストの決定</p>
+<p>クラスの<a href="7.7.defclass.html"><code>defclass</code></a>フォームは、 そのクラスとその<code>direct</code>スーパークラスの全体の順序を提供します。 その順番はローカルの優先順位と呼ばれます。 これはそのクラスとその<code>direct</code>スーパークラスを順序付けしたリストです。 クラス<code>C</code>のクラス優先順位リストは、 <code>C</code>とその<code>direct</code>スーパークラスの全体の順序であり、 これは各<code>C</code>とその<code>direct</code>スーパークラスの ローカルの優先順位を含みます。</p>
+<p>あるクラスは、その<code>direct</code>スーパークラスの先に立ち、 ある<code>direct</code>スーパークラスは、 <a href="7.7.defclass.html"><code>defclass</code></a>フォームのスーパークラスのリストの右側に指定された その他の全ての<code>direct</code>スーパークラスに先立ちます。 全てのクラス<code>C</code>に対して、次のような定義をします。</p>
+<pre><code>R_C = {(C,C1), (C1,C2), , ..., (Cn-1,Cn)}</code></pre>
+<p>ただし<code>C1,...,Cn</code>は<code>C</code>の<a href="7.7.defclass.html"><code>defclass</code></a>フォームを参考に 順序付けられた<code>direct</code>スーパークラスです。 これらの順序付けられたペアは、 クラス<code>C</code>とその<code>direct</code>スーパークラスの全体の順番を生成します。</p>
+<p>ここで<code>S_C</code>を<code>C</code>とそのスーパークラスの集合とします。 ここで<code>R</code>は次のようになります。</p>
+<pre><code>R = U_{CはS_Cの要素} R_C</code></pre>
+<p>（TeXで書くと<code>R = \bigcup_{C \in S_C} R_C</code>）</p>
+<p><code>R_C</code>と<code>CはS_Cの要素</code>が矛盾するかどうかによって、 <code>R</code>の集合が部分的な順序を生成するかもしれませんし、しないかもしれません。 それらが矛盾しないことを仮定すると<code>R</code>は部分順序を生成します。 もし<code>R_C</code>が矛盾しているときは、<code>R</code>に一貫性が無いと言います。</p>
+<p><code>C</code>のクラス優先順位リストの計算をするために、 <code>R</code>によって生成された部分順序を反映した<code>S_C</code>の要素に対して トポロジカルソートを行います。 トポロジカルソートが、Rに関して他のクラスが先行しない 2つ以上のクラスの集合からクラスを選択しなければならないとき、 選択されるクラスは、以下に述べるように決定的に選ばれます。</p>
+<p>もし<code>R</code>が矛盾していたとき、エラーが発生します。</p>
+<ul>
+<li>4.3.5.1. トポロジカルソート</li>
+<li>4.3.5.2. クラス優先順位リストの決定の例</li>
+</ul>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

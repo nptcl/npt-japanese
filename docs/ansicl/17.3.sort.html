@@ -230,7 +230,7 @@
 <em>sorted-sequence</em> - シーケンス</p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.sort.html"><code>sort</code></a>と<a href="17.3.sort.html"><code>stable-sort</code></a>は、 <em>predicate</em>関数で決められた順番に従って、 <em>sequence</em>を破壊的にソートします。</p>
-<p>もし<em>sequence</em>が<code>vector</code>のとき、 返却値は一次元のsimple-arrayであり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>のとき、 返却値は一次元のsimple-arrayであり、 <em>sequence</em>と同じ実際の配列の要素の型を持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
 <p><a href="17.3.sort.html"><code>sort</code></a>は、<em>key</em>による要素の展開と<em>predicate</em>の実行によって、 2つの要素間の関係を決定します。 <em>predicate</em>関数の最初の引数は、 <em>key</em>関数によって展開された（もし<em>key</em>が指定されたのなら）、 ひとつの要素の部分であり、 二番目の引数は、 <em>key</em>関数によって展開された（もし<em>key</em>が指定されたのなら）、 別の要素の部分です。 <em>predicate</em>は、第一引数が第二引数より（何らかの適切な意味で）、 厳密に小さい場合にのみ<em>true</em>を返すべきです。 もし最初の引数が二番目の引数が（何らかの適切な意味で）、 以上であるときは、<em>predicate</em>は<em>false</em>を返却するべきです。</p>
 <p><em>key</em>関数の引数は、<em>sequence</em>の要素です。 <em>key</em>関数の返却値は、<em>predicate</em>の引数になります。 もし<em>key</em>が与えられないか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>が指定されたとき、 <em>sequence</em>の要素そのものが使用されます。 <em>key</em>が呼び出される回数を保証する方法はありません。</p>
 <p>もし<em>key</em>と<em>predicate</em>が常に返却するのであれば、 ソート操作は常に終了し、 <em>sequence</em>として同じ要素が含んだシーケンスが生成されます （つまり、返却値は<em>seqeunce</em>の並べ替えです）。 これは<em>predicate</em>が実際には全順序の表現が一貫されていなくても保証されます （そのような場合は、要素は予測不可能な順番でスクランブルされますが、 要素が失われることはありません）。 もし<em>key</em>が一貫して意味のあるキーを返却し、 <em>predicate</em>がそれらのキーにおいて 何らかの全順序の基準を反映したのであれば、 <em>sorted-sequence</em>の要素は、おそらく適切にソートされます。</p>

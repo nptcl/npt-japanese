@@ -241,7 +241,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="17.3.remove.html"><code>remove</code></a>、<a href="17.3.remove.html"><code>remove-if</code></a>、<a href="17.3.remove.html"><code>remove-if-not</code></a>は、 <em>sequence</em>からテストを満たした要素を削除したものを返却します。</p>
 <p><a href="17.3.remove.html"><code>delete</code></a>、<a href="17.3.remove.html"><code>delete-if</code></a>、<a href="17.3.remove.html"><code>delete-if-not</code></a>は、 それぞれ<a href="17.3.remove.html"><code>remove</code></a>、<a href="17.3.remove.html"><code>remove-if</code></a>、<a href="17.3.remove.html"><code>remove-if-not</code></a>に 似ていますが、これらは<em>sequence</em>を修正します。</p>
-<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際の配列の要素の型を持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
 <p><em>from-end</em>が<em>true</em>のときは、 ただ<em>count</em>が指定されたときが重要になります。 このような場合、右端から（左端ではなく）テストを満たす <em>count</em>の要素だけが削除されます。</p>
 <p><em>count</em>が与えられたとき、削除する要素数を制限できます。 もしテストを満たす要素が<em>count</em>を越えていたときは、 それらの要素は左端か右端（<em>from-end</em>の値による）から、 ただ<em>count</em>で指定された数だけ削除されます。 もし<em>count</em>負の値が指定されたときは、 <code>0</code>が指定されたかのようにふるまいます。 もし<em>count</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 <em>item</em>にマッチした全てに影響します。</p>
 <p>これらの全ての関数は、削除されなかった要素は、 結果内に<em>sequence</em>と同じ順序で現れます。</p>

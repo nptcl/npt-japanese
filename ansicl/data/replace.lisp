@@ -24,8 +24,6 @@
 (replace binding-types-affected "影響する束縛の型")
 (replace data-arguments-required "要求される引数のデータ")
 
-(replace upgraded-array-element-type "upgraded-array-element-type")
-(replace expressed-array-element-type "expressed-array-element-type")
 (replace base-character "基本文字")
 (replace standard-character "標準文字")
 (replace base-string "基本文字列")
@@ -42,7 +40,7 @@
 (replace specialized-vector "specialized-vector")
 (replace type-specifier "型指定子")
 (replace valid-array-index "有効な配列のインデックス")
-(replace valid-array-dimension "有効な配列の次元")
+(replace valid-array-dimension "有効な配列の大きさ")
 (replace fill-pointer "fill-pointer")
 (replace bounding-index-designators "境界インデックス指定子")
 
@@ -99,7 +97,10 @@
 (replace entry "エントリー")
 
 (replace proper-sequence "正常なシーケンス")
-(replace actual-array-element-type "実際のarray-element-type")
+(replace array-element-type "配列の要素の型")
+(replace upgraded-array-element-type "アップグレードされた{array-element-type}")
+(replace expressed-array-element-type "表現された{array-element-type}")
+(replace actual-array-element-type "実際の{array-element-type}")
 (replace valid-sequence-index "有効なシーケンスのインデックス")
 (replace recognizable-subtype "サブタイプ")
 (replace bounding-index "境界インデックス")

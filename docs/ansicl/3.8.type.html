@@ -245,7 +245,7 @@
 <p>もしローカル宣言で<code>type</code>が動的変数に対して行われており、 同じ変数のグローバルな<code>proclamation</code>もまた存在しているときは、 ローカル宣言のスコープ内の変数の値は、 宣言された2つの型の共通部分の型でなければなりません。</p>
 <p><a href="3.8.type.html"><code>type</code></a>宣言は、自由宣言と境界宣言のどちらでも行えます。</p>
 <p>シンボルは型の名前と宣言の名前を両方同時にはなれません。 あるシンボルがクラスか、構造体か、コンディションか、あるいは型の名前であり、 そのシンボルが宣言の名前として宣言されたときか、 あるいはその反対であったときはエラーが発生します。</p>
-<p><code>array</code>の型宣言があるレキシカルスコープ内では、 配列の要素への参照全てはexpressed-array-element-typeを満たします （upgraded-array-element-typeとは対称的に）。 コンパイラーは<code>array</code>の型宣言があるスコープ内では 各配列の要素へのアクセスを<a href="3.8.the.html"><code>the</code></a>フォームを適用したかのように 囲まれたコードとして扱うことができます。</p>
+<p><a href="15.2.array.html"><code>array</code></a>の型宣言があるレキシカルスコープ内では、 配列の要素への参照全ては表現された配列の要素の型を満たします （アップグレードされた配列の要素の型とは対称的に）。 コンパイラーは<a href="15.2.array.html"><code>array</code></a>の型宣言があるスコープ内では 各配列の要素へのアクセスを<a href="3.8.the.html"><code>the</code></a>フォームを適用したかのように 囲まれたコードとして扱うことができます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x y)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">type</span> <span class="kw">fixnum</span> x y))</span>

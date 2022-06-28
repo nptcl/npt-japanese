@@ -51,6 +51,7 @@
 (text 2.4.8 "シャープサイン" "Sharpsign")
 (text 2.4.8.1 "シャープサイン バックスラッシュ" "Sharpsign Backslash")
 (text 2.4.8.2 "シャープサイン シングルクォート" "Sharpsign Single-Quote")
+(text 2.4.8.12 "シャープサイン A" "Sharpsign A")
 (text 2.4.8.13 "シャープサイン S" "Sharpsign S")
 
 ;; Chapter 3
@@ -132,6 +133,9 @@
 (text 4.3.4.1 "継承の例" "Examples of Inheritance")
 (text 4.3.4.2 "クラスオプションの継承" "Inheritance of Class Options")
 (text 4.3.5 "{class-precedence-list}の決定" "Determining the Class Precedence List")
+(text 4.3.5.1 "トポロジカルソート" "Topological Sorting")
+(text 4.3.5.2 "{class-precedence-list}の決定の例"
+      "Examples of Class Precedence List Determination")
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
 (text 4.3.7 "型とクラスの統合" "Integrating Types and Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
@@ -849,6 +853,7 @@
 (text 22.1.3.3 "シンボルの印字" "Printing Symbols")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")
 (text 22.1.3.5 "リストとコンスの印字" "Printing Lists and Conses")
+(text 22.1.3.8 "他の配列の印字" "Printing Other Arrays")
 (text 22.1.3.12 "構造体の印字" "Printing Structures")
 (text 22.1.3.13 "他のオブジェクトの印字" "Printing Other Objects")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")

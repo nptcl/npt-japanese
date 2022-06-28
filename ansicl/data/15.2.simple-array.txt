@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIMPLE-ARRAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.simple-array
+@name: simple-array
+@type: type
+
+Type `SIMPLE-ARRAY`
+
+
+## {class-precedence-list}
+
+{simple-array:link},
+{array:link},
+{t!system-class:link}
+
+
+## {description}
+
+この型の配列は、他の配列への`displaced`ではなく、
+{fill-pointer}を持っておらず、`adjustable`でもないものが、
+型{simple-array:link}のサブタイプです。
+{simple-array:link}の考え方は、
+実装が特別な表現を使用できるようにするためと、
+ユーザーが特定の値を常に{simple-array:link}にすることを
+宣言できるようにするために存在します。
+
+{simple-vector:link}, {simple-string:link}, {simple-bit-vector:link}の型は、
+互いに素であり、型{simple-array:link}のサブタイプです。
+これらは、それぞれ`(simple-array t (*))`、
+`(simple-array c (*))`の`c`は型{character!system-class:link}のサブタイプの何か、
+`(simple-array bit (*))`を意味します。
+
+
+## {compound-type-specifier-kind}
+
+特定化
+
+
+## {compound-type-specifier-syntax}
+
+`simple-array` [`{`*element-type* `|` \*`}` [*dimension-spec*]]
+
+```
+dimension-spec::= rank | * | ({dimension | *}*) 
+```
+
+
+## {compound-type-specifier-arguments}
+
+*dimension* - {valid-array-dimension}  
+*element-type* - 型指定子  
+*rank* - 非負の`fixnum`  
+
+
+## {compound-type-specifier-description}
+
+
+この{compound-type-specifier}は、
+正確に型{array:link}の{compound-type-specifier}に
+対応するものとして扱われますが、
+これは{simple-array:link}のみ含まれるという
+より制約がある集合であることが違っています。
+
+
+## {notes}
+
+`displaced`の配列か、{fill-pointer}を持つ`vector`か、
+実際に`adjustable`な配列が、{simple-array:link}かどうかは
+{implementation-dependent}です。
+
+`(simple-array *)`は要素の型によらず全ての{simple-array:link}を参照し、
+`(simple-array type-specifier)`は
+{make-array:link}の`:element-type`引数として指定された*type-specifier*の
+結果の{simple-array:link}のみを参照します。
+
+@end
+

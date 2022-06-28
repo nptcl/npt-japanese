@@ -248,7 +248,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="17.3.substitute.html"><code>substitute</code></a>、<a href="17.3.substitute.html"><code>substitute-if</code></a>、<a href="17.3.substitute.html"><code>substitute-if-not</code></a>は、 テストを満たす各要素が<em>newitem</em>に置き換えられた、 <em>sequence</em>のコピーを返却します。</p>
 <p><a href="17.3.substitute.html"><code>nsubstitute</code></a>、<a href="17.3.substitute.html"><code>nsubstitute-if</code></a>、<a href="17.3.substitute.html"><code>nsubstitute-if-not</code></a>は、 それぞれ<a href="17.3.substitute.html"><code>substitute</code></a>、<a href="17.3.substitute.html"><code>substitute-if</code></a>、<a href="17.3.substitute.html"><code>substitute-if-not</code></a>と似ていますが、 しかし<em>sequence</em>を修正するでしょう。</p>
-<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際の配列の要素の型を持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
 <p><em>count</em>が与えられたとき、変更する要素数を制限できます。 もしテストを満たす要素が<em>count</em>を越えていたときは、 それらの要素は左端か右端（<em>from-end</em>の値による）から、 ただ<em>count</em>で指定された数だけ置き換えられます。 もし<em>count</em>負の値が指定されたときは、 <code>0</code>が指定されたかのようにふるまいます。 もし<em>count</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 <em>item</em>にマッチした全てに影響します。</p>
 <p><em>from-end</em>が<em>true</em>のときは、 ただ<em>count</em>が指定されたとき（<a href="5.3.nil-variable.html"><code>nil</code></a>以外）が 重要になります。 このような場合、右端から（左端ではなく）テストを満たす <em>count</em>の要素だけが置き換えられます。</p>
 <p><em>predicate</em>, <em>test</em>, <em>test-not</em>は、 各シーケンスの要素に対して一回以上呼び出されるかもしれず、 それらの副作用はどんな順番でも生じます。</p>

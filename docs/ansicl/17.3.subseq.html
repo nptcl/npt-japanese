@@ -232,7 +232,7 @@
 <p><a href="17.3.subseq.html"><code>subseq</code></a>は、 <em>sequence</em>の<em>start</em>と<em>end</em>の境界内の サブシーケンスのコピーを作成します。</p>
 <p><em>start</em>は元の<em>sequence</em>のオフセットであり、 サブシーケンスの開始の位置の印であり、 <em>end</em>は最後の要素に続く位置の印です。</p>
 <p><a href="17.3.subseq.html"><code>subseq</code></a>は常に結果のシーケンスを新しく確保します。 古いシーケンスのストレージを共有することはありません。 返却値のサブシーケンスは、常に<em>sequence</em>と同じ型です。</p>
-<p>もし<em>sequence</em>が<code>vector</code>のとき、 返却値は一次元の新しいsimple-arrayであり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストのときは、返却値は新しいリストです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>のとき、 返却値は一次元の新しいsimple-arrayであり、 <em>sequence</em>と同じ実際の配列の要素の型を持ちます。 もし<em>sequence</em>がリストのときは、返却値は新しいリストです。</p>
 <p><a href="5.3.setf.html"><code>setf</code></a>の<a href="17.3.subseq.html"><code>subseq</code></a>は、 サブシーケンスの要素を新しい値として受け取ったシーケンスの要素に、 破壊的に置き換えを行います。 もしサブシーケンスと新しいシーケンスが同じ長さではないとき、 短い方の長さが置換の要素数になります。 長い方のシーケンスの終わりの位置にある残りの要素は、 この操作では修正されません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> str <span class="st">&quot;012345&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;012345&quot;</span></span>

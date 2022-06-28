@@ -235,7 +235,7 @@
 <em>result-sequence</em> - シーケンス</p>
 <h2 id="定義">定義</h2>
 <p><a href="17.3.remove-duplicates.html"><code>remove-duplicates</code></a>は、 他の要素とマッチするような要素を削除した <em>sequence</em>のコピーを返却します。</p>
-<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際のarray-element-typeを持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
+<p>もし<em>sequence</em>が<code>vector</code>のとき、返却値は<code>vector</code>であり、 <em>sequence</em>と同じ実際の配列の要素の型を持ちます。 もし<em>sequence</em>がリストなら、返却値はリストです。</p>
 <p><em>sequence</em>の要素は対で比較され、 どれか2つが一致すれば、先に発生したものが捨てられます。 ただし，<em>from-end</em>が<em>true</em>の場合は、 後に発生したものが捨てられます。</p>
 <p><a href="17.3.remove-duplicates.html"><code>remove-duplicates</code></a>と<a href="17.3.remove-duplicates.html"><code>delete-duplicates</code></a>は、 <em>sequence</em>と同じ型のシーケンスに、 残りのどの2つの要素にもマッチしないように、 十分に要素取り除いた内容のものを返却します。 返却値に残った要素の順序は、<em>sequence</em>に現れるものと同じです。</p>
 <p><a href="17.3.remove-duplicates.html"><code>remove-duplicates</code></a>の返却値は、<em>sequence</em>を共有するかもしれません。 もし要素に削除が生じなかったときは、 入力の<em>sequence</em>と同一のものが返却される可能性があります。</p>

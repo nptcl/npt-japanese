@@ -15,7 +15,7 @@ Function `PACKAGE-ERROR-PACKAGE`
 
 ## {syntax}
 
-`package-error-package` *condition* => *package8
+`package-error-package` *condition* => *package*
 
 
 ## {arguments-and-values}

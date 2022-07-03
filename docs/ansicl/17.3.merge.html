@@ -238,7 +238,7 @@
 <p>マージ操作は安定性が保証されます。 もし2つかそれ以上の要素が<em>predicate</em>によって等しい場合、 返却値は、<em>sequence-1</em>のそれらの要素の方が、 <em>sequence-2</em>のそれらの要素よりも優先されます。</p>
 <p><em>sequence-1</em>と<em>sequence-2</em>は 破壊されるかもしれません。</p>
 <p>もし<em>result-type</em>が<a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプの場合、 リストが返却されます。</p>
-<p>もし<em>result-type</em>が<code>vector</code>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
+<p>もし<em>result-type</em>が<a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> test1 (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">7</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> test2 (<span class="kw">list</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">8</span>))</span>
@@ -254,7 +254,7 @@
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <code>vector</code>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
+<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <p><em>result-type</em>で指定した要素数と、 <em>sequence-1</em>と<em>sequence-2</em>の合計の長さが違う場合は、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="17.3.sort.html"><code>sort</code></a>, <a href="17.3.sort.html"><code>stable-sort</code></a>, 3.2.1. コンパイラーの用語, 3.6. 横断の規則と副作用</p>

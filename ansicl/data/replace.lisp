@@ -134,4 +134,6 @@
 
 (replace generalized-reference "一般化された参照")
 (replace local-precedence-order "ローカルの優先順位")
+(replace vector "`vector`")
+(replace fixnum "`fixnum`")
 

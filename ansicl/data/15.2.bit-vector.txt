@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class BIT-VECTOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.bit-vector
+@name: bit-vector
+@type: system-class
+
+System Class `BIT-VECTOR`
+
+
+## {class-precedence-list}
+
+{bit-vector:link},
+{vector!system-class:link},
+{array:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+{bit-vector:link}は、要素の型が`bit`の{vector}です。
+
+型{bit-vector:link}は、型{vector!system-class:link}のサブタイプであり、
+{bit-vector:link}は`(vector bit)`を意味します。
+
+
+## {compound-type-specifier-kind}
+
+省略形
+
+
+## {compound-type-specifier-syntax}
+
+`bit-vector` [*size*]
+
+
+## {compound-type-specifier-arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは型`(array bit (size))`と同じであり、
+つまりサイズが*size*の`bit-vector`の集合です。
+
+
+## {see-also}
+
+{2.4.8.4:ab},
+{22.1.3.6:ab},
+{15.1.2.2:ab}
+
+@end
+

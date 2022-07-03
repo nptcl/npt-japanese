@@ -52,7 +52,7 @@
 |{file-stream:link}         |{sequence:link}           |{unbound-variable:link}     |
 |{fixnum:link}              |{serious-condition:link}  |{undefined-function:link}   |
 |{float!system-class:link}  |{short-float:link}        |{unsigned-byte:link}        |
-|{floating-point-inexact:link} |{signed-byte:link}     |{vector:link}               |
+|{floating-point-inexact:link} |{signed-byte:link}     |{vector!system-class:link}  |
 |{floating-point-invalid-operation:link} |{simple-array:link} |{warning:link}       |
 |{floating-point-overflow:link} |{simple-base-string:link} |                        |
 |{floating-point-underflow:link} |{simple-bit-vector:link} |                        |
@@ -106,7 +106,7 @@ Figure 4-2. 標準の{atomic-type-specifier}
 {cons!system-class:link} |{rational!system-class:link} |{string!system-class:link} |
 {double-float:link}          |{real:link}              |{unsigned-byte:link}       |
 {eql!type:link}              |{satisfies:link}         |{values!type:link}         |
-{float!system-class:link}    |{short-float:link}       |{vector:link}              |
+{float!system-class:link}    |{short-float:link}       |{vector!system-class:link} |
 {function!system-class:link} |{signed-byte:link}       |                           |
 {integer:link}               |{simple-array:link}      |                           |
 
@@ -189,7 +189,7 @@ Figure 4-5. 型と宣言に関係する定義された名前
 |{float!system-class:link}   |{satisfies:link}         |{undefined-function:link}   |
 |{floating-point-inexact:link} |{sequence:link}        |{unsigned-byte:link}        |
 |{floating-point-invalid-operation:link}|{serious-condition:link}|{values!type:link}|
-|{floating-point-overflow:link} |{short-float:link}    |{vector:link}               |
+|{floating-point-overflow:link} |{short-float:link}    |{vector!system-class:link}  |
 |{floating-point-underflow:link} |{signed-byte:link}   |{warning:link}              |
 
 Figure 4-6. 標準の型指定子の名前

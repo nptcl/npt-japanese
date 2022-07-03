@@ -1,0 +1,57 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIMPLE-VECTOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.simple-vector
+@name: simple-vector
+@type: type
+
+Type `SIMPLE-VECTOR`
+
+
+## {class-precedence-list}
+
+{simple-vector:link},
+{vector!system-class:link},
+{simple-array:link},
+{array:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+この{vector}の型は、他の配列への`displaced`ではなく、
+{fill-pointer}を持っておらず、`adjustable`でもなく、
+どんな型の要素でも格納できるものが、
+型{simple-vector:link}のサブタイプです。
+
+型{simple-vector:link}は、型{vector!system-class:link}のサブタイプであり、
+型`(vector t)`のサブタイプです。
+
+
+## {compound-type-specifier-kind}
+
+特定化
+
+
+## {compound-type-specifier-syntax}
+
+`simple-vector` [*size*]
+
+
+## {compound-type-specifier-arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`。デフォルトはシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+`(simple-array t (size))`と同じ。
+
+@end
+

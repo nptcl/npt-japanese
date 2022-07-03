@@ -264,7 +264,7 @@ slot-option::= :type slot-type |
 <em>slot-initform</em> - フォーム<br />
 <em>slot-read-only-p</em> - generalized-boolean<br />
 <em>structure-name</em> - シンボル<br />
-<em>type</em> - 次の型指定子のどれかであり、 <a href="14.2.list-system-class.html"><code>list</code></a>, <code>vector</code>, <code>(vector size)</code>, あるいはその他の実装で適用可能な定義された型指定子。<br />
+<em>type</em> - 次の型指定子のどれかであり、 <a href="14.2.list-system-class.html"><code>list</code></a>, <a href="15.2.vector-system-class.html"><code>vector</code></a>, <code>(vector size)</code>, あるいはその他の実装で適用可能な定義された型指定子。<br />
 <em>documentation</em> - 文字列。評価されません。</p>
 <h2 id="定義">定義</h2>
 <p><a href="8.1.defstruct.html"><code>defstruct</code></a>は構造体の型を定義し、 その名前は<em>structure-type</em>であり、 <em>slot-option</em>によって指定された名前付きのスロットが付きます。</p>
@@ -520,7 +520,7 @@ slot-option::= :type slot-type |
 <ul>
 <li><p><code>:type</code>は構造体が使用する表現を明確に指定します。 この引数は、下記のどれかでなければなりません。</p>
 <ul>
-<li><code>vector</code>
+<li><a href="15.2.vector-system-class.html"><code>vector</code></a>
 <ul>
 <li>これは<code>(vector t)</code>として指定された結果と同じものが生成されます。 この構造体は一般的な<code>vector</code>として表現され、 <code>vector</code>の要素に値が保存されます。 もし構造体に<code>:name</code>が指定されていたときは、 最初の要素は<code>vector</code>の1番目の要素であり、 指定されていないときは0番目の要素です。 <br><br></li>
 </ul></li>

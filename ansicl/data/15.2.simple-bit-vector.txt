@@ -1,0 +1,55 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIMPLE-BIT-VECTOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.simple-bit-vector
+@name: simple-bit-vector
+@type: type
+
+Type `SIMPLE-BIT-VECTOR`
+
+
+## {class-precedence-list}
+
+{simple-bit-vector:link},
+{bit-vector:link},
+{vector!system-class:link},
+{simple-array:link},
+{array:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+この`bit-vector`の型は、他の配列への`displaced`ではなく、
+{fill-pointer}を持っておらず、`adjustable`でもないものが、
+型{simple-bit-vector:link}のサブタイプです。
+
+
+## {compound-type-specifier-kind}
+
+省略形
+
+
+## {compound-type-specifier-syntax}
+
+`simple-bit-vector` [*size*]
+
+
+## {compound-type-specifier-arguments}
+
+*size* - 非負の`fixnum`か、シンボル`*`。デフォルトはシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは型`(simple-array bit (size))`と同じであり、
+つまりサイズ*size*の`simple-bit-vector`の集合です。
+
+@end
+

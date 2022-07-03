@@ -1,0 +1,96 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class VECTOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.vector!system-class
+@name: vector!system-class
+@type: system-class
+
+System Class `VECTOR`
+
+
+## {class-precedence-list}
+
+{vector!system-class:link},
+{array:link},
+{sequence:link},
+{t!system-class:link}
+
+
+## {description}
+
+一次元の配列は{vector}です。
+
+型{vector!system-class:link}は、型{array:link}のサブタイプです。
+全ての型`x`に対して、`(vector x)`は`(array x (*))`と同じです。
+
+型`(vector t)`と、型{string!system-class:link}と、
+型{bit-vector:link}は、型{vector!system-class:link}のサブタイプであり、
+それぞれが互いに素です。
+
+
+## {compound-type-specifier-kind}
+
+特定化
+
+
+## {compound-type-specifier-syntax}
+
+`vector` [`{`*element-type* `|` \*`}` [`{`*size* `|` \*`}`]]
+
+
+## {compound-type-specifier-arguments}
+
+*size* - 非負の{fixnum}  
+*element-type* - 型指定子
+
+
+## {compound-type-specifier-description}
+
+これは要素の型*element-type*と大きさ*dimension*が
+指定された値を取った`vector`の特定型の集合を示します。
+特に下記のようになります。
+
+もし*element-type*がシンボル`*`のときは、
+`vector`は要素の型を元にして排他しません。
+その他の場合は、`vector`は*element-type*をアップグレードした結果の
+{actual-array-element-type}のみを含みます。
+{15.1.2.1:ab}をご確認ください。
+
+もし*size*が指定されたとき、
+その集合は、大きさが*size*であるもののみの
+`vector`を含んだものになります。
+もし*size*のかわりにシンボル`*`が指定されたときは、
+その集合には大きさをもとに制限されることはありません。
+
+
+## {see-also}
+
+{15.1.2.2:ab},
+{2.4.8.3:ab},
+{22.1.3.7:ab},
+{2.4.8.12:ab}
+
+
+## {notes}
+
+型`(vector e s)`は、型`(array e (s))`と同じです。
+
+型`(vector bit)`は、{bit-vector:link}という名前です。
+
+`C`を{character!system-class:link}のサブタイプとしたときの
+型`(vector C)`の全ての和集合は、
+{string!system-class:link}という名前です。
+
+`(vector *)`は要素の型に関わらず全ての`vector`を示し、
+`(vector type-specifier)`は
+{make-array:link}の引数の`:element-type`として指定された
+*type-specifier*の結果の
+`vector`のみを示します。
+
+@end
+

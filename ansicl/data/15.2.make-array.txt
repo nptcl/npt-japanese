@@ -1,0 +1,245 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-ARRAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.make-array
+@name: make-array
+@type: function
+
+Function `MAKE-ARRAY`
+
+
+## {syntax}
+
+`make-array` *dimensions* `&key` *element-type* *initial-element* *initial-contents*
+ *adjustable* *fill-pointer* *displaced-to* *displaced-index-offset*  
+ => *new-array*
+
+
+## {arguments-and-values}
+
+*dimensions* - {valid-array-dimension}のリストの指定子  
+*element-type* - 型指定子。デフォルトは{t!system-class:link}。  
+*initial-element* - オブジェクト  
+*initial-contents* - オブジェクト  
+*adjustable* - {generalized-boolean}。デフォルトは{nil!variable:link}。  
+*fill-pointer* - 作成される配列の有効な{fill-pointer}か、
+{t!variable:link}か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。  
+*displaced-to* - 配列か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。
+もし*initial-element*か*initial-contents*が指定されたら、
+このオプションは指定できません。  
+*displaced-index-offset* - *displaced-to*の有効な配列の`row-major`インデックス。
+デフォルトは`0`。
+もし*displaced-to*に{nil!variable:link}が指定されたら、
+このオプションは指定できません。  
+*new-array* - 配列
+
+
+## {description}
+
+*element-type*によって与えられた要素の型を収容できるような、
+特定化した型によって構築された配列を生成して返却します。
+もし*dimension*が{nil!variable:link}のときは、
+ゼロ次元の配列を生成します。
+
+*dimension*は新しい配列の次元の表現です。
+
+*element-type*は*new-array*が格納できる要素の型を示します。
+*new-array*は実際には*element-type*をアップグレードした結果の
+型のオブジェクトを格納します。
+{15.1.2.1:ab}をご確認ください。
+
+もし*initial-element*が指定されたとき、
+それは*new-array*の各要素の初期値として使用されます。
+もし*initial-element*が指定されたら、
+それは指定された*element-type*の型でなければなりません。
+もし`:initial-contents`が指定されたか、
+*displaced-to*が{nil!variable:link}ではないかの
+どちらかのときに*initial-element*は指定できません。
+もし*initial-element*が指定されず、
+さらに*initial-contents*が指定されず
+*displaced-to*が{nil!variable:link}のときは、
+*new-array*の初期化されなかった要素が
+後で読み込まれたときの結果は未定義です。
+
+*initial-contents*は配列の内容を初期化するときに使用します。
+例えば次の通り。
+
+```lisp
+(make-array '(4 2 3) :initial-contents
+            '(((a b c) (1 2 3))
+             ((d e f) (3 1 2))
+             ((g h i) (2 3 1))
+             ((j k l) (0 0 0))))
+```
+
+*initial-contents*はシーケンスの構造をネストして構築されます。
+その構造の階層の数は、配列のランクと等しくなければなりません。
+ネストされた構造の各葉の部分は、
+与えられた*element-type*の型でなければなりません。
+もし配列がゼロ次元のとき、*initial-contents*はひとつの要素を指定します。
+その他の場合は、*initial-contents*は最初の次元と
+等しい長さのシーケンスでなければなりません。
+そのシーケンスの各要素は、残りの次元の配列に対する
+ネストされた構造でなければならず、以下同様です。
+もし`:initial-element`が指定されたか、
+*displaced-to*が{nil!variable:link}ではないかの
+どちらかのときに*initial-contents*は指定できません。
+もし*initial-contents*が指定されず、
+さらに*initial-element*が指定されず
+*displaced-to*が{nil!variable:link}のときは、
+*new-array*の初期化されなかった要素が
+後で読み込まれたときの結果は未定義です。
+
+もし*adjustable*が{nil!variable:link}ではないとき、
+配列は`adjustable`と表現されます（また、実際に`adjustable`です）。
+その他の場合は、配列は`adjustable`と表現されません
+（また、配列が実際に`adjustable`かどうかは{implementation-dependent}です）。
+
+もし*fill-pointer*が{nil!variable:link}ではないとき、
+配列は一次元で無ければならず、つまり配列は`vector`でなければなりません。
+もし*fill-pointer*が{t!variable:link}のとき、
+`vector`の長さが{fill-pointer}の初期化に使用されます。
+もし*fill-pointer*が整数のとき、
+それが`vector`の{fill-pointer}の初期値になります。
+
+もし*displaced-to*が{nil!variable:link}ではないとき、
+{make-array:link}は*displaced-to*を`displaced`の配列の参照先とした
+`displaced`配列を作成します。
+このような場合、*displaced-to*の{actual-array-element-type}と、
+作成される配列の{actual-array-element-type}が
+型として等しくなかったときの結果は未定義です。
+もし*displaced-to*が{nil!variable:link}のとき、
+配列は`displaced`の配列ではありません。
+
+*displaced-index-offset*は、配列のオフセットのインデックスになります。
+配列`A`が{make-array:link}の引数`:displaced-to`として与えられ、
+配列`B`が生成されたとき、
+配列`B`は配列`A`へ`displaced`していると言われます。
+その配列のすべての要素数を、配列の全サイズと呼びますが、
+それは全ての次元の積として計算されます。
+`A`の全サイズは、
+`B`の全サイズに*displaced-index-offset*として指定された
+オフセット`n`を加えた合計よりも小さくてはいけません。
+`displaced`の効果は、
+配列`B`は自分自身では何の要素も持たず、
+しかしかわりに自分自身のアクセスが配列`A`へのアクセスに対応します。
+この対応はそれらの両方に対して
+`row-major`オーダーの要素を取るような一次元の配列として扱われ、
+配列`B`の要素`k`へのアクセスが、
+配列`A`の要素`k+n`へのアクセスに対応されます。
+
+もし{make-array:link}が、*adjustable*, *fill-pointer*, *displaced-to*
+それぞれ{nil!variable:link}として呼び出されたとき、
+その結果は`simple-array`になります。
+もし{make-array:link}が、*adjustable*, *fill-pointer*, *displaced-to*
+のうちのどれかひとつ以上が*true*のとき、
+結果の配列が`simple-array`かどうかは{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(make-array 5) ;; 一次元で5つの要素の配列を作成
+(make-array '(3 4) :element-type '(mod 16))
+               ;; 二次元3,4の各要素4bitの配列を作成
+(make-array 5 :element-type 'single-float) ;; single-floatの配列を作成
+(make-array nil :initial-element nil) =>  #0ANIL
+(make-array 4 :initial-element nil) =>  #(NIL NIL NIL NIL)
+(make-array '(2 4) 
+             :element-type '(unsigned-byte 2) 
+             :initial-contents '((0 1 2 3) (3 2 1 0)))
+=>  #2A((0 1 2 3) (3 2 1 0))
+(make-array 6
+             :element-type 'character 
+             :initial-element #\a 
+             :fill-pointer 3) =>  "aaa"
+```
+
+下記は`displaced`配列の作成の例です。
+
+```lisp
+(setq a (make-array '(4 3))) 
+=>  #<ARRAY 4x3 simple 32546632>
+(dotimes (i 4)
+  (dotimes (j 3)
+    (setf (aref a i j) (list i 'x j '= (* i j)))))
+=>  NIL
+(setq b (make-array 8 :displaced-to a
+                      :displaced-index-offset 2))
+=>  #<ARRAY 8 indirect 32550757>
+(dotimes (i 8)
+  (print (list i (aref b i))))
+>>  (0 (0 X 2 = 0)) 
+>>  (1 (1 X 0 = 0)) 
+>>  (2 (1 X 1 = 1)) 
+>>  (3 (1 X 2 = 2)) 
+>>  (4 (2 X 0 = 0)) 
+>>  (5 (2 X 1 = 2)) 
+>>  (6 (2 X 2 = 4)) 
+>>  (7 (3 X 0 = 0)) 
+=>  NIL
+```
+
+最後の例は配列が`row-major`オーダーで格納する効果に依存しています。
+
+```lisp
+(setq a1 (make-array 50))
+=>  #<ARRAY 50 simple 32562043>
+(setq b1 (make-array 20 :displaced-to a1 :displaced-index-offset 10))
+=>  #<ARRAY 20 indirect 32563346>
+(length b1) =>  20
+
+(setq a2 (make-array 50 :fill-pointer 10))
+=>  #<ARRAY 50 fill-pointer 10 46100216>
+(setq b2 (make-array 20 :displaced-to a2 :displaced-index-offset 10))
+=>  #<ARRAY 20 indirect 46104010>
+(length a2) =>  10
+(length b2) =>  20
+
+(setq a3 (make-array 50 :fill-pointer 10))
+=>  #<ARRAY 50 fill-pointer 10 46105663>
+(setq b3 (make-array 20 :displaced-to a3 :displaced-index-offset 10
+                         :fill-pointer 5))
+=>  #<ARRAY 20 indirect, fill-pointer 5 46107432>
+(length a3) =>  10
+(length b3) =>  5
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{adjustable-array-p:link},
+{aref:link},
+{arrayp:link},
+{array-element-type:link},
+{array-rank-limit:link},
+{array-dimension-limit:link},
+{fill-pointer:link},
+{upgraded-array-element-type:link}
+
+
+## {notes}
+
+{adjustable-array-p:link}が絶対に*false*を返却するような
+配列を作成する特定の方法はありません。
+`simple-array`ではない配列を作成する特定の方法はありません。
+
+@end
+

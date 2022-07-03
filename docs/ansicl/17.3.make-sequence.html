@@ -230,7 +230,7 @@
 <h2 id="定義">定義</h2>
 <p>型が<em>result-type</em>、長さが<em>size</em>、各要素が<em>initial-element</em>で初期化された、 シーケンスが返却されます。</p>
 <p>もし<em>result-type</em>が<a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプの場合、 リストが返却されます。</p>
-<p>もし<em>result-type</em>が<code>vector</code>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
+<p>もし<em>result-type</em>が<a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-sequence</span> &#39;list <span class="dv">0</span>) <span class="op">=&gt;</span>  ()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-sequence</span> &#39;string <span class="dv">26</span> <span class="bu">:initial-element</span> <span class="ch">#\.</span>) </span>
@@ -244,10 +244,10 @@
 <p>実装。</p>
 <h2 id="例外">例外</h2>
 <p><em>initial-element</em>が、 返却値の<em>sequence</em>に格納できないオブジェクトであったときの結果は不明です。</p>
-<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <code>vector</code>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
+<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <p><em>result-type</em>で指定した要素数と<em>size</em>の値が違う場合は、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <h2 id="参考">参考</h2>
-<p><code>make-array</code>, <a href="14.2.make-list.html"><code>make-list</code></a></p>
+<p><a href="15.2.make-array.html"><code>make-array</code></a>, <a href="14.2.make-list.html"><code>make-list</code></a></p>
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-sequence</span> &#39;string <span class="dv">5</span>) == (<span class="kw">make-string</span> <span class="dv">5</span>)</span></code></pre></div>
 <hr />

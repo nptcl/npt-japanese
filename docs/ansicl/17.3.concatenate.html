@@ -230,7 +230,7 @@
 <p><a href="17.3.concatenate.html"><code>concatenate</code></a>は、引数に指定された順番で、 全<em>sequences</em>の個々の全要素を含んだシーケンスを返却します。 シーケンスは型<em>result-type</em>であり、 それは型<a href="17.3.sequence.html"><code>sequence</code></a>のサブタイプでなければなりません。</p>
 <p>全ての<em>sequences</em>はコピーされ、 結果は、どの<em>sequences</em>に対しても どのような構造でも共有されてはいけません。 したがって、もしただひとつだけシーケンスが与えられ、 その型が<em>result-type</em>であったとき、 <a href="17.3.concatenate.html"><code>concatenate</code></a>は単純にそれを返却するのではなく、 <em>sequences</em>をコピーすることが要求されます。</p>
 <p>もし<em>sequences</em>のどの要素も、 結果のシーケンスの要素になりえないときはエラーです。 もし<em>result-type</em>が<a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプのときは、 返却値はリストでしょう。</p>
-<p>もし<em>result-type</em>が<code>vector</code>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
+<p>もし<em>result-type</em>が<a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプの場合、 実装が<em>result-type</em>を要素の型として決めることができるのであれば、 その要素の型をアップグレードした結果が返却値の配列の要素の型になります。 しかし実装が要素の型を決定できないか、あるいは<code>*</code>のときは、 返却値の配列の要素の型は<a href="4.4.t-system-class.html"><code>t</code></a>になります。 その他の場合はエラーが発生します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">concatenate</span> &#39;string <span class="st">&quot;all&quot;</span> <span class="st">&quot; &quot;</span> <span class="st">&quot;together&quot;</span> <span class="st">&quot; &quot;</span> <span class="st">&quot;now&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;all together now&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">concatenate</span> &#39;list <span class="st">&quot;ABC&quot;</span> &#39;(d e f) #(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) #*<span class="dv">1011</span>)</span>
@@ -240,7 +240,7 @@
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <code>vector</code>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
+<p><em>result-type</em>が、 <a href="14.2.list-system-class.html"><code>list</code></a>のサブタイプでも、 <a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプでもないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <p><em>result-type</em>で指定した要素数と、 <em>sequences</em>の合計が違う場合は、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発します。</p>
 <h2 id="参考">参考</h2>
 <p><a href="14.2.append.html"><code>append</code></a></p>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Type SIMPLE-ARRAY</title>
+  <title>System-Class BIT-VECTOR</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,31 +151,27 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Type SIMPLE-ARRAY</h1>
+<h1 class="title">System-Class BIT-VECTOR</h1>
 </header>
 <p><a href="15.2.html">UP</a></p>
 <hr />
-<h1 id="type-simple-array">Type <strong>SIMPLE-ARRAY</strong></h1>
-<p>Type <code>SIMPLE-ARRAY</code></p>
+<h1 id="system-class-bit-vector">System-Class <strong>BIT-VECTOR</strong></h1>
+<p>System Class <code>BIT-VECTOR</code></p>
 <h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
-<p><a href="15.2.simple-array.html"><code>simple-array</code></a>, <a href="15.2.array.html"><code>array</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<p><a href="15.2.bit-vector.html"><code>bit-vector</code></a>, <a href="15.2.vector-system-class.html"><code>vector</code></a>, <a href="15.2.array.html"><code>array</code></a>, <a href="17.3.sequence.html"><code>sequence</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
 <h2 id="定義">定義</h2>
-<p>この型の配列は、他の配列への<code>displaced</code>ではなく、 fill-pointerを持っておらず、<code>adjustable</code>でもないものが、 型<a href="15.2.simple-array.html"><code>simple-array</code></a>のサブタイプです。 <a href="15.2.simple-array.html"><code>simple-array</code></a>の考え方は、 実装が特別な表現を使用できるようにするためと、 ユーザーが特定の値を常に<a href="15.2.simple-array.html"><code>simple-array</code></a>にすることを 宣言できるようにするために存在します。</p>
-<p><a href="15.2.simple-vector.html"><code>simple-vector</code></a>, <a href="16.2.simple-string.html"><code>simple-string</code></a>, <a href="15.2.simple-bit-vector.html"><code>simple-bit-vector</code></a>の型は、 互いに素であり、型<a href="15.2.simple-array.html"><code>simple-array</code></a>のサブタイプです。 これらは、それぞれ<code>(simple-array t (*))</code>、 <code>(simple-array c (*))</code>の<code>c</code>は型<a href="13.2.character-system-class.html"><code>character</code></a>のサブタイプの何か、 <code>(simple-array bit (*))</code>を意味します。</p>
+<p><a href="15.2.bit-vector.html"><code>bit-vector</code></a>は、要素の型が<code>bit</code>の<code>vector</code>です。</p>
+<p>型<a href="15.2.bit-vector.html"><code>bit-vector</code></a>は、型<a href="15.2.vector-system-class.html"><code>vector</code></a>のサブタイプであり、 <a href="15.2.bit-vector.html"><code>bit-vector</code></a>は<code>(vector bit)</code>を意味します。</p>
 <h2 id="型指定子の種類">型指定子の種類</h2>
-<p>特定化</p>
+<p>省略形</p>
 <h2 id="型指定子の構文">型指定子の構文</h2>
-<p><code>simple-array</code> [<code>{</code><em>element-type</em> <code>|</code> *<code>}</code> [<em>dimension-spec</em>]]</p>
-<pre><code>dimension-spec::= rank | * | ({dimension | *}*) </code></pre>
+<p><code>bit-vector</code> [<em>size</em>]</p>
 <h2 id="型指定子の引数">型指定子の引数</h2>
-<p><em>dimension</em> - 有効な配列の大きさ<br />
-<em>element-type</em> - 型指定子<br />
-<em>rank</em> - 非負の<code>fixnum</code></p>
+<p><em>size</em> - 非負の<code>fixnum</code>か、シンボル<code>*</code>。</p>
 <h2 id="型指定子の定義">型指定子の定義</h2>
-<p>この合成された型指定子は、 正確に型<a href="15.2.array.html"><code>array</code></a>の合成された型指定子に 対応するものとして扱われますが、 これは<a href="15.2.simple-array.html"><code>simple-array</code></a>のみ含まれるという より制約がある集合であることが違っています。</p>
-<h2 id="備考">備考</h2>
-<p><code>displaced</code>の配列か、fill-pointerを持つ<code>vector</code>か、 実際に<code>adjustable</code>な配列が、<a href="15.2.simple-array.html"><code>simple-array</code></a>かどうかは 実装依存です。</p>
-<p><code>(simple-array *)</code>は要素の型によらず全ての<a href="15.2.simple-array.html"><code>simple-array</code></a>を参照し、 <code>(simple-array type-specifier)</code>は <a href="15.2.make-array.html"><code>make-array</code></a>の<code>:element-type</code>引数として指定された<em>type-specifier</em>の 結果の<a href="15.2.simple-array.html"><code>simple-array</code></a>のみを参照します。</p>
+<p>これは型<code>(array bit (size))</code>と同じであり、 つまりサイズが<em>size</em>の<code>bit-vector</code>の集合です。</p>
+<h2 id="参考">参考</h2>
+<p>2.4.8.4. シャープサイン アスタリスク, 22.1.3.6. Bit-Vectorの印字, 15.1.2.2. 特定化された配列の種類の要求</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

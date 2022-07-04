@@ -70,6 +70,7 @@
 (replace accessor "アクセッサ")
 
 (replace direct-superclasses "ダイレクトスーパークラス")
+(replace direct-subclasses "ダイレクトサブクラス")
 (replace parameter-specializer "特定パラメーター")
 (replace required-parameter "要求パラメーター")
 (replace required-arguments "要求された引数")

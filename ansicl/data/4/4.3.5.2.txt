@@ -1,0 +1,132 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  4.3.5.2 {class-precedence-list}の決定の例
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.3.5.2
+@type: text
+
+これは、クラス`pie`の{class-precedence-list}を決定する例です。
+下記のクラスを定義します。
+
+```lisp
+(defclass pie (apple cinnamon) ())
+
+(defclass apple (fruit) ())
+
+(defclass cinnamon (spice) ())
+
+(defclass fruit (food) ())
+
+(defclass spice (food) ())
+
+(defclass food () ())
+```
+
+集合`S_pie`と集合`R`は次のようになります。
+
+```
+S_pie = {pie, apple, cinnamon, fruit, spice, food, standard-object, t}
+R = {(pie, apple), (apple, cinnamon), (apple, fruit), (cinnamon, spice), (fruit, food), (spice, food), (food, standard-object), (standard-object, t)}
+```
+
+クラス`pie`に先行するものはないので、
+これを最初に配置し、この時点の結果は`(pie)`です。
+`S`から`pie`を取り除き、`R`から`pie`に関係するペアを取り除くと、
+次のようになります。
+
+```
+S_pie = {apple, cinnamon, fruit, spice, food, standard-object, t}
+R = {(apple, cinnamon), (apple, fruit), (cinnamon, spice), (fruit, food), (spice, food), (food, standard-object), (standard-object, t)}
+```
+
+クラス`apple`に先行するものはないので、
+その次に配置を行い、この時点での結果は`(pie apple)`になります。
+`apple`を関係するものから取り除くと、
+次のようになります。
+
+```
+S_pie = {cinnamon, fruit, spice, food, standard-object, t}
+R = {(cinnamon, spice), (fruit, food), (spice, food), (food, standard-object), (standard-object, t)}
+```
+
+クラス`cinnamon`と`fruit`に先行するものはないので、
+これまでに計算された{class-precedence-list}の中で
+一番右にある{direct-subclasses}を持つものが次に配置されます。
+クラス`apple`は`fruit`の{direct-subclasses}であり、
+クラス`pie`は`cinnamon`の{direct-subclasses}です。
+{class-precedence-list}において
+`apple`が`pie`の右に現れているため、
+`fruit`が次に配置され、
+この時点での結果は`(pie apple fruit)`になります。
+集合から取り除くと次のようになります。
+
+```
+S = {cinnamon, spice, food, standard-object, t}
+R = {(cinnamon, spice), (spice, food), (food, standard-object), (standard-object, t)}.
+```
+
+クラス`cinnamon`が次に配置され、
+この時点での結果は`(pie apple fruit cinnamon)`です。
+集合は次のようになります。
+
+```
+S = {spice, food, standard-object, t}
+R = {(spice, food), (food, standard-object), (standard-object, t)}.
+```
+
+クラス`spice`, `food`, {standard-object:link}, {t!system-class:link}は
+この順番で追加され、{class-precedence-list}は次のようになります。
+
+```
+(pie apple fruit cinnamon spice food standard-object t)
+```
+
+順番付けできないクラス定義の集合を書くことも可能です。
+例えば次の通り。
+
+```lisp
+(defclass new-class (fruit apple) ())
+  
+(defclass apple (fruit) ())
+```
+
+局所的なスーパークラスの順序を保つためには、
+クラス`fruit`は`apple`に先行しなければいけません。
+クラス`apple`は`fruit`先行しなければならず、
+なぜならクラスはそれ自身のスーパークラスに対して
+常に先行しなければいけないからです。
+このような状況が生じたとき、
+システムが*new-class*の{class-precedence-list}を
+計算しているときにこの状況が発生した時点でエラーを通知します。
+
+下記の例は衝突が生じる定義の集合です。
+
+```
+(defclass pie (apple cinnamon) ())
+
+(defclass pastry (cinnamon apple) ())
+
+(defclass apple () ())
+
+(defclass cinnamon () ())
+```
+
+`pie`の{class-precedence-list}は、
+`(pie apple cinnamon standard-object t)`です。
+
+`pastry`の{class-precedence-list}は、
+`(pastry cinnamon apple standard-object t)`です。
+
+`pie`のスーパークラスの順序で
+`apple`が`cinnamon`に先行することは問題ありませんし、
+同様に`pastry`の順序で
+`apple`が`cinnamon`に先行することは問題ありません。
+しかし、`pie`と`pastry`の両方をスーパークラスとする
+新しいクラスを作ることはできません。
+
+@end
+

@@ -139,6 +139,10 @@
 (text 4.3.5.2 "{class-precedence-list}の決定の例"
       "Examples of Class Precedence List Determination")
 (text 4.3.6 "クラスの再定義" "Redefining Classes")
+(text 4.3.6.1 "インスタンスの構造の修正" "Modifying the Structure of Instances")
+(text 4.3.6.2 "新しく追加されたローカルスロットの初期化"
+      "Initializing Newly Added Local Slots")
+(text 4.3.6.3 "クラスの再定義のカスタマイズ" "Customizing Class Redefinition")
 (text 4.3.7 "型とクラスの統合" "Integrating Types and Classes")
 (index 4.4 "型とクラスの辞書" "Types and Classes Dictionary")
 (dictionary 4.4.nil!type)

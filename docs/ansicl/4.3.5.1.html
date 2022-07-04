@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>4.3.5.1. トポロジカルソート</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">4.3.5.1. トポロジカルソート</h1>
+</header>
+<p><a href="4.3.5.html">UP</a></p>
+<hr />
+<p>4.3.5.1. トポロジカルソート</p>
+<p>トポロジカルソートは、 <code>S_C</code>の中にあるクラスを<code>C</code>としたとき、 <code>C</code>ではない他のクラスが<code>R</code>内で対応する要素に先行するものが無いような クラス<code>C</code>を検索する処理によって行われます。 クラス<code>C</code>は結果の最初に配置されます。 <code>S_C</code>から<code>C</code>を削除し、 <code>D</code>が<code>S_C</code>に含まれるもののとき<code>(C,D)</code>の全てのペアを削除します。 この処理を繰り返し、 結果の最後の、先行するものがないものとしてクラスを追加します。 先行するものを持たない要素が見つからなかったときに停止します。</p>
+<p>もし<code>S_C</code>が空でないときに処理が停止したら、集合<code>R</code>には矛盾があります。 もし有限のクラスの集合である全てのクラスが 他のものによって先行されていたら、<code>R</code>にはループが含まれています。 つまり、クラス<code>C1,...,Cn</code>の繋がりに対して、 <code>Ci</code>が<code>Ci+1</code>ただし<code>1&lt;=i&lt;n</code>に先行し、<code>Cn</code>が<code>C1</code>に先行しています。</p>
+<p>ときには<code>S_C</code>に先行するものがないクラスが存在することがあります。 このような場合は、これまでに計算されたクラス優先順位リストで もっとも右にあるダイレクトスーパークラスを持つものを選択します （そのような候補クラスがないときは<code>R</code>は部分順序を生成できず、 <code>C</code>が<code>S_C</code>に含まれるときの<code>R_C</code>は矛盾しています）。</p>
+<p>より正確な言葉であらわすと、 <code>{N1,...,Nm}</code>, <code>m&gt;=2</code>を<code>S_C</code>に先行するものがないクラスとします。 <code>(C1,...,Cn)</code>, <code>n&gt;=1</code>をこれまでに構築したクラス優先順位リストとします。 <code>C1</code>はもっとも特定的なクラスであり、 <code>Cn</code>はもっとも特定的ではないクラスです。 ここで<code>1&lt;-j&lt;=n</code>のもっとも大きな数</p>
+<p><code>1&lt;=j&lt;=n</code>を、<code>1&lt;=i&lt;=m</code>で<code>Ni</code>が<code>Cj</code>のダイレクトスーパークラスである <code>i</code>が存在するような最大の数とします。 このとき<code>Ni</code>は次に配置されるものになります。</p>
+<p>先行するものがないクラスの集合から選択するというこのルールの効果は、 単純なスーパークラスのつながりであるクラスが クラス優先順位リストで隣接しており、 相対的に分離した各サブグラフのクラスが クラス優先順位リストで隣接するようになります。 例えば、<code>T1</code>と<code>T2</code>をクラス<code>J</code>のみを共通要素とするサブグラフとします。 <code>J</code>のスーパークラスは<code>T1</code>と<code>T2</code>のいずれにも現れず、 <code>J</code>は<code>T1</code>と<code>T2</code>の両方のクラスのスーパークラス内にあるとします。 <code>T1</code>の底を<code>C1</code>とし、 <code>T2</code>の底を<code>C2</code>とします。 あるクラスのダイレクトスーパークラスに<code>C1,C2</code>という順番で 現れているようなクラスを<code>C</code>としたとき、 <code>C</code>のクラス優先順位リストは<code>C</code>で始まり、 <code>T1</code>の<code>J</code>を除くすべてのクラスが続きます。 クラス<code>T2</code>のすべてのクラスが次に続きます。 クラス<code>J</code>とそのスーパークラスは最後に現れます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

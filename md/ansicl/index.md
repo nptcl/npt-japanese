@@ -13,7 +13,7 @@ Dictionaryを約半分翻訳しました。
 |1.|Introduction|紹介|辞書|
 |[2.](2.html)|[Syntax](2.html)|[構文](2.html)|辞書|
 |[3.](3.html)|[Evaluation and Compilation](3.html)|[評価とコンパイル](3.html)|[辞書 ★完了](3.8.html)|
-|[4.](4.html)|[Types and Classes](4.html)|[型とクラス](4.html)|[辞書 ★完了](4.4.html)|
+|[4.](4.html)|[Types and Classes](4.html)|[型とクラス ★完了](4.html)|[辞書 ★完了](4.4.html)|
 |[5.](5.html)|[Data and Control Flow](5.html)|[データと制御フロー](5.html)|[辞書 ★完了](5.3.html)|
 |[6.](6.html)|[Iteration](6.html)|[繰り返し](6.html)|[辞書 ★完了](6.2.html)|
 |[7.](7.html)|[Objects](7.html)|[オブジェクト ★完了](7.html)|[辞書 ★完了](7.7.html)|

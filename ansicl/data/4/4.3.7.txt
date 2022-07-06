@@ -10,6 +10,140 @@
 @link: figure_4-8
 @type: text
 
+オブジェクトシステムは、クラス空間と型の空間を対応付けます。
+全てのクラスは正しい名前を持ち、
+それは対応する同じ名前の型を持ちます。
+
+全てのクラスの正しい名前は、有効な型指定子です。
+さらに全てのクラスオブジェクトは有効な型指定子です。
+したがって式`(typep object class)`は
+もし`object`のクラスが`class`それ自身であるか、
+あるいはクラスのサブタイプであるときは、
+*true*として評価されます。
+式`(subtypep class1 class2)`の評価は、
+もし`class1`が`class2`のサブタイプであるか、
+あるいはそれらが同じクラスであるときは、
+値*true*と*true*が返却され、
+それ以外のときは、値*false*と*true*が返却されます。
+式`(type-of I)`を評価するとき、
+`I`が`S`という名前のクラス`C`のインスタンスであり、
+`C`が{standard-class:link}のインスタンスのとき、
+もし`S`が`C`の正しい名前であるときは
+式は`S`を返却します。
+それ以外のときは、式は`C`を返却します。
+
+クラスの名前とクラスオブジェクトは型指定子なので、
+それらは{special-form}である{the:link}の中と、
+型宣言の中で使用されます。
+
+多くの型指定子は、全てではありませんが
+その型と対応する同じ正しい名前を持ったクラスが事前に宣言されています。
+それらの型指定子は{figure_4-8:link}にリストされています。
+例えば型{array:link}は、対応する{array:link}という名前のクラスを持ちます。
+リストにはない型指定子で、
+例えば`(vector double-float 100)`のようなものは
+対応するクラスを持ちません。
+{deftype:link}の操作は、どんなクラスも生成しません。
+
+事前に宣言されている型指定子に対応する各クラスは、
+それぞれの処理系の裁量によって
+3つの方法のうちのひとつで実装することができます。
+それは、{standard-class:link}, {structure-class:link},
+そしてシステムクラスです。
+
+{built-in-class:link}は
+機能に制限があるか、あるいは特別な表現を持った
+一般化されたインスタンスのひとつです。
+{defclass:link}によって{built-in-class:link}クラスの
+サブクラスを定義しようとしたときは、
+エラーが発生します。
+{make-instance:link}を呼び出して
+{built-in-class:link}クラスの一般化されたインスタンスを作成しようとしたときは、
+エラーが発生します。
+{built-in-class:link}クラスの一般化されたインスタンスに
+{slot-value:link}を呼び出したときは、
+エラーが発生します。
+{built-in-class:link}クラスを再定義するか、
+{built-in-class:link}クラスのインスタンスのクラスを
+{change-class:link}によって変更しようとしたときは、
+型{error!condition:link}のエラーが発生します。
+しかし、{built-in-class:link}クラスはメソッドの特定パラメーターに使用できます。
+
+クラスが{built-in-class:link}クラスかどうかは
+メタクラスを確認することによって決定することができます。
+{standard-class:link}はクラス{standard-class:link}のインスタンスであり、
+{built-in-class:link}はクラス{built-in-class:link}のインスタンスであり、
+{structure-class:link}はクラス{structure-class:link}のインスタンスです。
+
+{defstruct:link}の`:type`オプションを使用しなかったときに
+生成されるそれぞれの構造体の型は、
+対応するクラスを持っています。
+このクラスは、クラス{structure-class:link}の一般化されたインスタンスです。
+{defstruct:link}の`:include`オプションは、
+`include`の構造体の型に対応するクラスの{direct-subclasses}を生成します。
+
+本仕様で定義されたクラスのインスタンスに対する
+本仕様で定義された関数の動作にスロットが関与するかどうかは、
+仕様でスロットが明示的に定義されている場合を除き、
+実装依存です。
+
+本仕様で定義されたクラスが、
+特定の実装において本仕様で定義されていないスロットを持つ場合、
+これらのスロットの名前は
+本仕様で定義されたパッケージの外部シンボルであってはならず、
+また`CL-USER`パッケージでアクセス可能であってはいけません。
+
+多くの標準的な型指定子に対応するクラスを指定する目的は、
+ユーザーがこれらの型を識別するメソッドを書くことができるようにするためです。
+メソッドの選択には、
+各クラスに対して{class-precedence-list}を決定できることが必要です。
+
+型指定子間の階層的な関係は、
+それらの型に対応するクラス間の関係によって反映されます。
+
+{figure_4-8:link}は事前に宣言されている型指定子に対応された
+クラスの集合を示します。
+
+|   |   |   |
+|---|---|---|
+{arithmetic-error:link}         |{generic-function:link}   |{simple-error:link}     |
+{array:link}                    |{hash-table:link}         |{simple-type-error:link}|
+{bit-vector:link}               |{integer:link}            |{simple-warning:link}   |
+{broadcast-stream:link}         |{list!system-class:link}  |{standard-class:link}   |
+{built-in-class:link}|{logical-pathname!system-class:link}|{standard-generic-function:link}|
+{cell-error:link}               |{method:link}             |{standard-method:link}  |
+{character!system-class:link}   |{method-combination:link} |{standard-object:link}  |
+{class:link}                    |{null!system-class:link}  |{storage-condition:link}|
+{complex!system-class:link}     |{number:link}             |{stream:link}           |
+{concatenated-stream:link}      |{package:link}            |{stream-error:link}     |
+{condition:link}                |{package-error:link}      |{string!system-class:link}|
+{cons!system-class:link}        |{parse-error:link}        |{string-stream:link}    |
+{control-error:link}            |{pathname!system-class:link}|{structure-class:link}|
+{division-by-zero:link}         |{print-not-readable:link} |{structure-object:link} |
+{echo-stream:link}              |{program-error:link}      |{style-warning:link}    |
+{end-of-file:link}              |{random-state:link}       |{symbol:link}           |
+{error!condition:link}          |{ratio:link}              |{synonym-stream:link}   |
+{file-error:link}               |{rational!system-class:link}|{t!system-class:link} |
+{file-stream:link}              |{reader-error:link}       |{two-way-stream:link}   |
+{float!system-class:link}       |{readtable:link}          |{type-error:link}       |
+{floating-point-inexact:link}   |{real:link}               |{unbound-slot:link}     |
+{floating-point-invalid-operation:link}|{restart:link}     |{unbound-variable:link} |
+{floating-point-overflow:link}  |{sequence:link}           |{undefined-function:link}|
+{floating-point-underflow:link} |{serious-condition:link}  |{vector!system-class:link}|
+{function!system-class:link}    |{simple-condition:link}   |{warning:link}          |
+
+Figure 4-8. 事前に宣言されている型指定子に対応したクラス
+
+これらの各クラスの要素として指定される{class-precedence-list}の情報は、
+オブジェクトシステムで必要とされるものです。
+
+個々の実装は、他の型指定子が対応するクラスを持つような定義で拡張できます。
+個々の実装は、標準として規定された型の関係と型の素の関係の要件に違反しない限り、
+他のサブクラスの関係を追加し、
+{class-precedence-list}に他の要素を追加するように拡張できます。
+{direct-superclasses}を持たずに定義された標準クラスは、
+表中の{t!system-class:link}というクラスを除く
+すべてのクラスと素の関係であることが保証されます。
 
 @end
 

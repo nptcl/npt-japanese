@@ -1,0 +1,32 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  4. 型とクラス
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  4.3.6.3 クラスの再定義のカスタマイズ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 4.3.6.3
+@type: text
+
+{update-instance-for-redefined-class:link}のメソッドは、
+インスタンスが更新されたときに
+特定のアクションを取れるように定義することができます。
+もし{update-instance-for-redefined-class:link}の
+`:after`メソッドだけが定義されたとき、
+それはシステムが提供するプライマリメソッドの初期化の後に実行されるので、
+したがって{update-instance-for-redefined-class:link}の
+標準の動作に影響を与えないでしょう。
+{update-instance-for-redefined-class:link}が
+システムによって初期化引数なしで呼び出されたとき、
+{update-instance-for-redefined-class:link}の
+`:before`メソッドによって値が埋められたスロットに対しては、
+{shared-initialize:link}によってそのスロットの初期化フォームが
+評価されることないでしょう。
+
+{shared-initialize:link}のメソッドは、
+クラスの再定義をカスタマイズするように定義できます。
+より詳しくは{7.1.5:ab}をご確認ください。
+
+@end
+

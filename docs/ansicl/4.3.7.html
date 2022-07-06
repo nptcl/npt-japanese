@@ -156,6 +156,151 @@
 <p><a href="4.3.html">UP</a></p>
 <hr />
 <p>4.3.7. 型とクラスの統合</p>
+<p>オブジェクトシステムは、クラス空間と型の空間を対応付けます。 全てのクラスは正しい名前を持ち、 それは対応する同じ名前の型を持ちます。</p>
+<p>全てのクラスの正しい名前は、有効な型指定子です。 さらに全てのクラスオブジェクトは有効な型指定子です。 したがって式<code>(typep object class)</code>は もし<code>object</code>のクラスが<code>class</code>それ自身であるか、 あるいはクラスのサブタイプであるときは、 <em>true</em>として評価されます。 式<code>(subtypep class1 class2)</code>の評価は、 もし<code>class1</code>が<code>class2</code>のサブタイプであるか、 あるいはそれらが同じクラスであるときは、 値<em>true</em>と<em>true</em>が返却され、 それ以外のときは、値<em>false</em>と<em>true</em>が返却されます。 式<code>(type-of I)</code>を評価するとき、 <code>I</code>が<code>S</code>という名前のクラス<code>C</code>のインスタンスであり、 <code>C</code>が<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスのとき、 もし<code>S</code>が<code>C</code>の正しい名前であるときは 式は<code>S</code>を返却します。 それ以外のときは、式は<code>C</code>を返却します。</p>
+<p>クラスの名前とクラスオブジェクトは型指定子なので、 それらは特殊フォームである<a href="3.8.the.html"><code>the</code></a>の中と、 型宣言の中で使用されます。</p>
+<p>多くの型指定子は、全てではありませんが その型と対応する同じ正しい名前を持ったクラスが事前に宣言されています。 それらの型指定子は<a href="4.3.7.html"><code>figure_4-8</code></a>にリストされています。 例えば型<a href="15.2.array.html"><code>array</code></a>は、対応する<a href="15.2.array.html"><code>array</code></a>という名前のクラスを持ちます。 リストにはない型指定子で、 例えば<code>(vector double-float 100)</code>のようなものは 対応するクラスを持ちません。 <a href="4.4.deftype.html"><code>deftype</code></a>の操作は、どんなクラスも生成しません。</p>
+<p>事前に宣言されている型指定子に対応する各クラスは、 それぞれの処理系の裁量によって 3つの方法のうちのひとつで実装することができます。 それは、<a href="4.4.standard-class.html"><code>standard-class</code></a>, <a href="4.4.structure-class.html"><code>structure-class</code></a>, そしてシステムクラスです。</p>
+<p><a href="4.4.built-in-class.html"><code>built-in-class</code></a>は 機能に制限があるか、あるいは特別な表現を持った 一般化されたインスタンスのひとつです。 <a href="7.7.defclass.html"><code>defclass</code></a>によって<a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスの サブクラスを定義しようとしたときは、 エラーが発生します。 <a href="7.7.make-instance.html"><code>make-instance</code></a>を呼び出して <a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスの一般化されたインスタンスを作成しようとしたときは、 エラーが発生します。 <a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスの一般化されたインスタンスに <a href="7.7.slot-value.html"><code>slot-value</code></a>を呼び出したときは、 エラーが発生します。 <a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスを再定義するか、 <a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスのインスタンスのクラスを <a href="7.7.change-class.html"><code>change-class</code></a>によって変更しようとしたときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。 しかし、<a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスはメソッドの特定パラメーターに使用できます。</p>
+<p>クラスが<a href="4.4.built-in-class.html"><code>built-in-class</code></a>クラスかどうかは メタクラスを確認することによって決定することができます。 <a href="4.4.standard-class.html"><code>standard-class</code></a>はクラス<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスであり、 <a href="4.4.built-in-class.html"><code>built-in-class</code></a>はクラス<a href="4.4.built-in-class.html"><code>built-in-class</code></a>のインスタンスであり、 <a href="4.4.structure-class.html"><code>structure-class</code></a>はクラス<a href="4.4.structure-class.html"><code>structure-class</code></a>のインスタンスです。</p>
+<p><a href="8.1.defstruct.html"><code>defstruct</code></a>の<code>:type</code>オプションを使用しなかったときに 生成されるそれぞれの構造体の型は、 対応するクラスを持っています。 このクラスは、クラス<a href="4.4.structure-class.html"><code>structure-class</code></a>の一般化されたインスタンスです。 <a href="8.1.defstruct.html"><code>defstruct</code></a>の<code>:include</code>オプションは、 <code>include</code>の構造体の型に対応するクラスのダイレクトサブクラスを生成します。</p>
+<p>本仕様で定義されたクラスのインスタンスに対する 本仕様で定義された関数の動作にスロットが関与するかどうかは、 仕様でスロットが明示的に定義されている場合を除き、 実装依存です。</p>
+<p>本仕様で定義されたクラスが、 特定の実装において本仕様で定義されていないスロットを持つ場合、 これらのスロットの名前は 本仕様で定義されたパッケージの外部シンボルであってはならず、 また<code>CL-USER</code>パッケージでアクセス可能であってはいけません。</p>
+<p>多くの標準的な型指定子に対応するクラスを指定する目的は、 ユーザーがこれらの型を識別するメソッドを書くことができるようにするためです。 メソッドの選択には、 各クラスに対してクラス優先順位リストを決定できることが必要です。</p>
+<p>型指定子間の階層的な関係は、 それらの型に対応するクラス間の関係によって反映されます。</p>
+<p><a href="4.3.7.html"><code>figure_4-8</code></a>は事前に宣言されている型指定子に対応された クラスの集合を示します。</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><code>arithmetic-error</code></td>
+<td><a href="4.4.generic-function.html"><code>generic-function</code></a></td>
+<td><a href="9.2.simple-error.html"><code>simple-error</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="15.2.array.html"><code>array</code></a></td>
+<td><code>hash-table</code></td>
+<td><a href="4.4.simple-type-error.html"><code>simple-type-error</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="15.2.bit-vector.html"><code>bit-vector</code></a></td>
+<td><code>integer</code></td>
+<td><a href="9.2.simple-warning.html"><code>simple-warning</code></a></td>
+</tr>
+<tr class="even">
+<td><code>broadcast-stream</code></td>
+<td><a href="14.2.list-system-class.html"><code>list</code></a></td>
+<td><a href="4.4.standard-class.html"><code>standard-class</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="4.4.built-in-class.html"><code>built-in-class</code></a></td>
+<td><code>logical-pathname</code></td>
+<td><a href="4.4.standard-generic-function.html"><code>standard-generic-function</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="9.2.cell-error.html"><code>cell-error</code></a></td>
+<td><a href="4.4.method.html"><code>method</code></a></td>
+<td><a href="4.4.standard-method.html"><code>standard-method</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="13.2.character-system-class.html"><code>character</code></a></td>
+<td><a href="4.4.method-combination.html"><code>method-combination</code></a></td>
+<td><a href="4.4.standard-object.html"><code>standard-object</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="4.4.class.html"><code>class</code></a></td>
+<td><a href="14.2.null-system-class.html"><code>null</code></a></td>
+<td><a href="9.2.storage-condition.html"><code>storage-condition</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>complex</code></td>
+<td><code>number</code></td>
+<td><code>stream</code></td>
+</tr>
+<tr class="even">
+<td><code>concatenated-stream</code></td>
+<td><a href="11.2.package.html"><code>package</code></a></td>
+<td><code>stream-error</code></td>
+</tr>
+<tr class="odd">
+<td><a href="9.2.condition.html"><code>condition</code></a></td>
+<td><a href="11.2.package-error.html"><code>package-error</code></a></td>
+<td><a href="16.2.string-system-class.html"><code>string</code></a></td>
+</tr>
+<tr class="even">
+<td><a href="14.2.cons-system-class.html"><code>cons</code></a></td>
+<td><a href="9.2.parse-error.html"><code>parse-error</code></a></td>
+<td><code>string-stream</code></td>
+</tr>
+<tr class="odd">
+<td><a href="5.3.control-error.html"><code>control-error</code></a></td>
+<td><code>pathname</code></td>
+<td><a href="4.4.structure-class.html"><code>structure-class</code></a></td>
+</tr>
+<tr class="even">
+<td><code>division-by-zero</code></td>
+<td><code>print-not-readable</code></td>
+<td><a href="4.4.structure-object.html"><code>structure-object</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>echo-stream</code></td>
+<td><a href="5.3.program-error.html"><code>program-error</code></a></td>
+<td><a href="9.2.style-warning.html"><code>style-warning</code></a></td>
+</tr>
+<tr class="even">
+<td><code>end-of-file</code></td>
+<td><code>random-state</code></td>
+<td><a href="10.2.symbol.html"><code>symbol</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="9.2.error-condition.html"><code>error</code></a></td>
+<td><code>ratio</code></td>
+<td><code>synonym-stream</code></td>
+</tr>
+<tr class="even">
+<td><code>file-error</code></td>
+<td><code>rational</code></td>
+<td><a href="4.4.t-system-class.html"><code>t</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>file-stream</code></td>
+<td><code>reader-error</code></td>
+<td><code>two-way-stream</code></td>
+</tr>
+<tr class="even">
+<td><code>float</code></td>
+<td><code>readtable</code></td>
+<td><a href="4.4.type-error.html"><code>type-error</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>floating-point-inexact</code></td>
+<td><code>real</code></td>
+<td><a href="7.7.unbound-slot.html"><code>unbound-slot</code></a></td>
+</tr>
+<tr class="even">
+<td><code>floating-point-invalid-operation</code></td>
+<td><a href="9.2.restart.html"><code>restart</code></a></td>
+<td><a href="10.2.unbound-variable.html"><code>unbound-variable</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>floating-point-overflow</code></td>
+<td><a href="17.3.sequence.html"><code>sequence</code></a></td>
+<td><a href="5.3.undefined-function.html"><code>undefined-function</code></a></td>
+</tr>
+<tr class="even">
+<td><code>floating-point-underflow</code></td>
+<td><a href="9.2.serious-condition.html"><code>serious-condition</code></a></td>
+<td><a href="15.2.vector-system-class.html"><code>vector</code></a></td>
+</tr>
+<tr class="odd">
+<td><a href="4.4.function-system-class.html"><code>function</code></a></td>
+<td><a href="9.2.simple-condition.html"><code>simple-condition</code></a></td>
+<td><a href="9.2.warning.html"><code>warning</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 4-8. 事前に宣言されている型指定子に対応したクラス</p>
+<p>これらの各クラスの要素として指定されるクラス優先順位リストの情報は、 オブジェクトシステムで必要とされるものです。</p>
+<p>個々の実装は、他の型指定子が対応するクラスを持つような定義で拡張できます。 個々の実装は、標準として規定された型の関係と型の素の関係の要件に違反しない限り、 他のサブクラスの関係を追加し、 クラス優先順位リストに他の要素を追加するように拡張できます。 ダイレクトスーパークラスを持たずに定義された標準クラスは、 表中の<a href="4.4.t-system-class.html"><code>t</code></a>というクラスを除く すべてのクラスと素の関係であることが保証されます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

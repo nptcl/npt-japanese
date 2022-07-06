@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAY-DISPLACEMENT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-displacement
+@name: array-displacement
+@type: function
+
+Function `ARRAY-DISPLACEMENT`
+
+
+## {syntax}
+
+`array-displacement` *array* => *displaced-to*, *displaced-index-offset*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*displaced-to* - 配列か、{nil!variable:link}  
+*displaced-index-offset* - 非負の`fixnum`
+
+
+## {description}
+
+もし*array*が`displaced`の配列のとき、
+その配列の`:displaced-to`と`:displaced-index-offset`オプションのものが返却されます
+（関数{make-array:link}と{adjust-array:link}をご確認ください）。
+もし*array*が`displaced`の配列ではないとき、
+{nil!variable:link}と`0`が返却されます。
+
+もし{array-displacement:link}が
+{make-array:link}か{adjust-array:link}の
+`:displaced-to`引数として{nil!variable:link}ではない
+オブジェクトが指定された*array*で呼ばれたとき、
+それは最初の値にそのオブジェクトを返却しなければなりません。
+{array-displacement:link}が*array*以外の何かに対して、
+{nil!variable:link}ではない主値を返却するかどうかは
+{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(setq a1 (make-array 5)) =>  #<ARRAY 5 simple 46115576>
+(setq a2 (make-array 4 :displaced-to a1
+                       :displaced-index-offset 1))
+=>  #<ARRAY 4 indirect 46117134>
+(array-displacement a2)
+=>  #<ARRAY 5 simple 46115576>, 1
+(setq a3 (make-array 2 :displaced-to a2
+                       :displaced-index-offset 2))
+=>  #<ARRAY 2 indirect 46122527>
+(array-displacement a3)
+=>  #<ARRAY 4 indirect 46117134>, 2
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*array*が配列ではないとき、型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{make-array:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor ROW-MAJOR-AREF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.row-major-aref
+@name: row-major-aref
+@type: accessor
+
+Accessor `ROW-MAJOR-AREF`
+
+
+## {syntax}
+
+`row-major-aref` *array* *index* => *element*  
+(`setf` (`row-major-aref` *array* *index*) *new-element*)
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*index* - *array*の有効な配列の`row-major`インデックス  
+*element*, *new-element* - オブジェクト
+
+
+## {description}
+
+配列を`row-major`の順番に要素が配置されているような`vector`であると考え、
+指定した*index*で参照される`vector`の要素を返却します。
+
+{row-major-aref:link}は{setf:link}での使用が有効です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{aref:link},
+{array-row-major-index:link}
+
+
+## {notes}
+
+```lisp
+(row-major-aref array index) == 
+  (aref (make-array (array-total-size array)
+                    :displaced-to array
+                    :element-type (array-element-type array))
+        index)
+```
+
+```lisp
+(aref array i1 i2 ...) == 
+    (row-major-aref array (array-row-major-index array i1 i2))
+```
+
+@end
+

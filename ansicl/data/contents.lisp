@@ -552,6 +552,7 @@
 (dictionary 12.2.boole)
 (dictionary 12.2.boole-1)
 (dictionary 12.2.logand)
+(dictionary 12.2.lognot)  ;; delete
 (dictionary 12.2.logbitp)
 (dictionary 12.2.logcount)
 (dictionary 12.2.logtest)
@@ -696,6 +697,7 @@
 (dictionary 15.2.vector-push)
 (dictionary 15.2.vectorp)
 (dictionary 15.2.bit!accessor)
+(dictionary 15.2.sbit)  ;; delete
 (dictionary 15.2.bit-and)
 (dictionary 15.2.bit-vector-p)
 (dictionary 15.2.simple-bit-vector-p)
@@ -745,6 +747,7 @@
 (dictionary 17.3.remove-duplicates)
 
 ;; Chapter 18
+(index 18.1 "ハッシュテーブルの説明" "Hash Table Concepts")
 (index 18.2 "ハッシュテーブルの辞書" "Hash Tables Dictionary")
 (dictionary 18.2.hash-table)
 (dictionary 18.2.make-hash-table)

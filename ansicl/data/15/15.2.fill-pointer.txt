@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor FILL-POINTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.fill-pointer
+@name: fill-pointer
+@type: accessor
+
+Accessor `FILL-POINTER`
+
+
+## {syntax}
+
+`fill-pointer` *vector* => *fill-pointer*  
+(`setf` (`fill-pointer` *vector*) *new-fill-pointer*)
+
+
+## {arguments-and-values}
+
+*vector* - {fill-pointer}を持った`vector`  
+*fill-pointer*, *new-fill-pointer* - *vector*の有効な{fill-pointer}
+
+
+## {description}
+
+*vector*の{fill-pointer}にアクセスします
+
+
+## {examples}
+
+```lisp
+(setq a (make-array 8 :fill-pointer 4)) =>  #(NIL NIL NIL NIL)
+(fill-pointer a) =>  4
+(dotimes (i (length a)) (setf (aref a i) (* i i))) =>  NIL
+a =>  #(0 1 4 9)
+(setf (fill-pointer a) 3) =>  3
+(fill-pointer a) =>  3
+a =>  #(0 1 4)
+(setf (fill-pointer a) 8) =>  8
+a =>  #(0 1 4 9 NIL NIL NIL NIL)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*vector*が{fill-pointer}を持つ`vector`では無かったら、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{make-array:link},
+{length:link}
+
+
+## {notes}
+
+`vector`から{fill-pointer}を削除する操作はありません。
+
+@end
+

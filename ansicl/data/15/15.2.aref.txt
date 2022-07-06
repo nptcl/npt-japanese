@@ -1,0 +1,90 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor AREF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.aref
+@name: aref
+@type: accessor
+
+Accessor `AREF`
+
+
+## {syntax}
+
+`aref` *array* `&rest` *subscripts* => *element*  
+(`setf` (`aref` *array* `&rest` *subscripts*) *new-element*)
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*subscripts* - *array*の有効な配列のインデックスのリスト  
+*element*, *new-element* - オブジェクト
+
+
+## {description}
+
+*subscripts*によって指定された*array*の要素にアクセスします。
+もし*subscripts*が指定されず、
+*array*がゼロランクのときは、
+{aref:link}は*array*の唯一の要素にアクセスします。
+
+{aref:link}は{fill-pointer}を無視します。
+{aref:link}はアクティブかそうでないかに関わらず、
+*array*の要素にアクセスするときに使用できます。
+
+
+## {examples}
+
+もし変数`foo`が3×5の配列に束縛されているとき、
+最初のインデックスは`0`, `1`, `2`を指定でき、
+2番目のインデックスは`0`, `1`, `2`, `3`, `4`を指定できます。
+この配列の要素は{aref:link}関数を使用することによって参照できます。
+例えば`(aref foo 2 1)`は、`(2, 1)`の配列の要素を参照します。
+
+```lisp
+(aref (setq alpha (make-array 4)) 3) =>  implementation-dependent
+(setf (aref alpha 3) 'sirens) =>  SIRENS
+(aref alpha 3) =>  SIRENS
+(aref (setq beta (make-array '(2 4) 
+                   :element-type '(unsigned-byte 2)
+                   :initial-contents '((0 1 2 3) (3 2 1 0))))
+       1 2) =>  1
+(setq gamma '(0 2))
+(apply #'aref beta gamma) =>  2
+(setf (apply #'aref beta gamma) 3) =>  3
+(apply #'aref beta gamma) =>  3
+(aref beta 0 2) =>  3
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{bit!accessor:link},
+{char:link},
+{elt:link},
+{row-major-aref:link},
+{svref:link},
+{3.2.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

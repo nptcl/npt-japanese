@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAY-ELEMENT-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-element-type
+@name: array-element-type
+@type: function
+
+Function `ARRAY-ELEMENT-TYPE`
+
+
+## {syntax}
+
+`array-element-type` *array* => *typespec*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*typespec* - 型指定子
+
+
+## {description}
+
+*array*が格納できるようなオブジェクトの集合を表す、
+配列の{actual-array-element-type}として表現された
+型指定子を返却します
+（配列はアップグレードするので、
+いくつかの場合において
+型指定子は*array*の{expressed-array-element-type}の
+スーパータイプを表すことができます）。
+
+
+## {examples}
+
+```lisp
+(array-element-type (make-array 4)) =>  T
+(array-element-type (make-array 12 :element-type '(unsigned-byte 8))) 
+=>  implementation-dependent
+(array-element-type (make-array 12 :element-type '(unsigned-byte 5)))
+=>  implementation-dependent
+```
+
+下記の返却値について、
+
+```
+(array-element-type (make-array 5 :element-type '(mod 5)))
+```
+
+これは`(mod 5)`か、`(mod 8)`か、`fixnum`か、`t`か、
+その他の`(mod 5)`のサブタイプの型になります。
+
+
+## {affected-by}
+
+実装。
+
+
+## {exceptional-situations}
+
+もし引数が配列ではなかったとき、型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{array:link},
+{make-array:link},
+{subtypep:link},
+{upgraded-array-element-type:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

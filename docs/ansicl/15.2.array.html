@@ -161,7 +161,7 @@
 <p><a href="15.2.array.html"><code>array</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
 <h2 id="定義">定義</h2>
 <p>配列はオブジェクトを直交座標系にしたがって配置されたものを含みます。 配列は、<code>fixnum</code>の集合である<code>{i0, i1, ..., ir-1}</code>と 対応する配列の要素のマッピングを提供します。 ただし<code>0 &lt;= ij &lt; dj</code>であり、<code>r</code>は配列のランク、<code>dj</code>は配列の大きさ<code>j</code>のサイズです。</p>
-<p>配列が作成されたとき、プログラムはその生成の要求として、 表現された配列の要素の型と呼ばれる全ての要素に対する特定の型を 宣言することができます。 実装はこの表現された配列の要素の型を生成するために、 型をアップグレードすることが許されており、 実際に配列の要素の型は特定化されます。 <code>upgraded-array-element-type</code>関数をご確認ください。</p>
+<p>配列が作成されたとき、プログラムはその生成の要求として、 表現された配列の要素の型と呼ばれる全ての要素に対する特定の型を 宣言することができます。 実装はこの表現された配列の要素の型を生成するために、 型をアップグレードすることが許されており、 実際に配列の要素の型は特定化されます。 <a href="15.2.upgraded-array-element-type.html"><code>upgraded-array-element-type</code></a>関数をご確認ください。</p>
 <h2 id="型指定子の種類">型指定子の種類</h2>
 <p>特定化</p>
 <h2 id="型指定子の構文">型指定子の構文</h2>
@@ -176,7 +176,7 @@
 <p>もし<em>element-type</em>がシンボルの<code>*</code>のとき、 配列は要素の型に基づいて排他しません。 そうでないときは、配列は<em>element-type</em>をアップグレードした結果の 実際の配列の要素の型だけを含みます。 15.1.2.1. 配列のアップグレードをご確認ください。</p>
 <p>もし<em>dimension-spec</em>が<em>rank</em>のときは、 集合はただランクが<em>rank</em>である配列のみを含みます。 もし<em>dimension-spec</em>が<em>dimension</em>のリストのときは、 集合はただランクが<em>dimension</em>のリストの長さであり、 <em>dimension</em>のリストで指定された大きさを持つものを含みます。 この場合、<code>*</code>は対応する大きさのどんな値にもマッチします。 もし<em>dimension-spec</em>がシンボルの<code>*</code>のときは、 集合はランクと大きさに基づいて制限しません。</p>
 <h2 id="参考">参考</h2>
-<p><a href="22.4.print-array.html"><code>*print-array*</code></a>, <code>aref</code>, <a href="15.2.make-array.html"><code>make-array</code></a>, <a href="15.2.vector-system-class.html"><code>vector</code></a>, 2.4.8.12. シャープサイン A, 22.1.3.8. 他の配列の印字</p>
+<p><a href="22.4.print-array.html"><code>*print-array*</code></a>, <a href="15.2.aref.html"><code>aref</code></a>, <a href="15.2.make-array.html"><code>make-array</code></a>, <a href="15.2.vector-system-class.html"><code>vector</code></a>, 2.4.8.12. シャープサイン A, 22.1.3.8. 他の配列の印字</p>
 <h2 id="備考">備考</h2>
 <p>型<code>(array t)</code>は、<code>(array *)</code>の正しいサブタイプであることに注意してください。 この理由は、型<code>(array t)</code>は どんなオブジェクトでも格納できる配列の集合だからです （要素は型<a href="4.4.t-system-class.html"><code>t</code></a>であり、全てのオブジェクトが含まれます）。 一方、型<code>(array *)</code>は何でもいい全ての配列の集合であり、 それは例えば文字のみを格納できる配列が含まれます。 型<code>(array character)</code>は、型<code>(array t)</code>のサブタイプではありません。 それらの2つの集合は互いに素であり、 なぜなら型<code>(array character)</code>は文字を格納できる全ての集合ではなく、 厳密に文字を格納できてその他のオブジェクトは格納できないという 特定化された配列の集合だからです。</p>
 <hr />

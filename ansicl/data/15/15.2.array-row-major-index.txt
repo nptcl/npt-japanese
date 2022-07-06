@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAY-ROW-MAJOR-INDEX
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-row-major-index
+@name: array-row-major-index
+@type: function
+
+Function `ARRAY-ROW-MAJOR-INDEX`
+
+
+## {syntax}
+
+`array-row-major-index` *array* `&rest` *subscripts* => *index*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*subscripts* - *array*の有効な配列のインデックスのリスト  
+*index* - *array*の有効な配列の`row-major`インデックス
+
+
+## {description}
+
+*subscripts*によって指定された*array*の要素に対して
+`row-major`の順序に従った位置を計算し、
+*array*の最初の位置から計算された
+その要素のオフセットを返却します。
+
+*array*が一次元配列のとき、
+{array-row-major-index:link}の返却値はは*subscript*と同じです。
+
+{array-row-major-index:link}は{fill-pointer}を無視します。
+
+
+## {examples}
+
+```lisp
+(setq a (make-array '(4 7) :element-type '(unsigned-byte 8)))
+(array-row-major-index a 1 2) =>  9
+(array-row-major-index 
+   (make-array '(2 3 4) 
+               :element-type '(unsigned-byte 8)
+               :displaced-to a
+               :displaced-index-offset 4)
+   0 2 1) =>  9
+```
+
+
+## {affected-by}
+
+なし。
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{array-row-major-index:link}の定義は、
+エラーチェックをなしにすれば次のように表現することができます
+
+```lisp
+ (defun array-row-major-index (a &rest subscripts)
+   (apply #'+ (maplist #'(lambda (x y)
+                            (* (car x) (apply #'* (cdr y))))
+                       subscripts
+                       (array-dimensions a))))
+```
+
+@end
+

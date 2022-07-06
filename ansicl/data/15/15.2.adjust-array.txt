@@ -1,0 +1,248 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ADJUST-ARRAY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.adjust-array
+@name: adjust-array
+@type: function
+
+Function `ADJUST-ARRAY`
+
+
+## {syntax}
+
+`adjust-array` *array* *new-dimensions*
+ `&key` *element-type* *initial-element* *initial-contents*
+  *fill-pointer* *displaced-to* *displaced-index-offset*
+ => *adjusted-array*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*new-dimensions* - {valid-array-dimension}か、
+{valid-array-dimension}のリストの指定子  
+*element-type* - 型指定子  
+*initial-element* - オブジェクト。
+もし*initial-contents*か*displaced-to*が指定されたときは、
+*initial-element*は指定してはいけません。  
+*initial-contents* - オブジェクト。
+もし*array*のランクがゼロより大きいときは、
+*initial-contents*はシーケンスのネストによって構成されたものであり、
+その深さは*array*のランクと等しくなければなりません。
+それ以外のときは、*array*はゼロ次元であり
+*initial-contents*はひとつの要素を指定します。
+もし*initial-element*か*displaced-to*が与えられたときは、
+*initial-contents*を指定してはいけません。  
+*fill-pointer* - 作成される配列の有効な{fill-pointer}か、
+{t!variable:link}か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。  
+*displaced-to* - 配列か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。
+もし*displaced-to*が指定されたら、
+*initial-element*と*initial-contents*は指定できません。  
+*displaced-index-offset* - 型`(fixnum 0 n)`のオブジェクトであり、
+`n`は`(array-total-size displaced-to)`で表されます。
+もし*displaced-to*が指定されたときのみ、
+*displaced-index-offset*を指定できます。  
+adjusted-array - 配列
+
+
+## {description}
+
+{adjust-array:link}は*array*の次元か要素を変更します。
+その返却値は*array*と同じ型とランクの配列であり、
+*array*が修正されたものか新しく生成された配列のいずれかであり、
+また*array*を`displaced`にできますし、
+与えられた*new-dimensions*を持つようにもできます。
+
+*new-dimensions*は*array*の各次元のサイズです。
+
+*element-type*は結果の配列の要素の型を指定します。
+もし*element-type*が指定されたとき、
+*array*の{actual-array-element-type}と
+*element-type*の{upgraded-array-element-type}が
+等しくないときの結果は未定義です。
+
+もし*initial-contents*が指定されたとき、
+それは{make-array:link}と同じように扱われます。
+このような場合、*array*の元の内容は結果の配列には現れません。
+
+もし*fill-pointer*が整数のとき、
+それは結果の配列の{fill-pointer}になります。
+もし*fill-pointer*がシンボルの{t!variable:link}のとき、
+それは結果の配列のサイズが{fill-pointer}として使われるべきことを示します。
+もし*fill-pointer*が{nil!variable:link}のときは、
+それは{fill-pointer}ではなくなることを示します。
+
+もし*displaced-to*が{nil!variable:link}ではないとき、
+`displaced`の配列が生成されます。
+結果の配列は*displaced-to*によって与えられた配列の内容を共有します。
+結果の配列は`displaced-to`の配列よりも多い要素を含むことができません。
+もし*displaced-to*が指定されなかったか、あるいは{nil!variable:link}のとき、
+結果の配列は`displaced`の配列ではありません。
+もし配列`A`が配列`B`を`displaced`として生成され、
+続いて配列`B`が{adjust-array:link}に与えられたら、
+`A`はまだ配列`B`を`displaced`しています。
+*array*が`displaced`の配列であっても、
+*displaced-to*が指定されないか、
+あるいは{nil!variable:link}がしていされたときは、
+結果の配列は`displaced`の配列ではありません。
+この{adjust-array:link}と`displaced`の配列の相互作用は、
+下記の3つの配列、`A`, `B`, `C`によって与えられます。
+
+- `A`は呼び出し前と呼び出し後に`displaced`ではない
+  - `(adjust-array A ...)`  
+    `A`の次元は変更され、内容は適切に変更されます。
+    加えて`A`の要素は*initial-element*のものを取ります。
+    *initial-contents*が使われると全ての古い内容が削除されます。
+    <br><br>
+
+- `A`は呼び出し前は`displaced`ではないが、呼び出し後は`C`の`displaced`
+  - `(adjust-array A ... :displaced-to C)`  
+    `A`の元の内容がその後の`A`に現れることはありません。
+    `A`は今は`C`の内容を含んでおり、`C`にはどんな変更も生じません。
+    <br><br>
+
+- `A`は呼び出し前は`B`の`displaced`だが、呼び出し後は`C`の`displaced`
+  - `(adjust-array A ... :displaced-to B)`  
+    `(adjust-array A ... :displaced-to C)`  
+    `B`と`C`は同じかもしれません。
+    その後のAの内容は、`B`にたまたま`C`の内容があるのではない限り、
+    `B`の内容は現れません。
+    もし{adjust-array:link}の呼び出しで
+    *displaceed-index-offset*が与えられなかったときは、
+    デフォルトで`0`となり、`B`への古いオフセットは保持されません。
+    <br><br>
+
+- `A`は呼び出し前は`B`の`displaced`であり、その後は`displaced`ではない
+  - (adjust-array A ... :displaced-to B)  
+    (adjust-array A ... :displaced-to nil)  
+    `A`は新しい「データ領域」を手に入れ、
+    `B`の内容は既存の古い内容を維持するように適切にコピーされます。
+    `A`の追加の要素は、もし指定があるならば*initial-element*から取得します。
+    しかし*initial-contents*が使われると全ての古い内容が削除されます。
+    <br><br>
+
+もし*displaced-index-offset*が指定されたとき、
+それは`displaced`の配列の開始位置からの
+結果の配列のオフセットとして指定します。
+もし*displaced-index-offset*が指定されなかったとき、オフセットは`0`です。
+結果の配列のサイズとオフセットを加算した値は、
+`displaced`の配列のサイズを越えることはできません。
+
+もし*new-dimensions*と*initial-element*の引数のみが与えられたとき、
+それらの*array*の要素は、まだ結果の配列の境界内に現れます。
+配列の境界内にはない結果の配列の要素は、
+*initial-element*によって初期化されます。
+もし*initial-element*が指定されなかったとき、
+*new-array*が初期化される前にそのような新しい要素を
+あとで読み込んだときの結果は未定義です。
+
+もし*initial-contents*か*displaced-to*が指定されたとき、
+*array*の元の内容は新しい配列には現れません。
+
+もし*fill-pointer*の引数を指定せずに
+*array*をその{fill-pointer}をより小さいサイズに調整し、
+ある処理において{fill-pointer}が
+適切に調整されたときの結果は不定です。
+
+もし`A`が`B`の`displaced`の配列であり、
+もし`B`が`A`にとって十分な要素を満たさないような方法で
+調整されたときの結果は不定です。
+
+もし{adjust-array:link}を実際に`adjustable`な配列に対して適用したとき、
+返却される配列は*array*と同一です。
+もし{adjust-array:link}によって返却される配列が
+*array*と同一ではないときは、
+引数の*array*は変更されません。
+
+もし配列`A`が別の配列`B`を`displaced`として指定しており、
+配列`B`が別の配列`C`を`displaced`として指定しているとき、
+`B`が{adjust-array:link}によって変更されたときは、
+`A`はその時点で修正された`B`の内容を参照する
+必要があることに注意してください。
+これは、実装は`A`の参照を直接`C`に結び付けて、
+`B`の参照を通すことを無視するような
+破綻した修正をしてはいけないという意味です。
+しかし、ここで示された意味を守るようにした
+キャッシュの実装は許されます。
+
+
+## {examples}
+
+```lisp
+(adjustable-array-p
+ (setq ada (adjust-array
+             (make-array '(2 3)
+                         :adjustable t
+                         :initial-contents '((a b c) (1 2 3)))
+             '(4 6)))) =>  T 
+(array-dimensions ada) =>  (4 6) 
+(aref ada 1 1) =>  2 
+(setq beta (make-array '(2 3) :adjustable t))
+=>  #2A((NIL NIL NIL) (NIL NIL NIL)) 
+(adjust-array beta '(4 6) :displaced-to ada)
+=>  #2A((A B C NIL NIL NIL)
+      (1 2 3 NIL NIL NIL)
+      (NIL NIL NIL NIL NIL NIL) 
+      (NIL NIL NIL NIL NIL NIL))
+(array-dimensions beta) =>  (4 6)
+(aref beta 1 1) =>  2 
+```
+
+4×4の配列である`m`は下記のようになると仮定します。
+
+```lisp
+#2A(( alpha     beta      gamma     delta )
+    ( epsilon   zeta      eta       theta )
+    ( iota      kappa     lambda    mu    )
+    ( nu        xi        omicron   pi    ))
+```
+
+このとき、次に文を考えます。
+
+```lisp
+(adjust-array m '(3 5) :initial-element 'baz)
+```
+
+結果は3×5の配列になり、内容は次の通り。
+
+```lisp
+#2A(( alpha     beta      gamma     delta     baz )
+    ( epsilon   zeta      eta       theta     baz )
+    ( iota      kappa     lambda    mu        baz ))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*fill-pointer*が{nil!variable:link}で指定されたにもかかわらず、
+*array*が{fill-pointer}を持たないときは、
+型{error!condition:link}のエラーが発生します。
+
+
+## {see-also}
+
+{adjustable-array-p:link},
+{make-array:link},
+{array-dimension-limit:link},
+{array-total-size-limit:link},
+{array:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

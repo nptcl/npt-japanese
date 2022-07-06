@@ -1,0 +1,138 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function BIT-AND
+;;  Function BIT-ANDC1
+;;  Function BIT-ANDC2
+;;  Function BIT-EQV
+;;  Function BIT-IOR
+;;  Function BIT-NAND
+;;  Function BIT-NOR
+;;  Function BIT-NOT
+;;  Function BIT-ORC1
+;;  Function BIT-ORC2
+;;  Function BIT-XOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.bit-and
+@name: bit-and
+@name: bit-andc1
+@name: bit-andc2
+@name: bit-eqv
+@name: bit-ior
+@name: bit-nand
+@name: bit-nor
+@name: bit-not
+@name: bit-orc1
+@name: bit-orc2
+@name: bit-xor
+@link: figure_15-4
+@type: function
+
+Function `BIT-AND`, `BIT-ANDC1`, `BIT-ANDC2`, `BIT-EQV`,
+`BIT-IOR`, `BIT-NAND`, `BIT-NOR`, `BIT-NOT`,
+`BIT-ORC1`, `BIT-ORC2`, `BIT-XOR`
+
+
+## {syntax}
+
+`bit-and` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-andc1` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-andc2` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-eqv` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-ior` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-nand` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-nor` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-orc1` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-orc2` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-xor` *bit-array1* *bit-array2* `&optional` *opt-arg* => *resulting-bit-array*  
+`bit-not` *bit-array* `&optional` *opt-arg* => *resulting-bit-array*
+
+
+## {arguments-and-values}
+
+*bit-array*, *bit-array1*, *bit-array2* - ビット配列  
+*opt-arg* - ビット配列か、{t!variable:link}か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。  
+*bit-array*, *bit-array1*, *bit-array2*, *opt-arg*（もし配列なら）は、
+全て同じランクと大きさでなければなりません。  
+*resulting-bit-array* - ビット配列
+
+
+## {description}
+
+これらの関数は、*bit-array1*と*bit-array2*のビット単位の論理操作を行い、
+その結果の任意のビットが各引数の対応するビットを操作することによって
+生成されるような、ランクと次元が一致する配列を返します。
+
+{bit-not:link}の場合は、*bit-array*にランクと次元が一致する配列が返却され、
+その配列には*bit-array*の全てのビットが逆転したもののコピーが含まれます。
+
+もし*opt-arg*が型`(array bit)`であれば、
+返却される内容は*opt-arg*の中に破壊的に配置されます。
+もし*opt-arg*がシンボル{t!variable:link}のとき、
+*bit-array*か*bit-array1*が結果に置き換えられます。
+もし*opt-arg*が{nil!variable:link}か省略されたときは、
+結果を格納した新しい配列が作成されます。
+
+次の図は各関数によって処理される論理操作を示します。
+
+|関数             |処理                                   |
+|-----------------|---------------------------------------|
+|{bit-and:link}   | and                                   |
+|{bit-eqv:link}   | 同値（排他的nor)                      |
+|{bit-not:link}   | 補数                                  |
+|{bit-ior:link}   | 内包的or                              |
+|{bit-xor:link}   | 排他的or                              |
+|{bit-nand:link}  | (*bit-array1* and *bit-array2*)の補数 |
+|{bit-nor:link}   | (*bit-array1* or *bit-array2*)の補数  |
+|{bit-andc1:link} | (*bit-array1*の補数) and *bit-array2* |
+|{bit-andc2:link} | *bit-array1* and (*bit-array2*の補数) |
+|{bit-orc1:link}  | (*bit-array1*の補数) or *bit-array2*  |
+|{bit-orc2:link}  | *bit-array1* or (*bit-array2*の補数)  |
+
+Figure 15-4. ビット配列上のビット単位の論理演算
+
+
+## {examples}
+
+```lisp
+(bit-and (setq ba #*11101010) #*01101011) =>  #*01101010
+(bit-and #*1100 #*1010) =>  #*1000      
+(bit-andc1 #*1100 #*1010) =>  #*0010
+(setq rba (bit-andc2 ba #*00110011 t)) =>  #*11001000
+(eq rba ba) =>  true
+(bit-not (setq ba #*11101010)) =>  #*00010101
+(setq rba (bit-not ba 
+                    (setq tba (make-array 8 
+                                          :element-type 'bit))))
+=>  #*00010101
+(equal rba tba) =>  true
+(bit-xor #*1100 #*1010) =>  #*0110
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{lognot:link},
+{logand:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAY-IN-BOUNDS-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-in-bounds-p
+@name: array-in-bounds-p
+@type: function
+
+Function `ARRAY-IN-BOUNDS-P`
+
+
+## {syntax}
+
+`array-in-bounds-p` *array* `&rest` *subscripts* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*subscripts* - 配列のランクと等しい長さの整数のリスト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*subscripts*が全て*array*の境界内のときは*true*を、
+それ以外のときは*false*を返却します
+（もし*array*が{fill-pointer}を持つ`vector`のとき、
+その{fill-pointer}は無視されます）。
+
+
+## {examples}
+
+```lisp
+(setq a (make-array '(7 11) :element-type 'string-char))
+(array-in-bounds-p a 0  0) =>  true
+(array-in-bounds-p a 6 10) =>  true
+(array-in-bounds-p a 0 -1) =>  false
+(array-in-bounds-p a 0 11) =>  false
+(array-in-bounds-p a 7  0) =>  false
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{array-dimensions:link}
+
+
+## {notes}
+
+```lisp
+(array-in-bounds-p array subscripts)   
+==  (and (not (some #'minusp (list subscripts)))
+        (every #'< (list subscripts) (array-dimensions array)))
+```
+
+@end
+

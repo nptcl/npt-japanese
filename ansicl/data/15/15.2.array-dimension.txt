@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAY-DIMENSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-dimension
+@name: array-dimension
+@type: function
+
+Function `ARRAY-DIMENSION`
+
+
+## {syntax}
+
+`array-dimension` *array* *axis-number* => *dimension*
+
+
+## {arguments-and-values}
+
+*array* - 配列  
+*axis-number* - 0以上かつ*array*のランク未満の整数  
+*dimension* - 非負の整数
+
+
+## {description}
+
+{array-dimension:link}は、*array*の*axis-number*の次元を返却します
+({fill-pointer}は無視されます）。
+
+
+## {examples}
+
+```lisp
+(array-dimension (make-array 4) 0) =>  4
+(array-dimension (make-array '(2 3)) 1) =>  3
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{array-dimensions:link},
+{length:link}
+
+
+## {notes}
+
+```lisp
+(array-dimension array n) == (nth n (array-dimensions array))
+```
+
+@end
+

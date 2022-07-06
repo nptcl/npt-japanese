@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARRAYP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.arrayp
+@name: arrayp
+@type: function
+
+Function `ARRAYP`
+
+
+## {syntax}
+
+`arrayp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{array:link}のときは*true*を、それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(arrayp (make-array '(2 3 4) :adjustable t)) =>  true
+(arrayp (make-array 6)) =>  true
+(arrayp #*1011) =>  true
+(arrayp "hi") =>  true
+(arrayp 'hi) =>  false
+(arrayp 12) =>  false
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{typep:link}
+
+
+## {notes}
+
+```lisp
+(arrayp object) ==  (typep object 'array)
+```
+
+@end
+

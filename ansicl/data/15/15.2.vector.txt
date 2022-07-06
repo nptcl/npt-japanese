@@ -94,3 +94,76 @@ System Class `VECTOR`
 
 @end
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function VECTOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.vector!function
+@name: vector!function
+@type: function
+
+Function `VECTOR`
+
+
+## {syntax}
+
+`vector` `&rest` *objects* => *vector*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*vector* - 型`(vector t *)`の`vector`
+
+
+## {description}
+
+*objects*の数に対応したサイズの
+新しい一般的な`simple-vector`を生成します。
+
+`vector`は*objects*の内容で初期化されます。
+
+
+## {examples}
+
+```lisp
+(arrayp (setq v (vector 1 2 'sirens))) =>  true
+(vectorp v) =>  true
+(simple-vector-p v) =>  true         
+(length v) =>  3
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-array:link}
+
+
+## {notes}
+
+{vector!function:link}は{list!function:link}に似ています。
+
+```lisp
+(vector a1 a2 ... an)
+ ==  (make-array (list n) :element-type t
+                         :initial-contents 
+                           (list a1 a2 ... an))
+```
+
+@end
+

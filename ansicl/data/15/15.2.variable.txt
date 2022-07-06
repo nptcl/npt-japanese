@@ -1,0 +1,127 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable ARRAY-DIMENSION-LIMIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-dimension-limit
+@name: array-dimension-limit
+@type: constant-variable
+
+Constant Variable `ARRAY-DIMENSION-LIMIT`
+
+
+## {constant-value}
+
+正の`fixmun`であり、
+正確な値は{implementation-dependent}ですが、
+`1024`より小さい値ではありません。
+
+
+## {description}
+
+配列の各個別の要素の排他的上限値です。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{make-array:link}
+
+
+## {notes}
+
+なし。
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable ARRAY-RANK-LIMIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-rank-limit
+@name: array-rank-limit
+@type: constant-variable
+
+Constant Variable `ARRAY-RANK-LIMIT`
+
+
+## {constant-value}
+
+正の`fixmun`であり、
+正確な値は{implementation-dependent}ですが、
+`8`より小さい値ではありません。
+
+
+Description:
+
+配列のランクの排他的上限値です。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{make-array:link}
+
+
+## {notes}
+
+なし。
+
+@end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable ARRAY-TOTAL-SIZE-LIMIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.array-total-size-limit
+@name: array-total-size-limit
+@type: constant-variable
+
+Constant Variable `ARRAY-TOTAL-SIZE-LIMIT`
+
+
+## {constant-value}
+
+正の`fixmun`であり、
+正確な値は{implementation-dependent}ですが、
+`1024`より小さい値ではありません。
+
+
+Description:
+
+配列に対する、配列の全てのサイズの排他的上限値です。
+
+配列の全てのサイズの実際の制限値は、
+実装によっては配列の要素の型によって変化するかもしれません。
+このような場合、{array-total-size-limit:link}の値は、
+それらの可能な制限値の最も小さいものになります。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{make-array:link},
+{array-element-type:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

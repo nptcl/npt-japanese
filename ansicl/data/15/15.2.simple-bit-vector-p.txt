@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SIMPLE-BIT-VECTOR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.simple-bit-vector-p
+@name: simple-bit-vector-p
+@type: function
+
+Function `SIMPLE-BIT-VECTOR-P`
+
+
+## {syntax}
+
+`simple-bit-vector-p` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{simple-bit-vector:link}のときは*true*を、それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(simple-bit-vector-p (make-array 6)) =>  false
+(simple-bit-vector-p #*) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{simple-vector-p:link}
+
+
+## {notes}
+
+```lisp
+(simple-bit-vector-p object) ==  (typep object 'simple-bit-vector)
+```
+
+@end
+

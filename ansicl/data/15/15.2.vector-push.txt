@@ -1,0 +1,112 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function VECTOR-PUSH
+;;  Function VECTOR-PUSH-EXTEND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.vector-push
+@name: vector-push
+@name: vector-push-extend
+@type: function
+
+Function `VECTOR-PUSH`, `VECTOR-PUSH-EXTEND`
+
+
+## {syntax}
+
+`vector-push` *new-element* *vector* => *new-index-p*  
+`vector-push-extend` *new-element* *vector* `&optional` *extension* => *new-index*
+
+
+## {arguments-and-values}
+
+*new-element* - オブジェクト  
+*vector* - {fill-pointer}を持つ`vector`  
+*extension* - 正の整数。デフォルトは{implementation-dependent}。  
+*new-index-p* - `vector`の有効な配列のインデックスか、{nil!variable:link}。  
+*new-index* - `vector`の有効な配列のインデックス
+
+
+## {description}
+
+{vector-push:link}と{vector-push-extend:link}は、
+*vector*内に*new-element*を格納します。
+{vector-push:link}は、*new-element*を
+{fill-pointer}によって指定された
+*vector*の要素に格納しようと試み、
+そして{fill-pointer}をひとつ増加させます。
+もし`(>= (fill-pointer vector) (array-dimension vector 0))`のときは、
+*vector*にも{fill-pointer}にも影響を与えません。
+その他の場合は、格納と増加をしてから、
+{vector-push:link}は*vector*に残る値よりひとつ小さい、
+以前の{fill-pointer}の値を返します。
+
+{vector-push-extend:link}は{vector-push:link}と似ていますが、
+もし{fill-pointer}が大きすぎるときに、
+*vector*を{adjust-array:link}を用いて拡張し、
+多くの要素を含めることができるようになることが違っています。
+*extension*は、もし拡張が必要になったときに
+*vector*に追加する最小の要素数です。
+
+{vector-push-extend:link}と{vector-push:link}は、
+*vector*内の*new-element*のインデックスを返却します。
+もし`(>= (fill-pointer vector) (array-dimension vector 0))`のとき、
+{vector-push:link}は{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(vector-push (setq fable (list 'fable))
+             (setq fa (make-array 8 
+                                  :fill-pointer 2
+                                  :initial-element 'first-one))) =>  2 
+(fill-pointer fa) =>  3 
+(eq (aref fa 2) fable) =>  true
+(vector-push-extend #\X
+                   (setq aa 
+                         (make-array 5
+                                     :element-type 'character
+                                     :adjustable t
+                                     :fill-pointer 3))) =>  3 
+(fill-pointer aa) =>  4 
+(vector-push-extend #\Y aa 4) =>  4 
+(array-total-size aa) =>  at least 5 
+(vector-push-extend #\Z aa 4) =>  5 
+(array-total-size aa) =>  9 ;(or more)
+```
+
+
+## {affected-by}
+
+{fill-pointer}の値。
+
+どのように`vector`が生成されたか。
+
+
+## {exceptional-situations}
+
+*vector*を拡張しようとしたときに
+*vector*が実際に`adjustable`ではなかったとき、
+{vector-push-extend:link}によって型{error!condition:link}のエラーが発生します。
+
+*vector*が{fill-pointer}を持たなかったとき、
+型{error!condition:link}のエラーが発生します。
+
+
+## {see-also}
+
+{adjustable-array-p:link},
+{fill-pointer:link},
+{vector-pop:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

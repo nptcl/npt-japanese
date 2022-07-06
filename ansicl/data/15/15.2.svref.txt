@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor SVREF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.svref
+@name: svref
+@type: accessor
+
+Accessor `SVREF`
+
+
+## {syntax}
+
+`svref` *simple-vector* *index* => *element*  
+(`setf` (`svref` *simple-vector* *index*) *new-element*)
+
+
+## {arguments-and-values}
+
+*simple-vector* - `simple-vector`  
+*index* - *simple-vector*に対する有効な配列のインデックス  
+*element*, *new-element* - オブジェクト
+（この型は、*simple-vector*の配列の要素の型のサブタイプです）。
+
+
+## {description}
+
+*index*によって指定された*simple-vector*の要素にアクセスします。
+
+
+## {examples}
+
+```lisp
+(simple-vector-p (setq v (vector 1 2 'sirens))) =>  true
+(svref v 0) =>  1
+(svref v 2) =>  SIRENS
+(setf (svref v 1) 'newcomer) =>  NEWCOMER               
+v =>  #(1 NEWCOMER SIRENS)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{aref:link},
+{sbit:link},
+{schar:link},
+{vector!system-class:link},
+{3.2.1:ab}
+
+
+## {notes}
+
+{svref:link}は、
+最初の引数が`simple-vector`を要求するところを除けば、
+{aref:link}と同じです。
+
+```lisp
+(svref v i) == (aref (the simple-vector v) i)
+```
+
+@end
+

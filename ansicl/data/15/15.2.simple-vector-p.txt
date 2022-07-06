@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SIMPLE-VECTOR-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.simple-vector-p
+@name: simple-vector-p
+@type: function
+
+Function `SIMPLE-VECTOR-P`
+
+
+## {syntax}
+
+`simple-vector-p` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{simple-vector:link}のときは*true*を、それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(simple-vector-p (make-array 6)) =>  true
+(simple-vector-p "aaaaaa") =>  false
+(simple-vector-p (make-array 6 :fill-pointer t)) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{simple-vector:link}
+
+
+## {notes}
+
+```lisp
+(simple-vector-p object) == (typep object 'simple-vector)
+```
+
+@end
+

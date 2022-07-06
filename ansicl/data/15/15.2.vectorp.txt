@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function VECTORP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.vectorp
+@name: vectorp
+@type: function
+
+Function `VECTORP`
+
+
+## {syntax}
+
+`vectorp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{simple-vector:link}のときは*true*を、それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(vectorp "aaaaaa") =>  true
+(vectorp (make-array 6 :fill-pointer t)) =>  true
+(vectorp (make-array '(2 3 4))) =>  false
+(vectorp #*11) =>  true
+(vectorp #b11) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(vectorp object) == (typep object 'vector)
+```
+
+@end
+

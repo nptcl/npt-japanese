@@ -1,0 +1,45 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class HASH-TABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table
+@name: hash-table
+@type: system-class
+
+System Class `HASH-TABLE`
+
+
+## {class-precedence-list}
+
+{hash-table:link},
+{t!system-class:link}
+
+
+## {description}
+
+ハッシュテーブルは、何らかのオブジェクト（キーとして）を
+関連付けられたオブジェクト（値として）を
+対応付ける方法を提供します。
+
+
+## {see-also}
+
+{18.1:ab},
+{22.1.3.13:ab}
+
+
+## {notes}
+
+このオブジェクトの意図は、
+The Art of Computer Programming, Volume 3 (pp506-549)という書籍の、
+6.4章「Hashing」に記載されている
+ハッシュの仕組みを用いてこのマッピングを実装することです。
+このような意図はありますが、{confirming-implementation}は
+マッピングを実装するために特定の技術を使用することは要求しません。
+
+@end
+

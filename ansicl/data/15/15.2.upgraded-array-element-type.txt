@@ -1,0 +1,88 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UPGRADED-ARRAY-ELEMENT-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.upgraded-array-element-type
+@name: upgraded-array-element-type
+@type: function
+
+Function `UPGRADED-ARRAY-ELEMENT-TYPE`
+
+
+## {syntax}
+
+`upgraded-array-element-type` *typespec* `&optional` *environment*
+ => *upgraded-typespec*
+
+
+## {arguments-and-values}
+
+*typespec* - 型指定子  
+*environment* - 環境オブジェクト。
+デフォルトは{nil!variable:link}であり、
+{null-lexical-environment}と現在のグローバル環境を示します。  
+*upgraded-typespec* - 型指定子
+
+
+## {description}
+
+*typespec*で指定された型の要素を格納するような能力のある
+もっとも特定化された配列の表現の要素の型を返却します。
+
+*typespec*は*upgraded-typespec*のサブタイプであり、
+可能であれば同等の型です。
+
+もし*typespec*が{bit!type:link}のとき、返却値は`bit`と同等の型です。
+もし*typespec*が{base-char:link}のとき、返却値は`base-char`と同等の型です。
+もし*typespec*が{character!system-class:link}のとき、
+返却値は`character`と同等の型です。
+
+{upgraded-array-element-type:link}の目的は、
+実装がそのアップグレードをどのようなものにするか明らかにすることです。
+
+*environment*は*typespec*に含まれる
+どんな派生された型指定子も展開するときに使用されます。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{array-element-type:link},
+{make-array:link}
+
+
+## {notes}
+
+ストレージの確保の結果と、オプションの*environment*引数の正しい扱いを除けば、
+{upgraded-array-element-type:link}は次のように定義できます。
+
+```lisp
+(defun upgraded-array-element-type (type &optional environment)
+  (array-element-type (make-array 0 :element-type type)))
+```
+
+@end
+

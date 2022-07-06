@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  15. 配列
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function VECTOR-POP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 15.2.vector-pop
+@name: vector-pop
+@type: function
+
+Function `VECTOR-POP`
+
+
+## {syntax}
+
+`vector-pop` *vector* => *element*
+
+
+## {arguments-and-values}
+
+*vector* - {fill-pointer}を持つ`vector`  
+*element* - オブジェクト
+
+
+## {description}
+
+*vector*から{fill-pointer}をひとつ減らし、
+新しい{fill-pointer}によって指定された`vector`の要素を取得します。
+
+
+## {examples}
+
+```lisp
+(vector-push (setq fable (list 'fable))
+             (setq fa (make-array 8
+                                  :fill-pointer 2
+                                  :initial-element 'sisyphus))) =>  2 
+(fill-pointer fa) =>  3 
+(eq (vector-pop fa) fable) =>  true
+(vector-pop fa) =>  SISYPHUS 
+(fill-pointer fa) =>  1 
+```
+
+
+## {side-effects}
+
+{fill-pointer}はひとつ減ります。
+
+
+## {affected-by}
+
+{fill-pointer}の値。
+
+
+## {exceptional-situations}
+
+*vector*が{fill-pointer}を持っていないときは、
+型{type-error:link}が発生します。
+
+もし{fill-pointer}がゼロのとき、
+{vector-pop:link}は型{error!condition:link}のエラーが発生します。
+
+
+## {see-also}
+
+{vector-push:link},
+{vector-push-extend:link},
+{fill-pointer:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

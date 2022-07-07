@@ -45,7 +45,7 @@ Generic Function `SLOT-BOUNDP-USING-CLASS`
 `slot-boundp-using-class` (*class* [`standard-class`](4.4.standard-class.html))
  *object* (*slot* `standard-effective-slot-definition`)  
 `slot-boundp-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)  
+ *object* (*slot* `standard-effective-slot-definition`)  
 `slot-boundp-using-class` (*class* [`built-in-class`](4.4.built-in-class.html)) *object* *slot*
 
 
@@ -55,7 +55,7 @@ Generic Function `SLOT-BOUNDP-USING-CLASS`
  *object* (*slot* `standard-effective-slot-definition`)
  => *generalized-boolean*  
 `slot-boundp-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)
+ *object* (*slot* `standard-effective-slot-definition`)
  => *generalized-boolean*
 
 

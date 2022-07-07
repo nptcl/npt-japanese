@@ -49,7 +49,7 @@ Generic Function `SLOT-MAKUNBOUND-USING-CLASS`
 `slot-makunbound-using-class` (*class* {standard-class:link})
  *object* (*slot* {standard-effective-slot-definition:link})  
 `slot-makunbound-using-class` (*class* {funcallable-standard-class:link})
- *object* (*slot* *standard-effective-slot-definition*)  
+ *object* (*slot* {standard-effective-slot-definition:link})  
 `slot-makunbound-using-class` (*class* {built-in-class:link}) *object* *slot*
 
 
@@ -59,7 +59,7 @@ Generic Function `SLOT-MAKUNBOUND-USING-CLASS`
  *object* (*slot* {standard-effective-slot-definition:link})
  => *object*  
 `slot-makunbound-using-class` (*class* {funcallable-standard-class:link})
- *object* (*slot* *standard-effective-slot-definition*)
+ *object* (*slot* {standard-effective-slot-definition:link})
  => *object*
 
 

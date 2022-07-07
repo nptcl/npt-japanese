@@ -47,7 +47,7 @@ Generic Function `SLOT-VALUE-USING-CLASS`
 `slot-value-using-class` (*class* [`standard-class`](4.4.standard-class.html))
  *object* (*slot* `standard-effective-slot-definition`)  
 `slot-value-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)  
+ *object* (*slot* `standard-effective-slot-definition`)  
 `slot-value-using-class` (*class* [`built-in-class`](4.4.built-in-class.html)) *object* *slot*
 
 
@@ -57,7 +57,7 @@ Generic Function `SLOT-VALUE-USING-CLASS`
  *object* (*slot* `standard-effective-slot-definition`)
  => *value*  
 `slot-value-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)
+ *object* (*slot* `standard-effective-slot-definition`)
  => *value*
 
 

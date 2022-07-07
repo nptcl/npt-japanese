@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PATHNAMEP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.pathnamep
+@name: pathnamep
+@type: function
+
+Function `PATHNAMEP`
+
+
+## {syntax}
+
+`pathnamep` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{pathname!system-class:link}のときは*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(setq q "test")  =>  "test"
+(pathnamep q) =>  false
+(setq q (pathname "test"))
+=>  #S(PATHNAME :HOST NIL :DEVICE NIL :DIRECTORY NIL :NAME "test" :TYPE NIL
+      :VERSION NIL)
+(pathnamep q) =>  true 
+(setq q (logical-pathname "SYS:SITE;FOO.SYSTEM"))
+=>  #P"SYS:SITE;FOO.SYSTEM"
+(pathnamep q) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(pathnamep object) == (typep object 'pathname)
+```
+
+@end
+

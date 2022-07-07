@@ -1,0 +1,37 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class LOGICAL-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.logical-pathname!system-class
+@name: logical-pathname!system-class
+@type: system-class
+
+System Class `LOGICAL-PATHNAME`
+
+
+## {class-precedence-list}
+
+{logical-pathname!system-class:link},
+{pathname!system-class:link},
+{t!system-class:link}
+
+
+## {description}
+
+パス名は、使用する名前文字列の構文は{implementation-dependent}であり、
+それが保有する要素の値も{implementation-dependent}です。
+論理パス名はファイル名を直接参照しません。
+
+
+## {see-also}
+
+{20.1:ab},
+{2.4.8.14:ab},
+{22.1.3.11:ab}
+
+@end
+

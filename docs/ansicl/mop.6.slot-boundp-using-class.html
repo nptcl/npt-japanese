@@ -170,11 +170,11 @@
 <p>もし引数<em>class</em>が引数<em>object</em>のクラスではなかったときか、 あるいはもし引数<em>slot</em>が引数<em>class</em>に関連付けられている <code>effective-slot</code>の集合に存在しなかった場合は、 結果は未定義です。</p>
 <h2 id="メソッド">メソッド</h2>
 <p><code>slot-boundp-using-class</code> (<em>class</em> <a href="4.4.standard-class.html"><code>standard-class</code></a>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>)<br />
-<code>slot-boundp-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <em>standard-effective-slot-definition</em>)<br />
+<code>slot-boundp-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>)<br />
 <code>slot-boundp-using-class</code> (<em>class</em> <a href="4.4.built-in-class.html"><code>built-in-class</code></a>) <em>object</em> <em>slot</em></p>
 <h2 id="method-slot-boundp-using-class">Method <code>slot-boundp-using-class</code></h2>
 <p><code>slot-boundp-using-class</code> (<em>class</em> <a href="4.4.standard-class.html"><code>standard-class</code></a>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>) =&gt; <em>generalized-boolean</em><br />
-<code>slot-boundp-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <em>standard-effective-slot-definition</em>) =&gt; <em>generalized-boolean</em></p>
+<code>slot-boundp-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>) =&gt; <em>generalized-boolean</em></p>
 <h3 id="定義-1">定義</h3>
 <p>このメソッドは、<code>:instance</code>と<code>:class</code>で確保されたスロットに対しての 完全な振る舞いを行うジェネリック関数の実装です。 もしスロットが<code>:instance</code>か<code>:class</code>ではない 他の確保の値を持っていたときはエラーが通知されます。</p>
 <p>このメソッドの上書きは許されていますが、 他のスロットへのアクセスのプロトコルに対しての 標準で用意されている実装も上書きする必要があるかもしれません。</p>

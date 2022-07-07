@@ -1,0 +1,17 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable DEFAULT-PATHNAME-DEFAULTS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.default-pathname-defaults
+@name: *default-pathname-defaults*
+@type: variable
+
+Variable `DEFAULT-PATHNAME-DEFAULTS`
+
+
+@end
+

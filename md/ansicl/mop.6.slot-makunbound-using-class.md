@@ -46,7 +46,7 @@ Generic Function `SLOT-MAKUNBOUND-USING-CLASS`
 `slot-makunbound-using-class` (*class* [`standard-class`](4.4.standard-class.html))
  *object* (*slot* `standard-effective-slot-definition`)  
 `slot-makunbound-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)  
+ *object* (*slot* `standard-effective-slot-definition`)  
 `slot-makunbound-using-class` (*class* [`built-in-class`](4.4.built-in-class.html)) *object* *slot*
 
 
@@ -56,7 +56,7 @@ Generic Function `SLOT-MAKUNBOUND-USING-CLASS`
  *object* (*slot* `standard-effective-slot-definition`)
  => *object*  
 `slot-makunbound-using-class` (*class* `funcallable-standard-class`)
- *object* (*slot* *standard-effective-slot-definition*)
+ *object* (*slot* `standard-effective-slot-definition`)
  => *object*
 
 

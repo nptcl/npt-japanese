@@ -55,6 +55,7 @@
 (text 2.4.8.4 "シャープサイン アスタリスク" "Sharpsign Asterisk")
 (text 2.4.8.12 "シャープサイン A" "Sharpsign A")
 (text 2.4.8.13 "シャープサイン S" "Sharpsign S")
+(text 2.4.8.14 "シャープサイン P" "Sharpsign P")
 
 ;; Chapter 3
 (text 3.1 "評価" "Evaluation")
@@ -764,6 +765,17 @@
 (dictionary 18.2.sxhash)
 
 ;; Chapter 19
+(text 19.1 "ファイル名の概要" "Overview of Filenames")
+(text 19.1.1 "ファイル名としての名前文字列" "Namestrings as Filenames")
+(text 19.1.2 "ファイル名としてのパス名" "Pathnames as Filenames")
+(text 19.1.3 "名前文字列の構文解析とパス名" "Parsing Namestrings Into Pathnames")
+(index 19.2 "パス名" "Pathnames")
+(text 19.2.1 "パス名の説明" "Pathname Components")
+(index 19.2.2 "パス名の要素の値の解釈" "Interpreting Pathname Component Values")
+(index 19.2.2.1 "要素の値の文字列" "Strings in Component Values")
+(text 19.2.2.1.2 "パス名の要素の大文字小文字" "Case in Pathname Components")
+(index 19.2.2.2 "特別なパス名の要素の値" "Special Pathname Component Values")
+(text 19.2.2.2.3 "`:UNSPECIFIC`という要素の値" ":UNSPECIFIC as a Component Value")
 (index 19.4 "ファイル名の辞書" "Filenames Dictionary")
 (dictionary 19.4.pathname!system-class)
 (dictionary 19.4.logical-pathname!system-class)
@@ -784,6 +796,7 @@
 (dictionary 19.4.merge-pathnames)
 
 ;; Chapter 20
+(text 20.1 "ファイルシステムの説明" "File System Concepts")
 (index 20.2 "ファイル操作" "Files Dictionary")
 (dictionary 20.2.dictionary)
 (dictionary 20.2.probe-file)
@@ -865,6 +878,7 @@
 (text 22.1.3.6 "Bit-Vectorの印字" "Printing Bit Vectors")
 (text 22.1.3.7 "他の`vector`の印字" "Printing Other Vectors")
 (text 22.1.3.8 "他の配列の印字" "Printing Other Arrays")
+(text 22.1.3.11 "`pathname`の印字")
 (text 22.1.3.12 "構造体の印字" "Printing Structures")
 (text 22.1.3.13 "他のオブジェクトの印字" "Printing Other Objects")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")

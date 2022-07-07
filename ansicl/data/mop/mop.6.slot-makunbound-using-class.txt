@@ -1,0 +1,88 @@
+;;
+;;  The Art of the Metaobject Protocol
+;;  mop.6. Generic Functions and Methods
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Generic Function SLOT-MAKUNBOUND-USING-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: mop.6.slot-makunbound-using-class
+@name: slot-makunbound-using-class
+@type: generic-function
+
+Generic Function `SLOT-MAKUNBOUND-USING-CLASS`
+
+
+## {syntax}
+
+`slot-makunbound-using-class` *class* *object* *slot* => *object*
+
+
+## {arguments-and-values}
+
+*class* - メタオブジェクトのクラス。これは引数*object*のクラスです。  
+*object* - オブジェクト  
+*slot* - `effective-slot-definition`メタオブジェクト
+
+
+## {description}
+
+このジェネリック関数は、
+{slot-makunbound:link}関数の振る舞いを実装します。
+これは第一引数が*object*のクラスであり、
+第三引数が`effective-slot-definition`メタオブジェクトに関連するものが指定されて
+{slot-makunbound:link}によって呼び出されます。
+
+ジェネリック関数{slot-makunbound-using-class:link}は、
+*object*の*slot*を`unbound`の状態に戻します。
+「スロットを`unbound`状態に戻す」という解釈は、
+クラスのメタオブジェクトクラスに依存します。
+
+もし引数*class*が引数*object*のクラスではなかったときか、
+あるいはもし引数*slot*が引数*class*に関連付けられている
+`effective-slot`の集合に存在しなかった場合は、
+結果は未定義です。
+
+
+## {methods}
+
+`slot-makunbound-using-class` (*class* {standard-class:link})
+ *object* (*slot* {standard-effective-slot-definition:link})  
+`slot-makunbound-using-class` (*class* {funcallable-standard-class:link})
+ *object* (*slot* *standard-effective-slot-definition*)  
+`slot-makunbound-using-class` (*class* {built-in-class:link}) *object* *slot*
+
+
+## Method `slot-makunbound-using-class`
+
+`slot-makunbound-using-class` (*class* {standard-class:link})
+ *object* (*slot* {standard-effective-slot-definition:link})
+ => *object*  
+`slot-makunbound-using-class` (*class* {funcallable-standard-class:link})
+ *object* (*slot* *standard-effective-slot-definition*)
+ => *object*
+
+
+### {description}
+
+このメソッドは、`:instance`と`:class`で確保されたスロットに対しての
+完全な振る舞いを行うジェネリック関数の実装です。
+もしスロットが`:instance`か`:class`ではない
+他の確保の値を持っていたときはエラーが通知されます。
+
+このメソッドの上書きは許されていますが、
+他のスロットへのアクセスのプロトコルに対しての
+標準で用意されている実装も上書きする必要があるかもしれません。
+
+
+## Method `slot-makunbound-using-class`
+
+`slot-makunbound-using-class` (*class* {built-in-class:link}) *object* *slot*
+ => `|`
+
+### {description}
+
+このメソッドはエラーが発生します。
+
+@end
+

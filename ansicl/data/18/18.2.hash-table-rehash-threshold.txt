@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-REHASH-THRESHOLD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-rehash-threshold
+@name: hash-table-rehash-threshold
+@type: function
+
+Function `HASH-TABLE-REHASH-THRESHOLD`
+
+
+## {syntax}
+
+`hash-table-rehash-threshold` *hash-table* => *rehash-threshold*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル  
+*rehash-threshold* - 型`(real 0 1)`の実数。
+
+
+## {description}
+
+*hash-table*の現在の再ハッシュのしきい値を返却します。
+これは{make-hash-table:link}を呼び出すときに、
+*hash-table*の現在の状態に対応するものを保有するハッシュテーブルを
+生成するときに使用するのが適しています。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table :size 100 :rehash-threshold 0.5))
+=>  #<HASH-TABLE EQL 0/100 2562446>
+(hash-table-rehash-threshold table) =>  0.5
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*hash-table*がハッシュテーブルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{make-hash-table:link},
+{hash-table-rehash-size:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

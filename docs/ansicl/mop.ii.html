@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mop.ii. 前書き</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">mop.ii. 前書き</h1>
+</header>
+<p><a href="mop.html">UP</a></p>
+<hr />
+<p>mop.ii. 前書き</p>
+<h2 id="参考文献">参考文献</h2>
+<p>The Art of the Metaobject Protocol<br />
+Chapters 5 and 6<br />
+1991 MIT Press<br />
+Gregor Kiczales, Jim des Rivieres, Daniel G. Bobrow,<br />
+Xerox Palo Alto Research Center<br />
+<a href="http://www.cs.cmu.edu/afs/cs/Web/Groups/AI/lang/lisp/doc/standard/ansi/mop/">http://www.cs.cmu.edu/afs/cs/Web/Groups/AI/lang/lisp/doc/standard/ansi/mop/</a></p>
+<h2 id="前書き">前書き</h2>
+<p>このパートでは、CLOSのためのメタオブジェクトプロトコルの詳しい仕様を提供します。 このプロトコルの研究は、 常に私たち自身のCLOSの実装であるPCLに根ざして行われてきました。 これによってユーザーコミュニティを持つことができ、 そのコミュニティは、このプロトコルが進化するにつれて、 我々にフィードバックを提供してくれました。 その結果、ここで紹介する多くの設計は十分テストされましたし安定しています。 これを書いている時点では、CLOSの実装はPCLだけでなく、 私たちが知っている限り少なくとも他3つの実装が知られています。 プロトコルの他の部分は、PCLや他のものでも何らかの形で 実装されているにもかかわらず、あまりよく練られてはいません。 これらのプロトコルは使いやすさだけでなく、 ユーザの拡張性と実装者の自由度のバランスを 改善するための作業が残されています。</p>
+<p>本仕様書は、CLOSのメタオブジェクトプロトコルを使用する ユーザと実装者のための基礎となることを期待して作成したものです。 この文書は、ある種の最終的な言葉や標準と解釈されるべきではなく、 これまで行われてきたことの文としてのみ解釈されるべきものです。 私たちはこの出版がきっかけとなり、 大なり小なり改良がなされることを期待しています。</p>
+<p>このため、第II部（第5章、第6章）に限り、 原文の一部を含む改訂版やその他の二次的著作物を作成することを許可します。 ただし、原文の出典をきちんと明記し、 その後の改訂や二次的著作物も同じ条件で 明示的に許可することをお願いしています。 この著作物の改良を促進するために、これらの章の電子ソースを一般に公開しました。 これは、<code>arisia.xerox.com</code>の<code>pcl/mop</code>ディレクトリから anonymous FTPでアクセスすることができます。</p>
+<p>PCLのユーザーからの貴重なフィードバックに加え、 ここで紹介するプロトコル設計は、 以下の方々による詳細なコメントと提案の恩恵を受けています。 Kim Barrett, Scott Cyphers, Harley Davis, Patrick Dussud, John Foderaro, Richard P. Gabriel, David Gray, David A. Moon, Andreas Paepcke, Chris Richardson, Walter van~Roggen, Jon L. White, 各氏。 私たちは彼ら一人一人に非常に感謝しています。 残りの誤り、矛盾、設計上の不備は、すべて著者だけの責任です。</p>
+<h2 id="原文">原文</h2>
+<p>In this part of the book, we provide the detailed specification of a metaobject protocol for CLOS. Our work with this protocol has always been rooted in our own implementation of CLOS, PCL. This has made it possible for us to have a user community, which in turn has provided us with feedback on this protocol as it has evolved. As a result, much of the design presented here is well-tested and stable. As this is being written, those parts have been implemented not only in PCL, but in at least three other CLOS implementations we know of. Other parts of the protocol, even though they have been implemented in one form or another in PCL and other implementations, are less well worked out. Work remains to improve not only the ease of use of these protocols, but also the balance they provide between user extensibility and implementor freedom.</p>
+<p>In preparing this specification, it is our hope that it will provide a basis for the users and implementors who wish to work with a metaobject protocol for CLOS. This document should not be construed as any sort of final word or standard, but rather only as documentation of what has been done so far. We look forward to seeing the improvements, both small and large, which we hope this publication will catalyze.</p>
+<p>To this end, for Part II only (chapters 5 and 6), we grant permission to prepare revisions or other derivative works including any amount of the original text. We ask only that you properly acknowledge the source of the original text and explicitly allow subsequent revisions and derivative works under the same terms. To further facilitate improvements in this work, we have made the electronic source for these chapters publicly available; it can be accessed by anonymous FTP from the pcl/mop directory on arisia.xerox.com.</p>
+<p>In addition to the valuable feedback from users of PCL, the protocol design presented here has benefited from detailed comments and suggestions by the following people: Kim Barrett, Scott Cyphers, Harley Davis, Patrick Dussud, John Foderaro, Richard P. Gabriel, David Gray, David A. Moon, Andreas Paepcke, Chris Richardson, Walter van~Roggen, and Jon L. White. We are very grateful to each of them. Any remaining errors, inconsistencies or design deficiencies are the responsibility of the authors alone.</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

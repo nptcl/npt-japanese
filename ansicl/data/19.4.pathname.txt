@@ -1,0 +1,29 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.pathname!system-class
+@name: pathname!system-class
+@type: system-class
+
+System Class `PATHNAME`
+
+
+## {class-precedence-list}
+
+{pathname!system-class:link},
+{t!system-class:link}
+
+
+## {description}
+
+`pathname`は、ファイル名を表現する構造化されたオブジェクトです。
+
+`pathname`は2種類存在し、物理`pathname`と論理`pathname`です。
+
+@end
+

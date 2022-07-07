@@ -226,7 +226,7 @@
 <p><em>character</em> - 文字<br />
 <em>integer</em> - 非負の整数</p>
 <h2 id="定義">定義</h2>
-<p>文字オブジェクトを符号化した非負の整数を返却します。 整数の算出方法は処理系依存です。 <code>sxhash</code>とは対照的に、 結果は特定のLispイメージに依存しないことが保証されません。</p>
+<p>文字オブジェクトを符号化した非負の整数を返却します。 整数の算出方法は処理系依存です。 <a href="18.2.sxhash.html"><code>sxhash</code></a>とは対照的に、 結果は特定のLispイメージに依存しないことが保証されません。</p>
 <p>もし<em>character</em>が処理系依存の属性を持っていないとき、 <a href="13.2.char-int.html"><code>char-int</code></a>と<a href="13.2.char-code.html"><code>char-code</code></a>の結果は同じです。</p>
 <p><code>c1</code>と<code>c2</code>が文字のとき、下記が成り立ちます。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">char=</span> c1 c2) ==  (<span class="op">=</span> (<span class="kw">char-int</span> c1) (<span class="kw">char-int</span> c2))</span></code></pre></div>

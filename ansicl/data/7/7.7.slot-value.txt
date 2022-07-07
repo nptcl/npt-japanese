@@ -115,7 +115,7 @@ Function `SLOT-VALUE`
 
 実装は必須ではありませんが、
 実装者はMetaobject Protocolで説明されている
-関数{slot-value-using-class}を使用して
+関数{slot-value-using-class:link}を使用して
 関数{slot-value:link}を実装することが強く推奨されます。
 
 実装者は{slot-value:link}をコンパイル時にインラインに最適化するかもしれません。

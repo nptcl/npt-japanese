@@ -1,0 +1,119 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SXHASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.sxhash
+@name: sxhash
+@type: function
+
+Function `SXHASH`
+
+
+## {syntax}
+
+`sxhash` *object* => *hash-code*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*hash-code* - 非負の整数
+
+
+## {description}
+
+{sxhash:link}は、*object*のハッシュコードを返却します。
+
+ハッシュコードを計算する方法は{implementation-dependent}ですが、
+次のような明確な制約に従う必要があります。
+
+1. `(equal x y)`は`(= (sxhash x) (sxhash y))`を意味します。
+
+2. 2つのオブジェクト`x`と`y`が、両方とも`bit-vector`, 文字列, コンス,
+ 数, `pathname`, 文字列, シンボルのどれかであり、
+それらが似ているとき、
+さらに`x`と`y`が同じ実装の違うLispイメージ上に存在するときであっても、
+`(sxhash x)`と`(sxhash y)`は数学的に同じ値になります。
+{3.2.4:ab}をご確認ください。
+
+3. オブジェクトの*hash-code*は、
+そのオブジェクトが等価のテスト{equal:link}で確認できるような
+目に見える変更でもされない限り、
+ひとつのセッション内で常に同じ値になります。
+
+4. *hash-code*はハッシュに使用されます。
+これは{confirming-implementation}に検証可能な制約はしませんが、
+実装は非負の`fixnum`の範囲内で
+うまく分散された*hash-code*を生成するために
+誠実に努力すべきであるという意図があります。
+
+5. *hash-code*の計算は、*object*が循環構造を含んでいるときでも
+終了しなければなりません。
+
+
+## {examples}
+
+```lisp
+(= (sxhash (list 'list "ab")) (sxhash (list 'list "ab"))) =>  true
+(= (sxhash "a") (sxhash (make-string 1 :initial-element #\a))) =>  true
+(let ((r (make-random-state)))
+  (= (sxhash r) (sxhash (make-random-state r))))
+=>  implementation-dependent
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+実装。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+多くのハッシュについての一般的なの要求は、
+{make-hash-table:link}とハッシュテーブルに関連する関数によって満たされます。
+{sxhash:link}は、あらかじめ定義された抽象化では
+不十分な場合に使うことを意図しています。
+{sxhash:link}の主な目的は、
+ハッシュテーブルで提供されるよりも複雑なハッシュの例を、
+ユーザが簡単に実装できるようにすることです。
+
+{sxhash:link}が返すハッシュコードは、
+Common Lisp内の他の関数で使われているハッシュの手順とは
+必ずしも関係する必要がありません。
+
+{equal:link}が{eq:link}として比較する型のオブジェクトのとき、
+3番目の項目は*hash-code*がオブジェクトの
+同一性の不変の性質に基づくことを要求しています。
+もうひとつの正当な実装手法は、
+類似しているものの{eq:link}ではないオブジェクトが
+同じハッシュコードを持たなければいけないという要求がないので、
+{sxhash:link}はこれらのオブジェクトに対して
+ランダムなハッシュコードを割り当てる
+（そしてキャッシュする）ようにすることです。
+
+シンボルの類似性は、シンボル名とそのシンボルがアクセス可能な
+パッケージの両方で定義されますが、
+あるシンボルのパッケージの状態は変更されてもイコールで見えないため、
+項目3ではパッケージ情報を使ってハッシュコードを計算することを禁止しています。
+
+@end
+

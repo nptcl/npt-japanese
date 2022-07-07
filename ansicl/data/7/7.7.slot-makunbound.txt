@@ -67,7 +67,7 @@ Function `SLOT-MAKUNBOUND`
 
 実装は必須ではありませんが、
 実装者はMetaobject Protocolで説明されている
-関数{slot-makunbound-using-class}を使用して
+関数{slot-makunbound-using-class:link}を使用して
 関数{slot-makunbound:link}を実装することが強く推奨されます。
 
 @end

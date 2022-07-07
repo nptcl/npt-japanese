@@ -51,5 +51,6 @@
 (push (cons 15 'finish) *working*)
 (push (cons 16 'finish) *working*)
 (push (cons 17 'finish) *working*)
-(push (cons 18 'work) *working*)
+(push (cons 18 'finish) *working*)
+(push (cons 19 'work) *working*)
 

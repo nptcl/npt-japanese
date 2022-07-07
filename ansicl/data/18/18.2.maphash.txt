@@ -1,0 +1,96 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAPHASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.maphash
+@name: maphash
+@type: function
+
+Function `MAPHASH`
+
+
+## {syntax}
+
+`maphash` *function* *hash-table* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*function* - 2つの引数にキーと値を受け取る関数の指定子  
+*hash-table* - ハッシュテーブル
+
+
+## {description}
+
+*hash-table*内のすべてのエントリーに対して繰り返しを行います。
+各エントリ―は*function*を2つの引数に
+エントリーのキーと値を指定して呼び出します。
+
+もし{maphash:link}処理中に*hash-table*からエントリーが
+追加されるか削除されるかを実行しようとしたときの結果は未定義ですが、
+次に示す2つの例外があります。
+*function*は現在処理中のエントリーの値の部分は
+{setf:link}の{gethash:link}を使用することができます。
+または、そのエントリーを削除するために
+{remhash:link}を使用することができます。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32304110>
+(dotimes (i 10) (setf (gethash i table) i)) =>  NIL
+(let ((sum-of-squares 0))
+   (maphash #'(lambda (key val) 
+                (let ((square (* val val)))
+                  (incf sum-of-squares square)
+                  (setf (gethash key table) square)))
+            table)
+   sum-of-squares) =>  285
+(hash-table-count table) =>  10
+(maphash #'(lambda (key val)
+              (when (oddp val) (remhash key table)))
+          table) =>  NIL
+(hash-table-count table) =>  5
+(maphash #'(lambda (k v) (print (list k v))) table)
+(0 0) 
+(8 64) 
+(2 4) 
+(6 36) 
+(4 16) 
+=>  NIL
+```
+
+
+## {side-effects}
+
+*function*によって実行されるかもしれないもの以外にはありません。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{loop:link},
+{with-hash-table-iterator:link},
+{3.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-p
+@name: hash-table-p
+@type: function
+
+Function `HASH-TABLE-P`
+
+
+## {syntax}
+
+`hash-table-p` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{hash-table:link}であったら*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32511220>
+(hash-table-p table) =>  true
+(hash-table-p 37) =>  false
+(hash-table-p '((a . 1) (b . 2))) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(hash-table-p object) == (typep object 'hash-table)
+```
+
+@end
+

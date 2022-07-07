@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-REHASH-SIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-rehash-size
+@name: hash-table-rehash-size
+@type: function
+
+Function `HASH-TABLE-REHASH-SIZE`
+
+
+## {syntax}
+
+`hash-table-rehash-size` *hash-table* => *rehash-size*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル  
+*rehash-size* - 型`(or (integer 1 *) (float (1.0) *))`の実数。
+
+
+## {description}
+
+*hash-table*の現在の再ハッシュサイズを返却します。
+これは{make-hash-table:link}を呼び出すときに、
+*hash-table*の現在の状態に対応するものを保有するハッシュテーブルを
+生成するときに使用するのが適しています。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table :size 100 :rehash-size 1.4))
+=>  #<HASH-TABLE EQL 0/100 2556371>
+(hash-table-rehash-size table) =>  1.4
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*hash-table*がハッシュテーブルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{make-hash-table:link},
+{hash-table-rehash-threshold:link}
+
+
+## {notes}
+
+もしハッシュテーブルが整数のresize-hashで生成されたとき、
+その返却値は整数となり、
+*hash-table*が再ハッシュされるとき、
+成長レートが加算的に行われることを示しています。
+他に返却値が浮動小数のときは、
+*hash-table*が再ハッシュされるとき、
+成長レートが乗算で行われることを示しています。
+しかしこれらの値は実装に対してただ助言するだけのものであり、
+実際に*hash-table*の再ハッシュによって成長する量は
+{implementation-dependent}です。
+
+@end
+

@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-COUNT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-count
+@name: hash-table-count
+@type: function
+
+Function `HASH-TABLE-COUNT`
+
+
+## {syntax}
+
+`hash-table-count` *hash-table* => *count*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル  
+*count* - 非負の整数
+
+
+## {description}
+
+*hash-table*のエントリーの数を返却します。
+もし*hash-table*がちょうど作成されたときか、
+新しい状態にクリアされた（{clrhash:link}をご確認ください）ときは、
+エントリー数は`0`です。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32115135>
+(hash-table-count table) =>  0
+(setf (gethash 57 table) "fifty-seven") =>  "fifty-seven"
+(hash-table-count table) =>  1
+(dotimes (i 100) (setf (gethash i table) i)) =>  NIL
+(hash-table-count table) =>  100
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{clrhash:link},
+{remhash:link},
+{setf:link}の{gethash:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{hash-table-size:link}
+
+
+## {notes}
+
+下記の関係は機能的には正しいですが、
+実際の{hash-table-count:link}はおそらくもっと高速です。
+
+```lisp
+(hash-table-count table) == 
+(loop for value being the hash-values of table count t) == 
+(let ((total 0))
+  (maphash #'(lambda (key value)
+               (declare (ignore key value))
+               (incf total))
+           table)
+  total)
+```
+
+@end
+

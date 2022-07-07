@@ -1,0 +1,104 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor GETHASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.gethash
+@name: gethash
+@type: accessor
+
+Accessor `GETHASH`
+
+
+## {syntax}
+
+`gethash` *key* *hash-table* `&optional` *default* => *value*, *present-p*  
+(`setf` (`gethash` *key* *hash-table* `&optional` *default*) *new-value*)
+
+
+## {arguments-and-values}
+
+*key* - オブジェクト  
+*hash-table* - ハッシュテーブル  
+*default* - オブジェクト。デフォルトは{nil!variable:link}。  
+*value* - オブジェクト  
+*present-p* - {generalized-boolean}
+
+
+## {description}
+
+*value*は、*hash-table*の中にある、
+キーが*key*と*hash-table*の等価テストで
+等しいとされたもののオブジェクトです。
+そのようなエントリーが存在しないときは、
+*value*は*default*になります。
+
+もしエントリーが見つかったときは*present-p*は*true*であり、
+それ以外は*false*です。
+
+{setf:link}の{gethash:link}の使用は、
+与えられたキーに関連付けられた値を修正するときか
+あるいは新しいエントリーを追加するときに使用されます。
+{gethash:link}フォームが{setf:link}の`place`で使用された場合、
+*default*が与えられたときは
+通常の左から右への評価ルールに従って評価されますが、
+その値は無視されます。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32206334>
+(gethash 1 table) =>  NIL, false
+(gethash 1 table 2) =>  2, false
+(setf (gethash 1 table) "one") =>  "one"
+(setf (gethash 2 table "two") "two") =>  "two"
+(gethash 1 table) =>  "one", true
+(gethash 2 table) =>  "two", true
+(gethash nil table) =>  NIL, false
+(setf (gethash nil table) nil) =>  NIL 
+(gethash nil table) =>  NIL, true
+(defvar *counters* (make-hash-table)) =>  *COUNTERS*
+(gethash 'foo *counters*) =>  NIL, false
+(gethash 'foo *counters* 0) =>  0, false
+(defmacro how-many (obj) `(values (gethash ,obj *counters* 0))) =>  HOW-MANY
+(defun count-it (obj) (incf (how-many obj))) =>  COUNT-IT
+(dolist (x '(bar foo foo bar bar baz)) (count-it x))
+(how-many 'foo) =>  2
+(how-many 'bar) =>  3
+(how-many 'quux) =>  0
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{remhash:link}
+
+
+## {notes}
+
+第二返却値である*present-p*は、
+エントリーの不在か、
+*default*の値を持つエントリーの存在かを、
+区別するときに使用できます。
+
+@end
+

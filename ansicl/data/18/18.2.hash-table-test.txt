@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-TEST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-test
+@name: hash-table-test
+@type: function
+
+Function `HASH-TABLE-TEST`
+
+
+## {syntax}
+
+`hash-table-test` *hash-table* => *test*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル  
+*test* - 関数指定子。
+標準では4つのハッシュテーブルのテスト関数が用意されており
+（{make-hash-table:link}をご確認ください）、
+*test*は常にシンボルが返却されます。
+もし実装が追加のテストを許容するときは、
+そのようなテストが関数オブジェクトと関数名のどちらで返却されるかは
+{implementation-dependent}です。
+
+
+## {description}
+
+*hash-table*がキーの比較に使用するテストを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*hash-table*がハッシュテーブルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{make-hash-table:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

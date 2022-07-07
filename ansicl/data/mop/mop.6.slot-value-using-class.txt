@@ -1,0 +1,89 @@
+;;
+;;  The Art of the Metaobject Protocol
+;;  mop.6. Generic Functions and Methods
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Generic Function SLOT-VALUE-USING-CLASS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: mop.6.slot-value-using-class
+@name: slot-value-using-class
+@type: generic-function
+
+Generic Function `SLOT-VALUE-USING-CLASS`
+
+
+## {syntax}
+
+`slot-value-using-class` *class* *object* *slot* => *value*
+
+
+## {arguments-and-values}
+
+*class* - メタオブジェクトのクラス。これは引数*object*のクラスです。  
+*object* - オブジェクト  
+*slot* - `effective-slot-definition`メタオブジェクト  
+*value* - オブジェクト
+
+
+## {description}
+
+このジェネリック関数は、
+{slot-value:link}関数の振る舞いを実装します。
+これは第一引数が*object*のクラスであり、
+第三引数が`effective-slot-definition`メタオブジェクトに関連するものが指定されて
+{slot-value:link}によって呼び出されます。
+
+ジェネリック関数{slot-value-using-class:link}は、
+与えられた*object*の与えられたスロット*slot*に含まれる値を返却します。
+もしスロットが`unbound`のときは、
+{slot-unbound:link}が呼び出されます。
+
+もし引数*class*が引数*object*のクラスではなかったときか、
+あるいはもし引数*slot*が引数*class*に関連付けられている
+`effective-slot`の集合に存在しなかった場合は、
+結果は未定義です。
+
+
+## {methods}
+
+`slot-value-using-class` (*class* {standard-class:link})
+ *object* (*slot* {standard-effective-slot-definition:link})  
+`slot-value-using-class` (*class* {funcallable-standard-class:link})
+ *object* (*slot* *standard-effective-slot-definition*)  
+`slot-value-using-class` (*class* {built-in-class:link}) *object* *slot*
+
+
+## Method `slot-value-using-class`
+
+`slot-value-using-class` (*class* {standard-class:link})
+ *object* (*slot* {standard-effective-slot-definition:link})
+ => *value*  
+`slot-value-using-class` (*class* {funcallable-standard-class:link})
+ *object* (*slot* *standard-effective-slot-definition*)
+ => *value*
+
+
+### {description}
+
+このメソッドは、`:instance`と`:class`で確保されたスロットに対しての
+完全な振る舞いを行うジェネリック関数の実装です。
+もしスロットが`:instance`か`:class`ではない
+他の確保の値を持っていたときはエラーが通知されます。
+
+このメソッドの上書きは許されていますが、
+他のスロットへのアクセスのプロトコルに対しての
+標準で用意されている実装も上書きする必要があるかもしれません。
+
+
+## Method `slot-value-using-class`
+
+`slot-value-using-class` (*class* {built-in-class:link}) *object* *slot*
+ => `|`
+
+### {description}
+
+このメソッドはエラーが発生します。
+
+@end
+

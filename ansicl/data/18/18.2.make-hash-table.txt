@@ -1,0 +1,112 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-HASH-TABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.make-hash-table
+@name: make-hash-table
+@type: function
+
+Function `MAKE-HASH-TABLE`
+
+
+## {syntax}
+
+`make-hash-table` `&key` *test* *size* *rehash-size* *rehash-threshold*
+ => *hash-table*
+
+
+## {arguments-and-values}
+
+*test* - 関数{eq:link}, {eql!function:link}, {equal:link}, {equalp:link}のうちの
+ひとつに対する指定子。
+デフォルトは{eql!function:link}。  
+*size* - 非負の整数。デフォルトは{implementation-dependent}。  
+*rehash-size* - 型`(or (integer 1 *) (float (1.0) *))`の実数。
+デフォルトは{implementation-dependent}。  
+*rehash-threshold* - 型`(real 0 1)`の実数。
+デフォルトは{implementation-dependent}。  
+*hash-table* - ハッシュテーブル
+
+
+## {description}
+
+新しいハッシュテーブルを作成し返却します。
+
+*test*は、キーをどのように比較するかを決定します。
+もし*hash-table*内の何らかのエントリーのキーが
+あるオブジェクトと*test*で同一であるとき、
+そのオブジェクトは*hash-table*内に存在すると言われます。
+
+*size*は*hash-table*の初期スペースをどのようにして確保するかについて、
+実装にヒントを与えます。
+この情報は*rehash-threshold*と一緒に使用され、
+テーブルが拡張される前にどれくらいの数のエントリーが
+挿入可能であるかの近似を制御します。
+実際のサイズは、*size*から次の「良好な」サイズへと切り上げます。
+例えば、ある実装では次の素数に切り上げを行います。
+
+*rehash-size*は、
+*hash-table*がいっぱいになり再ハッシュを必要とするときに、
+サイズを増やす最小量を指定します。
+下記の*rehash-threshold*をご確認ください。
+もし*rehash-size*が整数のときは、
+テーブルの拡張されるレートが加算的に行われることが期待され、
+その整数はエントリーの数に加算されます。
+もし*rehash-size*が浮動小数のときは、
+テーブルの拡張されるレートが乗算で行われることが期待され、
+その浮動小数の値は古いサイズに対する新しいサイズの比率になります。
+*size*同様に、実際の増加分は切り上げられるかもしれません。
+
+*rehash-threshold*は、
+*hash-table*がどの程度まで一杯になったら
+拡張しなければならないかを指定します。
+これはハッシュテーブルの最大占有率を指定します。
+
+*rehash-size*と*rehash-threshold*の値は、
+*hash-table*のサイズをいつどのように拡張するべきかについて、
+実装に何らかの特定な方法を使うような制約をすることはありません。
+そのような決定は{implementation-dependent}であり、
+それらの値はただ実装プログラミングする人へのヒントであり、
+実装はそれらを無視することも許されます。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 46142754>
+(setf (gethash "one" table) 1) =>  1
+(gethash "one" table) =>  NIL, false
+(setq table (make-hash-table :test 'equal)) =>  #<HASH-TABLE EQUAL 0/139 46145547>
+(setf (gethash "one" table) 1) =>  1
+(gethash "one" table) =>  1, T
+(make-hash-table :rehash-size 1.5 :rehash-threshold 0.7) 
+=>  #<HASH-TABLE EQL 0/120 46156620>
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{gethash:link},
+{hash-table:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

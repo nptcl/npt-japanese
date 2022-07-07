@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CLRHASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.clrhash
+@name: clrhash
+@type: function
+
+Function `CLRHASH`
+
+
+## {syntax}
+
+`clrhash` *hash-table* => *hash-table*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル
+
+
+## {description}
+
+*hash-table*から全てのエントリーを削除し、
+その空のハッシュテーブルを返却します。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32004073>
+(dotimes (i 100) (setf (gethash i table) (format nil "~R" i))) =>  NIL
+(hash-table-count table) =>  100
+(gethash 57 table) =>  "fifty-seven", true
+(clrhash table) =>  #<HASH-TABLE EQL 0/120 32004073>
+(hash-table-count table) =>  0
+(gethash 57 table) =>  NIL, false
+```
+
+
+## {side-effects}
+
+*hash-table*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

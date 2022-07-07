@@ -51,11 +51,6 @@
 (replace special-form "特殊フォーム")
 (replace dynamic-extent "動的生存期間")
 
-(replace slot-boundp-using-class "`slot-boundp-using-class`")
-(replace slot-exists-p-using-class "`slot-exists-p-using-class`")
-(replace slot-makunbound-using-class "`slot-makunbound-using-class`")
-(replace slot-value-using-class "`slot-value-using-class`")
-
 (replace proper-list "通常のリスト")
 (replace dotted-list "ドットリスト")
 (replace circular-list "循環リスト")
@@ -137,4 +132,8 @@
 (replace local-precedence-order "ローカルの優先順位")
 (replace vector "`vector`")
 (replace fixnum "`fixnum`")
+
+;;  Metaobject Protocol
+(replace methods "メソッド")
+(replace comments-and-remarks "コメントと備考")
 

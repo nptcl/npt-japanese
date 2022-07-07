@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function SXHASH</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function SXHASH</h1>
+</header>
+<p><a href="18.2.html">UP</a></p>
+<hr />
+<h1 id="function-sxhash">Function <strong>SXHASH</strong></h1>
+<p>Function <code>SXHASH</code></p>
+<h2 id="構文">構文</h2>
+<p><code>sxhash</code> <em>object</em> =&gt; <em>hash-code</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>object</em> - オブジェクト<br />
+<em>hash-code</em> - 非負の整数</p>
+<h2 id="定義">定義</h2>
+<p><a href="18.2.sxhash.html"><code>sxhash</code></a>は、<em>object</em>のハッシュコードを返却します。</p>
+<p>ハッシュコードを計算する方法は実装依存ですが、 次のような明確な制約に従う必要があります。</p>
+<ol type="1">
+<li><p><code>(equal x y)</code>は<code>(= (sxhash x) (sxhash y))</code>を意味します。</p></li>
+<li><p>2つのオブジェクト<code>x</code>と<code>y</code>が、両方とも<code>bit-vector</code>, 文字列, コンス, 数, <code>pathname</code>, 文字列, シンボルのどれかであり、 それらが似ているとき、 さらに<code>x</code>と<code>y</code>が同じ実装の違うLispイメージ上に存在するときであっても、 <code>(sxhash x)</code>と<code>(sxhash y)</code>は数学的に同じ値になります。 3.2.4. ファイルコンパイル時のリテラルオブジェクトをご確認ください。</p></li>
+<li><p>オブジェクトの<em>hash-code</em>は、 そのオブジェクトが等価のテスト<a href="5.3.equal.html"><code>equal</code></a>で確認できるような 目に見える変更でもされない限り、 ひとつのセッション内で常に同じ値になります。</p></li>
+<li><p><em>hash-code</em>はハッシュに使用されます。 これは仕様に適合した実装に検証可能な制約はしませんが、 実装は非負の<code>fixnum</code>の範囲内で うまく分散された<em>hash-code</em>を生成するために 誠実に努力すべきであるという意図があります。</p></li>
+<li><p><em>hash-code</em>の計算は、<em>object</em>が循環構造を含んでいるときでも 終了しなければなりません。</p></li>
+</ol>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">=</span> (<span class="kw">sxhash</span> (<span class="kw">list</span> &#39;list <span class="st">&quot;ab&quot;</span>)) (<span class="kw">sxhash</span> (<span class="kw">list</span> &#39;list <span class="st">&quot;ab&quot;</span>))) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">=</span> (<span class="kw">sxhash</span> <span class="st">&quot;a&quot;</span>) (<span class="kw">sxhash</span> (<span class="kw">make-string</span> <span class="dv">1</span> <span class="bu">:initial-element</span> <span class="ch">#\a</span>))) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((r (<span class="kw">make-random-state</span>)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (<span class="op">=</span> (<span class="kw">sxhash</span> r) (<span class="kw">sxhash</span> (<span class="kw">make-random-state</span> r))))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  implementation-dependent</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>実装。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>多くのハッシュについての一般的なの要求は、 <a href="18.2.make-hash-table.html"><code>make-hash-table</code></a>とハッシュテーブルに関連する関数によって満たされます。 <a href="18.2.sxhash.html"><code>sxhash</code></a>は、あらかじめ定義された抽象化では 不十分な場合に使うことを意図しています。 <a href="18.2.sxhash.html"><code>sxhash</code></a>の主な目的は、 ハッシュテーブルで提供されるよりも複雑なハッシュの例を、 ユーザが簡単に実装できるようにすることです。</p>
+<p><a href="18.2.sxhash.html"><code>sxhash</code></a>が返すハッシュコードは、 Common Lisp内の他の関数で使われているハッシュの手順とは 必ずしも関係する必要がありません。</p>
+<p><a href="5.3.equal.html"><code>equal</code></a>が<a href="5.3.eq.html"><code>eq</code></a>として比較する型のオブジェクトのとき、 3番目の項目は<em>hash-code</em>がオブジェクトの 同一性の不変の性質に基づくことを要求しています。 もうひとつの正当な実装手法は、 類似しているものの<a href="5.3.eq.html"><code>eq</code></a>ではないオブジェクトが 同じハッシュコードを持たなければいけないという要求がないので、 <a href="18.2.sxhash.html"><code>sxhash</code></a>はこれらのオブジェクトに対して ランダムなハッシュコードを割り当てる （そしてキャッシュする）ようにすることです。</p>
+<p>シンボルの類似性は、シンボル名とそのシンボルがアクセス可能な パッケージの両方で定義されますが、 あるシンボルのパッケージの状態は変更されてもイコールで見えないため、 項目3ではパッケージ情報を使ってハッシュコードを計算することを禁止しています。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

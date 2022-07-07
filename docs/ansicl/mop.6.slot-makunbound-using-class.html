@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Generic-Function SLOT-MAKUNBOUND-USING-CLASS</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Generic-Function SLOT-MAKUNBOUND-USING-CLASS</h1>
+</header>
+<p><a href="mop.6.html">UP</a></p>
+<hr />
+<h1 id="generic-function-slot-makunbound-using-class">Generic-Function <strong>SLOT-MAKUNBOUND-USING-CLASS</strong></h1>
+<p>Generic Function <code>SLOT-MAKUNBOUND-USING-CLASS</code></p>
+<h2 id="構文">構文</h2>
+<p><code>slot-makunbound-using-class</code> <em>class</em> <em>object</em> <em>slot</em> =&gt; <em>object</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>class</em> - メタオブジェクトのクラス。これは引数<em>object</em>のクラスです。<br />
+<em>object</em> - オブジェクト<br />
+<em>slot</em> - <code>effective-slot-definition</code>メタオブジェクト</p>
+<h2 id="定義">定義</h2>
+<p>このジェネリック関数は、 <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>関数の振る舞いを実装します。 これは第一引数が<em>object</em>のクラスであり、 第三引数が<code>effective-slot-definition</code>メタオブジェクトに関連するものが指定されて <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>によって呼び出されます。</p>
+<p>ジェネリック関数<a href="mop.6.slot-makunbound-using-class.html"><code>slot-makunbound-using-class</code></a>は、 <em>object</em>の<em>slot</em>を<code>unbound</code>の状態に戻します。 「スロットを<code>unbound</code>状態に戻す」という解釈は、 クラスのメタオブジェクトクラスに依存します。</p>
+<p>もし引数<em>class</em>が引数<em>object</em>のクラスではなかったときか、 あるいはもし引数<em>slot</em>が引数<em>class</em>に関連付けられている <code>effective-slot</code>の集合に存在しなかった場合は、 結果は未定義です。</p>
+<h2 id="メソッド">メソッド</h2>
+<p><code>slot-makunbound-using-class</code> (<em>class</em> <a href="4.4.standard-class.html"><code>standard-class</code></a>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>)<br />
+<code>slot-makunbound-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <em>standard-effective-slot-definition</em>)<br />
+<code>slot-makunbound-using-class</code> (<em>class</em> <a href="4.4.built-in-class.html"><code>built-in-class</code></a>) <em>object</em> <em>slot</em></p>
+<h2 id="method-slot-makunbound-using-class">Method <code>slot-makunbound-using-class</code></h2>
+<p><code>slot-makunbound-using-class</code> (<em>class</em> <a href="4.4.standard-class.html"><code>standard-class</code></a>) <em>object</em> (<em>slot</em> <code>standard-effective-slot-definition</code>) =&gt; <em>object</em><br />
+<code>slot-makunbound-using-class</code> (<em>class</em> <code>funcallable-standard-class</code>) <em>object</em> (<em>slot</em> <em>standard-effective-slot-definition</em>) =&gt; <em>object</em></p>
+<h3 id="定義-1">定義</h3>
+<p>このメソッドは、<code>:instance</code>と<code>:class</code>で確保されたスロットに対しての 完全な振る舞いを行うジェネリック関数の実装です。 もしスロットが<code>:instance</code>か<code>:class</code>ではない 他の確保の値を持っていたときはエラーが通知されます。</p>
+<p>このメソッドの上書きは許されていますが、 他のスロットへのアクセスのプロトコルに対しての 標準で用意されている実装も上書きする必要があるかもしれません。</p>
+<h2 id="method-slot-makunbound-using-class-1">Method <code>slot-makunbound-using-class</code></h2>
+<p><code>slot-makunbound-using-class</code> (<em>class</em> <a href="4.4.built-in-class.html"><code>built-in-class</code></a>) <em>object</em> <em>slot</em> =&gt; <code>|</code></p>
+<h3 id="定義-2">定義</h3>
+<p>このメソッドはエラーが発生します。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

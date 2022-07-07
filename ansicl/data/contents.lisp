@@ -697,7 +697,6 @@
 (dictionary 15.2.vector-push)
 (dictionary 15.2.vectorp)
 (dictionary 15.2.bit!accessor)
-(dictionary 15.2.sbit)  ;; delete
 (dictionary 15.2.bit-and)
 (dictionary 15.2.bit-vector-p)
 (dictionary 15.2.simple-bit-vector-p)
@@ -933,4 +932,15 @@
 ;; Chapger 25
 (index 25.2 "環境の辞書" "Environment Dictionary")
 (dictionary 25.2.documentation)
+
+;; Metaobject Protocol
+(index mop "Metaobject Protocol" "Metaobject Protocol")
+(text mop.ii "前書き" "A METAOBJECT PROTOCOL FOR CLOS")
+(index mop.5 "説明" "Concepts")
+(index mop.6 "ジェネリック関数とメソッド" "Generic Functions and Methods")
+(dictionary mop.6.slot-boundp-using-class)
+(dictionary mop.6.slot-makunbound-using-class)
+(dictionary mop.6.slot-value-using-class)
+(dictionary mop.6.standard-effective-slot-definition)
+(dictionary mop.6.funcallable-standard-class)
 

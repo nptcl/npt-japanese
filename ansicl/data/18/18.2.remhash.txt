@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REMHASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.remhash
+@name: remhash
+@type: function
+
+Function `REMHASH`
+
+
+## {syntax}
+
+`remhash` *key* *hash-table* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*key* - オブジェクト  
+*hash-table* - ハッシュテーブル  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*hash-table*内の*key*に対応するエントリーが存在すれば削除します。
+そのようなエントリーが存在したときは*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32115666>
+(setf (gethash 100 table) "C") =>  "C"
+(gethash 100 table) =>  "C", true
+(remhash 100 table) =>  true
+(gethash 100 table) =>  NIL, false
+(remhash 100 table) =>  false
+```
+
+
+## {side-effects}
+
+*hash-table*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

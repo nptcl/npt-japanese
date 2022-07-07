@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  18. ハッシュテーブル
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function HASH-TABLE-SIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 18.2.hash-table-size
+@name: hash-table-size
+@type: function
+
+Function `HASH-TABLE-SIZE`
+
+
+## {syntax}
+
+`hash-table-size` *hash-table* => *size*
+
+
+## {arguments-and-values}
+
+*hash-table* - ハッシュテーブル  
+*size* - 非負の整数
+
+
+## {description}
+
+*hash-table*の現在のサイズを返却します。
+これは{make-hash-table:link}を呼び出すときに、
+*hash-table*の現在の状態に対応するものを保有するハッシュテーブルを
+生成するときに使用するのが適しています。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*hash-table*がハッシュテーブルではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{hash-table-count:link},
+{make-hash-table:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

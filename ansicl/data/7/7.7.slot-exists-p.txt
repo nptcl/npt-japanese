@@ -55,7 +55,7 @@ Function `SLOT-EXISTS-P`
 
 実装は必須ではありませんが、
 実装者はMetaobject Protocolで説明されている
-関数{slot-exists-p-using-class}を使用して
+関数`slot-exists-p-using-class`を使用して
 関数{slot-exists-p:link}を実装することが強く推奨されます。
 
 @end

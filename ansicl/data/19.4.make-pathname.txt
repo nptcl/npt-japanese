@@ -85,7 +85,7 @@ Function `MAKE-PATHNAME`
 =>  #P"/public/games/chess.db" 
 
 ;; 実装B - この実装はひとつか複数のVMSファイルシステムにアクセスします。
-;;  この実装はhostの情報をローカル干す値ではないときのみ
+;;  この実装はhostの情報がローカルホストではないときのみ
 ;;  名前文字列に出力します。それはホスト名とローカルファイル名を
 ;;  区切るのにダブルコロンが使われます。
 (make-pathname :directory '(:absolute "PUBLIC" "GAMES")

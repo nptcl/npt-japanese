@@ -35,3 +35,79 @@ System Class `LOGICAL-PATHNAME`
 
 @end
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOGICAL-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.logical-pathname!function
+@name: logical-pathname!function
+@type: function
+
+Function `LOGICAL-PATHNAME`
+
+
+## {syntax}
+
+`logical-pathname` *pathspec* => *logical-pathname*
+
+
+## {arguments-and-values}
+
+*pathspec* - 論理パス名か、論理パス名の名前文字か、ストリーム  
+*logical-pathname* - 論理パス名
+
+
+## {description}
+
+{logical-pathname!function:link}は*pathspec*を論理パス名へ変換し、
+新しい論理パス名を返却します。
+もし*pathspec*が論理パス名の名前文字列であるときは、
+それはホストの要素と合わせてコロンが続くものを含まなければなりません。
+もし*pathspec*がストリームのときは、
+それは{pathname!function:link}が論理パス名を返却するような
+ものでなければなりません。
+
+もし*pathspec*がストリームのとき、
+そのストリームは開いているものか閉じているものを指定できます。
+{logical-pathname!function:link}は
+ファイルがクローズされたあとのものについては、
+ファイルが開いているときに実行されたものと同じ論理パス名を返却します。
+もし*pathspec*がストリームであり、
+{make-two-way-stream:link},
+{make-echo-stream:link},
+{make-broadcast-stream:link},
+{make-concatenated-stream:link},
+{make-string-input-stream:link},
+{make-string-output-stream:link}
+によって作成されたもののときはエラーが発生します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*pathspec*が正しく指定されなかったときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{logical-pathname!system-class:link},
+{translate-logical-pathname:link},
+{19.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

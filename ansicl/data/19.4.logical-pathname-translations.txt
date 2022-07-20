@@ -1,0 +1,198 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor LOGICAL-PATHNAME-TRANSLATIONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.logical-pathname-translations
+@name: logical-pathname-translations
+@type: accessor
+
+Accessor `LOGICAL-PATHNAME-TRANSLATIONS`
+
+
+## {syntax}
+
+`logical-pathname-translations` *host* => *translations*  
+(`setf` (`logical-pathname-translations` *host*) *new-translations*)
+
+
+## {arguments-and-values}
+
+*host* - 論理ホスト指定子  
+*translations*, *new-translations* - リスト
+
+
+## {description}
+
+ホストの変換リストを返却します。
+各変換は、少なくとも2つの要素のリストであり、
+それぞれを*from-wildcard*と*to-wildcard*とします。
+追加の要素は処理系定義です。
+*from-wildcard*はホストが*host*の論理パス名です。
+*to-wildcard*はパス名です。
+
+`(setf (logical-pathname-translations host) translations)`は、
+論理パス名のホストの変換リストを設定します。
+もし*host*が以前に論理パス名のホストとして使用されていない文字列のときは、
+新しい論理パス名のホストが定義されます。
+そうではないときは、既存のホスト変換が置き換えられます。
+論理パス名のホストの名前は、{string-equal:link}で比較されます。
+
+変換リストが設定されたとき、
+各*from-wildcard*は、
+ホストが*host*の論理パス名か、
+あるいは論理パス名の名前文字が
+`(parse-namestring string host)`によって構文解析されるときに
+*host*が{parse-namestring:link}によって定義された
+適切なオブジェクトとして表現されたものになることができます。
+もし*to-wildcard*が論理パス名に変換されるとき、
+{translate-logical-pathname:link}は
+これを使用するたびに変換手順が繰り返し実行されます。
+
+*host*は論理パス名のホストの要素か、
+{setf:link}の{logical-pathname-translations:link}によって
+論理ホスト名のホスト名として定義された文字列のどちらかです。
+
+
+## {examples}
+
+```lisp
+;;; 論理パス名のホストの設定の非常にシンプルな例です。
+;;; ファイルシステム周辺の制限による変換は必要なく、
+;;; 変換は全て指定した物理的なディレクトリをルートとした
+;;; 論理ファイルシステムに含まれるツリーになります。
+;;; 右側の名前文字列の構文は実装依存です。
+(setf (logical-pathname-translations "foo")
+      '(("**;*.*.*"              "MY-LISPM:>library>foo>**>")))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "foo:bar;baz;mum.quux.3")
+=>  #P"MY-LISPM:>library>foo>bar>baz>mum.quux.3"
+
+;;; もっと複雑な例であり、ファイルが2つのファイルサーバと
+;;; いくつかの違ったディレクトリに解かれています。これはUnixでは
+;;; サポートされていないディレクトリの:WILD-INFERIORSがあり、
+;;; 各ディレクトリの階層は個別に変換される必要があります。
+;;; ファイル名とタイプは、.MAILから.MBXへのもの以外は
+;;; 変換の必要がありません。
+;;; 右側の名前文字列の構文は実装依存です。
+(setf (logical-pathname-translations "prog")
+      '(("RELEASED;*.*.*"        "MY-UNIX:/sys/bin/my-prog/")
+        ("RELEASED;*;*.*.*"      "MY-UNIX:/sys/bin/my-prog/*/")
+        ("EXPERIMENTAL;*.*.*"    "MY-UNIX:/usr/Joe/development/prog/")
+        ("EXPERIMENTAL;DOCUMENTATION;*.*.*"
+                                 "MY-VAX:SYS$DISK:[JOE.DOC]")
+        ("EXPERIMENTAL;*;*.*.*"  "MY-UNIX:/usr/Joe/development/prog/*/")
+        ("MAIL;**;*.MAIL"        "MY-VAX:SYS$DISK:[JOE.MAIL.PROG...]*.MBX")))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "prog:mail;save;ideas.mail.3")
+=>  #P"MY-VAX:SYS$DISK:[JOE.MAIL.PROG.SAVE]IDEAS.MBX.3"
+
+;;; 3つのファイルmain.lisp, auxiliary.lisp, documentation.lispで使われた
+;;; プログラムの変換例です。これらの変換はソフトウェアの提供者の例として
+;;; 提示されるかもしれません。
+
+;;; Unixで使用する長いファイル名
+(setf (logical-pathname-translations "prog")
+      '(("CODE;*.*.*"             "/lib/prog/")))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "prog:code;documentation.lisp")
+=>  #P"/lib/prog/documentation.lisp"
+
+;;; Unixで使用する14文字のファイル名と、タイプとして.lispを使用
+(setf (logical-pathname-translations "prog")
+      '(("CODE;DOCUMENTATION.*.*" "/lib/prog/docum.*")
+        ("CODE;*.*.*"             "/lib/prog/")))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "prog:code;documentation.lisp")
+=>  #P"/lib/prog/docum.lisp"
+
+;;; Unixで使用する14文字のファイル名と、タイプとして.lを使用。
+;;; 2番目の変換はコンパイルされたファイルタイプ.bへ短くする。
+(setf (logical-pathname-translations "prog")
+      `(("**;*.LISP.*"            ,(logical-pathname "PROG:**;*.L.*"))
+        (,(compile-file-pathname (logical-pathname "PROG:**;*.LISP.*"))
+                                  ,(logical-pathname "PROG:**;*.B.*"))
+        ("CODE;DOCUMENTATION.*.*" "/lib/prog/documentatio.*")
+        ("CODE;*.*.*"             "/lib/prog/")))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "prog:code;documentation.lisp")
+=>  #P"/lib/prog/documentatio.l"
+
+;;; Crayで使用する6文字の名前と、ディレクトリ・タイプ・バージョンなし。
+(setf (logical-pathname-translations "prog")
+      (let ((l '(("MAIN" "PGMN")
+                 ("AUXILIARY" "PGAUX")
+                 ("DOCUMENTATION" "PGDOC")))
+            (logpath (logical-pathname "prog:code;"))
+            (phypath (pathname "XXX")))
+        (append
+          ;; ソースファイルの変換
+          (mapcar #'(lambda (x)
+                      (let ((log (first x))
+                            (phy (second x)))
+                        (list (make-pathname :name log
+                                             :type "LISP"
+                                             :version :wild
+                                             :defaults logpath)
+                              (make-pathname :name phy
+                                             :defaults phypath))))
+                  l)
+          ;; コンパイルされたファイルの変換
+          (mapcar #'(lambda (x)
+                      (let* ((log (first x))
+                             (phy (second x))
+                             (com (compile-file-pathname
+                                    (make-pathname :name log
+                                                   :type "LISP"
+                                                   :version :wild
+                                                   :defaults logpath))))
+                        (setq phy (concatenate 'string phy "B"))
+                        (list com
+                              (make-pathname :name phy
+                                             :defaults phypath))))
+                  l))))
+
+;;; 論理パス名を使用したサンプルです。
+;;; 返却値は実装依存です。
+(translate-logical-pathname "prog:code;documentation.lisp")
+=>  #P"PGDOC"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*host*が正しく与えられなかったら、型{type-error:link}がエラーが発生します。
+
+
+## {see-also}
+
+{logical-pathname!function:link},
+{19.1.2:ab}
+
+
+## {notes}
+
+実装は論理パス名のホストを操作するための
+例えば追加で変換の規則やオプションなどを指定した
+追加の関数を定義できます。
+
+@end
+

@@ -1,0 +1,145 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NAMESTRING
+;;  Function FILE-NAMESTRING
+;;  Function DIRECTORY-NAMESTRING
+;;  Function HOST-NAMESTRING
+;;  Function ENOUGH-NAMESTRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.namestring
+@name: namestring
+@name: file-namestring
+@name: directory-namestring
+@name: host-namestring
+@name: enough-namestring
+@type: function
+
+Function `NAMESTRING`, `FILE-NAMESTRING`, `DIRECTORY-NAMESTRING`,
+`HOST-NAMESTRING`, `ENOUGH-NAMESTRING`
+
+
+## {syntax}
+
+`namestring` *pathname* => *namestring*  
+`file-namestring` *pathname* => *namestring*  
+`directory-namestring` *pathname* => *namestring*  
+`host-namestring` *pathname* => *namestring*  
+`enough-namestring` *pathname* `&optional` *defaults* => *namestring*
+
+
+## {arguments-and-values}
+
+*pathname* - パス名指定子  
+*defaults* - パス名指定子。
+デフォルトは{*default-pathname-defaults*:link}の値です。  
+*namestring* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+これらの関数は*pathname*を名前文字列に変換します。
+*pathname*によって表現される名前は、
+{implementation-dependent}の基準のフォームに従った
+名前文字列として返却されます。
+
+{namestring:link}は、*pathname*の完全なフォームを返却します。
+
+{file-namestring:link}は、
+*pathname*の名前とタイプとバージョンの要素だけを返却します。
+
+{directory-namestring:link}は、
+*pathname*のディレクトリの名前の部分を返却します。
+
+{host-namestring:link}は、ホスト名を返却します。
+
+{enough-namestring:link}は、
+*pathname*が*defaults*から相対的に考慮されたものによって、
+同一と見なせるのに十分なファイル名である
+省略された名前文字列を返却します。
+これは、全ての場合において次のような関係を要求します。
+
+```lisp
+(merge-pathnames (enough-namestring pathname defaults) defaults)
+==  (merge-pathnames (parse-namestring pathname nil defaults) defaults)
+```
+
+{enough-namestring:link}の結果は、
+このような基準を満たした最も短い適切な文字列です。
+
+この3つの短い名前文字列をある順にて結合することによって
+有効な名前文字列を生成することは必ずしも可能ではありません。
+
+
+## {examples}
+
+```lisp
+(namestring "getty")            
+=>  "getty"
+(setq q (make-pathname :host "kathy" 
+                        :directory 
+                          (pathname-directory *default-pathname-defaults*)
+                        :name "getty")) 
+=>  #S(PATHNAME :HOST "kathy" :DEVICE NIL :DIRECTORY directory-name 
+      :NAME "getty" :TYPE NIL :VERSION NIL)
+(file-namestring q) =>  "getty"
+(directory-namestring q) =>  directory-name
+(host-namestring q) =>  "kathy" 
+;;; Unix構文の使用とこの例での特定のUnixバージョンによる
+;;; ワイルドカード表記の使用によって作成されたもの
+(namestring
+  (translate-pathname "/usr/dmr/hacks/frob.l"
+                      "/usr/d*/hacks/*.l"
+                      "/usr/d*/backup/hacks/backup-*.*"))
+>  "/usr/dmr/backup/hacks/backup-frob.l"
+(namestring
+  (translate-pathname "/usr/dmr/hacks/frob.l"
+                      "/usr/d*/hacks/fr*.l"
+                      "/usr/d*/backup/hacks/backup-*.*"))
+=>  "/usr/dmr/backup/hacks/backup-ob.l"
+
+;;; これは上記の例に似ていますが2つの違ったホストを使用しています。
+;;; UがUnixであり、VがVMSです。ファイルタイプの変換と
+;;; アルファベットの大文字小文字の表記に注意してください。
+(namestring
+  (translate-pathname "U:/usr/dmr/hacks/frob.l"
+                      "U:/usr/d*/hacks/*.l"
+                      "V:SYS$DISK:[D*.BACKUP.HACKS]BACKUP-*.*"))
+=>  "V:SYS$DISK:[DMR.BACKUP.HACKS]BACKUP-FROB.LSP"
+(namestring
+  (translate-pathname "U:/usr/dmr/hacks/frob.l"
+                      "U:/usr/d*/hacks/fr*.l"
+                      "V:SYS$DISK:[D*.BACKUP.HACKS]BACKUP-*.*"))
+=>  "V:SYS$DISK:[DMR.BACKUP.HACKS]BACKUP-OB.LSP"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{truename:link},
+{merge-pathnames:link},
+{pathname!function:link},
+{logical-pathname!function:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

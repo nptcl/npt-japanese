@@ -776,6 +776,7 @@
 (text 19.2.2.1.2 "パス名の要素の大文字小文字" "Case in Pathname Components")
 (index 19.2.2.2 "特別なパス名の要素の値" "Special Pathname Component Values")
 (text 19.2.2.2.3 "`:UNSPECIFIC`という要素の値" ":UNSPECIFIC as a Component Value")
+(index 19.3 "論理パス名" "Logical Pathnames")
 (index 19.4 "ファイル名の辞書" "Filenames Dictionary")
 (dictionary 19.4.pathname!system-class)
 (dictionary 19.4.logical-pathname!system-class)

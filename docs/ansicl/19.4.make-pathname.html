@@ -248,7 +248,7 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #P<span class="st">&quot;/public/games/chess.db&quot;</span> </span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">;; 実装B - この実装はひとつか複数のVMSファイルシステムにアクセスします。</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">;;  この実装はhostの情報をローカル干す値ではないときのみ</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">;;  この実装はhostの情報がローカルホストではないときのみ</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">;;  名前文字列に出力します。それはホスト名とローカルファイル名を</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">;;  区切るのにダブルコロンが使われます。</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-pathname</span> <span class="bu">:directory</span> &#39;(:absolute <span class="st">&quot;PUBLIC&quot;</span> <span class="st">&quot;GAMES&quot;</span>)</span>
@@ -279,7 +279,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>merge-pathnames</code>, <a href="19.4.pathname-function.html"><code>pathname</code></a>, <code>logical-pathname</code>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
+<p><code>merge-pathnames</code>, <a href="19.4.pathname-function.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
 <h2 id="備考">備考</h2>
 <p>移植可能なプログラムは各要素に<code>:unspecific</code>を指定するべきではありません。 19.2.2.2.3. <code>:UNSPECIFIC</code>という要素の値をご確認ください。</p>
 <hr />

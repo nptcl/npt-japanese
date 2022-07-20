@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOAD-LOGICAL-PATHNAME-TRANSLATIONS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.load-logical-pathname-translations
+@name: load-logical-pathname-translations
+@type: function
+
+Function `LOAD-LOGICAL-PATHNAME-TRANSLATIONS`
+
+
+## {syntax}
+
+`load-logical-pathname-translations` *host* => *just-loaded*
+
+
+## {arguments-and-values}
+
+*host* - 文字列  
+*just-loaded* - {generalized-boolean}
+
+
+## {description}
+
+*host*という名前の論理ホストがまだ定義されていなかったら、
+その定義を検索してロードします。
+検索の性質の特性は実装定義です。
+
+もし*host*がすでに定義されていたときは、
+検索とロードは行われず*false*が返却されます。
+もし*host*がまだ定義されておらず、
+定義の検索とロードに成功したときは*true*が返却されます。
+それ以外の場合はエラーが発生します。
+
+
+## {examples}
+
+```lisp
+(translate-logical-pathname "hacks:weather;barometer.lisp.newest")
+>>  Error: The logical host HACKS is not defined.
+(load-logical-pathname-translations "HACKS")
+>>  ;; Loading SYS:SITE;HACKS.TRANSLATIONS
+>>  ;; Loading done.
+=>  true
+(translate-logical-pathname "hacks:weather;barometer.lisp.newest")
+=>  #P"HELIUM:[SHARED.HACKS.WEATHER]BAROMETER.LSP;0"
+(load-logical-pathname-translations "HACKS")
+=>  false
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+定義が見つからなかったときは、
+型{error!condition:link}のエラーが発生します。
+
+
+## {see-also}
+
+{logical-pathname!function:link}
+
+
+## {notes}
+
+論理パス名の定義はただ実装を作成する人によってだけではなく、
+むしろプログラマーによって作成されます。
+そのような場合は、検索する処理をドキュメント化することが重要になります。
+例えば実装者はどこか特定の名前がついたディレクトリに配置されている
+「*host*.translations」と呼ばれるファイルが見つかったら、
+それが*host*の定義である様にすることができます。
+
+@end
+

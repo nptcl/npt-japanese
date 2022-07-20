@@ -13,5 +13,53 @@
 Variable `DEFAULT-PATHNAME-DEFAULTS`
 
 
+## {value-type}
+
+パス名オブジェクト
+
+
+## {initial-value}
+
+{implementation-dependent}のパス名であり、
+典型的にはCommon Lispが開始されたときの現在の作業ディレクトリ。
+
+
+## {description}
+
+パス名であり、
+関数がデフォルトのパス名を必要としたときに、
+それが指定されなかったときはいつでも
+デフォルト値として使用されます。
+
+
+## {examples}
+
+```lisp
+;; この例はDEC TOPS-20ファイルシステム上で動作している仮想的なLispでの
+;; 可能性のある使い方を示しています。パス名の変換がLispの実装と
+;; ホストファイルシステムタイプの間で変化するときそれが一般的な目的として
+;; 提供される可能性はないので適合された例ではありません。
+*default-pathname-defaults* =>  #P"PS:<FRED>"
+(merge-pathnames (make-pathname :name "CALENDAR"))
+=>  #P"PS:<FRED>CALENDAR"
+(let ((*default-pathname-defaults* (pathname "<MARY>")))
+  (merge-pathnames (make-pathname :name "CALENDAR")))
+=>  #P"<MARY>CALENDAR"
+```
+
+
+## {affected-by}
+
+実装。
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
 @end
 

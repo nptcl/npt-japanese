@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Variable *DEFAULT-PATHNAME-DEFAULTS*</title>
+  <title>Function LOAD-LOGICAL-PATHNAME-TRANSLATIONS</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,39 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Variable *DEFAULT-PATHNAME-DEFAULTS*</h1>
+<h1 class="title">Function LOAD-LOGICAL-PATHNAME-TRANSLATIONS</h1>
 </header>
 <p><a href="19.4.html">UP</a></p>
 <hr />
-<h1 id="variable-default-pathname-defaults">Variable <strong>*DEFAULT-PATHNAME-DEFAULTS*</strong></h1>
-<p>Variable <code>DEFAULT-PATHNAME-DEFAULTS</code></p>
-<h2 id="値の型">値の型</h2>
-<p>パス名オブジェクト</p>
-<h2 id="初期値">初期値</h2>
-<p>実装依存のパス名であり、 典型的にはCommon Lispが開始されたときの現在の作業ディレクトリ。</p>
+<h1 id="function-load-logical-pathname-translations">Function <strong>LOAD-LOGICAL-PATHNAME-TRANSLATIONS</strong></h1>
+<p>Function <code>LOAD-LOGICAL-PATHNAME-TRANSLATIONS</code></p>
+<h2 id="構文">構文</h2>
+<p><code>load-logical-pathname-translations</code> <em>host</em> =&gt; <em>just-loaded</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>host</em> - 文字列<br />
+<em>just-loaded</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p>パス名であり、 関数がデフォルトのパス名を必要としたときに、 それが指定されなかったときはいつでも デフォルト値として使用されます。</p>
+<p><em>host</em>という名前の論理ホストがまだ定義されていなかったら、 その定義を検索してロードします。 検索の性質の特性は実装定義です。</p>
+<p>もし<em>host</em>がすでに定義されていたときは、 検索とロードは行われず<em>false</em>が返却されます。 もし<em>host</em>がまだ定義されておらず、 定義の検索とロードに成功したときは<em>true</em>が返却されます。 それ以外の場合はエラーが発生します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; この例はDEC TOPS-20ファイルシステム上で動作している仮想的なLispでの</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; 可能性のある使い方を示しています。パス名の変換がLispの実装と</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">;; ホストファイルシステムタイプの間で変化するときそれが一般的な目的として</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">;; 提供される可能性はないので適合された例ではありません。</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">*default-pathname-defaults*</span> <span class="op">=&gt;</span>  #P<span class="st">&quot;PS:&lt;FRED&gt;&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">merge-pathnames</span> (<span class="kw">make-pathname</span> <span class="bu">:name</span> <span class="st">&quot;CALENDAR&quot;</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #P<span class="st">&quot;PS:&lt;FRED&gt;CALENDAR&quot;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*default-pathname-defaults*</span> (<span class="kw">pathname</span> <span class="st">&quot;&lt;MARY&gt;&quot;</span>)))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">merge-pathnames</span> (<span class="kw">make-pathname</span> <span class="bu">:name</span> <span class="st">&quot;CALENDAR&quot;</span>)))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #P<span class="st">&quot;&lt;MARY&gt;CALENDAR&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">translate-logical-pathname</span> <span class="st">&quot;hacks:weather;barometer.lisp.newest&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Error: The logical host HACKS is <span class="kw">not</span> defined.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load-logical-pathname-translations</span> <span class="st">&quot;HACKS&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="co">;; Loading SYS:SITE;HACKS.TRANSLATIONS</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="co">;; Loading done.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">translate-logical-pathname</span> <span class="st">&quot;hacks:weather;barometer.lisp.newest&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #P<span class="st">&quot;HELIUM:[SHARED.HACKS.WEATHER]BAROMETER.LSP;0&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">load-logical-pathname-translations</span> <span class="st">&quot;HACKS&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>実装。</p>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>定義が見つからなかったときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p>なし。</p>
+<p><a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a></p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<p>論理パス名の定義はただ実装を作成する人によってだけではなく、 むしろプログラマーによって作成されます。 そのような場合は、検索する処理をドキュメント化することが重要になります。 例えば実装者はどこか特定の名前がついたディレクトリに配置されている 「<em>host</em>.translations」と呼ばれるファイルが見つかったら、 それが<em>host</em>の定義である様にすることができます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -775,6 +775,8 @@
 (index 19.2.2.1 "要素の値の文字列" "Strings in Component Values")
 (text 19.2.2.1.2 "パス名の要素の大文字小文字" "Case in Pathname Components")
 (index 19.2.2.2 "特別なパス名の要素の値" "Special Pathname Component Values")
+(text 19.2.2.3 "ワイルドカードのパス名の制限" "Restrictions on Wildcard Pathnames")
+(text 19.2.2.2.2 "要素の値としての:WILD" ":WILD as a Component Value")
 (text 19.2.2.2.3 "`:UNSPECIFIC`という要素の値" ":UNSPECIFIC as a Component Value")
 (index 19.3 "論理パス名" "Logical Pathnames")
 (index 19.4 "ファイル名の辞書" "Filenames Dictionary")
@@ -799,7 +801,7 @@
 ;; Chapter 20
 (text 20.1 "ファイルシステムの説明" "File System Concepts")
 (index 20.2 "ファイル操作" "Files Dictionary")
-(dictionary 20.2.dictionary)
+(dictionary 20.2.directory)
 (dictionary 20.2.probe-file)
 (dictionary 20.2.ensure-directories-exist)
 (dictionary 20.2.truename)
@@ -942,7 +944,9 @@
 ;; Chapter 24
 (index 24.2 "システム構築の辞書" "System Construction Dictionary")
 (dictionary 24.2.compile-file)
+(dictionary 24.2.compile-file-pathname)
 (dictionary 24.2.load)
+(dictionary 24.2.with-compilation-unit)
 
 ;; Chapger 25
 (index 25.2 "環境の辞書" "Environment Dictionary")

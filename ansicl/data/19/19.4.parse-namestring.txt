@@ -1,0 +1,162 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PARSE-NAMESTRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.parse-namestring
+@name: parse-namestring
+@type: function
+
+Function `PARSE-NAMESTRING`
+
+
+## {syntax}
+
+`parse-namestring` *thing*
+ `&optional` *host* *default-pathname*
+ `&key` *start* *end* *junk-allowed*  
+=> *pathname*, *position*
+
+
+## {arguments-and-values}
+
+*thing* - 文字列か、パス名か、ファイルストリーム  
+*host* - 有効なパス名のホストか、論理ホストか、{nil!variable:link}  
+*default-pathname* - パス名指定子。
+デフォルトは{*default-pathname-defaults*:link}の値です。  
+*start*, *end* - *thing*の境界インデックス指定子。
+デフォルトは*start*と*end*がそれぞれ`0`と{nil!variable:link}。  
+*junk-allowed* - {generalized-boolean}。デフォルトは*false*。  
+*pathname* - パス名か、{nil!variable:link}  
+*position* - *thing*の境界インデックス指定子
+
+
+## {description}
+
+*thing*をパス名に変換します。
+
+*host*には構文解析の対象となるホスト名を指定します。
+
+もし*thing*がパス名のときは、*host*と*thing*のホストの要素が比較されます。
+もしそれらが合っているときは、二値の*thing*と*start*がすぐに返却されます。
+それ以外のときは（もしそれらが合っていないとき）、エラーが通知されます。
+
+もし*thing*が文字列のとき、{parse-namestring:link}は
+*start*と*end*の境界による*thing*の部分文字列内を
+ファイル名として構文解析します。
+
+もし*thing*が文字列であるとき、
+*start*と*end*の境界による*thing*の部分文字列は
+次のようにパス名を構文解析します。
+
+- もし*host*が論理ホストなら、
+  *thing*は*host*の論理パス名の名前文字列として構文解析されます。
+
+- もし*host*が{nil!variable:link}であり、
+  *thing*が暗にホストに含まれるような
+  論理パス名の名前文字列の有効な構文であったときは、
+  それは論理パス名の名前文字列として構文解析されます。
+
+- もし*host*が{nil!variable:link}であり、
+  *default-pathname*が論理パス名で、
+  かつ*thing*が暗にホストに含まれるような
+  論理パス名の名前文字列の有効な構文であったときは、
+  それはホストが*default-pathname*のホスト要素であるような
+  論理パス名の名前文字列として構文解析されます。
+
+- それ以外のときは、*thing*の構文解析はは実装定義です。
+
+これらの最初の場合は、論理パス名の名前文字列にある
+ホストの位置と続くコロンはオプションです。
+
+もし名前文字列のホストの位置と*host*の両方が現れており、
+それらがマッチしなかったときはエラーが発生します。
+
+もし*junk-allowed*が*true*のとき、
+主値は構文解析されたパス名か、
+あるいはもしパス名が構文として正しくないときは
+{nil!variable:link}になります。
+もし*junk-allowed*が*false*のとき、
+部分文字列の全体が調査され、
+主値は構文解析されたパス名になります。
+
+どちらの場合でも、第二返却値は、
+構文解析が終了した*thing*の区切りのインデックスか、
+あるいはもし部分文字列の終了位置まで構文解析が終わったときの
+その部分文字列を越えたインデックスになります
+（もし*junk-allowed*が*false*のときは常にこのケースです）。
+
+空の文字列の構文解析は常に成功であり、
+全ての要素（ホストを除く）が{nil!variable:link}と等しい
+パス名が生成されます。
+
+もし*thing*に暗にホスト名が含まれており、
+そしてデバイス名が含まれてないときは、
+{parse-namestring:link}が
+そのホストの結果のパス名のデバイスの要素として
+標準のデバイスを供給するかどうかは実装定義です。
+
+
+## {examples}
+
+```lisp
+(setq q (parse-namestring "test"))  
+=>  #S(PATHNAME :HOST NIL :DEVICE NIL :DIRECTORY NIL :NAME "test" 
+      :TYPE NIL :VERSION NIL)
+(pathnamep q) =>  true
+(parse-namestring "test") 
+=>  #S(PATHNAME :HOST NIL :DEVICE NIL :DIRECTORY NIL :NAME "test"
+      :TYPE NIL :VERSION NIL), 4
+(setq s (open xxx)) =>  #<Input File Stream...>
+(parse-namestring s) 
+=>  #S(PATHNAME :HOST NIL :DEVICE NIL :DIRECTORY NIL :NAME xxx 
+      :TYPE NIL :VERSION NIL), 0
+(parse-namestring "test" nil nil :start 2 :end 4 )
+=>  #S(PATHNAME ...), 15
+(parse-namestring "foo.lisp")
+=>  #P"foo.lisp"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*junk-allowed*が*false*であり、
+*thing*がパス名の全体の表現で構成されていないときは、
+型{parse-error:link}のエラーが通知されます。
+ただし実装の文化的習慣に合っているならば、
+両サイドが空白文字によって囲むことができるかもしれません。
+
+もし*host*が{nil!variable:link}以外で指定されており、
+*thing*に明にホスト名が含まれているとき、
+その両者のホストがあっていなかったときは
+型{error!condition:link}のエラーが通知されます。
+
+もし*thing*が論理パス名の名前文字列であり、
+名前文字列のホストの位置のものと*host*の両方が存在し、
+両者がマッチしなかったときは、
+型{error!condition:link}のエラーが通知されます。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.2.2.2.3:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

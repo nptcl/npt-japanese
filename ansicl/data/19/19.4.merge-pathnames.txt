@@ -1,0 +1,168 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MERGE-PATHNAMES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.merge-pathnames
+@name: merge-pathnames
+@type: function
+
+Function `MERGE-PATHNAMES`
+
+
+## {syntax}
+
+`merge-pathnames` *pathname* `&optional` *default-pathname* *default-version*  
+=> *merged-pathname*
+
+
+## {arguments-and-values}
+
+*pathname* - パス名指定子  
+*default-pathname* - パス名指定子。
+デフォルトは{*default-pathname-defaults*:link}の値。  
+*default-version* - 有効なパス名のバージョン。
+デフォルトは`:newest`。  
+*merged-pathname* - パス名
+
+
+## {description}
+
+*pathname*の指定されていない要素について
+対応する*default-pathname*と*default-version*から
+情報を埋めることでパス名を生成します。
+
+パス名の要素のデフォルトは、
+他のパス名から取得された要素を埋めることによって行われます。
+これは特に、入力ファイルと出力ファイルがある
+プログラムのような場合において便利です。
+出力パス名の指定されていない要素は入力パス名から指定されますが、
+例外としてタイプだけは入力パス名のタイプを
+デフォルトとして使用するのではなく、
+そのプログラムの出力にあったタイプをデフォルトとして使用するべきです。
+例えば、{compile-file-pathname:link}をご確認ください。
+
+もしバージョンが指定されていない場合は、
+*default-version*が使用されます。
+もし*default-version*が{nil!variable:link}のときは、
+そのバージョンの要素は変更されません。
+
+もし*pathname*が明にホストを指定しており、
+かつデバイスを指定していないとき、
+さらに*default-pathname*のホストの要素が
+*pathname*のホストの要素と一致しているときは、
+*default-pathname*からデバイスを取得します。
+その他の場合は、デバイスはそのホストの
+デフォルトのファイルデバイスが使用されます。
+もし*pathname*が、ホスト、デバイス、ディレクトリ、
+名前、タイプを指定しなかったとき、
+それぞれの要素は*default-pathname*からコピーされます。
+もし*pathname*が名前を指定せず、バージョンが指定されなかったとき、
+そのバージョンはちょうど他の要素と同じように、
+*default-pathname*から指定されます。
+もし*pathname*が名前を指定していたときは、
+バージョンは*default-pathname*による影響はありません。
+もしこの処理でバージョンが欠落したときは、
+*default-version*が使用されます。
+もしホストのファイル名の構文が、
+名前かタイプなしにバージョンの入力方法があったとき、
+*default-pathname*に違ったバージョンが提供されたとしても
+ユーザーは名前とタイプをデフォルトのものに指定できます。
+
+もし*pathname*がストリームのとき、
+*pathname*は効率よく`(pathname pathname)`の値が使用されます。
+{merge-pathnames:link}はストリームが
+開いているか閉じているかのどちらでも使用することができます。
+
+もし*pathname*が開いているファイルで使われている名前で表現されているとき、
+それはおそらく、しかし必須ではありませんが、実際のファイルの名前です。
+
+*default-pathname*が論理パス名のときか、
+あるいは名前文字列が定義された論理ホスト名と
+続けてコロンで始まっているとき、
+{merge-pathnames:link}は論理パス名の名前文字列として識別します。
+これらの二例のうち最初の方では、
+論理パス名の名前文字列のホストの位置と
+それに続くコロンはオプションです。
+
+もし最初の引数が論理パス名であるか、
+最初の引数が明確にホストが指定された論理パス名の名前文字列であるか、
+あるいは最初の引数ではホストが指定されていないものの
+*default-pathname*が論理パス名であるときのみ、
+{merge-pathnames:link}は論理パス名を返却します。
+
+*pathname*のマージは、相対ディレクトリを特別に扱います。
+もし`(pathname-directory pathname)`の返却が、
+`car`部`:relative`のリストであり、
+かつ`(pathname-directory default-pathname)`がリストであるときは、
+マージされたディレクトリは次の値で示されます。
+
+```lisp
+(append (pathname-directory default-pathname)
+        (cdr  ;最初の要素から:relativeを取り除く
+          (pathname-directory pathname)))
+```
+
+ただし例外があり、
+もし結果のリストの中に対して、
+文字列か`:wild`のどちらかが存在している
+すぐあとに`:back`が続いているときは、
+その両方が削除されます。
+`:back`キーワードが複数あるときは、
+可能な限り何度でも繰り返して削除されます。
+もし`(pathname-directory default-pathname)`がリストではないか、
+あるいは`(pathname-directory pathname)`が
+`car`部`:relative`のリストではないときは、
+マージされたディレクトリは
+`(or (pathname-directory pathname) (pathname-directory default-pathname))`
+になります。
+
+{merge-pathnames:link}は
+*pathname*の慣習的な大文字小文字の表現を、
+出力するパス名の慣習的な大文字小文字の表現に対応させます。
+
+
+## {examples}
+
+```lisp
+(merge-pathnames "CMUC::FORMAT"
+                 "CMUC::PS:<LISPIO>.FASL")
+=>  #P"CMUC::PS:<LISPIO>FORMAT.FASL.0"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{*default-pathname-defaults*:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+この正味の効果は、
+もしちょうど名前だけが与えられたとき、
+ホスト、デバイス、ディレクトリ、そしてタイプは
+*default-pathname*のものが使用されますが、
+バージョンは*default-version*が使用されるというものです。
+もしそれが無く、ただディレクトリだけが与えられたとき、
+名前、タイプ、そしてバージョンは
+*default-pathname*のものが一緒に使用されます。
+
+@end
+

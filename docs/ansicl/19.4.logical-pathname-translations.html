@@ -229,7 +229,7 @@
 <h2 id="定義">定義</h2>
 <p>ホストの変換リストを返却します。 各変換は、少なくとも2つの要素のリストであり、 それぞれを<em>from-wildcard</em>と<em>to-wildcard</em>とします。 追加の要素は処理系定義です。 <em>from-wildcard</em>はホストが<em>host</em>の論理パス名です。 <em>to-wildcard</em>はパス名です。</p>
 <p><code>(setf (logical-pathname-translations host) translations)</code>は、 論理パス名のホストの変換リストを設定します。 もし<em>host</em>が以前に論理パス名のホストとして使用されていない文字列のときは、 新しい論理パス名のホストが定義されます。 そうではないときは、既存のホスト変換が置き換えられます。 論理パス名のホストの名前は、<a href="16.2.string-equal.html"><code>string-equal</code></a>で比較されます。</p>
-<p>変換リストが設定されたとき、 各<em>from-wildcard</em>は、 ホストが<em>host</em>の論理パス名か、 あるいは論理パス名の名前文字が <code>(parse-namestring string host)</code>によって構文解析されるときに <em>host</em>が<code>parse-namestring</code>によって定義された 適切なオブジェクトとして表現されたものになることができます。 もし<em>to-wildcard</em>が論理パス名に変換されるとき、 <code>translate-logical-pathname</code>は これを使用するたびに変換手順が繰り返し実行されます。</p>
+<p>変換リストが設定されたとき、 各<em>from-wildcard</em>は、 ホストが<em>host</em>の論理パス名か、 あるいは論理パス名の名前文字が <code>(parse-namestring string host)</code>によって構文解析されるときに <em>host</em>が<a href="19.4.parse-namestring.html"><code>parse-namestring</code></a>によって定義された 適切なオブジェクトとして表現されたものになることができます。 もし<em>to-wildcard</em>が論理パス名に変換されるとき、 <a href="19.4.translate-logical-pathname.html"><code>translate-logical-pathname</code></a>は これを使用するたびに変換手順が繰り返し実行されます。</p>
 <p><em>host</em>は論理パス名のホストの要素か、 <a href="5.3.setf.html"><code>setf</code></a>の<a href="19.4.logical-pathname-translations.html"><code>logical-pathname-translations</code></a>によって 論理ホスト名のホスト名として定義された文字列のどちらかです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 論理パス名のホストの設定の非常にシンプルな例です。</span></span>

@@ -1,0 +1,104 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TRANSLATE-LOGICAL-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.translate-logical-pathname
+@name: translate-logical-pathname
+@type: function
+
+Function `TRANSLATE-LOGICAL-PATHNAME`
+
+
+## {syntax}
+
+`translate-logical-pathname` *pathname* `&key` => *physical-pathname*
+
+
+## {arguments-and-values}
+
+*pathname* - パス名指定子か、論理パス名の名前文字列。  
+*physical-pathname* - 物理パス名
+
+
+## {description}
+
+*pathname*を物理パス名に変換し返却します。
+
+もし*pathname*がストリームのとき、
+そのストリームは開いているものか閉じているものを指定できます。
+{translate-logical-pathname:link}は
+ファイルがクローズされたあとのものについては、
+ファイルが開いているときに実行されたものと同じ論理パス名を返却します。
+もし*pathname*がストリームであり、
+{make-two-way-stream:link},
+{make-echo-stream:link},
+{make-broadcast-stream:link},
+{make-concatenated-stream:link},
+{make-string-input-stream:link},
+{make-string-output-stream:link}
+によって作成されたもののときはエラーが発生します。
+
+もし*pathname*が論理パス名の名前文字列であるときは、
+それはホストの要素と合わせてコロンが続くものを含まなければなりません。
+
+*pathname*は、最初にパス名に変換されます。
+もし変換された*pathname*が物理パス名のときは、それが返却されます。
+もし変換された*pathname*が論理パス名のときは、
+{translate-pathname:link}が呼び出されたかのように、
+論理パス名のホストの最初にマッチした変換
+（{pathname-match-p:link}に従って）が適用されます。
+もし結果が論理パス名のとき、この処理は繰り返し行われます。
+結果が最終的に物理パス名になったとき、それが返却されます。
+もしどの返還にもマッチしなかったとき、エラーが通知されます。
+
+{translate-logical-pathname:link}は追加の変換を行うことがあり、
+典型的にはローカルな命名規則に合わせてファイルのタイプを変換したり、
+物理ファイルシステムの名前の長さに制限がある場合に対応したり、
+ハイフンをアンダースコアに、
+大文字を小文字に変換するような
+特殊文字の要件に対応するなどを行います。
+このような追加の変換は実装定義のものです。
+実装によっては追加の変換を行いません。
+
+{translate-logical-pathname:link}にはキーワード引数はありませんが、
+しかし実装は追加のキーワード引数による拡張が許されます。
+
+
+## {examples}
+
+See {logical-pathname-translations:link}
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*pathname*に不正なものが与えられたとき、
+型{type-error:link}のエラーが発生します。
+
+もしどの返還にもマッチしないとき、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{logical-pathname!function:link},
+{logical-pathname-translations:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

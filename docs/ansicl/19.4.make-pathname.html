@@ -234,7 +234,7 @@
 <em>pathname</em> - パス名</p>
 <h2 id="定義">定義</h2>
 <p>指定されたキーワード引数からパス名を構築して返却します。</p>
-<p>明示的に<em>host</em>, <em>device</em>, <em>directory</em>, <em>name</em>, <em>type</em>, <em>version</em>が 指定された要素が記入されたあとは、 <code>merge-pathnames</code>を使用したかのようなマージの規則に従い、 指定されなかった要素に対して <em>default</em>によって指定された標準の要素を埋めていきます。</p>
+<p>明示的に<em>host</em>, <em>device</em>, <em>directory</em>, <em>name</em>, <em>type</em>, <em>version</em>が 指定された要素が記入されたあとは、 <a href="19.4.merge-pathnames.html"><code>merge-pathnames</code></a>を使用したかのようなマージの規則に従い、 指定されなかった要素に対して <em>default</em>によって指定された標準の要素を埋めていきます。</p>
 <p>パス名は適用可能であれば要素に対して正規化されて構築されます。 各要素に対して指定された各引数の説明は19.2.1. パス名の説明をご確認ください。</p>
 <p>もし<em>case</em>が指定されたとき、 それは19.2.2.1.2. パス名の要素の大文字小文字の説明のように扱われます。</p>
 <p>もしホストの要素が論理ホストか、 論理ホストとして定義された名前の文字列のときは、 結果の<em>pathname</em>は論理パス名です。</p>
@@ -279,7 +279,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>merge-pathnames</code>, <a href="19.4.pathname-function.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
+<p><a href="19.4.merge-pathnames.html"><code>merge-pathnames</code></a>, <a href="19.4.pathname-function.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
 <h2 id="備考">備考</h2>
 <p>移植可能なプログラムは各要素に<code>:unspecific</code>を指定するべきではありません。 19.2.2.2.3. <code>:UNSPECIFIC</code>という要素の値をご確認ください。</p>
 <hr />

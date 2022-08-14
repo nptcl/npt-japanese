@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  19. ファイル名
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WILD-PATHNAME-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 19.4.wild-pathname-p
+@name: wild-pathname-p
+@type: function
+
+Function `WILD-PATHNAME-P`
+
+
+## {syntax}
+
+`wild-pathname-p` *pathname* `&optional` *field-key* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*pathname* - パス名指定子  
+*field-key* - 次のうちのどれか。
+`:host`, `:device`, `:directory`, `:name`, `:type`, `:version`,
+そして{nil!variable:link}  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{wild-pathname-p:link}は、
+*pathname*にワイルドカードの要素が現れるかどうかをテストします。
+
+もし*pathname*がパス名
+（{pathname!function:link}によって返却されたものとして）であり
+それがファイルのオープンに使用された名前であるとき、
+おそらくそれは、必須ではありませんが、実際のファイルの名前です。
+
+もし*field-key*が指定されないか、あるいは{nil!variable:link}のとき、
+{wild-pathname-p:link}は*pathname*にワイルドカードの要素が
+含まれているときは*true*を返却し、
+*pathname*にそれらが含まれていないときは
+{nil!variable:link}を返却します。
+もし*field-key*が{nil!variable:link}ではないとき、
+{wild-pathname-p:link}は*pathname*の指定された要素が
+ワイルドカードのときは*true*を返却し、
+その要素にワイルドカードが含まれていないときは
+{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+;;; 下記の例は移植性がありません。これらは特定のファイルシステムの
+;;; 特定のワイルドカード表記で動作するように記述されています。
+;;; 他の実装では違った動作になるかもしれません。これらの例は
+;;; 説明のためのものであり、規範的なものではありません。
+
+(wild-pathname-p (make-pathname :name :wild)) =>  true
+(wild-pathname-p (make-pathname :name :wild) :name) =>  true
+(wild-pathname-p (make-pathname :name :wild) :type) =>  false
+(wild-pathname-p (pathname "s:>foo>**>")) =>  true ;Lispm
+(wild-pathname-p (pathname :name "F*O")) =>  true ;Most places
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*pathname*がパス名、文字列、
+ファイルに関連付けられたストリームの、
+いずれの場合でもないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+全ての実装が全ての要素にワイルドカードをサポートしているわけではありません。
+{19.2.2.2.2:ab}と{19.2.2.3:ab}をご確認ください。
+
+@end
+

@@ -28,8 +28,8 @@ Dictionaryを約半分翻訳しました。
 |[16.](16.html)|[Strings](16.html)|[文字列](16.html)|[辞書 ★完了](16.2.html)|
 |[17.](17.html)|[Sequences](17.html)|[シーケンス](17.html)|[辞書 ★完了](17.3.html)|
 |[18.](18.html)|[Hash Tables](18.html)|[ハッシュテーブル](18.html)|[辞書 ★完了](18.2.html)|
-|[19.](19.html)|[Filenames](19.html)|[ファイル名](19.html)|[辞書 ☆作業中](19.4.html)|
-|[20.](20.html)|[Files](20.html)|[ファイル操作](20.html)|[辞書](20.2.html)|
+|[19.](19.html)|[Filenames](19.html)|[ファイル名](19.html)|[辞書 ★完了](19.4.html)|
+|[20.](20.html)|[Files](20.html)|[ファイル操作](20.html)|[辞書 ☆作業中](20.2.html)|
 |[21.](21.html)|[Streams](21.html)|[ストリーム](21.html)|[辞書](21.2.html)|
 |[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書](22.4.html)|
 |[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書](23.2.html)|

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>19.2.2. パス名の要素の値の解釈</title>
+  <title>Function PATHNAME-MATCH-P</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,16 +151,31 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">19.2.2. パス名の要素の値の解釈</h1>
+<h1 class="title">Function PATHNAME-MATCH-P</h1>
 </header>
-<p><a href="19.2.html">UP</a></p>
+<p><a href="19.4.html">UP</a></p>
 <hr />
-<p>19.2.2. パス名の要素の値の解釈</p>
-<ul>
-<li><a href="19.2.2.1.html">19.2.2.1. 要素の値の文字列</a></li>
-<li><a href="19.2.2.2.html">19.2.2.2. 特別なパス名の要素の値</a></li>
-<li>19.2.2.3. ワイルドカードのパス名の制限</li>
-</ul>
+<h1 id="function-pathname-match-p">Function <strong>PATHNAME-MATCH-P</strong></h1>
+<p>Function <code>PATHNAME-MATCH-P</code></p>
+<h2 id="構文">構文</h2>
+<p><code>pathname-match-p</code> <em>pathname</em> <em>wildcard</em> =&gt; <em>generalized-boolean</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>pathname</em> - パス名指定子<br />
+<em>wildcard</em> - ワイルドカードパス名の指定子<br />
+<em>generalized-boolean</em> - generalized-boolean</p>
+<h2 id="定義">定義</h2>
+<p><a href="19.4.pathname-match-p.html"><code>pathname-match-p</code></a>は、 <em>pathname</em>と<em>wildcard</em>がマッチするときは<em>true</em>を、 そうでないときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 マッチの規則は実装定義ですが、 それは<code>directory</code>と一貫していなければなりません。 <em>wildcard</em>の欠落した要素は標準で<code>:wild</code>になります。</p>
+<p>もし<em>pathname</em>が有効なワイルドカードのパス名のとき、 <em>pathname</em>のワイルドカードの要素は、 <em>wildcard</em>のその要素がワイルドカードのときのみマッチします （よって<a href="19.4.pathname-match-p.html"><code>pathname-match-p</code></a>は交換可能ではありません）。 <em>wildcard</em>がワイルドカードを含まないパス名のときでも有効です。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もし<em>pathname</em>か<em>wildcard</em>が、 パス名、文字列、ファイルに関連づいたストリームの いずれかでもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><code>directory</code>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

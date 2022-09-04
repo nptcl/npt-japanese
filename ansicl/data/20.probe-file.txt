@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PROBE-FILE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.probe-file
+@name: probe-file
+@type: function
+
+Function `PROBE-FILE`
+
+
+## {syntax}
+
+`probe-file` *pathspec* => *truename*
+
+
+## {arguments-and-values}
+
+*pathspec* - パス名指定子  
+*truename* - 物理パス名か、{nil!variable:link}
+
+
+## {description}
+
+{probe-file:link}は、ファイルが存在するかどうかをテストします。
+
+{probe-file:link}は、*pathspec*と名付けられたファイルが
+存在しないときは*false*を返却し、
+それ以外のときは*pathspec*の実際の名前を返却します。
+
+もし*pathspec*指定子が開かれたストリームのときは、
+{probe-file:link}はそのファイルに関連付けられた実際の名前を生成します。
+もし*pathspec*が開いているか閉じられているかに関わらず
+ストリームであったときは、
+それは関数{pathname!function:link}によるもののようにパス名に変換されます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステム
+
+
+## {exceptional-situations}
+
+もし*pathspec*がワイルドカードを含んでいたときは、
+型{file-error:link}のエラーが発生します。
+
+もしファイルシステムが要求された操作を実行できなかったときは、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{truename:link},
+{open:link},
+{ensure-directories-exist:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{20.1.2:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -22,15 +22,15 @@ Function `TRANSLATE-PATHNAME`
 ## {arguments-and-values}
 
 *source* - パス名指定子  
-*from-wildcard - パス名指定子  
-to-wildcard - パス名指定子  
+*from-wildcard* - パス名指定子  
+*to-wildcard* - パス名指定子  
 *translated-pathname* - パス名
 
 
 ## {description}
 
 {translate-pathname:link}は*source*
-（*from-wildcard*にまっちしたもの）を、
+（*from-wildcard*にマッチしたもの）を、
 *to-wildcard*にマッチした対応したパス名に変換し、
 その対応したパス名を返却します。
 

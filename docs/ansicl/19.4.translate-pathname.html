@@ -224,11 +224,11 @@
 <p><code>translate-pathname</code> <em>source</em> <em>from-wildcard</em> <em>to-wildcard</em> <code>&amp;key</code> =&gt; <em>translated-pathname</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>source</em> - パス名指定子<br />
-<em>from-wildcard - パス名指定子<br />
-to-wildcard - パス名指定子<br />
-</em>translated-pathname* - パス名</p>
+<em>from-wildcard</em> - パス名指定子<br />
+<em>to-wildcard</em> - パス名指定子<br />
+<em>translated-pathname</em> - パス名</p>
 <h2 id="定義">定義</h2>
-<p><a href="19.4.translate-pathname.html"><code>translate-pathname</code></a>は<em>source</em> （<em>from-wildcard</em>にまっちしたもの）を、 <em>to-wildcard</em>にマッチした対応したパス名に変換し、 その対応したパス名を返却します。</p>
+<p><a href="19.4.translate-pathname.html"><code>translate-pathname</code></a>は<em>source</em> （<em>from-wildcard</em>にマッチしたもの）を、 <em>to-wildcard</em>にマッチした対応したパス名に変換し、 その対応したパス名を返却します。</p>
 <p>パス名の結果は<em>to-wildcard</em>の各ワイルドカードか欠落した要素が <em>source</em>の部分に置き換えられたものになります。 「ワイルドカードの要素」とは、 パス名の要素の値が<code>:wild</code>であるか、 ディレクトリの要素のリストの要素が<code>:wild</code>であるか、 あるいは要素の実装定義の部分である 例えばいくつかの実装でサポートされている、 文字列<code>"foo*bar"</code>のような複雑なワイルドカードである <code>"*"</code>のような文字のことです。 実装は例えば正規表現のようなその他のワイルドカードの機能を追加することができ、 そのような機能をどのようにして<a href="19.4.translate-pathname.html"><code>translate-pathname</code></a>に拡張するのか 定義しなければなりません。 「欠落した要素」はパス名の要素が<a href="5.3.nil-variable.html"><code>nil</code></a>のものです。</p>
 <p>結果のパス名からコピーされた<em>source</em>の部分は実装定義です。 典型的にはそれはファイルシステムに関与する ユーザーインターフェイスの慣習によって決定されます。 通常それは<em>source</em>の部分が <em>from-wildcard</em>のワイルドカードの要素と <em>to-wildcard</em>のワイルドカードか欠落した要素の同じ部分が マッチした部分です。 もし<em>from-wildcard</em>のある位置がワイルドカードの要素ではなかったとき、 通常はそれは対応する<em>source</em>のパス名の要素全体であるか、 あるいはディレクトリ要素のリストの要素の場合であるか、 あるいは対応するリストの要素全体になります。</p>
 <p><em>source</em>の部分を結果のパス名へコピーするとき、 追加の実装定義の大文字小文字の変換や、 ファイル名の慣習の変換が生じるかもしれません。 とくに<em>from-wildcard</em>と<em>to-wildcard</em>が違うホストのときに生じます。</p>

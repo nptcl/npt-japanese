@@ -800,6 +800,8 @@
 
 ;; Chapter 20
 (text 20.1 "ファイルシステムの説明" "File System Concepts")
+(text 20.1.2 "開かれた・閉じたストリームのファイル操作"
+      "File Operations on Open and Closed Streams")
 (index 20.2 "ファイル操作" "Files Dictionary")
 (dictionary 20.2.directory)
 (dictionary 20.2.probe-file)

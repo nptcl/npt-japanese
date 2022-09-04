@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DIRECTORY
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.directory
+@name: directory
+@type: function
+
+Function `DIRECTORY`
+
+
+## {syntax}
+
+`directory` *pathspec* `&key` => *pathnames*
+
+
+## {arguments-and-values}
+
+*pathspec* = パス名指定子。ワイルドカードが含まれるかもしれません。  
+*pathnames* - 物理パス名のリスト
+
+
+## {description}
+
+ファイルシステム内において、
+*pathspec*にマッチする名前を持つファイルがもしあるなら決定し、
+それらのファイルの実際の名前に対応するパス名の新しいリストを返却します。
+
+実装は{directory:link}のキーワード引数に
+実装定義のものを受け付けるように拡張するかもしれません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステム
+
+
+## {exceptional-situations}
+
+もしディレクトリのリストを取得しようとしたときに失敗したときは、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{ensure-directories-exist:link},
+{20.1:ab},
+{20.1.2:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+もし*pathspec*にワイルドカードが含まれていないとき、
+結果のリストはゼロかひとつの要素が含まれているものになります。
+
+{directory:link}の引数リストには、
+標準のキーワード引数が定義されてはいませんが、
+`&key`が定義されています。
+`:allow-other-keys t`は、
+{confirming-program}においては、
+プログラムに通された実装でサポートされていない
+どのような追加のキーワード引数も
+静かに無視するときに使われます。
+
+@end
+

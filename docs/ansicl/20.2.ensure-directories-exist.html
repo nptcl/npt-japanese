@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function PROBE-FILE</title>
+  <title>Function ENSURE-DIRECTORIES-EXIST</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,30 +151,31 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function PROBE-FILE</h1>
+<h1 class="title">Function ENSURE-DIRECTORIES-EXIST</h1>
 </header>
 <p><a href="20.2.html">UP</a></p>
 <hr />
-<h1 id="function-probe-file">Function <strong>PROBE-FILE</strong></h1>
-<p>Function <code>PROBE-FILE</code></p>
+<h1 id="function-ensure-directories-exist">Function <strong>ENSURE-DIRECTORIES-EXIST</strong></h1>
+<p>Function <code>ENSURE-DIRECTORIES-EXIST</code></p>
 <h2 id="構文">構文</h2>
-<p><code>probe-file</code> <em>pathspec</em> =&gt; <em>truename</em></p>
+<p><code>ensure-directories-exist</code> <em>pathspec</em> <code>&amp;key</code> <em>verbose</em> =&gt; <em>pathspec</em>, <em>created</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>pathspec</em> - パス名指定子<br />
-<em>truename</em> - 物理パス名か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<em>verbose</em> - generalized-boolean<br />
+<em>created</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><a href="20.2.probe-file.html"><code>probe-file</code></a>は、ファイルが存在するかどうかをテストします。</p>
-<p><a href="20.2.probe-file.html"><code>probe-file</code></a>は、<em>pathspec</em>と名付けられたファイルが 存在しないときは<em>false</em>を返却し、 それ以外のときは<em>pathspec</em>の実際の名前を返却します。</p>
-<p>もし<em>pathspec</em>指定子が開かれたストリームのときは、 <a href="20.2.probe-file.html"><code>probe-file</code></a>はそのファイルに関連付けられた実際の名前を生成します。 もし<em>pathspec</em>が開いているか閉じられているかに関わらず ストリームであったときは、 それは関数<a href="19.4.pathname-function.html"><code>pathname</code></a>によるもののようにパス名に変換されます。</p>
+<p>指定されたファイルに含まれるディレクトリが 実際に存在するかどうかをテストし、 もし存在しなかったときは作成するよう試みます。</p>
+<p>もし含まれているディレクトリが存在せず、 <em>verbose</em>が<em>true</em>のときは、 実装は標準出力にどのようなディレクトリが生成されたかを 出力することが許されます（しかし必須ではありません）。 もし含まれているディレクトリが存在しているか、 あるいは<em>verbose</em>が<em>false</em>のときは、 この関数は何も出力しません。</p>
+<p>第一返却値は引数の<em>pathspec</em>であり、 この操作が他のファイル操作の式に直接組み込めるようにしています。 第二返却値の<em>created</em>は、 もし何らかのディレクトリが生成された場合は<em>true</em>です。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>ホストコンピューターのファイルシステム</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>pathspec</em>がワイルドカードを含んでいたときは、 型<code>file-error</code>のエラーが発生します。</p>
-<p>もしファイルシステムが要求された操作を実行できなかったときは、 型<code>file-error</code>のエラーが発生します。</p>
+<p><em>pathspec</em>のホスト、デバイス、ディレクトリの部分が ワイルドカードを含んでいるときは、 型<code>file-error</code>のエラーが発生します。</p>
+<p>もしディレクトリの生成の試行が成功しなかったとき、 型<code>file-error</code>が通知されますが、 もしこのような状況が生じたときに ファイルシステム内で実際に生じたことは、 生成が全く起こらなかったか、 あるいはいくつか生成されたか、 または全ての要求が生成されたか、 いずれかの場合になるでしょう。</p>
 <h2 id="参考">参考</h2>
-<p><code>truename</code>, <code>open</code>, <a href="20.2.ensure-directories-exist.html"><code>ensure-directories-exist</code></a>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 20.1.2. 開かれた・閉じたストリームのファイル操作, 19.1.2. ファイル名としてのパス名</p>
+<p><a href="20.2.probe-file.html"><code>probe-file</code></a>, <code>open</code>, 19.1.2. ファイル名としてのパス名</p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

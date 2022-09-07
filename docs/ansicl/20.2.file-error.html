@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25. 環境</title>
+  <title>Condition-Type FILE-ERROR</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,17 +151,18 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25. 環境</h1>
+<h1 class="title">Condition-Type FILE-ERROR</h1>
 </header>
-<p><a href="index.html">UP</a></p>
+<p><a href="20.2.html">UP</a></p>
 <hr />
-<ol start="25" type="1">
-<li>環境</li>
-</ol>
-<ul>
-<li><a href="25.1.html">25.1. 外部環境</a></li>
-<li><a href="25.2.html">25.2. 環境の辞書</a></li>
-</ul>
+<h1 id="condition-type-file-error">Condition-Type <strong>FILE-ERROR</strong></h1>
+<p>Condition Type <code>FILE-ERROR</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="20.2.file-error.html"><code>file-error</code></a>, <a href="9.2.error-condition.html"><code>error</code></a>, <a href="9.2.serious-condition.html"><code>serious-condition</code></a>, <a href="9.2.condition.html"><code>condition</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>型<a href="20.2.file-error.html"><code>file-error</code></a>は、 開いているか閉じているファイルへの処理中か、 ファイルシステム内の低レベルな同期処理中に発生するような エラーコンディションで構成されます。 「問題を起こしたパス名」は、 <a href="9.2.make-condition.html"><code>make-condition</code></a>の初期化引数<code>:pathname</code>によって初期化され、 そしてそれは関数<a href="20.2.file-error-pathname.html"><code>file-error-pathname</code></a>によってアクセスできます。</p>
+<h2 id="参考">参考</h2>
+<p><a href="20.2.file-error-pathname.html"><code>file-error-pathname</code></a>, <code>open</code>, <a href="20.2.probe-file.html"><code>probe-file</code></a>, <a href="20.2.directory.html"><code>directory</code></a>, <a href="20.2.ensure-directories-exist.html"><code>ensure-directories-exist</code></a></p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

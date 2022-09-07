@@ -1,0 +1,45 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type FILE-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.file-error
+@name: file-error
+@type: condition-type
+
+Condition Type `FILE-ERROR`
+
+
+## {class-precedence-list}
+
+{file-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{file-error:link}は、
+開いているか閉じているファイルへの処理中か、
+ファイルシステム内の低レベルな同期処理中に発生するような
+エラーコンディションで構成されます。
+「問題を起こしたパス名」は、
+{make-condition:link}の初期化引数`:pathname`によって初期化され、
+そしてそれは関数{file-error-pathname:link}によってアクセスできます。
+
+
+## {see-also}
+
+{file-error-pathname:link},
+{open:link},
+{probe-file:link},
+{directory:link},
+{ensure-directories-exist:link}
+
+@end
+

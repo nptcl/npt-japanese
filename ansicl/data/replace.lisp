@@ -133,6 +133,8 @@
 (replace vector "`vector`")
 (replace fixnum "`fixnum`")
 
+(replace universal-time "ユニバーサル時間")
+
 ;;  Metaobject Protocol
 (replace methods "メソッド")
 (replace comments-and-remarks "コメントと備考")

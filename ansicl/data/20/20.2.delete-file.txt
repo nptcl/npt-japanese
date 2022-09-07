@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DELETE-FILE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.delete-file
+@name: delete-file
+@type: function
+
+Function `DELETE-FILE`
+
+
+## {syntax}
+
+`delete-file` *filespec* => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*filespec* - パス名指定子
+
+
+## {description}
+
+*filespec*で指定されたファイルを削除します。
+
+もし*filespec*の指定子が開いたストリームのとき、
+*filespec*と関連付けられたファイルに影響を及ぼします
+（もしファイルシステムが許容するなら）。
+このような場合、*filespec*は即座に閉じられ、
+削除がすぐに発生するか、
+あるいは*filespec*が暗に閉じられるまで削除を遅らせるかは、
+ファイルシステムの要求に依存します。
+
+存在しないファイルの削除を実行したときに、
+成功するかどうかは{implementation-dependent}です。
+
+{delete-file:link}は継続可能なら*true*を返却し、
+そうではないときは型{file-error:link}のエラーが発生します。
+
+*filespec*にワイルドカードの要素が含まれるとき、
+または*filespec*が{nil!variable:link}の要素を持っており、
+ファイルシステムが{nil!variable:link}の要素を
+許容していないときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(with-open-file (s "delete-me.text" :direction :output :if-exists :error))
+=>  NIL
+(setq p (probe-file "delete-me.text")) =>  #P"R:>fred>delete-me.text.1"
+(delete-file p) =>  T
+(probe-file "delete-me.text") =>  false
+(with-open-file (s "delete-me.text" :direction :output :if-exists :error)
+  (delete-file s))
+=>  T
+(probe-file "delete-me.text") =>  false
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし削除処理が成功しなかったときは、
+型{file-error:link}のエラーが発生します。
+
+もし*filespec*がワイルドカードを含んでいたときは、
+型{file-error:link}のエラーが発生するかもしれません。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

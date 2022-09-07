@@ -815,6 +815,7 @@
 (dictionary 20.2.file-error-pathname)
 
 ;; Chapter 21
+(index 21.1 "ストリームの説明" "Stream Concepts")
 (index 21.2 "ストリームの辞書" "Streams Dictionary")
 (dictionary 21.2.stream)
 (dictionary 21.2.broadcast-stream)
@@ -951,6 +952,9 @@
 (dictionary 24.2.with-compilation-unit)
 
 ;; Chapger 25
+(index 25.1 "外部環境" "The External Environment")
+(text 25.1.4 "時間" "Time")
+(text 25.1.4.2 "{universal-time}" "Universal Time")
 (index 25.2 "環境の辞書" "Environment Dictionary")
 (dictionary 25.2.documentation)
 

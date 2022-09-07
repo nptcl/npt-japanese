@@ -1,0 +1,64 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILE-ERROR-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.file-error-pathname
+@name: file-error-pathname
+@type: function
+
+Function `FILE-ERROR-PATHNAME`
+
+
+## {syntax}
+
+`file-error-pathname` *condition* => *pathspec*
+
+
+## {arguments-and-values}
+
+*condition* - 型{file-error:link}のコンディション  
+*pathspec* - パス名指定子
+
+
+## {description}
+
+型{file-error:link}のコンディションから
+「問題を起こしたパス名」を返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{file-error:link},
+{9:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

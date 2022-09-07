@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILE-AUTHOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.file-author
+@name: file-author
+@type: function
+
+Function `FILE-AUTHOR`
+
+
+## {syntax}
+
+`file-author` *pathspec* => *author*
+
+
+## {arguments-and-values}
+
+*pathspec* - パス名指定子  
+*author* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+*pathspec*によって指定されたファイルの作者の名前を表す文字列を返却するか、
+あるいは作者の名前が決定できなかったときは{nil!variable:link}が返却します。
+
+
+## {examples}
+
+```lisp
+(with-open-file (stream ">relativity>general.text")
+  (file-author s))
+=>  "albert"
+```
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステム
+
+
+## {exceptional-situations}
+
+もし*filespec*がワイルドカードを含むとき、
+型{file-error:link}のエラーが発生します。
+
+もしファイルシステムが要求された処理を実行できなかったときは、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{25.1.4.2:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

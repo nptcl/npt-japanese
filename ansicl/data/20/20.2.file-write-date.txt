@@ -1,0 +1,82 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILE-WRITE-DATE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.file-write-date
+@name: file-write-date
+@type: function
+
+Function `FILE-WRITE-DATE`
+
+
+## {syntax}
+
+`file-write-date` *pathspec* => *date*
+
+
+## {arguments-and-values}
+
+*pathspec* - パス名指定子  
+*date* - {universal-time}か、{nil!variable:link}
+
+
+## {description}
+
+*pathspec*で指定されたファイルが
+最後に書き込みされたとき（または作成されたとき）の時間を、
+{universal-time}として表現したものを返却するか、
+そのような時間が決定できなかったときは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(with-open-file (s "noel.text" 
+                   :direction :output :if-exists :error)
+  (format s "~&Dear Santa,~2%I was good this year.  ~
+               Please leave lots of toys.~2%Love, Sue~
+            ~2%attachments: milk, cookies~%")
+  (truename s))
+=>  #P"CUPID:/susan/noel.text"
+(with-open-file (s "noel.text")
+  (file-write-date s))
+=>  2902600800
+```
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステム
+
+*pathspec*として名前がついているファイルへの他のユーザー。
+
+
+## {exceptional-situations}
+
+もし*filespec*がワイルドカードを含むとき、
+型{file-error:link}のエラーが発生します。
+
+もしファイルシステムが要求された処理を実行できなかったときは、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+
+
+@end
+

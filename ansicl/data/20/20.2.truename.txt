@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  20. ファイル操作
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TRUENAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 20.2.truename
+@name: truename
+@type: function
+
+Function `TRUENAME`
+
+
+## {syntax}
+
+`truename` *filespec* => *truename*
+
+
+## {arguments-and-values}
+
+*filespec* - パス名指定子  
+*truename* - 物理パス名
+
+
+## {description}
+
+{truename:link}は、*filespec*によって指し示している
+ファイルを見つけようと試行し、
+それを実際の名前として返却します。
+もし*filespec*の指定子が開いたストリームのとき、
+それに関連付けられたファイルが使用されます。
+もし*filespec*がストリームのとき、
+{truename:link}はストリームが開いているか閉じられているかに関わらず
+使用することができます。
+{truename:link}はストリームが開いているときよりも、
+ストリームが閉じられた後の方が
+より多くの特定的な情報を返却することが許されています。
+もし*filespec*がパス名のとき、
+それはファイルを開くときに使用される名前の表現になります。
+これはおそらく、必須ではありませんが、
+実際のファイル名になります。
+
+
+## {examples}
+
+```lisp
+;; この例ではバージョンの数に注目します。
+;; まだファイルが開いているものに対してtruenameが返却する内容は
+;; 実装依存であることに注意してください。
+(with-open-file (stream ">vistor>test.text.newest")
+  (values (pathname stream)
+          (truename stream)))
+=>  #P"S:>vistor>test.text.newest", #P"S:>vistor>test.text.1"
+OR=>  #P"S:>vistor>test.text.newest", #P"S:>vistor>test.text.newest"
+OR=>  #P"S:>vistor>test.text.newest", #P"S:>vistor>_temp_._temp_.1"
+
+;; この例では閉じられたファイルに対してtruenameを試行しているので
+;; truenameの情報は確かなものになります。
+(with-open-file (stream ">vistor>test.text.newest")
+  (close stream)
+  (values (pathname stream)
+          (truename stream)))
+=>  #P"S:>vistor>test.text.newest", #P"S:>vistor>test.text.1"
+
+;; この例ではTOP-20の論理デバイスに基づく処理系実装であり、
+;; この場合、"DOC:"は"PS:<DOCUMENTATION>" ...の省略形になります。
+(with-open-file (stream "CMUC::DOC:DUMPER.HLP")
+  (values (pathname stream)
+          (truename stream)))
+=>  #P"CMUC::DOC:DUMPER.HLP", #P"CMUC::PS:<DOCUMENTATION>DUMPER.HLP.13"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし引数の*filespec*がファイルシステム内において
+適切なファイルの位置を特定できなかったときか、
+あるいはファイルシステムが要求された処理を実行できなかったときは、
+型{file-error:link}のエラーが発生します。
+
+もし*filespec*がワイルドカードを含むとき、
+型{file-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+{truename:link}はファイルシステムによって実行できるような
+ファイル名に変換するときに使用されます。
+
+@end
+

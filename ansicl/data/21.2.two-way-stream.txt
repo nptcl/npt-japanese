@@ -1,0 +1,37 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class TWO-WAY-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.two-way-stream
+@name: two-way-stream
+@type: system-class
+
+System Class `TWO-WAY-STREAM`
+
+
+## {class-precedence-list}
+
+{two-way-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+双方向の合成されたストリームであり、
+関連付けられた入力ストリームから入力の取得と、
+関連付けられた出力ストリームへ出力を送信をします。
+
+
+## {see-also}
+
+{make-two-way-stream:link},
+{two-way-stream-input-stream:link},
+{two-way-stream-output-stream:link}
+
+@end
+

@@ -1,0 +1,51 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class CONCATENATED-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.concatenated-stream
+@name: concatenated-stream
+@type: system-class
+
+System Class `CONCATENATED-STREAM`
+
+
+## {class-precedence-list}
+
+{concatenated-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+{concatenated-stream}は入力ストリームであり、
+ゼロか複数の入力ストリームの集合を関連付けたものです。
+{concatenated-stream}から読み込むことができるデータの列は、
+それぞれのストリームの要素から読み込むことができるデータの列を
+つなぎ合わせたものと同じになります。
+
+{concatenated-stream}からの入力は、
+最初に関連付けられた入力ストリームが
+ファイルの終わりに到達するまでのものが使われます。
+その後は最初のストリームが捨てられ、
+続く入力が次の入力ストリームとして使用され、くり返されます。
+関連付けられた入力ストリームのファイルの終わりは、
+常に{concatenated-stream}によって目につかないように管理されますが、
+データの入力の試行により
+残りの入力ストリームが存在しない{concatenated-stream}から
+データを入手しようとしたとき、
+唯一そのような状況のときにのみ
+{concatenated-stream}の呼び出しもとにファイルの終わりを通知します。
+
+
+## {see-also}
+
+{concatenated-stream-streams:link},
+{make-concatenated-stream:link}
+
+@end
+

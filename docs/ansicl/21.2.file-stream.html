@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>21.2. ストリームの辞書</title>
+  <title>System-Class FILE-STREAM</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,26 +151,18 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">21.2. ストリームの辞書</h1>
+<h1 class="title">System-Class FILE-STREAM</h1>
 </header>
-<p><a href="21.html">UP</a></p>
+<p><a href="21.2.html">UP</a></p>
 <hr />
-<p>21.2. ストリームの辞書</p>
-<ul>
-<li><a href="21.2.stream.html">System-Class <strong>STREAM</strong></a></li>
-<li><a href="21.2.broadcast-stream.html">System-Class <strong>BROADCAST-STREAM</strong></a></li>
-<li><a href="21.2.concatenated-stream.html">System-Class <strong>CONCATENATED-STREAM</strong></a></li>
-<li><a href="21.2.echo-stream.html">System-Class <strong>ECHO-STREAM</strong></a></li>
-<li><a href="21.2.file-stream.html">System-Class <strong>FILE-STREAM</strong></a></li>
-<li><a href="21.2.string-stream.html">System-Class <strong>STRING-STREAM</strong></a></li>
-<li><a href="21.2.synonym-stream.html">System-Class <strong>SYNONYM-STREAM</strong></a></li>
-<li><a href="21.2.two-way-stream.html">System-Class <strong>TWO-WAY-STREAM</strong></a></li>
-<li><a href="21.2.input-stream-p.html">Function <strong>INPUT-STREAM-P, OUTPUT-STREAM-P</strong></a></li>
-<li><a href="21.2.interactive-stream-p.html">Function <strong>INTERACTIVE-STREAM-P</strong></a></li>
-<li><a href="21.2.open-stream-p.html">Function <strong>OPEN-STREAM-P</strong></a></li>
-<li><a href="21.2.stream-element-type.html">Function <strong>STREAM-ELEMENT-TYPE</strong></a></li>
-<li><a href="21.2.debug-io.html">Variable <strong>*DEBUG-IO*, *ERROR-OUTPUT*, *QUERY-IO*, *STANDARD-INPUT*, *STANDARD-OUTPUT*, *TRACE-OUTPUT*</strong></a></li>
-</ul>
+<h1 id="system-class-file-stream">System-Class <strong>FILE-STREAM</strong></h1>
+<p>System Class <code>FILE-STREAM</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="21.2.file-stream.html"><code>file-stream</code></a>, <a href="21.2.stream.html"><code>stream</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>型<a href="21.2.file-stream.html"><code>file-stream</code></a>のオブジェクトは、 ファイルから直接送受信するストリームです。 そのようなストリームは、 <code>open</code>と<code>with-open-file</code>によって明に作成されるか、 <code>load</code>のようなファイルを処理する関数で暗に作成されます。</p>
+<h2 id="参考">参考</h2>
+<p><code>load</code>, <code>open</code>, <code>with-open-file</code></p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

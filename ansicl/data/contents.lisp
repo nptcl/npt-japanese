@@ -819,7 +819,7 @@
 (index 21.2 "ストリームの辞書" "Streams Dictionary")
 (dictionary 21.2.stream)
 (dictionary 21.2.broadcast-stream)
-(dictionary 21.2.concatenated-streamstream)
+(dictionary 21.2.concatenated-stream)
 (dictionary 21.2.echo-stream)
 (dictionary 21.2.file-stream)
 (dictionary 21.2.string-stream)
@@ -836,6 +836,7 @@
 (dictionary 21.2.read-char)
 (dictionary 21.2.read-char-no-hang)
 (dictionary 21.2.terpri)
+(dictionary 21.2.fresh-line)  ;; delete
 (dictionary 21.2.unread-char)
 (dictionary 21.2.read-line)
 (dictionary 21.2.write-string)
@@ -859,9 +860,11 @@
 (dictionary 21.2.make-broadcast-stream)
 (dictionary 21.2.make-two-way-stream)
 (dictionary 21.2.two-way-stream-input-stream)
+(dictionary 21.2.two-way-stream-output-stream)  ;; delete
 (dictionary 21.2.echo-stream-input-stream)
+(dictionary 21.2.echo-stream-output-stream)  ;; delete
 (dictionary 21.2.make-echo-stream)
-(dictionary 21.2.concatenated-stream)
+(dictionary 21.2.concatenated-stream-streams)
 (dictionary 21.2.make-concatenated-stream)
 (dictionary 21.2.get-output-stream-string)
 (dictionary 21.2.make-string-input-stream)

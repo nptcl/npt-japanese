@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class ECHO-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.echo-stream
+@name: echo-stream
+@type: system-class
+
+System Class `ECHO-STREAM`
+
+
+## {class-precedence-list}
+
+{echo-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+{echo-stream}は双方向ストリームであり、
+関連付けられた入力ストリームから取得を行い、
+関連付けられた出力ストリームに送信を行います。
+
+入力ストリームからの全ての入力は、
+出力ストリームに送信（エコー）されます。
+入力はデータを受け付けて即座にエコーされるか、
+あるいは入力ストリームから読み込み処理を行ったあとにエコーされるかは、
+{implementation-dependent}です。
+
+
+## {see-also}
+
+{echo-stream-input-stream:link},
+{echo-stream-output-stream:link},
+{make-echo-stream:link}
+
+@end
+

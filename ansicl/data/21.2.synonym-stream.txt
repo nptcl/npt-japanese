@@ -1,0 +1,43 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class SYNONYM-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.synonym-stream
+@name: synonym-stream
+@type: system-class
+
+System Class `SYNONYM-STREAM`
+
+
+## {class-precedence-list}
+
+{synonym-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+このストリームは、他のストリームの別名であり、
+{synonym-stream}が保有するシンボルの名前の動的変数の値が
+別名のストリームを示します。
+
+{synonym-stream}のどのような操作も、
+{synonym-stream}のシンボルによって名前付けられた
+動的変数の値のストリームに対して実行されます。
+もし変数の値が変更されたか、
+あるいは変数に対して束縛が生じたときは、
+ストリームは変数の新しい値に対して処理を行います。
+
+
+## {see-also}
+
+{make-synonym-stream:link},
+{synonym-stream-symbol:link}
+
+@end
+

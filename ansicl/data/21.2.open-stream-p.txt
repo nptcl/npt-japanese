@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function OPEN-STREAM-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.open-stream-p
+@name: open-stream-p
+@type: function
+
+Function `OPEN-STREAM-P`
+
+
+## {syntax}
+
+`open-stream-p` *stream* => *generalized-boolean*  
+
+
+## {arguments-and-values}
+
+*stream* - ストリーム  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*stream*が開いているストリームのときは*true*を、
+それ以外のときは*false*を返却します。
+
+ストリームは、明示的に{close:link}により閉じられるまでか、
+あるいは
+{with-output-to-string:link},
+{with-open-file:link},
+{with-input-from-string:link},
+{with-open-stream:link}のフォームを退出して
+暗黙的に閉じられるまでは開いています。
+
+
+## {examples}
+
+```lisp
+(open-stream-p *standard-input*) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{close:link}
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないときは、
+型{type-error:link}のエラーを発生させるべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

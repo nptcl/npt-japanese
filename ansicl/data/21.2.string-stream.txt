@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class STRING-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.string-stream
+@name: string-stream
+@type: system-class
+
+System Class `STRING-STREAM`
+
+
+## {class-precedence-list}
+
+{string-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+{string-stream}は、
+文字列に関連付けられたものから
+入力として読み込むか、
+出力として書き込むかを行うストリームです。
+
+{string-stream}のストリームの要素の型は、
+常に型{character!system-class:link}のサブタイプです。
+
+
+## {see-also}
+
+{make-string-input-stream:link},
+{make-string-output-stream:link},
+{with-input-from-string:link},
+{with-output-to-string:link}
+
+@end
+

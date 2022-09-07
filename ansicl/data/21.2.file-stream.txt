@@ -1,0 +1,38 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class FILE-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.file-stream
+@name: file-stream
+@type: system-class
+
+System Class `FILE-STREAM`
+
+
+## {class-precedence-list}
+
+{file-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{file-stream:link}のオブジェクトは、
+ファイルから直接送受信するストリームです。
+そのようなストリームは、
+{open:link}と{with-open-file:link}によって明に作成されるか、
+{load:link}のようなファイルを処理する関数で暗に作成されます。
+
+## {see-also}
+
+{load:link},
+{open:link},
+{with-open-file:link}
+
+@end
+

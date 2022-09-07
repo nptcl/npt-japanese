@@ -135,6 +135,12 @@
 
 (replace universal-time "ユニバーサル時間")
 
+(replace broadcast-stream "`broadcast`ストリーム")
+(replace concatenated-stream "`concatenated`ストリーム")
+(replace echo-stream "`echo`ストリーム")
+(replace string-stream "`string`ストリーム")
+(replace synonym-stream "`synonym`ストリーム")
+
 ;;  Metaobject Protocol
 (replace methods "メソッド")
 (replace comments-and-remarks "コメントと備考")

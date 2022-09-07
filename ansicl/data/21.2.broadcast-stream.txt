@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class BROADCAST-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.broadcast-stream
+@name: broadcast-stream
+@type: system-class
+
+System Class `BROADCAST-STREAM`
+
+
+## {class-precedence-list}
+
+{broadcast-stream:link},
+{stream:link},
+{t!system-class:link}
+
+
+## {description}
+
+{broadcast-stream}は出力ストリームであり、
+ゼロか複数の出力ストリームの集合を関連付けたものです。
+{broadcast-stream}にはどのような出力も送ることでき、
+関連付けられたそれぞれの出力ストリームに対する出力として転送されます
+（もし{broadcast-stream}が何のストリームも持っていなかったときは、
+全ての{broadcast-stream}への出力は切り捨てられます）。
+
+{broadcast-stream}で実行できる処理の集合は、
+関連付けられた出力ストリームの共通部分です。
+
+いくつかの出力処理（例えば{fresh-line:link}）は、
+その処理時のストリームの状態による値を返却します。
+各ストリームの要素が違った返却値であるとき、
+次のように特定した値を返却するように定義する必要があります。
+
+- {stream-element-type:link}は、最後の要素のストリームの値を返却し、
+  もしストリームの要素が無いときは{t!variable:link}を返却します。
+
+- {fresh-line:link}は、最後の要素のストリームの値を返却し、
+  もしストリームの要素が無いときは{nil!variable:link}を返却します。
+
+- {file-length:link}, {file-position:link},
+  {file-string-length:link}, {stream-external-format:link}は
+  最後の要素のストリームの値を返却します。
+  もしストリームの要素が無いときは、
+  {file-length:link}と{file-position:link}は`0`を返却し、
+  {file-string-length:link}は`1`を返却、
+  {stream-external-format:link}は`:default`を返却します。
+
+- {streamp:link}と{output-stream-p:link}は、
+  {broadcast-stream}に対しては常に*true*を返却します。
+
+- {open-stream-p:link}は{broadcast-stream}が開いているかどうかをテストします。
+  保有しているストリーム要素に対して
+  開いているかどうかをテストするわけではありません。
+
+- {input-stream-p:link}と{interactive-stream-p:link}は実装定義ですが、
+  {generalized-boolean}を返却します。
+
+- 入力処理である{clear-input:link}, {peek-char:link}, {read-byte:link},
+  {read-char-no-hang:link}, {read-char:link},
+  {read-line:link}, {unread-char:link}は、
+  もしこれらの処理が実行されたときの結果は未定義です。
+  しかし実装は、{implementation-dependent}の拡張による
+  振る舞いを定義することが許されています。
+
+上記かまたは本文書の他の箇所で
+戻り値が明確に指定されていない出力操作については、
+その操作による返却値は、
+そのストリームの要素の最後のものに対して操作を実行した
+結果の返却値であると定義されます。
+それ以前のストリームに対して行った操作の全ての結果の値は破棄されます。
+もしストリームの要素が存在しないときは、
+返却値は{implementation-dependent}です。
+
+
+## {see-also}
+
+{broadcast-stream-streams:link},
+{make-broadcast-stream:link}
+
+@end
+

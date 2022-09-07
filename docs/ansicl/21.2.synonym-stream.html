@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>21.2. ストリームの辞書</title>
+  <title>System-Class SYNONYM-STREAM</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,26 +151,19 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">21.2. ストリームの辞書</h1>
+<h1 class="title">System-Class SYNONYM-STREAM</h1>
 </header>
-<p><a href="21.html">UP</a></p>
+<p><a href="21.2.html">UP</a></p>
 <hr />
-<p>21.2. ストリームの辞書</p>
-<ul>
-<li><a href="21.2.stream.html">System-Class <strong>STREAM</strong></a></li>
-<li><a href="21.2.broadcast-stream.html">System-Class <strong>BROADCAST-STREAM</strong></a></li>
-<li><a href="21.2.concatenated-stream.html">System-Class <strong>CONCATENATED-STREAM</strong></a></li>
-<li><a href="21.2.echo-stream.html">System-Class <strong>ECHO-STREAM</strong></a></li>
-<li><a href="21.2.file-stream.html">System-Class <strong>FILE-STREAM</strong></a></li>
-<li><a href="21.2.string-stream.html">System-Class <strong>STRING-STREAM</strong></a></li>
-<li><a href="21.2.synonym-stream.html">System-Class <strong>SYNONYM-STREAM</strong></a></li>
-<li><a href="21.2.two-way-stream.html">System-Class <strong>TWO-WAY-STREAM</strong></a></li>
-<li><a href="21.2.input-stream-p.html">Function <strong>INPUT-STREAM-P, OUTPUT-STREAM-P</strong></a></li>
-<li><a href="21.2.interactive-stream-p.html">Function <strong>INTERACTIVE-STREAM-P</strong></a></li>
-<li><a href="21.2.open-stream-p.html">Function <strong>OPEN-STREAM-P</strong></a></li>
-<li><a href="21.2.stream-element-type.html">Function <strong>STREAM-ELEMENT-TYPE</strong></a></li>
-<li><a href="21.2.debug-io.html">Variable <strong>*DEBUG-IO*, *ERROR-OUTPUT*, *QUERY-IO*, *STANDARD-INPUT*, *STANDARD-OUTPUT*, *TRACE-OUTPUT*</strong></a></li>
-</ul>
+<h1 id="system-class-synonym-stream">System-Class <strong>SYNONYM-STREAM</strong></h1>
+<p>System Class <code>SYNONYM-STREAM</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="21.2.synonym-stream.html"><code>synonym-stream</code></a>, <a href="21.2.stream.html"><code>stream</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>このストリームは、他のストリームの別名であり、 <code>synonym</code>ストリームが保有するシンボルの名前の動的変数の値が 別名のストリームを示します。</p>
+<p><code>synonym</code>ストリームのどのような操作も、 <code>synonym</code>ストリームのシンボルによって名前付けられた 動的変数の値のストリームに対して実行されます。 もし変数の値が変更されたか、 あるいは変数に対して束縛が生じたときは、 ストリームは変数の新しい値に対して処理を行います。</p>
+<h2 id="参考">参考</h2>
+<p><code>make-synonym-stream</code>, <code>synonym-stream-symbol</code></p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

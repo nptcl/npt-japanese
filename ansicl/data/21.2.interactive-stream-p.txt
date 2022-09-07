@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INTERACTIVE-STREAM-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.interactive-stream-p
+@name: interactive-stream-p
+@type: function
+
+Function `INTERACTIVE-STREAM-P`
+
+
+## {syntax}
+
+`interactive-stream-p` *stream* => *generalized-boolean*  
+
+
+## {arguments-and-values}
+
+*stream* - ストリーム  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*stream*が対話式ストリームのときは*true*を、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(when (> measured limit)
+  (let ((error (round (* (- measured limit) 100)
+                      limit)))
+    (unless (if (interactive-stream-p *query-io*)
+                (yes-or-no-p "The frammis is out of tolerance by ~D%.~@
+                              Is it safe to proceed? " error)
+                (< error 15))  ;15% is acceptable
+      (error "The frammis is out of tolerance by ~D%." error))))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないときは、
+型{type-error:link}のエラーを発生させるべきです。
+
+
+## {see-also}
+
+{21.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

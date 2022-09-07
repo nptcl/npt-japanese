@@ -1,0 +1,78 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INPUT-STREAM-P
+;;  Function OUTPUT-STREAM-P
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.input-stream-p
+@name: input-stream-p
+@name: output-stream-p
+@type: function
+
+Function `INPUT-STREAM-P`, `OUTPUT-STREAM-P`
+
+
+## {syntax}
+
+`input-stream-p` *stream* => *generalized-boolean*  
+`output-stream-p` *stream* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*stream* - ストリーム  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{input-stream-p:link}は、*stream*が入力ストリームのときは*true*を、
+それ以外のときは*false*を返却します。
+
+{output-stream-p:link}は、*stream*が出力ストリームのときは*true*を、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(input-stream-p *standard-input*) =>  true
+(input-stream-p *terminal-io*) =>  true
+(input-stream-p (make-string-output-stream)) =>  false
+
+(output-stream-p *standard-output*) =>  true
+(output-stream-p *terminal-io*) =>  true
+(output-stream-p (make-string-input-stream "jr")) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないときは、
+型{type-error:link}のエラーを発生させるべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STREAM-ELEMENT-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.stream-element-type
+@name: stream-element-type
+@type: function
+
+Function `STREAM-ELEMENT-TYPE`
+
+
+## {syntax}
+
+`stream-element-type` *stream* => *typespec*
+
+
+## {arguments-and-values}
+
+*stream* - ストリーム  
+*typespec* - 型指定子
+
+
+## {description}
+
+{stream-element-type:link}は、
+*stream*に読み書きされるオブジェクトの型を示す型指定子を返却します。
+
+{open:link}によって作成されたストリームは、
+整数かあるいは型{character!system-class:link}のサブタイプに制限される
+要素の型を持っています。
+
+
+## {examples}
+
+```lisp
+;; このストリームは少なくとも指定した型を扱う必要がありますが、
+;; 他の型も扱うことができるかもしれないことに注意してください。
+;; より詳しくは正確に指定した型を収容できるとしても、
+;; その型は様々な方法で指定されるかもしれません。
+(with-open-file (s "test" :element-type '(integer 0 1)
+                          :if-exists :error
+                          :direction :output)
+  (stream-element-type s))
+=>  INTEGER
+OR=>  (UNSIGNED-BYTE 16)
+OR=>  (UNSIGNED-BYTE 8)
+OR=>  BIT
+OR=>  (UNSIGNED-BYTE 1)
+OR=>  (INTEGER 0 1)
+OR=>  (INTEGER 0 (2))
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないとき、
+型{type-error:link}のエラーを発生させるべきです。
+
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

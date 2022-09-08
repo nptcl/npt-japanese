@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STREAMP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.streamp
+@name: streamp
+@type: function
+
+Function `STREAMP`
+
+
+## {syntax}
+
+`streamp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が{stream:link}の型であれば*true*を、
+それ以外は*false*を返却します。
+
+{streamp:link}は*object*がストリームであったときに
+開いているか閉じているかによる影響はありません。
+
+
+## {examples}
+
+```lisp
+(streamp *terminal-io*) =>  true
+(streamp 1) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(streamp object) ==  (typep object 'stream)
+```
+
+@end
+

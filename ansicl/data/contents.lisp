@@ -838,6 +838,7 @@
 (dictionary 21.2.terpri)
 (dictionary 21.2.fresh-line)  ;; delete
 (dictionary 21.2.unread-char)
+(dictionary 21.2.write-char)
 (dictionary 21.2.read-line)
 (dictionary 21.2.write-string)
 (dictionary 21.2.read-sequence)

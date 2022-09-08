@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WRITE-BYTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.write-byte
+@name: write-byte
+@type: function
+
+Function `WRITE-BYTE`
+
+
+## {syntax}
+
+`write-byte` *byte* *stream* => *byte*
+
+
+## {arguments-and-values}
+
+*byte* - *stream*の要素の型の整数  
+*stream* - バイナリ出力ストリーム
+
+
+## {description}
+
+{write-byte:link}は、ひとつのバイトである*byte*を
+*stream*に書き込みます。
+
+
+## {examples}
+
+```lisp
+(with-open-file (s "temp-bytes" 
+                   :direction :output
+                   :element-type 'unsigned-byte)
+   (write-byte 101 s)) =>  101
+```
+
+
+## {side-effects}
+
+*stream*は変更されます。
+
+
+## {affected-by}
+
+*stream*の要素の型
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないときは、
+型{type-error:link}のエラーを通知するべきです。
+*stream*がバイナリ出力ストリームではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+*byte*が*stream*の要素の型の整数ではないときは、
+型{type-error:link}のエラーを通知されるでしょう。
+
+
+## {see-also}
+
+{read-byte:link},
+{write-char:link},
+{write-sequence:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

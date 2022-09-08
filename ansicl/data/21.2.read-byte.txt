@@ -1,0 +1,88 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-BYTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.read-byte
+@name: read-byte
+@type: function
+
+Function `READ-BYTE`
+
+
+## {syntax}
+
+`read-byte` *stream* `&optional` *eof-error-p* *eof-value* => *byte*
+
+
+## {arguments-and-values}
+
+*stream* - バイナリ入力ストリーム  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*byte* - 整数か、*eof-value*。
+
+
+## {description}
+
+{read-byte:link}は、
+*stream*からひとつのバイトを読み込み返却します。
+
+もしファイルの終わりに到達したとき、
+*eof-error-p*が*false*のときは、
+*eof-value*が返却されます。
+
+
+## {examples}
+
+```lisp
+(with-open-file (s "temp-bytes" 
+                    :direction :output
+                    :element-type 'unsigned-byte)
+   (write-byte 101 s)) =>  101
+(with-open-file (s "temp-bytes" :element-type 'unsigned-byte)
+   (format t "~S ~S" (read-byte s) (read-byte s nil 'eof)))
+>>  101 EOF
+=>  NIL
+```
+
+
+## {side-effects}
+
+*stream*を変更します。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*stream*がストリームではないときは、
+型{type-error:link}のエラーを通知するべきです。
+
+*stream*がバイナリ入力ストリームではないときは、
+型{type-error:link}のエラーを通知するべきです。
+
+もし*eof-error-p*が*true*であり、
+*stream*に残りのバイトが存在しないときは、
+型{end-of-file:link}のエラーが通知されます。
+
+
+## {see-also}
+
+{read-char:link},
+{read-sequence:link},
+{write-byte:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

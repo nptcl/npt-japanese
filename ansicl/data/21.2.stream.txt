@@ -26,7 +26,8 @@ System Class `STREAM`
 
 より完全な情報は{21.1:ab}をご確認ください。
 
-See Also:
+
+## {see-also}
 
 {21.1:ab},
 {22.1.3.13:ab},

@@ -1,0 +1,94 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TERPRI
+;;  Function FRESH-LINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.terpri
+@name: terpri
+@name: fresh-line
+@type: function
+
+Function `TERPRI`, `FRESH-LINE`
+
+
+## {syntax}
+
+`terpri` `&optional` *output-stream* => {nil!variable:link}  
+`fresh-line` `&optional` *output-stream* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*output-stream* - 出力ストリーム指定子。標準は標準出力。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{terpri:link}は、*output-stream*に改行`newline`を出力します。
+
+{fresh-line:link}は{terpri:link}と似ていますが、
+もし*output-stream*が行の始まりに位置していないときのみ
+改行`newline`を出力します。
+何らかの理由でこのような状況が決定できないときは、
+改行`newline`は常に出力します。
+{fresh-line:link}は、改行`newline`が出力されたとき*true*を返却し、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(with-output-to-string (s)
+   (write-string "some text" s)
+   (terpri s)
+   (terpri s)
+   (write-string "more text" s))
+=>  "some text
+
+more text"
+(with-output-to-string (s)
+   (write-string "some text" s)
+   (fresh-line s)
+   (fresh-line s)
+   (write-string "more text" s))
+=>  "some text
+more text"
+```
+
+
+## {side-effects}
+
+*output-stream*は修正されます。
+
+
+## {affected-by}
+
+{*standard-output*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{terpri:link}の効果は下記の同等です。
+
+```lisp
+(write-char #\Newline output-stream)
+```
+
+@end
+

@@ -1,0 +1,120 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PEEK-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.peek-char
+@name: peek-char
+@type: function
+
+Function `PEEK-CHAR`
+
+
+## {syntax}
+
+`peek-char` `&optional`
+ *peek-type* *input-stream* *eof-error-p* *eof-value* *recursive-p*
+ => *char*
+
+
+## {arguments-and-values}
+
+*peek-type* - 文字か、{t!variable:link}か、{nil!variable:link}  
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*recursive-p* - {generalized-boolean}。デフォルトは*false*。  
+*char* - 文字か、*eof-value*
+
+
+## {description}
+
+{peek-char:link}は、*input-stream*から
+実際に読み込むことをせず次の文字を取得し、
+あとで読み込まれるように文字を残したままにします。
+また、特定の文字が見つかるまで
+*input-stream*の文字をスキップし
+文字による介入を無視するときにも使用されます。
+
+もし*peek-type*が指定されなかったか、あるいは{nil!variable:link}のとき、
+{peek-char:link}は
+*input-stream*から文字を取り除くことをせずに
+次に読み込まれる文字を返却します。
+次回の入力は実行された*input-stream*のものであり、
+その文字はまだそこに存在します。
+もし*peek-type*が{t!variable:link}のとき、
+{peek-char:link}は空白文字をスキップし、
+しかしコメントはスキップせずに、
+次の文字の{peek-char:link}処理を行います。
+最後に調査された文字は、
+その文字が開始のオブジェクトになるので、
+*input-stream*から削除されません。
+もし*peek-char*が文字のとき、
+{peek-char:link}は入力された文字に対して、
+{char=:link}と同じものが見つかるまでスキップし、
+その文字は*input-stream*から削除されます。
+
+もしファイルの終わりが発生し、
+*eof-error-p*が*false*であるときは、
+*eof-value*が返却されます。
+
+もし*recursive-p*が*true*のとき、
+この呼び出しはより上位レベルの{read:link}によるものか、
+Lispのリーダーによって使われる似たような関数から
+埋め込まれたものであると見なされます。
+
+*input-stream*が{echo-stream}であるとき、
+文字はのぞき見だけが行われ、エコーはされません。
+このような場合、*peek-type*が{nil!variable:link}ではないとき、
+{peek-char:link}によってのぞき見された文字は、
+{read-char:link}によるものと同じように扱われるので、
+{unread-char:link}で別段指定されない限りエコーされます。
+
+
+## {examples}
+
+```lisp
+(with-input-from-string (input-stream "    1 2 3 4 5")
+   (format t "~S ~S ~S" 
+           (peek-char t input-stream)
+           (peek-char #\4 input-stream)
+           (peek-char nil input-stream)))
+>>  #\1 #\4 #\4
+=>  NIL
+```
+
+
+## {affected-by}
+
+{*readtable*:link},
+{*standard-input*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+*eof-error-p*が*true*でありファイルの終わりに到達したときは、
+型{end-of-file:link}のエラーが通知されます。
+
+*peek-type*が文字であり、ファイルの終わりに到達し、
+*eof-error-p*が*true*のときは、
+型{end-of-file:link}のエラーが通知されます。
+
+*recursive-p*が*true*であり、ファイルの終わりに到達したときは、
+型{end-of-file:link}のエラーが通知されます。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

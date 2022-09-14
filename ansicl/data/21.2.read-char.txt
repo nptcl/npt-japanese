@@ -1,0 +1,90 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.read-char
+@name: read-char
+@type: function
+
+Function `READ-CHAR`
+
+
+## {syntax}
+
+`read-char` `&optional`
+ *input-stream* *eof-error-p* *eof-value* *recursive-p*
+ => *char*
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*recursive-p* - {generalized-boolean}。デフォルトは*false*。  
+*char* - 文字か、*eof-value*
+
+
+## {description}
+
+{read-char:link}は、*input-stream*から次の文字を返却します。
+
+*input-stream*が{echo-stream}であるとき、
+その文字は*input-stream*上の最初の文字として現れたものがエコーされます。
+{unread-char:link}によって配置された文字は
+{read-char:link}によってエコーされません。
+その文字は前回の{read-char:link}呼び出し時によって
+すでにエコーされていると見なされるためです。
+
+もし*recursive-p*が*true*のとき、
+この呼び出しはより上位レベルの{read:link}によるものか、
+Lispのリーダーによって使われる似たような関数から
+埋め込まれたものであると見なされます。
+
+もしファイルの終わりが発生し、
+*eof-error-p*が*false*であるときは、
+*eof-value*が返却されます。
+
+
+## {examples}
+
+```lisp
+(with-input-from-string (is "0123")
+   (do ((c (read-char is) (read-char is nil 'the-end)))
+       ((not (characterp c)))
+    (format t "~S " c)))
+>>  #\0 #\1 #\2 #\3
+=>  NIL
+```
+
+
+## {affected-by}
+
+{*standard-input*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+*eof-error-p*が*true*でありファイルの終わりに到達したときは、
+型{end-of-file:link}のエラーが通知されます。
+
+
+## {see-also}
+
+{read-byte:link},
+{read-sequence:link},
+{write-char:link},
+{read:link}
+
+
+## {notes}
+
+対応する出力関数は{write-char:link}です。
+
+@end
+

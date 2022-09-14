@@ -836,7 +836,6 @@
 (dictionary 21.2.read-char)
 (dictionary 21.2.read-char-no-hang)
 (dictionary 21.2.terpri)
-(dictionary 21.2.fresh-line)  ;; delete
 (dictionary 21.2.unread-char)
 (dictionary 21.2.write-char)
 (dictionary 21.2.read-line)
@@ -873,7 +872,7 @@
 (dictionary 21.2.with-input-from-string)
 (dictionary 21.2.with-output-to-string)
 (dictionary 21.2.debug-io)
-(dictionary 21.2.terminal-io)
+(dictionary 21.2.*terminal-io*)  ;; rename
 (dictionary 21.2.stream-error)
 (dictionary 21.2.stream-error-stream)
 (dictionary 21.2.end-of-file)
@@ -946,6 +945,7 @@
 (dictionary 23.2.read-default-float-format)
 (dictionary 23.2.read-eval)
 (dictionary 23.2.read-suppress)
+(dictionary 23.2.*readtable*)  ;; delete
 (dictionary 23.2.reader-error)
 
 ;; Chapter 24

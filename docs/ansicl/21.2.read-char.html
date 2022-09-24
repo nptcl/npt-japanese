@@ -230,7 +230,7 @@
 <em>char</em> - 文字か、<em>eof-value</em></p>
 <h2 id="定義">定義</h2>
 <p><a href="21.2.read-char.html"><code>read-char</code></a>は、<em>input-stream</em>から次の文字を返却します。</p>
-<p><em>input-stream</em>が<code>echo</code>ストリームであるとき、 その文字は<em>input-stream</em>上の最初の文字として現れたものがエコーされます。 <code>unread-char</code>によって配置された文字は <a href="21.2.read-char.html"><code>read-char</code></a>によってエコーされません。 その文字は前回の<a href="21.2.read-char.html"><code>read-char</code></a>呼び出し時によって すでにエコーされていると見なされるためです。</p>
+<p><em>input-stream</em>が<code>echo</code>ストリームであるとき、 その文字は<em>input-stream</em>上の最初の文字として現れたものがエコーされます。 <a href="21.2.unread-char.html"><code>unread-char</code></a>によって配置された文字は <a href="21.2.read-char.html"><code>read-char</code></a>によってエコーされません。 その文字は前回の<a href="21.2.read-char.html"><code>read-char</code></a>呼び出し時によって すでにエコーされていると見なされるためです。</p>
 <p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<code>read</code>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
 <p>もしファイルの終わりが発生し、 <em>eof-error-p</em>が<em>false</em>であるときは、 <em>eof-value</em>が返却されます。</p>
 <h2 id="例文">例文</h2>
@@ -245,9 +245,9 @@
 <h2 id="例外">例外</h2>
 <p><em>eof-error-p</em>が<em>true</em>でありファイルの終わりに到達したときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
 <h2 id="参考">参考</h2>
-<p><a href="21.2.read-byte.html"><code>read-byte</code></a>, <code>read-sequence</code>, <code>write-char</code>, <code>read</code></p>
+<p><a href="21.2.read-byte.html"><code>read-byte</code></a>, <a href="21.2.read-sequence.html"><code>read-sequence</code></a>, <a href="21.2.write-char.html"><code>write-char</code></a>, <code>read</code></p>
 <h2 id="備考">備考</h2>
-<p>対応する出力関数は<code>write-char</code>です。</p>
+<p>対応する出力関数は<a href="21.2.write-char.html"><code>write-char</code></a>です。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

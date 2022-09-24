@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function PEEK-CHAR</title>
+  <title>Function UNREAD-CHAR</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,45 +214,39 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function PEEK-CHAR</h1>
+<h1 class="title">Function UNREAD-CHAR</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-peek-char">Function <strong>PEEK-CHAR</strong></h1>
-<p>Function <code>PEEK-CHAR</code></p>
+<h1 id="function-unread-char">Function <strong>UNREAD-CHAR</strong></h1>
+<p>Function <code>UNREAD-CHAR</code></p>
 <h2 id="構文">構文</h2>
-<p><code>peek-char</code> <code>&amp;optional</code> <em>peek-type</em> <em>input-stream</em> <em>eof-error-p</em> <em>eof-value</em> <em>recursive-p</em> =&gt; <em>char</em></p>
+<p><code>unread-char</code> <em>character</em> <code>&amp;optional</code> <em>input-stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>peek-type</em> - 文字か、<a href="5.3.t-variable.html"><code>t</code></a>か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
-<em>input-stream</em> - 入力ストリーム指定子。デフォルトは標準入力。<br />
-<em>eof-error-p</em> - generalized-boolean。デフォルトは<em>true</em>。<br />
-<em>eof-value</em> - オブジェクト。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
-<em>recursive-p</em> - generalized-boolean。デフォルトは<em>false</em>。<br />
-<em>char</em> - 文字か、<em>eof-value</em></p>
+<p><em>character</em> - 文字。 <em>input-stream</em>から読み込んだ最後の文字でなければなりません。<br />
+<em>input-stream</em> - 入力ストリーム指定子。デフォルトは標準入力。</p>
 <h2 id="定義">定義</h2>
-<p><a href="21.2.peek-char.html"><code>peek-char</code></a>は、<em>input-stream</em>から 実際に読み込むことをせず次の文字を取得し、 あとで読み込まれるように文字を残したままにします。 また、特定の文字が見つかるまで <em>input-stream</em>の文字をスキップし 文字による介入を無視するときにも使用されます。</p>
-<p>もし<em>peek-type</em>が指定されなかったか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は <em>input-stream</em>から文字を取り除くことをせずに 次に読み込まれる文字を返却します。 次回の入力は実行された<em>input-stream</em>のものであり、 その文字はまだそこに存在します。 もし<em>peek-type</em>が<a href="5.3.t-variable.html"><code>t</code></a>のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は空白文字をスキップし、 しかしコメントはスキップせずに、 次の文字の<a href="21.2.peek-char.html"><code>peek-char</code></a>処理を行います。 最後に調査された文字は、 その文字が開始のオブジェクトになるので、 <em>input-stream</em>から削除されません。 もし<em>peek-char</em>が文字のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は入力された文字に対して、 <a href="13.2.char-equal.html"><code>char=</code></a>と同じものが見つかるまでスキップし、 その文字は<em>input-stream</em>から削除されます。</p>
-<p>もしファイルの終わりが発生し、 <em>eof-error-p</em>が<em>false</em>であるときは、 <em>eof-value</em>が返却されます。</p>
-<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<code>read</code>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
-<p><em>input-stream</em>が<code>echo</code>ストリームであるとき、 文字はのぞき見だけが行われ、エコーはされません。 このような場合、<em>peek-type</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>によってのぞき見された文字は、 <a href="21.2.read-char.html"><code>read-char</code></a>によるものと同じように扱われるので、 <a href="21.2.unread-char.html"><code>unread-char</code></a>で別段指定されない限りエコーされます。</p>
+<p><a href="21.2.unread-char.html"><code>unread-char</code></a>は、<em>character</em>を<em>input-stream</em>の前に戻し、 ふたたび<em>input-stream</em>の次の文字になるようにします。</p>
+<p><em>input-stream</em>が<code>echo</code>ストリームのとき、 <em>input-stream</em>上ですでに実施された文字のエコーの取り消しは行いません。 しかし<a href="21.2.unread-char.html"><code>unread-char</code></a>による<em>input-stream</em>上で置き換えられた文字は、 あとで<a href="21.2.read-char.html"><code>read-char</code></a>によって再びエコーされ内容にするために 印がつけられます。</p>
+<p>同じストリームに対して<a href="21.2.unread-char.html"><code>unread-char</code></a>を二度続けて、 <a href="21.2.read-char.html"><code>read-char</code></a>（または暗黙的に文字の読み込みを行う他の入力操作）を 介入させることなく実行したときはエラーです。</p>
+<p><a href="21.2.peek-char.html"><code>peek-char</code></a>か<a href="21.2.read-char.html"><code>read-char</code></a>の呼び出しは、前の文字を渡します。 <a href="21.2.peek-char.html"><code>peek-char</code></a>によって返却されたものの前のどんな文字について <a href="21.2.unread-char.html"><code>unread-char</code></a>を実行した結果は指定されていません （<a href="21.2.peek-char.html"><code>peek-char</code></a>の<em>peek-type</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>では なかったときに渡された場合を含む）。 とくに、<a href="21.2.peek-char.html"><code>peek-char</code></a>のあとの<a href="21.2.unread-char.html"><code>unread-char</code></a>の 呼び出しの結果は指定されていません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-input-from-string</span> (input-stream <span class="st">&quot;    1 2 3 4 5&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~S ~S ~S&quot;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="kw">t</span> input-stream)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="ch">#\4</span> input-stream)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="kw">nil</span> input-stream)))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="ch">#\1</span> <span class="ch">#\4</span> <span class="ch">#\4</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-input-from-string</span> (is <span class="st">&quot;0123&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">dotimes</span> (i <span class="dv">6</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((c (<span class="kw">read-char</span> is)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">if</span> (<span class="kw">evenp</span> i) (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp;~S ~S~%&quot;</span> i c) (<span class="kw">unread-char</span> c is)))))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">0</span> <span class="ch">#\0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">2</span> <span class="ch">#\1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">4</span> <span class="ch">#\2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p><code>*readtable*</code>, <a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <code>*terminal-io*</code></p>
+<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <code>*terminal-io*</code></p>
 <h2 id="例外">例外</h2>
-<p><em>eof-error-p</em>が<em>true</em>でありファイルの終わりに到達したときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
-<p><em>peek-type</em>が文字であり、ファイルの終わりに到達し、 <em>eof-error-p</em>が<em>true</em>のときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
-<p><em>recursive-p</em>が<em>true</em>であり、ファイルの終わりに到達したときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p>なし。</p>
+<p><a href="21.2.peek-char.html"><code>peek-char</code></a>, <a href="21.2.read-char.html"><code>read-char</code></a>, 21.1. ストリームの説明</p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<p><a href="21.2.unread-char.html"><code>unread-char</code></a>は、 Lispリーダーやその他の構文解析を実行するときに <em>input-stream</em>からひとつの文字を先読みできるような 効率的な仕組みの提供を目的としています。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -1,0 +1,88 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WRITE-SEQUENCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.write-sequence
+@name: write-sequence
+@type: function
+
+Function `WRITE-SEQUENCE`
+
+
+## {syntax}
+
+`write-sequence` *sequence* *stream* `&key` *start* *end* => *sequence*
+
+
+## {arguments-and-values}
+
+*sequence* - シーケンス  
+*stream* - 出力ストリーム  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+
+
+## {description}
+
+{write-sequence:link}は、
+*start*と*end*の境界に囲まれた*sequence*の部分シーケンスの要素を
+*stream*に書き込みます。
+
+
+## {examples}
+
+```lisp
+(write-sequence "bookworms" *standard-output* :end 4)
+>>  book
+=>  "bookworms"
+```
+
+
+## {side-effects}
+
+*stream*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*start*が非負の整数ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*end*が非負の整数か{nil!variable:link}ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+*stream*から読み込まれた要素が、
+*sequence*の要素の型ではなかったときは、
+型{type-error:link}のエラーを通知されるかもしれません。
+
+
+## {see-also}
+
+{3.2.1:ab},
+{read-sequence:link},
+{write-string:link},
+{write-line:link}
+
+
+## {notes}
+
+{write-sequence:link}は、指定した部分シーケンスに対して
+ひとつずつ要素を*stream*に書き込む繰り返しと同じ効果ですが、
+おそらくは同等のループよりもより効率的になります。
+
+ある効率の良い実装では、
+*sequence*が*stream*の要素と同じ型の`vector`である場合に
+より効率的になるかもしれません。
+
+@end
+

@@ -33,7 +33,7 @@ Function `READ-CHAR-NO-HANG`
 
 {read-char-no-hang:link}は、
 *input-stream*に利用可能な文字があるとき、
-その文字返却します。
+その文字を返却します。
 もし文字が利用可能ではないとき、
 {read-char-no-hang:link}は{nil!variable:link}を返却します。
 

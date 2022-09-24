@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WRITE-STRING
+;;  Function WRITE-LINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.write-string
+@name: write-string
+@name: write-line
+@type: function
+
+Function `WRITE-STRING`, `WRITE-LINE`
+
+
+## {syntax}
+
+`write-string` *string* `&optional` *output-stream* `&key` *start* *end* => *string*  
+`write-line` *string* `&optional` *output-stream* `&key` *start* *end* => *string*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*output-stream* - 出力ストリーム指定子。デフォルトは標準出力。  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+
+
+## {description}
+
+{write-string:link}は、
+*string*の*start*から*end*で囲まれたサブシーケンスの文字を
+*output-stream*へ書き込みます。
+{write-line:link}は同じことをしますが、その後に改行を出力します。
+
+
+## {examples}
+
+```lisp
+(prog1 (write-string "books" nil :end 4) (write-string "worms"))
+>>  bookworms
+=>  "books"
+(progn (write-char #\*)
+       (write-line "test12" *standard-output* :end 5) 
+       (write-line "*test2")
+       (write-char #\*)
+       nil)
+>>  *test1
+>>  *test2
+>>  *
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*standard-output*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{read-line:link},
+{write-char:link}
+
+
+## {notes}
+
+{write-line:link}と{write-string:link}は*string*を返却しますが、
+それは*start*と*end*に囲まれた部分文字列ではありません。
+
+```lisp
+(write-string string)
+==  (dotimes (i (length string)
+      (write-char (char string i)))
+
+(write-line string)
+==  (prog1 (write-string string) (terpri))
+```
+
+@end
+

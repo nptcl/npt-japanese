@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UNREAD-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.unread-char
+@name: unread-char
+@type: function
+
+Function `UNREAD-CHAR`
+
+
+## {syntax}
+
+`unread-char` *character* `&optional` *input-stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*character* - 文字。
+*input-stream*から読み込んだ最後の文字でなければなりません。  
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。
+
+
+## {description}
+
+{unread-char:link}は、*character*を*input-stream*の前に戻し、
+ふたたび*input-stream*の次の文字になるようにします。
+
+*input-stream*が{echo-stream}のとき、
+*input-stream*上ですでに実施された文字のエコーの取り消しは行いません。
+しかし{unread-char:link}による*input-stream*上で置き換えられた文字は、
+あとで{read-char:link}によって再びエコーされ内容にするために
+印がつけられます。
+
+同じストリームに対して{unread-char:link}を二度続けて、
+{read-char:link}（または暗黙的に文字の読み込みを行う他の入力操作）を
+介入させることなく実行したときはエラーです。
+
+{peek-char:link}か{read-char:link}の呼び出しは、前の文字を渡します。
+{peek-char:link}によって返却されたものの前のどんな文字について
+{unread-char:link}を実行した結果は指定されていません
+（{peek-char:link}の*peek-type*が{nil!variable:link}では
+なかったときに渡された場合を含む）。
+とくに、{peek-char:link}のあとの{unread-char:link}の
+呼び出しの結果は指定されていません。
+
+
+## {examples}
+
+```lisp
+(with-input-from-string (is "0123")
+   (dotimes (i 6)
+     (let ((c (read-char is)))
+       (if (evenp i) (format t "~&~S ~S~%" i c) (unread-char c is)))))
+>>  0 #\0
+>>  2 #\1
+>>  4 #\2
+=>  NIL
+```
+
+
+## {affected-by}
+
+{*standard-input*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{peek-char:link},
+{read-char:link},
+{21.1:ab}
+
+
+## {notes}
+
+{unread-char:link}は、
+Lispリーダーやその他の構文解析を実行するときに
+*input-stream*からひとつの文字を先読みできるような
+効率的な仕組みの提供を目的としています。
+
+@end
+

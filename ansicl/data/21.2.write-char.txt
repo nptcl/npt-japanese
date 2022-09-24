@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function WRITE-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.write-char
+@name: write-char
+@type: function
+
+Function `WRITE-CHAR`
+
+
+## {syntax}
+
+`write-char` *character* `&optional` *output-stream* => *character*
+
+
+## {arguments-and-values}
+
+*character* - 文字  
+*output-stream* - 出力ストリーム指定子。デフォルトは標準出力。
+
+
+## {description}
+
+{write-char:link}は、*output-stream*に*character*を出力します。
+
+
+## {examples}
+
+```lisp
+(write-char #\a)
+>>  a
+=>  #\a
+(with-output-to-string (s) 
+  (write-char #\a s)
+  (write-char #\Space s)
+  (write-char #\b s))
+=>  "a b"
+```
+
+
+## {side-effects}
+
+*output-stream*は修正されます。
+
+
+## {affected-by}
+
+{*standard-output*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{read-char:link},
+{write-byte:link},
+{write-sequence:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

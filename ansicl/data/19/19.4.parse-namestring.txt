@@ -27,11 +27,11 @@ Function `PARSE-NAMESTRING`
 *host* - 有効なパス名のホストか、論理ホストか、{nil!variable:link}  
 *default-pathname* - パス名指定子。
 デフォルトは{*default-pathname-defaults*:link}の値です。  
-*start*, *end* - *thing*の境界インデックス指定子。
+*start*, *end* - *thing*の{bounding-index-designators}。
 デフォルトは*start*と*end*がそれぞれ`0`と{nil!variable:link}。  
 *junk-allowed* - {generalized-boolean}。デフォルトは*false*。  
 *pathname* - パス名か、{nil!variable:link}  
-*position* - *thing*の境界インデックス指定子
+*position* - *thing*の{bounding-index-designators}
 
 
 ## {description}

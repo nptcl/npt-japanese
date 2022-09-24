@@ -1,0 +1,101 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-LINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.read-line
+@name: read-line
+@type: function
+
+Function `READ-LINE`
+
+
+## {syntax}
+
+`read-line` `&optional` *input-stream* *eof-error-p* *eof-value* *recursive-p*  
+=> *line*, *missing-newline-p*
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*recursive-p* - {generalized-boolean}。デフォルトは*false*。  
+*line* - 文字列か、*eof-value*  
+*missing-newline-p* - {generalized-boolean}
+
+
+## {description}
+
+*input-stream*から、改行かファイルの終わりを終端とする
+テキストの行を読み込みます。
+
+もし*recursive-p*が*true*のとき、
+この呼び出しはより上位レベルの{read:link}によるものか、
+Lispのリーダーによって使われる似たような関数から
+埋め込まれたものであると見なされます。
+
+第一返却値の*line*は、読み込まれた行であり、
+文字列として（もし読み込まれたものに改行があるなら、
+それを取り除いたもの）表現されます。
+もし*eof-error-p*が*false*であり、
+何らかの文字が読み込まれる前に
+*input-stream*がファイルの終わりに到達していたときは、
+*eof-value*が*line*として返却されます。
+
+第二返却値の*missing-newline-p*は{generalized-boolean}であり、
+もし*line*が改行で終わっていたときは*false*を、
+あるいは*line*が*input-stream*からのファイルの終わりによって
+終端されていたとき（あるいは*line*が*eof-value*のとき）は、
+*true*になります。
+
+
+## {examples}
+
+```lisp
+(setq a "line 1
+line2")
+=>  "line 1
+line2"
+(read-line (setq input-stream (make-string-input-stream a)))
+=>  "line 1", false
+(read-line input-stream)
+=>  "line2", true
+(read-line input-stream nil nil)
+=>  NIL, true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+
+{*standard-input*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+もし行中で何らかの文字を読み込む前にファイルの終わりにが発生したときは、
+*eof-error-p*が*true*のときはエラーが通知されます。
+
+
+## {see-also}
+
+{read:link}
+
+
+## {notes}
+
+対応する出力関数は{write-line:link}です。
+
+@end
+

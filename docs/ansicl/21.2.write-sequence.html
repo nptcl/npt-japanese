@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function PEEK-CHAR</title>
+  <title>Function WRITE-SEQUENCE</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,45 +214,36 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function PEEK-CHAR</h1>
+<h1 class="title">Function WRITE-SEQUENCE</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-peek-char">Function <strong>PEEK-CHAR</strong></h1>
-<p>Function <code>PEEK-CHAR</code></p>
+<h1 id="function-write-sequence">Function <strong>WRITE-SEQUENCE</strong></h1>
+<p>Function <code>WRITE-SEQUENCE</code></p>
 <h2 id="構文">構文</h2>
-<p><code>peek-char</code> <code>&amp;optional</code> <em>peek-type</em> <em>input-stream</em> <em>eof-error-p</em> <em>eof-value</em> <em>recursive-p</em> =&gt; <em>char</em></p>
+<p><code>write-sequence</code> <em>sequence</em> <em>stream</em> <code>&amp;key</code> <em>start</em> <em>end</em> =&gt; <em>sequence</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>peek-type</em> - 文字か、<a href="5.3.t-variable.html"><code>t</code></a>か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
-<em>input-stream</em> - 入力ストリーム指定子。デフォルトは標準入力。<br />
-<em>eof-error-p</em> - generalized-boolean。デフォルトは<em>true</em>。<br />
-<em>eof-value</em> - オブジェクト。デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
-<em>recursive-p</em> - generalized-boolean。デフォルトは<em>false</em>。<br />
-<em>char</em> - 文字か、<em>eof-value</em></p>
+<p><em>sequence</em> - シーケンス<br />
+<em>stream</em> - 出力ストリーム<br />
+<em>start</em>, <em>end</em> - <em>string</em>の境界インデックス指定子。 デフォルトは<em>start</em>, <em>end</em>それぞれ<code>0</code>と<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
 <h2 id="定義">定義</h2>
-<p><a href="21.2.peek-char.html"><code>peek-char</code></a>は、<em>input-stream</em>から 実際に読み込むことをせず次の文字を取得し、 あとで読み込まれるように文字を残したままにします。 また、特定の文字が見つかるまで <em>input-stream</em>の文字をスキップし 文字による介入を無視するときにも使用されます。</p>
-<p>もし<em>peek-type</em>が指定されなかったか、あるいは<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は <em>input-stream</em>から文字を取り除くことをせずに 次に読み込まれる文字を返却します。 次回の入力は実行された<em>input-stream</em>のものであり、 その文字はまだそこに存在します。 もし<em>peek-type</em>が<a href="5.3.t-variable.html"><code>t</code></a>のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は空白文字をスキップし、 しかしコメントはスキップせずに、 次の文字の<a href="21.2.peek-char.html"><code>peek-char</code></a>処理を行います。 最後に調査された文字は、 その文字が開始のオブジェクトになるので、 <em>input-stream</em>から削除されません。 もし<em>peek-char</em>が文字のとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>は入力された文字に対して、 <a href="13.2.char-equal.html"><code>char=</code></a>と同じものが見つかるまでスキップし、 その文字は<em>input-stream</em>から削除されます。</p>
-<p>もしファイルの終わりが発生し、 <em>eof-error-p</em>が<em>false</em>であるときは、 <em>eof-value</em>が返却されます。</p>
-<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<code>read</code>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
-<p><em>input-stream</em>が<code>echo</code>ストリームであるとき、 文字はのぞき見だけが行われ、エコーはされません。 このような場合、<em>peek-type</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 <a href="21.2.peek-char.html"><code>peek-char</code></a>によってのぞき見された文字は、 <a href="21.2.read-char.html"><code>read-char</code></a>によるものと同じように扱われるので、 <a href="21.2.unread-char.html"><code>unread-char</code></a>で別段指定されない限りエコーされます。</p>
+<p><a href="21.2.write-sequence.html"><code>write-sequence</code></a>は、 <em>start</em>と<em>end</em>の境界に囲まれた<em>sequence</em>の部分シーケンスの要素を <em>stream</em>に書き込みます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-input-from-string</span> (input-stream <span class="st">&quot;    1 2 3 4 5&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~S ~S ~S&quot;</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="kw">t</span> input-stream)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="ch">#\4</span> input-stream)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>           (<span class="kw">peek-char</span> <span class="kw">nil</span> input-stream)))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="ch">#\1</span> <span class="ch">#\4</span> <span class="ch">#\4</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">write-sequence</span> <span class="st">&quot;bookworms&quot;</span> <span class="va">*standard-output*</span> <span class="bu">:end</span> <span class="dv">4</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  book</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;bookworms&quot;</span></span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p><em>stream</em>は修正されます。</p>
 <h2 id="影響">影響</h2>
-<p><code>*readtable*</code>, <a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <code>*terminal-io*</code></p>
+<p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>eof-error-p</em>が<em>true</em>でありファイルの終わりに到達したときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
-<p><em>peek-type</em>が文字であり、ファイルの終わりに到達し、 <em>eof-error-p</em>が<em>true</em>のときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
-<p><em>recursive-p</em>が<em>true</em>であり、ファイルの終わりに到達したときは、 型<code>end-of-file</code>のエラーが通知されます。</p>
+<p><em>sequence</em>が正常なシーケンスではなかったときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知する準備をしなければなりません。 <em>start</em>が非負の整数ではなかったときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知する準備をしなければなりません。 <em>end</em>が非負の整数か<a href="5.3.nil-variable.html"><code>nil</code></a>ではなかったときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知する準備をしなければなりません。</p>
+<p><em>stream</em>から読み込まれた要素が、 <em>sequence</em>の要素の型ではなかったときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知されるかもしれません。</p>
 <h2 id="参考">参考</h2>
-<p>なし。</p>
+<p>3.2.1. コンパイラーの用語, <a href="21.2.read-sequence.html"><code>read-sequence</code></a>, <a href="21.2.write-string.html"><code>write-string</code></a>, <a href="21.2.write-string.html"><code>write-line</code></a></p>
 <h2 id="備考">備考</h2>
-<p>なし。</p>
+<p><a href="21.2.write-sequence.html"><code>write-sequence</code></a>は、指定した部分シーケンスに対して ひとつずつ要素を<em>stream</em>に書き込む繰り返しと同じ効果ですが、 おそらくは同等のループよりもより効率的になります。</p>
+<p>ある効率の良い実装では、 <em>sequence</em>が<em>stream</em>の要素と同じ型の<code>vector</code>である場合に より効率的になるかもしれません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

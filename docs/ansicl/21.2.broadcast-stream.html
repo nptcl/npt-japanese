@@ -170,7 +170,7 @@
 <li><p><a href="21.2.streamp.html"><code>streamp</code></a>と<a href="21.2.input-stream-p.html"><code>output-stream-p</code></a>は、 <code>broadcast</code>ストリームに対しては常に<em>true</em>を返却します。</p></li>
 <li><p><a href="21.2.open-stream-p.html"><code>open-stream-p</code></a>は<code>broadcast</code>ストリームが開いているかどうかをテストします。 保有しているストリーム要素に対して 開いているかどうかをテストするわけではありません。</p></li>
 <li><p><a href="21.2.input-stream-p.html"><code>input-stream-p</code></a>と<a href="21.2.interactive-stream-p.html"><code>interactive-stream-p</code></a>は実装定義ですが、 generalized-booleanを返却します。</p></li>
-<li><p>入力処理である<code>clear-input</code>, <a href="21.2.peek-char.html"><code>peek-char</code></a>, <a href="21.2.read-byte.html"><code>read-byte</code></a>, <a href="21.2.read-char-no-hang.html"><code>read-char-no-hang</code></a>, <a href="21.2.read-char.html"><code>read-char</code></a>, <code>read-line</code>, <code>unread-char</code>は、 もしこれらの処理が実行されたときの結果は未定義です。 しかし実装は、実装依存の拡張による 振る舞いを定義することが許されています。</p></li>
+<li><p>入力処理である<code>clear-input</code>, <a href="21.2.peek-char.html"><code>peek-char</code></a>, <a href="21.2.read-byte.html"><code>read-byte</code></a>, <a href="21.2.read-char-no-hang.html"><code>read-char-no-hang</code></a>, <a href="21.2.read-char.html"><code>read-char</code></a>, <a href="21.2.read-line.html"><code>read-line</code></a>, <a href="21.2.unread-char.html"><code>unread-char</code></a>は、 もしこれらの処理が実行されたときの結果は未定義です。 しかし実装は、実装依存の拡張による 振る舞いを定義することが許されています。</p></li>
 </ul>
 <p>上記かまたは本文書の他の箇所で 戻り値が明確に指定されていない出力操作については、 その操作による返却値は、 そのストリームの要素の最後のものに対して操作を実行した 結果の返却値であると定義されます。 それ以前のストリームに対して行った操作の全ての結果の値は破棄されます。 もしストリームの要素が存在しないときは、 返却値は実装依存です。</p>
 <h2 id="参考">参考</h2>

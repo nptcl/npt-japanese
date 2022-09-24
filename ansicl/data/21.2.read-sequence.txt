@@ -1,0 +1,98 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-SEQUENCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.read-sequence
+@name: read-sequence
+@type: function
+
+Function `READ-SEQUENCE`
+
+
+## {syntax}
+
+`read-sequence` *sequence* *stream* `&key` *start* *end* => *position*
+
+
+## {arguments-and-values}
+
+*sequence* - シーケンス  
+*stream* - 入力ストリーム  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*position* - `0`以上かつ*sequence*の長さ以下の整数
+
+
+## {description}
+
+*stream*から要素を読み込み、
+*sequence*の*start*から*end*の境界内の要素を
+破壊的に修正して置き換えます。
+
+*sequence*は破壊的に修正され、*stream*から一連の要素がコピーされます。
+もし部分シーケンスの全ての要素をコピーする前に
+*stream*がファイルの終わりに到達したとき、
+*sequence*の終端付近の残りの要素は更新されません。
+
+*position*は、更新が生じなかった*sequence*の
+最初の要素のインデックスであり、
+ファイルの終わりに到達したときは*end*未満になることがあります。
+
+
+## {examples}
+
+```lisp
+(defvar *data* (make-array 15 :initial-element nil))
+(values (read-sequence *data* (make-string-input-stream "test string")) *data*)
+=>  11, #(#\t #\e #\s #\t #\Space #\s #\t #\r #\i #\n #\g NIL NIL NIL NIL)
+```
+
+
+## {side-effects}
+
+*stream*と*sequence*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*sequence*が{proper-sequence}ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*start*が非負の整数ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+*end*が非負の整数か{nil!variable:link}ではなかったときは、
+型{type-error:link}のエラーを通知する準備をしなければなりません。
+
+*stream*から読み込まれた要素が、
+*sequence*の要素の型ではなかったときは、
+型{type-error:link}のエラーを通知されるかもしれません。
+
+
+## {see-also}
+
+{3.2.1:ab},
+{write-sequence:link},
+{read-line:link}
+
+
+## {notes}
+
+{read-sequence:link}は、指定した部分シーケンスに対して
+*stream*からひとつの要素を読み込みその都度*sequence*に
+格納していく繰り返しと同じ効果ですが、
+おそらくは同等のループよりもより効率的になります。
+
+ある効率の良い実装では、
+*sequence*が*stream*の要素と同じ型の`vector`である場合に
+より効率的になるかもしれません。
+
+@end
+

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function OPEN</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function OPEN</h1>
+</header>
+<p><a href="21.2.html">UP</a></p>
+<hr />
+<h1 id="function-open">Function <strong>OPEN</strong></h1>
+<p>Function <code>OPEN</code></p>
+<h2 id="構文">構文</h2>
+<p><code>open</code> <em>filespec</em> <code>&amp;key</code> <em>direction</em> <em>element-type</em> <em>if-exists</em> <em>if-does-not-exist</em> <em>external-format</em><br />
+=&gt; <em>stream</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>filespec</em> - パス名指定子<br />
+<em>direction</em> - <code>:input</code>, <code>:output</code>, <code>:io</code>, <code>:probe</code>のどれか。 デフォルトは<code>:input</code>。<br />
+<em>element-type</em> - <a href="13.2.character-system-class.html"><code>character</code></a>として認識可能なサブタイプの型指定子か、 整数の有限値として認識可能なサブタイプの型指定子か、 シンボルである<code>signed-byte</code>, <code>unsigned-byte</code>のうちのひとつか、 あるいは<code>:default</code>。 デフォルトは<a href="13.2.character-system-class.html"><code>character</code></a>。<br />
+<em>if-exists</em> - <code>:error</code>, <code>:new-version</code>, <code>:rename</code>, <code>:rename-and-delete</code>, <code>:overwrite</code>, <code>:append</code>, <code>:supersede</code>, <a href="5.3.nil-variable.html"><code>nil</code></a>のどれか。 デフォルトは、<em>filespec</em>のバージョンの要素が<code>:newest</code>のときは<code>:new-version</code>、 それ以外のときは<code>:error</code>。<br />
+<em>if-does-not-exist</em> - <code>:error</code>, <code>:create</code>, <a href="5.3.nil-variable.html"><code>nil</code></a>のどれか。 デフォルトは、もし<em>direction</em>が<code>:input</code>であるか <em>if-exists</em>が<code>:overwrite</code>か<code>:append</code>のときは<code>:error</code>。 <em>direction</em>が<code>:output</code>か<code>:io</code>でありかつ <em>if-exists</em>が<code>:overwrite</code>でも<code>:append</code>でもないときは<code>:create</code>。 <em>direction</em>が<code>:probe</code>のときは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>external-format</em> - 外部ファイルフォーマット指定子。デフォルトは<code>:default</code>。<br />
+<em>stream</em> - ファイルストリームか、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="定義">定義</h2>
+<p><a href="21.2.open.html"><code>open</code></a>は、<em>filespec</em>によって指定されたファイルと接続した ファイルストリームを作成し、開き、返却します。 <em>filespec</em>は開かれるファイルの名前です。 もし<em>filespec</em>指定子がストリームのとき、 そのストリームは最初に閉じられたり、 あるいはその他の影響を受けることはありません。</p>
+<p><a href="21.2.open.html"><code>open</code></a>のキーワード引数は、 返却されるファイルストリームの特性と、 どのようにエラーを扱うかを指定します。</p>
+<p><em>direction</em>が<code>:input</code>か<code>:probe</code>のときか、 あるいは<em>if-exists</em>が<code>:new-version</code>ではなく 同時に<em>filespec</em>のバージョン要素が<code>:newest</code>のときは、 開かれたファイルはすでにファイルシステム内に存在しているので、 そのバージョンはファイルシステム内の、 他のパス名の要素が<em>filespec</em>と同じである 他のどんなファイルのものより大きなバージョンになります。</p>
+<p>実装は<a href="21.2.open.html"><code>open</code></a>の全てのキーワードオプションを識別し、 ホストオペレーティングシステムの構造上で 適切な処理を行うよう要求されます。 例えば、もしファイルシステムが ファイルのバージョンの区別をサポートせず、 さらに削除と抹消（<code>deleting</code>と<code>expunging</code>）の表記を区別できないとき、 <code>:new-version</code>は<code>:rename</code>か<code>:supersede</code>と同じように扱われ、 <code>:rename-and-delete</code>は<code>:supersede</code>と同じように扱われることが考えられます。</p>
+<ul>
+<li><code>:direction</code>
+<ul>
+<li><em>direction</em>で使用可能な値を示します。 これは作成される<em>stream</em>の性質に対してどのような影響があるかを指定します。</li>
+<li><code>:input</code>
+<ul>
+<li>入力ファイルストリームの生成を行います。</li>
+</ul></li>
+<li><code>:output</code>
+<ul>
+<li>出力ファイルストリームの生成を行います。</li>
+</ul></li>
+<li><code>:io</code>
+<ul>
+<li>双方向ファイルストリームの生成を行います。</li>
+</ul></li>
+<li>「非方向性」ファイルストリームの生成を行います。 この効果は、ファイルストリームが生成されてから、 <a href="21.2.open.html"><code>open</code></a>によって返却される前にクローズされます。</li>
+</ul></li>
+<li><code>:element-type</code>
+<ul>
+<li><em>element-type</em>はファイルストリームのデータの単位を指定します。 もし<code>:default</code>が指定されたとき、 その単位はファイルシステムによって決まり、 可能であればファイルを元に決定されます。</li>
+</ul></li>
+<li><code>:if-exists</code>
+<ul>
+<li><em>if-exists</em>は、<em>direction</em>が<code>:output</code>か<code>:io</code>であり、 <em>filespec</em>の名前のファイルがすでに存在しているときに 実行する動作を指定します。 もし<em>direction</em>が<code>:input</code>か、指定されなかったか、あるいは<code>:probe</code>のとき、 <em>if-exists</em>は無視されます。 <a href="21.2.open.html"><code>open</code></a>の結果は<em>if-exists</em>の次の値によって変更されます。</li>
+<li><code>:error</code>
+<ul>
+<li>型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</li>
+</ul></li>
+<li><code>:new-version</code>
+<ul>
+<li>新しいファイルがもっとも大きなバージョン値で生成されます。</li>
+</ul></li>
+<li><code>:rename</code>
+<ul>
+<li>存在しているファイルを何か他の名前に変更してから 新しいファイルを作成します。</li>
+</ul></li>
+<li><code>:rename-and-delete</code>
+<ul>
+<li>存在しているファイルを何か他の名前に変更し、 それを抹消<code>expunging</code>ではなく削除<code>deleting</code>し、 そして新しいファイルを生成します。</li>
+</ul></li>
+<li><code>:overwrite</code>
+<ul>
+<li>ストリームの出力操作において、存在するファイルを破壊的に修正します。 <em>direction</em>が<code>:io</code>であり、ファイルが読み込みと書き込みの両方を許可する 双方向モードとして開かれたとき、 そのファイルポインターは初期状態ではファイルの最初に位置します。 しかしファイルが開かれたときに、 ファイルは長さ<code>0</code>として前方に切り捨てられることはありません。</li>
+</ul></li>
+<li><code>:append</code>
+<ul>
+<li>ストリームの出力操作において、存在するファイルを破壊的に修正します。 そのファイルポインターは初期状態ではファイルの最後に位置します。<br />
+<em>direction</em>が<code>:io</code>のとき、ファイルが読み込みと書き込みの両方を許可する 双方向モードとして開かれます。</li>
+</ul></li>
+<li><code>:supersede</code>
+<ul>
+<li>存在しているファイルは別のものに変えられます。 つまり同じ名前の新しいファイルが古いファイルとして作成さえれます。 もし可能であれば、実装は新しいストリームを閉じるまで 古いファイルを破壊するべきではありません。</li>
+</ul></li>
+<li><a href="5.3.nil-variable.html"><code>nil</code></a>
+<ul>
+<li>ファイルもストリームも生成されません。 代わりに失敗を示す<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</li>
+</ul></li>
+</ul></li>
+<li><code>:if-does-not-exist</code>
+<ul>
+<li><em>if-does-not-exists</em>は、 <em>filespec</em>の名前のファイルがまだ存在してないときに実行する動作を指定します。 <a href="21.2.open.html"><code>open</code></a>の結果は<em>if-does-not-exists</em>の次の値によって変更されます。</li>
+<li><code>:error</code>
+<ul>
+<li>型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</li>
+</ul></li>
+<li><code>:create</code>
+<ul>
+<li>空のファイルが作成されます。 ファイルが袖に存在しているときは処理が継続されますが、 <em>if-exists</em>の方向による操作によっては処理しません。</li>
+</ul></li>
+<li><a href="5.3.nil-variable.html"><code>nil</code></a>
+<ul>
+<li>ファイルもストリームも生成されません。 代わりに失敗を示す<a href="5.3.nil-variable.html"><code>nil</code></a>が返却されます。</li>
+</ul></li>
+</ul></li>
+<li><code>:external-format</code>
+<ul>
+<li>このオプションはファイルの外部ファイルフォーマットを選択します。 このオプションの標準の値はただひとつ<code>:default</code>ですが、 実装は追加の外部ファイルフォーマットを定義することが許されており、 <code>stream-external-format</code>によって返却される 実装依存の値を 仕様に適合したプログラムで使用することができます。<br />
+<br> <em>external-format</em>は、<code>character</code>のサブタイプである要素の型の ファイルストリームに対して意味があります。 このオプションは、これらの値に意味を持たない ストリームに対しては無視されます。 しかし実装は意味を持つ他の要素の型を定義することができます。 もし指定した外部ファイルフォーマットによって表現できない 文字を書き込んだ時の結果は指定されていません。</li>
+</ul></li>
+</ul>
+<p>ファイルが開かれたとき、 ファイルストリームは Lisp環境においてファイルシステムに仕える代理人として構築され、 ファイルストリームへの操作は 対象のファイルシステム内の指定したファイル上の操作として反映されます。</p>
+<p>ファイルは<a href="21.2.open.html"><code>open</code></a>によって、削除、名前の変更、破壊的な修正が行われます。</p>
+<p><code>open</code>とパス名の関係については、19.2.3. パス名のマージをご確認ください。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open</span> filespec <span class="bu">:direction</span> <span class="bu">:probe</span>)  <span class="op">=&gt;</span>  #&lt;Closed Probe File Stream...<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> q (<span class="kw">merge-pathnames</span> (<span class="kw">user-homedir-pathname</span>) <span class="st">&quot;test&quot;</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;PATHNAME :HOST NIL :DEVICE device-name :DIRECTORY directory-name</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   :NAME <span class="st">&quot;test&quot;</span> :TYPE NIL :VERSION :NEWEST&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open</span> filespec :if-does-not-exist <span class="bu">:create</span>) <span class="op">=&gt;</span>  #&lt;Input File Stream...<span class="op">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> s (<span class="kw">open</span> filespec <span class="bu">:direction</span> <span class="bu">:probe</span>)) <span class="op">=&gt;</span>  #&lt;Closed Probe File Stream...<span class="op">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">truename</span> s) <span class="op">=&gt;</span>  #&lt;PATHNAME :HOST NIL :DEVICE device-name :DIRECTORY</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>   directory-name :NAME filespec :TYPE extension :VERSION <span class="dv">1</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open</span> s <span class="bu">:direction</span> <span class="bu">:output</span> :if-exists <span class="kw">nil</span>) <span class="op">=&gt;</span>  NIL </span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>ホストコンピューターのファイルシステムの性質と状態</p>
+<h2 id="例外">例外</h2>
+<p><em>if-exists</em>が<code>:error</code>のとき （上記のリストにある<em>if-exists</em>の意味の制約に従い）、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
+<p><em>if-does-not-exist</em>が<code>:error</code>のとき （上記のリストにある<em>if-does-not-exist</em>の意味の制約に従い）、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
+<p>ここで指定された何かの挙動において 実装が何らかのオプションを処理できなかったときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが通知されるかもしれません。</p>
+<p><code>(wild-pathname-p filespec)</code>が<em>true</em>のとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
+<p>実装が<em>external-format</em>を解釈できなかったときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
+<p>現在存在する様々なファイルシステムは大きく異なった機能を持っており、 あるファイルシステムの様相はここで定義された仕様の範囲を超えています。 実装はこれらの全てのオプションについて 規定された動作を正確にサポートできないかもしれません。 実装はこれらの全てのキーワードオプションを認識し、 ホストファイルシステムの環境上において 「適切な」何らかの挙動を試行することが求められます。 ファイルシステムに提供する必要があるとき、 実装はo</p>
+<p>ファイルシステムに適合させるために必要であれば、 実装はここで指定された意味からわずかに逸脱しても、 仕様に適合した実装として失格とみなされることはありません。 もし、あるオプションをここで指定されたものと同様の方法で処理することが 実装上まったく不可能な場合は、単にエラーが通知されます。</p>
+<p><code>:element-type</code>オプションに関して、 ファイルシステムでサポートされていない型が指定されたとき、 そのような型をアップグレードした型を代用することが許されます。 最小の要求としては、 あるファイルに対して指定した要素の型で出力ストリームを開き、 後で同じファイルに対して同じ要素の方で入力ストリームを開いたときに 矛盾なく動作することが求められます。</p>
+<h2 id="参考">参考</h2>
+<p><code>with-open-file</code>, <code>close</code>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 19.2.3. パス名のマージ, 19.1.2. ファイル名としてのパス名</p>
+<h2 id="備考">備考</h2>
+<p><a href="21.2.open.html"><code>open</code></a>は、異常な退出が生じたときに 自動的にはファイルをクローズしません。</p>
+<p><em>element-type</em>が<a href="13.2.character-system-class.html"><code>character</code></a>のサブタイプのとき、 <a href="21.2.read-char.html"><code>read-char</code></a>と<a href="21.2.write-char.html"><code>write-char</code></a>が結果のファイルストリームで使用できます。</p>
+<p><em>element-type</em>が整数のサブタイプのとき、 <a href="21.2.read-byte.html"><code>read-byte</code></a>と<a href="21.2.write-byte.html"><code>write-byte</code></a>が結果のファイルストリームで使用できます。</p>
+<p><em>element-type</em>が<code>:default</code>のとき、 その型は<a href="21.2.stream-element-type.html"><code>stream-element-type</code></a>を使うことで決定することができます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

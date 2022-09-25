@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>19.2. パス名</title>
+  <title>Function FILE-STRING-LENGTH</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,16 +151,31 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">19.2. パス名</h1>
+<h1 class="title">Function FILE-STRING-LENGTH</h1>
 </header>
-<p><a href="19.html">UP</a></p>
+<p><a href="21.2.html">UP</a></p>
 <hr />
-<p>19.2. パス名</p>
-<ul>
-<li>19.2.1. パス名の説明</li>
-<li><a href="19.2.2.html">19.2.2. パス名の要素の値の解釈</a></li>
-<li>19.2.3. パス名のマージ</li>
-</ul>
+<h1 id="function-file-string-length">Function <strong>FILE-STRING-LENGTH</strong></h1>
+<p>Function <code>FILE-STRING-LENGTH</code></p>
+<h2 id="構文">構文</h2>
+<p><code>file-string-length</code> <em>stream</em> <em>object</em> =&gt; <em>length</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>stream</em> - 文字型のファイルの出力ストリーム<br />
+<em>object</em> - 文字列か、文字<br />
+<em>length</em> - 非負の整数か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="定義">定義</h2>
+<p><a href="21.2.file-string-length.html"><code>file-string-length</code></a>は、 <code>(file-position stream)</code>について <em>object</em>を書き込んだ後の値と現在の値の差分か、 あるいは決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p>返却値は呼び出し時の<em>stream</em>の現在の状態に対応するため、 <em>stream</em>の状態が変化したときに再び呼び出された場合は、 同じ値ではないかもしれません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

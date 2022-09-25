@@ -778,6 +778,7 @@
 (text 19.2.2.3 "ワイルドカードのパス名の制限" "Restrictions on Wildcard Pathnames")
 (text 19.2.2.2.2 "要素の値としての:WILD" ":WILD as a Component Value")
 (text 19.2.2.2.3 "`:UNSPECIFIC`という要素の値" ":UNSPECIFIC as a Component Value")
+(text 19.2.3 "パス名のマージ" "Merging Pathnames")
 (index 19.3 "論理パス名" "Logical Pathnames")
 (index 19.4 "ファイル名の辞書" "Filenames Dictionary")
 (dictionary 19.4.pathname!system-class)

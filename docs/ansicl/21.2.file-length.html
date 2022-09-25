@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function STREAM-ELEMENT-TYPE</title>
+  <title>Function FILE-LENGTH</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,44 +214,37 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function STREAM-ELEMENT-TYPE</h1>
+<h1 class="title">Function FILE-LENGTH</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-stream-element-type">Function <strong>STREAM-ELEMENT-TYPE</strong></h1>
-<p>Function <code>STREAM-ELEMENT-TYPE</code></p>
+<h1 id="function-file-length">Function <strong>FILE-LENGTH</strong></h1>
+<p>Function <code>FILE-LENGTH</code></p>
 <h2 id="構文">構文</h2>
-<p><code>stream-element-type</code> <em>stream</em> =&gt; <em>typespec</em></p>
+<p><code>file-length</code> <em>stream</em> =&gt; <em>length</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>stream</em> - ストリーム<br />
-<em>typespec</em> - 型指定子</p>
+<p><em>stream</em> - ファイルに関連付けられたストリーム<br />
+<em>length</em> - 非負の整数か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p><a href="21.2.stream-element-type.html"><code>stream-element-type</code></a>は、 <em>stream</em>に読み書きされるオブジェクトの型を示す型指定子を返却します。</p>
-<p><a href="21.2.open.html"><code>open</code></a>によって作成されたストリームは、 整数かあるいは型<a href="13.2.character-system-class.html"><code>character</code></a>のサブタイプに制限される 要素の型を持っています。</p>
+<p><a href="21.2.file-length.html"><code>file-length</code></a>は<em>stream</em>の長さか、 長さが決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p>バイナリファイルとときは、 その長さは<em>stream</em>の要素の型を単位として計測されます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; このストリームは少なくとも指定した型を扱う必要がありますが、</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; 他の型も扱うことができるかもしれないことに注意してください。</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">;; より詳しくは正確に指定した型を収容できるとしても、</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">;; その型は様々な方法で指定されるかもしれません。</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (s <span class="st">&quot;test&quot;</span> <span class="bu">:element-type</span> &#39;(<span class="kw">integer</span> <span class="dv">0</span> <span class="dv">1</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                          :if-exists <span class="bu">:error</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                          <span class="bu">:direction</span> <span class="bu">:output</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">stream-element-type</span> s))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  INTEGER</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>OR=&gt;  (UNSIGNED-BYTE <span class="dv">16</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>OR=&gt;  (UNSIGNED-BYTE <span class="dv">8</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>OR=&gt;  BIT</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>OR=&gt;  (UNSIGNED-BYTE <span class="dv">1</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>OR=&gt;  (INTEGER <span class="dv">0</span> <span class="dv">1</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>OR=&gt;  (INTEGER <span class="dv">0</span> (<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (s <span class="st">&quot;decimal-digits.text&quot;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="bu">:direction</span> <span class="bu">:output</span> :if-exists <span class="bu">:error</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">princ</span> <span class="st">&quot;0123456789&quot;</span> s)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">truename</span> s))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #P<span class="st">&quot;A:&gt;Joe&gt;decimal-digits.text.1&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (s <span class="st">&quot;decimal-digits.text&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">file-length</span> s))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">10</span></span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>stream</em>がストリームではないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを発生させるべきです。</p>
+<p><em>stream</em>がファイルに関連付けられたストリームではないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p>なし。</p>
+<p><a href="21.2.open.html"><code>open</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

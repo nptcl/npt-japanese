@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILE-STRING-LENGTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.file-string-length
+@name: file-string-length
+@type: function
+
+Function `FILE-STRING-LENGTH`
+
+
+## {syntax}
+
+`file-string-length` *stream* *object* => *length*
+
+
+## {arguments-and-values}
+
+*stream* - 文字型のファイルの出力ストリーム  
+*object* - 文字列か、文字  
+*length* - 非負の整数か、{nil!variable:link}
+
+
+## {description}
+
+{file-string-length:link}は、
+`(file-position stream)`について
+*object*を書き込んだ後の値と現在の値の差分か、
+あるいは決定できなかったときは{nil!variable:link}を返却します。
+
+返却値は呼び出し時の*stream*の現在の状態に対応するため、
+*stream*の状態が変化したときに再び呼び出された場合は、
+同じ値ではないかもしれません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

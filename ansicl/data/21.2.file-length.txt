@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FILE-LENGTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.file-length
+@name: file-length
+@type: function
+
+Function `FILE-LENGTH`
+
+
+## {syntax}
+
+`file-length` *stream* => *length*
+
+
+## {arguments-and-values}
+
+*stream* - ファイルに関連付けられたストリーム  
+*length* - 非負の整数か、{nil!variable:link}
+
+
+## {description}
+
+{file-length:link}は*stream*の長さか、
+長さが決定できなかったときは{nil!variable:link}を返却します。
+
+バイナリファイルとときは、
+その長さは*stream*の要素の型を単位として計測されます。
+
+
+## {examples}
+
+```lisp
+(with-open-file (s "decimal-digits.text" 
+                   :direction :output :if-exists :error)
+  (princ "0123456789" s)
+  (truename s))
+=>  #P"A:>Joe>decimal-digits.text.1"
+(with-open-file (s "decimal-digits.text")
+  (file-length s))
+=>  10
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*stream*がファイルに関連付けられたストリームではないとき、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{open:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,267 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function OPEN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.open
+@name: open
+@type: function
+
+Function `OPEN`
+
+
+## {syntax}
+
+`open` *filespec* `&key`
+ *direction* *element-type* *if-exists* *if-does-not-exist* *external-format*  
+ => *stream*
+
+
+## {arguments-and-values}
+
+*filespec* - パス名指定子  
+*direction* - `:input`, `:output`, `:io`, `:probe`のどれか。
+デフォルトは`:input`。  
+*element-type* -
+{character!system-class:link}として認識可能なサブタイプの型指定子か、
+整数の有限値として認識可能なサブタイプの型指定子か、
+シンボルである{signed-byte:link}, {unsigned-byte:link}のうちのひとつか、
+あるいは`:default`。
+デフォルトは{character!system-class:link}。  
+*if-exists* - `:error`, `:new-version`, `:rename`, `:rename-and-delete`,
+`:overwrite`, `:append`, `:supersede`, {nil!variable:link}のどれか。
+デフォルトは、*filespec*のバージョンの要素が`:newest`のときは`:new-version`、
+それ以外のときは`:error`。  
+*if-does-not-exist* - `:error`, `:create`, {nil!variable:link}のどれか。
+デフォルトは、もし*direction*が`:input`であるか
+*if-exists*が`:overwrite`か`:append`のときは`:error`。
+*direction*が`:output`か`:io`でありかつ
+*if-exists*が`:overwrite`でも`:append`でもないときは`:create`。
+*direction*が`:probe`のときは{nil!variable:link}。  
+*external-format* - 外部ファイルフォーマット指定子。デフォルトは`:default`。  
+*stream* - ファイルストリームか、{nil!variable:link}
+
+
+## {description}
+
+{open:link}は、*filespec*によって指定されたファイルと接続した
+ファイルストリームを作成し、開き、返却します。
+*filespec*は開かれるファイルの名前です。
+もし*filespec*指定子がストリームのとき、
+そのストリームは最初に閉じられたり、
+あるいはその他の影響を受けることはありません。
+
+{open:link}のキーワード引数は、
+返却されるファイルストリームの特性と、
+どのようにエラーを扱うかを指定します。
+
+*direction*が`:input`か`:probe`のときか、
+あるいは*if-exists*が`:new-version`ではなく
+同時に*filespec*のバージョン要素が`:newest`のときは、
+開かれたファイルはすでにファイルシステム内に存在しているので、
+そのバージョンはファイルシステム内の、
+他のパス名の要素が*filespec*と同じである
+他のどんなファイルのものより大きなバージョンになります。
+
+実装は{open:link}の全てのキーワードオプションを識別し、
+ホストオペレーティングシステムの構造上で
+適切な処理を行うよう要求されます。
+例えば、もしファイルシステムが
+ファイルのバージョンの区別をサポートせず、
+さらに削除と抹消（`deleting`と`expunging`）の表記を区別できないとき、
+`:new-version`は`:rename`か`:supersede`と同じように扱われ、
+`:rename-and-delete`は`:supersede`と同じように扱われることが考えられます。
+
+- `:direction`  
+  - *direction*で使用可能な値を示します。
+    これは作成される*stream*の性質に対してどのような影響があるかを指定します。
+  - `:input`
+    - 入力ファイルストリームの生成を行います。
+  - `:output`
+    - 出力ファイルストリームの生成を行います。
+  - `:io`
+    - 双方向ファイルストリームの生成を行います。
+  - 「非方向性」ファイルストリームの生成を行います。
+    この効果は、ファイルストリームが生成されてから、
+    {open:link}によって返却される前にクローズされます。
+
+- `:element-type`
+  - *element-type*はファイルストリームのデータの単位を指定します。
+    もし`:default`が指定されたとき、
+    その単位はファイルシステムによって決まり、
+    可能であればファイルを元に決定されます。
+
+- `:if-exists`
+  - *if-exists*は、*direction*が`:output`か`:io`であり、
+    *filespec*の名前のファイルがすでに存在しているときに
+    実行する動作を指定します。
+    もし*direction*が`:input`か、指定されなかったか、あるいは`:probe`のとき、
+    *if-exists*は無視されます。
+    {open:link}の結果は*if-exists*の次の値によって変更されます。
+  - `:error`
+    - 型{file-error:link}のエラーが通知されます。
+  - `:new-version`
+    - 新しいファイルがもっとも大きなバージョン値で生成されます。
+  - `:rename`
+    - 存在しているファイルを何か他の名前に変更してから
+      新しいファイルを作成します。
+  - `:rename-and-delete`
+    - 存在しているファイルを何か他の名前に変更し、
+      それを抹消`expunging`ではなく削除`deleting`し、
+      そして新しいファイルを生成します。
+  - `:overwrite`
+    - ストリームの出力操作において、存在するファイルを破壊的に修正します。
+      *direction*が`:io`であり、ファイルが読み込みと書き込みの両方を許可する
+      双方向モードとして開かれたとき、
+      そのファイルポインターは初期状態ではファイルの最初に位置します。
+      しかしファイルが開かれたときに、
+      ファイルは長さ`0`として前方に切り捨てられることはありません。
+  - `:append`
+    - ストリームの出力操作において、存在するファイルを破壊的に修正します。
+      そのファイルポインターは初期状態ではファイルの最後に位置します。  
+      *direction*が`:io`のとき、ファイルが読み込みと書き込みの両方を許可する
+      双方向モードとして開かれます。
+  - `:supersede` 
+    - 存在しているファイルは別のものに変えられます。
+      つまり同じ名前の新しいファイルが古いファイルとして作成さえれます。
+      もし可能であれば、実装は新しいストリームを閉じるまで
+      古いファイルを破壊するべきではありません。
+  - {nil!variable:link}
+    - ファイルもストリームも生成されません。
+      代わりに失敗を示す{nil!variable:link}が返却されます。
+
+- `:if-does-not-exist`
+  - *if-does-not-exists*は、
+    *filespec*の名前のファイルがまだ存在してないときに実行する動作を指定します。
+    {open:link}の結果は*if-does-not-exists*の次の値によって変更されます。
+  - `:error`
+    - 型{file-error:link}のエラーが通知されます。
+  - `:create`
+    - 空のファイルが作成されます。
+      ファイルが袖に存在しているときは処理が継続されますが、
+      *if-exists*の方向による操作によっては処理しません。
+  - {nil!variable:link}
+    - ファイルもストリームも生成されません。
+      代わりに失敗を示す{nil!variable:link}が返却されます。
+
+- `:external-format`
+  - このオプションはファイルの外部ファイルフォーマットを選択します。
+    このオプションの標準の値はただひとつ`:default`ですが、
+    実装は追加の外部ファイルフォーマットを定義することが許されており、
+    {stream-external-format:link}によって返却される
+    {implementation-dependent}の値を
+    {confirming-program}で使用することができます。  
+    <br>
+    *external-format*は、`character`のサブタイプである要素の型の
+    ファイルストリームに対して意味があります。
+    このオプションは、これらの値に意味を持たない
+    ストリームに対しては無視されます。
+    しかし実装は意味を持つ他の要素の型を定義することができます。
+    もし指定した外部ファイルフォーマットによって表現できない
+    文字を書き込んだ時の結果は指定されていません。
+
+ファイルが開かれたとき、
+ファイルストリームは
+Lisp環境においてファイルシステムに仕える代理人として構築され、
+ファイルストリームへの操作は
+対象のファイルシステム内の指定したファイル上の操作として反映されます。
+
+ファイルは{open:link}によって、削除、名前の変更、破壊的な修正が行われます。
+
+`open`とパス名の関係については、{19.2.3:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(open filespec :direction :probe)  =>  #<Closed Probe File Stream...>
+(setq q (merge-pathnames (user-homedir-pathname) "test"))
+=>  #<PATHNAME :HOST NIL :DEVICE device-name :DIRECTORY directory-name
+   :NAME "test" :TYPE NIL :VERSION :NEWEST>
+(open filespec :if-does-not-exist :create) =>  #<Input File Stream...>
+(setq s (open filespec :direction :probe)) =>  #<Closed Probe File Stream...>
+(truename s) =>  #<PATHNAME :HOST NIL :DEVICE device-name :DIRECTORY
+   directory-name :NAME filespec :TYPE extension :VERSION 1>
+(open s :direction :output :if-exists nil) =>  NIL 
+```
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステムの性質と状態
+
+
+## {exceptional-situations}
+
+*if-exists*が`:error`のとき
+（上記のリストにある*if-exists*の意味の制約に従い）、
+型{file-error:link}のエラーが発生します。
+
+*if-does-not-exist*が`:error`のとき
+（上記のリストにある*if-does-not-exist*の意味の制約に従い）、
+型{file-error:link}のエラーが発生します。
+
+ここで指定された何かの挙動において
+実装が何らかのオプションを処理できなかったときは、
+型{error!condition:link}のエラーが通知されるかもしれません。
+
+`(wild-pathname-p filespec)`が*true*のとき、
+型{file-error:link}のエラーが発生します。
+
+実装が*external-format*を解釈できなかったときは、
+型{error!condition:link}のエラーが発生します。
+
+現在存在する様々なファイルシステムは大きく異なった機能を持っており、
+あるファイルシステムの様相はここで定義された仕様の範囲を超えています。
+実装はこれらの全てのオプションについて
+規定された動作を正確にサポートできないかもしれません。
+実装はこれらの全てのキーワードオプションを認識し、
+ホストファイルシステムの環境上において
+「適切な」何らかの挙動を試行することが求められます。
+ファイルシステムに提供する必要があるとき、
+実装はo
+
+ファイルシステムに適合させるために必要であれば、
+実装はここで指定された意味からわずかに逸脱しても、
+{confirming-implementation}として失格とみなされることはありません。
+もし、あるオプションをここで指定されたものと同様の方法で処理することが
+実装上まったく不可能な場合は、単にエラーが通知されます。
+
+`:element-type`オプションに関して、
+ファイルシステムでサポートされていない型が指定されたとき、
+そのような型をアップグレードした型を代用することが許されます。
+最小の要求としては、
+あるファイルに対して指定した要素の型で出力ストリームを開き、
+後で同じファイルに対して同じ要素の方で入力ストリームを開いたときに
+矛盾なく動作することが求められます。
+
+
+## {see-also}
+
+{with-open-file:link},
+{close:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{19.2.3:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+{open:link}は、異常な退出が生じたときに
+自動的にはファイルをクローズしません。
+
+*element-type*が{character!system-class:link}のサブタイプのとき、
+{read-char:link}と{write-char:link}が結果のファイルストリームで使用できます。
+
+*element-type*が整数のサブタイプのとき、
+{read-byte:link}と{write-byte:link}が結果のファイルストリームで使用できます。
+
+*element-type*が`:default`のとき、
+その型は{stream-element-type:link}を使うことで決定することができます。
+
+@end
+

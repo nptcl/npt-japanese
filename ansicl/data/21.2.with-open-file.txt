@@ -1,0 +1,131 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-OPEN-FILE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.with-open-file
+@name: with-open-file
+@type: macro
+
+Macro `WITH-OPEN-FILE`
+
+
+## {syntax}
+
+`with-open-file` `(` *stream *  *filespec* *options\** `)`
+ *declaration\** *form\**
+ => *result*
+
+
+## {arguments-and-values}
+
+*stream* - 変数  
+*filespec* - パス名指定子  
+*options* -- フォーム。評価されます。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*による返却値
+
+
+## {description}
+
+{with-open-file:link}は、{open:link}を使い
+*filespec*によって名前付けられたファイルの
+ファイルストリームを作成します。
+*filespec*は開かれるファイルの名前です。
+*options*は{open:link}のキーワード引数として使われます。
+
+*stream*変数に束縛されるストリームオブジェクトは
+動的エクステントを持っており、
+その範囲はフォームから退出が行われたときに終了します。
+
+{with-open-file:link}は、
+{open:link}の返却値を*stream*に束縛して、
+*form*を{implicit-progn}として評価します。
+
+通常の場合か普通ではない方法（例えば{throw:link}の使用によるもの）のどちらかで
+ボディ部から制御が出るとき、
+ファイルは自動的にクローズされます。
+もし新しい出力ファイルが書き込みを始めてから
+制御が普通ではない方法で退出したとき、
+そのファイルは中断され、
+ファイルシステムを可能な限り
+そのファイルがオープンされていなかったかのようにします。
+
+`:if-exists nil`か`:if-does-not-exist nil`を使用することで、
+*stream*に{nil!variable:link}を束縛することができます。
+ユーザーが`:if-does-not-exist nil`を使うときは、
+ストリームが有効かどうかチェックする必要があります。
+
+*stream*変数に代入を仕様とした結果は定義されていません。
+もしそのような試行を検出したとき、
+コンパイラーは警告を出力するかもしれません。
+
+
+## {examples}
+
+```lisp
+(setq p (merge-pathnames "test"))
+=>  #<PATHNAME :HOST NIL :DEVICE device-name :DIRECTORY directory-name
+   :NAME "test" :TYPE NIL :VERSION :NEWEST>
+(with-open-file (s p :direction :output :if-exists :supersede)
+   (format s "Here are a couple~%of test data lines~%")) =>  NIL
+(with-open-file (s p)
+   (do ((l (read-line s) (read-line s nil 'eof)))
+       ((eq l 'eof) "Reached end of file.")
+    (format t "~&*** ~A~%" l)))
+>>  *** Here are a couple
+>>  *** of test data lines
+=>  "Reached end of file."
+;; 通常はこのように不明瞭なことを意図的には実行しません。
+;; しかし例の通り:IF-DOES-NOT-EXIST NILをうっかり
+;; 使ってしまうことがないように注意してください。
+(with-open-file (foo "no-such-file" :if-does-not-exist nil)
+  (read foo))
+>>  hello?
+=>  HELLO? ;この値はterminalからreadしたもので、ファイルではない！
+
+;; ここにも避けるべきバグがあります。
+(with-open-file (foo "no-such-file" :direction :output :if-does-not-exist nil)
+  (format foo "Hello"))
+=>  "Hello" ;FORMATは引数にNILを受け取る！
+```
+
+
+## {side-effects}
+
+*filespec*による名前のファイルへのストリームを作成し（入るとき）、
+そのストリームをクローズします（退出するとき）。
+ある実装では、ファイルを開いている間に
+何らかの方法でロックするかもしれません。
+もしストリームが出力ストリームのとき、ファイルは作成されます。
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステム
+
+
+## {exceptional-situations}
+
+{open:link}関数をご確認ください。
+
+
+## {see-also}
+
+{open:link},
+{close:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

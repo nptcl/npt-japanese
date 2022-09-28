@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FINISH-OUTPUT
+;;  Function FORCE-OUTPUT
+;;  Function CLEAR-OUTPUT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.finish-output
+@name: finish-output
+@name: force-output
+@name: clear-output
+@type: function
+
+Function `FINISH-OUTPUT`, `FORCE-OUTPUT`, `CLEAR-OUTPUT`
+
+
+## {syntax}
+
+`finish-output` `&optional` *output-stream* => {nil!variable:link}  
+`force-output` `&optional` *output-stream* => {nil!variable:link}  
+`clear-output` `&optional` *output-stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*output-stream* - 出力ストリーム指定子。デフォルトは標準出力。
+
+
+## {description}
+
+{finish-output:link}, {force-output:link}, {clear-output:link}は、
+バッファされた出力ストリームの内部状態を制御します。
+
+{finish-output:link}は、
+出力バッファの全てを*output-stream*に送り、
+その宛先に届くことを確認しようと試み、
+それから返却が行われます。
+
+{force-output:link}は、
+内部バッファの全てを空にしようと処理を開始しますが、
+完了を待たずに応答の返却を行います。
+
+{clear-output:link}は、
+できるだけ少ない出力が宛先に届くようにするために、
+進行中の実施していない出力操作を中止しようとします。
+
+もしこれらの操作のどれかが*output-stream*に対して
+実施するものがないときは何もしません。
+これらの関数の詳しい動作は{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+;; 実装A
+(progn (princ "am i seen?") (clear-output))
+=>  NIL
+
+;; 実装B
+(progn (princ "am i seen?") (clear-output))
+>>  am i seen?
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*standard-output*:link}
+
+
+## {exceptional-situations}
+
+*output-stream*がストリーム指定子ではなかったとき、
+型{type-error:link}のエラーが通知されるべきです。
+
+
+## {see-also}
+
+{clear-input:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,112 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CLOSE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.close
+@name: close
+@type: function
+
+Function `CLOSE`
+
+
+## {syntax}
+
+`close` *stream* `&key` *abort* => *result*
+
+
+## {arguments-and-values}
+
+*stream* - ストリーム（開いているか閉じているかのどちらか）  
+*abort* - {generalized-boolean}。デフォルトは*false*。  
+*result* - 引数として受け取った時点で
+*stream*が開いているときは{t!variable:link}を、
+そうでないときは{implementation-dependent}。
+
+
+## {description}
+
+{close:link}は*stream*をクローズします。
+ストリームのクローズとは、入出力操作を使わないようにする操作です。
+ファイルストリームのクローズの実行は、
+そのストリームと関連付けられたファイルの間の関係を終了させることであり、
+ファイルシステムのトランザクションは終了し、
+そのストリームの入出力をもう実施できなくなります。
+
+*abort*が*true*のときは、
+作成された*stream*から生じた全ての副作用に対して
+掃除処理を実施しようとします。
+もし*stream*が生成されそのストリームがファイルの出力を行っていた場合、
+そのファイルは削除され、
+以前存在していたファイルが取って代わられるようなことはありません。
+
+すでにクローズされているストリームをクローズすることは許されますが、
+このようなときは*result*は{implementation-dependent}です。
+
+*stream*がクローズされたあと、
+次の問い合わせ操作はまだストリームに対して実施することができます：
+{streamp:link},
+{pathname!function:link},
+{truename:link},
+{merge-pathnames:link},
+{pathname-host:link},
+{pathname-device:link},
+{pathname-directory,pathname-name:link},
+{pathname-type:link},
+{pathname-version:link},
+{namestring:link},
+{file-namestring:link},
+{directory-namestring:link},
+{host-namestring:link},
+{enough-namestring:link},
+{open:link},
+{probe-file:link},
+{directory:link}。
+
+構築されたストリームに対しての{close:link}の効果は引数の*stream*だけです。
+複合ストリームの各成分についての効果はありません。
+
+{make-string-output-stream:link}によって作成されたストリームについて、
+{close:link}したあとの{get-output-stream-string:link}の結果は指定されていません。
+
+
+## {examples}
+
+```lisp
+(setq s (make-broadcast-stream)) =>  #<BROADCAST-STREAM>
+(close s) =>  T
+(output-stream-p s) =>  true
+```
+
+
+## {side-effects}
+
+*stream*は（必要なら）クローズされます。
+もし*abort*が*true*であり*stream*が出力ファイルストリームなら、
+関連付けられたファイルは削除されるかもしれません。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{open:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

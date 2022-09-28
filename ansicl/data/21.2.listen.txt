@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LISTEN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.listen
+@name: listen
+@type: function
+
+Function `LISTEN`
+
+
+## {syntax}
+
+`listen` `&optional` *input-stream* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*input-stream*から即座に利用可能な文字があるときは*true*を、
+それ以外は*false*を返却します。
+*input-stream*が非対話式であるとき、
+{listen:link}はファイルの終わりではないときに*true*を返却します。
+もしファイルの終わりに遭遇したとき、
+{listen:link}は*false*を返却します。
+{listen:link}は、*input-stream*がキーボードのような対話式デバイスから
+文字を取得するときに使われることを意図しています。
+
+
+## {examples}
+
+```lisp
+(progn (unread-char (read-char)) (list (listen) (read-char)))
+>>  1
+=>  (T #\1)
+(progn (clear-input) (listen))
+=>  NIL ;あなたが非常に速いタイピストでもない限り！
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*standard-input*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{interactive-stream-p:link},
+{read-char-no-hang:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

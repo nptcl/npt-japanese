@@ -1,0 +1,99 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CLEAR-INPUT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.clear-input
+@name: clear-input
+@type: function
+
+Function `CLEAR-INPUT`
+
+
+## {syntax}
+
+`clear-input` `&optional` *input-stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。
+
+
+## {description}
+
+*input-stream*から利用可能な全ての入力をクリアします。
+
+もし{clear-input:link}が
+*input-stream*から検出できなかったとき、
+{clear-input:link}は何もしません。
+
+
+## {examples}
+
+```lisp
+;; この例の正確なI/Oの振る舞いはおそらく実装の対話式の
+;; バッファの都合により実装依存が生じるため異なる可能性があります。
+;; （ここでのSLEEPの呼び出しは、行志向のバッファリングを行わないような
+;; 実装の差異を同じにするためのものです）
+
+(defun read-sleepily (&optional (clear-p nil) (zzz 0))
+  (list (progn (print '>) (read))
+        ;; 最初のZZZ秒内に入力されたものは
+        ;; 削除される点に注意してください。
+        (progn (print '>) 
+               (if zzz (sleep zzz))
+               (print '>>)
+               (if clear-p (clear-input))
+               (read))))
+
+(read-sleepily)
+>>  > 10
+>>  >
+>>  >> 20
+=>  (10 20)
+
+(read-sleepily t)
+>>  > 10
+>>  >
+>>  >> 20
+=>  (10 20)
+
+(read-sleepily t 10)
+>>  > 10
+>>  > 20  ; ある実装ではここで入力がエコーされません。
+>>  >> 30
+=>  (10 30)
+```
+
+
+## {side-effects}
+
+*input-stream*は修正されます。
+
+
+## {affected-by}
+
+{*standard-input*:link}
+
+
+## {exceptional-situations}
+
+*input-stream*がストリーム指定子ではなかったとき、
+型{type-error:link}のエラーが通知されるべきです。
+
+
+## {see-also}
+
+{clear-output:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

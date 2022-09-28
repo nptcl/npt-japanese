@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function OPEN-STREAM-P</title>
+  <title>Function FINISH-OUTPUT, FORCE-OUTPUT, CLEAR-OUTPUT</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,41 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function OPEN-STREAM-P</h1>
+<h1 class="title">Function FINISH-OUTPUT, FORCE-OUTPUT, CLEAR-OUTPUT</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-open-stream-p">Function <strong>OPEN-STREAM-P</strong></h1>
-<p>Function <code>OPEN-STREAM-P</code></p>
+<h1 id="function-finish-output-force-output-clear-output">Function <strong>FINISH-OUTPUT, FORCE-OUTPUT, CLEAR-OUTPUT</strong></h1>
+<p>Function <code>FINISH-OUTPUT</code>, <code>FORCE-OUTPUT</code>, <code>CLEAR-OUTPUT</code></p>
 <h2 id="構文">構文</h2>
-<p><code>open-stream-p</code> <em>stream</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>finish-output</code> <code>&amp;optional</code> <em>output-stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<code>force-output</code> <code>&amp;optional</code> <em>output-stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<code>clear-output</code> <code>&amp;optional</code> <em>output-stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>stream</em> - ストリーム<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>output-stream</em> - 出力ストリーム指定子。デフォルトは標準出力。</p>
 <h2 id="定義">定義</h2>
-<p><em>stream</em>が開いているストリームのときは<em>true</em>を、 それ以外のときは<em>false</em>を返却します。</p>
-<p>ストリームは、明示的に<a href="21.2.close.html"><code>close</code></a>により閉じられるまでか、 あるいは <code>with-output-to-string</code>, <a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <code>with-input-from-string</code>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>のフォームを退出して 暗黙的に閉じられるまでは開いています。</p>
+<p><a href="21.2.finish-output.html"><code>finish-output</code></a>, <a href="21.2.finish-output.html"><code>force-output</code></a>, <a href="21.2.finish-output.html"><code>clear-output</code></a>は、 バッファされた出力ストリームの内部状態を制御します。</p>
+<p><a href="21.2.finish-output.html"><code>finish-output</code></a>は、 出力バッファの全てを<em>output-stream</em>に送り、 その宛先に届くことを確認しようと試み、 それから返却が行われます。</p>
+<p><a href="21.2.finish-output.html"><code>force-output</code></a>は、 内部バッファの全てを空にしようと処理を開始しますが、 完了を待たずに応答の返却を行います。</p>
+<p><a href="21.2.finish-output.html"><code>clear-output</code></a>は、 できるだけ少ない出力が宛先に届くようにするために、 進行中の実施していない出力操作を中止しようとします。</p>
+<p>もしこれらの操作のどれかが<em>output-stream</em>に対して 実施するものがないときは何もしません。 これらの関数の詳しい動作は実装依存です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open-stream-p</span> <span class="va">*standard-input*</span>) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 実装A</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">princ</span> <span class="st">&quot;am i seen?&quot;</span>) (<span class="kw">clear-output</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;; 実装B</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">princ</span> <span class="st">&quot;am i seen?&quot;</span>) (<span class="kw">clear-output</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  am i seen?</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.close.html"><code>close</code></a></p>
+<p><a href="21.2.debug-io.html"><code>*standard-output*</code></a></p>
 <h2 id="例外">例外</h2>
-<p><em>stream</em>がストリームではないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを発生させるべきです。</p>
+<p><em>output-stream</em>がストリーム指定子ではなかったとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが通知されるべきです。</p>
 <h2 id="参考">参考</h2>
-<p>なし。</p>
+<p><a href="21.2.clear-input.html"><code>clear-input</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

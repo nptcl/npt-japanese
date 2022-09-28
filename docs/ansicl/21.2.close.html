@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function OPEN-STREAM-P</title>
+  <title>Function CLOSE</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,37 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function OPEN-STREAM-P</h1>
+<h1 class="title">Function CLOSE</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-open-stream-p">Function <strong>OPEN-STREAM-P</strong></h1>
-<p>Function <code>OPEN-STREAM-P</code></p>
+<h1 id="function-close">Function <strong>CLOSE</strong></h1>
+<p>Function <code>CLOSE</code></p>
 <h2 id="構文">構文</h2>
-<p><code>open-stream-p</code> <em>stream</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>close</code> <em>stream</em> <code>&amp;key</code> <em>abort</em> =&gt; <em>result</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>stream</em> - ストリーム<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>stream</em> - ストリーム（開いているか閉じているかのどちらか）<br />
+<em>abort</em> - generalized-boolean。デフォルトは<em>false</em>。<br />
+<em>result</em> - 引数として受け取った時点で <em>stream</em>が開いているときは<a href="5.3.t-variable.html"><code>t</code></a>を、 そうでないときは実装依存。</p>
 <h2 id="定義">定義</h2>
-<p><em>stream</em>が開いているストリームのときは<em>true</em>を、 それ以外のときは<em>false</em>を返却します。</p>
-<p>ストリームは、明示的に<a href="21.2.close.html"><code>close</code></a>により閉じられるまでか、 あるいは <code>with-output-to-string</code>, <a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <code>with-input-from-string</code>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>のフォームを退出して 暗黙的に閉じられるまでは開いています。</p>
+<p><a href="21.2.close.html"><code>close</code></a>は<em>stream</em>をクローズします。 ストリームのクローズとは、入出力操作を使わないようにする操作です。 ファイルストリームのクローズの実行は、 そのストリームと関連付けられたファイルの間の関係を終了させることであり、 ファイルシステムのトランザクションは終了し、 そのストリームの入出力をもう実施できなくなります。</p>
+<p><em>abort</em>が<em>true</em>のときは、 作成された<em>stream</em>から生じた全ての副作用に対して 掃除処理を実施しようとします。 もし<em>stream</em>が生成されそのストリームがファイルの出力を行っていた場合、 そのファイルは削除され、 以前存在していたファイルが取って代わられるようなことはありません。</p>
+<p>すでにクローズされているストリームをクローズすることは許されますが、 このようなときは<em>result</em>は実装依存です。</p>
+<p><em>stream</em>がクローズされたあと、 次の問い合わせ操作はまだストリームに対して実施することができます： <a href="21.2.streamp.html"><code>streamp</code></a>, <a href="19.4.pathname-function.html"><code>pathname</code></a>, <a href="20.2.truename.html"><code>truename</code></a>, <a href="19.4.merge-pathnames.html"><code>merge-pathnames</code></a>, <a href="19.4.pathname-host.html"><code>pathname-host</code></a>, <a href="19.4.pathname-host.html"><code>pathname-device</code></a>, <a href="19.4.pathname-host.html"><code>pathname-directory</code></a>, <a href="19.4.pathname-host.html"><code>pathname-type</code></a>, <a href="19.4.pathname-host.html"><code>pathname-version</code></a>, <a href="19.4.namestring.html"><code>namestring</code></a>, <a href="19.4.namestring.html"><code>file-namestring</code></a>, <a href="19.4.namestring.html"><code>directory-namestring</code></a>, <a href="19.4.namestring.html"><code>host-namestring</code></a>, <a href="19.4.namestring.html"><code>enough-namestring</code></a>, <a href="21.2.open.html"><code>open</code></a>, <a href="20.2.probe-file.html"><code>probe-file</code></a>, <a href="20.2.directory.html"><code>directory</code></a>。</p>
+<p>構築されたストリームに対しての<a href="21.2.close.html"><code>close</code></a>の効果は引数の<em>stream</em>だけです。 複合ストリームの各成分についての効果はありません。</p>
+<p><code>make-string-output-stream</code>によって作成されたストリームについて、 <a href="21.2.close.html"><code>close</code></a>したあとの<code>get-output-stream-string</code>の結果は指定されていません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open-stream-p</span> <span class="va">*standard-input*</span>) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> s (<span class="kw">make-broadcast-stream</span>)) <span class="op">=&gt;</span>  #&lt;BROADCAST-STREAM&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">close</span> s) <span class="op">=&gt;</span>  T</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">output-stream-p</span> s) <span class="op">=&gt;</span>  true</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<p><em>stream</em>は（必要なら）クローズされます。 もし<em>abort</em>が<em>true</em>であり<em>stream</em>が出力ファイルストリームなら、 関連付けられたファイルは削除されるかもしれません。</p>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.close.html"><code>close</code></a></p>
-<h2 id="例外">例外</h2>
-<p><em>stream</em>がストリームではないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを発生させるべきです。</p>
-<h2 id="参考">参考</h2>
 <p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="21.2.open.html"><code>open</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

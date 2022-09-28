@@ -173,7 +173,7 @@
 <p><a href="3.8.ignore.html"><code>ignorable</code></a>宣言は、宣言のスコープ内において その束縛が示す値への参照が生じているか、 または生じていないことを指定します。 そのような宣言のスコープ内において、 コンパイラーは、 <em>var</em>や<em>fn</em>や<a href="3.8.special.html"><code>special</code></a>の<em>var</em>の 値の参照が生じていないものについて警告を発生させないことが望ましいです。</p>
 <p><a href="3.8.ignore.html"><code>ignore</code></a>か<a href="3.8.ignore.html"><code>ignorable</code></a>宣言のスコープ範囲外では、 コンパイラーは、 <em>var</em>や<em>fn</em>や<a href="3.8.special.html"><code>special</code></a>の<em>var</em>の 値の参照が生じていないものについて警告を発生させることが望ましいです。</p>
 <p>「使用している」か「使用されていない」のような警告については、 型<a href="9.2.style-warning.html"><code>style-warning</code></a>にすることが望ましく、 これはプログラムの意味に影響を及ぼしません。</p>
-<p><code>with-open-file</code>, <code>with-open-stream</code>, <code>with-input-from-string</code>, <code>with-output-to-string</code>によって確立される ストリームの変数と、 全ての繰り返しの変数は、常に「使用されている」ものとして宣言されます。 <code>(declare (ignore v))</code>という宣言の変数<code>v</code>が使用されたときの 結果は未定義です。</p>
+<p><a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>, <code>with-input-from-string</code>, <code>with-output-to-string</code>によって確立される ストリームの変数と、 全ての繰り返しの変数は、常に「使用されている」ものとして宣言されます。 <code>(declare (ignore v))</code>という宣言の変数<code>v</code>が使用されたときの 結果は未定義です。</p>
 <h2 id="参考">参考</h2>
 <p><a href="3.8.declare.html"><code>declare</code></a></p>
 <hr />

@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-OPEN-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.with-open-stream
+@name: with-open-stream
+@type: macro
+
+Macro `WITH-OPEN-STREAM`
+
+
+## {syntax}
+
+`with-open-stream` `(`*var* *stream*`)` *declaration\** *form\**  
+ => *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名  
+*stream* - フォーム。評価されストリームが生成されます。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+{with-open-stream:link}は、*stream*の一連の操作を実行し、
+値を返却し、そして*stream*をクローズします。
+
+*var*は*stream*の値を束縛し、
+それから*form*が{implicit-progn}として実行されます。
+*stream*は{with-open-stream:link}から退出するときに、
+退出が通常時か非通常時に関わらず
+どんな時でも自動的に閉じられます。
+*stream*は動的エクステントであり、*form*から退出されたときに
+そのエクステントは終了します。
+
+*form*内で変数*var*に代入を施行したときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(with-open-stream (s (make-string-input-stream "1 2 3 4"))
+   (+ (read s) (read s) (read s))) =>  6
+```
+
+
+## {side-effects}
+
+*stream*は（退出時に）クローズされます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{close:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

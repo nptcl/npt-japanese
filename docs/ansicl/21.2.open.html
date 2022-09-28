@@ -304,7 +304,7 @@
 </ul></li>
 <li><code>:create</code>
 <ul>
-<li>空のファイルが作成されます。 ファイルが袖に存在しているときは処理が継続されますが、 <em>if-exists</em>の方向による操作によっては処理しません。</li>
+<li>空のファイルが作成されます。 ファイルがすでに存在しているときは処理が継続されますが、 <em>if-exists</em>の方向による操作によっては処理しません。</li>
 </ul></li>
 <li><a href="5.3.nil-variable.html"><code>nil</code></a>
 <ul>
@@ -313,7 +313,7 @@
 </ul></li>
 <li><code>:external-format</code>
 <ul>
-<li>このオプションはファイルの外部ファイルフォーマットを選択します。 このオプションの標準の値はただひとつ<code>:default</code>ですが、 実装は追加の外部ファイルフォーマットを定義することが許されており、 <code>stream-external-format</code>によって返却される 実装依存の値を 仕様に適合したプログラムで使用することができます。<br />
+<li>このオプションはファイルの外部ファイルフォーマットを選択します。 このオプションの標準の値はただひとつ<code>:default</code>ですが、 実装は追加の外部ファイルフォーマットを定義することが許されており、 <a href="21.2.stream-external-format.html"><code>stream-external-format</code></a>によって返却される 実装依存の値を 仕様に適合したプログラムで使用することができます。<br />
 <br> <em>external-format</em>は、<code>character</code>のサブタイプである要素の型の ファイルストリームに対して意味があります。 このオプションは、これらの値に意味を持たない ストリームに対しては無視されます。 しかし実装は意味を持つ他の要素の型を定義することができます。 もし指定した外部ファイルフォーマットによって表現できない 文字を書き込んだ時の結果は指定されていません。</li>
 </ul></li>
 </ul>
@@ -341,7 +341,7 @@
 <p>現在存在する様々なファイルシステムは大きく異なった機能を持っており、 あるファイルシステムの様相はここで定義された仕様の範囲を超えています。 実装はこれらの全てのオプションについて 規定された動作を正確にサポートできないかもしれません。 実装はこれらの全てのキーワードオプションを認識し、 ホストファイルシステムの環境上において 「適切な」何らかの挙動を試行することが求められます。 ファイルシステムに適合させるために必要であれば、 実装はここで指定された意味からわずかに逸脱しても、 仕様に適合した実装として失格とみなされることはありません。 もし、あるオプションをここで指定されたものと同様の方法で処理することが 実装上まったく不可能な場合は、単にエラーが通知されます。</p>
 <p><code>:element-type</code>オプションに関して、 ファイルシステムでサポートされていない型が指定されたとき、 そのような型をアップグレードした型を代用することが許されます。 最小の要求としては、 あるファイルに対して指定した要素の型で出力ストリームを開き、 後で同じファイルに対して同じ要素の型で入力ストリームを開いたときに 矛盾なく動作することが求められます。</p>
 <h2 id="参考">参考</h2>
-<p><code>with-open-file</code>, <code>close</code>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 19.2.3. パス名のマージ, 19.1.2. ファイル名としてのパス名</p>
+<p><a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <a href="21.2.close.html"><code>close</code></a>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 19.2.3. パス名のマージ, 19.1.2. ファイル名としてのパス名</p>
 <h2 id="備考">備考</h2>
 <p><a href="21.2.open.html"><code>open</code></a>は、異常な退出が生じたときに 自動的にはファイルをクローズしません。</p>
 <p><em>element-type</em>が<a href="13.2.character-system-class.html"><code>character</code></a>のサブタイプのとき、 <a href="21.2.read-char.html"><code>read-char</code></a>と<a href="21.2.write-char.html"><code>write-char</code></a>が結果のファイルストリームで使用できます。</p>

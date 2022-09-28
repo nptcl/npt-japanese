@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function OPEN-STREAM-P</title>
+  <title>Macro WITH-OPEN-STREAM</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,36 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function OPEN-STREAM-P</h1>
+<h1 class="title">Macro WITH-OPEN-STREAM</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-open-stream-p">Function <strong>OPEN-STREAM-P</strong></h1>
-<p>Function <code>OPEN-STREAM-P</code></p>
+<h1 id="macro-with-open-stream">Macro <strong>WITH-OPEN-STREAM</strong></h1>
+<p>Macro <code>WITH-OPEN-STREAM</code></p>
 <h2 id="構文">構文</h2>
-<p><code>open-stream-p</code> <em>stream</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>with-open-stream</code> <code>(</code><em>var</em> <em>stream</em><code>)</code> <em>declaration*</em> <em>form*</em><br />
+=&gt; <em>result*</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>stream</em> - ストリーム<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>var</em> - 変数名<br />
+<em>stream</em> - フォーム。評価されストリームが生成されます。<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>result</em> - <em>form</em>の返却値</p>
 <h2 id="定義">定義</h2>
-<p><em>stream</em>が開いているストリームのときは<em>true</em>を、 それ以外のときは<em>false</em>を返却します。</p>
-<p>ストリームは、明示的に<a href="21.2.close.html"><code>close</code></a>により閉じられるまでか、 あるいは <code>with-output-to-string</code>, <a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <code>with-input-from-string</code>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>のフォームを退出して 暗黙的に閉じられるまでは開いています。</p>
+<p><a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>は、<em>stream</em>の一連の操作を実行し、 値を返却し、そして<em>stream</em>をクローズします。</p>
+<p><em>var</em>は<em>stream</em>の値を束縛し、 それから<em>form</em>が暗黙のprognとして実行されます。 <em>stream</em>は<a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>から退出するときに、 退出が通常時か非通常時に関わらず どんな時でも自動的に閉じられます。 <em>stream</em>は動的エクステントであり、<em>form</em>から退出されたときに そのエクステントは終了します。</p>
+<p><em>form</em>内で変数<em>var</em>に代入を施行したときの結果は未定義です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open-stream-p</span> <span class="va">*standard-input*</span>) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-stream</span> (s (<span class="kw">make-string-input-stream</span> <span class="st">&quot;1 2 3 4&quot;</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="op">+</span> (<span class="kw">read</span> s) (<span class="kw">read</span> s) (<span class="kw">read</span> s))) <span class="op">=&gt;</span>  <span class="dv">6</span></span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<p><em>stream</em>は（退出時に）クローズされます。</p>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.close.html"><code>close</code></a></p>
-<h2 id="例外">例外</h2>
-<p><em>stream</em>がストリームではないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを発生させるべきです。</p>
-<h2 id="参考">参考</h2>
 <p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="21.2.close.html"><code>close</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

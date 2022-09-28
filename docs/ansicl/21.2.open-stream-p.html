@@ -227,7 +227,7 @@
 <em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
 <p><em>stream</em>が開いているストリームのときは<em>true</em>を、 それ以外のときは<em>false</em>を返却します。</p>
-<p>ストリームは、明示的に<a href="21.2.close.html"><code>close</code></a>により閉じられるまでか、 あるいは <code>with-output-to-string</code>, <a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <code>with-input-from-string</code>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>のフォームを退出して 暗黙的に閉じられるまでは開いています。</p>
+<p>ストリームは、明示的に<a href="21.2.close.html"><code>close</code></a>により閉じられるまでか、 あるいは <a href="21.2.with-output-to-string.html"><code>with-output-to-string</code></a>, <a href="21.2.with-open-file.html"><code>with-open-file</code></a>, <a href="21.2.with-input-from-string.html"><code>with-input-from-string</code></a>, <a href="21.2.with-open-stream.html"><code>with-open-stream</code></a>のフォームを退出して 暗黙的に閉じられるまでは開いています。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">open-stream-p</span> <span class="va">*standard-input*</span>) <span class="op">=&gt;</span>  true</span></code></pre></div>
 <h2 id="副作用">副作用</h2>

@@ -140,6 +140,9 @@
 (replace echo-stream "`echo`ストリーム")
 (replace string-stream "`string`ストリーム")
 (replace synonym-stream "`synonym`ストリーム")
+(replace two-way-stream "`two-way`ストリーム")
+
+(replace query-io "query I/O")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

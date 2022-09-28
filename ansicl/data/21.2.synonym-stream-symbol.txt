@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SYNONYM-STREAM-SYMBOL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.synonym-stream-symbol
+@name: synonym-stream-symbol
+@type: function
+
+Function `SYNONYM-STREAM-SYMBOL`
+
+
+## {syntax}
+
+`synonym-stream-symbol` *synonym-stream* => *symbol*
+
+
+## {arguments-and-values}
+
+*synonym-stream* - {synonym-stream}  
+*symbol* - シンボル
+
+
+## {description}
+
+*synonym-stream*の{symbol-value:link}で使用されているシンボルを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-synonym-stream:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

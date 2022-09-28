@@ -861,9 +861,7 @@
 (dictionary 21.2.make-broadcast-stream)
 (dictionary 21.2.make-two-way-stream)
 (dictionary 21.2.two-way-stream-input-stream)
-(dictionary 21.2.two-way-stream-output-stream)  ;; delete
 (dictionary 21.2.echo-stream-input-stream)
-(dictionary 21.2.echo-stream-output-stream)  ;; delete
 (dictionary 21.2.make-echo-stream)
 (dictionary 21.2.concatenated-stream-streams)
 (dictionary 21.2.make-concatenated-stream)

@@ -1,0 +1,58 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function BROADCAST-STREAM-STREAMS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.broadcast-stream-streams
+@name: broadcast-stream-streams
+@type: function
+
+Function `BROADCAST-STREAM-STREAMS`
+
+
+## {syntax}
+
+`broadcast-stream-streams` *broadcast-stream* => *streams*
+
+
+## {arguments-and-values}
+
+*broadcast-stream* - {broadcast-stream}  
+*streams* - ストリームのリスト
+
+
+## {description}
+
+*broadcast-stream*がブロードキャストする全てのストリームの成分である
+出力ストリームのリストを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

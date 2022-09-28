@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-SYNONYM-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.make-synonym-stream
+@name: make-synonym-stream
+@type: function
+
+Function `MAKE-SYNONYM-STREAM`
+
+
+## {syntax}
+
+`make-synonym-stream` *symbol* => *synonym-stream*
+
+
+## {arguments-and-values}
+
+*symbol* - 動的変数の名前のシンボル  
+*synonym-stream* - {synonym-stream}
+
+
+## {description}
+
+{synonym-stream}のシンボルが*symbol*である、
+{synonym-stream}を返却します。
+
+
+## {examples}
+
+```lisp
+(setq a-stream (make-string-input-stream "a-stream")
+       b-stream (make-string-input-stream "b-stream"))
+=>  #<String Input Stream> 
+(setq s-stream (make-synonym-stream 'c-stream))
+=>  #<SYNONYM-STREAM for C-STREAM> 
+(setq c-stream a-stream)
+=>  #<String Input Stream> 
+(read s-stream) =>  A-STREAM
+(setq c-stream b-stream)
+=>  #<String Input Stream> 
+(read s-stream) =>  B-STREAM
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数がシンボルではないとき、
+型{type-error:link}のエラーを通知しなければなりません。
+
+
+## {see-also}
+
+{21.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

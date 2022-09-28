@@ -163,7 +163,7 @@
 <p><code>concatenated</code>ストリームは入力ストリームであり、 ゼロか複数の入力ストリームの集合を関連付けたものです。 <code>concatenated</code>ストリームから読み込むことができるデータの列は、 それぞれのストリームの要素から読み込むことができるデータの列を つなぎ合わせたものと同じになります。</p>
 <p><code>concatenated</code>ストリームからの入力は、 最初に関連付けられた入力ストリームが ファイルの終わりに到達するまでのものが使われます。 その後は最初のストリームが捨てられ、 続く入力が次の入力ストリームとして使用され、くり返されます。 関連付けられた入力ストリームのファイルの終わりは、 常に<code>concatenated</code>ストリームによって目につかないように管理されますが、 データの入力の試行により 残りの入力ストリームが存在しない<code>concatenated</code>ストリームから データを入手しようとしたとき、 唯一そのような状況のときにのみ <code>concatenated</code>ストリームの呼び出しもとにファイルの終わりを通知します。</p>
 <h2 id="参考">参考</h2>
-<p><code>concatenated-stream-streams</code>, <code>make-concatenated-stream</code></p>
+<p><a href="21.2.concatenated-stream-streams.html"><code>concatenated-stream-streams</code></a>, <a href="21.2.make-concatenated-stream.html"><code>make-concatenated-stream</code></a></p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

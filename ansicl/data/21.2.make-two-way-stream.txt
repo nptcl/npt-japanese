@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-TWO-WAY-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.make-two-way-stream
+@name: make-two-way-stream
+@type: function
+
+Function `MAKE-TWO-WAY-STREAM`
+
+
+## {syntax}
+
+`make-two-way-stream` *input-stream* *output-stream* => *two-way-stream*
+
+
+## {arguments-and-values}
+
+*input-stream* - ストリーム  
+*output-stream* - ストリーム  
+*two-way-stream* - {two-way-stream}
+
+
+## {description}
+
+取得は*input-stream*からの入力で、
+送信は*output-stream*からの出力で構成される
+{two-way-stream}を返却します。
+
+
+## {examples}
+
+```lisp
+(with-output-to-string (out)
+   (with-input-from-string (in "input...")
+     (let ((two (make-two-way-stream in out)))
+       (format two "output...")
+       (setq what-is-read (read two))))) =>  "output..."
+what-is-read =>  INPUT... 
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*input-stream*が入力ストリームではないとき、
+型{type-error:link}のエラーを通知しなければなりません。
+*output-stream*出力ストリームではないとき、
+型{type-error:link}のエラーを通知しなければなりません。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

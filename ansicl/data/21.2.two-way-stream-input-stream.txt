@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function TWO-WAY-STREAM-INPUT-STREAM
+;;  Function TWO-WAY-STREAM-OUTPUT-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.two-way-stream-input-stream
+@name: two-way-stream-input-stream
+@name: two-way-stream-output-stream
+@type: function
+
+Function `TWO-WAY-STREAM-INPUT-STREAM`, `TWO-WAY-STREAM-OUTPUT-STREAM`
+
+
+## {syntax}
+
+`two-way-stream-input-stream` *two-way-stream* => *input-stream*  
+`two-way-stream-output-stream` *two-way-stream* => *output-stream*
+
+
+## {arguments-and-values}
+
+*two-way-stream* - {two-way-stream}  
+*input-stream* - 入力ストリーム  
+*output-stream* - 出力ストリーム
+
+
+## {description}
+
+{two-way-stream-input-stream:link}は、
+*two-way-stream*が入力を受け取るストリームを返却します。
+
+{two-way-stream-output-stream:link}は、
+*two-way-stream*が出力を送信するストリームを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

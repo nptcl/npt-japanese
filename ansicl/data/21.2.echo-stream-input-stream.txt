@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ECHO-STREAM-INPUT-STREAM
+;;  Function ECHO-STREAM-OUTPUT-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.echo-stream-input-stream
+@name: echo-stream-input-stream
+@name: echo-stream-output-stream
+@type: function
+
+Function `ECHO-STREAM-INPUT-STREAM`, `ECHO-STREAM-OUTPUT-STREAM`
+
+
+## {syntax}
+
+`echo-stream-input-stream` *echo-stream* => *input-stream*  
+`echo-stream-output-stream` *echo-stream* => *output-stream*
+
+
+## {arguments-and-values}
+
+*echo-stream* - {echo-stream}  
+*input-stream* - 入力ストリーム  
+*output-stream* - 出力ストリーム
+
+
+## {description}
+
+{echo-stream-input-stream:link}は、
+*echo-stream*が入力を受け取るストリームを返却します。
+
+{echo-stream-output-stream:link}は、
+*echo-stream*が出力を送信するストリームを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+
+

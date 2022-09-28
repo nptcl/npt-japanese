@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-STRING-INPUT-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.make-string-input-stream
+@name: make-string-input-stream
+@type: function
+
+Function `MAKE-STRING-INPUT-STREAM`
+
+
+## {syntax}
+
+`make-string-input-stream` *string* `&optional` *start* *end* => *string-stream*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*string-stream* - 入力文字列ストリーム
+
+
+## {description}
+
+入力の文字列ストリームを返却します。
+このストリームは*string*を*start*と*end*で囲った部分文字列にある
+文字を順番に提供します。
+最後の文字が提供されたあとは、
+文字列ストリームはファイルの終わりになります。
+
+
+## {examples}
+
+```lisp
+(let ((string-stream (make-string-input-stream "1 one ")))
+  (list (read string-stream nil nil)
+        (read string-stream nil nil)
+        (read string-stream nil nil)))
+=>  (1 ONE NIL)
+
+(read (make-string-input-stream "prefixtargetsuffix" 6 12)) =>  TARGET
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{with-input-from-string:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

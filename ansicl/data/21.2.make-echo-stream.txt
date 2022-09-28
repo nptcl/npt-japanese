@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-ECHO-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.make-echo-stream
+@name: make-echo-stream
+@type: function
+
+Function `MAKE-ECHO-STREAM`
+
+
+## {syntax}
+
+`make-echo-stream` *input-stream* *output-stream* => *echo-stream*
+
+
+## {arguments-and-values}
+
+*input-stream* - ストリーム  
+*output-stream* - ストリーム  
+*echo-stream* - {echo-stream}
+
+
+## {description}
+
+取得は*input-stream*からの入力で、
+送信は*output-stream*からの出力で構成される
+{echo-stream}を返却します。
+
+
+## {examples}
+
+```lisp
+(let ((out (make-string-output-stream)))
+   (with-open-stream 
+       (s (make-echo-stream
+           (make-string-input-stream "this-is-read-and-echoed")
+           out))
+     (read s)
+     (format s " * this-is-direct-output")
+     (get-output-stream-string out)))
+=>  "this-is-read-and-echoed * this-is-direct-output"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{echo-stream-input-stream:link},
+{echo-stream-output-stream:link},
+{make-two-way-stream:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

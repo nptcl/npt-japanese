@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function CONCATENATED-STREAM-STREAMS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.concatenated-stream-streams
+@name: concatenated-stream-streams
+@type: function
+
+Function `CONCATENATED-STREAM-STREAMS`
+
+
+## {syntax}
+
+`concatenated-stream-streams` *concatenated-stream* => *streams*
+
+
+## {arguments-and-values}
+
+*concatenated-stream* - {concatenated-stream}  
+*streams* - ストリームのリスト
+
+
+## {description}
+
+*concatenated-stream*がまだ読み込んでいない、
+現在の読み込むもの空始まる順序付けされたストリームの集合の成分である
+入力ストリームのリストを返却します。
+
+*stream*のリスト構造が後で修正されたときの結果は未定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

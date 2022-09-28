@@ -1,0 +1,108 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-INPUT-FROM-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.with-input-from-string
+@name: with-input-from-string
+@type: macro
+
+Macro `WITH-INPUT-FROM-STRING`
+
+
+## {syntax}
+
+`with-input-from-string`
+ `(`*var* *string* `&key` *index* *start* *end*`)`
+ *declaration\** *form\**
+ => *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名  
+*string* - フォーム。評価され文字列を生成します。  
+*index* - {place}  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+入力の文字列ストリームを作成し、
+ストリーム上の操作を実行する機会を提供し
+（ゼロか複数の値を返却します）、
+そして文字列ストリームをクローズします。
+
+*string*は最初に評価され、
+結果の文字列を*start*と*end*で囲った部分文字列から、
+文字を提供する文字型の入力の文字列ストリームを*var*に束縛します。
+
+入力の文字列ストリームは{with-input-from-string:link}から
+退出したときに通常時と非通常時に関わらず自動的にクローズされます。
+変数*var*に束縛された入力の文字列ストリームは動的エクステントを持ち、
+フォームから退出されたときにエクステントは終了します。
+
+*index*は*string*内で前進したポインターです。
+もし{with-input-from-string:link}が通常の退出をしたとき、
+*index*には*string*の最初に読まなくなった文字を示すインデックスの値を持っており
+もし全ての文字が使用されたときは`(length string)`になります。
+*index*によって指定された{place}は
+読み込み進行時だけではなく操作の終わりにも更新されます。
+
+*start*と*index*はおそらくどちらも同じ変数であり、
+これは*string*内の前進を行うポインターを示しており、
+おそらくは何らかのループに含まれて繰り返されます。
+
+変数*var*に代入しようとしたときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(with-input-from-string (s "XXX1 2 3 4xxx"
+                            :index ind
+                            :start 3 :end 10)
+   (+ (read s) (read s) (read s))) =>  6
+ind =>  9
+(with-input-from-string (s "Animal Crackers" :index j :start 6)
+  (read s)) =>  CRACKERS
+```
+
+変数`j`は`15`が設定されます。
+
+
+## {side-effects}
+
+*index*によって名前付けられた{place}の値は、
+必要なら修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{make-string-input-stream:link},
+{3.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

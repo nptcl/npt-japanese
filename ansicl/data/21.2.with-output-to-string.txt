@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-OUTPUT-TO-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.with-output-to-string
+@name: with-output-to-string
+@type: macro
+
+Macro `WITH-OUTPUT-TO-STRING`
+
+
+## {syntax}
+
+`with-output-to-string`
+ `(`*var* `&optional` *string-form* `&key` *element-type*`)`
+ *declaration\** *form\**
+ => *result\**
+
+
+## {arguments-and-values}
+
+*var* - 変数名  
+*string-form* - フォームか{nil!variable:link}。
+もし{nil!variable:link}ではないとき、
+評価されて*string*が生成されます。  
+*string* - {fill-pointer}を持つ文字列  
+*element-type* - 型指定子。デフォルトは{character!system-class:link}。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}  
+*result* - もし*string-form*が指定されていないか
+{nil!variable:link}のときは文字列、
+それ以外のときは*form*の返却値
+
+
+## {description}
+
+{with-output-to-string:link}は文字列の出力ストリームを作成し、
+一連のストリームに結果を送信するであろう操作を実行し、
+そしてそのストリームをクローズします。
+
+*element-type*はストリームの要素の型を示す名前であり、
+ストリームは指定された型の要素を収容できるような
+特定化した型で構築されなければなりません。
+
+{implicit-progn}として実行されるボディ部は、
+出力の文字列ストリームを*var*に束縛します。
+文字列ストリームへの全ての出力は文字列内に保存されます。
+
+もし*string*が指定されたとき、*element-type*は無視され、
+そして出力は*string*に対して
+{vector-push-extend:link}を使用したかのように
+蓄積するように追加されていきます。
+
+出力の文字列ストリームは{with-output-to-string:link}から
+退出したときに通常時と非通常時に関わらず自動的にクローズされます。
+変数*var*に束縛された出力の文字列ストリームは動的エクステントを持ち、
+フォームから退出されたときにエクステントは終了します。
+
+もし*string*が指定されなかったとき、
+{with-output-to-string:link}は文字列を受け付けるストリームを提供し、
+*element-type*で示された文字列を返却します。
+もし*string*が指定されたとき、
+{with-output-to-string:link}は最後の*form*が
+評価された結果を返却します。
+
+変数*var*に代入しようとしたときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(setq fstr (make-array '(0) :element-type 'base-char
+                            :fill-pointer 0 :adjustable t)) =>  ""
+(with-output-to-string (s fstr)
+   (format s "here's some output")
+   (input-stream-p s)) =>  false
+fstr =>  "here's some output"
+```
+
+
+## {side-effects}
+
+*string*は修正されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+この呼び出しの動的エクステント内で
+直接*string*に対して破壊的修正を行ったときの結果は未定義です。
+
+
+## {see-also}
+
+{make-string-output-stream:link},
+{vector-push-extend:link},
+{3.6:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

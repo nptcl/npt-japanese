@@ -164,7 +164,7 @@
 <em>logical-pathname</em> - 論理パス名</p>
 <h2 id="定義">定義</h2>
 <p><a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>は<em>pathspec</em>を論理パス名へ変換し、 新しい論理パス名を返却します。 もし<em>pathspec</em>が論理パス名の名前文字列であるときは、 それはホストの要素と合わせてコロンが続くものを含まなければなりません。 もし<em>pathspec</em>がストリームのときは、 それは<a href="19.4.pathname-function.html"><code>pathname</code></a>が論理パス名を返却するような ものでなければなりません。</p>
-<p>もし<em>pathspec</em>がストリームのとき、 そのストリームは開いているものか閉じているものを指定できます。 <a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>は ファイルがクローズされたあとのものについては、 ファイルが開いているときに実行されたものと同じ論理パス名を返却します。 もし<em>pathspec</em>がストリームであり、 <code>make-two-way-stream</code>, <code>make-echo-stream</code>, <code>make-broadcast-stream</code>, <code>make-concatenated-stream</code>, <code>make-string-input-stream</code>, <code>make-string-output-stream</code> によって作成されたもののときはエラーが発生します。</p>
+<p>もし<em>pathspec</em>がストリームのとき、 そのストリームは開いているものか閉じているものを指定できます。 <a href="19.4.logical-pathname-function.html"><code>logical-pathname</code></a>は ファイルがクローズされたあとのものについては、 ファイルが開いているときに実行されたものと同じ論理パス名を返却します。 もし<em>pathspec</em>がストリームであり、 <a href="21.2.make-two-way-stream.html"><code>make-two-way-stream</code></a>, <a href="21.2.make-echo-stream.html"><code>make-echo-stream</code></a>, <a href="21.2.make-broadcast-stream.html"><code>make-broadcast-stream</code></a>, <a href="21.2.make-concatenated-stream.html"><code>make-concatenated-stream</code></a>, <a href="21.2.make-string-input-stream.html"><code>make-string-input-stream</code></a>, <a href="21.2.make-string-output-stream.html"><code>make-string-output-stream</code></a> によって作成されたもののときはエラーが発生します。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>

@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GET-OUTPUT-STREAM-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.get-output-stream-string
+@name: get-output-stream-string
+@type: function
+
+Function `GET-OUTPUT-STREAM-STRING`
+
+
+## {syntax}
+
+`get-output-stream-string` `string-output-stream` => *string*
+
+
+## {arguments-and-values}
+
+*string-output-stream* - ストリーム  
+*string* - 文字列
+
+
+## {description}
+
+*string-output-stream*に出力された文字を順番に全て含む文字列を返却します。
+この操作は*string-output-stream*上の文字をクリアするので、
+*string*には{get-output-stream-string:link}が
+最後に呼び出された以降のものか、
+あるいは*string-output-stream*が作成された以降のものから、
+最新のものまでに生じた出力のみが含まれます。
+
+
+## {examples}
+
+```lisp
+(setq a-stream (make-string-output-stream)
+       a-string "abcdefghijklm") =>  "abcdefghijklm"
+(write-string a-string a-stream) =>  "abcdefghijklm"
+(get-output-stream-string a-stream) =>  "abcdefghijklm"
+(get-output-stream-string a-stream) =>  ""
+```
+
+
+## {side-effects}
+
+*string-output-stream*はクリアされます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*string-output-stream*がクローズされていたときの結果は未定義です。
+
+*string-output-stream*が{make-string-output-stream:link}によって
+生成されたものではないときの結果は未定義です。
+
+*string-output-stream*が{with-output-to-string:link}か
+{format:link}によって暗黙的に生成されたもののときの結果は未定義です。
+
+
+## {see-also}
+
+{make-string-output-stream:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

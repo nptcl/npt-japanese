@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-CONCATENATED-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.make-concatenated-stream
+@name: make-concatenated-stream
+@type: function
+
+Function `MAKE-CONCATENATED-STREAM`
+
+
+## {syntax}
+
+`make-concatenated-stream` `&rest` *input-stream* => *concatenated-stream*
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリーム  
+*concatenated-stream* - {concatenated-stream}
+
+
+## {description}
+
+初期値が指定された*input-stream*に関連付けられた
+{concatenated-stream}を返却します。
+
+
+## {examples}
+
+```lisp
+(read (make-concatenated-stream
+        (make-string-input-stream "1")
+        (make-string-input-stream "2"))) =>  12
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数のどれかが入力ストリームではないときは、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+{concatenated-stream-streams:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

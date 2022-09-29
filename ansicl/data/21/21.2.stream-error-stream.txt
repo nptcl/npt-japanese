@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function STREAM-ERROR-STREAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.stream-error-stream
+@name: stream-error-stream
+@type: function
+
+Function `STREAM-ERROR-STREAM`
+
+
+## {syntax}
+
+`stream-error-stream` *condition* => *stream*
+
+
+## {arguments-and-values}
+
+*condition* - 型{stream-error:link}のコンディション  
+*stream* - ストリーム
+
+
+## {description}
+
+型{stream-error:link}のコンディションの
+問題のあるストリームを返却します。
+
+
+## {examples}
+
+```lisp
+(with-input-from-string (s "(FOO")
+  (handler-case (read s)
+    (end-of-file (c)
+      (format nil "~&End of file on ~S." (stream-error-stream c)))))
+"End of file on #<String Stream>."
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{stream-error:link},
+{9:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

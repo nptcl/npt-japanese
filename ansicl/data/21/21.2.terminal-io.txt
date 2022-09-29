@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *TERMINAL-IO*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.terminal-io
+@name: *terminal-io*
+@type: variable
+
+Variable `*TERMINAL-IO*`
+
+
+## {value-type}
+
+双方向ストリーム
+
+
+## {initial-value}
+
+{implementation-dependent}ですが、
+開いたストリームでなければならず、
+それはI/Oカスタマイズ変数に対する一般化された{synonym-stream}ではなく、
+あるI/Oカスタマイズ変数の値に対する一般化された{synonym-stream}の
+可能性があります。
+
+
+## {description}
+
+{*terminal-io*:link}の値は、端末I/Oと呼ばれ、
+ユーザーの端末に接続された通常の双方向ストリームです。
+例えば、典型的にはこのストリームの書き込みはディスプレイの画面上に
+出力として現れるものとなり、
+このストリームの読み込みは、
+キーボードからの入力として受け付けられます。
+これは、{read:link}や{read-char:link}のような標準入力を使う関数が
+これらがストリームを使用するとき、
+入力のエコーがそのストリームの出力に行われることを意図しています。
+これがどのように実行されるかは{implementation-dependent}です。
+
+{*terminal-io*:link}の値の変更についての効果は、
+それが束縛か代入かに関わらず、{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(progn (prin1 'foo) (prin1 'bar *terminal-io*))
+>>  FOOBAR
+=>  BAR
+(with-output-to-string (*standard-output*)
+  (prin1 'foo) 
+  (prin1 'bar *terminal-io*))
+>>  BAR
+=>  "FOO"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{*debug-io*:link},
+{*error-output*:link},
+{*query-io*:link},
+{*standard-input*:link},
+{*standard-output*:link},
+{*trace-output*:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

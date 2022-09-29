@@ -143,6 +143,69 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <!--[if lt IE 9]>
@@ -157,6 +220,61 @@
 <hr />
 <h1 id="variable-debug-io-error-output-query-io-standard-input-standard-output-trace-output">Variable <strong>*DEBUG-IO*, *ERROR-OUTPUT*, *QUERY-IO*, *STANDARD-INPUT*, *STANDARD-OUTPUT*, *TRACE-OUTPUT*</strong></h1>
 <p>Variable <code>*DEBUG-IO*</code>, <code>*ERROR-OUTPUT*</code>, <code>*QUERY-IO*</code>, <code>*STANDARD-INPUT*</code>, <code>*STANDARD-OUTPUT*</code>, <code>*TRACE-OUTPUT*</code></p>
+<h2 id="値の型">値の型</h2>
+<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>は、入力ストリーム<br />
+<a href="21.2.debug-io.html"><code>*error-output*</code></a>, <a href="21.2.debug-io.html"><code>*standard-output*</code></a>, <a href="21.2.debug-io.html"><code>*trace-output*</code></a>は、出力ストリーム<br />
+<a href="21.2.debug-io.html"><code>*debug-io*</code></a>, <a href="21.2.debug-io.html"><code>*query-io*</code></a>は、双方向ストリーム</p>
+<h2 id="初期値">初期値</h2>
+<p>実装依存ですが、 開いたストリームでなければならず、 それはI/Oカスタマイズ変数に対する一般化された<code>synonym</code>ストリームではなく、 あるI/Oカスタマイズ変数の値に対する一般化された<code>synonym</code>ストリームの 可能性があります。 その初期値もまた一般化された<code>synonym</code>ストリームであり、 <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>かその値のストリームかのどちらかを指します。</p>
+<h2 id="定義">定義</h2>
+<p>これらの変数はまとめて標準化されたI/Oカスタマイズ変数と呼ばれます。 これらは、様々な標準化された操作と機能によって使われる入出力の 標準での宛先を変更するために、束縛と代入をすることができます。</p>
+<p><a href="21.2.debug-io.html"><code>*debug-io*</code></a>の値は、デバッグI/Oと呼ばれ、 対話式のデバッグ機能を使うためのストリームです。</p>
+<p><a href="21.2.debug-io.html"><code>*error-output*</code></a>の値は、エラー出力と呼ばれ、 警告と非対話式エラーメッセージが送られるべきストリームです。</p>
+<p><a href="21.2.debug-io.html"><code>*query-io*</code></a>の値は、クエリ―I/Oと呼ばれ、 ユーザーの質問と返答を行うために使われる双方向ストリームです。 質問はこのストリームに出力され、 返信はこのストリームから読み込まれるべきです。</p>
+<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>の値は、標準入力と呼ばれ、 多くの操作で入力ストリームが指定されなかったときに デフォルトの入力元として暗に指定されたものとして 利用されるストリームです。</p>
+<p><a href="21.2.debug-io.html"><code>*standard-output*</code></a>の値は、標準出力と呼ばれ、 多くの操作で出力ストリームが指定されなかったときに デフォルトの出力元として暗に指定されたものとして 利用されるストリームです。</p>
+<p><a href="21.2.debug-io.html"><code>*trace-output*</code></a>の値は、トレース出力と呼ばれ、 トレースを行う関数（<code>trace</code>を参照）と、 <code>time</code>マクロによる出力によって印字されるストリームです。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-output-to-string</span> (<span class="va">*error-output*</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">warn</span> <span class="st">&quot;this string is sent to *error-output*&quot;</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;Warning: this string is sent to *error-output*</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span> <span class="co">;The exact format of this string is implementation-dependent.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-input-from-string</span> (<span class="va">*standard-input*</span> <span class="st">&quot;1001&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   (<span class="op">+</span> <span class="dv">990</span> (<span class="kw">read</span>))) <span class="op">=&gt;</span>  <span class="dv">1991</span>                       </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">setq</span> out (<span class="kw">with-output-to-string</span> (<span class="va">*standard-output*</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                    (<span class="kw">print</span> <span class="st">&quot;print and format t send things to&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                    (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;*standard-output* now going to a string&quot;</span>)))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>       :done)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  :DONE</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>out</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="sc">\&quot;</span><span class="st">print and format t send things to</span><span class="sc">\&quot;</span><span class="st"> *standard-output* now going to a string&quot;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> fact </span>(n) (<span class="kw">if</span> (<span class="op">&lt;</span> n <span class="dv">2</span>) <span class="dv">1</span> (<span class="op">*</span> n (fact (<span class="op">-</span> n <span class="dv">1</span>)))))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  FACT</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>(<span class="kw">trace</span> fact)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (FACT)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">;; もちろん、トレースの出力の書式は実装依存です。</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-output-to-string</span> (<span class="va">*trace-output*</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  (fact <span class="dv">3</span>)) </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="st">1 Enter FACT 3</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">| 2 Enter FACT 2</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">|   3 Enter FACT 1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">|   3 Exit FACT 1</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">| 2 Exit FACT 2</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">1 Exit FACT 6&quot;</span></span></code></pre></div>
+<h2 id="参考">参考</h2>
+<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>, <a href="21.2.synonym-stream.html"><code>synonym-stream</code></a>, <code>time</code>, <code>trace</code>, <a href="9.html">9. コンディション</a>, <a href="23.html">23. リーダー</a>, <a href="22.html">22. プリンター</a></p>
+<h2 id="備考">備考</h2>
+<p>I/Oカスタマイズ変数の初期値に対する制限の意図は、 実装の柔軟性を過度に制限することなく、 これらの変数を別のI/Oカスタマイズ変数の値に束縛と代入することが 常に安全であることを保証ためです。</p>
+<p><a href="21.2.debug-io.html"><code>*debug-io*</code></a>と<a href="21.2.debug-io.html"><code>*query-io*</code></a>の初期値を同じストリームに、 <a href="21.2.debug-io.html"><code>*error-output*</code></a>と<a href="21.2.debug-io.html"><code>*standard-output*</code></a>の初期値を同じストリームにするような 実装が一般的です。</p>
+<p><a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>と<a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>関数は、 入出力にクエリ―I/Oを使用します。</p>
+<p>通常の<code>Lisp read-eval-print-loop</code>では、入力は標準入力から行います。 多くの入力関数について、<code>read</code>と<a href="21.2.read-char.html"><code>read-char</code></a>を含む関数は、 引数のデフォルトに標準入力のストリームを取ります。</p>
+<p>通常の<code>Lisp read-eval-print-loop</code>では、出力は標準出力から行います。 多くの出力関数について、<code>print</code>と<a href="21.2.write-char.html"><code>write-char</code></a>を含む関数は、 引数のデフォルトに標準出力のストリームを取ります。</p>
+<p>例えば、あるプログラムは出力をファイルに対して行いたいときは <a href="21.2.debug-io.html"><code>*standard-output*</code></a>を束縛することによって実施するべきです。 そうすることによって （<a href="21.2.debug-io.html"><code>*error-output*</code></a>が<a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>に束縛されているときは）、 <a href="21.2.debug-io.html"><code>*error-output*</code></a>に送信されたエラーメッセージは、 通常望まれる形で、 <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>を経由してユーザーに届きます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

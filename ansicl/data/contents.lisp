@@ -871,7 +871,7 @@
 (dictionary 21.2.with-input-from-string)
 (dictionary 21.2.with-output-to-string)
 (dictionary 21.2.debug-io)
-(dictionary 21.2.*terminal-io*)  ;; rename
+(dictionary 21.2.terminal-io)
 (dictionary 21.2.stream-error)
 (dictionary 21.2.stream-error-stream)
 (dictionary 21.2.end-of-file)
@@ -959,6 +959,8 @@
 (text 25.1.4 "時間" "Time")
 (text 25.1.4.2 "{universal-time}" "Universal Time")
 (index 25.2 "環境の辞書" "Environment Dictionary")
+(dictionary 25.2.trace)
+(dictionary 25.2.time)
 (dictionary 25.2.documentation)
 
 ;; Metaobject Protocol

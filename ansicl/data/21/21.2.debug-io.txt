@@ -1,70 +1,83 @@
-% Variable \*DEBUG-IO\*, \*ERROR-OUTPUT\*, \*QUERY-IO\*, \*STANDARD-INPUT\*, \*STANDARD-OUTPUT\*, \*TRACE-OUTPUT\*
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
 
-[UP](21.2.html)  
-
----
-
-# Variable **\*DEBUG-IO\*, \*ERROR-OUTPUT\*, \*QUERY-IO\*, \*STANDARD-INPUT\*, \*STANDARD-OUTPUT\*, \*TRACE-OUTPUT\***
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *DEBUG-IO*
+;;  Variable *ERROR-OUTPUT*
+;;  Variable *QUERY-IO*
+;;  Variable *STANDARD-INPUT*
+;;  Variable *STANDARD-OUTPUT*
+;;  Variable *TRACE-OUTPUT*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.debug-io
+@name: *debug-io*
+@name: *error-output*
+@name: *query-io*
+@name: *standard-input*
+@name: *standard-output*
+@name: *trace-output*
+@type: variable
 
 Variable `*DEBUG-IO*`, `*ERROR-OUTPUT*`, `*QUERY-IO*`,
  `*STANDARD-INPUT*`, `*STANDARD-OUTPUT*`, `*TRACE-OUTPUT*`
 
 
-## 値の型
+## {value-type}
 
-[`*standard-input*`](21.2.debug-io.html)は、入力ストリーム  
-[`*error-output*`](21.2.debug-io.html),
-[`*standard-output*`](21.2.debug-io.html),
-[`*trace-output*`](21.2.debug-io.html)は、出力ストリーム  
-[`*debug-io*`](21.2.debug-io.html),
-[`*query-io*`](21.2.debug-io.html)は、双方向ストリーム
+{*standard-input*:link}は、入力ストリーム  
+{*error-output*:link},
+{*standard-output*:link},
+{*trace-output*:link}は、出力ストリーム  
+{*debug-io*:link},
+{*query-io*:link}は、双方向ストリーム
 
 
-## 初期値
+## {initial-value}
 
-実装依存ですが、
+{implementation-dependent}ですが、
 開いたストリームでなければならず、
-それはI/Oカスタマイズ変数に対する一般化された`synonym`ストリームではなく、
-あるI/Oカスタマイズ変数の値に対する一般化された`synonym`ストリームの
+それはI/Oカスタマイズ変数に対する一般化された{synonym-stream}ではなく、
+あるI/Oカスタマイズ変数の値に対する一般化された{synonym-stream}の
 可能性があります。
-その初期値もまた一般化された`synonym`ストリームであり、
-[`*terminal-io*`](21.2.terminal-io.html)かその値のストリームかのどちらかを指します。
+その初期値もまた一般化された{synonym-stream}であり、
+{*terminal-io*:link}かその値のストリームかのどちらかを指します。
 
 
-## 定義
+## {description}
 
 これらの変数はまとめて標準化されたI/Oカスタマイズ変数と呼ばれます。
 これらは、様々な標準化された操作と機能によって使われる入出力の
 標準での宛先を変更するために、束縛と代入をすることができます。
 
-[`*debug-io*`](21.2.debug-io.html)の値は、デバッグI/Oと呼ばれ、
+{*debug-io*:link}の値は、デバッグI/Oと呼ばれ、
 対話式のデバッグ機能を使うためのストリームです。
 
-[`*error-output*`](21.2.debug-io.html)の値は、エラー出力と呼ばれ、
+{*error-output*:link}の値は、エラー出力と呼ばれ、
 警告と非対話式エラーメッセージが送られるべきストリームです。
 
-[`*query-io*`](21.2.debug-io.html)の値は、クエリ―I/Oと呼ばれ、
+{*query-io*:link}の値は、クエリ―I/Oと呼ばれ、
 ユーザーの質問と返答を行うために使われる双方向ストリームです。
 質問はこのストリームに出力され、
 返信はこのストリームから読み込まれるべきです。
 
-[`*standard-input*`](21.2.debug-io.html)の値は、標準入力と呼ばれ、
+{*standard-input*:link}の値は、標準入力と呼ばれ、
 多くの操作で入力ストリームが指定されなかったときに
 デフォルトの入力元として暗に指定されたものとして
 利用されるストリームです。
 
-[`*standard-output*`](21.2.debug-io.html)の値は、標準出力と呼ばれ、
+{*standard-output*:link}の値は、標準出力と呼ばれ、
 多くの操作で出力ストリームが指定されなかったときに
 デフォルトの出力元として暗に指定されたものとして
 利用されるストリームです。
 
-[`*trace-output*`](21.2.debug-io.html)の値は、トレース出力と呼ばれ、
-トレースを行う関数（`trace`を参照）と、
-`time`マクロによる出力によって印字されるストリームです。
+{*trace-output*:link}の値は、トレース出力と呼ばれ、
+トレースを行う関数（{trace:link}を参照）と、
+{time:link}マクロによる出力によって印字されるストリームです。
 
 
-## 例文
+## {examples}
 
 ```lisp
 (with-output-to-string (*error-output*)
@@ -101,48 +114,46 @@ out
 ```
 
 
-## 参考
+## {see-also}
 
-[`*terminal-io*`](21.2.terminal-io.html),
-[`synonym-stream`](21.2.synonym-stream.html),
-`time`,
-`trace`,
-[9. コンディション](9.html),
-[23. リーダー](23.html),
-[22. プリンター](22.html)
+{*terminal-io*:link},
+{synonym-stream:link},
+{time:link},
+{trace:link},
+{9:ab},
+{23:ab},
+{22:ab}
 
 
-## 備考
+## {notes}
 
 I/Oカスタマイズ変数の初期値に対する制限の意図は、
 実装の柔軟性を過度に制限することなく、
 これらの変数を別のI/Oカスタマイズ変数の値に束縛と代入することが
 常に安全であることを保証ためです。
 
-[`*debug-io*`](21.2.debug-io.html)と[`*query-io*`](21.2.debug-io.html)の初期値を同じストリームに、
-[`*error-output*`](21.2.debug-io.html)と[`*standard-output*`](21.2.debug-io.html)の初期値を同じストリームにするような
+{*debug-io*:link}と{*query-io*:link}の初期値を同じストリームに、
+{*error-output*:link}と{*standard-output*:link}の初期値を同じストリームにするような
 実装が一般的です。
 
-[`y-or-n-p`](21.2.y-or-n-p.html)と[`yes-or-no-p`](21.2.y-or-n-p.html)関数は、
+{y-or-n-p:link}と{yes-or-no-p:link}関数は、
 入出力にクエリ―I/Oを使用します。
 
 通常の`Lisp read-eval-print-loop`では、入力は標準入力から行います。
-多くの入力関数について、`read`と[`read-char`](21.2.read-char.html)を含む関数は、
+多くの入力関数について、{read:link}と{read-char:link}を含む関数は、
 引数のデフォルトに標準入力のストリームを取ります。
 
 通常の`Lisp read-eval-print-loop`では、出力は標準出力から行います。
-多くの出力関数について、`print`と[`write-char`](21.2.write-char.html)を含む関数は、
+多くの出力関数について、{print:link}と{write-char:link}を含む関数は、
 引数のデフォルトに標準出力のストリームを取ります。
 
 例えば、あるプログラムは出力をファイルに対して行いたいときは
-[`*standard-output*`](21.2.debug-io.html)を束縛することによって実施するべきです。
+{*standard-output*:link}を束縛することによって実施するべきです。
 そうすることによって
-（[`*error-output*`](21.2.debug-io.html)が[`*terminal-io*`](21.2.terminal-io.html)に束縛されているときは）、
-[`*error-output*`](21.2.debug-io.html)に送信されたエラーメッセージは、
+（{*error-output*:link}が{*terminal-io*:link}に束縛されているときは）、
+{*error-output*:link}に送信されたエラーメッセージは、
 通常望まれる形で、
-[`*terminal-io*`](21.2.terminal-io.html)を経由してユーザーに届きます。
+{*terminal-io*:link}を経由してユーザーに届きます。
 
-
----
-[TOP](index.html),  [Github](https://github.com/nptcl/npt-japanese)
+@end
 

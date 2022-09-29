@@ -1,0 +1,39 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  21. ストリーム
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type END-OF-FILE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 21.2.end-of-file
+@name: end-of-file
+@type: condition-type
+
+Condition Type `END-OF-FILE`
+
+
+## {class-precedence-list}
+
+{end-of-file:link},
+{stream-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{end-of-file:link}は、
+もうデータがないストリームに対して
+読み込み処理を行ったことに関係する
+エラーのコンディションを含みます。
+
+
+## {see-also}
+
+{stream-error-stream:link}
+
+@end
+

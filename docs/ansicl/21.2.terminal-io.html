@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function UNREAD-CHAR</title>
+  <title>Variable *TERMINAL-IO*</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,39 +214,34 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function UNREAD-CHAR</h1>
+<h1 class="title">Variable *TERMINAL-IO*</h1>
 </header>
 <p><a href="21.2.html">UP</a></p>
 <hr />
-<h1 id="function-unread-char">Function <strong>UNREAD-CHAR</strong></h1>
-<p>Function <code>UNREAD-CHAR</code></p>
-<h2 id="構文">構文</h2>
-<p><code>unread-char</code> <em>character</em> <code>&amp;optional</code> <em>input-stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
-<h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>character</em> - 文字。 <em>input-stream</em>から読み込んだ最後の文字でなければなりません。<br />
-<em>input-stream</em> - 入力ストリーム指定子。デフォルトは標準入力。</p>
+<h1 id="variable-terminal-io">Variable <strong>*TERMINAL-IO*</strong></h1>
+<p>Variable <code>*TERMINAL-IO*</code></p>
+<h2 id="値の型">値の型</h2>
+<p>双方向ストリーム</p>
+<h2 id="初期値">初期値</h2>
+<p>実装依存ですが、 開いたストリームでなければならず、 それはI/Oカスタマイズ変数に対する一般化された<code>synonym</code>ストリームではなく、 あるI/Oカスタマイズ変数の値に対する一般化された<code>synonym</code>ストリームの 可能性があります。</p>
 <h2 id="定義">定義</h2>
-<p><a href="21.2.unread-char.html"><code>unread-char</code></a>は、<em>character</em>を<em>input-stream</em>の前に戻し、 ふたたび<em>input-stream</em>の次の文字になるようにします。</p>
-<p><em>input-stream</em>が<code>echo</code>ストリームのとき、 <em>input-stream</em>上ですでに実施された文字のエコーの取り消しは行いません。 しかし<a href="21.2.unread-char.html"><code>unread-char</code></a>による<em>input-stream</em>上で置き換えられた文字は、 あとで<a href="21.2.read-char.html"><code>read-char</code></a>によって再びエコーされ内容にするために 印がつけられます。</p>
-<p>同じストリームに対して<a href="21.2.unread-char.html"><code>unread-char</code></a>を二度続けて、 <a href="21.2.read-char.html"><code>read-char</code></a>（または暗黙的に文字の読み込みを行う他の入力操作）を 介入させることなく実行したときはエラーです。</p>
-<p><a href="21.2.peek-char.html"><code>peek-char</code></a>か<a href="21.2.read-char.html"><code>read-char</code></a>の呼び出しは、前の文字を渡します。 <a href="21.2.peek-char.html"><code>peek-char</code></a>によって返却されたものの前のどんな文字について <a href="21.2.unread-char.html"><code>unread-char</code></a>を実行した結果は指定されていません （<a href="21.2.peek-char.html"><code>peek-char</code></a>の<em>peek-type</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>では なかったときに渡された場合を含む）。 とくに、<a href="21.2.peek-char.html"><code>peek-char</code></a>のあとの<a href="21.2.unread-char.html"><code>unread-char</code></a>の 呼び出しの結果は指定されていません。</p>
+<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>の値は、端末I/Oと呼ばれ、 ユーザーの端末に接続された通常の双方向ストリームです。 例えば、典型的にはこのストリームの書き込みはディスプレイの画面上に 出力として現れるものとなり、 このストリームの読み込みは、 キーボードからの入力として受け付けられます。 これは、<code>read</code>や<a href="21.2.read-char.html"><code>read-char</code></a>のような標準入力を使う関数が これらがストリームを使用するとき、 入力のエコーがそのストリームの出力に行われることを意図しています。 これがどのように実行されるかは実装依存です。</p>
+<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>の値の変更についての効果は、 それが束縛か代入かに関わらず、実装依存です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-input-from-string</span> (is <span class="st">&quot;0123&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">dotimes</span> (i <span class="dv">6</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     (<span class="kw">let</span> ((c (<span class="kw">read-char</span> is)))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>       (<span class="kw">if</span> (<span class="kw">evenp</span> i) (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp;~S ~S~%&quot;</span> i c) (<span class="kw">unread-char</span> c is)))))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">0</span> <span class="ch">#\0</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">2</span> <span class="ch">#\1</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="dv">4</span> <span class="ch">#\2</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">prin1</span> &#39;foo) (<span class="kw">prin1</span> &#39;bar <span class="va">*terminal-io*</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  FOOBAR</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  BAR</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-output-to-string</span> (<span class="va">*standard-output*</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">prin1</span> &#39;foo) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">prin1</span> &#39;bar <span class="va">*terminal-io*</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  BAR</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;FOO&quot;</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a></p>
-<h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="21.2.peek-char.html"><code>peek-char</code></a>, <a href="21.2.read-char.html"><code>read-char</code></a>, 21.1. ストリームの説明</p>
+<p><a href="21.2.debug-io.html"><code>*debug-io*</code></a>, <a href="21.2.debug-io.html"><code>*error-output*</code></a>, <a href="21.2.debug-io.html"><code>*query-io*</code></a>, <a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <a href="21.2.debug-io.html"><code>*standard-output*</code></a>, <a href="21.2.debug-io.html"><code>*trace-output*</code></a></p>
 <h2 id="備考">備考</h2>
-<p><a href="21.2.unread-char.html"><code>unread-char</code></a>は、 Lispリーダーやその他の構文解析を実行するときに <em>input-stream</em>からひとつの文字を先読みできるような 効率的な仕組みの提供を目的としています。</p>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

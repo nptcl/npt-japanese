@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PPRINT-DISPATCH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-dispatch
+@name: pprint-dispatch
+@type: function
+
+Function `PPRINT-DISPATCH`
+
+
+## {syntax}
+
+`pprint-dispatch object` `&optional` *table* => *function*, *found-p*
+
+
+## {arguments-and-values}
+
+*object - オブジェクト  
+*table* - {pprint-dispatch-table}か、{nil!variable:link}。
+デフォルトは{*print-pprint-dispatch*:link}の値。  
+*function* - 関数指定子  
+*found-p* - {generalized-boolean}
+
+
+## {description}
+
+*table*の中から、*object*にマッチする型指定子と関連づけられた
+優先度の高い関数を検索します。
+その関数は、*table*の中の*object*にマッチする全ての型指定子から検索され、
+それらの型指定子の中に関連づいた最も高い優先度の関数が選択されます。
+もし最も高い優先度の関数がひとつではなく複数あったとき、
+任意のものが選ばれます。
+もし型指定子が*object*にマッチしなかったときは、
+*object*が出力されるときに使われる{print-object:link}の関数が返却されます。
+
+第二返却値の*found-p*は、
+もし型指定子が*table*にマッチされたときは*true*を、
+それ以外は*false*を返却します。
+
+もし*table*が{nil!variable:link}のとき、
+{initial-pprint-dispatch-table}から検索が行われます。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+*table*の状態
+
+
+## {exceptional-situations}
+
+*table*が{pprint-dispatch-table}でも{nil!variable:link}でもないときは、
+型{type-error:link}のエラーが通知されるべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(let ((*print-pretty* t))
+  (write object :stream s))
+==  (funcall (pprint-dispatch object) s object)
+```
+
+@end
+

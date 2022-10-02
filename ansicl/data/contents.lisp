@@ -889,8 +889,11 @@
 (text 22.1.3.11 "`pathname`の印字")
 (text 22.1.3.12 "構造体の印字" "Printing Structures")
 (text 22.1.3.13 "他のオブジェクトの印字" "Printing Other Objects")
+(text 22.2 "Lispプリティプリンター" "The Lisp Pretty Printer")
+(text 22.2.1 "プリティプリンターの説明" "Pretty Printer Concepts")
+(text 22.2.1.1 "出力の配置の動的制御" "Dynamic Control of the Arrangement of Output")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
-(dictionary 22.4.copy-print-dispatch)
+(dictionary 22.4.copy-pprint-dispatch)
 (dictionary 22.4.formatter)
 (dictionary 22.4.pprint-dispatch)
 (dictionary 22.4.pprint-exit-if-list-exhausted)
@@ -919,8 +922,8 @@
 (dictionary 22.4.print-level)
 (dictionary 22.4.print-lines)
 (dictionary 22.4.print-miser-width)
-(dictionary 22.4.print-pprint-dispatch)
-(dictionary 22.4.print-pretty)
+(dictionary 22.4.*print-pprint-dispatch*)  ;; rename
+(dictionary 22.4.*print-pretty*)  ;; rename
 (dictionary 22.4.print-readably)
 (dictionary 22.4.print-right-margin)
 (dictionary 22.4.print-not-readable)

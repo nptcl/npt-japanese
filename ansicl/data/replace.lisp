@@ -73,7 +73,9 @@
 
 (replace format-control "format-control")
 (replace format-arguments "format-arguments")
-(replace format-directive "format指示子")
+(replace format-directive "`format`指示子")
+(replace format-string "`format`文字列")
+
 (replace ordinary-lambda-list "通常のラムダリスト")
 (replace macro-lambda-list "マクロラムダリスト")
 (replace destructuring-lambda-list "分割のラムダリスト")
@@ -143,6 +145,8 @@
 (replace two-way-stream "`two-way`ストリーム")
 
 (replace query-io "query I/O")
+(replace pprint-dispatch-table "`pprint`ディスパッチテーブル")
+(replace initial-pprint-dispatch-table "{pprint-dispatch-table}の初期値")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

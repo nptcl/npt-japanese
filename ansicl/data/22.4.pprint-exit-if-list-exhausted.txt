@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PPRINT-EXIT-IF-LIST-EXHAUSTED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-exit-if-list-exhausted
+@name: pprint-exit-if-list-exhausted
+@type: function
+
+Function `PPRINT-EXIT-IF-LIST-EXHAUSTED`
+
+
+## {syntax}
+
+`pprint-exit-if-list-exhausted` <引数なし> => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+なし。
+
+
+## {description}
+
+*list*
+レキシカル環境の現在の論理ブロックに渡された
+*list*が使い果たされたかどうかをテストします。
+{22.2.1.1:ab}をご確認ください。
+もしこの*list*が{nil!variable:link}にまで使われたとき、
+{pprint-exit-if-list-exhausted:link}は
+レキシカル環境の現在の論理ブロックの実行を、
+サフィックスの出力を行い終了します。
+それ以外の場合は、{pprint-exit-if-list-exhausted:link}は
+{nil!variable:link}を返却します。
+
+グローバル環境下で
+{pprint-exit-if-list-exhausted:link}が`fbound`かどうかは
+{implementation-dependent}ですが、
+グローバル環境において`COMMON-LISP`パッケージ内の
+{pprint-exit-if-list-exhausted:link}という同じシンボルを
+シャドウするように再定義することは制限されます。
+{pprint-logical-block:link}の外側で
+{pprint-exit-if-list-exhausted:link}を
+使用しようとしたときの結果は未定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+{pprint-logical-block:link}のレキシカル環境内で
+呼び出されたものではなく
+それ以外のどこかで{pprint-exit-if-list-exhausted:link}が呼ばれたときは、
+（マクロ展開時か実行時かで）エラーが発生します。
+また、レキシカル環境内に含まれる{pprint-logical-block:link}の
+動的エクステントの外側で{pprint-exit-if-list-exhausted:link}を
+実行したときの結果は未定義です。
+
+
+## {see-also}
+
+{pprint-logical-block:link},
+{pprint-pop:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

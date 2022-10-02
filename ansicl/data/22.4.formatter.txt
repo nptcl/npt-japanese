@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro FORMATTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.formatter
+@name: formatter
+@type: macro
+
+Macro `FORMATTER`
+
+
+## {syntax}
+
+`formatter` *control-string* => *function*
+
+
+## {arguments-and-values}
+
+*control-string* - {format-string}。評価されません。  
+*function* - 関数
+
+
+## {description}
+
+次の式と同等の動作をする関数を返却します。
+
+```lisp
+#'(lambda (*standard-output* &rest arguments)
+    (apply #'format t control-string arguments)
+    arguments-tail)
+```
+
+ここで*arguments-tail*とは、
+もし*control-string*にいくつかの`format`指示があるとき
+次に処理される引数が`car`になる引数の末尾か、
+あるいはもっとも最近に処理された引数のあとに
+もう引数がない場合は{nil!variable:link}です。
+
+
+## {examples}
+
+```lisp
+(funcall (formatter "~&~A~A") *standard-output* 'a 'b 'c)
+>>  AB
+=>  (C)
+
+(format t (formatter "~&~A~A") 'a 'b 'c)
+>>  AB
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数が有効な{format-string}ではないとき、
+（マクロ展開時か実行時かにおいて）
+エラーが通知されるかもしれません。
+
+
+## {see-also}
+
+{format:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

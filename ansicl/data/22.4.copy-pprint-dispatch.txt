@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-PPRINT-DISPATCH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.copy-pprint-dispatch
+@name: copy-pprint-dispatch
+@type: function
+
+Function `COPY-PPRINT-DISPATCH`
+
+
+## {syntax}
+
+`copy-pprint-dispatch` `&optional` *table* => *new-table*
+
+
+## {arguments-and-values}
+
+*table* - {pprint-dispatch-table}か、{nil!variable:link}  
+*new-table* - 新しい{pprint-dispatch-table}
+
+
+## {description}
+
+*table*が指定されたときは、その値のコピーが生成され返却します。
+*table*が指定されなかったときは、
+{*print-pprint-dispatch*:link}の値のコピーが返却されます。
+{nil!variable:link}が指定されたときは、
+{*print-pprint-dispatch*:link}の初期値のコピーが返却されます。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*table*が{pprint-dispatch-table}ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

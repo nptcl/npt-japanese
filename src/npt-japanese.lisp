@@ -20,688 +20,688 @@
 (defvar *name*)
 (setq *table* (make-hash-table :test 'equal))
 (setq *name* (make-hash-table :test 'equal))
-(setf (gethash "*BREAK-ON-SIGNALS*" *name*) '(variable))
-(setf (gethash "*DEBUG-IO*" *name*) '(variable))
-(setf (gethash "*DEBUGGER-HOOK*" *name*) '(variable))
-(setf (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *name*) '(variable))
-(setf (gethash "*ERROR-OUTPUT*" *name*) '(variable))
-(setf (gethash "*GENSYM-COUNTER*" *name*) '(variable))
-(setf (gethash "*MACROEXPAND-HOOK*" *name*) '(variable))
-(setf (gethash "*PACKAGE*" *name*) '(variable))
-(setf (gethash "*PRINT-ARRAY*" *name*) '(variable))
-(setf (gethash "*PRINT-CIRCLE*" *name*) '(variable))
-(setf (gethash "*PRINT-ESCAPE*" *name*) '(variable))
-(setf (gethash "*PRINT-LENGTH*" *name*) '(variable))
-(setf (gethash "*PRINT-LEVEL*" *name*) '(variable))
-(setf (gethash "*QUERY-IO*" *name*) '(variable))
-(setf (gethash "*STANDARD-INPUT*" *name*) '(variable))
-(setf (gethash "*STANDARD-OUTPUT*" *name*) '(variable))
-(setf (gethash "*TERMINAL-IO*" *name*) '(variable))
-(setf (gethash "*TRACE-OUTPUT*" *name*) '(variable))
-(setf (gethash "ABORT" *name*) '(function restart))
-(setf (gethash "ACONS" *name*) '(function))
-(setf (gethash "ADD-METHOD" *name*) '(standard-generic-function))
-(setf (gethash "ADJOIN" *name*) '(function))
-(setf (gethash "ADJUST-ARRAY" *name*) '(function))
-(setf (gethash "ADJUSTABLE-ARRAY-P" *name*) '(function))
-(setf (gethash "ALLOCATE-INSTANCE" *name*) '(standard-generic-function))
-(setf (gethash "ALPHA-CHAR-P" *name*) '(function))
-(setf (gethash "ALPHANUMERICP" *name*) '(function))
-(setf (gethash "AND" *name*) '(macro type-specifier))
-(setf (gethash "APPEND" *name*) '(function))
-(setf (gethash "APPLY" *name*) '(function))
-(setf (gethash "AREF" *name*) '(accessor))
-(setf (gethash "ARRAY" *name*) '(system-class))
-(setf (gethash "ARRAY-DIMENSION" *name*) '(function))
-(setf (gethash "ARRAY-DIMENSION-LIMIT" *name*) '(constant-variable))
-(setf (gethash "ARRAY-DIMENSIONS" *name*) '(function))
-(setf (gethash "ARRAY-DISPLACEMENT" *name*) '(function))
-(setf (gethash "ARRAY-ELEMENT-TYPE" *name*) '(function))
-(setf (gethash "ARRAY-HAS-FILL-POINTER-P" *name*) '(function))
-(setf (gethash "ARRAY-IN-BOUNDS-P" *name*) '(function))
-(setf (gethash "ARRAY-RANK" *name*) '(function))
-(setf (gethash "ARRAY-RANK-LIMIT" *name*) '(constant-variable))
-(setf (gethash "ARRAY-ROW-MAJOR-INDEX" *name*) '(function))
-(setf (gethash "ARRAY-TOTAL-SIZE" *name*) '(function))
-(setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *name*) '(constant-variable))
-(setf (gethash "ARRAYP" *name*) '(function))
-(setf (gethash "ASSERT" *name*) '(macro))
-(setf (gethash "ASSOC" *name*) '(function))
-(setf (gethash "ASSOC-IF" *name*) '(function))
-(setf (gethash "ASSOC-IF-NOT" *name*) '(function))
-(setf (gethash "ATOM" *name*) '(function type))
-(setf (gethash "BASE-CHAR" *name*) '(type))
-(setf (gethash "BASE-STRING" *name*) '(type))
-(setf (gethash "BIT" *name*) '(accessor))
-(setf (gethash "BIT-AND" *name*) '(function))
-(setf (gethash "BIT-ANDC1" *name*) '(function))
-(setf (gethash "BIT-ANDC2" *name*) '(function))
-(setf (gethash "BIT-EQV" *name*) '(function))
-(setf (gethash "BIT-IOR" *name*) '(function))
-(setf (gethash "BIT-NAND" *name*) '(function))
-(setf (gethash "BIT-NOR" *name*) '(function))
-(setf (gethash "BIT-NOT" *name*) '(function))
-(setf (gethash "BIT-ORC1" *name*) '(function))
-(setf (gethash "BIT-ORC2" *name*) '(function))
-(setf (gethash "BIT-VECTOR" *name*) '(system-class))
-(setf (gethash "BIT-VECTOR-P" *name*) '(function))
-(setf (gethash "BIT-XOR" *name*) '(function))
-(setf (gethash "BLOCK" *name*) '(special-operator))
-(setf (gethash "BOOLEAN" *name*) '(type))
-(setf (gethash "BOTH-CASE-P" *name*) '(function))
-(setf (gethash "BOUNDP" *name*) '(function))
-(setf (gethash "BREAK" *name*) '(function))
-(setf (gethash "BROADCAST-STREAM" *name*) '(system-class))
-(setf (gethash "BROADCAST-STREAM-STREAMS" *name*) '(function))
-(setf (gethash "BUILT-IN-CLASS" *name*) '(system-class))
-(setf (gethash "BUTLAST" *name*) '(function))
-(setf (gethash "CAAAAR" *name*) '(accessor))
-(setf (gethash "CAAADR" *name*) '(accessor))
-(setf (gethash "CAAAR" *name*) '(accessor))
-(setf (gethash "CAADAR" *name*) '(accessor))
-(setf (gethash "CAADDR" *name*) '(accessor))
-(setf (gethash "CAADR" *name*) '(accessor))
-(setf (gethash "CAAR" *name*) '(accessor))
-(setf (gethash "CADAAR" *name*) '(accessor))
-(setf (gethash "CADADR" *name*) '(accessor))
-(setf (gethash "CADAR" *name*) '(accessor))
-(setf (gethash "CADDAR" *name*) '(accessor))
-(setf (gethash "CADDDR" *name*) '(accessor))
-(setf (gethash "CADDR" *name*) '(accessor))
-(setf (gethash "CADR" *name*) '(accessor))
-(setf (gethash "CALL-ARGUMENTS-LIMIT" *name*) '(constant-variable))
-(setf (gethash "CALL-METHOD" *name*) '(local-macro))
-(setf (gethash "CALL-NEXT-METHOD" *name*) '(local-function))
-(setf (gethash "CAR" *name*) '(accessor))
-(setf (gethash "CASE" *name*) '(macro))
-(setf (gethash "CATCH" *name*) '(special-operator))
-(setf (gethash "CCASE" *name*) '(macro))
-(setf (gethash "CDAAAR" *name*) '(accessor))
-(setf (gethash "CDAADR" *name*) '(accessor))
-(setf (gethash "CDAAR" *name*) '(accessor))
-(setf (gethash "CDADAR" *name*) '(accessor))
-(setf (gethash "CDADDR" *name*) '(accessor))
-(setf (gethash "CDADR" *name*) '(accessor))
-(setf (gethash "CDAR" *name*) '(accessor))
-(setf (gethash "CDDAAR" *name*) '(accessor))
-(setf (gethash "CDDADR" *name*) '(accessor))
-(setf (gethash "CDDAR" *name*) '(accessor))
-(setf (gethash "CDDDAR" *name*) '(accessor))
-(setf (gethash "CDDDDR" *name*) '(accessor))
-(setf (gethash "CDDDR" *name*) '(accessor))
-(setf (gethash "CDDR" *name*) '(accessor))
-(setf (gethash "CDR" *name*) '(accessor))
-(setf (gethash "CELL-ERROR" *name*) '(condition-type))
-(setf (gethash "CELL-ERROR-NAME" *name*) '(function))
-(setf (gethash "CERROR" *name*) '(function))
-(setf (gethash "CHANGE-CLASS" *name*) '(standard-generic-function))
-(setf (gethash "CHAR" *name*) '(accessor))
-(setf (gethash "CHAR-CODE" *name*) '(function))
-(setf (gethash "CHAR-CODE-LIMIT" *name*) '(constant-variable))
-(setf (gethash "CHAR-DOWNCASE" *name*) '(function))
-(setf (gethash "CHAR-EQUAL" *name*) '(function))
-(setf (gethash "CHAR-GREATERP" *name*) '(function))
-(setf (gethash "CHAR-INT" *name*) '(function))
-(setf (gethash "CHAR-LESSP" *name*) '(function))
-(setf (gethash "CHAR-NAME" *name*) '(function))
-(setf (gethash "CHAR-NOT-EQUAL" *name*) '(function))
-(setf (gethash "CHAR-NOT-GREATERP" *name*) '(function))
-(setf (gethash "CHAR-NOT-LESSP" *name*) '(function))
-(setf (gethash "CHAR-UPCASE" *name*) '(function))
-(setf (gethash "CHAR/=" *name*) '(function))
-(setf (gethash "CHAR<" *name*) '(function))
-(setf (gethash "CHAR<=" *name*) '(function))
-(setf (gethash "CHAR=" *name*) '(function))
-(setf (gethash "CHAR>" *name*) '(function))
-(setf (gethash "CHAR>=" *name*) '(function))
-(setf (gethash "CHARACTER" *name*) '(function system-class))
-(setf (gethash "CHARACTERP" *name*) '(function))
-(setf (gethash "CHECK-TYPE" *name*) '(macro))
-(setf (gethash "CLASS" *name*) '(system-class))
-(setf (gethash "CLASS-NAME" *name*) '(setf standard-generic-function))
-(setf (gethash "CLASS-OF" *name*) '(function))
-(setf (gethash "CLEAR-INPUT" *name*) '(function))
-(setf (gethash "CLEAR-OUTPUT" *name*) '(function))
-(setf (gethash "CLOSE" *name*) '(function))
-(setf (gethash "CLRHASH" *name*) '(function))
-(setf (gethash "CODE-CHAR" *name*) '(function))
-(setf (gethash "COERCE" *name*) '(function))
-(setf (gethash "COMPILE" *name*) '(function))
-(setf (gethash "COMPILED-FUNCTION" *name*) '(type))
-(setf (gethash "COMPILED-FUNCTION-P" *name*) '(function))
-(setf (gethash "COMPILER-MACRO-FUNCTION" *name*) '(accessor))
-(setf (gethash "COMPLEMENT" *name*) '(function))
-(setf (gethash "COMPUTE-APPLICABLE-METHODS" *name*) '(standard-generic-function))
-(setf (gethash "COMPUTE-RESTARTS" *name*) '(function))
-(setf (gethash "CONCATENATE" *name*) '(function))
-(setf (gethash "CONCATENATED-STREAM" *name*) '(system-class))
-(setf (gethash "CONCATENATED-STREAM-STREAMS" *name*) '(function))
-(setf (gethash "COND" *name*) '(macro))
-(setf (gethash "CONDITION" *name*) '(condition-type))
-(setf (gethash "CONS" *name*) '(function system-class))
-(setf (gethash "CONSP" *name*) '(function))
-(setf (gethash "CONSTANTLY" *name*) '(function))
-(setf (gethash "CONSTANTP" *name*) '(function))
-(setf (gethash "CONTINUE" *name*) '(function restart))
-(setf (gethash "CONTROL-ERROR" *name*) '(condition-type))
-(setf (gethash "COPY-ALIST" *name*) '(function))
-(setf (gethash "COPY-LIST" *name*) '(function))
-(setf (gethash "COPY-PPRINT-DISPATCH" *name*) '(function))
-(setf (gethash "COPY-SEQ" *name*) '(function))
-(setf (gethash "COPY-STRUCTURE" *name*) '(function))
-(setf (gethash "COPY-SYMBOL" *name*) '(function))
-(setf (gethash "COPY-TREE" *name*) '(function))
-(setf (gethash "COUNT" *name*) '(function))
-(setf (gethash "COUNT-IF" *name*) '(function))
-(setf (gethash "COUNT-IF-NOT" *name*) '(function))
-(setf (gethash "CTYPECASE" *name*) '(macro))
-(setf (gethash "DECLAIM" *name*) '(macro))
-(setf (gethash "DECLARATION" *name*) '(declaration))
-(setf (gethash "DECLARE" *name*) '(symbol))
-(setf (gethash "DEFCLASS" *name*) '(macro))
-(setf (gethash "DEFCONSTANT" *name*) '(macro))
-(setf (gethash "DEFGENERIC" *name*) '(macro))
-(setf (gethash "DEFINE-COMPILER-MACRO" *name*) '(macro))
-(setf (gethash "DEFINE-CONDITION" *name*) '(macro))
-(setf (gethash "DEFINE-METHOD-COMBINATION" *name*) '(macro))
-(setf (gethash "DEFINE-MODIFY-MACRO" *name*) '(macro))
-(setf (gethash "DEFINE-SETF-EXPANDER" *name*) '(macro))
-(setf (gethash "DEFINE-SYMBOL-MACRO" *name*) '(macro))
-(setf (gethash "DEFMACRO" *name*) '(macro))
-(setf (gethash "DEFMETHOD" *name*) '(macro))
-(setf (gethash "DEFPACKAGE" *name*) '(macro))
-(setf (gethash "DEFPARAMETER" *name*) '(macro))
-(setf (gethash "DEFSETF" *name*) '(macro))
-(setf (gethash "DEFSTRUCT" *name*) '(macro))
-(setf (gethash "DEFTYPE" *name*) '(macro))
-(setf (gethash "DEFUN" *name*) '(macro))
-(setf (gethash "DEFVAR" *name*) '(macro))
-(setf (gethash "DELETE" *name*) '(function))
-(setf (gethash "DELETE-DUPLICATES" *name*) '(function))
-(setf (gethash "DELETE-FILE" *name*) '(function))
-(setf (gethash "DELETE-IF" *name*) '(function))
-(setf (gethash "DELETE-IF-NOT" *name*) '(function))
-(setf (gethash "DELETE-PACKAGE" *name*) '(function))
-(setf (gethash "DESTRUCTURING-BIND" *name*) '(macro))
-(setf (gethash "DIGIT-CHAR" *name*) '(function))
-(setf (gethash "DIGIT-CHAR-P" *name*) '(function))
-(setf (gethash "DIRECTORY" *name*) '(function))
-(setf (gethash "DIRECTORY-NAMESTRING" *name*) '(function))
-(setf (gethash "DO" *name*) '(macro))
-(setf (gethash "DO*" *name*) '(macro))
-(setf (gethash "DO-ALL-SYMBOLS" *name*) '(macro))
-(setf (gethash "DO-EXTERNAL-SYMBOLS" *name*) '(macro))
-(setf (gethash "DO-SYMBOLS" *name*) '(macro))
-(setf (gethash "DOCUMENTATION" *name*) '(standard-generic-function))
-(setf (gethash "DOLIST" *name*) '(macro))
-(setf (gethash "DOTIMES" *name*) '(macro))
-(setf (gethash "DYNAMIC-EXTENT" *name*) '(declaration))
-(setf (gethash "ECASE" *name*) '(macro))
-(setf (gethash "ECHO-STREAM" *name*) '(system-class))
-(setf (gethash "ECHO-STREAM-INPUT-STREAM" *name*) '(function))
-(setf (gethash "ECHO-STREAM-OUTPUT-STREAM" *name*) '(function))
-(setf (gethash "EIGHTH" *name*) '(accessor))
-(setf (gethash "ELT" *name*) '(accessor))
-(setf (gethash "END-OF-FILE" *name*) '(condition-type))
-(setf (gethash "ENDP" *name*) '(function))
-(setf (gethash "ENOUGH-NAMESTRING" *name*) '(function))
-(setf (gethash "ENSURE-DIRECTORIES-EXIST" *name*) '(function))
-(setf (gethash "ENSURE-GENERIC-FUNCTION" *name*) '(function))
-(setf (gethash "EQ" *name*) '(function))
-(setf (gethash "EQL" *name*) '(function type-specifier))
-(setf (gethash "EQUAL" *name*) '(function))
-(setf (gethash "EQUALP" *name*) '(function))
-(setf (gethash "ERROR" *name*) '(function condition-type))
-(setf (gethash "ETYPECASE" *name*) '(macro))
-(setf (gethash "EVAL" *name*) '(function))
-(setf (gethash "EVAL-WHEN" *name*) '(special-operator))
-(setf (gethash "EVERY" *name*) '(function))
-(setf (gethash "EXPORT" *name*) '(function))
-(setf (gethash "EXTENDED-CHAR" *name*) '(type))
-(setf (gethash "FBOUNDP" *name*) '(function))
-(setf (gethash "FDEFINITION" *name*) '(accessor))
-(setf (gethash "FIFTH" *name*) '(accessor))
-(setf (gethash "FILE-AUTHOR" *name*) '(function))
-(setf (gethash "FILE-ERROR" *name*) '(condition-type))
-(setf (gethash "FILE-ERROR-PATHNAME" *name*) '(function))
-(setf (gethash "FILE-LENGTH" *name*) '(function))
-(setf (gethash "FILE-NAMESTRING" *name*) '(function))
-(setf (gethash "FILE-POSITION" *name*) '(function))
-(setf (gethash "FILE-STREAM" *name*) '(system-class))
-(setf (gethash "FILE-STRING-LENGTH" *name*) '(function))
-(setf (gethash "FILE-WRITE-DATE" *name*) '(function))
-(setf (gethash "FILL" *name*) '(function))
-(setf (gethash "FILL-POINTER" *name*) '(accessor))
-(setf (gethash "FIND" *name*) '(function))
-(setf (gethash "FIND-ALL-SYMBOLS" *name*) '(function))
-(setf (gethash "FIND-CLASS" *name*) '(accessor))
-(setf (gethash "FIND-IF" *name*) '(function))
-(setf (gethash "FIND-IF-NOT" *name*) '(function))
-(setf (gethash "FIND-METHOD" *name*) '(standard-generic-function))
-(setf (gethash "FIND-PACKAGE" *name*) '(function))
-(setf (gethash "FIND-RESTART" *name*) '(function))
-(setf (gethash "FIND-SYMBOL" *name*) '(function))
-(setf (gethash "FINISH-OUTPUT" *name*) '(function))
-(setf (gethash "FIRST" *name*) '(accessor))
-(setf (gethash "FLET" *name*) '(special-operator))
-(setf (gethash "FMAKUNBOUND" *name*) '(function))
-(setf (gethash "FORCE-OUTPUT" *name*) '(function))
-(setf (gethash "FORMATTER" *name*) '(macro))
-(setf (gethash "FOURTH" *name*) '(accessor))
-(setf (gethash "FRESH-LINE" *name*) '(function))
-(setf (gethash "FTYPE" *name*) '(declaration))
-(setf (gethash "FUNCALL" *name*) '(function))
-(setf (gethash "FUNCTION" *name*) '(special-operator system-class))
-(setf (gethash "FUNCTION-KEYWORDS" *name*) '(standard-generic-function))
-(setf (gethash "FUNCTION-LAMBDA-EXPRESSION" *name*) '(function))
-(setf (gethash "FUNCTIONP" *name*) '(function))
-(setf (gethash "GENERIC-FUNCTION" *name*) '(system-class))
-(setf (gethash "GENSYM" *name*) '(function))
-(setf (gethash "GENTEMP" *name*) '(function))
-(setf (gethash "GET" *name*) '(accessor))
-(setf (gethash "GET-OUTPUT-STREAM-STRING" *name*) '(function))
-(setf (gethash "GET-PROPERTIES" *name*) '(function))
-(setf (gethash "GET-SETF-EXPANSION" *name*) '(function))
-(setf (gethash "GETF" *name*) '(accessor))
-(setf (gethash "GETHASH" *name*) '(accessor))
-(setf (gethash "GO" *name*) '(special-operator))
-(setf (gethash "GRAPHIC-CHAR-P" *name*) '(function))
-(setf (gethash "HANDLER-BIND" *name*) '(macro))
-(setf (gethash "HANDLER-CASE" *name*) '(macro))
-(setf (gethash "HASH-TABLE" *name*) '(system-class))
-(setf (gethash "HASH-TABLE-COUNT" *name*) '(function))
-(setf (gethash "HASH-TABLE-P" *name*) '(function))
-(setf (gethash "HASH-TABLE-REHASH-SIZE" *name*) '(function))
-(setf (gethash "HASH-TABLE-REHASH-THRESHOLD" *name*) '(function))
-(setf (gethash "HASH-TABLE-SIZE" *name*) '(function))
-(setf (gethash "HASH-TABLE-TEST" *name*) '(function))
-(setf (gethash "HOST-NAMESTRING" *name*) '(function))
-(setf (gethash "IDENTITY" *name*) '(function))
-(setf (gethash "IF" *name*) '(special-operator))
-(setf (gethash "IGNORABLE" *name*) '(declaration))
-(setf (gethash "IGNORE" *name*) '(declaration))
-(setf (gethash "IGNORE-ERRORS" *name*) '(macro))
-(setf (gethash "IMPORT" *name*) '(function))
-(setf (gethash "IN-PACKAGE" *name*) '(macro))
-(setf (gethash "INITIALIZE-INSTANCE" *name*) '(standard-generic-function))
-(setf (gethash "INLINE" *name*) '(declaration))
-(setf (gethash "INPUT-STREAM-P" *name*) '(function))
-(setf (gethash "INTERACTIVE-STREAM-P" *name*) '(function))
-(setf (gethash "INTERN" *name*) '(function))
-(setf (gethash "INTERSECTION" *name*) '(function))
-(setf (gethash "INVALID-METHOD-ERROR" *name*) '(function))
-(setf (gethash "INVOKE-DEBUGGER" *name*) '(function))
-(setf (gethash "INVOKE-RESTART" *name*) '(function))
-(setf (gethash "INVOKE-RESTART-INTERACTIVELY" *name*) '(function))
-(setf (gethash "KEYWORD" *name*) '(type))
-(setf (gethash "KEYWORDP" *name*) '(function))
-(setf (gethash "LABELS" *name*) '(special-operator))
-(setf (gethash "LAMBDA" *name*) '(macro symbol))
-(setf (gethash "LAMBDA-LIST-KEYWORDS" *name*) '(constant-variable))
-(setf (gethash "LAMBDA-PARAMETERS-LIMIT" *name*) '(constant-variable))
-(setf (gethash "LAST" *name*) '(function))
-(setf (gethash "LDIFF" *name*) '(function))
-(setf (gethash "LENGTH" *name*) '(function))
-(setf (gethash "LET" *name*) '(special-operator))
-(setf (gethash "LET*" *name*) '(special-operator))
-(setf (gethash "LIST" *name*) '(function system-class))
-(setf (gethash "LIST*" *name*) '(function))
-(setf (gethash "LIST-ALL-PACKAGES" *name*) '(function))
-(setf (gethash "LIST-LENGTH" *name*) '(function))
-(setf (gethash "LISTEN" *name*) '(function))
-(setf (gethash "LISTP" *name*) '(function))
-(setf (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *name*) '(function))
-(setf (gethash "LOAD-TIME-VALUE" *name*) '(special-operator))
-(setf (gethash "LOCALLY" *name*) '(special-operator))
-(setf (gethash "LOGICAL-PATHNAME" *name*) '(function system-class))
-(setf (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *name*) '(accessor))
-(setf (gethash "LOOP" *name*) '(macro))
-(setf (gethash "LOOP-FINISH" *name*) '(loca-macro))
-(setf (gethash "LOWER-CASE-P" *name*) '(function))
-(setf (gethash "MACRO-FUNCTION" *name*) '(accessor))
-(setf (gethash "MACROEXPAND" *name*) '(function))
-(setf (gethash "MACROEXPAND-1" *name*) '(function))
-(setf (gethash "MACROLET" *name*) '(special-operator))
-(setf (gethash "MAKE-ARRAY" *name*) '(function))
-(setf (gethash "MAKE-BROADCAST-STREAM" *name*) '(function))
-(setf (gethash "MAKE-CONCATENATED-STREAM" *name*) '(function))
-(setf (gethash "MAKE-CONDITION" *name*) '(function))
-(setf (gethash "MAKE-ECHO-STREAM" *name*) '(function))
-(setf (gethash "MAKE-HASH-TABLE" *name*) '(function))
-(setf (gethash "MAKE-INSTANCE" *name*) '(standard-generic-function))
-(setf (gethash "MAKE-INSTANCES-OBSOLETE" *name*) '(standard-generic-function))
-(setf (gethash "MAKE-LIST" *name*) '(function))
-(setf (gethash "MAKE-LOAD-FORM" *name*) '(standard-generic-function))
-(setf (gethash "MAKE-LOAD-FORM-SAVING-SLOTS" *name*) '(function))
-(setf (gethash "MAKE-METHOD" *name*) '(local-macro))
-(setf (gethash "MAKE-PACKAGE" *name*) '(function))
-(setf (gethash "MAKE-PATHNAME" *name*) '(function))
-(setf (gethash "MAKE-SEQUENCE" *name*) '(function))
-(setf (gethash "MAKE-STRING" *name*) '(function))
-(setf (gethash "MAKE-STRING-INPUT-STREAM" *name*) '(function))
-(setf (gethash "MAKE-STRING-OUTPUT-STREAM" *name*) '(function))
-(setf (gethash "MAKE-SYMBOL" *name*) '(function))
-(setf (gethash "MAKE-SYNONYM-STREAM" *name*) '(function))
-(setf (gethash "MAKE-TWO-WAY-STREAM" *name*) '(function))
-(setf (gethash "MAKUNBOUND" *name*) '(function))
-(setf (gethash "MAP" *name*) '(function))
-(setf (gethash "MAP-INTO" *name*) '(function))
-(setf (gethash "MAPC" *name*) '(function))
-(setf (gethash "MAPCAN" *name*) '(function))
-(setf (gethash "MAPCAR" *name*) '(function))
-(setf (gethash "MAPCON" *name*) '(function))
-(setf (gethash "MAPHASH" *name*) '(function))
-(setf (gethash "MAPL" *name*) '(function))
-(setf (gethash "MAPLIST" *name*) '(function))
-(setf (gethash "MEMBER" *name*) '(function type-specifier))
-(setf (gethash "MEMBER-IF" *name*) '(function))
-(setf (gethash "MEMBER-IF-NOT" *name*) '(function))
-(setf (gethash "MERGE" *name*) '(function))
-(setf (gethash "MERGE-PATHNAMES" *name*) '(function))
-(setf (gethash "METHOD" *name*) '(system-class))
-(setf (gethash "METHOD-COMBINATION" *name*) '(system-class))
-(setf (gethash "METHOD-COMBINATION-ERROR" *name*) '(function))
-(setf (gethash "METHOD-QUALIFIERS" *name*) '(standard-generic-function))
-(setf (gethash "MISMATCH" *name*) '(function))
-(setf (gethash "MUFFLE-WARNING" *name*) '(function restart))
-(setf (gethash "MULTIPLE-VALUE-BIND" *name*) '(macro))
-(setf (gethash "MULTIPLE-VALUE-CALL" *name*) '(special-operator))
-(setf (gethash "MULTIPLE-VALUE-LIST" *name*) '(macro))
-(setf (gethash "MULTIPLE-VALUE-PROG1" *name*) '(special-operator))
-(setf (gethash "MULTIPLE-VALUE-SETQ" *name*) '(macro))
-(setf (gethash "MULTIPLE-VALUES-LIMIT" *name*) '(constant-variable))
-(setf (gethash "NAME-CHAR" *name*) '(function))
-(setf (gethash "NAMESTRING" *name*) '(function))
-(setf (gethash "NBUTLAST" *name*) '(function))
-(setf (gethash "NCONC" *name*) '(function))
-(setf (gethash "NEXT-METHOD-P" *name*) '(local-function))
-(setf (gethash "NIL" *name*) '(constant-variable type))
-(setf (gethash "NINTERSECTION" *name*) '(function))
-(setf (gethash "NINTH" *name*) '(accessor))
-(setf (gethash "NO-APPLICABLE-METHOD" *name*) '(standard-generic-function))
-(setf (gethash "NO-NEXT-METHOD" *name*) '(standard-generic-function))
-(setf (gethash "NOT" *name*) '(function type-specifier))
-(setf (gethash "NOTANY" *name*) '(function))
-(setf (gethash "NOTEVERY" *name*) '(function))
-(setf (gethash "NOTINLINE" *name*) '(declaration))
-(setf (gethash "NRECONC" *name*) '(function))
-(setf (gethash "NREVERSE" *name*) '(function))
-(setf (gethash "NSET-DIFFERENCE" *name*) '(function))
-(setf (gethash "NSET-EXCLUSIVE-OR" *name*) '(function))
-(setf (gethash "NSTRING-CAPITALIZE" *name*) '(function))
-(setf (gethash "NSTRING-DOWNCASE" *name*) '(function))
-(setf (gethash "NSTRING-UPCASE" *name*) '(function))
-(setf (gethash "NSUBLIS" *name*) '(function))
-(setf (gethash "NSUBST" *name*) '(function))
-(setf (gethash "NSUBST-IF" *name*) '(function))
-(setf (gethash "NSUBST-IF-NOT" *name*) '(function))
-(setf (gethash "NSUBSTITUTE" *name*) '(function))
-(setf (gethash "NSUBSTITUTE-IF" *name*) '(function))
-(setf (gethash "NSUBSTITUTE-IF-NOT" *name*) '(function))
-(setf (gethash "NTH" *name*) '(accessor))
-(setf (gethash "NTH-VALUE" *name*) '(macro))
-(setf (gethash "NTHCDR" *name*) '(function))
-(setf (gethash "NULL" *name*) '(function system-class))
-(setf (gethash "NUNION" *name*) '(function))
-(setf (gethash "OPEN" *name*) '(function))
-(setf (gethash "OPEN-STREAM-P" *name*) '(function))
-(setf (gethash "OPTIMIZE" *name*) '(declaration))
-(setf (gethash "OR" *name*) '(macro type-specifier))
-(setf (gethash "OUTPUT-STREAM-P" *name*) '(function))
-(setf (gethash "PACKAGE" *name*) '(system-class))
-(setf (gethash "PACKAGE-ERROR" *name*) '(condition-type))
-(setf (gethash "PACKAGE-ERROR-PACKAGE" *name*) '(function))
-(setf (gethash "PACKAGE-NAME" *name*) '(function))
-(setf (gethash "PACKAGE-NICKNAMES" *name*) '(function))
-(setf (gethash "PACKAGE-SHADOWING-SYMBOLS" *name*) '(function))
-(setf (gethash "PACKAGE-USE-LIST" *name*) '(function))
-(setf (gethash "PACKAGE-USED-BY-LIST" *name*) '(function))
-(setf (gethash "PACKAGEP" *name*) '(function))
-(setf (gethash "PAIRLIS" *name*) '(function))
-(setf (gethash "PARSE-ERROR" *name*) '(condition-type))
-(setf (gethash "PARSE-NAMESTRING" *name*) '(function))
-(setf (gethash "PATHNAME" *name*) '(function system-class))
-(setf (gethash "PATHNAME-DEVICE" *name*) '(function))
-(setf (gethash "PATHNAME-DIRECTORY" *name*) '(function))
-(setf (gethash "PATHNAME-HOST" *name*) '(function))
-(setf (gethash "PATHNAME-MATCH-P" *name*) '(function))
-(setf (gethash "PATHNAME-NAME" *name*) '(function))
-(setf (gethash "PATHNAME-TYPE" *name*) '(function))
-(setf (gethash "PATHNAME-VERSION" *name*) '(function))
-(setf (gethash "PATHNAMEP" *name*) '(function))
-(setf (gethash "PEEK-CHAR" *name*) '(function))
-(setf (gethash "POP" *name*) '(macro))
-(setf (gethash "POSITION" *name*) '(function))
-(setf (gethash "POSITION-IF" *name*) '(function))
-(setf (gethash "POSITION-IF-NOT" *name*) '(function))
-(setf (gethash "PPRINT-DISPATCH" *name*) '(function))
-(setf (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *name*) '(function))
-(setf (gethash "PPRINT-FILL" *name*) '(function))
-(setf (gethash "PPRINT-INDENT" *name*) '(function))
-(setf (gethash "PPRINT-LINEAR" *name*) '(function))
-(setf (gethash "PPRINT-TABULAR" *name*) '(function))
-(setf (gethash "PROBE-FILE" *name*) '(function))
-(setf (gethash "PROCLAIM" *name*) '(function))
-(setf (gethash "PROG" *name*) '(macro))
-(setf (gethash "PROG*" *name*) '(macro))
-(setf (gethash "PROG1" *name*) '(macro))
-(setf (gethash "PROG2" *name*) '(macro))
-(setf (gethash "PROGN" *name*) '(special-operator))
-(setf (gethash "PROGRAM-ERROR" *name*) '(condition-type))
-(setf (gethash "PROGV" *name*) '(special-operator))
-(setf (gethash "PSETF" *name*) '(macro))
-(setf (gethash "PSETQ" *name*) '(macro))
-(setf (gethash "PUSH" *name*) '(macro))
-(setf (gethash "PUSHNEW" *name*) '(function))
-(setf (gethash "QUOTE" *name*) '(special-operator))
-(setf (gethash "RASSOC" *name*) '(function))
-(setf (gethash "RASSOC-IF" *name*) '(function))
-(setf (gethash "RASSOC-IF-NOT" *name*) '(function))
-(setf (gethash "READ-BYTE" *name*) '(function))
-(setf (gethash "READ-CHAR" *name*) '(function))
-(setf (gethash "READ-CHAR-NO-HANG" *name*) '(function))
-(setf (gethash "READ-LINE" *name*) '(function))
-(setf (gethash "READ-SEQUENCE" *name*) '(function))
-(setf (gethash "REDUCE" *name*) '(function))
-(setf (gethash "REINITIALIZE-INSTANCE" *name*) '(standard-generic-function))
-(setf (gethash "REMF" *name*) '(macro))
-(setf (gethash "REMHASH" *name*) '(function))
-(setf (gethash "REMOVE" *name*) '(function))
-(setf (gethash "REMOVE-DUPLICATES" *name*) '(function))
-(setf (gethash "REMOVE-IF" *name*) '(function))
-(setf (gethash "REMOVE-IF-NOT" *name*) '(function))
-(setf (gethash "REMOVE-METHOD" *name*) '(standard-generic-function))
-(setf (gethash "REMPROP" *name*) '(function))
-(setf (gethash "RENAME-FILE" *name*) '(function))
-(setf (gethash "RENAME-PACKAGE" *name*) '(function))
-(setf (gethash "REPLACE" *name*) '(function))
-(setf (gethash "REST" *name*) '(accessor))
-(setf (gethash "RESTART" *name*) '(system-class))
-(setf (gethash "RESTART-BIND" *name*) '(macro))
-(setf (gethash "RESTART-CASE" *name*) '(macro))
-(setf (gethash "RESTART-NAME" *name*) '(function))
-(setf (gethash "RETURN" *name*) '(macro))
-(setf (gethash "RETURN-FROM" *name*) '(special-operator))
-(setf (gethash "REVAPPEND" *name*) '(function))
-(setf (gethash "REVERSE" *name*) '(function))
-(setf (gethash "ROTATEF" *name*) '(macro))
-(setf (gethash "ROW-MAJOR-AREF" *name*) '(accessor))
-(setf (gethash "RPLACA" *name*) '(function))
-(setf (gethash "RPLACD" *name*) '(function))
-(setf (gethash "SATISFIES" *name*) '(type-specifier))
-(setf (gethash "SBIT" *name*) '(accessor))
-(setf (gethash "SCHAR" *name*) '(accessor))
-(setf (gethash "SEARCH" *name*) '(function))
-(setf (gethash "SECOND" *name*) '(accessor))
-(setf (gethash "SEQUENCE" *name*) '(system-class))
-(setf (gethash "SERIOUS-CONDITION" *name*) '(condition-type))
-(setf (gethash "SET" *name*) '(function))
-(setf (gethash "SET-DIFFERENCE" *name*) '(function))
-(setf (gethash "SET-EXCLUSIVE-OR" *name*) '(function))
-(setf (gethash "SETF" *name*) '(macro))
-(setf (gethash "SETQ" *name*) '(special-form))
-(setf (gethash "SEVENTH" *name*) '(accessor))
-(setf (gethash "SHADOW" *name*) '(function))
-(setf (gethash "SHADOWING-IMPORT" *name*) '(function))
-(setf (gethash "SHARED-INITIALIZE" *name*) '(standard-generic-function))
-(setf (gethash "SHIFTF" *name*) '(macro))
-(setf (gethash "SIGNAL" *name*) '(function))
-(setf (gethash "SIMPLE-ARRAY" *name*) '(type))
-(setf (gethash "SIMPLE-BASE-STRING" *name*) '(type))
-(setf (gethash "SIMPLE-BIT-VECTOR" *name*) '(type))
-(setf (gethash "SIMPLE-BIT-VECTOR-P" *name*) '(function))
-(setf (gethash "SIMPLE-CONDITION" *name*) '(condition-type))
-(setf (gethash "SIMPLE-CONDITION-FORMAT-ARGUMENTS" *name*) '(function))
-(setf (gethash "SIMPLE-CONDITION-FORMAT-CONTROL" *name*) '(function))
-(setf (gethash "SIMPLE-ERROR" *name*) '(condition-type))
-(setf (gethash "SIMPLE-STRING" *name*) '(type))
-(setf (gethash "SIMPLE-STRING-P" *name*) '(function))
-(setf (gethash "SIMPLE-TYPE-ERROR" *name*) '(condition-type))
-(setf (gethash "SIMPLE-VECTOR" *name*) '(type))
-(setf (gethash "SIMPLE-VECTOR-P" *name*) '(function))
-(setf (gethash "SIMPLE-WARNING" *name*) '(condition-type))
-(setf (gethash "SIXTH" *name*) '(accessor))
-(setf (gethash "SLOT-BOUNDP" *name*) '(function))
-(setf (gethash "SLOT-BOUNDP-USING-CLASS" *name*) '(generic-function))
-(setf (gethash "SLOT-EXISTS-P" *name*) '(function))
-(setf (gethash "SLOT-MAKUNBOUND" *name*) '(function))
-(setf (gethash "SLOT-MAKUNBOUND-USING-CLASS" *name*) '(generic-function))
-(setf (gethash "SLOT-MISSING" *name*) '(standard-generic-function))
-(setf (gethash "SLOT-UNBOUND" *name*) '(standard-generic-function))
-(setf (gethash "SLOT-VALUE" *name*) '(function))
-(setf (gethash "SLOT-VALUE-USING-CLASS" *name*) '(generic-function))
-(setf (gethash "SOME" *name*) '(function))
-(setf (gethash "SORT" *name*) '(function))
-(setf (gethash "SPECIAL" *name*) '(declaration))
-(setf (gethash "SPECIAL-OPERATOR-P" *name*) '(function))
-(setf (gethash "STABLE-SORT" *name*) '(function))
-(setf (gethash "STANDARD-CHAR" *name*) '(type))
-(setf (gethash "STANDARD-CHAR-P" *name*) '(function))
-(setf (gethash "STANDARD-CLASS" *name*) '(system-class))
-(setf (gethash "STANDARD-GENERIC-FUNCTION" *name*) '(system-class))
-(setf (gethash "STANDARD-METHOD" *name*) '(system-class))
-(setf (gethash "STANDARD-OBJECT" *name*) '(class))
-(setf (gethash "STORAGE-CONDITION" *name*) '(condition-type))
-(setf (gethash "STORE-VALUE" *name*) '(function restart))
-(setf (gethash "STREAM" *name*) '(system-class))
-(setf (gethash "STREAM-ELEMENT-TYPE" *name*) '(function))
-(setf (gethash "STREAM-ERROR" *name*) '(condition-type))
-(setf (gethash "STREAM-ERROR-STREAM" *name*) '(function))
-(setf (gethash "STREAM-EXTERNAL-FORMAT" *name*) '(function))
-(setf (gethash "STREAMP" *name*) '(function))
-(setf (gethash "STRING" *name*) '(function system-class))
-(setf (gethash "STRING-CAPITALIZE" *name*) '(function))
-(setf (gethash "STRING-DOWNCASE" *name*) '(function))
-(setf (gethash "STRING-EQUAL" *name*) '(function))
-(setf (gethash "STRING-GREATERP" *name*) '(function))
-(setf (gethash "STRING-LEFT-TRIM" *name*) '(function))
-(setf (gethash "STRING-LESSP" *name*) '(function))
-(setf (gethash "STRING-NOT-EQUAL" *name*) '(function))
-(setf (gethash "STRING-NOT-GREATERP" *name*) '(function))
-(setf (gethash "STRING-NOT-LESSP" *name*) '(function))
-(setf (gethash "STRING-RIGHT-TRIM" *name*) '(function))
-(setf (gethash "STRING-STREAM" *name*) '(system-class))
-(setf (gethash "STRING-TRIM" *name*) '(function))
-(setf (gethash "STRING-UPCASE" *name*) '(function))
-(setf (gethash "STRING/=" *name*) '(function))
-(setf (gethash "STRING<" *name*) '(function))
-(setf (gethash "STRING<=" *name*) '(function))
-(setf (gethash "STRING=" *name*) '(function))
-(setf (gethash "STRING>" *name*) '(function))
-(setf (gethash "STRING>=" *name*) '(function))
-(setf (gethash "STRINGP" *name*) '(function))
-(setf (gethash "STRUCTURE-CLASS" *name*) '(system-class))
-(setf (gethash "STRUCTURE-OBJECT" *name*) '(class))
-(setf (gethash "STYLE-WARNING" *name*) '(condition-type))
-(setf (gethash "SUBLIS" *name*) '(function))
-(setf (gethash "SUBSEQ" *name*) '(accessor))
-(setf (gethash "SUBSETP" *name*) '(function))
-(setf (gethash "SUBST" *name*) '(function))
-(setf (gethash "SUBST-IF" *name*) '(function))
-(setf (gethash "SUBST-IF-NOT" *name*) '(function))
-(setf (gethash "SUBSTITUTE" *name*) '(function))
-(setf (gethash "SUBSTITUTE-IF" *name*) '(function))
-(setf (gethash "SUBSTITUTE-IF-NOT" *name*) '(function))
-(setf (gethash "SUBTYPEP" *name*) '(function))
-(setf (gethash "SVREF" *name*) '(accessor))
-(setf (gethash "SXHASH" *name*) '(function))
-(setf (gethash "SYMBOL" *name*) '(system-class))
-(setf (gethash "SYMBOL-FUNCTION" *name*) '(accessor))
-(setf (gethash "SYMBOL-MACROLET" *name*) '(special-operator))
-(setf (gethash "SYMBOL-NAME" *name*) '(function))
-(setf (gethash "SYMBOL-PACKAGE" *name*) '(function))
-(setf (gethash "SYMBOL-PLIST" *name*) '(accessor))
-(setf (gethash "SYMBOL-VALUE" *name*) '(accessor))
-(setf (gethash "SYMBOLP" *name*) '(function))
-(setf (gethash "SYNONYM-STREAM" *name*) '(system-class))
-(setf (gethash "SYNONYM-STREAM-SYMBOL" *name*) '(function))
-(setf (gethash "T" *name*) '(constant-variable system-class))
-(setf (gethash "TAGBODY" *name*) '(special-operator))
-(setf (gethash "TAILP" *name*) '(function))
-(setf (gethash "TENTH" *name*) '(accessor))
-(setf (gethash "TERPRI" *name*) '(function))
-(setf (gethash "THE" *name*) '(special-operator))
-(setf (gethash "THIRD" *name*) '(accessor))
-(setf (gethash "THROW" *name*) '(special-operator))
-(setf (gethash "TRANSLATE-LOGICAL-PATHNAME" *name*) '(function))
-(setf (gethash "TRANSLATE-PATHNAME" *name*) '(function))
-(setf (gethash "TREE-EQUAL" *name*) '(function))
-(setf (gethash "TRUENAME" *name*) '(function))
-(setf (gethash "TWO-WAY-STREAM" *name*) '(system-class))
-(setf (gethash "TWO-WAY-STREAM-INPUT-STREAM" *name*) '(function))
-(setf (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *name*) '(function))
-(setf (gethash "TYPE" *name*) '(declaration))
-(setf (gethash "TYPE-ERROR" *name*) '(condition-type))
-(setf (gethash "TYPE-ERROR-DATUM" *name*) '(function))
-(setf (gethash "TYPE-ERROR-EXPECTED-TYPE" *name*) '(function))
-(setf (gethash "TYPE-OF" *name*) '(function))
-(setf (gethash "TYPECASE" *name*) '(macro))
-(setf (gethash "TYPEP" *name*) '(function))
-(setf (gethash "UNBOUND-SLOT" *name*) '(condition-type))
-(setf (gethash "UNBOUND-SLOT-INSTANCE" *name*) '(function))
-(setf (gethash "UNBOUND-VARIABLE" *name*) '(condition-type))
-(setf (gethash "UNDEFINED-FUNCTION" *name*) '(condition-type))
-(setf (gethash "UNEXPORT" *name*) '(function))
-(setf (gethash "UNINTERN" *name*) '(function))
-(setf (gethash "UNION" *name*) '(function))
-(setf (gethash "UNLESS" *name*) '(macro))
-(setf (gethash "UNREAD-CHAR" *name*) '(function))
-(setf (gethash "UNUSE-PACKAGE" *name*) '(function))
-(setf (gethash "UNWIND-PROTECT" *name*) '(special-operator))
-(setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *name*) '(standard-generic-function))
-(setf (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *name*) '(standard-generic-function))
-(setf (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *name*) '(function))
-(setf (gethash "UPPER-CASE-P" *name*) '(function))
-(setf (gethash "USE-PACKAGE" *name*) '(function))
-(setf (gethash "USE-VALUE" *name*) '(function restart))
-(setf (gethash "VALUES" *name*) '(accessor type-specifier))
-(setf (gethash "VALUES-LIST" *name*) '(function))
-(setf (gethash "VECTOR" *name*) '(function system-class))
-(setf (gethash "VECTOR-POP" *name*) '(function))
-(setf (gethash "VECTOR-PUSH" *name*) '(function))
-(setf (gethash "VECTOR-PUSH-EXTEND" *name*) '(function))
-(setf (gethash "VECTORP" *name*) '(function))
-(setf (gethash "WARN" *name*) '(function))
-(setf (gethash "WARNING" *name*) '(condition-type))
-(setf (gethash "WHEN" *name*) '(macro))
-(setf (gethash "WILD-PATHNAME-P" *name*) '(function))
-(setf (gethash "WITH-ACCESSORS" *name*) '(macro))
-(setf (gethash "WITH-CONDITION-RESTARTS" *name*) '(macro))
-(setf (gethash "WITH-HASH-TABLE-ITERATOR" *name*) '(macro))
-(setf (gethash "WITH-INPUT-FROM-STRING" *name*) '(macro))
-(setf (gethash "WITH-OPEN-FILE" *name*) '(macro))
-(setf (gethash "WITH-OPEN-STREAM" *name*) '(macro))
-(setf (gethash "WITH-OUTPUT-TO-STRING" *name*) '(macro))
-(setf (gethash "WITH-PACKAGE-ITERATOR" *name*) '(macro))
-(setf (gethash "WITH-SIMPLE-RESTART" *name*) '(macro))
-(setf (gethash "WITH-SLOTS" *name*) '(macro))
-(setf (gethash "WRITE-BYTE" *name*) '(function))
-(setf (gethash "WRITE-CHAR" *name*) '(function))
-(setf (gethash "WRITE-LINE" *name*) '(function))
-(setf (gethash "WRITE-SEQUENCE" *name*) '(function))
-(setf (gethash "WRITE-STRING" *name*) '(function))
-(setf (gethash "Y-OR-N-P" *name*) '(function))
-(setf (gethash "YES-OR-NO-P" *name*) '(function))
+(setf (gethash "*BREAK-ON-SIGNALS*" *name*) '("VARIABLE"))
+(setf (gethash "*DEBUG-IO*" *name*) '("VARIABLE"))
+(setf (gethash "*DEBUGGER-HOOK*" *name*) '("VARIABLE"))
+(setf (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *name*) '("VARIABLE"))
+(setf (gethash "*ERROR-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "*GENSYM-COUNTER*" *name*) '("VARIABLE"))
+(setf (gethash "*MACROEXPAND-HOOK*" *name*) '("VARIABLE"))
+(setf (gethash "*PACKAGE*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-ARRAY*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-CIRCLE*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-ESCAPE*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-LENGTH*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-LEVEL*" *name*) '("VARIABLE"))
+(setf (gethash "*QUERY-IO*" *name*) '("VARIABLE"))
+(setf (gethash "*STANDARD-INPUT*" *name*) '("VARIABLE"))
+(setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
+(setf (gethash "*TRACE-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "ABORT" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "ACONS" *name*) '("FUNCTION"))
+(setf (gethash "ADD-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "ADJOIN" *name*) '("FUNCTION"))
+(setf (gethash "ADJUST-ARRAY" *name*) '("FUNCTION"))
+(setf (gethash "ADJUSTABLE-ARRAY-P" *name*) '("FUNCTION"))
+(setf (gethash "ALLOCATE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "ALPHA-CHAR-P" *name*) '("FUNCTION"))
+(setf (gethash "ALPHANUMERICP" *name*) '("FUNCTION"))
+(setf (gethash "AND" *name*) '("MACRO" "TYPE-SPECIFIER"))
+(setf (gethash "APPEND" *name*) '("FUNCTION"))
+(setf (gethash "APPLY" *name*) '("FUNCTION"))
+(setf (gethash "AREF" *name*) '("ACCESSOR"))
+(setf (gethash "ARRAY" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "ARRAY-DIMENSION" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-DIMENSION-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "ARRAY-DIMENSIONS" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-DISPLACEMENT" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-ELEMENT-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-HAS-FILL-POINTER-P" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-IN-BOUNDS-P" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-RANK" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-RANK-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "ARRAY-ROW-MAJOR-INDEX" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-TOTAL-SIZE" *name*) '("FUNCTION"))
+(setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "ARRAYP" *name*) '("FUNCTION"))
+(setf (gethash "ASSERT" *name*) '("MACRO"))
+(setf (gethash "ASSOC" *name*) '("FUNCTION"))
+(setf (gethash "ASSOC-IF" *name*) '("FUNCTION"))
+(setf (gethash "ASSOC-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "ATOM" *name*) '("FUNCTION" "TYPE"))
+(setf (gethash "BASE-CHAR" *name*) '("TYPE"))
+(setf (gethash "BASE-STRING" *name*) '("TYPE"))
+(setf (gethash "BIT" *name*) '("ACCESSOR"))
+(setf (gethash "BIT-AND" *name*) '("FUNCTION"))
+(setf (gethash "BIT-ANDC1" *name*) '("FUNCTION"))
+(setf (gethash "BIT-ANDC2" *name*) '("FUNCTION"))
+(setf (gethash "BIT-EQV" *name*) '("FUNCTION"))
+(setf (gethash "BIT-IOR" *name*) '("FUNCTION"))
+(setf (gethash "BIT-NAND" *name*) '("FUNCTION"))
+(setf (gethash "BIT-NOR" *name*) '("FUNCTION"))
+(setf (gethash "BIT-NOT" *name*) '("FUNCTION"))
+(setf (gethash "BIT-ORC1" *name*) '("FUNCTION"))
+(setf (gethash "BIT-ORC2" *name*) '("FUNCTION"))
+(setf (gethash "BIT-VECTOR" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "BIT-VECTOR-P" *name*) '("FUNCTION"))
+(setf (gethash "BIT-XOR" *name*) '("FUNCTION"))
+(setf (gethash "BLOCK" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "BOOLEAN" *name*) '("TYPE"))
+(setf (gethash "BOTH-CASE-P" *name*) '("FUNCTION"))
+(setf (gethash "BOUNDP" *name*) '("FUNCTION"))
+(setf (gethash "BREAK" *name*) '("FUNCTION"))
+(setf (gethash "BROADCAST-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "BROADCAST-STREAM-STREAMS" *name*) '("FUNCTION"))
+(setf (gethash "BUILT-IN-CLASS" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "BUTLAST" *name*) '("FUNCTION"))
+(setf (gethash "CAAAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CAAADR" *name*) '("ACCESSOR"))
+(setf (gethash "CAAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CAADAR" *name*) '("ACCESSOR"))
+(setf (gethash "CAADDR" *name*) '("ACCESSOR"))
+(setf (gethash "CAADR" *name*) '("ACCESSOR"))
+(setf (gethash "CAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CADAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CADADR" *name*) '("ACCESSOR"))
+(setf (gethash "CADAR" *name*) '("ACCESSOR"))
+(setf (gethash "CADDAR" *name*) '("ACCESSOR"))
+(setf (gethash "CADDDR" *name*) '("ACCESSOR"))
+(setf (gethash "CADDR" *name*) '("ACCESSOR"))
+(setf (gethash "CADR" *name*) '("ACCESSOR"))
+(setf (gethash "CALL-ARGUMENTS-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "CALL-METHOD" *name*) '("LOCAL-MACRO"))
+(setf (gethash "CALL-NEXT-METHOD" *name*) '("LOCAL-FUNCTION"))
+(setf (gethash "CAR" *name*) '("ACCESSOR"))
+(setf (gethash "CASE" *name*) '("MACRO"))
+(setf (gethash "CATCH" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "CCASE" *name*) '("MACRO"))
+(setf (gethash "CDAAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDAADR" *name*) '("ACCESSOR"))
+(setf (gethash "CDAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDADAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDADDR" *name*) '("ACCESSOR"))
+(setf (gethash "CDADR" *name*) '("ACCESSOR"))
+(setf (gethash "CDAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDAAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDADR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDDAR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDDDR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDDR" *name*) '("ACCESSOR"))
+(setf (gethash "CDDR" *name*) '("ACCESSOR"))
+(setf (gethash "CDR" *name*) '("ACCESSOR"))
+(setf (gethash "CELL-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "CELL-ERROR-NAME" *name*) '("FUNCTION"))
+(setf (gethash "CERROR" *name*) '("FUNCTION"))
+(setf (gethash "CHANGE-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "CHAR" *name*) '("ACCESSOR"))
+(setf (gethash "CHAR-CODE" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-CODE-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "CHAR-DOWNCASE" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-GREATERP" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-INT" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-LESSP" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-NAME" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-NOT-EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-NOT-GREATERP" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-NOT-LESSP" *name*) '("FUNCTION"))
+(setf (gethash "CHAR-UPCASE" *name*) '("FUNCTION"))
+(setf (gethash "CHAR/=" *name*) '("FUNCTION"))
+(setf (gethash "CHAR<" *name*) '("FUNCTION"))
+(setf (gethash "CHAR<=" *name*) '("FUNCTION"))
+(setf (gethash "CHAR=" *name*) '("FUNCTION"))
+(setf (gethash "CHAR>" *name*) '("FUNCTION"))
+(setf (gethash "CHAR>=" *name*) '("FUNCTION"))
+(setf (gethash "CHARACTER" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "CHARACTERP" *name*) '("FUNCTION"))
+(setf (gethash "CHECK-TYPE" *name*) '("MACRO"))
+(setf (gethash "CLASS" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "CLASS-NAME" *name*) '("SETF" "STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "CLASS-OF" *name*) '("FUNCTION"))
+(setf (gethash "CLEAR-INPUT" *name*) '("FUNCTION"))
+(setf (gethash "CLEAR-OUTPUT" *name*) '("FUNCTION"))
+(setf (gethash "CLOSE" *name*) '("FUNCTION"))
+(setf (gethash "CLRHASH" *name*) '("FUNCTION"))
+(setf (gethash "CODE-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "COERCE" *name*) '("FUNCTION"))
+(setf (gethash "COMPILE" *name*) '("FUNCTION"))
+(setf (gethash "COMPILED-FUNCTION" *name*) '("TYPE"))
+(setf (gethash "COMPILED-FUNCTION-P" *name*) '("FUNCTION"))
+(setf (gethash "COMPILER-MACRO-FUNCTION" *name*) '("ACCESSOR"))
+(setf (gethash "COMPLEMENT" *name*) '("FUNCTION"))
+(setf (gethash "COMPUTE-APPLICABLE-METHODS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "COMPUTE-RESTARTS" *name*) '("FUNCTION"))
+(setf (gethash "CONCATENATE" *name*) '("FUNCTION"))
+(setf (gethash "CONCATENATED-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "CONCATENATED-STREAM-STREAMS" *name*) '("FUNCTION"))
+(setf (gethash "COND" *name*) '("MACRO"))
+(setf (gethash "CONDITION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "CONS" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "CONSP" *name*) '("FUNCTION"))
+(setf (gethash "CONSTANTLY" *name*) '("FUNCTION"))
+(setf (gethash "CONSTANTP" *name*) '("FUNCTION"))
+(setf (gethash "CONTINUE" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "CONTROL-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "COPY-ALIST" *name*) '("FUNCTION"))
+(setf (gethash "COPY-LIST" *name*) '("FUNCTION"))
+(setf (gethash "COPY-PPRINT-DISPATCH" *name*) '("FUNCTION"))
+(setf (gethash "COPY-SEQ" *name*) '("FUNCTION"))
+(setf (gethash "COPY-STRUCTURE" *name*) '("FUNCTION"))
+(setf (gethash "COPY-SYMBOL" *name*) '("FUNCTION"))
+(setf (gethash "COPY-TREE" *name*) '("FUNCTION"))
+(setf (gethash "COUNT" *name*) '("FUNCTION"))
+(setf (gethash "COUNT-IF" *name*) '("FUNCTION"))
+(setf (gethash "COUNT-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "CTYPECASE" *name*) '("MACRO"))
+(setf (gethash "DECLAIM" *name*) '("MACRO"))
+(setf (gethash "DECLARATION" *name*) '("DECLARATION"))
+(setf (gethash "DECLARE" *name*) '("SYMBOL"))
+(setf (gethash "DEFCLASS" *name*) '("MACRO"))
+(setf (gethash "DEFCONSTANT" *name*) '("MACRO"))
+(setf (gethash "DEFGENERIC" *name*) '("MACRO"))
+(setf (gethash "DEFINE-COMPILER-MACRO" *name*) '("MACRO"))
+(setf (gethash "DEFINE-CONDITION" *name*) '("MACRO"))
+(setf (gethash "DEFINE-METHOD-COMBINATION" *name*) '("MACRO"))
+(setf (gethash "DEFINE-MODIFY-MACRO" *name*) '("MACRO"))
+(setf (gethash "DEFINE-SETF-EXPANDER" *name*) '("MACRO"))
+(setf (gethash "DEFINE-SYMBOL-MACRO" *name*) '("MACRO"))
+(setf (gethash "DEFMACRO" *name*) '("MACRO"))
+(setf (gethash "DEFMETHOD" *name*) '("MACRO"))
+(setf (gethash "DEFPACKAGE" *name*) '("MACRO"))
+(setf (gethash "DEFPARAMETER" *name*) '("MACRO"))
+(setf (gethash "DEFSETF" *name*) '("MACRO"))
+(setf (gethash "DEFSTRUCT" *name*) '("MACRO"))
+(setf (gethash "DEFTYPE" *name*) '("MACRO"))
+(setf (gethash "DEFUN" *name*) '("MACRO"))
+(setf (gethash "DEFVAR" *name*) '("MACRO"))
+(setf (gethash "DELETE" *name*) '("FUNCTION"))
+(setf (gethash "DELETE-DUPLICATES" *name*) '("FUNCTION"))
+(setf (gethash "DELETE-FILE" *name*) '("FUNCTION"))
+(setf (gethash "DELETE-IF" *name*) '("FUNCTION"))
+(setf (gethash "DELETE-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "DELETE-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "DESTRUCTURING-BIND" *name*) '("MACRO"))
+(setf (gethash "DIGIT-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "DIGIT-CHAR-P" *name*) '("FUNCTION"))
+(setf (gethash "DIRECTORY" *name*) '("FUNCTION"))
+(setf (gethash "DIRECTORY-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "DO" *name*) '("MACRO"))
+(setf (gethash "DO*" *name*) '("MACRO"))
+(setf (gethash "DO-ALL-SYMBOLS" *name*) '("MACRO"))
+(setf (gethash "DO-EXTERNAL-SYMBOLS" *name*) '("MACRO"))
+(setf (gethash "DO-SYMBOLS" *name*) '("MACRO"))
+(setf (gethash "DOCUMENTATION" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "DOLIST" *name*) '("MACRO"))
+(setf (gethash "DOTIMES" *name*) '("MACRO"))
+(setf (gethash "DYNAMIC-EXTENT" *name*) '("DECLARATION"))
+(setf (gethash "ECASE" *name*) '("MACRO"))
+(setf (gethash "ECHO-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "ECHO-STREAM-INPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "ECHO-STREAM-OUTPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "EIGHTH" *name*) '("ACCESSOR"))
+(setf (gethash "ELT" *name*) '("ACCESSOR"))
+(setf (gethash "END-OF-FILE" *name*) '("CONDITION-TYPE"))
+(setf (gethash "ENDP" *name*) '("FUNCTION"))
+(setf (gethash "ENOUGH-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "ENSURE-DIRECTORIES-EXIST" *name*) '("FUNCTION"))
+(setf (gethash "ENSURE-GENERIC-FUNCTION" *name*) '("FUNCTION"))
+(setf (gethash "EQ" *name*) '("FUNCTION"))
+(setf (gethash "EQL" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
+(setf (gethash "EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "EQUALP" *name*) '("FUNCTION"))
+(setf (gethash "ERROR" *name*) '("FUNCTION" "CONDITION-TYPE"))
+(setf (gethash "ETYPECASE" *name*) '("MACRO"))
+(setf (gethash "EVAL" *name*) '("FUNCTION"))
+(setf (gethash "EVAL-WHEN" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "EVERY" *name*) '("FUNCTION"))
+(setf (gethash "EXPORT" *name*) '("FUNCTION"))
+(setf (gethash "EXTENDED-CHAR" *name*) '("TYPE"))
+(setf (gethash "FBOUNDP" *name*) '("FUNCTION"))
+(setf (gethash "FDEFINITION" *name*) '("ACCESSOR"))
+(setf (gethash "FIFTH" *name*) '("ACCESSOR"))
+(setf (gethash "FILE-AUTHOR" *name*) '("FUNCTION"))
+(setf (gethash "FILE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "FILE-ERROR-PATHNAME" *name*) '("FUNCTION"))
+(setf (gethash "FILE-LENGTH" *name*) '("FUNCTION"))
+(setf (gethash "FILE-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "FILE-POSITION" *name*) '("FUNCTION"))
+(setf (gethash "FILE-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "FILE-STRING-LENGTH" *name*) '("FUNCTION"))
+(setf (gethash "FILE-WRITE-DATE" *name*) '("FUNCTION"))
+(setf (gethash "FILL" *name*) '("FUNCTION"))
+(setf (gethash "FILL-POINTER" *name*) '("ACCESSOR"))
+(setf (gethash "FIND" *name*) '("FUNCTION"))
+(setf (gethash "FIND-ALL-SYMBOLS" *name*) '("FUNCTION"))
+(setf (gethash "FIND-CLASS" *name*) '("ACCESSOR"))
+(setf (gethash "FIND-IF" *name*) '("FUNCTION"))
+(setf (gethash "FIND-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "FIND-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "FIND-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "FIND-RESTART" *name*) '("FUNCTION"))
+(setf (gethash "FIND-SYMBOL" *name*) '("FUNCTION"))
+(setf (gethash "FINISH-OUTPUT" *name*) '("FUNCTION"))
+(setf (gethash "FIRST" *name*) '("ACCESSOR"))
+(setf (gethash "FLET" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "FMAKUNBOUND" *name*) '("FUNCTION"))
+(setf (gethash "FORCE-OUTPUT" *name*) '("FUNCTION"))
+(setf (gethash "FORMATTER" *name*) '("MACRO"))
+(setf (gethash "FOURTH" *name*) '("ACCESSOR"))
+(setf (gethash "FRESH-LINE" *name*) '("FUNCTION"))
+(setf (gethash "FTYPE" *name*) '("DECLARATION"))
+(setf (gethash "FUNCALL" *name*) '("FUNCTION"))
+(setf (gethash "FUNCTION" *name*) '("SPECIAL-OPERATOR" "SYSTEM-CLASS"))
+(setf (gethash "FUNCTION-KEYWORDS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "FUNCTION-LAMBDA-EXPRESSION" *name*) '("FUNCTION"))
+(setf (gethash "FUNCTIONP" *name*) '("FUNCTION"))
+(setf (gethash "GENERIC-FUNCTION" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "GENSYM" *name*) '("FUNCTION"))
+(setf (gethash "GENTEMP" *name*) '("FUNCTION"))
+(setf (gethash "GET" *name*) '("ACCESSOR"))
+(setf (gethash "GET-OUTPUT-STREAM-STRING" *name*) '("FUNCTION"))
+(setf (gethash "GET-PROPERTIES" *name*) '("FUNCTION"))
+(setf (gethash "GET-SETF-EXPANSION" *name*) '("FUNCTION"))
+(setf (gethash "GETF" *name*) '("ACCESSOR"))
+(setf (gethash "GETHASH" *name*) '("ACCESSOR"))
+(setf (gethash "GO" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "GRAPHIC-CHAR-P" *name*) '("FUNCTION"))
+(setf (gethash "HANDLER-BIND" *name*) '("MACRO"))
+(setf (gethash "HANDLER-CASE" *name*) '("MACRO"))
+(setf (gethash "HASH-TABLE" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "HASH-TABLE-COUNT" *name*) '("FUNCTION"))
+(setf (gethash "HASH-TABLE-P" *name*) '("FUNCTION"))
+(setf (gethash "HASH-TABLE-REHASH-SIZE" *name*) '("FUNCTION"))
+(setf (gethash "HASH-TABLE-REHASH-THRESHOLD" *name*) '("FUNCTION"))
+(setf (gethash "HASH-TABLE-SIZE" *name*) '("FUNCTION"))
+(setf (gethash "HASH-TABLE-TEST" *name*) '("FUNCTION"))
+(setf (gethash "HOST-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "IDENTITY" *name*) '("FUNCTION"))
+(setf (gethash "IF" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "IGNORABLE" *name*) '("DECLARATION"))
+(setf (gethash "IGNORE" *name*) '("DECLARATION"))
+(setf (gethash "IGNORE-ERRORS" *name*) '("MACRO"))
+(setf (gethash "IMPORT" *name*) '("FUNCTION"))
+(setf (gethash "IN-PACKAGE" *name*) '("MACRO"))
+(setf (gethash "INITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "INLINE" *name*) '("DECLARATION"))
+(setf (gethash "INPUT-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "INTERACTIVE-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "INTERN" *name*) '("FUNCTION"))
+(setf (gethash "INTERSECTION" *name*) '("FUNCTION"))
+(setf (gethash "INVALID-METHOD-ERROR" *name*) '("FUNCTION"))
+(setf (gethash "INVOKE-DEBUGGER" *name*) '("FUNCTION"))
+(setf (gethash "INVOKE-RESTART" *name*) '("FUNCTION"))
+(setf (gethash "INVOKE-RESTART-INTERACTIVELY" *name*) '("FUNCTION"))
+(setf (gethash "KEYWORD" *name*) '("TYPE"))
+(setf (gethash "KEYWORDP" *name*) '("FUNCTION"))
+(setf (gethash "LABELS" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LAMBDA" *name*) '("MACRO" "SYMBOL"))
+(setf (gethash "LAMBDA-LIST-KEYWORDS" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LAMBDA-PARAMETERS-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LAST" *name*) '("FUNCTION"))
+(setf (gethash "LDIFF" *name*) '("FUNCTION"))
+(setf (gethash "LENGTH" *name*) '("FUNCTION"))
+(setf (gethash "LET" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LET*" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LIST" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "LIST*" *name*) '("FUNCTION"))
+(setf (gethash "LIST-ALL-PACKAGES" *name*) '("FUNCTION"))
+(setf (gethash "LIST-LENGTH" *name*) '("FUNCTION"))
+(setf (gethash "LISTEN" *name*) '("FUNCTION"))
+(setf (gethash "LISTP" *name*) '("FUNCTION"))
+(setf (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("FUNCTION"))
+(setf (gethash "LOAD-TIME-VALUE" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LOCALLY" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LOGICAL-PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("ACCESSOR"))
+(setf (gethash "LOOP" *name*) '("MACRO"))
+(setf (gethash "LOOP-FINISH" *name*) '("LOCA-MACRO"))
+(setf (gethash "LOWER-CASE-P" *name*) '("FUNCTION"))
+(setf (gethash "MACRO-FUNCTION" *name*) '("ACCESSOR"))
+(setf (gethash "MACROEXPAND" *name*) '("FUNCTION"))
+(setf (gethash "MACROEXPAND-1" *name*) '("FUNCTION"))
+(setf (gethash "MACROLET" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "MAKE-ARRAY" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-BROADCAST-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-CONCATENATED-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-CONDITION" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-ECHO-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-HASH-TABLE" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "MAKE-INSTANCES-OBSOLETE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "MAKE-LIST" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-LOAD-FORM" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "MAKE-LOAD-FORM-SAVING-SLOTS" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-METHOD" *name*) '("LOCAL-MACRO"))
+(setf (gethash "MAKE-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-PATHNAME" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-SEQUENCE" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-STRING" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-STRING-INPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-STRING-OUTPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-SYMBOL" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-SYNONYM-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-TWO-WAY-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "MAKUNBOUND" *name*) '("FUNCTION"))
+(setf (gethash "MAP" *name*) '("FUNCTION"))
+(setf (gethash "MAP-INTO" *name*) '("FUNCTION"))
+(setf (gethash "MAPC" *name*) '("FUNCTION"))
+(setf (gethash "MAPCAN" *name*) '("FUNCTION"))
+(setf (gethash "MAPCAR" *name*) '("FUNCTION"))
+(setf (gethash "MAPCON" *name*) '("FUNCTION"))
+(setf (gethash "MAPHASH" *name*) '("FUNCTION"))
+(setf (gethash "MAPL" *name*) '("FUNCTION"))
+(setf (gethash "MAPLIST" *name*) '("FUNCTION"))
+(setf (gethash "MEMBER" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
+(setf (gethash "MEMBER-IF" *name*) '("FUNCTION"))
+(setf (gethash "MEMBER-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "MERGE" *name*) '("FUNCTION"))
+(setf (gethash "MERGE-PATHNAMES" *name*) '("FUNCTION"))
+(setf (gethash "METHOD" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "METHOD-COMBINATION" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "METHOD-COMBINATION-ERROR" *name*) '("FUNCTION"))
+(setf (gethash "METHOD-QUALIFIERS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "MISMATCH" *name*) '("FUNCTION"))
+(setf (gethash "MUFFLE-WARNING" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "MULTIPLE-VALUE-BIND" *name*) '("MACRO"))
+(setf (gethash "MULTIPLE-VALUE-CALL" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "MULTIPLE-VALUE-LIST" *name*) '("MACRO"))
+(setf (gethash "MULTIPLE-VALUE-PROG1" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "MULTIPLE-VALUE-SETQ" *name*) '("MACRO"))
+(setf (gethash "MULTIPLE-VALUES-LIMIT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "NAME-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "NBUTLAST" *name*) '("FUNCTION"))
+(setf (gethash "NCONC" *name*) '("FUNCTION"))
+(setf (gethash "NEXT-METHOD-P" *name*) '("LOCAL-FUNCTION"))
+(setf (gethash "NIL" *name*) '("CONSTANT-VARIABLE" "TYPE"))
+(setf (gethash "NINTERSECTION" *name*) '("FUNCTION"))
+(setf (gethash "NINTH" *name*) '("ACCESSOR"))
+(setf (gethash "NO-APPLICABLE-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "NO-NEXT-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "NOT" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
+(setf (gethash "NOTANY" *name*) '("FUNCTION"))
+(setf (gethash "NOTEVERY" *name*) '("FUNCTION"))
+(setf (gethash "NOTINLINE" *name*) '("DECLARATION"))
+(setf (gethash "NRECONC" *name*) '("FUNCTION"))
+(setf (gethash "NREVERSE" *name*) '("FUNCTION"))
+(setf (gethash "NSET-DIFFERENCE" *name*) '("FUNCTION"))
+(setf (gethash "NSET-EXCLUSIVE-OR" *name*) '("FUNCTION"))
+(setf (gethash "NSTRING-CAPITALIZE" *name*) '("FUNCTION"))
+(setf (gethash "NSTRING-DOWNCASE" *name*) '("FUNCTION"))
+(setf (gethash "NSTRING-UPCASE" *name*) '("FUNCTION"))
+(setf (gethash "NSUBLIS" *name*) '("FUNCTION"))
+(setf (gethash "NSUBST" *name*) '("FUNCTION"))
+(setf (gethash "NSUBST-IF" *name*) '("FUNCTION"))
+(setf (gethash "NSUBST-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "NSUBSTITUTE" *name*) '("FUNCTION"))
+(setf (gethash "NSUBSTITUTE-IF" *name*) '("FUNCTION"))
+(setf (gethash "NSUBSTITUTE-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "NTH" *name*) '("ACCESSOR"))
+(setf (gethash "NTH-VALUE" *name*) '("MACRO"))
+(setf (gethash "NTHCDR" *name*) '("FUNCTION"))
+(setf (gethash "NULL" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "NUNION" *name*) '("FUNCTION"))
+(setf (gethash "OPEN" *name*) '("FUNCTION"))
+(setf (gethash "OPEN-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "OPTIMIZE" *name*) '("DECLARATION"))
+(setf (gethash "OR" *name*) '("MACRO" "TYPE-SPECIFIER"))
+(setf (gethash "OUTPUT-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "PACKAGE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "PACKAGE-ERROR-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE-NAME" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE-NICKNAMES" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE-SHADOWING-SYMBOLS" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE-USE-LIST" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGE-USED-BY-LIST" *name*) '("FUNCTION"))
+(setf (gethash "PACKAGEP" *name*) '("FUNCTION"))
+(setf (gethash "PAIRLIS" *name*) '("FUNCTION"))
+(setf (gethash "PARSE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "PARSE-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "PATHNAME-DEVICE" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-DIRECTORY" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-HOST" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-MATCH-P" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-NAME" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAME-VERSION" *name*) '("FUNCTION"))
+(setf (gethash "PATHNAMEP" *name*) '("FUNCTION"))
+(setf (gethash "PEEK-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "POP" *name*) '("MACRO"))
+(setf (gethash "POSITION" *name*) '("FUNCTION"))
+(setf (gethash "POSITION-IF" *name*) '("FUNCTION"))
+(setf (gethash "POSITION-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-DISPATCH" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-FILL" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-INDENT" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-LINEAR" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-TABULAR" *name*) '("FUNCTION"))
+(setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
+(setf (gethash "PROCLAIM" *name*) '("FUNCTION"))
+(setf (gethash "PROG" *name*) '("MACRO"))
+(setf (gethash "PROG*" *name*) '("MACRO"))
+(setf (gethash "PROG1" *name*) '("MACRO"))
+(setf (gethash "PROG2" *name*) '("MACRO"))
+(setf (gethash "PROGN" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "PROGRAM-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "PROGV" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "PSETF" *name*) '("MACRO"))
+(setf (gethash "PSETQ" *name*) '("MACRO"))
+(setf (gethash "PUSH" *name*) '("MACRO"))
+(setf (gethash "PUSHNEW" *name*) '("FUNCTION"))
+(setf (gethash "QUOTE" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "RASSOC" *name*) '("FUNCTION"))
+(setf (gethash "RASSOC-IF" *name*) '("FUNCTION"))
+(setf (gethash "RASSOC-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "READ-BYTE" *name*) '("FUNCTION"))
+(setf (gethash "READ-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "READ-CHAR-NO-HANG" *name*) '("FUNCTION"))
+(setf (gethash "READ-LINE" *name*) '("FUNCTION"))
+(setf (gethash "READ-SEQUENCE" *name*) '("FUNCTION"))
+(setf (gethash "REDUCE" *name*) '("FUNCTION"))
+(setf (gethash "REINITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "REMF" *name*) '("MACRO"))
+(setf (gethash "REMHASH" *name*) '("FUNCTION"))
+(setf (gethash "REMOVE" *name*) '("FUNCTION"))
+(setf (gethash "REMOVE-DUPLICATES" *name*) '("FUNCTION"))
+(setf (gethash "REMOVE-IF" *name*) '("FUNCTION"))
+(setf (gethash "REMOVE-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "REMOVE-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "REMPROP" *name*) '("FUNCTION"))
+(setf (gethash "RENAME-FILE" *name*) '("FUNCTION"))
+(setf (gethash "RENAME-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "REPLACE" *name*) '("FUNCTION"))
+(setf (gethash "REST" *name*) '("ACCESSOR"))
+(setf (gethash "RESTART" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "RESTART-BIND" *name*) '("MACRO"))
+(setf (gethash "RESTART-CASE" *name*) '("MACRO"))
+(setf (gethash "RESTART-NAME" *name*) '("FUNCTION"))
+(setf (gethash "RETURN" *name*) '("MACRO"))
+(setf (gethash "RETURN-FROM" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "REVAPPEND" *name*) '("FUNCTION"))
+(setf (gethash "REVERSE" *name*) '("FUNCTION"))
+(setf (gethash "ROTATEF" *name*) '("MACRO"))
+(setf (gethash "ROW-MAJOR-AREF" *name*) '("ACCESSOR"))
+(setf (gethash "RPLACA" *name*) '("FUNCTION"))
+(setf (gethash "RPLACD" *name*) '("FUNCTION"))
+(setf (gethash "SATISFIES" *name*) '("TYPE-SPECIFIER"))
+(setf (gethash "SBIT" *name*) '("ACCESSOR"))
+(setf (gethash "SCHAR" *name*) '("ACCESSOR"))
+(setf (gethash "SEARCH" *name*) '("FUNCTION"))
+(setf (gethash "SECOND" *name*) '("ACCESSOR"))
+(setf (gethash "SEQUENCE" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "SERIOUS-CONDITION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SET" *name*) '("FUNCTION"))
+(setf (gethash "SET-DIFFERENCE" *name*) '("FUNCTION"))
+(setf (gethash "SET-EXCLUSIVE-OR" *name*) '("FUNCTION"))
+(setf (gethash "SETF" *name*) '("MACRO"))
+(setf (gethash "SETQ" *name*) '("SPECIAL-FORM"))
+(setf (gethash "SEVENTH" *name*) '("ACCESSOR"))
+(setf (gethash "SHADOW" *name*) '("FUNCTION"))
+(setf (gethash "SHADOWING-IMPORT" *name*) '("FUNCTION"))
+(setf (gethash "SHARED-INITIALIZE" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "SHIFTF" *name*) '("MACRO"))
+(setf (gethash "SIGNAL" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-ARRAY" *name*) '("TYPE"))
+(setf (gethash "SIMPLE-BASE-STRING" *name*) '("TYPE"))
+(setf (gethash "SIMPLE-BIT-VECTOR" *name*) '("TYPE"))
+(setf (gethash "SIMPLE-BIT-VECTOR-P" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-CONDITION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SIMPLE-CONDITION-FORMAT-ARGUMENTS" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-CONDITION-FORMAT-CONTROL" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SIMPLE-STRING" *name*) '("TYPE"))
+(setf (gethash "SIMPLE-STRING-P" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-TYPE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SIMPLE-VECTOR" *name*) '("TYPE"))
+(setf (gethash "SIMPLE-VECTOR-P" *name*) '("FUNCTION"))
+(setf (gethash "SIMPLE-WARNING" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SIXTH" *name*) '("ACCESSOR"))
+(setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
+(setf (gethash "SLOT-BOUNDP-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
+(setf (gethash "SLOT-EXISTS-P" *name*) '("FUNCTION"))
+(setf (gethash "SLOT-MAKUNBOUND" *name*) '("FUNCTION"))
+(setf (gethash "SLOT-MAKUNBOUND-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
+(setf (gethash "SLOT-MISSING" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "SLOT-UNBOUND" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "SLOT-VALUE" *name*) '("FUNCTION"))
+(setf (gethash "SLOT-VALUE-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
+(setf (gethash "SOME" *name*) '("FUNCTION"))
+(setf (gethash "SORT" *name*) '("FUNCTION"))
+(setf (gethash "SPECIAL" *name*) '("DECLARATION"))
+(setf (gethash "SPECIAL-OPERATOR-P" *name*) '("FUNCTION"))
+(setf (gethash "STABLE-SORT" *name*) '("FUNCTION"))
+(setf (gethash "STANDARD-CHAR" *name*) '("TYPE"))
+(setf (gethash "STANDARD-CHAR-P" *name*) '("FUNCTION"))
+(setf (gethash "STANDARD-CLASS" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STANDARD-GENERIC-FUNCTION" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STANDARD-METHOD" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STANDARD-OBJECT" *name*) '("CLASS"))
+(setf (gethash "STORAGE-CONDITION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "STORE-VALUE" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STREAM-ELEMENT-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "STREAM-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "STREAM-ERROR-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "STREAM-EXTERNAL-FORMAT" *name*) '("FUNCTION"))
+(setf (gethash "STREAMP" *name*) '("FUNCTION"))
+(setf (gethash "STRING" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "STRING-CAPITALIZE" *name*) '("FUNCTION"))
+(setf (gethash "STRING-DOWNCASE" *name*) '("FUNCTION"))
+(setf (gethash "STRING-EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "STRING-GREATERP" *name*) '("FUNCTION"))
+(setf (gethash "STRING-LEFT-TRIM" *name*) '("FUNCTION"))
+(setf (gethash "STRING-LESSP" *name*) '("FUNCTION"))
+(setf (gethash "STRING-NOT-EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "STRING-NOT-GREATERP" *name*) '("FUNCTION"))
+(setf (gethash "STRING-NOT-LESSP" *name*) '("FUNCTION"))
+(setf (gethash "STRING-RIGHT-TRIM" *name*) '("FUNCTION"))
+(setf (gethash "STRING-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STRING-TRIM" *name*) '("FUNCTION"))
+(setf (gethash "STRING-UPCASE" *name*) '("FUNCTION"))
+(setf (gethash "STRING/=" *name*) '("FUNCTION"))
+(setf (gethash "STRING<" *name*) '("FUNCTION"))
+(setf (gethash "STRING<=" *name*) '("FUNCTION"))
+(setf (gethash "STRING=" *name*) '("FUNCTION"))
+(setf (gethash "STRING>" *name*) '("FUNCTION"))
+(setf (gethash "STRING>=" *name*) '("FUNCTION"))
+(setf (gethash "STRINGP" *name*) '("FUNCTION"))
+(setf (gethash "STRUCTURE-CLASS" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "STRUCTURE-OBJECT" *name*) '("CLASS"))
+(setf (gethash "STYLE-WARNING" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SUBLIS" *name*) '("FUNCTION"))
+(setf (gethash "SUBSEQ" *name*) '("ACCESSOR"))
+(setf (gethash "SUBSETP" *name*) '("FUNCTION"))
+(setf (gethash "SUBST" *name*) '("FUNCTION"))
+(setf (gethash "SUBST-IF" *name*) '("FUNCTION"))
+(setf (gethash "SUBST-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "SUBSTITUTE" *name*) '("FUNCTION"))
+(setf (gethash "SUBSTITUTE-IF" *name*) '("FUNCTION"))
+(setf (gethash "SUBSTITUTE-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "SUBTYPEP" *name*) '("FUNCTION"))
+(setf (gethash "SVREF" *name*) '("ACCESSOR"))
+(setf (gethash "SXHASH" *name*) '("FUNCTION"))
+(setf (gethash "SYMBOL" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "SYMBOL-FUNCTION" *name*) '("ACCESSOR"))
+(setf (gethash "SYMBOL-MACROLET" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "SYMBOL-NAME" *name*) '("FUNCTION"))
+(setf (gethash "SYMBOL-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "SYMBOL-PLIST" *name*) '("ACCESSOR"))
+(setf (gethash "SYMBOL-VALUE" *name*) '("ACCESSOR"))
+(setf (gethash "SYMBOLP" *name*) '("FUNCTION"))
+(setf (gethash "SYNONYM-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "SYNONYM-STREAM-SYMBOL" *name*) '("FUNCTION"))
+(setf (gethash "T" *name*) '("CONSTANT-VARIABLE" "SYSTEM-CLASS"))
+(setf (gethash "TAGBODY" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "TAILP" *name*) '("FUNCTION"))
+(setf (gethash "TENTH" *name*) '("ACCESSOR"))
+(setf (gethash "TERPRI" *name*) '("FUNCTION"))
+(setf (gethash "THE" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "THIRD" *name*) '("ACCESSOR"))
+(setf (gethash "THROW" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "TRANSLATE-LOGICAL-PATHNAME" *name*) '("FUNCTION"))
+(setf (gethash "TRANSLATE-PATHNAME" *name*) '("FUNCTION"))
+(setf (gethash "TREE-EQUAL" *name*) '("FUNCTION"))
+(setf (gethash "TRUENAME" *name*) '("FUNCTION"))
+(setf (gethash "TWO-WAY-STREAM" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "TWO-WAY-STREAM-INPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "TYPE" *name*) '("DECLARATION"))
+(setf (gethash "TYPE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "TYPE-ERROR-DATUM" *name*) '("FUNCTION"))
+(setf (gethash "TYPE-ERROR-EXPECTED-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "TYPE-OF" *name*) '("FUNCTION"))
+(setf (gethash "TYPECASE" *name*) '("MACRO"))
+(setf (gethash "TYPEP" *name*) '("FUNCTION"))
+(setf (gethash "UNBOUND-SLOT" *name*) '("CONDITION-TYPE"))
+(setf (gethash "UNBOUND-SLOT-INSTANCE" *name*) '("FUNCTION"))
+(setf (gethash "UNBOUND-VARIABLE" *name*) '("CONDITION-TYPE"))
+(setf (gethash "UNDEFINED-FUNCTION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "UNEXPORT" *name*) '("FUNCTION"))
+(setf (gethash "UNINTERN" *name*) '("FUNCTION"))
+(setf (gethash "UNION" *name*) '("FUNCTION"))
+(setf (gethash "UNLESS" *name*) '("MACRO"))
+(setf (gethash "UNREAD-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "UNUSE-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "UNWIND-PROTECT" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "UPPER-CASE-P" *name*) '("FUNCTION"))
+(setf (gethash "USE-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "USE-VALUE" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "VALUES" *name*) '("ACCESSOR" "TYPE-SPECIFIER"))
+(setf (gethash "VALUES-LIST" *name*) '("FUNCTION"))
+(setf (gethash "VECTOR" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "VECTOR-POP" *name*) '("FUNCTION"))
+(setf (gethash "VECTOR-PUSH" *name*) '("FUNCTION"))
+(setf (gethash "VECTOR-PUSH-EXTEND" *name*) '("FUNCTION"))
+(setf (gethash "VECTORP" *name*) '("FUNCTION"))
+(setf (gethash "WARN" *name*) '("FUNCTION"))
+(setf (gethash "WARNING" *name*) '("CONDITION-TYPE"))
+(setf (gethash "WHEN" *name*) '("MACRO"))
+(setf (gethash "WILD-PATHNAME-P" *name*) '("FUNCTION"))
+(setf (gethash "WITH-ACCESSORS" *name*) '("MACRO"))
+(setf (gethash "WITH-CONDITION-RESTARTS" *name*) '("MACRO"))
+(setf (gethash "WITH-HASH-TABLE-ITERATOR" *name*) '("MACRO"))
+(setf (gethash "WITH-INPUT-FROM-STRING" *name*) '("MACRO"))
+(setf (gethash "WITH-OPEN-FILE" *name*) '("MACRO"))
+(setf (gethash "WITH-OPEN-STREAM" *name*) '("MACRO"))
+(setf (gethash "WITH-OUTPUT-TO-STRING" *name*) '("MACRO"))
+(setf (gethash "WITH-PACKAGE-ITERATOR" *name*) '("MACRO"))
+(setf (gethash "WITH-SIMPLE-RESTART" *name*) '("MACRO"))
+(setf (gethash "WITH-SLOTS" *name*) '("MACRO"))
+(setf (gethash "WRITE-BYTE" *name*) '("FUNCTION"))
+(setf (gethash "WRITE-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "WRITE-LINE" *name*) '("FUNCTION"))
+(setf (gethash "WRITE-SEQUENCE" *name*) '("FUNCTION"))
+(setf (gethash "WRITE-STRING" *name*) '("FUNCTION"))
+(setf (gethash "Y-OR-N-P" *name*) '("FUNCTION"))
+(setf (gethash "YES-OR-NO-P" *name*) '("FUNCTION"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *table*)
   '("" EOL "Variable " "`*BREAK-ON-SIGNALS*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL ""
     EOL "型指定子" EOL "" EOL "" EOL "## " "初期値" "" EOL "" EOL "" "`nil`" "" EOL "" EOL ""
@@ -736,7 +736,7 @@
     "`signal`" "がコード内で、" EOL "どれくらいの種類や数で呼び出されているのか" EOL "気が付いていないかもしれないからです。" EOL "" EOL
     "" "`*break-on-signals*`" "は、" EOL "デバッガーに早く入ることができますが、" EOL "このような場合でも" "`error`"
     "や" "`cerror`" "のような操作で起こる" EOL "追加のデバッガーの起動を排除するようなものではありません。" EOL "" EOL))
-(setf (gethash '("*BREAK-ON-SIGNALS*" . VARIABLE) *table*) (gethash "*BREAK-ON-SIGNALS*" *table*))
+(setf (gethash '("*BREAK-ON-SIGNALS*" . "VARIABLE") *table*) (gethash "*BREAK-ON-SIGNALS*" *table*))
 (setf (gethash "*DEBUG-IO*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -790,7 +790,7 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*DEBUG-IO*" . VARIABLE) *table*) (gethash "*DEBUG-IO*" *table*))
+(setf (gethash '("*DEBUG-IO*" . "VARIABLE") *table*) (gethash "*DEBUG-IO*" *table*))
 (setf (gethash "*DEBUGGER-HOOK*" *table*)
   '("" EOL "Variable " "`*DEBUGGER-HOOK*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL "" EOL
     "2つの引数（コンディションと、" EOL "デバッガーに入った時点での" "`*debugger-hook*`" "の値）" EOL "の関数指定子か、"
@@ -825,7 +825,7 @@
     "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "ユーザーが対話形式で打ち込んだコードを評価するとき、" EOL
     "フック関数がその第2引数である関数に" EOL "" "`*debugger-hook*`" "を束縛すると、" EOL
     "同じ対話的機能を使用して再帰的エラーを処理することができるので" EOL "便利なことがあります。" EOL "" EOL))
-(setf (gethash '("*DEBUGGER-HOOK*" . VARIABLE) *table*) (gethash "*DEBUGGER-HOOK*" *table*))
+(setf (gethash '("*DEBUGGER-HOOK*" . "VARIABLE") *table*) (gethash "*DEBUGGER-HOOK*" *table*))
 (setf (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *table*)
   '("" EOL "Variable " "`DEFAULT-PATHNAME-DEFAULTS`" "" EOL "" EOL "" EOL "## " "値の型" ""
     EOL "" EOL "パス名オブジェクト" EOL "" EOL "" EOL "## " "初期値" "" EOL "" EOL "" "実装依存"
@@ -843,7 +843,7 @@
     "=>  #P\"<MARY>CALENDAR\"" EOL "```" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "実装。"
     EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("*DEFAULT-PATHNAME-DEFAULTS*" . VARIABLE) *table*) (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *table*))
+(setf (gethash '("*DEFAULT-PATHNAME-DEFAULTS*" . "VARIABLE") *table*) (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *table*))
 (setf (gethash "*ERROR-OUTPUT*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -897,7 +897,7 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*ERROR-OUTPUT*" . VARIABLE) *table*) (gethash "*ERROR-OUTPUT*" *table*))
+(setf (gethash '("*ERROR-OUTPUT*" . "VARIABLE") *table*) (gethash "*ERROR-OUTPUT*" *table*))
 (setf (gethash "*GENSYM-COUNTER*" *table*)
   '("" EOL "Variable " "`*GENSYM-COUNTER*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL ""
     EOL "非負の整数" EOL "" EOL "" EOL "## " "初期値" "" EOL "" EOL "" "実装依存" "" EOL "" EOL ""
@@ -908,7 +908,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`gensym`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "" "`gensym`" "の引数に数値を渡す機能は非推奨であり、" EOL "明に" "`*gensym-counter*`"
     "を束縛するのが今では様式的に好まれます。" EOL "" EOL))
-(setf (gethash '("*GENSYM-COUNTER*" . VARIABLE) *table*) (gethash "*GENSYM-COUNTER*" *table*))
+(setf (gethash '("*GENSYM-COUNTER*" . "VARIABLE") *table*) (gethash "*GENSYM-COUNTER*" *table*))
 (setf (gethash "*MACROEXPAND-HOOK*" *table*)
   '("" EOL "Variable " "`*MACROEXPAND-HOOK*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL ""
     EOL "3つの引数（マクロ関数、マクロフォーム、環境オブジェクト）を" EOL "受け付ける関数指定子。" EOL "" EOL "" EOL "## " "初期値"
@@ -933,7 +933,7 @@
     "それらのプログラムは同じLispイメージ上でも正しく実行されないかもしれません。" EOL "そのような理由で、デバッグ用途に限定して使用したほうがよいでしょう。"
     EOL "" EOL "" "`*macroexpand-hook*`" "を自分の関数に置き換えるユーザーは、" EOL "以前のフックの値を保存しておいて、" EOL
     "自分の関数上で以前の値を呼び出すように考える必要があります。" EOL "" EOL))
-(setf (gethash '("*MACROEXPAND-HOOK*" . VARIABLE) *table*) (gethash "*MACROEXPAND-HOOK*" *table*))
+(setf (gethash '("*MACROEXPAND-HOOK*" . "VARIABLE") *table*) (gethash "*MACROEXPAND-HOOK*" *table*))
 (setf (gethash "*PACKAGE*" *table*)
   '("" EOL "Variable " "`*PACKAGE*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL "" EOL
     "パッケージオブジェクト" EOL "" EOL "" EOL "## " "初期値" "" EOL "" EOL "" "`COMMON-LISP-USER`"
@@ -956,22 +956,22 @@
     "" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`compile-file`" "," EOL ""
     "`in-package`" "," EOL "" "`load`" "," EOL "" "`package`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("*PACKAGE*" . VARIABLE) *table*) (gethash "*PACKAGE*" *table*))
+(setf (gethash '("*PACKAGE*" . "VARIABLE") *table*) (gethash "*PACKAGE*" *table*))
 (setf (gethash "*PRINT-ARRAY*" *table*)
   '("" EOL "Variable " "`*PRINT-ARRAY*`" "" EOL "" EOL "" EOL))
-(setf (gethash '("*PRINT-ARRAY*" . VARIABLE) *table*) (gethash "*PRINT-ARRAY*" *table*))
+(setf (gethash '("*PRINT-ARRAY*" . "VARIABLE") *table*) (gethash "*PRINT-ARRAY*" *table*))
 (setf (gethash "*PRINT-CIRCLE*" *table*)
   '("" EOL "Variable " "`*PRINT-CIRCLE*`" "" EOL "" EOL "" EOL))
-(setf (gethash '("*PRINT-CIRCLE*" . VARIABLE) *table*) (gethash "*PRINT-CIRCLE*" *table*))
+(setf (gethash '("*PRINT-CIRCLE*" . "VARIABLE") *table*) (gethash "*PRINT-CIRCLE*" *table*))
 (setf (gethash "*PRINT-ESCAPE*" *table*)
   '("" EOL "Variable " "`*PRINT-ESCAPE*`" "" EOL "" EOL "" EOL))
-(setf (gethash '("*PRINT-ESCAPE*" . VARIABLE) *table*) (gethash "*PRINT-ESCAPE*" *table*))
+(setf (gethash '("*PRINT-ESCAPE*" . "VARIABLE") *table*) (gethash "*PRINT-ESCAPE*" *table*))
 (setf (gethash "*PRINT-LENGTH*" *table*)
   '("" EOL "Variable " "`*PRINT-LEVEL*`" ", " "`*PRINT-LENGTH*`" "" EOL "" EOL "" EOL))
-(setf (gethash '("*PRINT-LENGTH*" . VARIABLE) *table*) (gethash "*PRINT-LENGTH*" *table*))
+(setf (gethash '("*PRINT-LENGTH*" . "VARIABLE") *table*) (gethash "*PRINT-LENGTH*" *table*))
 (setf (gethash "*PRINT-LEVEL*" *table*)
   '("" EOL "Variable " "`*PRINT-LEVEL*`" ", " "`*PRINT-LENGTH*`" "" EOL "" EOL "" EOL))
-(setf (gethash '("*PRINT-LEVEL*" . VARIABLE) *table*) (gethash "*PRINT-LEVEL*" *table*))
+(setf (gethash '("*PRINT-LEVEL*" . "VARIABLE") *table*) (gethash "*PRINT-LEVEL*" *table*))
 (setf (gethash "*QUERY-IO*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -1025,7 +1025,7 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*QUERY-IO*" . VARIABLE) *table*) (gethash "*QUERY-IO*" *table*))
+(setf (gethash '("*QUERY-IO*" . "VARIABLE") *table*) (gethash "*QUERY-IO*" *table*))
 (setf (gethash "*STANDARD-INPUT*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -1079,7 +1079,7 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*STANDARD-INPUT*" . VARIABLE) *table*) (gethash "*STANDARD-INPUT*" *table*))
+(setf (gethash '("*STANDARD-INPUT*" . "VARIABLE") *table*) (gethash "*STANDARD-INPUT*" *table*))
 (setf (gethash "*STANDARD-OUTPUT*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -1133,7 +1133,7 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*STANDARD-OUTPUT*" . VARIABLE) *table*) (gethash "*STANDARD-OUTPUT*" *table*))
+(setf (gethash '("*STANDARD-OUTPUT*" . "VARIABLE") *table*) (gethash "*STANDARD-OUTPUT*" *table*))
 (setf (gethash "*TERMINAL-IO*" *table*)
   '("" EOL "Variable " "`*TERMINAL-IO*`" "" EOL "" EOL "" EOL "## " "値の型" "" EOL "" EOL
     "双方向ストリーム" EOL "" EOL "" EOL "## " "初期値" "" EOL "" EOL "" "実装依存" "ですが、" EOL
@@ -1153,7 +1153,7 @@
     "`*debug-io*`" "," EOL "" "`*error-output*`" "," EOL "" "`*query-io*`" "," EOL ""
     "`*standard-input*`" "," EOL "" "`*standard-output*`" "," EOL "" "`*trace-output*`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("*TERMINAL-IO*" . VARIABLE) *table*) (gethash "*TERMINAL-IO*" *table*))
+(setf (gethash '("*TERMINAL-IO*" . "VARIABLE") *table*) (gethash "*TERMINAL-IO*" *table*))
 (setf (gethash "*TRACE-OUTPUT*" *table*)
   '("" EOL "Variable " "`*DEBUG-IO*`" ", " "`*ERROR-OUTPUT*`" ", " "`*QUERY-IO*`" "," EOL
     " " "`*STANDARD-INPUT*`" ", " "`*STANDARD-OUTPUT*`" ", " "`*TRACE-OUTPUT*`" "" EOL ""
@@ -1207,10 +1207,10 @@
     EOL "そうすることによって" EOL "（" "`*error-output*`" "が" "`*terminal-io*`" "に束縛されているときは）、" EOL
     "" "`*error-output*`" "に送信されたエラーメッセージは、" EOL "通常望まれる形で、" EOL "" "`*terminal-io*`"
     "を経由してユーザーに届きます。" EOL "" EOL))
-(setf (gethash '("*TRACE-OUTPUT*" . VARIABLE) *table*) (gethash "*TRACE-OUTPUT*" *table*))
+(setf (gethash '("*TRACE-OUTPUT*" . "VARIABLE") *table*) (gethash "*TRACE-OUTPUT*" *table*))
 (setf (gethash "ABORT" *table*)
   '("ABORT FUNCTION" EOL "ABORT RESTART" EOL))
-(setf (gethash '("ABORT" . FUNCTION) *table*)
+(setf (gethash '("ABORT" . "FUNCTION") *table*)
   '("" EOL "Function " "`ABORT`" ", " "`CONTINUE`" ", " "`MUFFLE-WARNING`" ", "
     "`STORE-VALUE`" ", " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`abort`" " " "`&optional`" " *condition* => " "`|`" "  " EOL "" "`continue`" " "
@@ -1301,7 +1301,7 @@
     "(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))"
     EOL "```" EOL "" EOL "この仕様書で" "`use-value`" " " "`restart`" "の提供に" EOL
     "要求される関数定義はありません。" EOL "" EOL))
-(setf (gethash '("ABORT" . RESTART) *table*)
+(setf (gethash '("ABORT" . "RESTART") *table*)
   '("" EOL "Restart " "`ABORT`" "" EOL "" EOL "" EOL "## " "要求される引数のデータ" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`abort`" " " "`restart`" "の意味は、"
     EOL "もっとも内側の「コマンドレベル」に戻ることを許すことです。" EOL "実装者は、どんなユーザーコードでも" EOL "常に" "`abort`"
@@ -1331,7 +1331,7 @@
     "`assoc`" "," EOL "" "`pairlis`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "```lisp" EOL "(acons key datum alist) ==  (cons (cons key datum) alist)" EOL "```"
     EOL "" EOL))
-(setf (gethash '("ACONS" . FUNCTION) *table*) (gethash "ACONS" *table*))
+(setf (gethash '("ACONS" . "FUNCTION") *table*) (gethash "ACONS" *table*))
 (setf (gethash "ADD-METHOD" *table*)
   '("" EOL "Standard Generic Function " "`ADD-METHOD`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`add-method`" " *generic-function* *method* => *generic-function*" EOL
@@ -1346,7 +1346,7 @@
     "*method*のラムダリストは、*generic-generic*のラムダリストと一致する必要があり、" EOL "そうでない場合は型" "`error`"
     "のエラーが発生します。" EOL "" EOL "もし*method*が他のジェネリック関数のメソッドオブジェクトであるとき、" EOL "型" "`error`"
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ADD-METHOD" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "ADD-METHOD" *table*))
+(setf (gethash '("ADD-METHOD" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "ADD-METHOD" *table*))
 (setf (gethash "ADJOIN" *table*)
   '("" EOL "Function " "`ADJOIN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`adjoin`" " *item* *list* &key *key* *test* *test-not* => *new-list*" EOL "" EOL ""
@@ -1373,7 +1373,7 @@
     EOL "```lisp" EOL "(adjoin item list :key fn)" EOL
     "  ==  (if (member (fn item) list :key fn) list (cons item list))" EOL "```" EOL ""
     EOL))
-(setf (gethash '("ADJOIN" . FUNCTION) *table*) (gethash "ADJOIN" *table*))
+(setf (gethash '("ADJOIN" . "FUNCTION") *table*) (gethash "ADJOIN" *table*))
 (setf (gethash "ADJUST-ARRAY" *table*)
   '("" EOL "Function " "`ADJUST-ARRAY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`adjust-array`" " *array* *new-dimensions*" EOL " " "`&key`"
@@ -1477,7 +1477,7 @@
     "`adjustable-array-p`" "," EOL "" "`make-array`" "," EOL "" "`array-dimension-limit`"
     "," EOL "" "`array-total-size-limit`" "," EOL "" "`array`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ADJUST-ARRAY" . FUNCTION) *table*) (gethash "ADJUST-ARRAY" *table*))
+(setf (gethash '("ADJUST-ARRAY" . "FUNCTION") *table*) (gethash "ADJUST-ARRAY" *table*))
 (setf (gethash "ADJUSTABLE-ARRAY-P" *table*)
   '("" EOL "Function " "`ADJUSTABLE-ARRAY-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`adjustable-array-p`" " *array* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -1492,7 +1492,7 @@
     "もし引数が配列でないときは型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`adjust-array`" "," EOL "" "`make-array`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ADJUSTABLE-ARRAY-P" . FUNCTION) *table*) (gethash "ADJUSTABLE-ARRAY-P" *table*))
+(setf (gethash '("ADJUSTABLE-ARRAY-P" . "FUNCTION") *table*) (gethash "ADJUSTABLE-ARRAY-P" *table*))
 (setf (gethash "ALLOCATE-INSTANCE" *table*)
   '("" EOL "Standard Generic Function " "`ALLOCATE-INSTANCE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`allocate-instance`"
@@ -1513,7 +1513,7 @@
     "" "7.1. オブジェクトの作成と初期化" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`allocate-instance`" "へメソッドを追加した結果は規定されていません。" EOL
     "この機能は、Metaobject Protocolによって追加されるかもしれません。" EOL "" EOL))
-(setf (gethash '("ALLOCATE-INSTANCE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "ALLOCATE-INSTANCE" *table*))
+(setf (gethash '("ALLOCATE-INSTANCE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "ALLOCATE-INSTANCE" *table*))
 (setf (gethash "ALPHA-CHAR-P" *table*)
   '("" EOL "Function " "`ALPHA-CHAR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`alpha-char-p`" " *character* => generalized-boolean" EOL "" EOL "" EOL "## "
@@ -1529,7 +1529,7 @@
     "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`alphanumericp`" ", "
     "13.1.10. 処理系実装のスクリプトの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("ALPHA-CHAR-P" . FUNCTION) *table*) (gethash "ALPHA-CHAR-P" *table*))
+(setf (gethash '("ALPHA-CHAR-P" . "FUNCTION") *table*) (gethash "ALPHA-CHAR-P" *table*))
 (setf (gethash "ALPHANUMERICP" *table*)
   '("" EOL "Function " "`ALPHANUMERICP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`alphanumericp`" " *character* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -1547,10 +1547,10 @@
     "の" "`A`" "～" "`Z`" "、" "`a`" "～" "`z`" "、" "`0`" "～" "`9`" "は" "英数字" "です。" EOL ""
     EOL "```lisp" EOL "(alphanumericp x)" EOL
     "  == (or (alpha-char-p x) (not (null (digit-char-p x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("ALPHANUMERICP" . FUNCTION) *table*) (gethash "ALPHANUMERICP" *table*))
+(setf (gethash '("ALPHANUMERICP" . "FUNCTION") *table*) (gethash "ALPHANUMERICP" *table*))
 (setf (gethash "AND" *table*)
   '("AND MACRO" EOL "AND TYPE-SPECIFIER" EOL))
-(setf (gethash '("AND" . MACRO) *table*)
+(setf (gethash '("AND" . "MACRO") *table*)
   '("" EOL "Macro " "`AND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`and`"
     " *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*form* - フォーム  " EOL "*result* - 最後の*form*の評価の結果の値か、" EOL "シンボルの" "`nil`" "か" "`t`"
@@ -1574,7 +1574,7 @@
     "," EOL "" "`if`" "," EOL "" "`or`" "," EOL "" "`when`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "```lisp" EOL "(and form) == (let () form)" EOL
     "(and form1 form2 ...) == (when form1 (and form2 ...))" EOL "```" EOL "" EOL))
-(setf (gethash '("AND" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("AND" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`AND`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL "" EOL
     "結合" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`and`" " *typespec\\**" EOL
     "" EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*typespec* - 型指定子" EOL "" EOL "" EOL
@@ -1599,7 +1599,7 @@
     EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "" "`nconc`" "," EOL "" "`concatenate`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("APPEND" . FUNCTION) *table*) (gethash "APPEND" *table*))
+(setf (gethash '("APPEND" . "FUNCTION") *table*) (gethash "APPEND" *table*))
 (setf (gethash "APPLY" *table*)
   '("" EOL "Function " "`APPLY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`apply`" " *function* &rest *args+* => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -1629,7 +1629,7 @@
     "" "`fdefinition`" "," EOL "" "`function`" "," EOL "" "3.1. 評価" "," EOL ""
     "5.1.2.5. APPLYの`place`フォーム" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("APPLY" . FUNCTION) *table*) (gethash "APPLY" *table*))
+(setf (gethash '("APPLY" . "FUNCTION") *table*) (gethash "APPLY" *table*))
 (setf (gethash "AREF" *table*)
   '("" EOL "Accessor " "`AREF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`aref`"
     " *array* " "`&rest`" " *subscripts* => *element*  " EOL "(" "`setf`" " (" "`aref`"
@@ -1656,7 +1656,7 @@
     "" EOL "" EOL "" "`bit`" "," EOL "" "`char`" "," EOL "" "`elt`" "," EOL ""
     "`row-major-aref`" "," EOL "" "`svref`" "," EOL "" "3.2.1. コンパイラーの用語" "" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("AREF" . ACCESSOR) *table*) (gethash "AREF" *table*))
+(setf (gethash '("AREF" . "ACCESSOR") *table*) (gethash "AREF" *table*))
 (setf (gethash "ARRAY" *table*)
   '("" EOL "System Class " "`ARRAY`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`array`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
@@ -1690,7 +1690,7 @@
     "`(array character)`" "は、型" "`(array t)`" "のサブタイプではありません。" EOL "それらの2つの集合は互いに素であり、"
     EOL "なぜなら型" "`(array character)`" "は文字を格納できる全ての集合ではなく、" EOL
     "厳密に文字を格納できてその他のオブジェクトは格納できないという" EOL "特定化された配列の集合だからです。" EOL "" EOL))
-(setf (gethash '("ARRAY" . SYSTEM-CLASS) *table*) (gethash "ARRAY" *table*))
+(setf (gethash '("ARRAY" . "SYSTEM-CLASS") *table*) (gethash "ARRAY" *table*))
 (setf (gethash "ARRAY-DIMENSION" *table*)
   '("" EOL "Function " "`ARRAY-DIMENSION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`array-dimension`" " *array* *axis-number* => *dimension*" EOL "" EOL "" EOL
@@ -1704,14 +1704,14 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`array-dimensions`" "," EOL "" "`length`" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(array-dimension array n) == (nth n (array-dimensions array))" EOL "```" EOL "" EOL))
-(setf (gethash '("ARRAY-DIMENSION" . FUNCTION) *table*) (gethash "ARRAY-DIMENSION" *table*))
+(setf (gethash '("ARRAY-DIMENSION" . "FUNCTION") *table*) (gethash "ARRAY-DIMENSION" *table*))
 (setf (gethash "ARRAY-DIMENSION-LIMIT" *table*)
   '("" EOL "Constant Variable " "`ARRAY-DIMENSION-LIMIT`" "" EOL "" EOL "" EOL "## "
     "定数値" "" EOL "" EOL "正の" "`fixmun`" "であり、" EOL "正確な値は" "実装依存" "ですが、" EOL "" "`1024`"
     "より小さい値ではありません。" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "配列の各個別の要素の排他的上限値です。" EOL
     "" EOL "" EOL "## " "例文" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`make-array`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-DIMENSION-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "ARRAY-DIMENSION-LIMIT" *table*))
+(setf (gethash '("ARRAY-DIMENSION-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "ARRAY-DIMENSION-LIMIT" *table*))
 (setf (gethash "ARRAY-DIMENSIONS" *table*)
   '("" EOL "Function " "`ARRAY-DIMENSIONS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`array-dimensions`" " *array* => *dimensions*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -1725,7 +1725,7 @@
     "もし引数が配列ではなかったとき、型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`array-dimension`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("ARRAY-DIMENSIONS" . FUNCTION) *table*) (gethash "ARRAY-DIMENSIONS" *table*))
+(setf (gethash '("ARRAY-DIMENSIONS" . "FUNCTION") *table*) (gethash "ARRAY-DIMENSIONS" *table*))
 (setf (gethash "ARRAY-DISPLACEMENT" *table*)
   '("" EOL "Function " "`ARRAY-DISPLACEMENT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`array-displacement`" " *array* => *displaced-to*, *displaced-index-offset*"
@@ -1750,7 +1750,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "もし*array*が配列ではないとき、型"
     "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-array`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-DISPLACEMENT" . FUNCTION) *table*) (gethash "ARRAY-DISPLACEMENT" *table*))
+(setf (gethash '("ARRAY-DISPLACEMENT" . "FUNCTION") *table*) (gethash "ARRAY-DISPLACEMENT" *table*))
 (setf (gethash "ARRAY-ELEMENT-TYPE" *table*)
   '("" EOL "Function " "`ARRAY-ELEMENT-TYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`array-element-type`" " *array* => *typespec*" EOL "" EOL "" EOL "## "
@@ -1770,7 +1770,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`array`" "," EOL "" "`make-array`" ","
     EOL "" "`subtypep`" "," EOL "" "`upgraded-array-element-type`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-ELEMENT-TYPE" . FUNCTION) *table*) (gethash "ARRAY-ELEMENT-TYPE" *table*))
+(setf (gethash '("ARRAY-ELEMENT-TYPE" . "FUNCTION") *table*) (gethash "ARRAY-ELEMENT-TYPE" *table*))
 (setf (gethash "ARRAY-HAS-FILL-POINTER-P" *table*)
   '("" EOL "Function " "`ARRAY-HAS-FILL-POINTER-P`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`array-has-fill-pointer-p`" " *array* => *generalized-boolean*" EOL ""
@@ -1789,7 +1789,7 @@
     "" EOL "" EOL "配列のランクが" "`1`" "以外のときは" "fill-pointer" "を持つことができないため、" EOL
     "引数がそのような配列であったときは、" EOL "" "`array-has-fill-pointer-p`" "は常に" "`nil`" "を返却します。" EOL
     "" EOL))
-(setf (gethash '("ARRAY-HAS-FILL-POINTER-P" . FUNCTION) *table*) (gethash "ARRAY-HAS-FILL-POINTER-P" *table*))
+(setf (gethash '("ARRAY-HAS-FILL-POINTER-P" . "FUNCTION") *table*) (gethash "ARRAY-HAS-FILL-POINTER-P" *table*))
 (setf (gethash "ARRAY-IN-BOUNDS-P" *table*)
   '("" EOL "Function " "`ARRAY-IN-BOUNDS-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`array-in-bounds-p`" " *array* " "`&rest`"
@@ -1809,7 +1809,7 @@
     "==  (and (not (some #'minusp (list subscripts)))" EOL
     "        (every #'< (list subscripts) (array-dimensions array)))" EOL "```" EOL ""
     EOL))
-(setf (gethash '("ARRAY-IN-BOUNDS-P" . FUNCTION) *table*) (gethash "ARRAY-IN-BOUNDS-P" *table*))
+(setf (gethash '("ARRAY-IN-BOUNDS-P" . "FUNCTION") *table*) (gethash "ARRAY-IN-BOUNDS-P" *table*))
 (setf (gethash "ARRAY-RANK" *table*)
   '("" EOL "Function " "`ARRAY-RANK`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`array-rank`" " *array* => *rank*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -1821,14 +1821,14 @@
     "例外" "" EOL "" EOL "もし引数が配列ではなかったとき、型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`array-rank-limit`" "," EOL "" "`make-array`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-RANK" . FUNCTION) *table*) (gethash "ARRAY-RANK" *table*))
+(setf (gethash '("ARRAY-RANK" . "FUNCTION") *table*) (gethash "ARRAY-RANK" *table*))
 (setf (gethash "ARRAY-RANK-LIMIT" *table*)
   '("" EOL "Constant Variable " "`ARRAY-RANK-LIMIT`" "" EOL "" EOL "" EOL "## " "定数値" ""
     EOL "" EOL "正の" "`fixmun`" "であり、" EOL "正確な値は" "実装依存" "ですが、" EOL "" "`8`"
     "より小さい値ではありません。" EOL "" EOL "" EOL "Description:" EOL "" EOL "配列のランクの排他的上限値です。" EOL
     "" EOL "" EOL "## " "例文" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`make-array`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-RANK-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "ARRAY-RANK-LIMIT" *table*))
+(setf (gethash '("ARRAY-RANK-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "ARRAY-RANK-LIMIT" *table*))
 (setf (gethash "ARRAY-ROW-MAJOR-INDEX" *table*)
   '("" EOL "Function " "`ARRAY-ROW-MAJOR-INDEX`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`array-row-major-index`" " *array* " "`&rest`" " *subscripts* => *index*"
@@ -1853,7 +1853,7 @@
     "                            (* (car x) (apply #'* (cdr y))))" EOL
     "                       subscripts" EOL
     "                       (array-dimensions a))))" EOL "```" EOL "" EOL))
-(setf (gethash '("ARRAY-ROW-MAJOR-INDEX" . FUNCTION) *table*) (gethash "ARRAY-ROW-MAJOR-INDEX" *table*))
+(setf (gethash '("ARRAY-ROW-MAJOR-INDEX" . "FUNCTION") *table*) (gethash "ARRAY-ROW-MAJOR-INDEX" *table*))
 (setf (gethash "ARRAY-TOTAL-SIZE" *table*)
   '("" EOL "Function " "`ARRAY-TOTAL-SIZE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`array-total-size`" " *array* => *size*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -1873,7 +1873,7 @@
     "ゼロ次元の配列に対する配列の全てのサイズは" "`1`" "です。" EOL "" EOL "```lisp" EOL "(array-total-size x)"
     EOL "   ==  (apply #'* (array-dimensions x))" EOL
     "   ==  (reduce #'* (array-dimensions x))" EOL "```" EOL "" EOL))
-(setf (gethash '("ARRAY-TOTAL-SIZE" . FUNCTION) *table*) (gethash "ARRAY-TOTAL-SIZE" *table*))
+(setf (gethash '("ARRAY-TOTAL-SIZE" . "FUNCTION") *table*) (gethash "ARRAY-TOTAL-SIZE" *table*))
 (setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *table*)
   '("" EOL "Constant Variable " "`ARRAY-TOTAL-SIZE-LIMIT`" "" EOL "" EOL "" EOL "## "
     "定数値" "" EOL "" EOL "正の" "`fixmun`" "であり、" EOL "正確な値は" "実装依存" "ですが、" EOL "" "`1024`"
@@ -1883,7 +1883,7 @@
     "それらの可能な制限値の最も小さいものになります。" EOL "" EOL "" EOL "## " "例文" "" EOL "" EOL "なし。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-array`" "," EOL ""
     "`array-element-type`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ARRAY-TOTAL-SIZE-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "ARRAY-TOTAL-SIZE-LIMIT" *table*))
+(setf (gethash '("ARRAY-TOTAL-SIZE-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "ARRAY-TOTAL-SIZE-LIMIT" *table*))
 (setf (gethash "ARRAYP" *table*)
   '("" EOL "Function " "`ARRAYP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`arrayp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -1897,7 +1897,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`typep`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(arrayp object) ==  (typep object 'array)" EOL "```" EOL "" EOL))
-(setf (gethash '("ARRAYP" . FUNCTION) *table*) (gethash "ARRAYP" *table*))
+(setf (gethash '("ARRAYP" . "FUNCTION") *table*) (gethash "ARRAYP" *table*))
 (setf (gethash "ASSERT" *table*)
   '("" EOL "Macro " "`ASSERT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`assert`" " *test-form* [(*place\\**) [*datum-form* *argument-form\\**]]  " EOL
@@ -1950,7 +1950,7 @@
     "*test-form*を含める必要はなく、" EOL "*place*はメッセージに含めるべきではありませんが、" EOL
     "利用可能なユーザーの情報はしっかりと見ておく必要があります。" EOL "もしユーザーが" "`continue`" "コマンドを提供していたら、" EOL
     "参照されているどんな値も変更できます。" EOL "この詳細は実装のユーザーインターフェイスのスタイルに依存します。" EOL "" EOL))
-(setf (gethash '("ASSERT" . MACRO) *table*) (gethash "ASSERT" *table*))
+(setf (gethash '("ASSERT" . "MACRO") *table*) (gethash "ASSERT" *table*))
 (setf (gethash "ASSOC" *table*)
   '("" EOL "Function " "`ASSOC`" ", " "`ASSOC-IF`" ", " "`ASSOC-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`assoc`"
@@ -1997,7 +1997,7 @@
     "かつ*item*が" "`nil`" "のとき、" EOL "" "`find`" "の場合は、" "`nil`" "の" "`car`" "を計算し、" EOL
     "*item*と同じということで" "`nil`" "を返却しますが、" EOL "一方" "`assoc`" "は、" EOL "*alist*の" "`nil`"
     "を無視するため、" EOL "継続して" "`car`" "が" "`nil`" "である実際のコンスを探します。" EOL "" EOL))
-(setf (gethash '("ASSOC" . FUNCTION) *table*) (gethash "ASSOC" *table*))
+(setf (gethash '("ASSOC" . "FUNCTION") *table*) (gethash "ASSOC" *table*))
 (setf (gethash "ASSOC-IF" *table*)
   '("" EOL "Function " "`ASSOC`" ", " "`ASSOC-IF`" ", " "`ASSOC-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`assoc`"
@@ -2044,7 +2044,7 @@
     "かつ*item*が" "`nil`" "のとき、" EOL "" "`find`" "の場合は、" "`nil`" "の" "`car`" "を計算し、" EOL
     "*item*と同じということで" "`nil`" "を返却しますが、" EOL "一方" "`assoc`" "は、" EOL "*alist*の" "`nil`"
     "を無視するため、" EOL "継続して" "`car`" "が" "`nil`" "である実際のコンスを探します。" EOL "" EOL))
-(setf (gethash '("ASSOC-IF" . FUNCTION) *table*) (gethash "ASSOC-IF" *table*))
+(setf (gethash '("ASSOC-IF" . "FUNCTION") *table*) (gethash "ASSOC-IF" *table*))
 (setf (gethash "ASSOC-IF-NOT" *table*)
   '("" EOL "Function " "`ASSOC`" ", " "`ASSOC-IF`" ", " "`ASSOC-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`assoc`"
@@ -2091,10 +2091,10 @@
     "かつ*item*が" "`nil`" "のとき、" EOL "" "`find`" "の場合は、" "`nil`" "の" "`car`" "を計算し、" EOL
     "*item*と同じということで" "`nil`" "を返却しますが、" EOL "一方" "`assoc`" "は、" EOL "*alist*の" "`nil`"
     "を無視するため、" EOL "継続して" "`car`" "が" "`nil`" "である実際のコンスを探します。" EOL "" EOL))
-(setf (gethash '("ASSOC-IF-NOT" . FUNCTION) *table*) (gethash "ASSOC-IF-NOT" *table*))
+(setf (gethash '("ASSOC-IF-NOT" . "FUNCTION") *table*) (gethash "ASSOC-IF-NOT" *table*))
 (setf (gethash "ATOM" *table*)
   '("ATOM FUNCTION" EOL "ATOM TYPE" EOL))
-(setf (gethash '("ATOM" . FUNCTION) *table*)
+(setf (gethash '("ATOM" . "FUNCTION") *table*)
   '("" EOL "Function " "`ATOM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`atom`"
     " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*object* - オブジェクト  " EOL "*generalized-boolean* - " "generalized-boolean" "" EOL ""
@@ -2106,7 +2106,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "```lisp" EOL "(atom object) ==  (typep object 'atom) ==  (not (consp object))" EOL
     "==  (not (typep object 'cons)) ==  (typep object '(not cons))" EOL "```" EOL "" EOL))
-(setf (gethash '("ATOM" . TYPE) *table*)
+(setf (gethash '("ATOM" . "TYPE") *table*)
   '("" EOL "Type " "`ATOM`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL ""
     "`atom`" ", " "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`(not cons)`"
     "と同じです。" EOL "" EOL))
@@ -2129,7 +2129,7 @@
     "は8bitの文字を格納できるようにするかもしれません。" EOL "このような実装では、型" "`base-char`" "は型" "`character`"
     "のサブタイプとなります。" EOL "" EOL "型" "`standard-char`" "は、型" "`base-char`" "のサブタイプとなります。"
     EOL "" EOL))
-(setf (gethash '("BASE-CHAR" . TYPE) *table*) (gethash "BASE-CHAR" *table*))
+(setf (gethash '("BASE-CHAR" . "TYPE") *table*) (gethash "BASE-CHAR" *table*))
 (setf (gethash "BASE-STRING" *table*)
   '("" EOL "Type " "`BASE-STRING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL
     "" "`base-string`" ", " "`string`" ", " "`vector`" "," EOL "" "`array`" ", "
@@ -2141,7 +2141,7 @@
     "*size* - 非負の" "`fixnum`" "か、シンボル" "`*`" "" EOL "" EOL "" EOL "## " "型指定子の定義" "" EOL
     "" EOL "型" "`(vector base-char size)`" "と同一です。" EOL "このとき、*size*は" "基本文字列"
     "の集合のサイズです。" EOL "" EOL))
-(setf (gethash '("BASE-STRING" . TYPE) *table*) (gethash "BASE-STRING" *table*))
+(setf (gethash '("BASE-STRING" . "TYPE") *table*) (gethash "BASE-STRING" *table*))
 (setf (gethash "BIT" *table*)
   '("" EOL "Accessor " "`BIT`" ", " "`SBIT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`bit`" " *bit-array* " "`&rest`" " *subscripts* => *bit*  " EOL "" "`sbit`"
@@ -2163,7 +2163,7 @@
     "に似ていますが、" EOL "*array*がそれぞれビット配列と" "`simple`" "のビット配列であることを" EOL "要求することが違っています。"
     EOL "" EOL "" "`bit`" "と" "`sbit`" "は" EOL "" "`char`" "と" "`schar`" "とは似ておらず、" EOL
     "最初の引数はどんなランクの配列でも許されます。" EOL "" EOL))
-(setf (gethash '("BIT" . ACCESSOR) *table*) (gethash "BIT" *table*))
+(setf (gethash '("BIT" . "ACCESSOR") *table*) (gethash "BIT" *table*))
 (setf (gethash "BIT-AND" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2221,7 +2221,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-AND" . FUNCTION) *table*) (gethash "BIT-AND" *table*))
+(setf (gethash '("BIT-AND" . "FUNCTION") *table*) (gethash "BIT-AND" *table*))
 (setf (gethash "BIT-ANDC1" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2279,7 +2279,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-ANDC1" . FUNCTION) *table*) (gethash "BIT-ANDC1" *table*))
+(setf (gethash '("BIT-ANDC1" . "FUNCTION") *table*) (gethash "BIT-ANDC1" *table*))
 (setf (gethash "BIT-ANDC2" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2337,7 +2337,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-ANDC2" . FUNCTION) *table*) (gethash "BIT-ANDC2" *table*))
+(setf (gethash '("BIT-ANDC2" . "FUNCTION") *table*) (gethash "BIT-ANDC2" *table*))
 (setf (gethash "BIT-EQV" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2395,7 +2395,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-EQV" . FUNCTION) *table*) (gethash "BIT-EQV" *table*))
+(setf (gethash '("BIT-EQV" . "FUNCTION") *table*) (gethash "BIT-EQV" *table*))
 (setf (gethash "BIT-IOR" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2453,7 +2453,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-IOR" . FUNCTION) *table*) (gethash "BIT-IOR" *table*))
+(setf (gethash '("BIT-IOR" . "FUNCTION") *table*) (gethash "BIT-IOR" *table*))
 (setf (gethash "BIT-NAND" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2511,7 +2511,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-NAND" . FUNCTION) *table*) (gethash "BIT-NAND" *table*))
+(setf (gethash '("BIT-NAND" . "FUNCTION") *table*) (gethash "BIT-NAND" *table*))
 (setf (gethash "BIT-NOR" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2569,7 +2569,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-NOR" . FUNCTION) *table*) (gethash "BIT-NOR" *table*))
+(setf (gethash '("BIT-NOR" . "FUNCTION") *table*) (gethash "BIT-NOR" *table*))
 (setf (gethash "BIT-NOT" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2627,7 +2627,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-NOT" . FUNCTION) *table*) (gethash "BIT-NOT" *table*))
+(setf (gethash '("BIT-NOT" . "FUNCTION") *table*) (gethash "BIT-NOT" *table*))
 (setf (gethash "BIT-ORC1" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2685,7 +2685,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-ORC1" . FUNCTION) *table*) (gethash "BIT-ORC1" *table*))
+(setf (gethash '("BIT-ORC1" . "FUNCTION") *table*) (gethash "BIT-ORC1" *table*))
 (setf (gethash "BIT-ORC2" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2743,7 +2743,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-ORC2" . FUNCTION) *table*) (gethash "BIT-ORC2" *table*))
+(setf (gethash '("BIT-ORC2" . "FUNCTION") *table*) (gethash "BIT-ORC2" *table*))
 (setf (gethash "BIT-VECTOR" *table*)
   '("" EOL "System Class " "`BIT-VECTOR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`bit-vector`" "," EOL "" "`vector`" "," EOL "" "`array`" "," EOL ""
@@ -2757,7 +2757,7 @@
     "つまりサイズが*size*の" "`bit-vector`" "の集合です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "" "2.4.8.4. シャープサイン アスタリスク" "," EOL "" "22.1.3.6. Bit-Vectorの印字" "," EOL ""
     "15.1.2.2. 特定化された配列の種類の要求" "" EOL "" EOL))
-(setf (gethash '("BIT-VECTOR" . SYSTEM-CLASS) *table*) (gethash "BIT-VECTOR" *table*))
+(setf (gethash '("BIT-VECTOR" . "SYSTEM-CLASS") *table*) (gethash "BIT-VECTOR" *table*))
 (setf (gethash "BIT-VECTOR-P" *table*)
   '("" EOL "Function " "`BIT-VECTOR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`bit-vector-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -2772,7 +2772,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`typep`" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(bit-vector-p object) == (typep object 'bit-vector)" EOL "```" EOL "" EOL))
-(setf (gethash '("BIT-VECTOR-P" . FUNCTION) *table*) (gethash "BIT-VECTOR-P" *table*))
+(setf (gethash '("BIT-VECTOR-P" . "FUNCTION") *table*) (gethash "BIT-VECTOR-P" *table*))
 (setf (gethash "BIT-XOR" *table*)
   '("" EOL "Function " "`BIT-AND`" ", " "`BIT-ANDC1`" ", " "`BIT-ANDC2`" ", " "`BIT-EQV`"
     "," EOL "" "`BIT-IOR`" ", " "`BIT-NAND`" ", " "`BIT-NOR`" ", " "`BIT-NOT`" "," EOL ""
@@ -2830,7 +2830,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`lognot`" "," EOL "" "`logand`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BIT-XOR" . FUNCTION) *table*) (gethash "BIT-XOR" *table*))
+(setf (gethash '("BIT-XOR" . "FUNCTION") *table*) (gethash "BIT-XOR" *table*))
 (setf (gethash "BLOCK" *table*)
   '("" EOL "Special Operator " "`BLOCK`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`block`" " *name* *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -2856,7 +2856,7 @@
     EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`return`" "," EOL "" "`return-from`"
     "," EOL "" "3.1. 評価" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BLOCK" . SPECIAL-OPERATOR) *table*) (gethash "BLOCK" *table*))
+(setf (gethash '("BLOCK" . "SPECIAL-OPERATOR") *table*) (gethash "BLOCK" *table*))
 (setf (gethash "BOOLEAN" *table*)
   '("" EOL "Type " "`BOOLEAN`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL ""
     "`boolean`" "," EOL "" "`symbol`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" ""
@@ -2868,7 +2868,7 @@
     "では" "`t`" "だけではなく、" EOL "" "`nil`" "以外の値が*true*と見なされます。" EOL "" EOL "しかし慣例としてシンボル"
     "`t`" "は" EOL "" "generalized-boolean" "であっても、" EOL
     "他に良い選択肢がない場合に使用する標準的な値であるとしています。" EOL "" EOL))
-(setf (gethash '("BOOLEAN" . TYPE) *table*) (gethash "BOOLEAN" *table*))
+(setf (gethash '("BOOLEAN" . "TYPE") *table*) (gethash "BOOLEAN" *table*))
 (setf (gethash "BOTH-CASE-P" *table*)
   '("" EOL "Function " "`UPPER-CASE-P`" ", " "`LOWER-CASE-P`" ", " "`BOTH-CASE-P`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`upper-case-p`"
@@ -2891,7 +2891,7 @@
     "" EOL "" EOL "" "`char-upcase`" ", " "`char-downcase`" ", " "13.1.4.3. 文字のケース" ", "
     "13.1.10. 処理系実装のスクリプトの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("BOTH-CASE-P" . FUNCTION) *table*) (gethash "BOTH-CASE-P" *table*))
+(setf (gethash '("BOTH-CASE-P" . "FUNCTION") *table*) (gethash "BOTH-CASE-P" *table*))
 (setf (gethash "BOUNDP" *table*)
   '("" EOL "Function " "`BOUNDP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`boundp`" " *symbol* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -2906,7 +2906,7 @@
     "参考" "" EOL "" EOL "" "`set`" "," EOL "" "`setq`" "," EOL "" "`symbol-value`" "," EOL
     "" "`makunbound`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "関数" "`boundp`"
     "はグローバル環境下において" EOL "シンボルが値を持っているかどうかのみを決定します。" EOL "レキシカルな束縛は無視されます。" EOL "" EOL))
-(setf (gethash '("BOUNDP" . FUNCTION) *table*) (gethash "BOUNDP" *table*))
+(setf (gethash '("BOUNDP" . "FUNCTION") *table*) (gethash "BOUNDP" *table*))
 (setf (gethash "BREAK" *table*)
   '("" EOL "Function " "`BREAK`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`break`" " " "`&optional`" " *format-control* " "`&rest`" " *format-arguments*" EOL
@@ -2941,7 +2941,7 @@
     "                          :format-control format-control" EOL
     "                          :format-arguments format-arguments))))" EOL "  nil)" EOL
     "```" EOL "" EOL))
-(setf (gethash '("BREAK" . FUNCTION) *table*) (gethash "BREAK" *table*))
+(setf (gethash '("BREAK" . "FUNCTION") *table*) (gethash "BREAK" *table*))
 (setf (gethash "BROADCAST-STREAM" *table*)
   '("" EOL "System Class " "`BROADCAST-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`broadcast-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL
@@ -2972,7 +2972,7 @@
     "それ以前のストリームに対して行った操作の全ての結果の値は破棄されます。" EOL "もしストリームの要素が存在しないときは、" EOL "返却値は" "実装依存"
     "です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`broadcast-stream-streams`" ","
     EOL "" "`make-broadcast-stream`" "" EOL "" EOL))
-(setf (gethash '("BROADCAST-STREAM" . SYSTEM-CLASS) *table*) (gethash "BROADCAST-STREAM" *table*))
+(setf (gethash '("BROADCAST-STREAM" . "SYSTEM-CLASS") *table*) (gethash "BROADCAST-STREAM" *table*))
 (setf (gethash "BROADCAST-STREAM-STREAMS" *table*)
   '("" EOL "Function " "`BROADCAST-STREAM-STREAMS`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`broadcast-stream-streams`" " *broadcast-stream* => *streams*" EOL ""
@@ -2982,7 +2982,7 @@
     EOL "## " "例文" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("BROADCAST-STREAM-STREAMS" . FUNCTION) *table*) (gethash "BROADCAST-STREAM-STREAMS" *table*))
+(setf (gethash '("BROADCAST-STREAM-STREAMS" . "FUNCTION") *table*) (gethash "BROADCAST-STREAM-STREAMS" *table*))
 (setf (gethash "BUILT-IN-CLASS" *table*)
   '("" EOL "System Class " "`BUILT-IN-CLASS`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`built-in-class`" "," EOL "" "`class`" "," EOL "" "`standard-object`"
@@ -2994,7 +2994,7 @@
     "のエラーが発生します。" EOL "組み込みクラスを再定義するか、" EOL "組み込みクラスのインスタンスのクラスを" EOL "" "`change-class`"
     "によって変更しようとしたときは、" EOL "型" "`error`" "のエラーが発生します。" EOL
     "しかし、組み込みクラスはメソッドの特定パラメーターに使用できます。" EOL "" EOL))
-(setf (gethash '("BUILT-IN-CLASS" . SYSTEM-CLASS) *table*) (gethash "BUILT-IN-CLASS" *table*))
+(setf (gethash '("BUILT-IN-CLASS" . "SYSTEM-CLASS") *table*) (gethash "BUILT-IN-CLASS" *table*))
 (setf (gethash "BUTLAST" *table*)
   '("" EOL "Function " "`BUTLAST`" ", " "`NBUTLAST`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`butlast`" " *list* &optional *n* => *result-list*  " EOL ""
@@ -3021,7 +3021,7 @@
     "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "```lisp" EOL "(butlast list n) == (ldiff list (last list n))" EOL
     "```" EOL "" EOL))
-(setf (gethash '("BUTLAST" . FUNCTION) *table*) (gethash "BUTLAST" *table*))
+(setf (gethash '("BUTLAST" . "FUNCTION") *table*) (gethash "BUTLAST" *table*))
 (setf (gethash "CAAAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3119,7 +3119,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAAAAR" . ACCESSOR) *table*) (gethash "CAAAAR" *table*))
+(setf (gethash '("CAAAAR" . "ACCESSOR") *table*) (gethash "CAAAAR" *table*))
 (setf (gethash "CAAADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3217,7 +3217,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAAADR" . ACCESSOR) *table*) (gethash "CAAADR" *table*))
+(setf (gethash '("CAAADR" . "ACCESSOR") *table*) (gethash "CAAADR" *table*))
 (setf (gethash "CAAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3315,7 +3315,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAAAR" . ACCESSOR) *table*) (gethash "CAAAR" *table*))
+(setf (gethash '("CAAAR" . "ACCESSOR") *table*) (gethash "CAAAR" *table*))
 (setf (gethash "CAADAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3413,7 +3413,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAADAR" . ACCESSOR) *table*) (gethash "CAADAR" *table*))
+(setf (gethash '("CAADAR" . "ACCESSOR") *table*) (gethash "CAADAR" *table*))
 (setf (gethash "CAADDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3511,7 +3511,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAADDR" . ACCESSOR) *table*) (gethash "CAADDR" *table*))
+(setf (gethash '("CAADDR" . "ACCESSOR") *table*) (gethash "CAADDR" *table*))
 (setf (gethash "CAADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3609,7 +3609,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAADR" . ACCESSOR) *table*) (gethash "CAADR" *table*))
+(setf (gethash '("CAADR" . "ACCESSOR") *table*) (gethash "CAADR" *table*))
 (setf (gethash "CAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3707,7 +3707,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAAR" . ACCESSOR) *table*) (gethash "CAAR" *table*))
+(setf (gethash '("CAAR" . "ACCESSOR") *table*) (gethash "CAAR" *table*))
 (setf (gethash "CADAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3805,7 +3805,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADAAR" . ACCESSOR) *table*) (gethash "CADAAR" *table*))
+(setf (gethash '("CADAAR" . "ACCESSOR") *table*) (gethash "CADAAR" *table*))
 (setf (gethash "CADADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -3903,7 +3903,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADADR" . ACCESSOR) *table*) (gethash "CADADR" *table*))
+(setf (gethash '("CADADR" . "ACCESSOR") *table*) (gethash "CADADR" *table*))
 (setf (gethash "CADAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4001,7 +4001,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADAR" . ACCESSOR) *table*) (gethash "CADAR" *table*))
+(setf (gethash '("CADAR" . "ACCESSOR") *table*) (gethash "CADAR" *table*))
 (setf (gethash "CADDAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4099,7 +4099,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADDAR" . ACCESSOR) *table*) (gethash "CADDAR" *table*))
+(setf (gethash '("CADDAR" . "ACCESSOR") *table*) (gethash "CADDAR" *table*))
 (setf (gethash "CADDDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4197,7 +4197,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADDDR" . ACCESSOR) *table*) (gethash "CADDDR" *table*))
+(setf (gethash '("CADDDR" . "ACCESSOR") *table*) (gethash "CADDDR" *table*))
 (setf (gethash "CADDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4295,7 +4295,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADDR" . ACCESSOR) *table*) (gethash "CADDR" *table*))
+(setf (gethash '("CADDR" . "ACCESSOR") *table*) (gethash "CADDR" *table*))
 (setf (gethash "CADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4393,7 +4393,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CADR" . ACCESSOR) *table*) (gethash "CADR" *table*))
+(setf (gethash '("CADR" . "ACCESSOR") *table*) (gethash "CADR" *table*))
 (setf (gethash "CALL-ARGUMENTS-LIMIT" *table*)
   '("" EOL "Constant Variable " "`CALL-ARGUMENTS-LIMIT`" "" EOL "" EOL "" EOL "## " "定数値"
     "" EOL "" EOL "整数であり、" EOL "" "`50`" "より小さくはなく、" EOL "少なくとも"
@@ -4402,7 +4402,7 @@
     EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`lambda-parameters-limit`" "," EOL "" "`multiple-values-limit`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CALL-ARGUMENTS-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "CALL-ARGUMENTS-LIMIT" *table*))
+(setf (gethash '("CALL-ARGUMENTS-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "CALL-ARGUMENTS-LIMIT" *table*))
 (setf (gethash "CALL-METHOD" *table*)
   '("" EOL "Local Macro " "`CALL-METHOD`" ", " "`MAKE-METHOD`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`call-method`"
@@ -4437,7 +4437,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`call-next-method`" "," EOL "" "`define-method-combination`" "," EOL ""
     "`next-method-p`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CALL-METHOD" . LOCAL-MACRO) *table*) (gethash "CALL-METHOD" *table*))
+(setf (gethash '("CALL-METHOD" . "LOCAL-MACRO") *table*) (gethash "CALL-METHOD" *table*))
 (setf (gethash "CALL-NEXT-METHOD" *table*)
   '("" EOL "Local Function " "`CALL-NEXT-METHOD`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`call-next-method`" " &rest *args* => *result\\**" EOL "" EOL "" EOL "## "
@@ -4474,7 +4474,7 @@
     "7.6.6. メソッドの選択とコンビネーション" "," EOL "" "7.6.6.2. Standard Method-Combination" "," EOL
     "" "7.6.6.4. 組み込みのMethod-Combination" "," EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("CALL-NEXT-METHOD" . LOCAL-FUNCTION) *table*) (gethash "CALL-NEXT-METHOD" *table*))
+(setf (gethash '("CALL-NEXT-METHOD" . "LOCAL-FUNCTION") *table*) (gethash "CALL-NEXT-METHOD" *table*))
 (setf (gethash "CAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4572,7 +4572,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CAR" . ACCESSOR) *table*) (gethash "CAR" *table*))
+(setf (gethash '("CAR" . "ACCESSOR") *table*) (gethash "CAR" *table*))
 (setf (gethash "CASE" *table*)
   '("" EOL "Macro " "`CASE`" ", " "`CCASE`" ", " "`ECASE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`case`" " *keyform* " "`{`" "*normal-clause*" "`}`"
@@ -4641,7 +4641,7 @@
     "`ccase`" "によって使われる特定のエラーメッセージは、" EOL "実装によって変わります。" EOL
     "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`case`" "の*otherwise-clause*で" EOL
     "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("CASE" . MACRO) *table*) (gethash "CASE" *table*))
+(setf (gethash '("CASE" . "MACRO") *table*) (gethash "CASE" *table*))
 (setf (gethash "CATCH" *table*)
   '("" EOL "Special Operator " "`CATCH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`catch`" " *tag* *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -4675,7 +4675,7 @@
     "慣例として*tag*にはシンボルが使われますが、どんなオブジェクトで許されます。" EOL "しかし比較には" "`eq`"
     "が用いられますので、数は使うべきではありません。" EOL "" EOL "" "`catch`" "と" "`block`" "の違いは、" EOL ""
     "`catch`" "のタグは動的スコープであるのに対して、" EOL "" "`block`" "の名前はレキシカルスコープです。" EOL "" EOL))
-(setf (gethash '("CATCH" . SPECIAL-OPERATOR) *table*) (gethash "CATCH" *table*))
+(setf (gethash '("CATCH" . "SPECIAL-OPERATOR") *table*) (gethash "CATCH" *table*))
 (setf (gethash "CCASE" *table*)
   '("" EOL "Macro " "`CASE`" ", " "`CCASE`" ", " "`ECASE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`case`" " *keyform* " "`{`" "*normal-clause*" "`}`"
@@ -4744,7 +4744,7 @@
     "`ccase`" "によって使われる特定のエラーメッセージは、" EOL "実装によって変わります。" EOL
     "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`case`" "の*otherwise-clause*で" EOL
     "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("CCASE" . MACRO) *table*) (gethash "CCASE" *table*))
+(setf (gethash '("CCASE" . "MACRO") *table*) (gethash "CCASE" *table*))
 (setf (gethash "CDAAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4842,7 +4842,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDAAAR" . ACCESSOR) *table*) (gethash "CDAAAR" *table*))
+(setf (gethash '("CDAAAR" . "ACCESSOR") *table*) (gethash "CDAAAR" *table*))
 (setf (gethash "CDAADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -4940,7 +4940,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDAADR" . ACCESSOR) *table*) (gethash "CDAADR" *table*))
+(setf (gethash '("CDAADR" . "ACCESSOR") *table*) (gethash "CDAADR" *table*))
 (setf (gethash "CDAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5038,7 +5038,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDAAR" . ACCESSOR) *table*) (gethash "CDAAR" *table*))
+(setf (gethash '("CDAAR" . "ACCESSOR") *table*) (gethash "CDAAR" *table*))
 (setf (gethash "CDADAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5136,7 +5136,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDADAR" . ACCESSOR) *table*) (gethash "CDADAR" *table*))
+(setf (gethash '("CDADAR" . "ACCESSOR") *table*) (gethash "CDADAR" *table*))
 (setf (gethash "CDADDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5234,7 +5234,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDADDR" . ACCESSOR) *table*) (gethash "CDADDR" *table*))
+(setf (gethash '("CDADDR" . "ACCESSOR") *table*) (gethash "CDADDR" *table*))
 (setf (gethash "CDADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5332,7 +5332,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDADR" . ACCESSOR) *table*) (gethash "CDADR" *table*))
+(setf (gethash '("CDADR" . "ACCESSOR") *table*) (gethash "CDADR" *table*))
 (setf (gethash "CDAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5430,7 +5430,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDAR" . ACCESSOR) *table*) (gethash "CDAR" *table*))
+(setf (gethash '("CDAR" . "ACCESSOR") *table*) (gethash "CDAR" *table*))
 (setf (gethash "CDDAAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5528,7 +5528,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDAAR" . ACCESSOR) *table*) (gethash "CDDAAR" *table*))
+(setf (gethash '("CDDAAR" . "ACCESSOR") *table*) (gethash "CDDAAR" *table*))
 (setf (gethash "CDDADR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5626,7 +5626,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDADR" . ACCESSOR) *table*) (gethash "CDDADR" *table*))
+(setf (gethash '("CDDADR" . "ACCESSOR") *table*) (gethash "CDDADR" *table*))
 (setf (gethash "CDDAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5724,7 +5724,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDAR" . ACCESSOR) *table*) (gethash "CDDAR" *table*))
+(setf (gethash '("CDDAR" . "ACCESSOR") *table*) (gethash "CDDAR" *table*))
 (setf (gethash "CDDDAR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5822,7 +5822,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDDAR" . ACCESSOR) *table*) (gethash "CDDDAR" *table*))
+(setf (gethash '("CDDDAR" . "ACCESSOR") *table*) (gethash "CDDDAR" *table*))
 (setf (gethash "CDDDDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -5920,7 +5920,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDDDR" . ACCESSOR) *table*) (gethash "CDDDDR" *table*))
+(setf (gethash '("CDDDDR" . "ACCESSOR") *table*) (gethash "CDDDDR" *table*))
 (setf (gethash "CDDDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -6018,7 +6018,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDDR" . ACCESSOR) *table*) (gethash "CDDDR" *table*))
+(setf (gethash '("CDDDR" . "ACCESSOR") *table*) (gethash "CDDDR" *table*))
 (setf (gethash "CDDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -6116,7 +6116,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDDR" . ACCESSOR) *table*) (gethash "CDDR" *table*))
+(setf (gethash '("CDDR" . "ACCESSOR") *table*) (gethash "CDDR" *table*))
 (setf (gethash "CDR" *table*)
   '("" EOL "Accessor " "`CAR`" ", " "`CDR`" "," EOL "" "`CAAR`" ", " "`CADR`" ", "
     "`CDAR`" ", " "`CDDR`" "," EOL "" "`CAAAR`" ", " "`CAADR`" ", " "`CADAR`" ", "
@@ -6214,7 +6214,7 @@
     "(car x)    ==  (first x)" EOL "(cadr x)   ==  (second x) ==  (car (cdr x))" EOL
     "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))" EOL
     "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))" EOL "```" EOL "" EOL))
-(setf (gethash '("CDR" . ACCESSOR) *table*) (gethash "CDR" *table*))
+(setf (gethash '("CDR" . "ACCESSOR") *table*) (gethash "CDR" *table*))
 (setf (gethash "CELL-ERROR" *table*)
   '("" EOL "Condition Type " "`CELL-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`cell-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
@@ -6223,7 +6223,7 @@
     "`make-condition`" "の" EOL "初期化引数" "`:name`" "によって初期化され、" EOL "" "`cell-error-name`"
     "関数によってアクセスできます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`cell-error-name`"
     "" EOL "" EOL))
-(setf (gethash '("CELL-ERROR" . CONDITION-TYPE) *table*) (gethash "CELL-ERROR" *table*))
+(setf (gethash '("CELL-ERROR" . "CONDITION-TYPE") *table*) (gethash "CELL-ERROR" *table*))
 (setf (gethash "CELL-ERROR-NAME" *table*)
   '("" EOL "Function " "`CELL-ERROR-NAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`cell-error-name`" " *condition* => *name*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -6239,7 +6239,7 @@
     "`unbound-slot`" "," EOL "" "`unbound-variable`" "," EOL "" "`undefined-function`"
     "," EOL "" "9.1. コンディションシステムの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("CELL-ERROR-NAME" . FUNCTION) *table*) (gethash "CELL-ERROR-NAME" *table*))
+(setf (gethash '("CELL-ERROR-NAME" . "FUNCTION") *table*) (gethash "CELL-ERROR-NAME" *table*))
 (setf (gethash "CERROR" *table*)
   '("" EOL "Function " "`CERROR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`cerror`" " *continue-format-control* *datum* " "`&rest`" " *arguments*" EOL " => "
@@ -6316,7 +6316,7 @@
     "が*continue-format-control*内で" EOL "初期化引数リストのキーワードを無視するためには特に有効です。" EOL "例えば下記の通り。"
     EOL "" EOL "```lisp" EOL "(cerror \"enter a new value to replace ~*~s\" " EOL
     "        'not-a-number" EOL "        :argument a)" EOL "```" EOL "" EOL))
-(setf (gethash '("CERROR" . FUNCTION) *table*) (gethash "CERROR" *table*))
+(setf (gethash '("CERROR" . "FUNCTION") *table*) (gethash "CERROR" *table*))
 (setf (gethash "CHANGE-CLASS" *table*)
   '("" EOL "Standard Generic Function " "`CHANGE-CLASS`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`change-class`"
@@ -6367,7 +6367,7 @@
     "コンパイラの最適化を用いている場合があり、" EOL "インスタンスのクラスが変更されると" EOL "コンパイラの想定に反してしまう可能性があります。" EOL
     "これは、プログラマがメソッド内部で" "`change-class`" "を" EOL "使ってはいけないということを意味しており、" EOL
     "もしそのジェネリック関数のメソッドが" EOL "何らかのスロットにアクセスすれば、結果は未定義になります。" EOL "" EOL))
-(setf (gethash '("CHANGE-CLASS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "CHANGE-CLASS" *table*))
+(setf (gethash '("CHANGE-CLASS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "CHANGE-CLASS" *table*))
 (setf (gethash "CHAR" *table*)
   '("" EOL "Accessor " "`CHAR`" ", " "`SCHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`char`" " *string* *index* => *character*  " EOL "" "`schar`"
@@ -6395,7 +6395,7 @@
     "参考" "" EOL "" EOL "" "`aref`" ", " "`elt`" ", " "3.2.1. コンパイラーの用語" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "```lisp" EOL "(char s j) ==  (aref (the string s) j)"
     EOL "```" EOL "" EOL))
-(setf (gethash '("CHAR" . ACCESSOR) *table*) (gethash "CHAR" *table*))
+(setf (gethash '("CHAR" . "ACCESSOR") *table*) (gethash "CHAR" *table*))
 (setf (gethash "CHAR-CODE" *table*)
   '("" EOL "Function " "`CHAR-CODE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`char-code`" " *character* => *code*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -6406,7 +6406,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "もし*character*が文字ではなかったら、型" "`type-error`"
     "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`char-code-limit`" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CHAR-CODE" . FUNCTION) *table*) (gethash "CHAR-CODE" *table*))
+(setf (gethash '("CHAR-CODE" . "FUNCTION") *table*) (gethash "CHAR-CODE" *table*))
 (setf (gethash "CHAR-CODE-LIMIT" *table*)
   '("" EOL "Constant Variable " "`CHAR-CODE-LIMIT`" "" EOL "" EOL "" EOL "## " "定数値" ""
     EOL "" EOL "非負の整数であり、処理系依存です。" EOL "ただし96(" "標準文字" "の個数)以上です。" EOL "" EOL "" EOL
@@ -6415,7 +6415,7 @@
     "`char-code-limit`" "の値は256になります。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char-code`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`char-code-limit`"
     "の値は、" EOL "実際に処理系がサポートしている文字の総数より大きいでしょう。" EOL "" EOL))
-(setf (gethash '("CHAR-CODE-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "CHAR-CODE-LIMIT" *table*))
+(setf (gethash '("CHAR-CODE-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "CHAR-CODE-LIMIT" *table*))
 (setf (gethash "CHAR-DOWNCASE" *table*)
   '("" EOL "Function " "`CHAR-UPCASE`" ", " "`CHAR-DOWNCASE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`char-upcase`" " *character* => *corresponding-character*  "
@@ -6448,7 +6448,7 @@
     EOL "" "`char-equal`" "は文字の比較の際にケースを無視するため、" EOL
     "*corresponding-character*は*character*と" "`char-equal`" "での" EOL "比較においては常に等しいです。"
     EOL "" EOL))
-(setf (gethash '("CHAR-DOWNCASE" . FUNCTION) *table*) (gethash "CHAR-DOWNCASE" *table*))
+(setf (gethash '("CHAR-DOWNCASE" . "FUNCTION") *table*) (gethash "CHAR-DOWNCASE" *table*))
 (setf (gethash "CHAR-EQUAL" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6523,7 +6523,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-EQUAL" . FUNCTION) *table*) (gethash "CHAR-EQUAL" *table*))
+(setf (gethash '("CHAR-EQUAL" . "FUNCTION") *table*) (gethash "CHAR-EQUAL" *table*))
 (setf (gethash "CHAR-GREATERP" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6598,7 +6598,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-GREATERP" . FUNCTION) *table*) (gethash "CHAR-GREATERP" *table*))
+(setf (gethash '("CHAR-GREATERP" . "FUNCTION") *table*) (gethash "CHAR-GREATERP" *table*))
 (setf (gethash "CHAR-INT" *table*)
   '("" EOL "Function " "`CHAR-INT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`char-int`" " *character* => *integer*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -6614,7 +6614,7 @@
     "" EOL "" EOL "もし*character*が文字ではなかったら、型" "`type-error`" "のエラーが生じます。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`char-code`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CHAR-INT" . FUNCTION) *table*) (gethash "CHAR-INT" *table*))
+(setf (gethash '("CHAR-INT" . "FUNCTION") *table*) (gethash "CHAR-INT" *table*))
 (setf (gethash "CHAR-LESSP" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6689,7 +6689,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-LESSP" . FUNCTION) *table*) (gethash "CHAR-LESSP" *table*))
+(setf (gethash '("CHAR-LESSP" . "FUNCTION") *table*) (gethash "CHAR-LESSP" *table*))
 (setf (gethash "CHAR-NAME" *table*)
   '("" EOL "Function " "`CHAR-NAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`char-name`" " *character* => *name*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -6716,7 +6716,7 @@
     "22.1.3.2. 文字の印字" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "非" "図形文字"
     "が名前を持っている場合は、" EOL "Lispプリンターが" "`#\\`" "に続けて名前を出力します。" EOL "" "22.1.3.2. 文字の印字"
     "を参照。" EOL "" EOL))
-(setf (gethash '("CHAR-NAME" . FUNCTION) *table*) (gethash "CHAR-NAME" *table*))
+(setf (gethash '("CHAR-NAME" . "FUNCTION") *table*) (gethash "CHAR-NAME" *table*))
 (setf (gethash "CHAR-NOT-EQUAL" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6791,7 +6791,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-NOT-EQUAL" . FUNCTION) *table*) (gethash "CHAR-NOT-EQUAL" *table*))
+(setf (gethash '("CHAR-NOT-EQUAL" . "FUNCTION") *table*) (gethash "CHAR-NOT-EQUAL" *table*))
 (setf (gethash "CHAR-NOT-GREATERP" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6866,7 +6866,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-NOT-GREATERP" . FUNCTION) *table*) (gethash "CHAR-NOT-GREATERP" *table*))
+(setf (gethash '("CHAR-NOT-GREATERP" . "FUNCTION") *table*) (gethash "CHAR-NOT-GREATERP" *table*))
 (setf (gethash "CHAR-NOT-LESSP" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -6941,7 +6941,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR-NOT-LESSP" . FUNCTION) *table*) (gethash "CHAR-NOT-LESSP" *table*))
+(setf (gethash '("CHAR-NOT-LESSP" . "FUNCTION") *table*) (gethash "CHAR-NOT-LESSP" *table*))
 (setf (gethash "CHAR-UPCASE" *table*)
   '("" EOL "Function " "`CHAR-UPCASE`" ", " "`CHAR-DOWNCASE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`char-upcase`" " *character* => *corresponding-character*  "
@@ -6974,7 +6974,7 @@
     EOL "" "`char-equal`" "は文字の比較の際にケースを無視するため、" EOL
     "*corresponding-character*は*character*と" "`char-equal`" "での" EOL "比較においては常に等しいです。"
     EOL "" EOL))
-(setf (gethash '("CHAR-UPCASE" . FUNCTION) *table*) (gethash "CHAR-UPCASE" *table*))
+(setf (gethash '("CHAR-UPCASE" . "FUNCTION") *table*) (gethash "CHAR-UPCASE" *table*))
 (setf (gethash "CHAR/=" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7049,7 +7049,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR/=" . FUNCTION) *table*) (gethash "CHAR/=" *table*))
+(setf (gethash '("CHAR/=" . "FUNCTION") *table*) (gethash "CHAR/=" *table*))
 (setf (gethash "CHAR<" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7124,7 +7124,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR<" . FUNCTION) *table*) (gethash "CHAR<" *table*))
+(setf (gethash '("CHAR<" . "FUNCTION") *table*) (gethash "CHAR<" *table*))
 (setf (gethash "CHAR<=" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7199,7 +7199,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR<=" . FUNCTION) *table*) (gethash "CHAR<=" *table*))
+(setf (gethash '("CHAR<=" . "FUNCTION") *table*) (gethash "CHAR<=" *table*))
 (setf (gethash "CHAR=" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7274,7 +7274,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR=" . FUNCTION) *table*) (gethash "CHAR=" *table*))
+(setf (gethash '("CHAR=" . "FUNCTION") *table*) (gethash "CHAR=" *table*))
 (setf (gethash "CHAR>" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7349,7 +7349,7 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR>" . FUNCTION) *table*) (gethash "CHAR>" *table*))
+(setf (gethash '("CHAR>" . "FUNCTION") *table*) (gethash "CHAR>" *table*))
 (setf (gethash "CHAR>=" *table*)
   '("" EOL "Function " "`CHAR=`" ", " "`CHAR/=`" ", " "`CHAR<`" ", " "`CHAR>`" ", "
     "`CHAR<=`" ", " "`CHAR>=`" "," EOL "" "`CHAR-EQUAL`" ", " "`CHAR-NOT-EQUAL`" "," EOL
@@ -7424,10 +7424,10 @@
     "`char-not-lessp`" "において、" EOL "" "`standard-char`" "の大文字小文字の比較は、" EOL "暗に" "標準文字"
     "の" "`A=a`" ", " "`B=b`" ", " "`...`" ", " "`Z=z`" "、" EOL "さらに、" "`9<A`" "か、あるいは"
     "`Z<0`" "の" EOL "どちらかで順序付けされることを意味します。" EOL "" EOL))
-(setf (gethash '("CHAR>=" . FUNCTION) *table*) (gethash "CHAR>=" *table*))
+(setf (gethash '("CHAR>=" . "FUNCTION") *table*) (gethash "CHAR>=" *table*))
 (setf (gethash "CHARACTER" *table*)
   '("CHARACTER FUNCTION" EOL "CHARACTER SYSTEM-CLASS" EOL))
-(setf (gethash '("CHARACTER" . FUNCTION) *table*)
+(setf (gethash '("CHARACTER" . "FUNCTION") *table*)
   '("" EOL "Function " "`CHARACTER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`charcter`" " *character* => *denoted-character*" EOL "" EOL "" EOL "## " "引数と戻り値"
     "" EOL "" EOL "*character* - " "character-designator" "  " EOL
@@ -7440,7 +7440,7 @@
     "ではなかった場合は、" EOL "型" "`type-error`" "が発せられます。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`coerce`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(character object) == (coerce object 'character)" EOL "```" EOL "" EOL))
-(setf (gethash '("CHARACTER" . SYSTEM-CLASS) *table*)
+(setf (gethash '("CHARACTER" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`CHARACTER`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`character`" ", " "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
     "文字(character)とは、" EOL "テキストを構成する集合体の、単一の要素を表すオブジェクトです。" EOL "" "13.1. 文字の説明"
@@ -7461,7 +7461,7 @@
     "" EOL "" EOL "型" "`character`" "," EOL "関数" "`character`" "," EOL "" "`typep`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(characterp object) == (typep object 'character)" EOL "```" EOL "" EOL))
-(setf (gethash '("CHARACTERP" . FUNCTION) *table*) (gethash "CHARACTERP" *table*))
+(setf (gethash '("CHARACTERP" . "FUNCTION") *table*) (gethash "CHARACTERP" *table*))
 (setf (gethash "CHECK-TYPE" *table*)
   '("" EOL "Macro " "`CHECK-TYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`check-type`" " *place* *typespec* [*string*] => " "`nil`" "" EOL "" EOL "" EOL
@@ -7520,17 +7520,17 @@
     "9.1. コンディションシステムの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(check-type place typespec)" EOL "==  (assert (typep place 'typespec) (place)" EOL
     "           'type-error :datum place :expected-type 'typespec)" EOL "```" EOL "" EOL))
-(setf (gethash '("CHECK-TYPE" . MACRO) *table*) (gethash "CHECK-TYPE" *table*))
+(setf (gethash '("CHECK-TYPE" . "MACRO") *table*) (gethash "CHECK-TYPE" *table*))
 (setf (gethash "CLASS" *table*)
   '("" EOL "System Class " "`CLASS`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`class`" "," EOL "" "`standard-object`" "," EOL "" "`t`" "" EOL "" EOL "" EOL
     "## " "定義" "" EOL "" EOL "型" "`class`" "は、インスタンスの構造と振る舞いを" EOL "決めるオブジェクトの表現です。" EOL
     "型" "`class`" "のオブジェクトは、" EOL "クラスの非循環有向グラフである位置情報と、" EOL "スロットと、オプションが記載された情報によって"
     EOL "関連付けられます。" EOL "" EOL))
-(setf (gethash '("CLASS" . SYSTEM-CLASS) *table*) (gethash "CLASS" *table*))
+(setf (gethash '("CLASS" . "SYSTEM-CLASS") *table*) (gethash "CLASS" *table*))
 (setf (gethash "CLASS-NAME" *table*)
   '("CLASS-NAME SETF" EOL "CLASS-NAME STANDARD-GENERIC-FUNCTION" EOL))
-(setf (gethash '("CLASS-NAME" . SETF) *table*)
+(setf (gethash '("CLASS-NAME" . "SETF") *table*)
   '("" EOL "Standard Generic Function " "`(SETF CLASS-NAME)`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`(setf class-name)`" " *new-value* *class* => *new-value*" EOL
     "" EOL "" EOL "## " "メソッド宣言" "" EOL "" EOL "" "`(setf class-name)`"
@@ -7541,7 +7541,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`find-class`" "," EOL "proper name（正しい名前）," EOL "" "4.3. クラス" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLASS-NAME" . STANDARD-GENERIC-FUNCTION) *table*)
+(setf (gethash '("CLASS-NAME" . "STANDARD-GENERIC-FUNCTION") *table*)
   '("" EOL "Standard Generic Function " "`CLASS-NAME`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`class-name`" " *class* => *name*" EOL "" EOL "" EOL "## " "メソッド宣言" ""
     EOL "" EOL "" "`class-name`" " (*class* " "`class`" ")" EOL "" EOL "" EOL "## "
@@ -7569,7 +7569,7 @@
     "```" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外"
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-instance`"
     "," EOL "" "`type-of`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLASS-OF" . FUNCTION) *table*) (gethash "CLASS-OF" *table*))
+(setf (gethash '("CLASS-OF" . "FUNCTION") *table*) (gethash "CLASS-OF" *table*))
 (setf (gethash "CLEAR-INPUT" *table*)
   '("" EOL "Function " "`CLEAR-INPUT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`clear-input`" " " "`&optional`" " *input-stream* => " "`nil`" "" EOL "" EOL "" EOL
@@ -7593,7 +7593,7 @@
     EOL "" EOL "*input-stream*がストリーム指定子ではなかったとき、" EOL "型" "`type-error`"
     "のエラーが通知されるべきです。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`clear-output`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLEAR-INPUT" . FUNCTION) *table*) (gethash "CLEAR-INPUT" *table*))
+(setf (gethash '("CLEAR-INPUT" . "FUNCTION") *table*) (gethash "CLEAR-INPUT" *table*))
 (setf (gethash "CLEAR-OUTPUT" *table*)
   '("" EOL "Function " "`FINISH-OUTPUT`" ", " "`FORCE-OUTPUT`" ", " "`CLEAR-OUTPUT`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`finish-output`" " " "`&optional`"
@@ -7616,7 +7616,7 @@
     EOL "*output-stream*がストリーム指定子ではなかったとき、" EOL "型" "`type-error`" "のエラーが通知されるべきです。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`clear-input`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLEAR-OUTPUT" . FUNCTION) *table*) (gethash "CLEAR-OUTPUT" *table*))
+(setf (gethash '("CLEAR-OUTPUT" . "FUNCTION") *table*) (gethash "CLEAR-OUTPUT" *table*))
 (setf (gethash "CLOSE" *table*)
   '("" EOL "Function " "`CLOSE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`close`" " *stream* " "`&key`" " *abort* => *result*" EOL "" EOL "" EOL "## "
@@ -7648,7 +7648,7 @@
     EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`open`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLOSE" . FUNCTION) *table*) (gethash "CLOSE" *table*))
+(setf (gethash '("CLOSE" . "FUNCTION") *table*) (gethash "CLOSE" *table*))
 (setf (gethash "CLRHASH" *table*)
   '("" EOL "Function " "`CLRHASH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`clrhash`" " *hash-table* => *hash-table*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -7664,7 +7664,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("CLRHASH" . FUNCTION) *table*) (gethash "CLRHASH" *table*))
+(setf (gethash '("CLRHASH" . "FUNCTION") *table*) (gethash "CLRHASH" *table*))
 (setf (gethash "CODE-CHAR" *table*)
   '("" EOL "Function " "`CODE-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`code-char`" " *code* => *char-p*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -7676,7 +7676,7 @@
     EOL "## " "影響" "" EOL "" EOL "処理系の文字コード" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`char-code`" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CODE-CHAR" . FUNCTION) *table*) (gethash "CODE-CHAR" *table*))
+(setf (gethash '("CODE-CHAR" . "FUNCTION") *table*) (gethash "CODE-CHAR" *table*))
 (setf (gethash "COERCE" *table*)
   '("" EOL "Function " "`COERCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`coerce`" " *object* *result-type* => *result*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -7736,7 +7736,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "浮動小数から" "`rational`" "への強制と、" EOL
     "分数から浮動小数への強制は、" EOL "丸め問題のため提供されません。" EOL "" EOL "```lisp" EOL
     "(coerce x 't) ==  (identity x) ==  x" EOL "```" EOL "" EOL))
-(setf (gethash '("COERCE" . FUNCTION) *table*) (gethash "COERCE" *table*))
+(setf (gethash '("COERCE" . "FUNCTION") *table*) (gethash "COERCE" *table*))
 (setf (gethash "COMPILE" *table*)
   '("" EOL "Function " "`COMPILE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`compile`" " *name* &optional *definition* => *function*, *warnings-p*, *failure-p*"
@@ -7773,7 +7773,7 @@
     "コンパイル処理中のエラーの検出の情報については、" EOL "" "3.2.5. コンパイラーの例外状況" "をご確認ください。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`compile-file`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COMPILE" . FUNCTION) *table*) (gethash "COMPILE" *table*))
+(setf (gethash '("COMPILE" . "FUNCTION") *table*) (gethash "COMPILE" *table*))
 (setf (gethash "COMPILED-FUNCTION" *table*)
   '("" EOL "Type " "`COMPILED-FUNCTION`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL ""
     EOL "" "`compiled-function`" "," EOL "" "`function`" "," EOL "" "`t`" "" EOL "" EOL
@@ -7783,7 +7783,7 @@
     "関数定義によってレキシカルに現れるものは" EOL "" "`compiled-function`" "型です。" EOL "" "`compile`"
     "関数によって生成された関数は" EOL "" "`compiled-function`" "型です。" EOL "他の関数も"
     "`compiled-function`" "型になるかもしれません。" EOL "" EOL))
-(setf (gethash '("COMPILED-FUNCTION" . TYPE) *table*) (gethash "COMPILED-FUNCTION" *table*))
+(setf (gethash '("COMPILED-FUNCTION" . "TYPE") *table*) (gethash "COMPILED-FUNCTION" *table*))
 (setf (gethash "COMPILED-FUNCTION-P" *table*)
   '("" EOL "Function " "`COMPILED-FUNCTION-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`compiled-function-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -7803,7 +7803,7 @@
     EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(compiled-function-p object) == (typep object 'compiled-function)" EOL "```" EOL ""
     EOL))
-(setf (gethash '("COMPILED-FUNCTION-P" . FUNCTION) *table*) (gethash "COMPILED-FUNCTION-P" *table*))
+(setf (gethash '("COMPILED-FUNCTION-P" . "FUNCTION") *table*) (gethash "COMPILED-FUNCTION-P" *table*))
 (setf (gethash "COMPILER-MACRO-FUNCTION" *table*)
   '("" EOL "Accessor " "`COMPILER-MACRO-FUNCTION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`compiler-macro-function`"
@@ -7819,7 +7819,7 @@
     "`compiler-macro-function`" "を使用したときの" EOL "結果は未定義です。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`define-compiler-macro`" "," EOL "" "3.2.2.1. コンパイラーマクロ" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COMPILER-MACRO-FUNCTION" . ACCESSOR) *table*) (gethash "COMPILER-MACRO-FUNCTION" *table*))
+(setf (gethash '("COMPILER-MACRO-FUNCTION" . "ACCESSOR") *table*) (gethash "COMPILER-MACRO-FUNCTION" *table*))
 (setf (gethash "COMPLEMENT" *table*)
   '("" EOL "Function " "`COMPLEMENT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`complement`" " *function* => *complement-function*" EOL "" EOL "" EOL "## "
@@ -7845,7 +7845,7 @@
     EOL "(find-if (complement #'zerop) '(0 0 3)) =>  3" EOL "```" EOL "" EOL "「"
     "`xxx-if-not`" "」のような関数と" "`:test-not`" "引数は非推奨です。" EOL "「" "`xxx-if`" "」のような関数と"
     "`:test`" "引数を、" EOL "" "`complement`" "と一緒に使うことが好まれます。" EOL "" EOL))
-(setf (gethash '("COMPLEMENT" . FUNCTION) *table*) (gethash "COMPLEMENT" *table*))
+(setf (gethash '("COMPLEMENT" . "FUNCTION") *table*) (gethash "COMPLEMENT" *table*))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *table*)
   '("" EOL "Standard Generic Function " "`COMPUTE-APPLICABLE-METHODS`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`compute-applicable-methods`"
@@ -7860,7 +7860,7 @@
     "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "7.6.6. メソッドの選択とコンビネーション" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("COMPUTE-APPLICABLE-METHODS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "COMPUTE-APPLICABLE-METHODS" *table*))
+(setf (gethash '("COMPUTE-APPLICABLE-METHODS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "COMPUTE-APPLICABLE-METHODS" *table*))
 (setf (gethash "COMPUTE-RESTARTS" *table*)
   '("" EOL "Function " "`COMPUTE-RESTARTS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`compute-restarts`" " " "`&optional`" " *condition* => *restarts*" EOL "" EOL ""
@@ -7898,7 +7898,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`find-restart`" "," EOL "" "`invoke-restart`" "," EOL "" "`restart-bind`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COMPUTE-RESTARTS" . FUNCTION) *table*) (gethash "COMPUTE-RESTARTS" *table*))
+(setf (gethash '("COMPUTE-RESTARTS" . "FUNCTION") *table*) (gethash "COMPUTE-RESTARTS" *table*))
 (setf (gethash "CONCATENATE" *table*)
   '("" EOL "Function " "`CONCATENATE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`concatenate`" " *result-type* &rest *sequences* => *result-sequence*" EOL "" EOL ""
@@ -7925,7 +7925,7 @@
     EOL "*sequences*の合計が違う場合は、" EOL "型" "`type-error`" "のエラーが発します。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`append`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("CONCATENATE" . FUNCTION) *table*) (gethash "CONCATENATE" *table*))
+(setf (gethash '("CONCATENATE" . "FUNCTION") *table*) (gethash "CONCATENATE" *table*))
 (setf (gethash "CONCATENATED-STREAM" *table*)
   '("" EOL "System Class " "`CONCATENATED-STREAM`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`concatenated-stream`" "," EOL "" "`stream`" "," EOL
@@ -7940,7 +7940,7 @@
     "唯一そのような状況のときにのみ" EOL "" "`concatenated`ストリーム" "の呼び出しもとにファイルの終わりを通知します。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`concatenated-stream-streams`" "," EOL ""
     "`make-concatenated-stream`" "" EOL "" EOL))
-(setf (gethash '("CONCATENATED-STREAM" . SYSTEM-CLASS) *table*) (gethash "CONCATENATED-STREAM" *table*))
+(setf (gethash '("CONCATENATED-STREAM" . "SYSTEM-CLASS") *table*) (gethash "CONCATENATED-STREAM" *table*))
 (setf (gethash "CONCATENATED-STREAM-STREAMS" *table*)
   '("" EOL "Function " "`CONCATENATED-STREAM-STREAMS`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`concatenated-stream-streams`" " *concatenated-stream* => *streams*"
@@ -7952,7 +7952,7 @@
     EOL "" EOL "" EOL "## " "副作用" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CONCATENATED-STREAM-STREAMS" . FUNCTION) *table*) (gethash "CONCATENATED-STREAM-STREAMS" *table*))
+(setf (gethash '("CONCATENATED-STREAM-STREAMS" . "FUNCTION") *table*) (gethash "CONCATENATED-STREAM-STREAMS" *table*))
 (setf (gethash "COND" *table*)
   '("" EOL "Macro " "`COND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "cond " "`{`"
     "*clause*" "`}`" "\\* => *result\\**" EOL "" EOL "```" EOL
@@ -7977,7 +7977,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`if`" "," EOL "" "`case`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COND" . MACRO) *table*) (gethash "COND" *table*))
+(setf (gethash '("COND" . "MACRO") *table*) (gethash "COND" *table*))
 (setf (gethash "CONDITION" *table*)
   '("" EOL "Condition Type " "`CONDITION`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`condition`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL ""
@@ -7998,10 +7998,10 @@
     EOL "- " "`slot-value`" ", " "`slot-boundp`" "," EOL "" "`slot-makunbound`" ", "
     "`with-slots`" "は" EOL "コンディションオブジェクトに使用してはいけません。" EOL "かわりに（" "`define-condition`"
     "によって定義された）" EOL "適切なアクセス関数を使用する必要があります。" EOL "" EOL))
-(setf (gethash '("CONDITION" . CONDITION-TYPE) *table*) (gethash "CONDITION" *table*))
+(setf (gethash '("CONDITION" . "CONDITION-TYPE") *table*) (gethash "CONDITION" *table*))
 (setf (gethash "CONS" *table*)
   '("CONS FUNCTION" EOL "CONS SYSTEM-CLASS" EOL))
-(setf (gethash '("CONS" . FUNCTION) *table*)
+(setf (gethash '("CONS" . "FUNCTION") *table*)
   '("" EOL "Function " "`CONS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`cons`"
     " *object-1* *object-2* => *cons*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*object-1* - オブジェクト  " EOL "*object-2* - オブジェクト  " EOL "*cons* - コンス" EOL "" EOL ""
@@ -8016,7 +8016,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`list`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "もし*object-2*がリストなら、" EOL "" "`cons`" "は、"
     EOL "*object-1*を先頭に追加したような新しいリストを生成すると" EOL "考えることができます。" EOL "" EOL))
-(setf (gethash '("CONS" . SYSTEM-CLASS) *table*)
+(setf (gethash '("CONS" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`CONS`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL
     "" "`cons`" "," EOL "" "`list`" "," EOL "" "`sequence`" "," EOL "" "`t`" "" EOL ""
     EOL "" EOL "## " "定義" "" EOL "" EOL "コンスは2つの構成要素" "`car`" "と" "`cdr`"
@@ -8044,7 +8044,7 @@
     "`listp`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     " (consp object) == (typep object 'cons) == (not (typep object 'atom)) == (typep object '(not atom))"
     EOL "```" EOL "" EOL))
-(setf (gethash '("CONSP" . FUNCTION) *table*) (gethash "CONSP" *table*))
+(setf (gethash '("CONSP" . "FUNCTION") *table*) (gethash "CONSP" *table*))
 (setf (gethash "CONSTANTLY" *table*)
   '("" EOL "Function " "`CONSTANTLY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`constantly`" " *value* => *function*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -8061,7 +8061,7 @@
     "## " "備考" "" EOL "" EOL "" "`constantly`" "は次のように定義できます。" EOL "" EOL "```lisp" EOL
     "(defun constantly (object)" EOL "  #'(lambda (&rest arguments) object))" EOL "```"
     EOL "" EOL))
-(setf (gethash '("CONSTANTLY" . FUNCTION) *table*) (gethash "CONSTANTLY" *table*))
+(setf (gethash '("CONSTANTLY" . "FUNCTION") *table*) (gethash "CONSTANTLY" *table*))
 (setf (gethash "CONSTANTP" *table*)
   '("" EOL "Function " "`CONSTANTP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`constantp`" " *form* &optional *environment* => " "generalized-boolean" "" EOL ""
@@ -8100,10 +8100,10 @@
     "" EOL "" EOL "グローバル環境の状態" EOL "（例えば定数変数の名前として宣言されたシンボルなど）。" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`defconstant`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("CONSTANTP" . FUNCTION) *table*) (gethash "CONSTANTP" *table*))
+(setf (gethash '("CONSTANTP" . "FUNCTION") *table*) (gethash "CONSTANTP" *table*))
 (setf (gethash "CONTINUE" *table*)
   '("CONTINUE FUNCTION" EOL "CONTINUE RESTART" EOL))
-(setf (gethash '("CONTINUE" . FUNCTION) *table*)
+(setf (gethash '("CONTINUE" . "FUNCTION") *table*)
   '("" EOL "Function " "`ABORT`" ", " "`CONTINUE`" ", " "`MUFFLE-WARNING`" ", "
     "`STORE-VALUE`" ", " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`abort`" " " "`&optional`" " *condition* => " "`|`" "  " EOL "" "`continue`" " "
@@ -8194,7 +8194,7 @@
     "(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))"
     EOL "```" EOL "" EOL "この仕様書で" "`use-value`" " " "`restart`" "の提供に" EOL
     "要求される関数定義はありません。" EOL "" EOL))
-(setf (gethash '("CONTINUE" . RESTART) *table*)
+(setf (gethash '("CONTINUE" . "RESTART") *table*)
   '("" EOL "Restart " "`CONTINUE`" "" EOL "" EOL "" EOL "## " "要求される引数のデータ" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`continue`" " " "`restart`" "は、"
     EOL "一般的には" "`break`" "や" "`cerror`" "のような状況で、" EOL "継続するためのひとつの「明確な」方法が存在するという" EOL
@@ -8217,7 +8217,7 @@
     EOL "型" "`control-error`" "は、" EOL "プログラム内において不正な動的遷移の結果による" EOL "エラーの状態で構成されています。"
     EOL "アクティブではないタグに対する" "`throw`" "の結果であったり、" EOL "もはや動的に利用可能ではないタグに対する" EOL "" "`go`"
     "や" "`return-from`" "の結果であったりするエラーは、" EOL "" "`control-error`" "の型になります。" EOL "" EOL))
-(setf (gethash '("CONTROL-ERROR" . CONDITION-TYPE) *table*) (gethash "CONTROL-ERROR" *table*))
+(setf (gethash '("CONTROL-ERROR" . "CONDITION-TYPE") *table*) (gethash "CONTROL-ERROR" *table*))
 (setf (gethash "COPY-ALIST" *table*)
   '("" EOL "Function " "`COPY-ALIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`copy-alist`" " *alist* => *new-alist*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -8240,7 +8240,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`copy-list`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COPY-ALIST" . FUNCTION) *table*) (gethash "COPY-ALIST" *table*))
+(setf (gethash '("COPY-ALIST" . "FUNCTION") *table*) (gethash "COPY-ALIST" *table*))
 (setf (gethash "COPY-LIST" *table*)
   '("" EOL "Function " "`COPY-LIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`copy-list`" " *list* => *copy*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -8260,7 +8260,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`copy-alist`" "," EOL "" "`copy-seq`"
     "," EOL "" "`copy-tree`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "作成されたコピーは、*list*と" "`equal`" "ですが、" EOL "" "`eq`" "ではありません。" EOL "" EOL))
-(setf (gethash '("COPY-LIST" . FUNCTION) *table*) (gethash "COPY-LIST" *table*))
+(setf (gethash '("COPY-LIST" . "FUNCTION") *table*) (gethash "COPY-LIST" *table*))
 (setf (gethash "COPY-PPRINT-DISPATCH" *table*)
   '("" EOL "Function " "`COPY-PPRINT-DISPATCH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`copy-pprint-dispatch`" " " "`&optional`" " *table* => *new-table*" EOL ""
@@ -8274,7 +8274,7 @@
     "`pprint`ディスパッチテーブル" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知するべきです。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("COPY-PPRINT-DISPATCH" . FUNCTION) *table*) (gethash "COPY-PPRINT-DISPATCH" *table*))
+(setf (gethash '("COPY-PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "COPY-PPRINT-DISPATCH" *table*))
 (setf (gethash "COPY-SEQ" *table*)
   '("" EOL "Function " "`COPY-SEQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`copy-seq`" " *sequence* => *copied-sequence*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -8291,7 +8291,7 @@
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "機能としては、下記と同等です。" EOL "" EOL "```lisp"
     EOL "(copy-seq x) ==  (subseq x 0)" EOL "```" EOL "" EOL "しかし、プログラマーの意図は、" EOL
     "この二つの場合においては大きく異なるのが一般的です。" EOL "" EOL))
-(setf (gethash '("COPY-SEQ" . FUNCTION) *table*) (gethash "COPY-SEQ" *table*))
+(setf (gethash '("COPY-SEQ" . "FUNCTION") *table*) (gethash "COPY-SEQ" *table*))
 (setf (gethash "COPY-STRUCTURE" *table*)
   '("" EOL "Function " "`COPY-STRUCTURE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`copy-structure`" " *structure* => *copy*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -8303,7 +8303,7 @@
     "`:copier`" "オプション" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "*copy*は引数の*structure*と" "`equalp`" "で同一です。" EOL "しかし" "`equal`" "はそうではありません。" EOL ""
     EOL))
-(setf (gethash '("COPY-STRUCTURE" . FUNCTION) *table*) (gethash "COPY-STRUCTURE" *table*))
+(setf (gethash '("COPY-STRUCTURE" . "FUNCTION") *table*) (gethash "COPY-STRUCTURE" *table*))
 (setf (gethash "COPY-SYMBOL" *table*)
   '("" EOL "Function " "`COPY-SYMBOL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`copy-symbol`" " *symbol* &optional *copy-properties* => *new-symbol*" EOL "" EOL ""
@@ -8336,7 +8336,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-symbol`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "実装者は、むやみにシンボル名の文字をコピーする必要はありません。" EOL "通常の実装においては、" EOL
     "*new-symbol*の名前と引数*symbol*の名前をコピーして同一にするのは、" EOL "良い方法とは言えません。" EOL "" EOL))
-(setf (gethash '("COPY-SYMBOL" . FUNCTION) *table*) (gethash "COPY-SYMBOL" *table*))
+(setf (gethash '("COPY-SYMBOL" . "FUNCTION") *table*) (gethash "COPY-SYMBOL" *table*))
 (setf (gethash "COPY-TREE" *table*)
   '("" EOL "Function " "`COPY-TREE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`copy-tree`" " *tree* => *new-tree*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -8363,7 +8363,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`tree-equal`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("COPY-TREE" . FUNCTION) *table*) (gethash "COPY-TREE" *table*))
+(setf (gethash '("COPY-TREE" . "FUNCTION") *table*) (gethash "COPY-TREE" *table*))
 (setf (gethash "COUNT" *table*)
   '("" EOL "Function " "`COUNT`" ", " "`COUNT-IF`" ", " "`COUNT-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`count`"
@@ -8393,7 +8393,7 @@
     "" EOL "" "17.2. テスト関数のルール" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`count-if-not`"
     "は非推奨です。" EOL "" EOL))
-(setf (gethash '("COUNT" . FUNCTION) *table*) (gethash "COUNT" *table*))
+(setf (gethash '("COUNT" . "FUNCTION") *table*) (gethash "COUNT" *table*))
 (setf (gethash "COUNT-IF" *table*)
   '("" EOL "Function " "`COUNT`" ", " "`COUNT-IF`" ", " "`COUNT-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`count`"
@@ -8423,7 +8423,7 @@
     "" EOL "" "17.2. テスト関数のルール" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`count-if-not`"
     "は非推奨です。" EOL "" EOL))
-(setf (gethash '("COUNT-IF" . FUNCTION) *table*) (gethash "COUNT-IF" *table*))
+(setf (gethash '("COUNT-IF" . "FUNCTION") *table*) (gethash "COUNT-IF" *table*))
 (setf (gethash "COUNT-IF-NOT" *table*)
   '("" EOL "Function " "`COUNT`" ", " "`COUNT-IF`" ", " "`COUNT-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`count`"
@@ -8453,7 +8453,7 @@
     "" EOL "" "17.2. テスト関数のルール" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`count-if-not`"
     "は非推奨です。" EOL "" EOL))
-(setf (gethash '("COUNT-IF-NOT" . FUNCTION) *table*) (gethash "COUNT-IF-NOT" *table*))
+(setf (gethash '("COUNT-IF-NOT" . "FUNCTION") *table*) (gethash "COUNT-IF-NOT" *table*))
 (setf (gethash "CTYPECASE" *table*)
   '("" EOL "Function " "`TYPECASE`" ", " "`CTYPECASE`" ", " "`ETYPECASE`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`typecase`" " *keyform* " "`{`" "*normal-clause*"
@@ -8530,7 +8530,7 @@
     EOL "" EOL "" "`etypecase`" "と" "`ctypecase`" "によって使われる特定のエラーメッセージは、" EOL
     "実装によって変わります。" EOL "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`typecase`"
     "の*otherwise-clause*で" EOL "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("CTYPECASE" . MACRO) *table*) (gethash "CTYPECASE" *table*))
+(setf (gethash '("CTYPECASE" . "MACRO") *table*) (gethash "CTYPECASE" *table*))
 (setf (gethash "DECLAIM" *table*)
   '("" EOL "Macro " "`DECLAIM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`declaim`" " *declaration-specifier\\** => " "実装依存" "" EOL "" EOL "" EOL "## "
@@ -8543,7 +8543,7 @@
     "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`declare`" "," EOL "" "`proclaim`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("DECLAIM" . MACRO) *table*) (gethash "DECLAIM" *table*))
+(setf (gethash '("DECLAIM" . "MACRO") *table*) (gethash "DECLAIM" *table*))
 (setf (gethash "DECLARATION" *table*)
   '("" EOL "Declaration " "`DECLARATION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "(" "`declaration`" " *name\\**)" EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL
@@ -8557,7 +8557,7 @@
     "(defun strangep (x)" EOL "  (declare (author \"Harry Tweeker\"))" EOL
     "  (member x '(strange weird odd peculiar)))" EOL "```" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`declaim`" "," EOL "" "`proclaim`" "" EOL "" EOL))
-(setf (gethash '("DECLARATION" . DECLARATION) *table*) (gethash "DECLARATION" *table*))
+(setf (gethash '("DECLARATION" . "DECLARATION") *table*) (gethash "DECLARATION" *table*))
 (setf (gethash "DECLARE" *table*)
   '("" EOL "Symbol " "`DECLARE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`declare`" " *declaration-specifier\\**" EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL
@@ -8616,7 +8616,7 @@
     "" "`ignorable`" "," EOL "" "`ignore`" "," EOL "" "`inline`" "," EOL "" "`notinline`"
     "," EOL "" "`optimize`" "," EOL "" "`type`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("DECLARE" . SYMBOL) *table*) (gethash "DECLARE" *table*))
+(setf (gethash '("DECLARE" . "SYMBOL") *table*) (gethash "DECLARE" *table*))
 (setf (gethash "DEFCLASS" *table*)
   '("" EOL "Macro " "`DEFCLASS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defclass`"
@@ -8745,7 +8745,7 @@
     "," EOL "" "`slot-value`" "," EOL "" "4.3. クラス" "," EOL "" "4.3.4. 継承" "," EOL ""
     "4.3.6. クラスの再定義" "," EOL "" "4.3.5. クラス優先順位リストの決定" "," EOL "" "7.1. オブジェクトの作成と初期化" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFCLASS" . MACRO) *table*) (gethash "DEFCLASS" *table*))
+(setf (gethash '("DEFCLASS" . "MACRO") *table*) (gethash "DEFCLASS" *table*))
 (setf (gethash "DEFCONSTANT" *table*)
   '("" EOL "Macro " "`DEFCONSTANT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defconstant`" " *name* *initial-value* [*documentation*] => *name*" EOL "" EOL ""
@@ -8779,7 +8779,7 @@
     "," EOL "" "`documentation`" "," EOL "" "`proclaim`" "," EOL "" "3.1.2.1.1.3. 定数の変数"
     "," EOL "" "3.2. コンパイル" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("DEFCONSTANT" . MACRO) *table*) (gethash "DEFCONSTANT" *table*))
+(setf (gethash '("DEFCONSTANT" . "MACRO") *table*) (gethash "DEFCONSTANT" *table*))
 (setf (gethash "DEFGENERIC" *table*)
   '("" EOL "Macro " "`DEFGENERIC`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defgeneric`" " *function-name* *gf-lambda-list* [[*option* " "`|`"
@@ -8884,7 +8884,7 @@
     "`defmethod`" "," EOL "" "`documentation`" "," EOL "" "`ensure-generic-function`" ","
     EOL "" "`generic-function`" "," EOL "" "7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFGENERIC" . MACRO) *table*) (gethash "DEFGENERIC" *table*))
+(setf (gethash '("DEFGENERIC" . "MACRO") *table*) (gethash "DEFGENERIC" *table*))
 (setf (gethash "DEFINE-COMPILER-MACRO" *table*)
   '("" EOL "Macro " "`DEFINE-COMPILER-MACRO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`define-compiler-macro`" " *name* *lambda-list*" EOL " [[*declaration\\** "
@@ -8988,7 +8988,7 @@
     "一般に、プログラマーは自分自身が保守する関数に対してのみ" EOL "コンパイラマクロ定義を書くことを推奨します。" EOL
     "他の場所で保守されている関数に対してコンパイラマクロ定義を書くことは、" EOL "普通はモジュール性とデータの抽象化に関する" EOL
     "従来のルールに違反するものと見なされます。" EOL "" EOL))
-(setf (gethash '("DEFINE-COMPILER-MACRO" . MACRO) *table*) (gethash "DEFINE-COMPILER-MACRO" *table*))
+(setf (gethash '("DEFINE-COMPILER-MACRO" . "MACRO") *table*) (gethash "DEFINE-COMPILER-MACRO" *table*))
 (setf (gethash "DEFINE-CONDITION" *table*)
   '("" EOL "Macro " "`DEFINE-CONDITION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`define-condition`" " *name* (*parent-type\\**) (" "`{`" "*slot-spec*" "`}`"
@@ -9135,7 +9135,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-condition`" "," EOL "" "`defclass`" "," EOL "" "9.1. コンディションシステムの説明" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFINE-CONDITION" . MACRO) *table*) (gethash "DEFINE-CONDITION" *table*))
+(setf (gethash '("DEFINE-CONDITION" . "MACRO") *table*) (gethash "DEFINE-CONDITION" *table*))
 (setf (gethash "DEFINE-METHOD-COMBINATION" *table*)
   '("" EOL "Macro " "`DEFINE-METHOD-COMBINATION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`define-method-combination`" " *name* [[short-form-option]]  " EOL
@@ -9411,7 +9411,7 @@
     "ジェネリック関数が特定のmethod-combination型を使用するように" EOL "指定するときに使われます。" EOL ""
     "`:method-combination`" "オプションの最初の引数はmethod-combination型の名前であり、" EOL
     "残りの引数はその型へのオプションです。" EOL "" EOL))
-(setf (gethash '("DEFINE-METHOD-COMBINATION" . MACRO) *table*) (gethash "DEFINE-METHOD-COMBINATION" *table*))
+(setf (gethash '("DEFINE-METHOD-COMBINATION" . "MACRO") *table*) (gethash "DEFINE-METHOD-COMBINATION" *table*))
 (setf (gethash "DEFINE-MODIFY-MACRO" *table*)
   '("" EOL "Macro " "`DEFINE-MODIFY-MACRO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`define-modify-macro`"
@@ -9445,7 +9445,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`defsetf`" "," EOL "" "`define-setf-expander`"
     "," EOL "" "`documentation`" "," EOL "" "3.4.11. ドキュメント文字と宣言の文脈的な作用" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFINE-MODIFY-MACRO" . MACRO) *table*) (gethash "DEFINE-MODIFY-MACRO" *table*))
+(setf (gethash '("DEFINE-MODIFY-MACRO" . "MACRO") *table*) (gethash "DEFINE-MODIFY-MACRO" *table*))
 (setf (gethash "DEFINE-SETF-EXPANDER" *table*)
   '("" EOL "Macro " "`DEFINE-SETF-EXPANDER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`define-setf-expander`" " *access-fn* *lambda-list*" EOL
@@ -9508,7 +9508,7 @@
     EOL "さらに" "`define-setf-expander`" "は、" EOL "" "`defsetf`" "の制限である" EOL
     "*access-fn*が関数か関数のようなマクロである必要はなく、" EOL "*lambda-list*に" "`defmacro`" "のような" EOL
     "任意の分配のパターンが許されます。" EOL "" EOL))
-(setf (gethash '("DEFINE-SETF-EXPANDER" . MACRO) *table*) (gethash "DEFINE-SETF-EXPANDER" *table*))
+(setf (gethash '("DEFINE-SETF-EXPANDER" . "MACRO") *table*) (gethash "DEFINE-SETF-EXPANDER" *table*))
 (setf (gethash "DEFINE-SYMBOL-MACRO" *table*)
   '("" EOL "Macro " "`DEFINE-SYMBOL-MACRO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`define-symbol-macro`" " *symbol* *expansion*  " EOL "=> *symbol*" EOL "" EOL ""
@@ -9540,7 +9540,7 @@
     "*symbol*がすでにグローバル変数として定義されていたときは、" EOL "型" "`program-error`" "のエラーが発生します。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`symbol-macrolet`" "," EOL "" "`macroexpand`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFINE-SYMBOL-MACRO" . MACRO) *table*) (gethash "DEFINE-SYMBOL-MACRO" *table*))
+(setf (gethash '("DEFINE-SYMBOL-MACRO" . "MACRO") *table*) (gethash "DEFINE-SYMBOL-MACRO" *table*))
 (setf (gethash "DEFMACRO" *table*)
   '("" EOL "Macro " "`DEFMACRO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defmacro`" " *name* *lambda-list* [[*declaration\\** " "`|`"
@@ -9620,7 +9620,7 @@
     EOL "" "`*macroexpand-hook*`" "," EOL "" "`macrolet`" "," EOL "" "`macro-function`"
     "," EOL "" "3.1. 評価" "," EOL "" "3.2. コンパイル" "," EOL "" "3.4.11. ドキュメント文字と宣言の文脈的な作用"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFMACRO" . MACRO) *table*) (gethash "DEFMACRO" *table*))
+(setf (gethash '("DEFMACRO" . "MACRO") *table*) (gethash "DEFMACRO" *table*))
 (setf (gethash "DEFMETHOD" *table*)
   '("" EOL "Macro " "`DEFMETHOD`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defmethod`" " *function-name* *method-qualifier\\**" EOL
@@ -9695,7 +9695,7 @@
     "7.6.2. メソッドの紹介" "," EOL "" "7.6.4. ジェネリック関数の全てのメソッドのラムダリストの合意" "," EOL ""
     "7.6.3. 特定パラメーターと修飾子の合致" "," EOL "" "3.4.11. ドキュメント文字と宣言の文脈的な作用" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFMETHOD" . MACRO) *table*) (gethash "DEFMETHOD" *table*))
+(setf (gethash '("DEFMETHOD" . "MACRO") *table*) (gethash "DEFMETHOD" *table*))
 (setf (gethash "DEFPACKAGE" *table*)
   '("" EOL "Macro " "`DEFPACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defpackage`" " *defined-package-name* [[*option*]] => *package*" EOL "" EOL "```"
@@ -9804,7 +9804,7 @@
     "配置されているようなときでさえ、" EOL "コンパイルファイルにはただ文字列だけが配置されます。" EOL "" EOL "よく追加で" "実装依存"
     "のオプションに、" EOL "キーワードそれ自身のフォームで" "`(keyword T)`" "という" EOL "リストの省略形を表すことがあります。" EOL
     "この構文は、これをサポートしていない実装では、" EOL "認識できないオプションとして適切に報告されるべきです。" EOL "" EOL))
-(setf (gethash '("DEFPACKAGE" . MACRO) *table*) (gethash "DEFPACKAGE" *table*))
+(setf (gethash '("DEFPACKAGE" . "MACRO") *table*) (gethash "DEFPACKAGE" *table*))
 (setf (gethash "DEFPARAMETER" *table*)
   '("" EOL "Macro " "`DEFPARAMETER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defparameter`" " *name* *initial-value* [*documentation*] => *name*  " EOL ""
@@ -9884,7 +9884,7 @@
     "          ,(when documentation-p" EOL
     "             `(setf (documentation ',name 'variable) ',documentation))" EOL
     "          ',name))" EOL "```" EOL "" EOL))
-(setf (gethash '("DEFPARAMETER" . MACRO) *table*) (gethash "DEFPARAMETER" *table*))
+(setf (gethash '("DEFPARAMETER" . "MACRO") *table*) (gethash "DEFPARAMETER" *table*))
 (setf (gethash "DEFSETF" *table*)
   '("" EOL "Macro " "`DEFSETF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "短いフォーム:  "
     EOL "" "`defsetf`" " *access-fn* *update-fn* [*documentation*]  " EOL
@@ -9962,7 +9962,7 @@
     "は、" "`(ldb field reference)`" "のような" EOL "バイトの一般参照への格納方法を記述することができません。" EOL ""
     "`define-setf-expander`" "は、" EOL "" "`defsetf`" "によって課されている制限に" EOL
     "ふさわしくないような状況を処理するために使われ、" EOL "ユーザーに対して追加の制御を与えます。" EOL "" EOL))
-(setf (gethash '("DEFSETF" . MACRO) *table*) (gethash "DEFSETF" *table*))
+(setf (gethash '("DEFSETF" . "MACRO") *table*) (gethash "DEFSETF" *table*))
 (setf (gethash "DEFSTRUCT" *table*)
   '("" EOL "Macro " "`DEFSTRUCT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defstruct`" " *name-and-options* [*documentation*] " "`{`" "*slot-description*"
@@ -10445,7 +10445,7 @@
     "スロットのアクセッサを変更する仕組みは" EOL "" "実装依存" "です。" EOL "例えば、これは" "`setf`" "関数か、" "`setf`"
     "展開か、" EOL "あるいはその他の" "`setf`" "への実装コードとして知られている" EOL "" "実装依存" "の仕組みなどが使われます。" EOL
     "" EOL))
-(setf (gethash '("DEFSTRUCT" . MACRO) *table*) (gethash "DEFSTRUCT" *table*))
+(setf (gethash '("DEFSTRUCT" . "MACRO") *table*) (gethash "DEFSTRUCT" *table*))
 (setf (gethash "DEFTYPE" *table*)
   '("" EOL "Macro " "`DEFTYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`deftype`" " *name* *lambda-list*" EOL " [[*declaration\\** " "`|`"
@@ -10483,7 +10483,7 @@
     EOL "" "`declare`" "," EOL "" "`defmacro`" "," EOL "" "`documentation`" "," EOL ""
     "4.2.3. 型指定子" "," EOL "" "3.4.11. ドキュメント文字と宣言の文脈的な作用" "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DEFTYPE" . MACRO) *table*) (gethash "DEFTYPE" *table*))
+(setf (gethash '("DEFTYPE" . "MACRO") *table*) (gethash "DEFTYPE" *table*))
 (setf (gethash "DEFUN" *table*)
   '("" EOL "Macro " "`DEFUN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`defun`"
     " *function-name* *lambda-list* [[*declaration\\** " "`|`"
@@ -10530,7 +10530,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`return-from`" "は、" "`defun`" "定義の関数を"
     EOL "普通より早く返却したいときに使用することができます。" EOL "" EOL "関数定義に関する追加情報（通常はデバッグ情報）が記録されると、" EOL
     "さらなる副作用が発生する可能性があります。" EOL "" EOL))
-(setf (gethash '("DEFUN" . MACRO) *table*) (gethash "DEFUN" *table*))
+(setf (gethash '("DEFUN" . "MACRO") *table*) (gethash "DEFUN" *table*))
 (setf (gethash "DEFVAR" *table*)
   '("" EOL "Macro " "`DEFPARAMETER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`defparameter`" " *name* *initial-value* [*documentation*] => *name*  " EOL ""
@@ -10610,7 +10610,7 @@
     "          ,(when documentation-p" EOL
     "             `(setf (documentation ',name 'variable) ',documentation))" EOL
     "          ',name))" EOL "```" EOL "" EOL))
-(setf (gethash '("DEFVAR" . MACRO) *table*) (gethash "DEFVAR" *table*))
+(setf (gethash '("DEFVAR" . "MACRO") *table*) (gethash "DEFVAR" *table*))
 (setf (gethash "DELETE" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -10699,7 +10699,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("DELETE" . FUNCTION) *table*) (gethash "DELETE" *table*))
+(setf (gethash '("DELETE" . "FUNCTION") *table*) (gethash "DELETE" *table*))
 (setf (gethash "DELETE-DUPLICATES" *table*)
   '("" EOL "Function " "`REMOVE-DUPLICATES`" ", " "`DELETE-DUPLICATES`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`remove-duplicates`" " *sequence*" EOL
@@ -10745,7 +10745,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "これらの関数は、*sequence*を集合で表現される" EOL
     "標準形に変換するのに便利です。" EOL "" EOL))
-(setf (gethash '("DELETE-DUPLICATES" . FUNCTION) *table*) (gethash "DELETE-DUPLICATES" *table*))
+(setf (gethash '("DELETE-DUPLICATES" . "FUNCTION") *table*) (gethash "DELETE-DUPLICATES" *table*))
 (setf (gethash "DELETE-FILE" *table*)
   '("" EOL "Function " "`DELETE-FILE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`delete-file`" " *filespec* => " "`t`" "" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -10771,7 +10771,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DELETE-FILE" . FUNCTION) *table*) (gethash "DELETE-FILE" *table*))
+(setf (gethash '("DELETE-FILE" . "FUNCTION") *table*) (gethash "DELETE-FILE" *table*))
 (setf (gethash "DELETE-IF" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -10860,7 +10860,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("DELETE-IF" . FUNCTION) *table*) (gethash "DELETE-IF" *table*))
+(setf (gethash '("DELETE-IF" . "FUNCTION") *table*) (gethash "DELETE-IF" *table*))
 (setf (gethash "DELETE-IF-NOT" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -10949,7 +10949,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("DELETE-IF-NOT" . FUNCTION) *table*) (gethash "DELETE-IF-NOT" *table*))
+(setf (gethash '("DELETE-IF-NOT" . "FUNCTION") *table*) (gethash "DELETE-IF-NOT" *table*))
 (setf (gethash "DELETE-PACKAGE" *table*)
   '("" EOL "Function " "`DELETE-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`delete-package`" " *package* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -11023,7 +11023,7 @@
     "`delete-package`" "は" EOL "ちょうどそれを使うパッケージが存在しなくなるかのように" EOL "*package*を削除します。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`unuse-package`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DELETE-PACKAGE" . FUNCTION) *table*) (gethash "DELETE-PACKAGE" *table*))
+(setf (gethash '("DELETE-PACKAGE" . "FUNCTION") *table*) (gethash "DELETE-PACKAGE" *table*))
 (setf (gethash "DESTRUCTURING-BIND" *table*)
   '("" EOL "Macro " "`DESTRUCTURING-BIND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`destructuring-bind`" " *lambda-list* *expression* *declaration\\** *form\\**  "
@@ -11042,7 +11042,7 @@
     "例外" "" EOL "" EOL "もし*expression*の評価した返却値が" EOL "分割のパターンにマッチしなかったときは、" EOL "型"
     "`error`" "のエラーが発生します。" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`macrolet`" "," EOL
     "" "`defmacro`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DESTRUCTURING-BIND" . MACRO) *table*) (gethash "DESTRUCTURING-BIND" *table*))
+(setf (gethash '("DESTRUCTURING-BIND" . "MACRO") *table*) (gethash "DESTRUCTURING-BIND" *table*))
 (setf (gethash "DIGIT-CHAR" *table*)
   '("" EOL "Function " "`DIGIT-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`digit-char`" " *weight* &optional *radix* => *char*" EOL "" EOL "" EOL "## "
@@ -11059,7 +11059,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`digit-char-p`" ", "
     "`graphic-char-p`" ", " "2.1. 文字の構文" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("DIGIT-CHAR" . FUNCTION) *table*) (gethash "DIGIT-CHAR" *table*))
+(setf (gethash '("DIGIT-CHAR" . "FUNCTION") *table*) (gethash "DIGIT-CHAR" *table*))
 (setf (gethash "DIGIT-CHAR-P" *table*)
   '("" EOL "Function " "`DIGIT-CHAR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`digit-char-p`" " *char* &optional *radix* => *weight*" EOL "" EOL "" EOL "## "
@@ -11080,7 +11080,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`alphanumericp`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "数値は" "図形文字" "です。"
     EOL "" EOL))
-(setf (gethash '("DIGIT-CHAR-P" . FUNCTION) *table*) (gethash "DIGIT-CHAR-P" *table*))
+(setf (gethash '("DIGIT-CHAR-P" . "FUNCTION") *table*) (gethash "DIGIT-CHAR-P" *table*))
 (setf (gethash "DIRECTORY" *table*)
   '("" EOL "Function " "`DIRECTORY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`directory`" " *pathspec* " "`&key`" " => *pathnames*" EOL "" EOL "" EOL "## "
@@ -11099,7 +11099,7 @@
     "標準のキーワード引数が定義されてはいませんが、" EOL "" "`&key`" "が定義されています。" EOL "" "`:allow-other-keys t`"
     "は、" EOL "" "仕様に適合したプログラム" "においては、" EOL "プログラムに通された実装でサポートされていない" EOL
     "どのような追加のキーワード引数も" EOL "静かに無視するときに使われます。" EOL "" EOL))
-(setf (gethash '("DIRECTORY" . FUNCTION) *table*) (gethash "DIRECTORY" *table*))
+(setf (gethash '("DIRECTORY" . "FUNCTION") *table*) (gethash "DIRECTORY" *table*))
 (setf (gethash "DIRECTORY-NAMESTRING" *table*)
   '("" EOL "Function " "`NAMESTRING`" ", " "`FILE-NAMESTRING`" ", "
     "`DIRECTORY-NAMESTRING`" "," EOL "" "`HOST-NAMESTRING`" ", " "`ENOUGH-NAMESTRING`" ""
@@ -11156,7 +11156,7 @@
     "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DIRECTORY-NAMESTRING" . FUNCTION) *table*) (gethash "DIRECTORY-NAMESTRING" *table*))
+(setf (gethash '("DIRECTORY-NAMESTRING" . "FUNCTION") *table*) (gethash "DIRECTORY-NAMESTRING" *table*))
 (setf (gethash "DO" *table*)
   '("" EOL "Macro " "`DO`" ", " "`DO*`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`do`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form* [*step-form*]])" "`}`" "\\*)"
@@ -11265,7 +11265,7 @@
     "                 varn stepn))))" EOL "```" EOL "" EOL "" "`do*`" "も似ていますが、" EOL ""
     "`let*`" "と" "`setq`" "を、" EOL "それぞれ" "`let`" "と" "`psetq`" "に置き換えたものになります。" EOL ""
     EOL))
-(setf (gethash '("DO" . MACRO) *table*) (gethash "DO" *table*))
+(setf (gethash '("DO" . "MACRO") *table*) (gethash "DO" *table*))
 (setf (gethash "DO*" *table*)
   '("" EOL "Macro " "`DO`" ", " "`DO*`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`do`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form* [*step-form*]])" "`}`" "\\*)"
@@ -11374,7 +11374,7 @@
     "                 varn stepn))))" EOL "```" EOL "" EOL "" "`do*`" "も似ていますが、" EOL ""
     "`let*`" "と" "`setq`" "を、" EOL "それぞれ" "`let`" "と" "`psetq`" "に置き換えたものになります。" EOL ""
     EOL))
-(setf (gethash '("DO*" . MACRO) *table*) (gethash "DO*" *table*))
+(setf (gethash '("DO*" . "MACRO") *table*) (gethash "DO*" *table*))
 (setf (gethash "DO-ALL-SYMBOLS" *table*)
   '("" EOL "Macro " "`DO-SYMBOLS`" ", " "`DO-EXTERNAL-SYMBOLS`" ", " "`DO-ALL-SYMBOLS`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`do-symbols`"
@@ -11425,7 +11425,7 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`intern`" "," EOL "" "`export`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DO-ALL-SYMBOLS" . MACRO) *table*) (gethash "DO-ALL-SYMBOLS" *table*))
+(setf (gethash '("DO-ALL-SYMBOLS" . "MACRO") *table*) (gethash "DO-ALL-SYMBOLS" *table*))
 (setf (gethash "DO-EXTERNAL-SYMBOLS" *table*)
   '("" EOL "Macro " "`DO-SYMBOLS`" ", " "`DO-EXTERNAL-SYMBOLS`" ", " "`DO-ALL-SYMBOLS`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`do-symbols`"
@@ -11476,7 +11476,7 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`intern`" "," EOL "" "`export`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DO-EXTERNAL-SYMBOLS" . MACRO) *table*) (gethash "DO-EXTERNAL-SYMBOLS" *table*))
+(setf (gethash '("DO-EXTERNAL-SYMBOLS" . "MACRO") *table*) (gethash "DO-EXTERNAL-SYMBOLS" *table*))
 (setf (gethash "DO-SYMBOLS" *table*)
   '("" EOL "Macro " "`DO-SYMBOLS`" ", " "`DO-EXTERNAL-SYMBOLS`" ", " "`DO-ALL-SYMBOLS`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`do-symbols`"
@@ -11527,10 +11527,10 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`intern`" "," EOL "" "`export`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("DO-SYMBOLS" . MACRO) *table*) (gethash "DO-SYMBOLS" *table*))
+(setf (gethash '("DO-SYMBOLS" . "MACRO") *table*) (gethash "DO-SYMBOLS" *table*))
 (setf (gethash "DOCUMENTATION" *table*)
   '("" EOL "" EOL))
-(setf (gethash '("DOCUMENTATION" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "DOCUMENTATION" *table*))
+(setf (gethash '("DOCUMENTATION" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "DOCUMENTATION" *table*))
 (setf (gethash "DOLIST" *table*)
   '("" EOL "Macro " "`DOLIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`dolist`" " (*var* *list-form* [*result-form*]) *declaration\\**" EOL " " "`{`"
@@ -11562,7 +11562,7 @@
     "" "`tagbody`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "" "`go`" "は、" "`dotimes`" "のボディ部で" EOL "*tag*によってラベル付けされた文へ" EOL
     "遷移を制御するために使用されます。" EOL "" EOL))
-(setf (gethash '("DOLIST" . MACRO) *table*) (gethash "DOLIST" *table*))
+(setf (gethash '("DOLIST" . "MACRO") *table*) (gethash "DOLIST" *table*))
 (setf (gethash "DOTIMES" *table*)
   '("" EOL "Macro " "`DOTIMES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`dotimes`" " (*var* *count-form* [*result-form*]) *declaration\\**" EOL " " "`{`"
@@ -11611,7 +11611,7 @@
     "" EOL "" "`do`" "," EOL "" "`dolist`" "," EOL "" "`tagbody`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "" "`go`" "は、" "`dotimes`" "のボディ部で" EOL
     "*tag*によってラベル付けされた文へ" EOL "遷移を制御するために使用されます。" EOL "" EOL))
-(setf (gethash '("DOTIMES" . MACRO) *table*) (gethash "DOTIMES" *table*))
+(setf (gethash '("DOTIMES" . "MACRO") *table*) (gethash "DOTIMES" *table*))
 (setf (gethash "DYNAMIC-EXTENT" *table*)
   '("" EOL "Declaration " "`DYNAMIC-EXTENT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "(" "`dynamic-extent`" " [[*var\\** " "`|`" " (" "`function`" " *fn*)\\*]])" EOL
@@ -11688,7 +11688,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`declare`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "この最も一般的な最適化は、*var*変数の初期値のオブジェクトを" EOL "スタック領域に確保します。" EOL "" EOL
     "実装は単純にこの宣言を無視することも許されます。" EOL "" EOL))
-(setf (gethash '("DYNAMIC-EXTENT" . DECLARATION) *table*) (gethash "DYNAMIC-EXTENT" *table*))
+(setf (gethash '("DYNAMIC-EXTENT" . "DECLARATION") *table*) (gethash "DYNAMIC-EXTENT" *table*))
 (setf (gethash "ECASE" *table*)
   '("" EOL "Macro " "`CASE`" ", " "`CCASE`" ", " "`ECASE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`case`" " *keyform* " "`{`" "*normal-clause*" "`}`"
@@ -11757,7 +11757,7 @@
     "`ccase`" "によって使われる特定のエラーメッセージは、" EOL "実装によって変わります。" EOL
     "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`case`" "の*otherwise-clause*で" EOL
     "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("ECASE" . MACRO) *table*) (gethash "ECASE" *table*))
+(setf (gethash '("ECASE" . "MACRO") *table*) (gethash "ECASE" *table*))
 (setf (gethash "ECHO-STREAM" *table*)
   '("" EOL "System Class " "`ECHO-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`echo-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL "" EOL "" EOL
@@ -11767,7 +11767,7 @@
     "あるいは入力ストリームから読み込み処理を行ったあとにエコーされるかは、" EOL "" "実装依存" "です。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`echo-stream-input-stream`" "," EOL ""
     "`echo-stream-output-stream`" "," EOL "" "`make-echo-stream`" "" EOL "" EOL))
-(setf (gethash '("ECHO-STREAM" . SYSTEM-CLASS) *table*) (gethash "ECHO-STREAM" *table*))
+(setf (gethash '("ECHO-STREAM" . "SYSTEM-CLASS") *table*) (gethash "ECHO-STREAM" *table*))
 (setf (gethash "ECHO-STREAM-INPUT-STREAM" *table*)
   '("" EOL "Function " "`ECHO-STREAM-INPUT-STREAM`" ", " "`ECHO-STREAM-OUTPUT-STREAM`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`echo-stream-input-stream`"
@@ -11781,7 +11781,7 @@
     "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外"
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ECHO-STREAM-INPUT-STREAM" . FUNCTION) *table*) (gethash "ECHO-STREAM-INPUT-STREAM" *table*))
+(setf (gethash '("ECHO-STREAM-INPUT-STREAM" . "FUNCTION") *table*) (gethash "ECHO-STREAM-INPUT-STREAM" *table*))
 (setf (gethash "ECHO-STREAM-OUTPUT-STREAM" *table*)
   '("" EOL "Function " "`ECHO-STREAM-INPUT-STREAM`" ", " "`ECHO-STREAM-OUTPUT-STREAM`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`echo-stream-input-stream`"
@@ -11795,7 +11795,7 @@
     "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外"
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ECHO-STREAM-OUTPUT-STREAM" . FUNCTION) *table*) (gethash "ECHO-STREAM-OUTPUT-STREAM" *table*))
+(setf (gethash '("ECHO-STREAM-OUTPUT-STREAM" . "FUNCTION") *table*) (gethash "ECHO-STREAM-OUTPUT-STREAM" *table*))
 (setf (gethash "EIGHTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -11843,7 +11843,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("EIGHTH" . ACCESSOR) *table*) (gethash "EIGHTH" *table*))
+(setf (gethash '("EIGHTH" . "ACCESSOR") *table*) (gethash "EIGHTH" *table*))
 (setf (gethash "ELT" *table*)
   '("" EOL "Accessor " "`ELT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`elt`"
     " *sequence* *index* => *object*  " EOL "(" "`setf`" " (" "`elt`"
@@ -11861,7 +11861,7 @@
     EOL "" "`aref`" "," EOL "" "`nth`" "," EOL "" "3.2.1. コンパイラーの用語" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "" "`aref`" "は、" "`vector`" "の" "fill-pointer" "を越えた、"
     "`vector`" "の要素に" EOL "アクセスするときに使用します。" EOL "" EOL))
-(setf (gethash '("ELT" . ACCESSOR) *table*) (gethash "ELT" *table*))
+(setf (gethash '("ELT" . "ACCESSOR") *table*) (gethash "ELT" *table*))
 (setf (gethash "END-OF-FILE" *table*)
   '("" EOL "Condition Type " "`END-OF-FILE`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`end-of-file`" "," EOL "" "`stream-error`" "," EOL "" "`error`" ","
@@ -11869,7 +11869,7 @@
     "" EOL "## " "定義" "" EOL "" EOL "型" "`end-of-file`" "は、" EOL "もうデータがないストリームに対して" EOL
     "読み込み処理を行ったことに関係する" EOL "エラーのコンディションを含みます。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`stream-error-stream`" "" EOL "" EOL))
-(setf (gethash '("END-OF-FILE" . CONDITION-TYPE) *table*) (gethash "END-OF-FILE" *table*))
+(setf (gethash '("END-OF-FILE" . "CONDITION-TYPE") *table*) (gethash "END-OF-FILE" *table*))
 (setf (gethash "ENDP" *table*)
   '("" EOL "Function " "`ENDP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`endp`"
     " *list* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -11888,7 +11888,7 @@
     "の引数になったときの結果は未定義です。" EOL "これは" "`endp`" "が使われる普通の方法であり、" EOL "" "`endp`"
     "を使用する際に引数の型が" "通常のリスト" "であるか、" EOL "あるいはアトムであるかを強制せず、" EOL "単純な関数として" "`endp`"
     "を扱うということは、" EOL "保守的なプログラミングスタイルであり" EOL "" "`endp`" "の目的とも一致しています。" EOL "" EOL))
-(setf (gethash '("ENDP" . FUNCTION) *table*) (gethash "ENDP" *table*))
+(setf (gethash '("ENDP" . "FUNCTION") *table*) (gethash "ENDP" *table*))
 (setf (gethash "ENOUGH-NAMESTRING" *table*)
   '("" EOL "Function " "`NAMESTRING`" ", " "`FILE-NAMESTRING`" ", "
     "`DIRECTORY-NAMESTRING`" "," EOL "" "`HOST-NAMESTRING`" ", " "`ENOUGH-NAMESTRING`" ""
@@ -11945,7 +11945,7 @@
     "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ENOUGH-NAMESTRING" . FUNCTION) *table*) (gethash "ENOUGH-NAMESTRING" *table*))
+(setf (gethash '("ENOUGH-NAMESTRING" . "FUNCTION") *table*) (gethash "ENOUGH-NAMESTRING" *table*))
 (setf (gethash "ENSURE-DIRECTORIES-EXIST" *table*)
   '("" EOL "Function " "`ENSURE-DIRECTORIES-EXIST`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`ensure-directories-exist`" " *pathspec* " "`&key`"
@@ -11966,7 +11966,7 @@
     "または全ての要求が生成されたか、" EOL "いずれかの場合になるでしょう。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "" "`probe-file`" "," EOL "" "`open`" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ENSURE-DIRECTORIES-EXIST" . FUNCTION) *table*) (gethash "ENSURE-DIRECTORIES-EXIST" *table*))
+(setf (gethash '("ENSURE-DIRECTORIES-EXIST" . "FUNCTION") *table*) (gethash "ENSURE-DIRECTORIES-EXIST" *table*))
 (setf (gethash "ENSURE-GENERIC-FUNCTION" *table*)
   '("" EOL "Function " "`ENSURE-GENERIC-FUNCTION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`ensure-generic-function`" " *function-name*" EOL
@@ -12004,7 +12004,7 @@
     EOL "かつ新しいジェネリック関数のクラスが古いものと互換性がない場合は、" EOL "型" "`error`" "のエラーが発せられます。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`defgeneric`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("ENSURE-GENERIC-FUNCTION" . FUNCTION) *table*) (gethash "ENSURE-GENERIC-FUNCTION" *table*))
+(setf (gethash '("ENSURE-GENERIC-FUNCTION" . "FUNCTION") *table*) (gethash "ENSURE-GENERIC-FUNCTION" *table*))
 (setf (gethash "EQ" *table*)
   '("" EOL "Function " "`EQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`eq`"
     " *x* *y* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -12041,10 +12041,10 @@
     "          |" "`getf`" "    |" "`throw`" " |" EOL "|" "`get`" "            |"
     "`remf`" "    |             |" EOL "|" "`get-properties`" " |" "`remprop`"
     " |             |" EOL "" EOL "Figure 5-11. つねにEQLよりEQを好む操作" EOL "" EOL))
-(setf (gethash '("EQ" . FUNCTION) *table*) (gethash "EQ" *table*))
+(setf (gethash '("EQ" . "FUNCTION") *table*) (gethash "EQ" *table*))
 (setf (gethash "EQL" *table*)
   '("EQL FUNCTION" EOL "EQL TYPE-SPECIFIER" EOL))
-(setf (gethash '("EQL" . FUNCTION) *table*)
+(setf (gethash '("EQL" . "FUNCTION") *table*)
   '("" EOL "Function " "`EQL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`eql`"
     " *x* *y* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*x* - オブジェクト  " EOL "*y* - オブジェクト  " EOL "*generalized-boolean* - "
@@ -12082,7 +12082,7 @@
     "`(eql #C(5.0 0.0) 5.0)`" "は*false*であり、" EOL "" "`(eql #C(5 0) 5)`"
     "は*true*であることに注意してください。" EOL "" "`(eql #C(5 0) 5)`" "の場合は、" "`#C(5 0)`" "が複素数ではなく、"
     EOL "それは整数" "`5`" "に自動的に変換されます。" EOL "" EOL))
-(setf (gethash '("EQL" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("EQL" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`EQL`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL "" EOL
     "結合" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`eql`" " *object*" EOL ""
     EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*object* - オブジェクト" EOL "" EOL "" EOL "## "
@@ -12142,7 +12142,7 @@
     "これらの関数はどんな型の引数でも取れますし、" EOL "それらの関数名は非常に一般的に聞こえますが、" EOL "" "`equal`" "と" "`equalp`"
     "は全てのアプリケーションにおいて" EOL "適切に使えるものではありません。" EOL "" EOL "だいたいの考え方として、2つのオブジェクトが"
     "`equal`" "であるとは、" EOL "ただ印字されたものが同じ表現であるときのみです。" EOL "" EOL))
-(setf (gethash '("EQUAL" . FUNCTION) *table*) (gethash "EQUAL" *table*))
+(setf (gethash '("EQUAL" . "FUNCTION") *table*) (gethash "EQUAL" *table*))
 (setf (gethash "EQUALP" *table*)
   '("" EOL "Function " "`EQUALP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`equalp`" " *x* *y* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -12199,10 +12199,10 @@
     "この同一性の関数が適切に使われる場合というのは、" EOL "ただ特定のプログラムで必要になったときの文脈でのみ判断できます。" EOL
     "これらの関数はどんな型の引数でも取れますし、" EOL "それらの関数名は非常に一般的に聞こえますが、" EOL "" "`equal`" "と" "`equalp`"
     "は全てのアプリケーションにおいて" EOL "適切に使えるものではありません。" EOL "" EOL))
-(setf (gethash '("EQUALP" . FUNCTION) *table*) (gethash "EQUALP" *table*))
+(setf (gethash '("EQUALP" . "FUNCTION") *table*) (gethash "EQUALP" *table*))
 (setf (gethash "ERROR" *table*)
   '("ERROR FUNCTION" EOL "ERROR CONDITION-TYPE" EOL))
-(setf (gethash '("ERROR" . FUNCTION) *table*)
+(setf (gethash '("ERROR" . "FUNCTION") *table*)
   '("" EOL "Function " "`ERROR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`error`" " *datum* " "`&rest`" " *arguments* => " "`|`" "" EOL "" EOL "" EOL "## "
     "引数と戻り値" "" EOL "" EOL "*datum*, *arguments* - コンディション指定子であり、標準の型は" "`simple-error`"
@@ -12251,7 +12251,7 @@
     "人間には常に予測不可能な方法で手動で介入することが知られています。" EOL "このような種類のエラーは、" EOL
     "コンディションシステムの正式なモデルの範囲を超えていますが、" EOL "この例で示唆されているような重大な影響を及ぼしうるコードを書くときに" EOL
     "真剣に検討すべきことの範囲を超えてはいません。" EOL "" EOL))
-(setf (gethash '("ERROR" . CONDITION-TYPE) *table*)
+(setf (gethash '("ERROR" . "CONDITION-TYPE") *table*)
   '("" EOL "Condition Type " "`ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`error`" "," EOL "" "`serious-condition`" "," EOL "" "`condition`" "," EOL ""
     "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "型" "`error`"
@@ -12332,7 +12332,7 @@
     EOL "" EOL "" "`etypecase`" "と" "`ctypecase`" "によって使われる特定のエラーメッセージは、" EOL
     "実装によって変わります。" EOL "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`typecase`"
     "の*otherwise-clause*で" EOL "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("ETYPECASE" . MACRO) *table*) (gethash "ETYPECASE" *table*))
+(setf (gethash '("ETYPECASE" . "MACRO") *table*) (gethash "ETYPECASE" *table*))
 (setf (gethash "EVAL" *table*)
   '("" EOL "Function " "`EVAL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`eval`"
     " *form* => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -12358,7 +12358,7 @@
     "`(quote (a . b)))`" "を生成します。" EOL "それから" "`eval`" "はその引数" "`(cdr (quote (a . b)))`"
     "を評価し" "`b`" "を生成します。" EOL "どのような関数のどんな引数でもすでに一回目の評価が生じているので、" EOL "" "`eval`"
     "は「余分なレベルの評価」が生じたと言われることがあります。" EOL "" EOL))
-(setf (gethash '("EVAL" . FUNCTION) *table*) (gethash "EVAL" *table*))
+(setf (gethash '("EVAL" . "FUNCTION") *table*) (gethash "EVAL" *table*))
 (setf (gethash "EVAL-WHEN" *table*)
   '("" EOL "Special Operator " "`EVAL-WHEN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`eval-when`" " (*situation\\**) *form\\** => *result\\**" EOL "" EOL "" EOL
@@ -12440,7 +12440,7 @@
     EOL "この展開は、上記のルールに従うと次の同等になります。" EOL "" EOL "```lisp" EOL "(defun bar (x) " EOL
     "  (setf (symbol-function 'foo) #'(lambda () (+ x 3))))" EOL "```" EOL "" EOL "これは"
     "`bar`" "の定義が" "トップレベルフォーム" "のものではありません。" EOL "" EOL))
-(setf (gethash '("EVAL-WHEN" . SPECIAL-OPERATOR) *table*) (gethash "EVAL-WHEN" *table*))
+(setf (gethash '("EVAL-WHEN" . "SPECIAL-OPERATOR") *table*) (gethash "EVAL-WHEN" *table*))
 (setf (gethash "EVERY" *table*)
   '("" EOL "Function " "`EVERY`" ", " "`SOME`" ", " "`NOTEVERY`" ", " "`NOTANY`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`every`"
@@ -12480,7 +12480,7 @@
     "(notany predicate sequence*) == (not (some predicate sequence*))" EOL
     "(notevery predicate sequence*) == (not (every predicate sequence*))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("EVERY" . FUNCTION) *table*) (gethash "EVERY" *table*))
+(setf (gethash '("EVERY" . "FUNCTION") *table*) (gethash "EVERY" *table*))
 (setf (gethash "EXPORT" *table*)
   '("" EOL "Function " "`EXPORT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`export`" " *symbols* " "`&optional`" " *package* => " "`t`" "" EOL "" EOL "" EOL
@@ -12519,14 +12519,14 @@
     "これは修正可能であることが許されており、" EOL "ユーザーは対話式でシンボルを" "`import`" "するべきかどうかを指定できます。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`import`" "," EOL "" "`unexport`" "," EOL ""
     "11.1. パッケージの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("EXPORT" . FUNCTION) *table*) (gethash "EXPORT" *table*))
+(setf (gethash '("EXPORT" . "FUNCTION") *table*) (gethash "EXPORT" *table*))
 (setf (gethash "EXTENDED-CHAR" *table*)
   '("" EOL "Type " "`EXTENDED-CHAR`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL
     "" "`extended-char`" ", " "`character`" ", " "`t`" "" EOL "" EOL "" EOL "## " "定義" ""
     EOL "" EOL "型" "`extended-char`" "は、" "`(and character (not base-char))`" "と同じです。"
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "全ての文字が型" "`base-char`" "である実装では、" EOL "型"
     "`extended-char`" "は要素が無いかもしれません。" EOL "" EOL))
-(setf (gethash '("EXTENDED-CHAR" . TYPE) *table*) (gethash "EXTENDED-CHAR" *table*))
+(setf (gethash '("EXTENDED-CHAR" . "TYPE") *table*) (gethash "EXTENDED-CHAR" *table*))
 (setf (gethash "FBOUNDP" *table*)
   '("" EOL "Function " "`FBOUNDP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`fboundp`" " *name* => *generalized-boolean*" EOL "" EOL "" EOL "## " "発音" "" EOL ""
@@ -12553,7 +12553,7 @@
     "`fboundp`" "は、よく関数セルにアクセスするときの保護として使われます。" EOL "例えば下記の通り。" EOL "" EOL "```lisp" EOL
     "(if (fboundp x) (symbol-function x))" EOL "```" EOL "" EOL "" "setf-expander" "の定義"
     "`F`" "は、" EOL "" "`(setf F)`" "であらわされるsetf関数の定義にはなりません。" EOL "" EOL))
-(setf (gethash '("FBOUNDP" . FUNCTION) *table*) (gethash "FBOUNDP" *table*))
+(setf (gethash '("FBOUNDP" . "FUNCTION") *table*) (gethash "FBOUNDP" *table*))
 (setf (gethash "FDEFINITION" *table*)
   '("" EOL "Accessor " "`FDEFINITION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`fdefinition`" " *function-name* => *definition*  " EOL "(" "`setf`" " ("
@@ -12578,7 +12578,7 @@
     "グローバルな関数定義を置き換えることができます。" EOL "" "`setf`" "の" "`fdefinition`" "は、新しい値に関数を要求します。" EOL
     "*function-name*の" "`fdefinition`" "に、" EOL "シンボルか、リストか、" EOL "あるいはマクロか" "特殊フォーム"
     "の名前から" EOL "" "`fdefinition`" "によって得られる値をセットするのはエラーです。" EOL "" EOL))
-(setf (gethash '("FDEFINITION" . ACCESSOR) *table*) (gethash "FDEFINITION" *table*))
+(setf (gethash '("FDEFINITION" . "ACCESSOR") *table*) (gethash "FDEFINITION" *table*))
 (setf (gethash "FIFTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -12626,7 +12626,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("FIFTH" . ACCESSOR) *table*) (gethash "FIFTH" *table*))
+(setf (gethash '("FIFTH" . "ACCESSOR") *table*) (gethash "FIFTH" *table*))
 (setf (gethash "FILE-AUTHOR" *table*)
   '("" EOL "Function " "`FILE-AUTHOR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`file-author`" " *pathspec* => *author*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -12640,7 +12640,7 @@
     "もしファイルシステムが要求された処理を実行できなかったときは、" EOL "型" "`file-error`" "のエラーが発生します。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "25.1.4.2. ユニバーサル時間" "," EOL ""
     "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FILE-AUTHOR" . FUNCTION) *table*) (gethash "FILE-AUTHOR" *table*))
+(setf (gethash '("FILE-AUTHOR" . "FUNCTION") *table*) (gethash "FILE-AUTHOR" *table*))
 (setf (gethash "FILE-ERROR" *table*)
   '("" EOL "Condition Type " "`FILE-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`file-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
@@ -12651,7 +12651,7 @@
     "`file-error-pathname`" "によってアクセスできます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`file-error-pathname`" "," EOL "" "`open`" "," EOL "" "`probe-file`" "," EOL ""
     "`directory`" "," EOL "" "`ensure-directories-exist`" "" EOL "" EOL))
-(setf (gethash '("FILE-ERROR" . CONDITION-TYPE) *table*) (gethash "FILE-ERROR" *table*))
+(setf (gethash '("FILE-ERROR" . "CONDITION-TYPE") *table*) (gethash "FILE-ERROR" *table*))
 (setf (gethash "FILE-ERROR-PATHNAME" *table*)
   '("" EOL "Function " "`FILE-ERROR-PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`file-error-pathname`" " *condition* => *pathspec*" EOL "" EOL "" EOL "## "
@@ -12662,7 +12662,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`file-error`" "," EOL "" "9. コンディション" "" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FILE-ERROR-PATHNAME" . FUNCTION) *table*) (gethash "FILE-ERROR-PATHNAME" *table*))
+(setf (gethash '("FILE-ERROR-PATHNAME" . "FUNCTION") *table*) (gethash "FILE-ERROR-PATHNAME" *table*))
 (setf (gethash "FILE-LENGTH" *table*)
   '("" EOL "Function " "`FILE-LENGTH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`file-length`" " *stream* => *length*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -12680,7 +12680,7 @@
     "*stream*がファイルに関連付けられたストリームではないとき、" EOL "型" "`type-error`" "のエラーが発生します。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`open`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("FILE-LENGTH" . FUNCTION) *table*) (gethash "FILE-LENGTH" *table*))
+(setf (gethash '("FILE-LENGTH" . "FUNCTION") *table*) (gethash "FILE-LENGTH" *table*))
 (setf (gethash "FILE-NAMESTRING" *table*)
   '("" EOL "Function " "`NAMESTRING`" ", " "`FILE-NAMESTRING`" ", "
     "`DIRECTORY-NAMESTRING`" "," EOL "" "`HOST-NAMESTRING`" ", " "`ENOUGH-NAMESTRING`" ""
@@ -12737,7 +12737,7 @@
     "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FILE-NAMESTRING" . FUNCTION) *table*) (gethash "FILE-NAMESTRING" *table*))
+(setf (gethash '("FILE-NAMESTRING" . "FUNCTION") *table*) (gethash "FILE-NAMESTRING" *table*))
 (setf (gethash "FILE-POSITION" *table*)
   '("" EOL "Function " "`FILE-POSITION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`file-position`" " *stream* => *position*  " EOL "" "`file-position`"
@@ -12789,7 +12789,7 @@
     "これは各文字の読み書きに応じて単調に増加するため有効な計算です。" EOL "ただし、各ステップで必ずしも1ずつ増えるわけではありません。" EOL
     "もし、ある整数をレコード番号と文字番号をもとに算出したとき、" EOL "与えられたレコードが指定された文字番号に対して短すぎることが判明すれば、" EOL
     "その整数値は" "`file-position`" "の*position-spec*として" EOL "「不適切」とみなされるかもしれません。" EOL "" EOL))
-(setf (gethash '("FILE-POSITION" . FUNCTION) *table*) (gethash "FILE-POSITION" *table*))
+(setf (gethash '("FILE-POSITION" . "FUNCTION") *table*) (gethash "FILE-POSITION" *table*))
 (setf (gethash "FILE-STREAM" *table*)
   '("" EOL "System Class " "`FILE-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`file-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL "" EOL "" EOL
@@ -12797,7 +12797,7 @@
     EOL "そのようなストリームは、" EOL "" "`open`" "と" "`with-open-file`" "によって明に作成されるか、" EOL ""
     "`load`" "のようなファイルを処理する関数で暗に作成されます。" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`load`"
     "," EOL "" "`open`" "," EOL "" "`with-open-file`" "" EOL "" EOL))
-(setf (gethash '("FILE-STREAM" . SYSTEM-CLASS) *table*) (gethash "FILE-STREAM" *table*))
+(setf (gethash '("FILE-STREAM" . "SYSTEM-CLASS") *table*) (gethash "FILE-STREAM" *table*))
 (setf (gethash "FILE-STRING-LENGTH" *table*)
   '("" EOL "Function " "`FILE-STRING-LENGTH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`file-string-length`" " *stream* *object* => *length*" EOL "" EOL "" EOL
@@ -12810,7 +12810,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("FILE-STRING-LENGTH" . FUNCTION) *table*) (gethash "FILE-STRING-LENGTH" *table*))
+(setf (gethash '("FILE-STRING-LENGTH" . "FUNCTION") *table*) (gethash "FILE-STRING-LENGTH" *table*))
 (setf (gethash "FILE-WRITE-DATE" *table*)
   '("" EOL "Function " "`FILE-WRITE-DATE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`file-write-date`" " *pathspec* => *date*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -12832,7 +12832,7 @@
     "`pathname`" "," EOL "" "`logical-pathname`" "," EOL "" "20.1. ファイルシステムの説明" "," EOL
     "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL "" EOL "" EOL))
-(setf (gethash '("FILE-WRITE-DATE" . FUNCTION) *table*) (gethash "FILE-WRITE-DATE" *table*))
+(setf (gethash '("FILE-WRITE-DATE" . "FUNCTION") *table*) (gethash "FILE-WRITE-DATE" *table*))
 (setf (gethash "FILL" *table*)
   '("" EOL "Function " "`FILL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`fill`"
     " *sequence* *item* &key *start* *end* => *sequence*" EOL "" EOL "" EOL "## "
@@ -12854,7 +12854,7 @@
     "`replace`" "," EOL "" "`nsubstitute`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "```lisp" EOL "(fill sequence item) == (nsubstitute-if item (constantly t) sequence)"
     EOL "```" EOL "" EOL))
-(setf (gethash '("FILL" . FUNCTION) *table*) (gethash "FILL" *table*))
+(setf (gethash '("FILL" . "FUNCTION") *table*) (gethash "FILL" *table*))
 (setf (gethash "FILL-POINTER" *table*)
   '("" EOL "Accessor " "`FILL-POINTER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`fill-pointer`" " *vector* => *fill-pointer*  " EOL "(" "`setf`" " ("
@@ -12874,7 +12874,7 @@
     "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-array`" "," EOL "" "`length`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`vector`" "から" "fill-pointer" "を削除する操作はありません。" EOL "" EOL))
-(setf (gethash '("FILL-POINTER" . ACCESSOR) *table*) (gethash "FILL-POINTER" *table*))
+(setf (gethash '("FILL-POINTER" . "ACCESSOR") *table*) (gethash "FILL-POINTER" *table*))
 (setf (gethash "FIND" *table*)
   '("" EOL "Function " "`FIND`" ", " "`FIND-IF`" ", " "`FIND-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`find`" " *item* *sequence*" EOL
@@ -12907,7 +12907,7 @@
     EOL "## " "参考" "" EOL "" EOL "" "`position`" "," EOL "" "17.2. テスト関数のルール" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`"
     "パラメーターは非推奨です。" EOL "" EOL "関数" "`find-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("FIND" . FUNCTION) *table*) (gethash "FIND" *table*))
+(setf (gethash '("FIND" . "FUNCTION") *table*) (gethash "FIND" *table*))
 (setf (gethash "FIND-ALL-SYMBOLS" *table*)
   '("" EOL "Function " "`FIND-ALL-SYMBOLS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`find-all-symbols`" " *string* => *symbols*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -12924,7 +12924,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`find-symbol`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FIND-ALL-SYMBOLS" . FUNCTION) *table*) (gethash "FIND-ALL-SYMBOLS" *table*))
+(setf (gethash '("FIND-ALL-SYMBOLS" . "FUNCTION") *table*) (gethash "FIND-ALL-SYMBOLS" *table*))
 (setf (gethash "FIND-CLASS" *table*)
   '("" EOL "Accessor " "`FIND-CLASS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`find-class`" " *symbol* &optional *errorp* *environment* => *class*  " EOL "("
@@ -12948,7 +12948,7 @@
     "" EOL "" EOL "もしそのようなクラスが存在せず、*errorp*が*true*の場合は、" EOL "" "`find-class`" "は、型"
     "`error`" "のエラーを通知します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`defmacro`"
     ", " "4.3.7. 型とクラスの統合" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FIND-CLASS" . ACCESSOR) *table*) (gethash "FIND-CLASS" *table*))
+(setf (gethash '("FIND-CLASS" . "ACCESSOR") *table*) (gethash "FIND-CLASS" *table*))
 (setf (gethash "FIND-IF" *table*)
   '("" EOL "Function " "`FIND`" ", " "`FIND-IF`" ", " "`FIND-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`find`" " *item* *sequence*" EOL
@@ -12981,7 +12981,7 @@
     EOL "## " "参考" "" EOL "" EOL "" "`position`" "," EOL "" "17.2. テスト関数のルール" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`"
     "パラメーターは非推奨です。" EOL "" EOL "関数" "`find-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("FIND-IF" . FUNCTION) *table*) (gethash "FIND-IF" *table*))
+(setf (gethash '("FIND-IF" . "FUNCTION") *table*) (gethash "FIND-IF" *table*))
 (setf (gethash "FIND-IF-NOT" *table*)
   '("" EOL "Function " "`FIND`" ", " "`FIND-IF`" ", " "`FIND-IF-NOT`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`find`" " *item* *sequence*" EOL
@@ -13014,7 +13014,7 @@
     EOL "## " "参考" "" EOL "" EOL "" "`position`" "," EOL "" "17.2. テスト関数のルール" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`"
     "パラメーターは非推奨です。" EOL "" EOL "関数" "`find-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("FIND-IF-NOT" . FUNCTION) *table*) (gethash "FIND-IF-NOT" *table*))
+(setf (gethash '("FIND-IF-NOT" . "FUNCTION") *table*) (gethash "FIND-IF-NOT" *table*))
 (setf (gethash "FIND-METHOD" *table*)
   '("" EOL "Standard Generic Function " "`FIND-METHOD`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`find-method`"
@@ -13050,7 +13050,7 @@
     "そのようなメソッドが存在せず、*errorp*が*true*のときは、" EOL "" "`find-method`" "は型" "`error`"
     "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "7.6.3. 特定パラメーターと修飾子の合致"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FIND-METHOD" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "FIND-METHOD" *table*))
+(setf (gethash '("FIND-METHOD" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "FIND-METHOD" *table*))
 (setf (gethash "FIND-PACKAGE" *table*)
   '("" EOL "Function " "`FIND-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`find-package`" " *name* => *package*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -13068,7 +13068,7 @@
     "" "`rename-package`" "" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`make-package`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FIND-PACKAGE" . FUNCTION) *table*) (gethash "FIND-PACKAGE" *table*))
+(setf (gethash '("FIND-PACKAGE" . "FUNCTION") *table*) (gethash "FIND-PACKAGE" *table*))
 (setf (gethash "FIND-RESTART" *table*)
   '("" EOL "Function " "`FIND-RESTART`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`find-restart`" " *identifier* " "`&optional`" " *condition*  " EOL "=> *restart*"
@@ -13097,7 +13097,7 @@
     "匿名の" "`restart`" "は" "`nil`" "という名前ですが、" EOL "*identifier*に" "`nil`"
     "を指定したときの結果は未定義です。" EOL "たまにプログラマーは*identifier*の引数に" EOL "" "`nil`" "は許されないと主張します。"
     EOL "そのような場合、" "`compute-restarts`" "で" EOL "おそらく似たような効果を行うことができます。" EOL "" EOL))
-(setf (gethash '("FIND-RESTART" . FUNCTION) *table*) (gethash "FIND-RESTART" *table*))
+(setf (gethash '("FIND-RESTART" . "FUNCTION") *table*) (gethash "FIND-RESTART" *table*))
 (setf (gethash "FIND-SYMBOL" *table*)
   '("" EOL "Function " "`FIND-SYMBOL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`find-symbol`" " *string* " "`&optional`" " *package* => *symbol*, *status*" EOL ""
@@ -13136,7 +13136,7 @@
     EOL "## " "参考" "" EOL "" EOL "" "`intern`" "," EOL "" "`find-all-symbols`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "" "`find-symbol`" "は操作としては" "`intern`" "と同等ですが、"
     EOL "新しいシンボルを決して生成しない所が違っています。" EOL "" EOL))
-(setf (gethash '("FIND-SYMBOL" . FUNCTION) *table*) (gethash "FIND-SYMBOL" *table*))
+(setf (gethash '("FIND-SYMBOL" . "FUNCTION") *table*) (gethash "FIND-SYMBOL" *table*))
 (setf (gethash "FINISH-OUTPUT" *table*)
   '("" EOL "Function " "`FINISH-OUTPUT`" ", " "`FORCE-OUTPUT`" ", " "`CLEAR-OUTPUT`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`finish-output`" " " "`&optional`"
@@ -13159,7 +13159,7 @@
     EOL "*output-stream*がストリーム指定子ではなかったとき、" EOL "型" "`type-error`" "のエラーが通知されるべきです。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`clear-input`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FINISH-OUTPUT" . FUNCTION) *table*) (gethash "FINISH-OUTPUT" *table*))
+(setf (gethash '("FINISH-OUTPUT" . "FUNCTION") *table*) (gethash "FINISH-OUTPUT" *table*))
 (setf (gethash "FIRST" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -13207,7 +13207,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("FIRST" . ACCESSOR) *table*) (gethash "FIRST" *table*))
+(setf (gethash '("FIRST" . "ACCESSOR") *table*) (gethash "FIRST" *table*))
 (setf (gethash "FLET" *table*)
   '("" EOL "Special Operator " "`FLET`" ", " "`LABELS`" ", " "`MACROLET`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`flet`" " ((*function-name* *lambda-list*" EOL
@@ -13314,7 +13314,7 @@
     "は、互いに再帰呼出できる関数を定義するのに使うことができます。" EOL "" EOL "もし" "`macrolet`" "が" "トップレベルフォーム"
     "のとき、" EOL "ボディ部*form*もまた" "トップレベルフォーム" "として処理されます。" EOL "" "3.2.3. ファイルのコンパイル"
     "をご確認ください。" EOL "" EOL))
-(setf (gethash '("FLET" . SPECIAL-OPERATOR) *table*) (gethash "FLET" *table*))
+(setf (gethash '("FLET" . "SPECIAL-OPERATOR") *table*) (gethash "FLET" *table*))
 (setf (gethash "FMAKUNBOUND" *table*)
   '("" EOL "Function " "`FMAKUNBOUND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`fmakunbound`" " *name* => *name*" EOL "" EOL "" EOL "## " "発音" "" EOL "" EOL
@@ -13330,7 +13330,7 @@
     "*name*が" "特殊オペレーター" "のときの結果は未定義です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`fboundp`" "," EOL "" "`makunbound`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("FMAKUNBOUND" . FUNCTION) *table*) (gethash "FMAKUNBOUND" *table*))
+(setf (gethash '("FMAKUNBOUND" . "FUNCTION") *table*) (gethash "FMAKUNBOUND" *table*))
 (setf (gethash "FORCE-OUTPUT" *table*)
   '("" EOL "Function " "`FINISH-OUTPUT`" ", " "`FORCE-OUTPUT`" ", " "`CLEAR-OUTPUT`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`finish-output`" " " "`&optional`"
@@ -13353,7 +13353,7 @@
     EOL "*output-stream*がストリーム指定子ではなかったとき、" EOL "型" "`type-error`" "のエラーが通知されるべきです。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`clear-input`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FORCE-OUTPUT" . FUNCTION) *table*) (gethash "FORCE-OUTPUT" *table*))
+(setf (gethash '("FORCE-OUTPUT" . "FUNCTION") *table*) (gethash "FORCE-OUTPUT" *table*))
 (setf (gethash "FORMATTER" *table*)
   '("" EOL "Macro " "`FORMATTER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`formatter`" " *control-string* => *function*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -13371,7 +13371,7 @@
     "引数が有効な" "`format`文字列" "ではないとき、" EOL "（マクロ展開時か実行時かにおいて）" EOL "エラーが通知されるかもしれません。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`format`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FORMATTER" . MACRO) *table*) (gethash "FORMATTER" *table*))
+(setf (gethash '("FORMATTER" . "MACRO") *table*) (gethash "FORMATTER" *table*))
 (setf (gethash "FOURTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -13419,7 +13419,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("FOURTH" . ACCESSOR) *table*) (gethash "FOURTH" *table*))
+(setf (gethash '("FOURTH" . "ACCESSOR") *table*) (gethash "FOURTH" *table*))
 (setf (gethash "FRESH-LINE" *table*)
   '("" EOL "Function " "`TERPRI`" ", " "`FRESH-LINE`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`terpri`" " " "`&optional`" " *output-stream* => " "`nil`" "  " EOL ""
@@ -13442,7 +13442,7 @@
     EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`terpri`" "の効果は下記の同等です。" EOL "" EOL "```lisp" EOL
     "(write-char #\\Newline output-stream)" EOL "```" EOL "" EOL))
-(setf (gethash '("FRESH-LINE" . FUNCTION) *table*) (gethash "FRESH-LINE" *table*))
+(setf (gethash '("FRESH-LINE" . "FUNCTION") *table*) (gethash "FRESH-LINE" *table*))
 (setf (gethash "FTYPE" *table*)
   '("" EOL "Declaration " "`FTYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "("
     "`ftype`" " *type* *function-name\\**)" EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL
@@ -13461,7 +13461,7 @@
     "`flet`" "か" "`labels`" "フォーム本体の前に現れた" EOL "関数の" "`ftype`" "宣言は、" EOL
     "関数の境界宣言として定義されます。" EOL "その他の文脈の宣言は自由宣言です。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`declare`" "," EOL "" "`declaim`" "," EOL "" "`proclaim`" "" EOL "" EOL))
-(setf (gethash '("FTYPE" . DECLARATION) *table*) (gethash "FTYPE" *table*))
+(setf (gethash '("FTYPE" . "DECLARATION") *table*) (gethash "FTYPE" *table*))
 (setf (gethash "FUNCALL" *table*)
   '("" EOL "Function " "`FUNCALL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`funcall`" " *function* &rest *args* => *result\\**" EOL "" EOL "" EOL "## "
@@ -13484,10 +13484,10 @@
     "==  (apply function (list arg1 arg2 ...))" EOL "```" EOL "" EOL "" "`funcall`"
     "と通常の関数呼び出しの違いは、" EOL "前者はフォームの通常の評価によって*function*を取得しますが、" EOL
     "後者は普通に起こる関数の位置の特別な解釈によって得られます。" EOL "" EOL))
-(setf (gethash '("FUNCALL" . FUNCTION) *table*) (gethash "FUNCALL" *table*))
+(setf (gethash '("FUNCALL" . "FUNCTION") *table*) (gethash "FUNCALL" *table*))
 (setf (gethash "FUNCTION" *table*)
   '("FUNCTION SPECIAL-OPERATOR" EOL "FUNCTION SYSTEM-CLASS" EOL))
-(setf (gethash '("FUNCTION" . SPECIAL-OPERATOR) *table*)
+(setf (gethash '("FUNCTION" . "SPECIAL-OPERATOR") *table*)
   '("" EOL "Special Operator " "`FUNCTION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`function`" " *name* => *function*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
     EOL "*name* - 関数名か、ラムダ式  " EOL "*function* - 関数オブジェクト" EOL "" EOL "" EOL "## " "定義"
@@ -13513,7 +13513,7 @@
     "2.4.8.2. シャープサイン シングルクォート" "," EOL "" "22.1.3.13. 他のオブジェクトの印字" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "" "`#'name`" "という表記が、" "`(function name)`" "の略語として使われます。"
     EOL "" EOL))
-(setf (gethash '("FUNCTION" . SYSTEM-CLASS) *table*)
+(setf (gethash '("FUNCTION" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`FUNCTION`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`function`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
     "関数" "`function`" "とは、適切な数の引数を供給することで" EOL "実行されるコードを表現したオブジェクトです。" EOL "関数は、"
@@ -13585,7 +13585,7 @@
     "```" EOL "" EOL "## " "影響" "" EOL "" EOL "" "`defmethod`" "" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`defmethod`"
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("FUNCTION-KEYWORDS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "FUNCTION-KEYWORDS" *table*))
+(setf (gethash '("FUNCTION-KEYWORDS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "FUNCTION-KEYWORDS" *table*))
 (setf (gethash "FUNCTION-LAMBDA-EXPRESSION" *table*)
   '("" EOL "Function " "`FUNCTION-LAMBDA-EXPRESSION`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`function-lambda-expression`" " *function*  " EOL
@@ -13631,7 +13631,7 @@
     "`nil, true, nil`" "を返却することができますが、" EOL "" "`compile`" "か" "`eval`"
     "の呼び出しによって引数が作成された場合" EOL "（コンパイルされたファイルのロードによって生成されたものとは反対に）は、" EOL
     "第一返却値にラムダ式を返却することが推奨されています。" EOL "" EOL))
-(setf (gethash '("FUNCTION-LAMBDA-EXPRESSION" . FUNCTION) *table*) (gethash "FUNCTION-LAMBDA-EXPRESSION" *table*))
+(setf (gethash '("FUNCTION-LAMBDA-EXPRESSION" . "FUNCTION") *table*) (gethash "FUNCTION-LAMBDA-EXPRESSION" *table*))
 (setf (gethash "FUNCTIONP" *table*)
   '("" EOL "Function " "`FUNCTIONP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`functionp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -13648,7 +13648,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(functionp object) == (typep object 'function)" EOL "```" EOL "" EOL))
-(setf (gethash '("FUNCTIONP" . FUNCTION) *table*) (gethash "FUNCTIONP" *table*))
+(setf (gethash '("FUNCTIONP" . "FUNCTION") *table*) (gethash "FUNCTIONP" *table*))
 (setf (gethash "GENERIC-FUNCTION" *table*)
   '("" EOL "System Class " "`GENERIC-FUNCTION`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`generic-function`" "," EOL "" "`function`" "," EOL "" "`t`" "" EOL
@@ -13659,7 +13659,7 @@
     "メソッドの部分集合を実行します。" EOL "" EOL "ジェネリック関数は通常の関数を使用するかのように" EOL "同じ方法で使うことができます。" EOL
     "特にジェネリック関数は、" "`funcall`" "と" "`apply`" "の" EOL "引数としても使用することができ、" EOL
     "グローバルかローカルの名前としても与えられます。" EOL "" EOL))
-(setf (gethash '("GENERIC-FUNCTION" . SYSTEM-CLASS) *table*) (gethash "GENERIC-FUNCTION" *table*))
+(setf (gethash '("GENERIC-FUNCTION" . "SYSTEM-CLASS") *table*) (gethash "GENERIC-FUNCTION" *table*))
 (setf (gethash "GENSYM" *table*)
   '("" EOL "Function " "`GENSYM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "*gensym* &optional *x* => *new-symbol*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -13688,7 +13688,7 @@
     "現代のコードでは、引数に文字列のプレフィックスのみを" EOL "使用することが推奨されています。" EOL "しかし、一般的には、" EOL
     "より柔軟に*new-symbol*の名前を制御したいのであれば、" EOL "代わりに" "`make-symbol`" "の使用を検討してください。）" EOL ""
     EOL))
-(setf (gethash '("GENSYM" . FUNCTION) *table*) (gethash "GENSYM" *table*))
+(setf (gethash '("GENSYM" . "FUNCTION") *table*) (gethash "GENSYM" *table*))
 (setf (gethash "GENTEMP" *table*)
   '("" EOL "Function " "`GENTEMP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`gentemp`" " &optional *prefix* *package* => *new-symbol*" EOL "" EOL "" EOL "## "
@@ -13722,7 +13722,7 @@
     "宣言）を付与して" EOL "ファイルに書き込まないよう注意する必要があります。" EOL "なぜならそのようなグローバルの属性は、" EOL
     "違うセッション内においては終わっており、" EOL "別の日の、別の目的で自動的に生成された" EOL "別のシンボルに適用されているかもしれないからです。" EOL
     "" EOL))
-(setf (gethash '("GENTEMP" . FUNCTION) *table*) (gethash "GENTEMP" *table*))
+(setf (gethash '("GENTEMP" . "FUNCTION") *table*) (gethash "GENTEMP" *table*))
 (setf (gethash "GET" *table*)
   '("" EOL "Accessor " "`GET`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`get`"
     " *symbol* *indicator* &optional *default* => *value*  " EOL "(" "`setf`" " ("
@@ -13767,7 +13767,7 @@
     "そのため、そのような*indicator*を使ったときの効果は" EOL "" "実装依存" "です。" EOL "" EOL "" "`get`"
     "を使用して、存在しないプロパティと" EOL "値がデフォルトであるプロパティを区別する方法はありません。" EOL "しかし、" "`get-properties`"
     "を利用できます。" EOL "" EOL))
-(setf (gethash '("GET" . ACCESSOR) *table*) (gethash "GET" *table*))
+(setf (gethash '("GET" . "ACCESSOR") *table*) (gethash "GET" *table*))
 (setf (gethash "GET-OUTPUT-STREAM-STRING" *table*)
   '("" EOL "Function " "`GET-OUTPUT-STREAM-STRING`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`get-output-stream-string`" " " "`string-output-stream`"
@@ -13791,7 +13791,7 @@
     "によって暗黙的に生成されたもののときの結果は未定義です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-string-output-stream`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("GET-OUTPUT-STREAM-STRING" . FUNCTION) *table*) (gethash "GET-OUTPUT-STREAM-STRING" *table*))
+(setf (gethash '("GET-OUTPUT-STREAM-STRING" . "FUNCTION") *table*) (gethash "GET-OUTPUT-STREAM-STRING" *table*))
 (setf (gethash "GET-PROPERTIES" *table*)
   '("" EOL "Function " "`GET-PROPERTIES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`get-properties`" " *plist* *indicator-list* => *indicator*, *value*, *tail*" EOL
@@ -13814,7 +13814,7 @@
     "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL ""
     EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`get`" "," EOL "" "`getf`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("GET-PROPERTIES" . FUNCTION) *table*) (gethash "GET-PROPERTIES" *table*))
+(setf (gethash '("GET-PROPERTIES" . "FUNCTION") *table*) (gethash "GET-PROPERTIES" *table*))
 (setf (gethash "GET-SETF-EXPANSION" *table*)
   '("" EOL "Function " "`GET-SETF-EXPANSION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`get-setf-expansion`" " *place* &optional *environment*  " EOL
@@ -13842,7 +13842,7 @@
     "`define-setf-expander`" "," EOL "" "`setf`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "compound-form" "の操作" "`f`" "がsetf展開を持たないなら" EOL "" "`(setf f)`"
     "のように展開されるので、" EOL "どのような" "compound-form" "も有効な" "`place`" "になります。" EOL "" EOL))
-(setf (gethash '("GET-SETF-EXPANSION" . FUNCTION) *table*) (gethash "GET-SETF-EXPANSION" *table*))
+(setf (gethash '("GET-SETF-EXPANSION" . "FUNCTION") *table*) (gethash "GET-SETF-EXPANSION" *table*))
 (setf (gethash "GETF" *table*)
   '("" EOL "Accessor " "`GETF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`getf`"
     " *plist* *indicator* &optional *default* => *value*  " EOL "(" "`setf`" " ("
@@ -13880,7 +13880,7 @@
     EOL "読み込みの状況によって供給され、" EOL "それは書き込む状況によっても同様に" EOL "構文として有効でなければなりません。" EOL
     "例えば下記の通り。" EOL "" EOL "```lisp" EOL "(let ((plist '()))" EOL
     "  (incf (getf plist 'count 0))" EOL "  plist) =>  (COUNT 1)" EOL "```" EOL "" EOL))
-(setf (gethash '("GETF" . ACCESSOR) *table*) (gethash "GETF" *table*))
+(setf (gethash '("GETF" . "ACCESSOR") *table*) (gethash "GETF" *table*))
 (setf (gethash "GETHASH" *table*)
   '("" EOL "Accessor " "`GETHASH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`gethash`" " *key* *hash-table* " "`&optional`"
@@ -13915,7 +13915,7 @@
     EOL "" "`remhash`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "第二返却値である*present-p*は、" EOL "エントリーの不在か、" EOL "*default*の値を持つエントリーの存在かを、" EOL
     "区別するときに使用できます。" EOL "" EOL))
-(setf (gethash '("GETHASH" . ACCESSOR) *table*) (gethash "GETHASH" *table*))
+(setf (gethash '("GETHASH" . "ACCESSOR") *table*) (gethash "GETHASH" *table*))
 (setf (gethash "GO" *table*)
   '("" EOL "Special Operator " "`GO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`go`" " *tag* =>" "`|`" "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL "*tag* - " "`go`"
@@ -13937,7 +13937,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`tagbody`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("GO" . SPECIAL-OPERATOR) *table*) (gethash "GO" *table*))
+(setf (gethash '("GO" . "SPECIAL-OPERATOR") *table*) (gethash "GO" *table*))
 (setf (gethash "GRAPHIC-CHAR-P" *table*)
   '("" EOL "Function " "`GRAPHIC-CHAR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`graphic-char-p`" " *character* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -13951,7 +13951,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`read`" ", " "2.1. 文字の構文" ", "
     "13.1.10. 処理系実装のスクリプトの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("GRAPHIC-CHAR-P" . FUNCTION) *table*) (gethash "GRAPHIC-CHAR-P" *table*))
+(setf (gethash '("GRAPHIC-CHAR-P" . "FUNCTION") *table*) (gethash "GRAPHIC-CHAR-P" *table*))
 (setf (gethash "HANDLER-BIND" *table*)
   '("" EOL "Macro " "`HANDLER-BIND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`handler-bind`" " (" "`{`" "*binding*" "`}`" "\\*) *form\\** => *result\\**" EOL ""
@@ -13988,7 +13988,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`handler-case`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("HANDLER-BIND" . MACRO) *table*) (gethash "HANDLER-BIND" *table*))
+(setf (gethash '("HANDLER-BIND" . "MACRO") *table*) (gethash "HANDLER-BIND" *table*))
 (setf (gethash "HANDLER-CASE" *table*)
   '("" EOL "Macro " "`HANDLER-CASE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`handler-case`" " *expression*" EOL " [[" "`{`" "*error-clause*" "`}`" "\\* " "`|`"
@@ -14061,7 +14061,7 @@
     "    (block #2=#:normal-return" EOL "      (return-from #1#" EOL
     "        (handler-case (return-from #2# form)" EOL
     "          (type1 (var1) . body1) ...)))))" EOL "```" EOL "" EOL))
-(setf (gethash '("HANDLER-CASE" . MACRO) *table*) (gethash "HANDLER-CASE" *table*))
+(setf (gethash '("HANDLER-CASE" . "MACRO") *table*) (gethash "HANDLER-CASE" *table*))
 (setf (gethash "HASH-TABLE" *table*)
   '("" EOL "System Class " "`HASH-TABLE`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`hash-table`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL ""
@@ -14071,7 +14071,7 @@
     "このオブジェクトの意図は、" EOL "The Art of Computer Programming, Volume 3 (pp506-549)という書籍の、"
     EOL "6.4章「Hashing」に記載されている" EOL "ハッシュの仕組みを用いてこのマッピングを実装することです。" EOL "このような意図はありますが、"
     "仕様に適合した実装" "は" EOL "マッピングを実装するために特定の技術を使用することは要求しません。" EOL "" EOL))
-(setf (gethash '("HASH-TABLE" . SYSTEM-CLASS) *table*) (gethash "HASH-TABLE" *table*))
+(setf (gethash '("HASH-TABLE" . "SYSTEM-CLASS") *table*) (gethash "HASH-TABLE" *table*))
 (setf (gethash "HASH-TABLE-COUNT" *table*)
   '("" EOL "Function " "`HASH-TABLE-COUNT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`hash-table-count`" " *hash-table* => *count*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -14095,7 +14095,7 @@
     EOL "  (maphash #'(lambda (key value)" EOL
     "               (declare (ignore key value))" EOL "               (incf total))" EOL
     "           table)" EOL "  total)" EOL "```" EOL "" EOL))
-(setf (gethash '("HASH-TABLE-COUNT" . FUNCTION) *table*) (gethash "HASH-TABLE-COUNT" *table*))
+(setf (gethash '("HASH-TABLE-COUNT" . "FUNCTION") *table*) (gethash "HASH-TABLE-COUNT" *table*))
 (setf (gethash "HASH-TABLE-P" *table*)
   '("" EOL "Function " "`HASH-TABLE-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`hash-table-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -14110,7 +14110,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(hash-table-p object) == (typep object 'hash-table)" EOL "```" EOL "" EOL))
-(setf (gethash '("HASH-TABLE-P" . FUNCTION) *table*) (gethash "HASH-TABLE-P" *table*))
+(setf (gethash '("HASH-TABLE-P" . "FUNCTION") *table*) (gethash "HASH-TABLE-P" *table*))
 (setf (gethash "HASH-TABLE-REHASH-SIZE" *table*)
   '("" EOL "Function " "`HASH-TABLE-REHASH-SIZE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`hash-table-rehash-size`" " *hash-table* => *rehash-size*" EOL "" EOL ""
@@ -14131,7 +14131,7 @@
     "*hash-table*が再ハッシュされるとき、" EOL "成長レートが乗算で行われることを示しています。" EOL
     "しかしこれらの値は実装に対してただ助言するだけのものであり、" EOL "実際に*hash-table*の再ハッシュによって成長する量は" EOL "" "実装依存"
     "です。" EOL "" EOL))
-(setf (gethash '("HASH-TABLE-REHASH-SIZE" . FUNCTION) *table*) (gethash "HASH-TABLE-REHASH-SIZE" *table*))
+(setf (gethash '("HASH-TABLE-REHASH-SIZE" . "FUNCTION") *table*) (gethash "HASH-TABLE-REHASH-SIZE" *table*))
 (setf (gethash "HASH-TABLE-REHASH-THRESHOLD" *table*)
   '("" EOL "Function " "`HASH-TABLE-REHASH-THRESHOLD`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`hash-table-rehash-threshold`" " *hash-table* => *rehash-threshold*"
@@ -14148,7 +14148,7 @@
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-hash-table`" ","
     EOL "" "`hash-table-rehash-size`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("HASH-TABLE-REHASH-THRESHOLD" . FUNCTION) *table*) (gethash "HASH-TABLE-REHASH-THRESHOLD" *table*))
+(setf (gethash '("HASH-TABLE-REHASH-THRESHOLD" . "FUNCTION") *table*) (gethash "HASH-TABLE-REHASH-THRESHOLD" *table*))
 (setf (gethash "HASH-TABLE-SIZE" *table*)
   '("" EOL "Function " "`HASH-TABLE-SIZE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`hash-table-size`" " *hash-table* => *size*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -14161,7 +14161,7 @@
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`hash-table-count`" ","
     EOL "" "`make-hash-table`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("HASH-TABLE-SIZE" . FUNCTION) *table*) (gethash "HASH-TABLE-SIZE" *table*))
+(setf (gethash '("HASH-TABLE-SIZE" . "FUNCTION") *table*) (gethash "HASH-TABLE-SIZE" *table*))
 (setf (gethash "HASH-TABLE-TEST" *table*)
   '("" EOL "Function " "`HASH-TABLE-TEST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`hash-table-test`" " *hash-table* => *test*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -14175,7 +14175,7 @@
     "*hash-table*がハッシュテーブルではないとき、" EOL "型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`make-hash-table`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("HASH-TABLE-TEST" . FUNCTION) *table*) (gethash "HASH-TABLE-TEST" *table*))
+(setf (gethash '("HASH-TABLE-TEST" . "FUNCTION") *table*) (gethash "HASH-TABLE-TEST" *table*))
 (setf (gethash "HOST-NAMESTRING" *table*)
   '("" EOL "Function " "`NAMESTRING`" ", " "`FILE-NAMESTRING`" ", "
     "`DIRECTORY-NAMESTRING`" "," EOL "" "`HOST-NAMESTRING`" ", " "`ENOUGH-NAMESTRING`" ""
@@ -14232,7 +14232,7 @@
     "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("HOST-NAMESTRING" . FUNCTION) *table*) (gethash "HOST-NAMESTRING" *table*))
+(setf (gethash '("HOST-NAMESTRING" . "FUNCTION") *table*) (gethash "HOST-NAMESTRING" *table*))
 (setf (gethash "IDENTITY" *table*)
   '("" EOL "Function " "`IDENTITY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`identity`" " *object* => *object*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -14246,7 +14246,7 @@
     "が全ての可能性のある値に対して*true*を返却します。" EOL "しかし" "`(eq x (identity x))`" "は、" "`x`"
     "が数か文字の場合は*false*になるかもしれません。" EOL "" EOL "" "`identity`" "は、次のように定義できます。" EOL "" EOL
     "```lisp" EOL "(defun identity (x) x)" EOL "```" EOL "" EOL))
-(setf (gethash '("IDENTITY" . FUNCTION) *table*) (gethash "IDENTITY" *table*))
+(setf (gethash '("IDENTITY" . "FUNCTION") *table*) (gethash "IDENTITY" *table*))
 (setf (gethash "IF" *table*)
   '("" EOL "Special Operator " "`IF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`if`" " *test-form* *then-form* [*else-form*] => *result\\**" EOL "" EOL "" EOL
@@ -14267,7 +14267,7 @@
     "`unless`" "," EOL "" "`when`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "```lisp" EOL "(if test-form then-form else-form)" EOL
     "== (cond (test-form then-form) (t else-form))" EOL "```" EOL "" EOL))
-(setf (gethash '("IF" . SPECIAL-OPERATOR) *table*) (gethash "IF" *table*))
+(setf (gethash '("IF" . "SPECIAL-OPERATOR") *table*) (gethash "IF" *table*))
 (setf (gethash "IGNORABLE" *table*)
   '("" EOL "Declaration " "`IGNORE`" ", " "`IGNORABLE`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "(" "`ignore`" "    " "`{`" "*var* " "`|`" " (" "`function`" " *fn*)"
@@ -14290,7 +14290,7 @@
     "ストリームの変数と、" EOL "全ての繰り返しの変数は、常に「使用されている」ものとして宣言されます。" EOL ""
     "`(declare (ignore v))`" "という宣言の変数" "`v`" "が使用されたときの" EOL "結果は未定義です。" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`declare`" "" EOL "" EOL))
-(setf (gethash '("IGNORABLE" . DECLARATION) *table*) (gethash "IGNORABLE" *table*))
+(setf (gethash '("IGNORABLE" . "DECLARATION") *table*) (gethash "IGNORABLE" *table*))
 (setf (gethash "IGNORE" *table*)
   '("" EOL "Declaration " "`IGNORE`" ", " "`IGNORABLE`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "(" "`ignore`" "    " "`{`" "*var* " "`|`" " (" "`function`" " *fn*)"
@@ -14313,7 +14313,7 @@
     "ストリームの変数と、" EOL "全ての繰り返しの変数は、常に「使用されている」ものとして宣言されます。" EOL ""
     "`(declare (ignore v))`" "という宣言の変数" "`v`" "が使用されたときの" EOL "結果は未定義です。" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`declare`" "" EOL "" EOL))
-(setf (gethash '("IGNORE" . DECLARATION) *table*) (gethash "IGNORE" *table*))
+(setf (gethash '("IGNORE" . "DECLARATION") *table*) (gethash "IGNORE" *table*))
 (setf (gethash "IGNORE-ERRORS" *table*)
   '("" EOL "Macro " "`IGNORE-ERRORS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`ignore-errors`" " *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -14339,7 +14339,7 @@
     "  (error (condition) (values nil condition)))" EOL "```" EOL "" EOL
     "例外の状況では第二返却値がコンディションであるので、" EOL "通常の場合は第二返却値を省略するか" "`nil`" "にして、" EOL
     "2つの状況を区別できるようにするのが一般的です（ただし必須ではありません）。" EOL "" EOL))
-(setf (gethash '("IGNORE-ERRORS" . MACRO) *table*) (gethash "IGNORE-ERRORS" *table*))
+(setf (gethash '("IGNORE-ERRORS" . "MACRO") *table*) (gethash "IGNORE-ERRORS" *table*))
 (setf (gethash "IMPORT" *table*)
   '("" EOL "Function " "`IMPORT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`import`" " *symbols* " "`&optional`" " *package* => " "`t`" "" EOL "" EOL "" EOL
@@ -14373,7 +14373,7 @@
     "シンボルとの衝突であったとしても、" EOL "" "`import`" "は型" "`package-error`" "の修正可能なエラーを通知します。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`shadow`" "," EOL "" "`export`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("IMPORT" . FUNCTION) *table*) (gethash "IMPORT" *table*))
+(setf (gethash '("IMPORT" . "FUNCTION") *table*) (gethash "IMPORT" *table*))
 (setf (gethash "IN-PACKAGE" *table*)
   '("" EOL "Macro " "`IN-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`in-package`" " *name* => *package*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -14388,7 +14388,7 @@
     "指定したパッケージが存在しないときは、" EOL "型" "`package-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`*package*`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("IN-PACKAGE" . MACRO) *table*) (gethash "IN-PACKAGE" *table*))
+(setf (gethash '("IN-PACKAGE" . "MACRO") *table*) (gethash "IN-PACKAGE" *table*))
 (setf (gethash "INITIALIZE-INSTANCE" *table*)
   '("" EOL "Standard Generic Function " "`INITIALIZE-INSTANCE`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`initialize-instance`"
@@ -14412,7 +14412,7 @@
     "" "`slot-makunbound`" "," EOL "" "7.1. オブジェクトの作成と初期化" "," EOL "" "7.1.4. 初期化引数の規則"
     "," EOL "" "7.1.2. 初期化引数の有効性の宣言" "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("INITIALIZE-INSTANCE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "INITIALIZE-INSTANCE" *table*))
+(setf (gethash '("INITIALIZE-INSTANCE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "INITIALIZE-INSTANCE" *table*))
 (setf (gethash "INLINE" *table*)
   '("" EOL "Declaration " "`INLINE`" ", " "`NOTINLINE`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "(" "`inline`" " *function-name\\**)  " EOL "(" "`notinline`"
@@ -14455,7 +14455,7 @@
     "(defun top-level-4 () " EOL "  (declare (inline dispatch))" EOL
     "  (dispatch (read-command)))" EOL "```" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "" "`declare`" "," EOL "" "`declaim`" "," EOL "" "`proclaim`" "" EOL "" EOL))
-(setf (gethash '("INLINE" . DECLARATION) *table*) (gethash "INLINE" *table*))
+(setf (gethash '("INLINE" . "DECLARATION") *table*) (gethash "INLINE" *table*))
 (setf (gethash "INPUT-STREAM-P" *table*)
   '("" EOL "Function " "`INPUT-STREAM-P`" ", " "`OUTPUT-STREAM-P`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`input-stream-p`" " *stream* => *generalized-boolean*  "
@@ -14475,7 +14475,7 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "*stream*がストリームではないときは、" EOL "型"
     "`type-error`" "のエラーを発生させるべきです。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("INPUT-STREAM-P" . FUNCTION) *table*) (gethash "INPUT-STREAM-P" *table*))
+(setf (gethash '("INPUT-STREAM-P" . "FUNCTION") *table*) (gethash "INPUT-STREAM-P" *table*))
 (setf (gethash "INTERACTIVE-STREAM-P" *table*)
   '("" EOL "Function " "`INTERACTIVE-STREAM-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`interactive-stream-p`" " *stream* => *generalized-boolean*  " EOL "" EOL ""
@@ -14494,7 +14494,7 @@
     "*stream*がストリームではないときは、" EOL "型" "`type-error`" "のエラーを発生させるべきです。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "21.1. ストリームの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("INTERACTIVE-STREAM-P" . FUNCTION) *table*) (gethash "INTERACTIVE-STREAM-P" *table*))
+(setf (gethash '("INTERACTIVE-STREAM-P" . "FUNCTION") *table*) (gethash "INTERACTIVE-STREAM-P" *table*))
 (setf (gethash "INTERN" *table*)
   '("" EOL "Function " "`INTERN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`intern`" " *string* " "`&optional`" " *package* => *symbol*, *status*" EOL "" EOL
@@ -14528,7 +14528,7 @@
     "`unintern`" "," EOL "" "2.3.4. トークンとしてのシンボル" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`intern`" "が名前の衝突チェックを行う必要はなく、" EOL "なぜなら指定した名前のシンボルがすでにアクセス可能であるときに" EOL
     "新しいシンボルを作成するようなことはないからです。" EOL "" EOL))
-(setf (gethash '("INTERN" . FUNCTION) *table*) (gethash "INTERN" *table*))
+(setf (gethash '("INTERN" . "FUNCTION") *table*) (gethash "INTERN" *table*))
 (setf (gethash "INTERSECTION" *table*)
   '("" EOL "Function " "`INTERSECTION`" ", " "`NINTERSECTION`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`intersection`"
@@ -14581,7 +14581,7 @@
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`"
     "パラメーターは非推奨です。" EOL "" EOL "" "`nintersection`" "の副作用は必要ないため、" EOL
     "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL "" EOL))
-(setf (gethash '("INTERSECTION" . FUNCTION) *table*) (gethash "INTERSECTION" *table*))
+(setf (gethash '("INTERSECTION" . "FUNCTION") *table*) (gethash "INTERSECTION" *table*))
 (setf (gethash "INVALID-METHOD-ERROR" *table*)
   '("" EOL "Function " "`INVALID-METHOD-ERROR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`invalid-method-error`" " *method* *format-control* " "`&rest`" " *args*" EOL
@@ -14603,7 +14603,7 @@
     "`*break-on-signals*`" "" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`define-method-combination`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("INVALID-METHOD-ERROR" . FUNCTION) *table*) (gethash "INVALID-METHOD-ERROR" *table*))
+(setf (gethash '("INVALID-METHOD-ERROR" . "FUNCTION") *table*) (gethash "INVALID-METHOD-ERROR" *table*))
 (setf (gethash "INVOKE-DEBUGGER" *table*)
   '("" EOL "Function " "`INVOKE-DEBUGGER`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`invoke-debugger`" " *condition* => " "`|`" "" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -14625,7 +14625,7 @@
     "`*debugger-hook*`" "," EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`error`" "," EOL "" "`break`" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("INVOKE-DEBUGGER" . FUNCTION) *table*) (gethash "INVOKE-DEBUGGER" *table*))
+(setf (gethash '("INVOKE-DEBUGGER" . "FUNCTION") *table*) (gethash "INVOKE-DEBUGGER" *table*))
 (setf (gethash "INVOKE-RESTART" *table*)
   '("" EOL "Function " "`INVOKE-RESTART`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`invoke-restart`" " *restart* " "`&rest`" " *arguments* => *result\\**" EOL ""
@@ -14648,7 +14648,7 @@
     "`restart`" "関数を通して使用されるかもしれません。" EOL "" EOL "" "`restart`" "関数あは" "`invoke-restart`"
     "を呼び出しますし、" EOL "逆もまた成り立ちます。" EOL "これは、" "`invoke-restart`" "が原始的な機能を提供しており、" EOL ""
     "`restasrt`" "関数は本質ではない「糖衣構文」です。" EOL "" EOL))
-(setf (gethash '("INVOKE-RESTART" . FUNCTION) *table*) (gethash "INVOKE-RESTART" *table*))
+(setf (gethash '("INVOKE-RESTART" . "FUNCTION") *table*) (gethash "INVOKE-RESTART" *table*))
 (setf (gethash "INVOKE-RESTART-INTERACTIVELY" *table*)
   '("" EOL "Function " "`INVOKE-RESTART-INTERACTIVELY`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`invoke-restart-interactively`" " *restart* => *result\\**" EOL ""
@@ -14679,7 +14679,7 @@
     "`restart-bind`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`invoke-restart-interactively`" "は" EOL "デバッガーの内部で使用されますし、" EOL
     "他の移植可能な対話式デバッグツールが実装されて、" EOL "使用されるかもしれません。" EOL "" EOL))
-(setf (gethash '("INVOKE-RESTART-INTERACTIVELY" . FUNCTION) *table*) (gethash "INVOKE-RESTART-INTERACTIVELY" *table*))
+(setf (gethash '("INVOKE-RESTART-INTERACTIVELY" . "FUNCTION") *table*) (gethash "INVOKE-RESTART-INTERACTIVELY" *table*))
 (setf (gethash "KEYWORD" *table*)
   '("" EOL "Type " "`KEYWORD`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL ""
     "`keyword`" "," EOL "" "`symbol`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" ""
@@ -14688,7 +14688,7 @@
     "自動的に次の3つの効果が得られます。" EOL "" EOL "1. シンボルは自分自身を束縛する" EOL "2. シンボルは" "`KEYWORD`"
     "パッケージの外部シンボルになる" EOL "3. シンボルは定数の変数になる" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`keywordp`" "" EOL "" EOL))
-(setf (gethash '("KEYWORD" . TYPE) *table*) (gethash "KEYWORD" *table*))
+(setf (gethash '("KEYWORD" . "TYPE") *table*) (gethash "KEYWORD" *table*))
 (setf (gethash "KEYWORDP" *table*)
   '("" EOL "Function " "`KEYWORDP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`keywordp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -14705,7 +14705,7 @@
     "参考" "" EOL "" EOL "" "`constantp`" "," EOL "" "`keyword`" "," EOL "" "`symbolp`" ","
     EOL "" "`symbol-package`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("KEYWORDP" . FUNCTION) *table*) (gethash "KEYWORDP" *table*))
+(setf (gethash '("KEYWORDP" . "FUNCTION") *table*) (gethash "KEYWORDP" *table*))
 (setf (gethash "LABELS" *table*)
   '("" EOL "Special Operator " "`FLET`" ", " "`LABELS`" ", " "`MACROLET`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`flet`" " ((*function-name* *lambda-list*" EOL
@@ -14812,10 +14812,10 @@
     "は、互いに再帰呼出できる関数を定義するのに使うことができます。" EOL "" EOL "もし" "`macrolet`" "が" "トップレベルフォーム"
     "のとき、" EOL "ボディ部*form*もまた" "トップレベルフォーム" "として処理されます。" EOL "" "3.2.3. ファイルのコンパイル"
     "をご確認ください。" EOL "" EOL))
-(setf (gethash '("LABELS" . SPECIAL-OPERATOR) *table*) (gethash "LABELS" *table*))
+(setf (gethash '("LABELS" . "SPECIAL-OPERATOR") *table*) (gethash "LABELS" *table*))
 (setf (gethash "LAMBDA" *table*)
   '("LAMBDA MACRO" EOL "LAMBDA SYMBOL" EOL))
-(setf (gethash '("LAMBDA" . MACRO) *table*)
+(setf (gethash '("LAMBDA" . "MACRO") *table*)
   '("" EOL "Macro " "`LAMBDA`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`lambda`" " *lambda-list* [[*declaration\\** " "`|`"
     " *documentation*]] *form\\** => *function*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -14833,7 +14833,7 @@
     "`lambda`" "（シンボル）" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "このマクロは下記のように定義できます。"
     EOL "" EOL "```lisp" EOL "(defmacro lambda (&whole form &rest bvl-decls-and-body)"
     EOL "  (declare (ignore bvl-decls-and-body))" EOL "  `#',form)" EOL "```" EOL "" EOL))
-(setf (gethash '("LAMBDA" . SYMBOL) *table*)
+(setf (gethash '("LAMBDA" . "SYMBOL") *table*)
   '("" EOL "Symbol " "`LAMBDA`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`lambda`" " *lambda-list* [[*declaration\\** " "`|`" " *documentation*]] *form\\**"
     EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL "*lambda-list* - " "通常のラムダリスト" "  " EOL
@@ -14858,7 +14858,7 @@
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`defun`" "," EOL "" "`flet`" "," EOL ""
     "`defmacro`" "," EOL "" "`macrolet`" "," EOL "" "3.1.2. 評価の規範" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LAMBDA-LIST-KEYWORDS" . CONSTANT-VARIABLE) *table*) (gethash "LAMBDA-LIST-KEYWORDS" *table*))
+(setf (gethash '("LAMBDA-LIST-KEYWORDS" . "CONSTANT-VARIABLE") *table*) (gethash "LAMBDA-LIST-KEYWORDS" *table*))
 (setf (gethash "LAMBDA-PARAMETERS-LIMIT" *table*)
   '("" EOL "Constant Variable " "`LAMBDA-PARAMETERS-LIMIT`" "" EOL "" EOL "" EOL "## "
     "定数値" "" EOL "" EOL "" "実装依存" "であり、" EOL "" "`50`" "より小さくはありません。" EOL "" EOL "" EOL
@@ -14867,7 +14867,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`call-arguments-limit`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "実装は、" "`lambda-parameters-limit`" "の値を" EOL
     "可能な限り大きくすることをお勧めします。" EOL "" EOL))
-(setf (gethash '("LAMBDA-PARAMETERS-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "LAMBDA-PARAMETERS-LIMIT" *table*))
+(setf (gethash '("LAMBDA-PARAMETERS-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "LAMBDA-PARAMETERS-LIMIT" *table*))
 (setf (gethash "LAST" *table*)
   '("" EOL "Function " "`LAST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`last`"
     " *list* &optional *n* => *tail*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -14893,7 +14893,7 @@
     "(defun last (list &optional (n 1))" EOL "  (check-type n (integer 0))" EOL
     "  (do ((l list (cdr l))" EOL "       (r list)" EOL "       (i 0 (+ i 1)))" EOL
     "      ((atom l) r)" EOL "    (if (>= i n) (pop r))))" EOL "```" EOL "" EOL))
-(setf (gethash '("LAST" . FUNCTION) *table*) (gethash "LAST" *table*))
+(setf (gethash '("LAST" . "FUNCTION") *table*) (gethash "LAST" *table*))
 (setf (gethash "LDIFF" *table*)
   '("" EOL "Function " "`LDIFF`" ", " "`TAILP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`ldiff`" " *list* *object* => *result-list*  " EOL "" "`tailp`"
@@ -14948,7 +14948,7 @@
     "       (if (eql list object) (nreverse r) (nreconc r list)))" EOL
     "    (when (eql object list)" EOL "      (return (nreverse r)))))" EOL "```" EOL ""
     EOL))
-(setf (gethash '("LDIFF" . FUNCTION) *table*) (gethash "LDIFF" *table*))
+(setf (gethash '("LDIFF" . "FUNCTION") *table*) (gethash "LDIFF" *table*))
 (setf (gethash "LENGTH" *table*)
   '("" EOL "Function " "`LENGTH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`length`" " *sequence* => *n*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -14964,7 +14964,7 @@
     "*sequence*が" "正常なシーケンス" "でないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`list-length`" "," EOL "" "`sequence`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LENGTH" . FUNCTION) *table*) (gethash "LENGTH" *table*))
+(setf (gethash '("LENGTH" . "FUNCTION") *table*) (gethash "LENGTH" *table*))
 (setf (gethash "LET" *table*)
   '("" EOL "Special Operator " "`LET`" ", " "`LET*`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`let`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form*])" "`}`"
@@ -15009,7 +15009,7 @@
     EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`progv`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("LET" . SPECIAL-OPERATOR) *table*) (gethash "LET" *table*))
+(setf (gethash '("LET" . "SPECIAL-OPERATOR") *table*) (gethash "LET" *table*))
 (setf (gethash "LET*" *table*)
   '("" EOL "Special Operator " "`LET`" ", " "`LET*`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`let`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form*])" "`}`"
@@ -15054,10 +15054,10 @@
     EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`progv`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("LET*" . SPECIAL-OPERATOR) *table*) (gethash "LET*" *table*))
+(setf (gethash '("LET*" . "SPECIAL-OPERATOR") *table*) (gethash "LET*" *table*))
 (setf (gethash "LIST" *table*)
   '("LIST FUNCTION" EOL "LIST SYSTEM-CLASS" EOL))
-(setf (gethash '("LIST" . FUNCTION) *table*)
+(setf (gethash '("LIST" . "FUNCTION") *table*)
   '("" EOL "Function " "`LIST`" ", " "`LIST*`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`list`" " &rest *objects* => *list*  " EOL "" "`list*`"
     " &rest *objects+* => *result*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -15080,7 +15080,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`cons`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(list* x) ==  x" EOL "```" EOL "" EOL))
-(setf (gethash '("LIST" . SYSTEM-CLASS) *table*)
+(setf (gethash '("LIST" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`LIST`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL
     "" "`list`" "," EOL "" "`sequence`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義"
     "" EOL "" EOL "リストは、コンスの連鎖であり、" EOL "各コンスの" "`car`" "がリストの要素、" EOL "各コンスの" "`cdr`"
@@ -15116,7 +15116,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`cons`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(list* x) ==  x" EOL "```" EOL "" EOL))
-(setf (gethash '("LIST*" . FUNCTION) *table*) (gethash "LIST*" *table*))
+(setf (gethash '("LIST*" . "FUNCTION") *table*) (gethash "LIST*" *table*))
 (setf (gethash "LIST-ALL-PACKAGES" *table*)
   '("" EOL "Function " "`LIST-ALL-PACKAGES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`list-all-packages`" " " "`<引数なし>`" " => *packages*" EOL "" EOL "" EOL "## "
@@ -15129,7 +15129,7 @@
     "" EOL "" "`defpackage`" "," EOL "" "`delete-package`" "," EOL "" "`make-package`" ""
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LIST-ALL-PACKAGES" . FUNCTION) *table*) (gethash "LIST-ALL-PACKAGES" *table*))
+(setf (gethash '("LIST-ALL-PACKAGES" . "FUNCTION") *table*) (gethash "LIST-ALL-PACKAGES" *table*))
 (setf (gethash "LIST-LENGTH" *table*)
   '("" EOL "Function " "`LIST-LENGTH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`list-length`" " *list* => *length*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -15154,7 +15154,7 @@
     EOL "	;; 循環リストから抜け出せていない。" EOL "	;; （深い特性の話をすると：もし循環リストにはまったのなら" EOL
     "	;;   fastポインターはやがてslotポインターと等しくなるだろう。" EOL "	;;   このような事実がこの実装を正当化する。）" EOL
     "    (when (and (eq fast slow) (> n 0)) (return nil))))" EOL "```" EOL "" EOL))
-(setf (gethash '("LIST-LENGTH" . FUNCTION) *table*) (gethash "LIST-LENGTH" *table*))
+(setf (gethash '("LIST-LENGTH" . "FUNCTION") *table*) (gethash "LIST-LENGTH" *table*))
 (setf (gethash "LISTEN" *table*)
   '("" EOL "Function " "`LISTEN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`listen`" " " "`&optional`" " *input-stream* => *generalized-boolean*" EOL "" EOL ""
@@ -15172,7 +15172,7 @@
     "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`interactive-stream-p`" "," EOL "" "`read-char-no-hang`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LISTEN" . FUNCTION) *table*) (gethash "LISTEN" *table*))
+(setf (gethash '("LISTEN" . "FUNCTION") *table*) (gethash "LISTEN" *table*))
 (setf (gethash "LISTP" *table*)
   '("" EOL "Function " "`LISTP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`listp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -15188,7 +15188,7 @@
     "" EOL "```lisp" EOL
     "(listp object) ==  (typep object 'list) ==  (typep object '(or cons null))" EOL
     "```" EOL "" EOL))
-(setf (gethash '("LISTP" . FUNCTION) *table*) (gethash "LISTP" *table*))
+(setf (gethash '("LISTP" . "FUNCTION") *table*) (gethash "LISTP" *table*))
 (setf (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *table*)
   '("" EOL "Function " "`LOAD-LOGICAL-PATHNAME-TRANSLATIONS`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`load-logical-pathname-translations`"
@@ -15212,7 +15212,7 @@
     "論理パス名の定義はただ実装を作成する人によってだけではなく、" EOL "むしろプログラマーによって作成されます。" EOL
     "そのような場合は、検索する処理をドキュメント化することが重要になります。" EOL "例えば実装者はどこか特定の名前がついたディレクトリに配置されている" EOL
     "「*host*.translations」と呼ばれるファイルが見つかったら、" EOL "それが*host*の定義である様にすることができます。" EOL "" EOL))
-(setf (gethash '("LOAD-LOGICAL-PATHNAME-TRANSLATIONS" . FUNCTION) *table*) (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *table*))
+(setf (gethash '("LOAD-LOGICAL-PATHNAME-TRANSLATIONS" . "FUNCTION") *table*) (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *table*))
 (setf (gethash "LOAD-TIME-VALUE" *table*)
   '("" EOL "Special Operator " "`LOAD-TIME-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`load-time-value`" " *form* &optional *read-only-p* => *object*" EOL ""
@@ -15275,7 +15275,7 @@
     "もしオブジェクトが既に読み込み専用であったときは、" EOL "*read-only-p*に" "`nil`" "を指定しても、" EOL
     "そのオブジェクトを強制的に修正可能にするわけではありません。" EOL "この操作は、変更可能なオブジェクトに対して" EOL
     "読み取り専用にする命令ではないと言っています。" EOL "" EOL))
-(setf (gethash '("LOAD-TIME-VALUE" . SPECIAL-OPERATOR) *table*) (gethash "LOAD-TIME-VALUE" *table*))
+(setf (gethash '("LOAD-TIME-VALUE" . "SPECIAL-OPERATOR") *table*) (gethash "LOAD-TIME-VALUE" *table*))
 (setf (gethash "LOCALLY" *table*)
   '("" EOL "Special Operator " "`LOCALLY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`locally`" " *declaration\\** *form\\** => *result\\**" EOL "" EOL "" EOL "## "
@@ -15306,10 +15306,10 @@
     "変数の束縛ではなく変数への参照に影響します。" EOL "" EOL "もし" "`locally`" "フォームが" "トップレベルフォーム" "であれば、" EOL
     "*form*本体もまた" "トップレベルフォーム" "として処理されます。" EOL "" "3.2.3. ファイルのコンパイル" "をご確認ください。" EOL ""
     EOL))
-(setf (gethash '("LOCALLY" . SPECIAL-OPERATOR) *table*) (gethash "LOCALLY" *table*))
+(setf (gethash '("LOCALLY" . "SPECIAL-OPERATOR") *table*) (gethash "LOCALLY" *table*))
 (setf (gethash "LOGICAL-PATHNAME" *table*)
   '("LOGICAL-PATHNAME FUNCTION" EOL "LOGICAL-PATHNAME SYSTEM-CLASS" EOL))
-(setf (gethash '("LOGICAL-PATHNAME" . FUNCTION) *table*)
+(setf (gethash '("LOGICAL-PATHNAME" . "FUNCTION") *table*)
   '("" EOL "Function " "`LOGICAL-PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`logical-pathname`" " *pathspec* => *logical-pathname*" EOL "" EOL "" EOL "## "
     "引数と戻り値" "" EOL "" EOL "*pathspec* - 論理パス名か、論理パス名の名前文字か、ストリーム  " EOL
@@ -15329,7 +15329,7 @@
     "## " "参考" "" EOL "" EOL "" "`logical-pathname`" "," EOL ""
     "`translate-logical-pathname`" "," EOL "" "19.3. 論理パス名" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LOGICAL-PATHNAME" . SYSTEM-CLASS) *table*)
+(setf (gethash '("LOGICAL-PATHNAME" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`LOGICAL-PATHNAME`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`logical-pathname`" "," EOL "" "`pathname`" "," EOL "" "`t`" "" EOL
     "" EOL "" EOL "## " "定義" "" EOL "" EOL "パス名は、使用する名前文字列の構文は" "実装依存" "であり、" EOL
@@ -15435,7 +15435,7 @@
     "がエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`logical-pathname`" ","
     EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "実装は論理パス名のホストを操作するための" EOL "例えば追加で変換の規則やオプションなどを指定した" EOL "追加の関数を定義できます。" EOL "" EOL))
-(setf (gethash '("LOGICAL-PATHNAME-TRANSLATIONS" . ACCESSOR) *table*) (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *table*))
+(setf (gethash '("LOGICAL-PATHNAME-TRANSLATIONS" . "ACCESSOR") *table*) (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *table*))
 (setf (gethash "LOOP" *table*)
   '("" EOL "Macro " "`LOOP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "単純な" "`loop`"
     "フォーム:  " EOL "" "`loop`" " *compound-form\\** => *result\\**" EOL "" EOL "拡張された"
@@ -15525,7 +15525,7 @@
     "`loop-finish`" "を使用することはできませんが、" EOL "それ以外で単純な" "`loop`" "フォームは、" EOL "拡張された"
     "`loop`" "フォームと下記のような関係があります。" EOL "" EOL "```lisp" EOL
     "(loop compound-form*) ==  (loop do compound-form*)" EOL "```" EOL "" EOL))
-(setf (gethash '("LOOP" . MACRO) *table*) (gethash "LOOP" *table*))
+(setf (gethash '("LOOP" . "MACRO") *table*) (gethash "LOOP" *table*))
 (setf (gethash "LOOP-FINISH" *table*)
   '("" EOL "Local Macro " "`LOOP-FINISH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`loop-finish`" " " "`<引数なし>`" " => " "`|`" "" EOL "" EOL "" EOL "## " "定義" "" EOL
@@ -15564,7 +15564,7 @@
     "同等の制限があります。" EOL "" "`loop-finish`" "を" "`loop`" "の外で使用したときの結果は未定義です。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`loop`" "," EOL "" "6.1. 繰り返しの機能" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("LOOP-FINISH" . LOCA-MACRO) *table*) (gethash "LOOP-FINISH" *table*))
+(setf (gethash '("LOOP-FINISH" . "LOCA-MACRO") *table*) (gethash "LOOP-FINISH" *table*))
 (setf (gethash "LOWER-CASE-P" *table*)
   '("" EOL "Function " "`UPPER-CASE-P`" ", " "`LOWER-CASE-P`" ", " "`BOTH-CASE-P`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`upper-case-p`"
@@ -15587,7 +15587,7 @@
     "" EOL "" EOL "" "`char-upcase`" ", " "`char-downcase`" ", " "13.1.4.3. 文字のケース" ", "
     "13.1.10. 処理系実装のスクリプトの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("LOWER-CASE-P" . FUNCTION) *table*) (gethash "LOWER-CASE-P" *table*))
+(setf (gethash '("LOWER-CASE-P" . "FUNCTION") *table*) (gethash "LOWER-CASE-P" *table*))
 (setf (gethash "MACRO-FUNCTION" *table*)
   '("" EOL "Accessor " "`MACRO-FUNCTION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`macro-function`" " *symbol* &optional *environment* => *function*  " EOL "("
@@ -15618,7 +15618,7 @@
     "引数はマクロコール全体と、環境オブジェクトであり、" EOL "呼び出されるとその展開を計算します。" EOL
     "この操作の実行は、*symbol*にグローバル関数定義として" EOL "マクロを一つだけ持たせることであり、" EOL "以前のマクロ定義や関数定義は失われます。"
     EOL "" EOL))
-(setf (gethash '("MACRO-FUNCTION" . ACCESSOR) *table*) (gethash "MACRO-FUNCTION" *table*))
+(setf (gethash '("MACRO-FUNCTION" . "ACCESSOR") *table*) (gethash "MACRO-FUNCTION" *table*))
 (setf (gethash "MACROEXPAND" *table*)
   '("" EOL "Function " "`MACROEXPAND`" ", " "`MACROEXPAND-1`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`macroexpand`"
@@ -15689,7 +15689,7 @@
     "## " "備考" "" EOL "" EOL "" "`macroexpand`" "と" "`macroexpand-1`" "のどちらも、" EOL
     "マクロフォーム内にあるサブフォームの*form*やマクロを" EOL "明に展開するようなことはしません。" EOL "しかしそのような展開は" EOL
     "意味解析や実装のマクロ展開によって" EOL "暗黙的に行われることがあります。" EOL "" EOL))
-(setf (gethash '("MACROEXPAND" . FUNCTION) *table*) (gethash "MACROEXPAND" *table*))
+(setf (gethash '("MACROEXPAND" . "FUNCTION") *table*) (gethash "MACROEXPAND" *table*))
 (setf (gethash "MACROEXPAND-1" *table*)
   '("" EOL "Function " "`MACROEXPAND`" ", " "`MACROEXPAND-1`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`macroexpand`"
@@ -15760,7 +15760,7 @@
     "## " "備考" "" EOL "" EOL "" "`macroexpand`" "と" "`macroexpand-1`" "のどちらも、" EOL
     "マクロフォーム内にあるサブフォームの*form*やマクロを" EOL "明に展開するようなことはしません。" EOL "しかしそのような展開は" EOL
     "意味解析や実装のマクロ展開によって" EOL "暗黙的に行われることがあります。" EOL "" EOL))
-(setf (gethash '("MACROEXPAND-1" . FUNCTION) *table*) (gethash "MACROEXPAND-1" *table*))
+(setf (gethash '("MACROEXPAND-1" . "FUNCTION") *table*) (gethash "MACROEXPAND-1" *table*))
 (setf (gethash "MACROLET" *table*)
   '("" EOL "Special Operator " "`FLET`" ", " "`LABELS`" ", " "`MACROLET`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`flet`" " ((*function-name* *lambda-list*" EOL
@@ -15867,7 +15867,7 @@
     "は、互いに再帰呼出できる関数を定義するのに使うことができます。" EOL "" EOL "もし" "`macrolet`" "が" "トップレベルフォーム"
     "のとき、" EOL "ボディ部*form*もまた" "トップレベルフォーム" "として処理されます。" EOL "" "3.2.3. ファイルのコンパイル"
     "をご確認ください。" EOL "" EOL))
-(setf (gethash '("MACROLET" . SPECIAL-OPERATOR) *table*) (gethash "MACROLET" *table*))
+(setf (gethash '("MACROLET" . "SPECIAL-OPERATOR") *table*) (gethash "MACROLET" *table*))
 (setf (gethash "MAKE-ARRAY" *table*)
   '("" EOL "Function " "`MAKE-ARRAY`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-array`" " *dimensions* " "`&key`"
@@ -15971,7 +15971,7 @@
     "`upgraded-array-element-type`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`adjustable-array-p`" "が絶対に*false*を返却するような" EOL "配列を作成する特定の方法はありません。" EOL ""
     "`simple-array`" "ではない配列を作成する特定の方法はありません。" EOL "" EOL))
-(setf (gethash '("MAKE-ARRAY" . FUNCTION) *table*) (gethash "MAKE-ARRAY" *table*))
+(setf (gethash '("MAKE-ARRAY" . "FUNCTION") *table*) (gethash "MAKE-ARRAY" *table*))
 (setf (gethash "MAKE-BROADCAST-STREAM" *table*)
   '("" EOL "Function " "`MAKE-BROADCAST-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`make-broadcast-stream`" " " "`&rest`" " *stream* => *broadcast-stream*"
@@ -15989,7 +15989,7 @@
     "*stream*のどれかが出力ストリームではないときは、" EOL "型" "`type-error`" "のエラーを通知するべきです。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`broadcast-stream-streams`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-BROADCAST-STREAM" . FUNCTION) *table*) (gethash "MAKE-BROADCAST-STREAM" *table*))
+(setf (gethash '("MAKE-BROADCAST-STREAM" . "FUNCTION") *table*) (gethash "MAKE-BROADCAST-STREAM" *table*))
 (setf (gethash "MAKE-CONCATENATED-STREAM" *table*)
   '("" EOL "Function " "`MAKE-CONCATENATED-STREAM`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`make-concatenated-stream`" " " "`&rest`"
@@ -16005,7 +16005,7 @@
     "のエラーを通知するべきです。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`concatenated-stream-streams`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("MAKE-CONCATENATED-STREAM" . FUNCTION) *table*) (gethash "MAKE-CONCATENATED-STREAM" *table*))
+(setf (gethash '("MAKE-CONCATENATED-STREAM" . "FUNCTION") *table*) (gethash "MAKE-CONCATENATED-STREAM" *table*))
 (setf (gethash "MAKE-CONDITION" *table*)
   '("" EOL "Function " "`MAKE-CONDITION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`make-condition`" " *type* " "`&rest`" " *slot-initializations* => *condition*"
@@ -16026,7 +16026,7 @@
     "定義されたコンディションの型の集合" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`define-condition`" "," EOL "" "9.1. コンディションシステムの説明"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-CONDITION" . FUNCTION) *table*) (gethash "MAKE-CONDITION" *table*))
+(setf (gethash '("MAKE-CONDITION" . "FUNCTION") *table*) (gethash "MAKE-CONDITION" *table*))
 (setf (gethash "MAKE-ECHO-STREAM" *table*)
   '("" EOL "Function " "`MAKE-ECHO-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`make-echo-stream`" " *input-stream* *output-stream* => *echo-stream*" EOL "" EOL
@@ -16046,7 +16046,7 @@
     EOL "" "`echo-stream-input-stream`" "," EOL "" "`echo-stream-output-stream`" "," EOL
     "" "`make-two-way-stream`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("MAKE-ECHO-STREAM" . FUNCTION) *table*) (gethash "MAKE-ECHO-STREAM" *table*))
+(setf (gethash '("MAKE-ECHO-STREAM" . "FUNCTION") *table*) (gethash "MAKE-ECHO-STREAM" *table*))
 (setf (gethash "MAKE-HASH-TABLE" *table*)
   '("" EOL "Function " "`MAKE-HASH-TABLE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`make-hash-table`" " " "`&key`" " *test* *size* *rehash-size* *rehash-threshold*"
@@ -16083,7 +16083,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`gethash`" "," EOL "" "`hash-table`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-HASH-TABLE" . FUNCTION) *table*) (gethash "MAKE-HASH-TABLE" *table*))
+(setf (gethash '("MAKE-HASH-TABLE" . "FUNCTION") *table*) (gethash "MAKE-HASH-TABLE" *table*))
 (setf (gethash "MAKE-INSTANCE" *table*)
   '("" EOL "Standard Generic Function " "`MAKE-INSTANCE`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`make-instance`"
@@ -16103,7 +16103,7 @@
     "`defclass`" "," EOL "" "`class-of`" "," EOL "" "`allocate-instance`" "," EOL ""
     "`initialize-instance`" "," EOL "" "7.1. オブジェクトの作成と初期化" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-INSTANCE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "MAKE-INSTANCE" *table*))
+(setf (gethash '("MAKE-INSTANCE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "MAKE-INSTANCE" *table*))
 (setf (gethash "MAKE-INSTANCES-OBSOLETE" *table*)
   '("" EOL "Standard Generic Function " "`MAKE-INSTANCES-OBSOLETE`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`make-instances-obsolete`" " *class* => *class*" EOL ""
@@ -16122,7 +16122,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`update-instance-for-redefined-class`" ", " "4.3.6. クラスの再定義" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-INSTANCES-OBSOLETE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "MAKE-INSTANCES-OBSOLETE" *table*))
+(setf (gethash '("MAKE-INSTANCES-OBSOLETE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "MAKE-INSTANCES-OBSOLETE" *table*))
 (setf (gethash "MAKE-LIST" *table*)
   '("" EOL "Function " "`MAKE-LIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-list`" " *size* &key *initial-element* => *list*" EOL "" EOL "" EOL "## "
@@ -16138,7 +16138,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "*size*が非負の整数ではなかったとき、" EOL "型" "`type-error`"
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`cons`" "," EOL ""
     "`list`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-LIST" . FUNCTION) *table*) (gethash "MAKE-LIST" *table*))
+(setf (gethash '("MAKE-LIST" . "FUNCTION") *table*) (gethash "MAKE-LIST" *table*))
 (setf (gethash "MAKE-LOAD-FORM" *table*)
   '("" EOL "Standard Generic Function " "`MAKE-LOAD-FORM`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`make-load-form`" " *object* &optional *environment*" EOL
@@ -16272,7 +16272,7 @@
     "そのような実装では、ファイルコンパイラがそのようなクラスのインスタンスを" EOL "" "リテラルオブジェクト"
     "として遭遇したときにどのように処理するかを文書化し、" EOL "" "`make-load-form`" "に関連するメソッドを文書化しなければなりません。" EOL
     "" EOL))
-(setf (gethash '("MAKE-LOAD-FORM" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "MAKE-LOAD-FORM" *table*))
+(setf (gethash '("MAKE-LOAD-FORM" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "MAKE-LOAD-FORM" *table*))
 (setf (gethash "MAKE-LOAD-FORM-SAVING-SLOTS" *table*)
   '("" EOL "Function " "`MAKE-LOAD-FORM-SAVING-SLOTS`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`make-load-form-saving-slots`"
@@ -16300,7 +16300,7 @@
     "*creation-form*に" "`allocate-instance`" "を呼ぶフォームを、" EOL "*initialization-form*には"
     "`slot-value`" "の" "`setf`" "と、" EOL "" "`slot-makunbound`" "を含むフォームが返却されます。" EOL
     "しかし、実際には同様の効果を持つ他の関数が使用されるかもしれません。" EOL "" EOL))
-(setf (gethash '("MAKE-LOAD-FORM-SAVING-SLOTS" . FUNCTION) *table*) (gethash "MAKE-LOAD-FORM-SAVING-SLOTS" *table*))
+(setf (gethash '("MAKE-LOAD-FORM-SAVING-SLOTS" . "FUNCTION") *table*) (gethash "MAKE-LOAD-FORM-SAVING-SLOTS" *table*))
 (setf (gethash "MAKE-METHOD" *table*)
   '("" EOL "Local Macro " "`CALL-METHOD`" ", " "`MAKE-METHOD`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`call-method`"
@@ -16335,7 +16335,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`call-next-method`" "," EOL "" "`define-method-combination`" "," EOL ""
     "`next-method-p`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-METHOD" . LOCAL-MACRO) *table*) (gethash "MAKE-METHOD" *table*))
+(setf (gethash '("MAKE-METHOD" . "LOCAL-MACRO") *table*) (gethash "MAKE-METHOD" *table*))
 (setf (gethash "MAKE-PACKAGE" *table*)
   '("" EOL "Function " "`MAKE-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-package`" " *package-name* " "`&key`" " *nicknames* *use* => *package*" EOL ""
@@ -16361,7 +16361,7 @@
     "そのあと衝突が発生したものに対して" "`use-package`" "を" EOL "使う必要があります。" EOL "" EOL
     "パッケージをプログラムによって動的に作成するのではなく、" EOL "プログラムの静的な宣言の部分として作成したいときは、" EOL "一般的に考えて"
     "`make-package`" "ではなく" "`defpackage`" "を" EOL "使うことがより文法的に適しています。" EOL "" EOL))
-(setf (gethash '("MAKE-PACKAGE" . FUNCTION) *table*) (gethash "MAKE-PACKAGE" *table*))
+(setf (gethash '("MAKE-PACKAGE" . "FUNCTION") *table*) (gethash "MAKE-PACKAGE" *table*))
 (setf (gethash "MAKE-PATHNAME" *table*)
   '("" EOL "Function " "`MAKE-PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-pathname`" " " "`&key`" " *host* *device* *directory*" EOL
@@ -16418,7 +16418,7 @@
     "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "移植可能なプログラムは各要素に" "`:unspecific`" "を指定するべきではありません。" EOL ""
     "19.2.2.2.3. `:UNSPECIFIC`という要素の値" "をご確認ください。" EOL "" EOL))
-(setf (gethash '("MAKE-PATHNAME" . FUNCTION) *table*) (gethash "MAKE-PATHNAME" *table*))
+(setf (gethash '("MAKE-PATHNAME" . "FUNCTION") *table*) (gethash "MAKE-PATHNAME" *table*))
 (setf (gethash "MAKE-SEQUENCE" *table*)
   '("" EOL "Function " "`MAKE-SEQUENCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-sequence`" " *result-type* *size* &key *initial-element* => *sequence*" EOL ""
@@ -16445,7 +16445,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-array`" "," EOL "" "`make-list`" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(make-sequence 'string 5) == (make-string 5)" EOL "```" EOL "" EOL))
-(setf (gethash '("MAKE-SEQUENCE" . FUNCTION) *table*) (gethash "MAKE-SEQUENCE" *table*))
+(setf (gethash '("MAKE-SEQUENCE" . "FUNCTION") *table*) (gethash "MAKE-SEQUENCE" *table*))
 (setf (gethash "MAKE-STRING" *table*)
   '("" EOL "Function " "`MAKE-STRING`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-string`" " *size* &key *initial-element* *element-type* => *string*" EOL ""
@@ -16459,7 +16459,7 @@
     "(length (make-string 10)) =>  10" EOL "```" EOL "" EOL "## " "影響" "" EOL "" EOL
     "処理系。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-STRING" . FUNCTION) *table*) (gethash "MAKE-STRING" *table*))
+(setf (gethash '("MAKE-STRING" . "FUNCTION") *table*) (gethash "MAKE-STRING" *table*))
 (setf (gethash "MAKE-STRING-INPUT-STREAM" *table*)
   '("" EOL "Function " "`MAKE-STRING-INPUT-STREAM`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`make-string-input-stream`" " *string* " "`&optional`"
@@ -16477,7 +16477,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`with-input-from-string`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-STRING-INPUT-STREAM" . FUNCTION) *table*) (gethash "MAKE-STRING-INPUT-STREAM" *table*))
+(setf (gethash '("MAKE-STRING-INPUT-STREAM" . "FUNCTION") *table*) (gethash "MAKE-STRING-INPUT-STREAM" *table*))
 (setf (gethash "MAKE-STRING-OUTPUT-STREAM" *table*)
   '("" EOL "Function " "`MAKE-STRING-OUTPUT-STREAM`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`make-string-output-stream`" " " "`&key`"
@@ -16493,7 +16493,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`get-output-stream-string`" "," EOL "" "`with-output-to-string`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-STRING-OUTPUT-STREAM" . FUNCTION) *table*) (gethash "MAKE-STRING-OUTPUT-STREAM" *table*))
+(setf (gethash '("MAKE-STRING-OUTPUT-STREAM" . "FUNCTION") *table*) (gethash "MAKE-STRING-OUTPUT-STREAM" *table*))
 (setf (gethash "MAKE-SYMBOL" *table*)
   '("" EOL "Function " "`MAKE-SYMBOL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`make-symbol`" " *name* => *new-symbol*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -16515,7 +16515,7 @@
     EOL "" EOL "## " "備考" "" EOL "" EOL "" "`make-symbol`" "は、名前のケースを大文字に変更しようとはしません。"
     EOL "シンボルの大文字小文字の変換は、ただLispのリーダーが実行するだけです。" EOL "シンボルを生成するプログラムのインターフェイスは大文字小文字を保持し、"
     EOL "そしてシンボルの" "`intern`" "を行うプログラムインターフェイスは" EOL "大文字小文字を区別します。" EOL "" EOL))
-(setf (gethash '("MAKE-SYMBOL" . FUNCTION) *table*) (gethash "MAKE-SYMBOL" *table*))
+(setf (gethash '("MAKE-SYMBOL" . "FUNCTION") *table*) (gethash "MAKE-SYMBOL" *table*))
 (setf (gethash "MAKE-SYNONYM-STREAM" *table*)
   '("" EOL "Function " "`MAKE-SYNONYM-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`make-synonym-stream`" " *symbol* => *synonym-stream*" EOL "" EOL "" EOL
@@ -16533,7 +16533,7 @@
     "" EOL "" EOL "引数がシンボルではないとき、" EOL "型" "`type-error`" "のエラーを通知しなければなりません。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "21.1. ストリームの説明" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-SYNONYM-STREAM" . FUNCTION) *table*) (gethash "MAKE-SYNONYM-STREAM" *table*))
+(setf (gethash '("MAKE-SYNONYM-STREAM" . "FUNCTION") *table*) (gethash "MAKE-SYNONYM-STREAM" *table*))
 (setf (gethash "MAKE-TWO-WAY-STREAM" *table*)
   '("" EOL "Function " "`MAKE-TWO-WAY-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`make-two-way-stream`" " *input-stream* *output-stream* => *two-way-stream*"
@@ -16552,7 +16552,7 @@
     "のエラーを通知しなければなりません。" EOL "*output-stream*出力ストリームではないとき、" EOL "型" "`type-error`"
     "のエラーを通知しなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKE-TWO-WAY-STREAM" . FUNCTION) *table*) (gethash "MAKE-TWO-WAY-STREAM" *table*))
+(setf (gethash '("MAKE-TWO-WAY-STREAM" . "FUNCTION") *table*) (gethash "MAKE-TWO-WAY-STREAM" *table*))
 (setf (gethash "MAKUNBOUND" *table*)
   '("" EOL "Function " "`MAKUNBOUND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`makunbound`" " *symbol* => *symbol*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -16565,7 +16565,7 @@
     "*symbol*がシンボルではないとき、" EOL "型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`boundp`" "," EOL "" "`fmakunbound`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAKUNBOUND" . FUNCTION) *table*) (gethash "MAKUNBOUND" *table*))
+(setf (gethash '("MAKUNBOUND" . "FUNCTION") *table*) (gethash "MAKUNBOUND" *table*))
 (setf (gethash "MAP" *table*)
   '("" EOL "Function " "`MAP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`map`"
     " *result-type* *function* &rest *sequences+* => *result*" EOL "" EOL "" EOL "## "
@@ -16602,7 +16602,7 @@
     "*result-type*で指定した要素数と、" EOL "*sequences*の最小の長さが違う場合は、" EOL "型" "`type-error`"
     "のエラーが発します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "3.6. 横断の規則と副作用" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAP" . FUNCTION) *table*) (gethash "MAP" *table*))
+(setf (gethash '("MAP" . "FUNCTION") *table*) (gethash "MAP" *table*))
 (setf (gethash "MAP-INTO" *table*)
   '("" EOL "Function " "`MAP-INTO`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`map-into`" " *result-sequence* *function* &rest *sequences* => *result-sequence*"
@@ -16642,7 +16642,7 @@
     EOL "                        (mapcar #'(lambda (seq) (elt seq index))" EOL
     "                                sequences))))" EOL "  result-sequence)" EOL "```"
     EOL "" EOL))
-(setf (gethash '("MAP-INTO" . FUNCTION) *table*) (gethash "MAP-INTO" *table*))
+(setf (gethash '("MAP-INTO" . "FUNCTION") *table*) (gethash "MAP-INTO" *table*))
 (setf (gethash "MAPC" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -16700,7 +16700,7 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPC" . FUNCTION) *table*) (gethash "MAPC" *table*))
+(setf (gethash '("MAPC" . "FUNCTION") *table*) (gethash "MAPC" *table*))
 (setf (gethash "MAPCAN" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -16758,7 +16758,7 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPCAN" . FUNCTION) *table*) (gethash "MAPCAN" *table*))
+(setf (gethash '("MAPCAN" . "FUNCTION") *table*) (gethash "MAPCAN" *table*))
 (setf (gethash "MAPCAR" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -16816,7 +16816,7 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPCAR" . FUNCTION) *table*) (gethash "MAPCAR" *table*))
+(setf (gethash '("MAPCAR" . "FUNCTION") *table*) (gethash "MAPCAR" *table*))
 (setf (gethash "MAPCON" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -16874,7 +16874,7 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPCON" . FUNCTION) *table*) (gethash "MAPCON" *table*))
+(setf (gethash '("MAPCON" . "FUNCTION") *table*) (gethash "MAPCON" *table*))
 (setf (gethash "MAPHASH" *table*)
   '("" EOL "Function " "`MAPHASH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`maphash`" " *function* *hash-table* => " "`nil`" "" EOL "" EOL "" EOL "## "
@@ -16903,7 +16903,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`loop`" "," EOL "" "`with-hash-table-iterator`"
     "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("MAPHASH" . FUNCTION) *table*) (gethash "MAPHASH" *table*))
+(setf (gethash '("MAPHASH" . "FUNCTION") *table*) (gethash "MAPHASH" *table*))
 (setf (gethash "MAPL" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -16961,7 +16961,7 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPL" . FUNCTION) *table*) (gethash "MAPL" *table*))
+(setf (gethash '("MAPL" . "FUNCTION") *table*) (gethash "MAPL" *table*))
 (setf (gethash "MAPLIST" *table*)
   '("" EOL "Function " "`MAPC`" ", " "`MAPCAR`" ", " "`MAPCAN`" ", " "`MAPL`" ", "
     "`MAPLIST`" ", " "`MAPCON`" "" EOL "" EOL "## " "構文" "" EOL "" EOL "Syntax:" EOL ""
@@ -17019,10 +17019,10 @@
     "*lists*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`dolist`" "," EOL "" "`map`" "," EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MAPLIST" . FUNCTION) *table*) (gethash "MAPLIST" *table*))
+(setf (gethash '("MAPLIST" . "FUNCTION") *table*) (gethash "MAPLIST" *table*))
 (setf (gethash "MEMBER" *table*)
   '("MEMBER FUNCTION" EOL "MEMBER TYPE-SPECIFIER" EOL))
-(setf (gethash '("MEMBER" . FUNCTION) *table*)
+(setf (gethash '("MEMBER" . "FUNCTION") *table*)
   '("" EOL "Function " "`MEMBER`" ", " "`MEMBER-IF`" ", " "`MEMBER-IF-NOT`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`member`"
     " *item* *list* &key *key* *test* *test-not* => *tail*  " EOL "" "`member-if`"
@@ -17054,7 +17054,7 @@
     "`member`" "によって返却された値は、" "`a`" "から始まるリストの位置と同一です。" EOL "したがって、" "`member`" "の結果を"
     "`rplaca`" "することで、" EOL "" "`a`" "が発見された場所のリストの部分を変更することができます。" EOL "（" "`member`"
     "が" "`nil`" "を返却していないという" EOL "チェックがされていると仮定しています。）" EOL "" EOL))
-(setf (gethash '("MEMBER" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("MEMBER" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`MEMBER`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL ""
     EOL "結合" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`member`" " *object\\**"
     EOL "" EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*object* - オブジェクト" EOL "" EOL "" EOL
@@ -17096,7 +17096,7 @@
     "`member`" "によって返却された値は、" "`a`" "から始まるリストの位置と同一です。" EOL "したがって、" "`member`" "の結果を"
     "`rplaca`" "することで、" EOL "" "`a`" "が発見された場所のリストの部分を変更することができます。" EOL "（" "`member`"
     "が" "`nil`" "を返却していないという" EOL "チェックがされていると仮定しています。）" EOL "" EOL))
-(setf (gethash '("MEMBER-IF" . FUNCTION) *table*) (gethash "MEMBER-IF" *table*))
+(setf (gethash '("MEMBER-IF" . "FUNCTION") *table*) (gethash "MEMBER-IF" *table*))
 (setf (gethash "MEMBER-IF-NOT" *table*)
   '("" EOL "Function " "`MEMBER`" ", " "`MEMBER-IF`" ", " "`MEMBER-IF-NOT`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`member`"
@@ -17129,7 +17129,7 @@
     "`member`" "によって返却された値は、" "`a`" "から始まるリストの位置と同一です。" EOL "したがって、" "`member`" "の結果を"
     "`rplaca`" "することで、" EOL "" "`a`" "が発見された場所のリストの部分を変更することができます。" EOL "（" "`member`"
     "が" "`nil`" "を返却していないという" EOL "チェックがされていると仮定しています。）" EOL "" EOL))
-(setf (gethash '("MEMBER-IF-NOT" . FUNCTION) *table*) (gethash "MEMBER-IF-NOT" *table*))
+(setf (gethash '("MEMBER-IF-NOT" . "FUNCTION") *table*) (gethash "MEMBER-IF-NOT" *table*))
 (setf (gethash "MERGE" *table*)
   '("" EOL "Function " "`MERGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`merge`" " *result-type* *sequence-1* *sequence-2* *predicate*" EOL
@@ -17182,7 +17182,7 @@
     "" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`sort`" "," EOL "" "`stable-sort`"
     "," EOL "" "3.2.1. コンパイラーの用語" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MERGE" . FUNCTION) *table*) (gethash "MERGE" *table*))
+(setf (gethash '("MERGE" . "FUNCTION") *table*) (gethash "MERGE" *table*))
 (setf (gethash "MERGE-PATHNAMES" *table*)
   '("" EOL "Function " "`MERGE-PATHNAMES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`merge-pathnames`" " *pathname* " "`&optional`"
@@ -17244,7 +17244,7 @@
     "*default-pathname*のものが使用されますが、" EOL "バージョンは*default-version*が使用されるというものです。" EOL
     "もしそれが無く、ただディレクトリだけが与えられたとき、" EOL "名前、タイプ、そしてバージョンは" EOL
     "*default-pathname*のものが一緒に使用されます。" EOL "" EOL))
-(setf (gethash '("MERGE-PATHNAMES" . FUNCTION) *table*) (gethash "MERGE-PATHNAMES" *table*))
+(setf (gethash '("MERGE-PATHNAMES" . "FUNCTION") *table*) (gethash "MERGE-PATHNAMES" *table*))
 (setf (gethash "METHOD" *table*)
   '("" EOL "System Class " "`METHOD`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`method`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
@@ -17257,7 +17257,7 @@
     "その返却値はジェネリック関数によって返却されます。" EOL "オブジェクトシステムは標準の" "`method-combination`" "の型を提供しており、"
     EOL "また" "`method-combination`" "の新しい型を定義する機能も提供しています。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "7.6. ジェネリック関数とメソッド" "" EOL "" EOL))
-(setf (gethash '("METHOD" . SYSTEM-CLASS) *table*) (gethash "METHOD" *table*))
+(setf (gethash '("METHOD" . "SYSTEM-CLASS") *table*) (gethash "METHOD" *table*))
 (setf (gethash "METHOD-COMBINATION" *table*)
   '("" EOL "System Class " "`METHOD-COMBINATION`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`method-combination`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## "
@@ -17266,7 +17266,7 @@
     EOL "ジェネリック関数によって使用される" EOL "" "`method-combination`" "についての情報を表現します。" EOL ""
     "`method-combination`" "オブジェクトは、" EOL "" "`method-combination`" "の型と、" EOL
     "その型で使用できる引数の、" EOL "両方についての情報を含みます。" EOL "" EOL))
-(setf (gethash '("METHOD-COMBINATION" . SYSTEM-CLASS) *table*) (gethash "METHOD-COMBINATION" *table*))
+(setf (gethash '("METHOD-COMBINATION" . "SYSTEM-CLASS") *table*) (gethash "METHOD-COMBINATION" *table*))
 (setf (gethash "METHOD-COMBINATION-ERROR" *table*)
   '("" EOL "Function " "`METHOD-COMBINATION-ERROR`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`method-combination-error`" " *format-control* &rest *args*" EOL
@@ -17283,7 +17283,7 @@
     "" EOL "" "`*break-on-signals*`" "" EOL "" EOL "" EOL "## " "例外" "j" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`define-method-combination`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("METHOD-COMBINATION-ERROR" . FUNCTION) *table*) (gethash "METHOD-COMBINATION-ERROR" *table*))
+(setf (gethash '("METHOD-COMBINATION-ERROR" . "FUNCTION") *table*) (gethash "METHOD-COMBINATION-ERROR" *table*))
 (setf (gethash "METHOD-QUALIFIERS" *table*)
   '("" EOL "Standard Generic Function " "`METHOD-QUALIFIERS`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`method-qualifiers`" " *method* => *qualifiers*" EOL "" EOL ""
@@ -17297,7 +17297,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`define-method-combination`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("METHOD-QUALIFIERS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "METHOD-QUALIFIERS" *table*))
+(setf (gethash '("METHOD-QUALIFIERS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "METHOD-QUALIFIERS" *table*))
 (setf (gethash "MISMATCH" *table*)
   '("" EOL "Function " "`MISMATCH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`mismatch`" " *sequence-1* *sequence-2*" EOL
@@ -17329,10 +17329,10 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "The :test-not argument is deprecated." EOL "" EOL))
-(setf (gethash '("MISMATCH" . FUNCTION) *table*) (gethash "MISMATCH" *table*))
+(setf (gethash '("MISMATCH" . "FUNCTION") *table*) (gethash "MISMATCH" *table*))
 (setf (gethash "MUFFLE-WARNING" *table*)
   '("MUFFLE-WARNING FUNCTION" EOL "MUFFLE-WARNING RESTART" EOL))
-(setf (gethash '("MUFFLE-WARNING" . FUNCTION) *table*)
+(setf (gethash '("MUFFLE-WARNING" . "FUNCTION") *table*)
   '("" EOL "Function " "`ABORT`" ", " "`CONTINUE`" ", " "`MUFFLE-WARNING`" ", "
     "`STORE-VALUE`" ", " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`abort`" " " "`&optional`" " *condition* => " "`|`" "  " EOL "" "`continue`" " "
@@ -17423,7 +17423,7 @@
     "(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))"
     EOL "```" EOL "" EOL "この仕様書で" "`use-value`" " " "`restart`" "の提供に" EOL
     "要求される関数定義はありません。" EOL "" EOL))
-(setf (gethash '("MUFFLE-WARNING" . RESTART) *table*)
+(setf (gethash '("MUFFLE-WARNING" . "RESTART") *table*)
   '("" EOL "Restart " "`MUFFLE-WARNING`" "" EOL "" EOL "" EOL "## " "要求される引数のデータ" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "この" "`restart`" "は" "`warn`"
     "によって確立され、" EOL "" "`warning`" "コンディションのハンドラーは" EOL "" "`warn`" "に対して警告はすでに実行されており"
@@ -17469,7 +17469,7 @@
     "                            (declare (ignore #1#))" EOL
     "                            form*)" EOL "                        values-form)" EOL
     "```" EOL "" EOL))
-(setf (gethash '("MULTIPLE-VALUE-BIND" . MACRO) *table*) (gethash "MULTIPLE-VALUE-BIND" *table*))
+(setf (gethash '("MULTIPLE-VALUE-BIND" . "MACRO") *table*) (gethash "MULTIPLE-VALUE-BIND" *table*))
 (setf (gethash "MULTIPLE-VALUE-CALL" *table*)
   '("" EOL "Special Operator " "`MULTIPLE-VALUE-CALL`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`multiple-value-call`" " *function-form* *form\\** => *result\\**" EOL
@@ -17488,7 +17488,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`multiple-value-list`" "," EOL "" "`multiple-value-bind`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MULTIPLE-VALUE-CALL" . SPECIAL-OPERATOR) *table*) (gethash "MULTIPLE-VALUE-CALL" *table*))
+(setf (gethash '("MULTIPLE-VALUE-CALL" . "SPECIAL-OPERATOR") *table*) (gethash "MULTIPLE-VALUE-CALL" *table*))
 (setf (gethash "MULTIPLE-VALUE-LIST" *table*)
   '("" EOL "Macro " "`MULTIPLE-VALUE-LIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`multiple-value-list`" " *form* => *list*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -17503,7 +17503,7 @@
     EOL "" EOL "```lisp" EOL
     "(multiple-value-list form) == (multiple-value-call #'list form)" EOL "```" EOL ""
     EOL))
-(setf (gethash '("MULTIPLE-VALUE-LIST" . MACRO) *table*) (gethash "MULTIPLE-VALUE-LIST" *table*))
+(setf (gethash '("MULTIPLE-VALUE-LIST" . "MACRO") *table*) (gethash "MULTIPLE-VALUE-LIST" *table*))
 (setf (gethash "MULTIPLE-VALUE-PROG1" *table*)
   '("" EOL "Special Operator " "`MULTIPLE-VALUE-PROG1`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`multiple-value-prog1`"
@@ -17519,7 +17519,7 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`prog1`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MULTIPLE-VALUE-PROG1" . SPECIAL-OPERATOR) *table*) (gethash "MULTIPLE-VALUE-PROG1" *table*))
+(setf (gethash '("MULTIPLE-VALUE-PROG1" . "SPECIAL-OPERATOR") *table*) (gethash "MULTIPLE-VALUE-PROG1" *table*))
 (setf (gethash "MULTIPLE-VALUE-SETQ" *table*)
   '("" EOL "Macro " "`MULTIPLE-VALUE-SETQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`multiple-value-setq`" " *vars* *form* => *result*" EOL "" EOL "" EOL "## "
@@ -17542,7 +17542,7 @@
     EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`setq`" "," EOL "" "`symbol-macrolet`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("MULTIPLE-VALUE-SETQ" . MACRO) *table*) (gethash "MULTIPLE-VALUE-SETQ" *table*))
+(setf (gethash '("MULTIPLE-VALUE-SETQ" . "MACRO") *table*) (gethash "MULTIPLE-VALUE-SETQ" *table*))
 (setf (gethash "MULTIPLE-VALUES-LIMIT" *table*)
   '("" EOL "Constant Variable " "`MULTIPLE-VALUES-LIMIT`" "" EOL "" EOL "" EOL "## "
     "定数値" "" EOL "" EOL "20より小さくはない整数であり、" EOL "正確な値は" "実装依存" "です。" EOL "" EOL "" EOL
@@ -17553,7 +17553,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`lambda-parameters-limit`" "," EOL ""
     "`call-arguments-limit`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "実装者にはこれらの制限値を可能な限り大きくすることを勧めます。" EOL "" EOL))
-(setf (gethash '("MULTIPLE-VALUES-LIMIT" . CONSTANT-VARIABLE) *table*) (gethash "MULTIPLE-VALUES-LIMIT" *table*))
+(setf (gethash '("MULTIPLE-VALUES-LIMIT" . "CONSTANT-VARIABLE") *table*) (gethash "MULTIPLE-VALUES-LIMIT" *table*))
 (setf (gethash "NAME-CHAR" *table*)
   '("" EOL "Function " "`NAME-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`name-char`" " *name* => *char-p*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -17567,7 +17567,7 @@
     "例外" "" EOL "" EOL "もし*character*が文字ではなかったら、型" "`type-error`" "のエラーが生じます。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`char-name`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NAME-CHAR" . FUNCTION) *table*) (gethash "NAME-CHAR" *table*))
+(setf (gethash '("NAME-CHAR" . "FUNCTION") *table*) (gethash "NAME-CHAR" *table*))
 (setf (gethash "NAMESTRING" *table*)
   '("" EOL "Function " "`NAMESTRING`" ", " "`FILE-NAMESTRING`" ", "
     "`DIRECTORY-NAMESTRING`" "," EOL "" "`HOST-NAMESTRING`" ", " "`ENOUGH-NAMESTRING`" ""
@@ -17624,7 +17624,7 @@
     "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NAMESTRING" . FUNCTION) *table*) (gethash "NAMESTRING" *table*))
+(setf (gethash '("NAMESTRING" . "FUNCTION") *table*) (gethash "NAMESTRING" *table*))
 (setf (gethash "NBUTLAST" *table*)
   '("" EOL "Function " "`BUTLAST`" ", " "`NBUTLAST`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`butlast`" " *list* &optional *n* => *result-list*  " EOL ""
@@ -17651,7 +17651,7 @@
     "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "```lisp" EOL "(butlast list n) == (ldiff list (last list n))" EOL
     "```" EOL "" EOL))
-(setf (gethash '("NBUTLAST" . FUNCTION) *table*) (gethash "NBUTLAST" *table*))
+(setf (gethash '("NBUTLAST" . "FUNCTION") *table*) (gethash "NBUTLAST" *table*))
 (setf (gethash "NCONC" *table*)
   '("" EOL "Function " "`NCONC`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`nconc`" " &rest *lists* => *concatenated-list*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -17683,7 +17683,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`append`" "," EOL "" "`concatenate`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("NCONC" . FUNCTION) *table*) (gethash "NCONC" *table*))
+(setf (gethash '("NCONC" . "FUNCTION") *table*) (gethash "NCONC" *table*))
 (setf (gethash "NEXT-METHOD-P" *table*)
   '("" EOL "Local Function " "`NEXT-METHOD-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`next-method-p`" " " "`<no arguments>`" " => *generalized-boolean*" EOL ""
@@ -17699,17 +17699,17 @@
     "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`call-next-method`" "," EOL "" "`defmethod`" "," EOL "" "`call-method`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NEXT-METHOD-P" . LOCAL-FUNCTION) *table*) (gethash "NEXT-METHOD-P" *table*))
+(setf (gethash '("NEXT-METHOD-P" . "LOCAL-FUNCTION") *table*) (gethash "NEXT-METHOD-P" *table*))
 (setf (gethash "NIL" *table*)
   '("NIL CONSTANT-VARIABLE" EOL "NIL TYPE" EOL))
-(setf (gethash '("NIL" . CONSTANT-VARIABLE) *table*)
+(setf (gethash '("NIL" . "CONSTANT-VARIABLE") *table*)
   '("" EOL "Constant Variable " "`NIL`" "" EOL "" EOL "" EOL "## " "定数値" "" EOL "" EOL ""
     "`nil`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" EOL "" "`nil`" "は、ブール値（そして"
     "generalized-boolean" "）の*false*と" EOL "空のリストの両方を表しています。" EOL "" EOL "" EOL "## "
     "例文" "" EOL "" EOL "```lisp" EOL "nil =>  NIL " EOL "```" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`t`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("NIL" . TYPE) *table*)
+(setf (gethash '("NIL" . "TYPE") *table*)
   '("" EOL "Type " "`NIL`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL "全ての型。" EOL
     "" EOL "" EOL "## " "定義" "" EOL "" EOL "型" "`nil`" "は何のオブジェクトも含まず、空の型とも呼ばれます。" EOL
     "型" "`nil`" "は全ての型のサブタイプです。" EOL "型" "`nil`" "のオブジェクトはありません。" EOL "" EOL "" EOL "## "
@@ -17767,7 +17767,7 @@
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`"
     "パラメーターは非推奨です。" EOL "" EOL "" "`nintersection`" "の副作用は必要ないため、" EOL
     "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL "" EOL))
-(setf (gethash '("NINTERSECTION" . FUNCTION) *table*) (gethash "NINTERSECTION" *table*))
+(setf (gethash '("NINTERSECTION" . "FUNCTION") *table*) (gethash "NINTERSECTION" *table*))
 (setf (gethash "NINTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -17815,7 +17815,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("NINTH" . ACCESSOR) *table*) (gethash "NINTH" *table*))
+(setf (gethash '("NINTH" . "ACCESSOR") *table*) (gethash "NINTH" *table*))
 (setf (gethash "NO-APPLICABLE-METHOD" *table*)
   '("" EOL "Standard Generic Function " "`NO-APPLICABLE-METHOD`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`no-applicable-method`"
@@ -17831,7 +17831,7 @@
     "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL
     "デフォルトのメソッドは、エラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NO-APPLICABLE-METHOD" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "NO-APPLICABLE-METHOD" *table*))
+(setf (gethash '("NO-APPLICABLE-METHOD" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "NO-APPLICABLE-METHOD" *table*))
 (setf (gethash "NO-NEXT-METHOD" *table*)
   '("" EOL "Standard Generic Function " "`NO-NEXT-METHOD`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`no-next-method`"
@@ -17849,10 +17849,10 @@
     "`no-next-method`" "のメソッドは、" EOL "型" "`error`" "のエラーを発生します。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`call-next-method`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("NO-NEXT-METHOD" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "NO-NEXT-METHOD" *table*))
+(setf (gethash '("NO-NEXT-METHOD" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "NO-NEXT-METHOD" *table*))
 (setf (gethash "NOT" *table*)
   '("NOT FUNCTION" EOL "NOT TYPE-SPECIFIER" EOL))
-(setf (gethash '("NOT" . FUNCTION) *table*)
+(setf (gethash '("NOT" . "FUNCTION") *table*)
   '("" EOL "Function " "`NOT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`not`"
     " *x* => *boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL "*x* - "
     "generalized-boolean" "（例えばどんなオブジェクトでも）  " EOL "*boolean* - ブール値" EOL "" EOL "" EOL
@@ -17866,7 +17866,7 @@
     "generalized-boolean" "）を" EOL "反転させるときに使用され、" EOL "一方、" "`null`"
     "は、空のリストかどうかテストするときに" EOL "使うことを意図しています。" EOL "操作上では、" "`not`" "と" "`null`"
     "は同じ結果を計算するので、" EOL "どちらを使うかはスタイルの問題です。" EOL "" EOL))
-(setf (gethash '("NOT" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("NOT" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`NOT`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL "" EOL
     "結合" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`not`" " *typespec*" EOL ""
     EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*typespec* - 型指定子" EOL "" EOL "" EOL "## "
@@ -17912,7 +17912,7 @@
     "(notany predicate sequence*) == (not (some predicate sequence*))" EOL
     "(notevery predicate sequence*) == (not (every predicate sequence*))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("NOTANY" . FUNCTION) *table*) (gethash "NOTANY" *table*))
+(setf (gethash '("NOTANY" . "FUNCTION") *table*) (gethash "NOTANY" *table*))
 (setf (gethash "NOTEVERY" *table*)
   '("" EOL "Function " "`EVERY`" ", " "`SOME`" ", " "`NOTEVERY`" ", " "`NOTANY`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`every`"
@@ -17952,7 +17952,7 @@
     "(notany predicate sequence*) == (not (some predicate sequence*))" EOL
     "(notevery predicate sequence*) == (not (every predicate sequence*))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("NOTEVERY" . FUNCTION) *table*) (gethash "NOTEVERY" *table*))
+(setf (gethash '("NOTEVERY" . "FUNCTION") *table*) (gethash "NOTEVERY" *table*))
 (setf (gethash "NOTINLINE" *table*)
   '("" EOL "Declaration " "`INLINE`" ", " "`NOTINLINE`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "(" "`inline`" " *function-name\\**)  " EOL "(" "`notinline`"
@@ -17995,7 +17995,7 @@
     "(defun top-level-4 () " EOL "  (declare (inline dispatch))" EOL
     "  (dispatch (read-command)))" EOL "```" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "" "`declare`" "," EOL "" "`declaim`" "," EOL "" "`proclaim`" "" EOL "" EOL))
-(setf (gethash '("NOTINLINE" . DECLARATION) *table*) (gethash "NOTINLINE" *table*))
+(setf (gethash '("NOTINLINE" . "DECLARATION") *table*) (gethash "NOTINLINE" *table*))
 (setf (gethash "NRECONC" *table*)
   '("" EOL "Function " "`REVAPPEND`" ", " "`NRECONC`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`revappend`" " *list* *tail* => *result-list*  " EOL "" "`nreconc`"
@@ -18027,7 +18027,7 @@
     "良い実装は、通常同じ効果が得られるより速いアルゴリズムを使用しているでしょう。" EOL "" EOL "```lisp" EOL
     "(revappend list tail) ==  (nconc (reverse list) tail)" EOL
     "(nreconc list tail) ==  (nconc (nreverse list) tail)" EOL "```" EOL "" EOL))
-(setf (gethash '("NRECONC" . FUNCTION) *table*) (gethash "NRECONC" *table*))
+(setf (gethash '("NRECONC" . "FUNCTION") *table*) (gethash "NRECONC" *table*))
 (setf (gethash "NREVERSE" *table*)
   '("" EOL "Function " "`REVERSE`" ", " "`NREVERSE`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`reverse`" " *sequence* => *reversed-sequence*" EOL "" "`nreverse`"
@@ -18057,7 +18057,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "*sequence*が" "正常なシーケンス" "でないとき、" EOL "型"
     "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NREVERSE" . FUNCTION) *table*) (gethash "NREVERSE" *table*))
+(setf (gethash '("NREVERSE" . "FUNCTION") *table*) (gethash "NREVERSE" *table*))
 (setf (gethash "NSET-DIFFERENCE" *table*)
   '("" EOL "Function " "`SET-DIFFERENCE`" ", " "`NSET-DIFFERENCE`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`set-difference`"
@@ -18106,7 +18106,7 @@
     "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "3.2.1. コンパイラーの用語" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL))
-(setf (gethash '("NSET-DIFFERENCE" . FUNCTION) *table*) (gethash "NSET-DIFFERENCE" *table*))
+(setf (gethash '("NSET-DIFFERENCE" . "FUNCTION") *table*) (gethash "NSET-DIFFERENCE" *table*))
 (setf (gethash "NSET-EXCLUSIVE-OR" *table*)
   '("" EOL "Function " "`SET-EXCLUSIVE-OR`" ", " "`NSET-EXCLUSIVE-OR`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`set-exclusive-or`"
@@ -18150,7 +18150,7 @@
     "参考" "" EOL "" EOL "" "3.2.1. コンパイラーの用語" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "" "`nset-exclusive-or`"
     "の副作用は必要ないため、" EOL "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL "" EOL))
-(setf (gethash '("NSET-EXCLUSIVE-OR" . FUNCTION) *table*) (gethash "NSET-EXCLUSIVE-OR" *table*))
+(setf (gethash '("NSET-EXCLUSIVE-OR" . "FUNCTION") *table*) (gethash "NSET-EXCLUSIVE-OR" *table*))
 (setf (gethash "NSTRING-CAPITALIZE" *table*)
   '("" EOL "Function " "`STRING-UPCASE`" ", " "`STRING-DOWNCASE`" ", "
     "`STRING-CAPITALIZE`" "," EOL "" "`NSTRING-UPCASE`" ", " "`NSTRING-DOWNCASE`" ", "
@@ -18206,7 +18206,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("NSTRING-CAPITALIZE" . FUNCTION) *table*) (gethash "NSTRING-CAPITALIZE" *table*))
+(setf (gethash '("NSTRING-CAPITALIZE" . "FUNCTION") *table*) (gethash "NSTRING-CAPITALIZE" *table*))
 (setf (gethash "NSTRING-DOWNCASE" *table*)
   '("" EOL "Function " "`STRING-UPCASE`" ", " "`STRING-DOWNCASE`" ", "
     "`STRING-CAPITALIZE`" "," EOL "" "`NSTRING-UPCASE`" ", " "`NSTRING-DOWNCASE`" ", "
@@ -18262,7 +18262,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("NSTRING-DOWNCASE" . FUNCTION) *table*) (gethash "NSTRING-DOWNCASE" *table*))
+(setf (gethash '("NSTRING-DOWNCASE" . "FUNCTION") *table*) (gethash "NSTRING-DOWNCASE" *table*))
 (setf (gethash "NSTRING-UPCASE" *table*)
   '("" EOL "Function " "`STRING-UPCASE`" ", " "`STRING-DOWNCASE`" ", "
     "`STRING-CAPITALIZE`" "," EOL "" "`NSTRING-UPCASE`" ", " "`NSTRING-DOWNCASE`" ", "
@@ -18318,7 +18318,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("NSTRING-UPCASE" . FUNCTION) *table*) (gethash "NSTRING-UPCASE" *table*))
+(setf (gethash '("NSTRING-UPCASE" . "FUNCTION") *table*) (gethash "NSTRING-UPCASE" *table*))
 (setf (gethash "NSUBLIS" *table*)
   '("" EOL "Function " "`SUBLIS`" ", " "`NSUBLIS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`sublis`" " *alist* *tree* &key *key* *test* *test-not* => *new-tree*  "
@@ -18372,7 +18372,7 @@
     "    (funcall fn '((a . b) (b . a)) data)))" EOL
     "(test-it #'sublis) =>  ((B A) (B A))" EOL "(test-it #'nsublis) =>  ((A B) (A B))"
     EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBLIS" . FUNCTION) *table*) (gethash "NSUBLIS" *table*))
+(setf (gethash '("NSUBLIS" . "FUNCTION") *table*) (gethash "NSUBLIS" *table*))
 (setf (gethash "NSUBST" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -18436,7 +18436,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBST" . FUNCTION) *table*) (gethash "NSUBST" *table*))
+(setf (gethash '("NSUBST" . "FUNCTION") *table*) (gethash "NSUBST" *table*))
 (setf (gethash "NSUBST-IF" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -18500,7 +18500,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBST-IF" . FUNCTION) *table*) (gethash "NSUBST-IF" *table*))
+(setf (gethash '("NSUBST-IF" . "FUNCTION") *table*) (gethash "NSUBST-IF" *table*))
 (setf (gethash "NSUBST-IF-NOT" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -18564,7 +18564,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBST-IF-NOT" . FUNCTION) *table*) (gethash "NSUBST-IF-NOT" *table*))
+(setf (gethash '("NSUBST-IF-NOT" . "FUNCTION") *table*) (gethash "NSUBST-IF-NOT" *table*))
 (setf (gethash "NSUBSTITUTE" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -18646,7 +18646,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBSTITUTE" . FUNCTION) *table*) (gethash "NSUBSTITUTE" *table*))
+(setf (gethash '("NSUBSTITUTE" . "FUNCTION") *table*) (gethash "NSUBSTITUTE" *table*))
 (setf (gethash "NSUBSTITUTE-IF" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -18728,7 +18728,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBSTITUTE-IF" . FUNCTION) *table*) (gethash "NSUBSTITUTE-IF" *table*))
+(setf (gethash '("NSUBSTITUTE-IF" . "FUNCTION") *table*) (gethash "NSUBSTITUTE-IF" *table*))
 (setf (gethash "NSUBSTITUTE-IF-NOT" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -18810,7 +18810,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("NSUBSTITUTE-IF-NOT" . FUNCTION) *table*) (gethash "NSUBSTITUTE-IF-NOT" *table*))
+(setf (gethash '("NSUBSTITUTE-IF-NOT" . "FUNCTION") *table*) (gethash "NSUBSTITUTE-IF-NOT" *table*))
 (setf (gethash "NTH" *table*)
   '("" EOL "Accessor " "`NTH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`nth`"
     " *n* *list* => *object*  " EOL "(" "`setf`" " (" "`nth`"
@@ -18830,7 +18830,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`elt`" "," EOL "" "`first`" "," EOL "" "`nthcdr`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NTH" . ACCESSOR) *table*) (gethash "NTH" *table*))
+(setf (gethash '("NTH" . "ACCESSOR") *table*) (gethash "NTH" *table*))
 (setf (gethash "NTH-VALUE" *table*)
   '("" EOL "Macro " "`NTH-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`nth-value`" " *n* *form* => *object*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -18849,7 +18849,7 @@
     "## " "備考" "" EOL "" EOL "操作において、下記の関数は等しいと言えますが、" EOL "" "`nth-value`"
     "は実装によってはより効率と言えます。" EOL "なぜなら、例えばコンス化することを回避できるからです。" EOL "" EOL "```lisp" EOL
     "(nth-value n form) == (nth n (multiple-value-list form))" EOL "```" EOL "" EOL))
-(setf (gethash '("NTH-VALUE" . MACRO) *table*) (gethash "NTH-VALUE" *table*))
+(setf (gethash '("NTH-VALUE" . "MACRO") *table*) (gethash "NTH-VALUE" *table*))
 (setf (gethash "NTHCDR" *table*)
   '("" EOL "Function " "`NTHCDR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`nthcdr`" " *n* *list* => *tail*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -18867,10 +18867,10 @@
     "`(nthcdr (- n 1) (cdr list))`" "によるものと同じです。" EOL "関数" "`cdr`" "をご確認ください。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`cdr`" "," EOL "" "`nth`" "," EOL "" "`rest`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("NTHCDR" . FUNCTION) *table*) (gethash "NTHCDR" *table*))
+(setf (gethash '("NTHCDR" . "FUNCTION") *table*) (gethash "NTHCDR" *table*))
 (setf (gethash "NULL" *table*)
   '("NULL FUNCTION" EOL "NULL SYSTEM-CLASS" EOL))
-(setf (gethash '("NULL" . FUNCTION) *table*)
+(setf (gethash '("NULL" . "FUNCTION") *table*)
   '("" EOL "Function " "`NULL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`null`"
     " *object* => *boolean8" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*object* - オブジェクト  " EOL "*boolean* - ブール値" EOL "" EOL "" EOL "## " "定義" "" EOL ""
@@ -18884,7 +18884,7 @@
     EOL "操作上では、" "`null`" "と" "`not`" "は同じ結果を計算するので、" EOL "どちらを使うかはスタイルの問題です。" EOL "" EOL
     "```lisp" EOL "(null object) == (typep object 'null) == (eq object '())" EOL "```"
     EOL "" EOL))
-(setf (gethash '("NULL" . SYSTEM-CLASS) *table*)
+(setf (gethash '("NULL" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`NULL`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL
     "" "`null`" "," EOL "" "`symbol`" "," EOL "" "`list`" "," EOL "" "`sequence`" "," EOL
     "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "型" "`null`" "の唯一のオブジェクトは、"
@@ -18931,7 +18931,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL ""
     EOL "" "`nunion`" "の副作用は必要ないため、" EOL "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL ""
     EOL))
-(setf (gethash '("NUNION" . FUNCTION) *table*) (gethash "NUNION" *table*))
+(setf (gethash '("NUNION" . "FUNCTION") *table*) (gethash "NUNION" *table*))
 (setf (gethash "OPEN" *table*)
   '("" EOL "Function " "`OPEN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`open`"
     " *filespec* " "`&key`" "" EOL
@@ -19043,7 +19043,7 @@
     "が結果のファイルストリームで使用できます。" EOL "" EOL "*element-type*が整数のサブタイプのとき、" EOL "" "`read-byte`"
     "と" "`write-byte`" "が結果のファイルストリームで使用できます。" EOL "" EOL "*element-type*が" "`:default`"
     "のとき、" EOL "その型は" "`stream-element-type`" "を使うことで決定することができます。" EOL "" EOL))
-(setf (gethash '("OPEN" . FUNCTION) *table*) (gethash "OPEN" *table*))
+(setf (gethash '("OPEN" . "FUNCTION") *table*) (gethash "OPEN" *table*))
 (setf (gethash "OPEN-STREAM-P" *table*)
   '("" EOL "Function " "`OPEN-STREAM-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`open-stream-p`" " *stream* => *generalized-boolean*  " EOL "" EOL "" EOL "## "
@@ -19059,7 +19059,7 @@
     "*stream*がストリームではないときは、" EOL "型" "`type-error`" "のエラーを発生させるべきです。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("OPEN-STREAM-P" . FUNCTION) *table*) (gethash "OPEN-STREAM-P" *table*))
+(setf (gethash '("OPEN-STREAM-P" . "FUNCTION") *table*) (gethash "OPEN-STREAM-P" *table*))
 (setf (gethash "OPTIMIZE" *table*)
   '("" EOL "" EOL "## " "構文" "" EOL "" EOL "(" "`optimize`" " " "`{`" "*quality* " "`|`"
     " (*quality* *value*)" "`}`" "\\*)" EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL
@@ -19090,10 +19090,10 @@
     "`declaim`" "," EOL "" "`proclaim`" "," EOL "" "3.3.4. 宣言のスコープ" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "" "`optimize`" "宣言は、決して変数束縛にも関数束縛にも適用しません。" EOL ""
     "`optimize`" "宣言は自由宣言にのみ使用できます。" EOL "詳細は" "3.3.4. 宣言のスコープ" "をご確認ください。" EOL "" EOL))
-(setf (gethash '("OPTIMIZE" . DECLARATION) *table*) (gethash "OPTIMIZE" *table*))
+(setf (gethash '("OPTIMIZE" . "DECLARATION") *table*) (gethash "OPTIMIZE" *table*))
 (setf (gethash "OR" *table*)
   '("OR MACRO" EOL "OR TYPE-SPECIFIER" EOL))
-(setf (gethash '("OR" . MACRO) *table*)
+(setf (gethash '("OR" . "MACRO") *table*)
   '("" EOL "Macro " "`OR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`or`"
     " *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*form* - フォーム  " EOL "*result* - 多値か、最後の*form*の実行した結果の第一返却値（下記参照）か、" EOL "" "`nil`"
@@ -19114,7 +19114,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`and`" "," EOL "" "`some`" "," EOL "" "`unless`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("OR" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("OR" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`OR`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL "" EOL
     "結合" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`or`" " *typespec\\**" EOL
     "" EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*typespec* - 型指定子" EOL "" EOL "" EOL
@@ -19143,14 +19143,14 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "*stream*がストリームではないときは、" EOL "型"
     "`type-error`" "のエラーを発生させるべきです。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("OUTPUT-STREAM-P" . FUNCTION) *table*) (gethash "OUTPUT-STREAM-P" *table*))
+(setf (gethash '("OUTPUT-STREAM-P" . "FUNCTION") *table*) (gethash "OUTPUT-STREAM-P" *table*))
 (setf (gethash "PACKAGE" *table*)
   '("" EOL "System Class " "`PACKAGE`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`package`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
     "パッケージはシンボルの名前からシンボルをマップする名前空間です。" EOL "" "11.1. パッケージの説明" "をご確認ください。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "11.1. パッケージの説明" "," EOL "" "22.1.3.13. 他のオブジェクトの印字"
     "," EOL "" "2.3.4. トークンとしてのシンボル" "" EOL "" EOL))
-(setf (gethash '("PACKAGE" . SYSTEM-CLASS) *table*) (gethash "PACKAGE" *table*))
+(setf (gethash '("PACKAGE" . "SYSTEM-CLASS") *table*) (gethash "PACKAGE" *table*))
 (setf (gethash "PACKAGE-ERROR" *table*)
   '("" EOL "Condition Type " "`EXPORT`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`package-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`" ","
@@ -19160,7 +19160,7 @@
     "によって初期化され、" EOL "それは" "`package-error-package`" "関数によってアクセスされます。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`package-error-package`" "," EOL "" "9. コンディション" "" EOL
     "" EOL))
-(setf (gethash '("PACKAGE-ERROR" . CONDITION-TYPE) *table*) (gethash "PACKAGE-ERROR" *table*))
+(setf (gethash '("PACKAGE-ERROR" . "CONDITION-TYPE") *table*) (gethash "PACKAGE-ERROR" *table*))
 (setf (gethash "PACKAGE-ERROR-PACKAGE" *table*)
   '("" EOL "Function " "`PACKAGE-ERROR-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`package-error-package`" " *condition* => *package*" EOL "" EOL "" EOL
@@ -19174,7 +19174,7 @@
     "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`package-error`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PACKAGE-ERROR-PACKAGE" . FUNCTION) *table*) (gethash "PACKAGE-ERROR-PACKAGE" *table*))
+(setf (gethash '("PACKAGE-ERROR-PACKAGE" . "FUNCTION") *table*) (gethash "PACKAGE-ERROR-PACKAGE" *table*))
 (setf (gethash "PACKAGE-NAME" *table*)
   '("" EOL "Function " "`PACKAGE-NAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`package-name`" " *package* => *name*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -19193,7 +19193,7 @@
     "*package*がパッケージ指定子ではないときは、" EOL "型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("PACKAGE-NAME" . FUNCTION) *table*) (gethash "PACKAGE-NAME" *table*))
+(setf (gethash '("PACKAGE-NAME" . "FUNCTION") *table*) (gethash "PACKAGE-NAME" *table*))
 (setf (gethash "PACKAGE-NICKNAMES" *table*)
   '("" EOL "Function " "`PACKAGE-NICKNAMES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`package-nicknames`" " *package* => *nicknames*" EOL "" EOL "" EOL "## "
@@ -19207,7 +19207,7 @@
     "" EOL "" EOL "*package*がパッケージ指定子ではないときは、" EOL "型" "`type-error`" "のエラーが発生します。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("PACKAGE-NICKNAMES" . FUNCTION) *table*) (gethash "PACKAGE-NICKNAMES" *table*))
+(setf (gethash '("PACKAGE-NICKNAMES" . "FUNCTION") *table*) (gethash "PACKAGE-NICKNAMES" *table*))
 (setf (gethash "PACKAGE-SHADOWING-SYMBOLS" *table*)
   '("" EOL "Function " "`PACKAGE-SHADOWING-SYMBOLS`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`package-shadowing-symbols`" " *package* => *symbols*" EOL "" EOL ""
@@ -19225,7 +19225,7 @@
     "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`shadow`"
     "," EOL "" "`shadowing-import`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "シンボルのリストが新しいものかどうかは" "実装依存" "です。" EOL "" EOL))
-(setf (gethash '("PACKAGE-SHADOWING-SYMBOLS" . FUNCTION) *table*) (gethash "PACKAGE-SHADOWING-SYMBOLS" *table*))
+(setf (gethash '("PACKAGE-SHADOWING-SYMBOLS" . "FUNCTION") *table*) (gethash "PACKAGE-SHADOWING-SYMBOLS" *table*))
 (setf (gethash "PACKAGE-USE-LIST" *table*)
   '("" EOL "Function " "`PACKAGE-USE-LIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`package-use-list`" " *package* => *use-list*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -19240,7 +19240,7 @@
     "*package*がパッケージ指定子ではないときは、" EOL "型" "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL
     "## " "参考" "" EOL "" EOL "" "`use-package`" "," EOL "" "`unuse-package`" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PACKAGE-USE-LIST" . FUNCTION) *table*) (gethash "PACKAGE-USE-LIST" *table*))
+(setf (gethash '("PACKAGE-USE-LIST" . "FUNCTION") *table*) (gethash "PACKAGE-USE-LIST" *table*))
 (setf (gethash "PACKAGE-USED-BY-LIST" *table*)
   '("" EOL "Function " "`PACKAGE-USED-BY-LIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`package-used-by-list`" " *package* => *used-by-list*" EOL "" EOL "" EOL
@@ -19256,7 +19256,7 @@
     "`type-error`" "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`use-package`" "," EOL "" "`unuse-package`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PACKAGE-USED-BY-LIST" . FUNCTION) *table*) (gethash "PACKAGE-USED-BY-LIST" *table*))
+(setf (gethash '("PACKAGE-USED-BY-LIST" . "FUNCTION") *table*) (gethash "PACKAGE-USED-BY-LIST" *table*))
 (setf (gethash "PACKAGEP" *table*)
   '("" EOL "Function " "`PACKAGEP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`packagep`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -19269,7 +19269,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(packagep object) == (typep object 'package)" EOL "```" EOL "" EOL))
-(setf (gethash '("PACKAGEP" . FUNCTION) *table*) (gethash "PACKAGEP" *table*))
+(setf (gethash '("PACKAGEP" . "FUNCTION") *table*) (gethash "PACKAGEP" *table*))
 (setf (gethash "PAIRLIS" *table*)
   '("" EOL "Function " "`PAIRLIS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`pairlis`" " *keys* *data* &optional *alist* => *new-alist*" EOL "" EOL "" EOL "## "
@@ -19294,14 +19294,14 @@
     "" EOL "" EOL "*keys*と*data*が" "通常のリスト" "ではないとき、" EOL "型" "`type-error`"
     "を通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`acons`" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PAIRLIS" . FUNCTION) *table*) (gethash "PAIRLIS" *table*))
+(setf (gethash '("PAIRLIS" . "FUNCTION") *table*) (gethash "PAIRLIS" *table*))
 (setf (gethash "PARSE-ERROR" *table*)
   '("" EOL "Condition Type " "`PARSE-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`parse-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
     "," EOL "" "`condition`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL ""
     EOL "型" "`parse-error`" "は、構文解析に関するエラーのコンディションを含みます。" EOL "" EOL "" EOL "## " "参考" ""
     EOL "" EOL "" "`parse-namestring`" "," EOL "" "`reader-error`" "" EOL "" EOL))
-(setf (gethash '("PARSE-ERROR" . CONDITION-TYPE) *table*) (gethash "PARSE-ERROR" *table*))
+(setf (gethash '("PARSE-ERROR" . "CONDITION-TYPE") *table*) (gethash "PARSE-ERROR" *table*))
 (setf (gethash "PARSE-NAMESTRING" *table*)
   '("" EOL "Function " "`PARSE-NAMESTRING`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`parse-namestring`" " *thing*" EOL " " "`&optional`" " *host* *default-pathname*"
@@ -19359,10 +19359,10 @@
     "`logical-pathname`" "," EOL "" "20.1. ファイルシステムの説明" "," EOL ""
     "19.2.2.2.3. `:UNSPECIFIC`という要素の値" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PARSE-NAMESTRING" . FUNCTION) *table*) (gethash "PARSE-NAMESTRING" *table*))
+(setf (gethash '("PARSE-NAMESTRING" . "FUNCTION") *table*) (gethash "PARSE-NAMESTRING" *table*))
 (setf (gethash "PATHNAME" *table*)
   '("PATHNAME FUNCTION" EOL "PATHNAME SYSTEM-CLASS" EOL))
-(setf (gethash '("PATHNAME" . FUNCTION) *table*)
+(setf (gethash '("PATHNAME" . "FUNCTION") *table*)
   '("" EOL "Function " "`PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`pathname`" " *pathspec* => *pathname*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
     EOL "*pathspec* - パス名指定子  " EOL "*pathname* - パス名" EOL "" EOL "" EOL "## " "定義" ""
@@ -19394,7 +19394,7 @@
     "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`" ","
     EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME" . SYSTEM-CLASS) *table*)
+(setf (gethash '("PATHNAME" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`PATHNAME`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`pathname`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
     "パス名は、ファイル名を表現する構造化されたオブジェクトです。" EOL "" EOL "パス名は2種類存在し、物理パス名と論理パス名です。" EOL "" EOL))
@@ -19466,7 +19466,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-DEVICE" . FUNCTION) *table*) (gethash "PATHNAME-DEVICE" *table*))
+(setf (gethash '("PATHNAME-DEVICE" . "FUNCTION") *table*) (gethash "PATHNAME-DEVICE" *table*))
 (setf (gethash "PATHNAME-DIRECTORY" *table*)
   '("" EOL "Function " "`PATHNAME-HOST`" " " "`PATHNAME-DEVICE`" ", "
     "`PATHNAME-DIRECTORY`" "," EOL " " "`PATHNAME-NAME`" ", " "`PATHNAME-TYPE`" ", "
@@ -19535,7 +19535,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-DIRECTORY" . FUNCTION) *table*) (gethash "PATHNAME-DIRECTORY" *table*))
+(setf (gethash '("PATHNAME-DIRECTORY" . "FUNCTION") *table*) (gethash "PATHNAME-DIRECTORY" *table*))
 (setf (gethash "PATHNAME-HOST" *table*)
   '("" EOL "Function " "`PATHNAME-HOST`" " " "`PATHNAME-DEVICE`" ", "
     "`PATHNAME-DIRECTORY`" "," EOL " " "`PATHNAME-NAME`" ", " "`PATHNAME-TYPE`" ", "
@@ -19604,7 +19604,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-HOST" . FUNCTION) *table*) (gethash "PATHNAME-HOST" *table*))
+(setf (gethash '("PATHNAME-HOST" . "FUNCTION") *table*) (gethash "PATHNAME-HOST" *table*))
 (setf (gethash "PATHNAME-MATCH-P" *table*)
   '("" EOL "Function " "`PATHNAME-MATCH-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`pathname-match-p`" " *pathname* *wildcard* => *generalized-boolean*" EOL "" EOL
@@ -19623,7 +19623,7 @@
     EOL "" EOL "" "`directory`" "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-MATCH-P" . FUNCTION) *table*) (gethash "PATHNAME-MATCH-P" *table*))
+(setf (gethash '("PATHNAME-MATCH-P" . "FUNCTION") *table*) (gethash "PATHNAME-MATCH-P" *table*))
 (setf (gethash "PATHNAME-NAME" *table*)
   '("" EOL "Function " "`PATHNAME-HOST`" " " "`PATHNAME-DEVICE`" ", "
     "`PATHNAME-DIRECTORY`" "," EOL " " "`PATHNAME-NAME`" ", " "`PATHNAME-TYPE`" ", "
@@ -19692,7 +19692,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-NAME" . FUNCTION) *table*) (gethash "PATHNAME-NAME" *table*))
+(setf (gethash '("PATHNAME-NAME" . "FUNCTION") *table*) (gethash "PATHNAME-NAME" *table*))
 (setf (gethash "PATHNAME-TYPE" *table*)
   '("" EOL "Function " "`PATHNAME-HOST`" " " "`PATHNAME-DEVICE`" ", "
     "`PATHNAME-DIRECTORY`" "," EOL " " "`PATHNAME-NAME`" ", " "`PATHNAME-TYPE`" ", "
@@ -19761,7 +19761,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-TYPE" . FUNCTION) *table*) (gethash "PATHNAME-TYPE" *table*))
+(setf (gethash '("PATHNAME-TYPE" . "FUNCTION") *table*) (gethash "PATHNAME-TYPE" *table*))
 (setf (gethash "PATHNAME-VERSION" *table*)
   '("" EOL "Function " "`PATHNAME-HOST`" " " "`PATHNAME-DEVICE`" ", "
     "`PATHNAME-DIRECTORY`" "," EOL " " "`PATHNAME-NAME`" ", " "`PATHNAME-TYPE`" ", "
@@ -19830,7 +19830,7 @@
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PATHNAME-VERSION" . FUNCTION) *table*) (gethash "PATHNAME-VERSION" *table*))
+(setf (gethash '("PATHNAME-VERSION" . "FUNCTION") *table*) (gethash "PATHNAME-VERSION" *table*))
 (setf (gethash "PATHNAMEP" *table*)
   '("" EOL "Function " "`PATHNAMEP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`pathnamep`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -19847,7 +19847,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(pathnamep object) == (typep object 'pathname)" EOL "```" EOL "" EOL))
-(setf (gethash '("PATHNAMEP" . FUNCTION) *table*) (gethash "PATHNAMEP" *table*))
+(setf (gethash '("PATHNAMEP" . "FUNCTION") *table*) (gethash "PATHNAMEP" *table*))
 (setf (gethash "PEEK-CHAR" *table*)
   '("" EOL "Function " "`PEEK-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`peek-char`" " " "`&optional`" "" EOL
@@ -19887,7 +19887,7 @@
     "*recursive-p*が*true*であり、ファイルの終わりに到達したときは、" EOL "型" "`end-of-file`" "のエラーが通知されます。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PEEK-CHAR" . FUNCTION) *table*) (gethash "PEEK-CHAR" *table*))
+(setf (gethash '("PEEK-CHAR" . "FUNCTION") *table*) (gethash "PEEK-CHAR" *table*))
 (setf (gethash "POP" *table*)
   '("" EOL "Macro " "`POP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`pop`"
     " *place* => *element*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL "*place* - "
@@ -19906,7 +19906,7 @@
     "備考" "" EOL "" EOL "" "`(pop place)`" "の効果は、だいたい次と同等です。" EOL "" EOL "```lisp" EOL
     "(prog1 (car place) (setf place (cdr place)))" EOL "```" EOL "" EOL
     "ただし、これはサブフォームを3回評価するのに対して、" EOL "" "`pop`" "はそれをたった一度しか評価しません。" EOL "" EOL))
-(setf (gethash '("POP" . MACRO) *table*) (gethash "POP" *table*))
+(setf (gethash '("POP" . "MACRO") *table*) (gethash "POP" *table*))
 (setf (gethash "POSITION" *table*)
   '("" EOL "Function " "`POSITION`" ", " "`POSITION-IF`" ", " "`POSITION-IF-NOT`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`position`" " *item* *sequence*" EOL
@@ -19937,7 +19937,7 @@
     EOL "## " "参考" "" EOL "" EOL "" EOL "" "`find`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数"
     "`position-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("POSITION" . FUNCTION) *table*) (gethash "POSITION" *table*))
+(setf (gethash '("POSITION" . "FUNCTION") *table*) (gethash "POSITION" *table*))
 (setf (gethash "POSITION-IF" *table*)
   '("" EOL "Function " "`POSITION`" ", " "`POSITION-IF`" ", " "`POSITION-IF-NOT`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`position`" " *item* *sequence*" EOL
@@ -19968,7 +19968,7 @@
     EOL "## " "参考" "" EOL "" EOL "" EOL "" "`find`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数"
     "`position-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("POSITION-IF" . FUNCTION) *table*) (gethash "POSITION-IF" *table*))
+(setf (gethash '("POSITION-IF" . "FUNCTION") *table*) (gethash "POSITION-IF" *table*))
 (setf (gethash "POSITION-IF-NOT" *table*)
   '("" EOL "Function " "`POSITION`" ", " "`POSITION-IF`" ", " "`POSITION-IF-NOT`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`position`" " *item* *sequence*" EOL
@@ -19999,7 +19999,7 @@
     EOL "## " "参考" "" EOL "" EOL "" EOL "" "`find`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数"
     "`position-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("POSITION-IF-NOT" . FUNCTION) *table*) (gethash "POSITION-IF-NOT" *table*))
+(setf (gethash '("POSITION-IF-NOT" . "FUNCTION") *table*) (gethash "POSITION-IF-NOT" *table*))
 (setf (gethash "PPRINT-DISPATCH" *table*)
   '("" EOL "Function " "`PPRINT-DISPATCH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`pprint-dispatch object`" " " "`&optional`" " *table* => *function*, *found-p*"
@@ -20020,7 +20020,7 @@
     "## " "備考" "" EOL "" EOL "```lisp" EOL "(let ((*print-pretty* t))" EOL
     "  (write object :stream s))" EOL "==  (funcall (pprint-dispatch object) s object)"
     EOL "```" EOL "" EOL))
-(setf (gethash '("PPRINT-DISPATCH" . FUNCTION) *table*) (gethash "PPRINT-DISPATCH" *table*))
+(setf (gethash '("PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "PPRINT-DISPATCH" *table*))
 (setf (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *table*)
   '("" EOL "Function " "`PPRINT-EXIT-IF-LIST-EXHAUSTED`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`pprint-exit-if-list-exhausted`" " <引数なし> => " "`nil`" "" EOL ""
@@ -20042,7 +20042,7 @@
     EOL "実行したときの結果は未定義です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`pprint-logical-block`" "," EOL "" "`pprint-pop`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PPRINT-EXIT-IF-LIST-EXHAUSTED" . FUNCTION) *table*) (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *table*))
+(setf (gethash '("PPRINT-EXIT-IF-LIST-EXHAUSTED" . "FUNCTION") *table*) (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *table*))
 (setf (gethash "PPRINT-FILL" *table*)
   '("" EOL "Function " "`PPRINT-FILL`" ", " "`PPRINT-LINEAR`" ", " "`PPRINT-TABULAR`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`pprint-fill`" " *stream* *object* "
@@ -20087,7 +20087,7 @@
     "          (pprint-newline :fill s))))" EOL "```" EOL "" EOL "これは" "`format`" "を使用して"
     EOL "この関数を定義するには不便であることに注意してください。" EOL "なぜならリストの繰り返し内にある" "`format`" "の命令" "`~:T`"
     "に" EOL "" "`tabsize`" "引数を渡す必要があるためです。" EOL "" EOL))
-(setf (gethash '("PPRINT-FILL" . FUNCTION) *table*) (gethash "PPRINT-FILL" *table*))
+(setf (gethash '("PPRINT-FILL" . "FUNCTION") *table*) (gethash "PPRINT-FILL" *table*))
 (setf (gethash "PPRINT-INDENT" *table*)
   '("" EOL "Function " "`PPRINT-INDENT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`pprint-indent`" " *relative-to* *n* " "`&optional`" " *stream* => " "`nil`" "" EOL
@@ -20112,7 +20112,7 @@
     "`:current`" "でもない" EOL "別のオブジェクトのときはエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "22.3.5.3. チルダ`I`: インデント" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("PPRINT-INDENT" . FUNCTION) *table*) (gethash "PPRINT-INDENT" *table*))
+(setf (gethash '("PPRINT-INDENT" . "FUNCTION") *table*) (gethash "PPRINT-INDENT" *table*))
 (setf (gethash "PPRINT-LINEAR" *table*)
   '("" EOL "Function " "`PPRINT-FILL`" ", " "`PPRINT-LINEAR`" ", " "`PPRINT-TABULAR`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`pprint-fill`" " *stream* *object* "
@@ -20157,7 +20157,7 @@
     "          (pprint-newline :fill s))))" EOL "```" EOL "" EOL "これは" "`format`" "を使用して"
     EOL "この関数を定義するには不便であることに注意してください。" EOL "なぜならリストの繰り返し内にある" "`format`" "の命令" "`~:T`"
     "に" EOL "" "`tabsize`" "引数を渡す必要があるためです。" EOL "" EOL))
-(setf (gethash '("PPRINT-LINEAR" . FUNCTION) *table*) (gethash "PPRINT-LINEAR" *table*))
+(setf (gethash '("PPRINT-LINEAR" . "FUNCTION") *table*) (gethash "PPRINT-LINEAR" *table*))
 (setf (gethash "PPRINT-TABULAR" *table*)
   '("" EOL "Function " "`PPRINT-FILL`" ", " "`PPRINT-LINEAR`" ", " "`PPRINT-TABULAR`" ""
     EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`pprint-fill`" " *stream* *object* "
@@ -20202,7 +20202,7 @@
     "          (pprint-newline :fill s))))" EOL "```" EOL "" EOL "これは" "`format`" "を使用して"
     EOL "この関数を定義するには不便であることに注意してください。" EOL "なぜならリストの繰り返し内にある" "`format`" "の命令" "`~:T`"
     "に" EOL "" "`tabsize`" "引数を渡す必要があるためです。" EOL "" EOL))
-(setf (gethash '("PPRINT-TABULAR" . FUNCTION) *table*) (gethash "PPRINT-TABULAR" *table*))
+(setf (gethash '("PPRINT-TABULAR" . "FUNCTION") *table*) (gethash "PPRINT-TABULAR" *table*))
 (setf (gethash "PROBE-FILE" *table*)
   '("" EOL "Function " "`PROBE-FILE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`probe-file`" " *pathspec* => *truename*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -20220,7 +20220,7 @@
     "`ensure-directories-exist`" "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`"
     "," EOL "" "20.1. ファイルシステムの説明" "," EOL "" "20.1.2. 開かれた・閉じたストリームのファイル操作" "," EOL ""
     "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PROBE-FILE" . FUNCTION) *table*) (gethash "PROBE-FILE" *table*))
+(setf (gethash '("PROBE-FILE" . "FUNCTION") *table*) (gethash "PROBE-FILE" *table*))
 (setf (gethash "PROCLAIM" *table*)
   '("" EOL "Function " "`PROCLAIM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`proclaim`" " *declaration-specifier* => " "実装依存" "" EOL "" EOL "" EOL "## "
@@ -20251,7 +20251,7 @@
     "  (proclaim '(special *x*)))" EOL "```" EOL "" EOL "しかしだいたいの場合、" EOL "このような目的には"
     "`declaim`" "を使うことが好まれます。" EOL "" EOL "" "`proclaim`" "フォームは通常の関数フォームなので、" EOL
     "マクロフォームがそれらを展開することができます。" EOL "" EOL))
-(setf (gethash '("PROCLAIM" . FUNCTION) *table*) (gethash "PROCLAIM" *table*))
+(setf (gethash '("PROCLAIM" . "FUNCTION") *table*) (gethash "PROCLAIM" *table*))
 (setf (gethash "PROG" *table*)
   '("" EOL "Macro " "`PROG`" ", " "`PROG*`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`prog`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form*])" "`}`" "\\*)" EOL
@@ -20309,7 +20309,7 @@
     "(prog variable-list declaration . body)" EOL
     "   ==  (block nil (let variable-list declaration (tagbody . body)))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("PROG" . MACRO) *table*) (gethash "PROG" *table*))
+(setf (gethash '("PROG" . "MACRO") *table*) (gethash "PROG" *table*))
 (setf (gethash "PROG*" *table*)
   '("" EOL "Macro " "`PROG`" ", " "`PROG*`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`prog`" " (" "`{`" "*var* " "`|`" " (*var* [*init-form*])" "`}`" "\\*)" EOL
@@ -20367,7 +20367,7 @@
     "(prog variable-list declaration . body)" EOL
     "   ==  (block nil (let variable-list declaration (tagbody . body)))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("PROG*" . MACRO) *table*) (gethash "PROG*" *table*))
+(setf (gethash '("PROG*" . "MACRO") *table*) (gethash "PROG*" *table*))
 (setf (gethash "PROG1" *table*)
   '("" EOL "Macro " "`PROG1`" ", " "`PROG2`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`prog1`" " *first-form* *form\\** => *result-1*  " EOL "" "`prog2`"
@@ -20397,7 +20397,7 @@
     "`multiple-value-prog1`" "," EOL "" "`progn`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`prog1`" "と" "`prog2`" "は通常、" EOL "副作用のあるひとつか複数のフォームを評価し、" EOL
     "その副作用の一部かあるいはすべてが起こる前に計算されなければならない" EOL "値を返すために使用されます。" EOL "" EOL))
-(setf (gethash '("PROG1" . MACRO) *table*) (gethash "PROG1" *table*))
+(setf (gethash '("PROG1" . "MACRO") *table*) (gethash "PROG1" *table*))
 (setf (gethash "PROG2" *table*)
   '("" EOL "Macro " "`PROG1`" ", " "`PROG2`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`prog1`" " *first-form* *form\\** => *result-1*  " EOL "" "`prog2`"
@@ -20427,7 +20427,7 @@
     "`multiple-value-prog1`" "," EOL "" "`progn`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`prog1`" "と" "`prog2`" "は通常、" EOL "副作用のあるひとつか複数のフォームを評価し、" EOL
     "その副作用の一部かあるいはすべてが起こる前に計算されなければならない" EOL "値を返すために使用されます。" EOL "" EOL))
-(setf (gethash '("PROG2" . MACRO) *table*) (gethash "PROG2" *table*))
+(setf (gethash '("PROG2" . "MACRO") *table*) (gethash "PROG2" *table*))
 (setf (gethash "PROGN" *table*)
   '("" EOL "Special Operator " "`PROGN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`progn`" " *form\\** => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -20446,7 +20446,7 @@
     "最後のフォームの結果が返却されるということを意味しています。" EOL "そのような場所が制限なしに含まれる場所として、" EOL
     "例えば下記のようなものがあげられます。" EOL "ラムダ式のボディ部、" EOL "様々な制御文や条件文のフォームのボディ部" EOL "（例えば、"
     "`case`" ", " "`catch`" ", " "`progn`" ", " "`when`" "）。" EOL "" EOL))
-(setf (gethash '("PROGN" . SPECIAL-OPERATOR) *table*) (gethash "PROGN" *table*))
+(setf (gethash '("PROGN" . "SPECIAL-OPERATOR") *table*) (gethash "PROGN" *table*))
 (setf (gethash "PROGRAM-ERROR" *table*)
   '("" EOL "Condition Type " "`PROGRAM-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`program-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
@@ -20454,7 +20454,7 @@
     EOL "型" "`program-error`" "は、" EOL "正しくないプログラムの構文に関係する" EOL "エラーの状態で構成されています。" EOL ""
     "`go`" "タグや" "`block`" "タグの名前がレキシカルに存在しない結果のエラーは、" EOL "" "`program-error`"
     "の型になります。" EOL "" EOL))
-(setf (gethash '("PROGRAM-ERROR" . CONDITION-TYPE) *table*) (gethash "PROGRAM-ERROR" *table*))
+(setf (gethash '("PROGRAM-ERROR" . "CONDITION-TYPE") *table*) (gethash "PROGRAM-ERROR" *table*))
 (setf (gethash "PROGV" *table*)
   '("" EOL "Special Operator " "`PROGV`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`progv`" " *symbols* *values* *form\\** => *result\\**" EOL "" EOL "" EOL "## "
@@ -20474,7 +20474,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`let`" "," EOL ""
     "3.1. 評価" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "特に、" "`progv`"
     "はLisp内に組み込まれた言語の" EOL "インタプリタを書くときに便利で、" EOL "動的変数を束縛する機構を提供します。" EOL "" EOL))
-(setf (gethash '("PROGV" . SPECIAL-OPERATOR) *table*) (gethash "PROGV" *table*))
+(setf (gethash '("PROGV" . "SPECIAL-OPERATOR") *table*) (gethash "PROGV" *table*))
 (setf (gethash "PSETF" *table*)
   '("" EOL "Macro " "`SETF`" ", " "`PSETF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`setf`" " " "`{`" "*pair*" "`}`" "\\* => *result\\**  " EOL "" "`psetf`" " "
@@ -20509,7 +20509,7 @@
     "" EOL "" "`define-setf-expander`" "," EOL "" "`defsetf`" "," EOL ""
     "`macroexpand-1`" "," EOL "" "`rotatef`" "," EOL "" "`shiftf`" "," EOL ""
     "5.1. 一般化された参照" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PSETF" . MACRO) *table*) (gethash "PSETF" *table*))
+(setf (gethash '("PSETF" . "MACRO") *table*) (gethash "PSETF" *table*))
 (setf (gethash "PSETQ" *table*)
   '("" EOL "Macro " "`PSETQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`psetq`"
     " " "`{`" "*pair*" "`}`" "\\* => " "`nil`" "" EOL "" EOL "```" EOL
@@ -20535,7 +20535,7 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`psetf`" "," EOL "" "`setq`" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("PSETQ" . MACRO) *table*) (gethash "PSETQ" *table*))
+(setf (gethash '("PSETQ" . "MACRO") *table*) (gethash "PSETQ" *table*))
 (setf (gethash "PUSH" *table*)
   '("" EOL "Macro " "`PUSH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`push`"
     " *item* *place* => *new-place-value*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -20554,7 +20554,7 @@
     "備考" "" EOL "" EOL "" EOL "" "`(push item place)`" "の効果は、次と同等です。" EOL "" EOL
     "```lisp" EOL "(setf place (cons item place))" EOL "```" EOL "" EOL
     "ただし、*place*のサブフォームはただ一度しか評価されず、" EOL "*item*は*place*のあとに評価されます。" EOL "" EOL))
-(setf (gethash '("PUSH" . MACRO) *table*) (gethash "PUSH" *table*))
+(setf (gethash '("PUSH" . "MACRO") *table*) (gethash "PUSH" *table*))
 (setf (gethash "PUSHNEW" *table*)
   '("" EOL "Macro " "`PUSHNEW`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`pushnew`" " *item* *place* &key *key* *test* *test-not*  " EOL
@@ -20592,7 +20592,7 @@
     "" EOL "```lisp" EOL "(setf place (adjoin item place :test p))" EOL "```" EOL "" EOL
     "ただし、" "`place`" "のサブフォームはただ一度だけ評価され、" EOL "*item*は" "`place`" "の前に評価されます。" EOL ""
     EOL))
-(setf (gethash '("PUSHNEW" . FUNCTION) *table*) (gethash "PUSHNEW" *table*))
+(setf (gethash '("PUSHNEW" . "FUNCTION") *table*) (gethash "PUSHNEW" *table*))
 (setf (gethash "QUOTE" *table*)
   '("" EOL "Special Operator " "`QUOTE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`quote`" " *object* => *object*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -20615,7 +20615,7 @@
     "しかしシンボルとリストは、" EOL "プログラムの部分として表現するときには使われますし、" EOL "プログラムの中においては" "`quote`" "なしで"
     EOL "定数のデータとして利用することはできません。" EOL "" "`quote`" "はそれらのオブジェクトの評価を抑制するので、" EOL
     "それらはプログラムではなくデータになります。" EOL "" EOL))
-(setf (gethash '("QUOTE" . SPECIAL-OPERATOR) *table*) (gethash "QUOTE" *table*))
+(setf (gethash '("QUOTE" . "SPECIAL-OPERATOR") *table*) (gethash "QUOTE" *table*))
 (setf (gethash "RASSOC" *table*)
   '("" EOL "Function " "`RASSOC`" ", " "`RASSOC-IF`" ", " "`RASSOC-IF-NOT`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`rassoc`"
@@ -20647,7 +20647,7 @@
     "(rassoc item list :test fn)" EOL "(find item list :test fn :key #'cdr)" EOL "```"
     EOL "" EOL "これらは、ひとつの例外を除いては同じ意味です。" EOL "例外は、*item*が" "`nil`" "であり、" EOL
     "かつ*alist*のペアの場所に" "`nil`" "が現れるときです。" EOL "関数" "`assoc`" "をご確認下さい。" EOL "" EOL))
-(setf (gethash '("RASSOC" . FUNCTION) *table*) (gethash "RASSOC" *table*))
+(setf (gethash '("RASSOC" . "FUNCTION") *table*) (gethash "RASSOC" *table*))
 (setf (gethash "RASSOC-IF" *table*)
   '("" EOL "Function " "`RASSOC`" ", " "`RASSOC-IF`" ", " "`RASSOC-IF-NOT`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`rassoc`"
@@ -20679,7 +20679,7 @@
     "(rassoc item list :test fn)" EOL "(find item list :test fn :key #'cdr)" EOL "```"
     EOL "" EOL "これらは、ひとつの例外を除いては同じ意味です。" EOL "例外は、*item*が" "`nil`" "であり、" EOL
     "かつ*alist*のペアの場所に" "`nil`" "が現れるときです。" EOL "関数" "`assoc`" "をご確認下さい。" EOL "" EOL))
-(setf (gethash '("RASSOC-IF" . FUNCTION) *table*) (gethash "RASSOC-IF" *table*))
+(setf (gethash '("RASSOC-IF" . "FUNCTION") *table*) (gethash "RASSOC-IF" *table*))
 (setf (gethash "RASSOC-IF-NOT" *table*)
   '("" EOL "Function " "`RASSOC`" ", " "`RASSOC-IF`" ", " "`RASSOC-IF-NOT`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`rassoc`"
@@ -20711,7 +20711,7 @@
     "(rassoc item list :test fn)" EOL "(find item list :test fn :key #'cdr)" EOL "```"
     EOL "" EOL "これらは、ひとつの例外を除いては同じ意味です。" EOL "例外は、*item*が" "`nil`" "であり、" EOL
     "かつ*alist*のペアの場所に" "`nil`" "が現れるときです。" EOL "関数" "`assoc`" "をご確認下さい。" EOL "" EOL))
-(setf (gethash '("RASSOC-IF-NOT" . FUNCTION) *table*) (gethash "RASSOC-IF-NOT" *table*))
+(setf (gethash '("RASSOC-IF-NOT" . "FUNCTION") *table*) (gethash "RASSOC-IF-NOT" *table*))
 (setf (gethash "READ-BYTE" *table*)
   '("" EOL "Function " "`READ-BYTE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`read-byte`" " *stream* " "`&optional`" " *eof-error-p* *eof-value* => *byte*" EOL
@@ -20735,7 +20735,7 @@
     "のエラーが通知されます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`read-char`" "," EOL ""
     "`read-sequence`" "," EOL "" "`write-byte`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("READ-BYTE" . FUNCTION) *table*) (gethash "READ-BYTE" *table*))
+(setf (gethash '("READ-BYTE" . "FUNCTION") *table*) (gethash "READ-BYTE" *table*))
 (setf (gethash "READ-CHAR" *table*)
   '("" EOL "Function " "`READ-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`read-char`" " " "`&optional`" "" EOL
@@ -20762,7 +20762,7 @@
     "`read-byte`" "," EOL "" "`read-sequence`" "," EOL "" "`write-char`" "," EOL ""
     "`read`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "対応する出力関数は" "`write-char`"
     "です。" EOL "" EOL))
-(setf (gethash '("READ-CHAR" . FUNCTION) *table*) (gethash "READ-CHAR" *table*))
+(setf (gethash '("READ-CHAR" . "FUNCTION") *table*) (gethash "READ-CHAR" *table*))
 (setf (gethash "READ-CHAR-NO-HANG" *table*)
   '("" EOL "Function " "`READ-CHAR-NO-HANG`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`read-char-no-hang`" " " "`&optional`" "" EOL
@@ -20790,7 +20790,7 @@
     "" EOL "## " "備考" "" EOL "" EOL "" "`read-char-no-hang`" "は正確に" "`read-char`"
     "と似ていますが、" EOL "もし文字を（例えばキーボードから）取得するために" EOL "待機する必要があるような場合は違っており、" EOL
     "このような場合は待つことなしに即座に" "`nil`" "を返却します。" EOL "" EOL))
-(setf (gethash '("READ-CHAR-NO-HANG" . FUNCTION) *table*) (gethash "READ-CHAR-NO-HANG" *table*))
+(setf (gethash '("READ-CHAR-NO-HANG" . "FUNCTION") *table*) (gethash "READ-CHAR-NO-HANG" *table*))
 (setf (gethash "READ-LINE" *table*)
   '("" EOL "Function " "`READ-LINE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`read-line`" " " "`&optional`"
@@ -20819,7 +20819,7 @@
     "*eof-error-p*が*true*のときはエラーが通知されます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`read`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "対応する出力関数は" "`write-line`"
     "です。" EOL "" EOL))
-(setf (gethash '("READ-LINE" . FUNCTION) *table*) (gethash "READ-LINE" *table*))
+(setf (gethash '("READ-LINE" . "FUNCTION") *table*) (gethash "READ-LINE" *table*))
 (setf (gethash "READ-SEQUENCE" *table*)
   '("" EOL "Function " "`READ-SEQUENCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`read-sequence`" " *sequence* *stream* " "`&key`" " *start* *end* => *position*" EOL
@@ -20849,7 +20849,7 @@
     "`read-sequence`" "は、指定した部分シーケンスに対して" EOL "*stream*からひとつの要素を読み込みその都度*sequence*に" EOL
     "格納していく繰り返しと同じ効果ですが、" EOL "おそらくは同等のループよりもより効率的になります。" EOL "" EOL "ある効率の良い実装では、" EOL
     "*sequence*が*stream*の要素と同じ型の" "`vector`" "である場合に" EOL "より効率的になるかもしれません。" EOL "" EOL))
-(setf (gethash '("READ-SEQUENCE" . FUNCTION) *table*) (gethash "READ-SEQUENCE" *table*))
+(setf (gethash '("READ-SEQUENCE" . "FUNCTION") *table*) (gethash "READ-SEQUENCE" *table*))
 (setf (gethash "REDUCE" *table*)
   '("" EOL "Function " "`REDUCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`reduce`" " *function* *sequence*" EOL
@@ -20895,7 +20895,7 @@
     EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("REDUCE" . FUNCTION) *table*) (gethash "REDUCE" *table*))
+(setf (gethash '("REDUCE" . "FUNCTION") *table*) (gethash "REDUCE" *table*))
 (setf (gethash "REINITIALIZE-INSTANCE" *table*)
   '("" EOL "Standard Generic Function " "`REINITIALIZE-INSTANCE`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`reinitialize-instance`" " *instance*" EOL
@@ -20924,7 +20924,7 @@
     "メソッドの宣言によって、有効であると宣言されます。" EOL "" "`reinitialize-instance`" "か"
     "`shared-initialize`" "の" EOL "各メソッドの宣言のラムダリストにある、" EOL "各キーワードパラメーター指定子のキーワード名は、"
     EOL "それらのメソッドが適用されるすべてのクラスに対して、" EOL "有効な" "初期化引数" "の名前として宣言されます。" EOL "" EOL))
-(setf (gethash '("REINITIALIZE-INSTANCE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "REINITIALIZE-INSTANCE" *table*))
+(setf (gethash '("REINITIALIZE-INSTANCE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "REINITIALIZE-INSTANCE" *table*))
 (setf (gethash "REMF" *table*)
   '("" EOL "Macro " "`REMF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`remf`"
     " *place* *indicator* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -20945,7 +20945,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`remprop`" "," EOL "" "`getf`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("REMF" . MACRO) *table*) (gethash "REMF" *table*))
+(setf (gethash '("REMF" . "MACRO") *table*) (gethash "REMF" *table*))
 (setf (gethash "REMHASH" *table*)
   '("" EOL "Function " "`REMHASH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remhash`" " *key* *hash-table* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -20962,7 +20962,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("REMHASH" . FUNCTION) *table*) (gethash "REMHASH" *table*))
+(setf (gethash '("REMHASH" . "FUNCTION") *table*) (gethash "REMHASH" *table*))
 (setf (gethash "REMOVE" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -21051,7 +21051,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("REMOVE" . FUNCTION) *table*) (gethash "REMOVE" *table*))
+(setf (gethash '("REMOVE" . "FUNCTION") *table*) (gethash "REMOVE" *table*))
 (setf (gethash "REMOVE-DUPLICATES" *table*)
   '("" EOL "Function " "`REMOVE-DUPLICATES`" ", " "`DELETE-DUPLICATES`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`remove-duplicates`" " *sequence*" EOL
@@ -21097,7 +21097,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "これらの関数は、*sequence*を集合で表現される" EOL
     "標準形に変換するのに便利です。" EOL "" EOL))
-(setf (gethash '("REMOVE-DUPLICATES" . FUNCTION) *table*) (gethash "REMOVE-DUPLICATES" *table*))
+(setf (gethash '("REMOVE-DUPLICATES" . "FUNCTION") *table*) (gethash "REMOVE-DUPLICATES" *table*))
 (setf (gethash "REMOVE-IF" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -21186,7 +21186,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("REMOVE-IF" . FUNCTION) *table*) (gethash "REMOVE-IF" *table*))
+(setf (gethash '("REMOVE-IF" . "FUNCTION") *table*) (gethash "REMOVE-IF" *table*))
 (setf (gethash "REMOVE-IF-NOT" *table*)
   '("" EOL "Function " "`REMOVE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remove`" " *item* *sequence*" EOL
@@ -21275,7 +21275,7 @@
     "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL "そうでないかもしれません。" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "関数" "`delete-if-not`" "と"
     "`remove-if-not`" "は非推奨です。" EOL "" EOL))
-(setf (gethash '("REMOVE-IF-NOT" . FUNCTION) *table*) (gethash "REMOVE-IF-NOT" *table*))
+(setf (gethash '("REMOVE-IF-NOT" . "FUNCTION") *table*) (gethash "REMOVE-IF-NOT" *table*))
 (setf (gethash "REMOVE-METHOD" *table*)
   '("" EOL "Standard Generic Function " "`REMOVE-METHOD`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`remove-method`"
@@ -21290,7 +21290,7 @@
     EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。"
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`find-method`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("REMOVE-METHOD" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "REMOVE-METHOD" *table*))
+(setf (gethash '("REMOVE-METHOD" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "REMOVE-METHOD" *table*))
 (setf (gethash "REMPROP" *table*)
   '("" EOL "Function " "`REMPROP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`remprop`" " *symbol* *indicator* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -21326,7 +21326,7 @@
     "そのため、そのような*indicator*を使ったときの効果は" EOL "" "実装依存" "です。" EOL
     "もちろん、そのようなプロパティを削除する必要がある場合は、" EOL "仕方がないことです。" EOL "プロパティに対して" "`get`" "の" "`setf`"
     "を使うことを" EOL "考えてみて下さい。" EOL "" EOL))
-(setf (gethash '("REMPROP" . FUNCTION) *table*) (gethash "REMPROP" *table*))
+(setf (gethash '("REMPROP" . "FUNCTION") *table*) (gethash "REMPROP" *table*))
 (setf (gethash "RENAME-FILE" *table*)
   '("" EOL "Function " "`RENAME-FILE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`rename-file`" " *filespec* *new-name*" EOL
@@ -21360,7 +21360,7 @@
     "`truename`" "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("RENAME-FILE" . FUNCTION) *table*) (gethash "RENAME-FILE" *table*))
+(setf (gethash '("RENAME-FILE" . "FUNCTION") *table*) (gethash "RENAME-FILE" *table*))
 (setf (gethash "RENAME-PACKAGE" *table*)
   '("" EOL "Function " "`RENAME-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`rename-package`" " *package* *new-name* " "`&optional`" " *new-nicknames*" EOL
@@ -21383,7 +21383,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`make-package`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("RENAME-PACKAGE" . FUNCTION) *table*) (gethash "RENAME-PACKAGE" *table*))
+(setf (gethash '("RENAME-PACKAGE" . "FUNCTION") *table*) (gethash "RENAME-PACKAGE" *table*))
 (setf (gethash "REPLACE" *table*)
   '("" EOL "Function " "`REPLACE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`replace`" " *sequence-1* *sequence-2*" EOL
@@ -21413,7 +21413,7 @@
     EOL "" EOL "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`fill`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("REPLACE" . FUNCTION) *table*) (gethash "REPLACE" *table*))
+(setf (gethash '("REPLACE" . "FUNCTION") *table*) (gethash "REPLACE" *table*))
 (setf (gethash "REST" *table*)
   '("" EOL "Accessor " "`REST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`rest`"
     " *list* => *tail*  " EOL "(" "`setf`" " (" "`rest`" " *list*) *new-tail*)" EOL ""
@@ -21430,7 +21430,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`cdr`" "," EOL ""
     "`nthcdr`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`rest`" "は、様式上として"
     "`cdr`" "よりも好まれる場合があり、" EOL "それは引数が主観的にコンスというよりもならリストとして見られるときです。" EOL "" EOL))
-(setf (gethash '("REST" . ACCESSOR) *table*) (gethash "REST" *table*))
+(setf (gethash '("REST" . "ACCESSOR") *table*) (gethash "REST" *table*))
 (setf (gethash "RESTART" *table*)
   '("" EOL "System Class " "`RESTART`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`restart`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "型"
@@ -21438,7 +21438,7 @@
     "通常は実行しているプログラムの外側のポイントに" EOL "制御を遷移させることで行います。" EOL "" EOL "実装は" "`restart`"
     "の実装をもっともやりやすい方法で自由に実装できます。" EOL "" "`restart`" "はそれが確立して束縛されるフォームのスコープと関係している" EOL
     "動的エクステントだけを持ちます。" EOL "" EOL))
-(setf (gethash '("RESTART" . SYSTEM-CLASS) *table*) (gethash "RESTART" *table*))
+(setf (gethash '("RESTART" . "SYSTEM-CLASS") *table*) (gethash "RESTART" *table*))
 (setf (gethash "RESTART-BIND" *table*)
   '("" EOL "Macro " "`RESTART-BIND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`restart-bind`" " (" "`{`" "(*name* *function* " "`{`" "*key-val-pair*" "`}`" "\\*)"
@@ -21487,7 +21487,7 @@
     "`restart-bind`" "のどちらを使うか" EOL "迷っているプログラマーは、" EOL "" "`restart-case`"
     "がこのような場合には十分に強力で好まれますし、" EOL "完全な一般性が本当に必要な場合のみ" EOL "" "`restart-bind`"
     "を使うことをお勧めします。" EOL "" EOL))
-(setf (gethash '("RESTART-BIND" . MACRO) *table*) (gethash "RESTART-BIND" *table*))
+(setf (gethash '("RESTART-BIND" . "MACRO") *table*) (gethash "RESTART-BIND" *table*))
 (setf (gethash "RESTART-CASE" *table*)
   '("" EOL "Macro " "`RESTART-CASE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`restart-case`" " *restartable-form* " "`{`" "*clause*" "`}`" " " EOL
@@ -21620,7 +21620,7 @@
     "                             (list (find-restart 'a) " EOL
     "                                   (find-restart 'b))" EOL "      (signal fred))"
     EOL "  (a ...)" EOL "  (b ...))" EOL "```" EOL "" EOL))
-(setf (gethash '("RESTART-CASE" . MACRO) *table*) (gethash "RESTART-CASE" *table*))
+(setf (gethash '("RESTART-CASE" . "MACRO") *table*) (gethash "RESTART-CASE" *table*))
 (setf (gethash "RESTART-NAME" *table*)
   '("" EOL "Function " "`RESTART-NAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`restart-name`" " *restart* => *name*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -21637,7 +21637,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`compute-restarts`" "," EOL "" "`find-restart`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("RESTART-NAME" . FUNCTION) *table*) (gethash "RESTART-NAME" *table*))
+(setf (gethash '("RESTART-NAME" . "FUNCTION") *table*) (gethash "RESTART-NAME" *table*))
 (setf (gethash "RETURN" *table*)
   '("" EOL "Macro " "`RETURN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`return`" " [*result*] =>" "`|`" "" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -21655,7 +21655,7 @@
     "(return) == (return-from nil)" EOL "(return form) == (return-from nil form)" EOL
     "```" EOL "" EOL "暗黙の" "`block`" "として確立される" EOL "" "`do`" "のようなマクロは、" EOL "よく名前に"
     "`nil`" "が使われるため、" EOL "" "`return`" "はそのようなフォームから" EOL "退出するときに使われます。" EOL "" EOL))
-(setf (gethash '("RETURN" . MACRO) *table*) (gethash "RETURN" *table*))
+(setf (gethash '("RETURN" . "MACRO") *table*) (gethash "RETURN" *table*))
 (setf (gethash "RETURN-FROM" *table*)
   '("" EOL "Special Operator " "`RETURN-FROM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`return-from`" " *name* [*result*] =>" "`|`" "" EOL "" EOL "" EOL "## "
@@ -21688,7 +21688,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`block`" "," EOL "" "`return`" "," EOL ""
     "3.1. 評価" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("RETURN-FROM" . SPECIAL-OPERATOR) *table*) (gethash "RETURN-FROM" *table*))
+(setf (gethash '("RETURN-FROM" . "SPECIAL-OPERATOR") *table*) (gethash "RETURN-FROM" *table*))
 (setf (gethash "REVAPPEND" *table*)
   '("" EOL "Function " "`REVAPPEND`" ", " "`NRECONC`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`revappend`" " *list* *tail* => *result-list*  " EOL "" "`nreconc`"
@@ -21720,7 +21720,7 @@
     "良い実装は、通常同じ効果が得られるより速いアルゴリズムを使用しているでしょう。" EOL "" EOL "```lisp" EOL
     "(revappend list tail) ==  (nconc (reverse list) tail)" EOL
     "(nreconc list tail) ==  (nconc (nreverse list) tail)" EOL "```" EOL "" EOL))
-(setf (gethash '("REVAPPEND" . FUNCTION) *table*) (gethash "REVAPPEND" *table*))
+(setf (gethash '("REVAPPEND" . "FUNCTION") *table*) (gethash "REVAPPEND" *table*))
 (setf (gethash "REVERSE" *table*)
   '("" EOL "Function " "`REVERSE`" ", " "`NREVERSE`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`reverse`" " *sequence* => *reversed-sequence*" EOL "" "`nreverse`"
@@ -21750,7 +21750,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "*sequence*が" "正常なシーケンス" "でないとき、" EOL "型"
     "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL
     "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("REVERSE" . FUNCTION) *table*) (gethash "REVERSE" *table*))
+(setf (gethash '("REVERSE" . "FUNCTION") *table*) (gethash "REVERSE" *table*))
 (setf (gethash "ROTATEF" *table*)
   '("" EOL "Macro " "`ROTATEF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`rotatef`" " *place\\** => " "`nil`" "" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -21775,7 +21775,7 @@
     "" EOL "```lisp" EOL " (psetf place1 place2" EOL "        place2 place3" EOL
     "        ..." EOL "        placen place1)" EOL "```" EOL "" EOL "ただし、これは各" "`place`"
     "のサブフォームを2度評価していますが、" EOL "" "`rotatef`" "はただ一度だけです。" EOL "" EOL))
-(setf (gethash '("ROTATEF" . MACRO) *table*) (gethash "ROTATEF" *table*))
+(setf (gethash '("ROTATEF" . "MACRO") *table*) (gethash "ROTATEF" *table*))
 (setf (gethash "ROW-MAJOR-AREF" *table*)
   '("" EOL "Accessor " "`ROW-MAJOR-AREF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`row-major-aref`" " *array* *index* => *element*  " EOL "(" "`setf`" " ("
@@ -21794,7 +21794,7 @@
     "                    :element-type (array-element-type array))" EOL "        index)"
     EOL "```" EOL "" EOL "```lisp" EOL "(aref array i1 i2 ...) == " EOL
     "    (row-major-aref array (array-row-major-index array i1 i2))" EOL "```" EOL "" EOL))
-(setf (gethash '("ROW-MAJOR-AREF" . ACCESSOR) *table*) (gethash "ROW-MAJOR-AREF" *table*))
+(setf (gethash '("ROW-MAJOR-AREF" . "ACCESSOR") *table*) (gethash "ROW-MAJOR-AREF" *table*))
 (setf (gethash "RPLACA" *table*)
   '("" EOL "Function " "`RPLACA`" ", " "`RPLACD`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`rplaca`" " *cons* *object* => *cons*  " EOL "" "`rplacd`"
@@ -21815,7 +21815,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "*cons*がコンスではないとき、" EOL "型" "`type-error`"
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("RPLACA" . FUNCTION) *table*) (gethash "RPLACA" *table*))
+(setf (gethash '("RPLACA" . "FUNCTION") *table*) (gethash "RPLACA" *table*))
 (setf (gethash "RPLACD" *table*)
   '("" EOL "Function " "`RPLACA`" ", " "`RPLACD`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`rplaca`" " *cons* *object* => *cons*  " EOL "" "`rplacd`"
@@ -21836,7 +21836,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "*cons*がコンスではないとき、" EOL "型" "`type-error`"
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("RPLACD" . FUNCTION) *table*) (gethash "RPLACD" *table*))
+(setf (gethash '("RPLACD" . "FUNCTION") *table*) (gethash "RPLACD" *table*))
 (setf (gethash "SATISFIES" *table*)
   '("" EOL "Type Specifier " "`SATISFIES`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL ""
     EOL "述部" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "" "`satisfies`"
@@ -21850,7 +21850,7 @@
     "引数は要求されます。" EOL "シンボル" "`*`" "は引数に指定できますが、" EOL "しかしそれは自分自身（つまりシンボル" "`*`"
     "）を示しているのであって、" EOL "未指定の値を表現しているのではありません。" EOL "" EOL "シンボルとしての" "`satisfies`"
     "は、有効な型指定子ではありません。" EOL "" EOL))
-(setf (gethash '("SATISFIES" . TYPE-SPECIFIER) *table*) (gethash "SATISFIES" *table*))
+(setf (gethash '("SATISFIES" . "TYPE-SPECIFIER") *table*) (gethash "SATISFIES" *table*))
 (setf (gethash "SBIT" *table*)
   '("" EOL "Accessor " "`BIT`" ", " "`SBIT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`bit`" " *bit-array* " "`&rest`" " *subscripts* => *bit*  " EOL "" "`sbit`"
@@ -21872,7 +21872,7 @@
     "に似ていますが、" EOL "*array*がそれぞれビット配列と" "`simple`" "のビット配列であることを" EOL "要求することが違っています。"
     EOL "" EOL "" "`bit`" "と" "`sbit`" "は" EOL "" "`char`" "と" "`schar`" "とは似ておらず、" EOL
     "最初の引数はどんなランクの配列でも許されます。" EOL "" EOL))
-(setf (gethash '("SBIT" . ACCESSOR) *table*) (gethash "SBIT" *table*))
+(setf (gethash '("SBIT" . "ACCESSOR") *table*) (gethash "SBIT" *table*))
 (setf (gethash "SCHAR" *table*)
   '("" EOL "Accessor " "`CHAR`" ", " "`SCHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`char`" " *string* *index* => *character*  " EOL "" "`schar`"
@@ -21900,7 +21900,7 @@
     "参考" "" EOL "" EOL "" "`aref`" ", " "`elt`" ", " "3.2.1. コンパイラーの用語" "" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "```lisp" EOL "(char s j) ==  (aref (the string s) j)"
     EOL "```" EOL "" EOL))
-(setf (gethash '("SCHAR" . ACCESSOR) *table*) (gethash "SCHAR" *table*))
+(setf (gethash '("SCHAR" . "ACCESSOR") *table*) (gethash "SCHAR" *table*))
 (setf (gethash "SEARCH" *table*)
   '("" EOL "Function " "`SEARCH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`search`" " *sequence-1* *sequence-2*" EOL
@@ -21928,7 +21928,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "The :test-not argument is deprecated." EOL "" EOL))
-(setf (gethash '("SEARCH" . FUNCTION) *table*) (gethash "SEARCH" *table*))
+(setf (gethash '("SEARCH" . "FUNCTION") *table*) (gethash "SEARCH" *table*))
 (setf (gethash "SECOND" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -21976,7 +21976,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("SECOND" . ACCESSOR) *table*) (gethash "SECOND" *table*))
+(setf (gethash '("SECOND" . "ACCESSOR") *table*) (gethash "SECOND" *table*))
 (setf (gethash "SEQUENCE" *table*)
   '("" EOL "System Class " "`SEQUENCE`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`sequence`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
@@ -21985,7 +21985,7 @@
     "完全な分割" "である必要はありません。" EOL "" EOL "" "`vector`" "をシーケンスとして見た場合、" EOL "その" "`vector`"
     "のアクティブな要素のみがシーケンスの要素であるとみなされます。" EOL "つまり、シーケンスが" "`vector`" "として与えられたら、" EOL
     "そのシーケンスを操作するときは、" EOL "" "fill-pointer" "を考慮する必要があるということです。" EOL "" EOL))
-(setf (gethash '("SEQUENCE" . SYSTEM-CLASS) *table*) (gethash "SEQUENCE" *table*))
+(setf (gethash '("SEQUENCE" . "SYSTEM-CLASS") *table*) (gethash "SEQUENCE" *table*))
 (setf (gethash "SERIOUS-CONDITION" *table*)
   '("" EOL "Condition Type " "`SERIOUS-CONDITION`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`serious-condition`" "," EOL "" "`condition`" "," EOL
@@ -22000,7 +22000,7 @@
     "`serious-condition`" "ではない" EOL "コンディションの捕捉に失敗したときでも" EOL
     "デバッガーに入るほどではないという理由があるときは、" EOL "その" "`serious-condition`" "ではないコンディションを" EOL ""
     "`error`" "ではなく" "`signal`" "を用いて" EOL "通知するのが一般的です。）" EOL "" EOL))
-(setf (gethash '("SERIOUS-CONDITION" . CONDITION-TYPE) *table*) (gethash "SERIOUS-CONDITION" *table*))
+(setf (gethash '("SERIOUS-CONDITION" . "CONDITION-TYPE") *table*) (gethash "SERIOUS-CONDITION" *table*))
 (setf (gethash "SET" *table*)
   '("" EOL "Function " "`SET`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`set`"
     " *symbol* *value* => *value*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -22028,7 +22028,7 @@
     "`setq`" "," EOL "" "`progv`" "," EOL "" "`symbol-value`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "関数" "`set`" "は非推奨です。" EOL "" EOL "" "`set`" "は、" "レキシカルな変数"
     "の値を変更できません。" EOL "" EOL))
-(setf (gethash '("SET" . FUNCTION) *table*) (gethash "SET" *table*))
+(setf (gethash '("SET" . "FUNCTION") *table*) (gethash "SET" *table*))
 (setf (gethash "SET-DIFFERENCE" *table*)
   '("" EOL "Function " "`SET-DIFFERENCE`" ", " "`NSET-DIFFERENCE`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`set-difference`"
@@ -22077,7 +22077,7 @@
     "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "3.2.1. コンパイラーの用語" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL))
-(setf (gethash '("SET-DIFFERENCE" . FUNCTION) *table*) (gethash "SET-DIFFERENCE" *table*))
+(setf (gethash '("SET-DIFFERENCE" . "FUNCTION") *table*) (gethash "SET-DIFFERENCE" *table*))
 (setf (gethash "SET-EXCLUSIVE-OR" *table*)
   '("" EOL "Function " "`SET-EXCLUSIVE-OR`" ", " "`NSET-EXCLUSIVE-OR`" "" EOL "" EOL ""
     EOL "## " "構文" "" EOL "" EOL "" "`set-exclusive-or`"
@@ -22121,7 +22121,7 @@
     "参考" "" EOL "" EOL "" "3.2.1. コンパイラーの用語" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL "" "`nset-exclusive-or`"
     "の副作用は必要ないため、" EOL "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL "" EOL))
-(setf (gethash '("SET-EXCLUSIVE-OR" . FUNCTION) *table*) (gethash "SET-EXCLUSIVE-OR" *table*))
+(setf (gethash '("SET-EXCLUSIVE-OR" . "FUNCTION") *table*) (gethash "SET-EXCLUSIVE-OR" *table*))
 (setf (gethash "SETF" *table*)
   '("" EOL "Macro " "`SETF`" ", " "`PSETF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`setf`" " " "`{`" "*pair*" "`}`" "\\* => *result\\**  " EOL "" "`psetf`" " "
@@ -22156,7 +22156,7 @@
     "" EOL "" "`define-setf-expander`" "," EOL "" "`defsetf`" "," EOL ""
     "`macroexpand-1`" "," EOL "" "`rotatef`" "," EOL "" "`shiftf`" "," EOL ""
     "5.1. 一般化された参照" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SETF" . MACRO) *table*) (gethash "SETF" *table*))
+(setf (gethash '("SETF" . "MACRO") *table*) (gethash "SETF" *table*))
 (setf (gethash "SETQ" *table*)
   '("" EOL "Special Form " "`SETQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`setq`" " " "`{`" "*pair*" "`}`" "\\* => *result*" EOL "" EOL "```" EOL
@@ -22180,7 +22180,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`psetq`" "," EOL "" "`set`" "," EOL "" "`setf`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SETQ" . SPECIAL-FORM) *table*) (gethash "SETQ" *table*))
+(setf (gethash '("SETQ" . "SPECIAL-FORM") *table*) (gethash "SETQ" *table*))
 (setf (gethash "SEVENTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -22228,7 +22228,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("SEVENTH" . ACCESSOR) *table*) (gethash "SEVENTH" *table*))
+(setf (gethash '("SEVENTH" . "ACCESSOR") *table*) (gethash "SEVENTH" *table*))
 (setf (gethash "SHADOW" *table*)
   '("" EOL "Function " "`SHADOW`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`shadow`" " *symbol-names* " "`&optional`" " *package* => " "`t`" "" EOL "" EOL ""
@@ -22261,7 +22261,7 @@
     "11.1. パッケージの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "もし*package*内に*symbol-names*という名前のシンボルが既に存在していたときは、" EOL "それが継承によるものであったときは、" EOL
     "継承されたシンボルは新しく作成された内部シンボルによってシャドウされます。" EOL "" EOL))
-(setf (gethash '("SHADOW" . FUNCTION) *table*) (gethash "SHADOW" *table*))
+(setf (gethash '("SHADOW" . "FUNCTION") *table*) (gethash "SHADOW" *table*))
 (setf (gethash "SHADOWING-IMPORT" *table*)
   '("" EOL "Function " "`SHADOWING-IMPORT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`shadowing-import`" " *symbols* " "`&optional`" " *package* => " "`t`" "" EOL ""
@@ -22288,7 +22288,7 @@
     "## " "参考" "" EOL "" EOL "" "`import`" "," EOL "" "`unintern`" "," EOL ""
     "`package-shadowing-symbols`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("SHADOWING-IMPORT" . FUNCTION) *table*) (gethash "SHADOWING-IMPORT" *table*))
+(setf (gethash '("SHADOWING-IMPORT" . "FUNCTION") *table*) (gethash "SHADOWING-IMPORT" *table*))
 (setf (gethash "SHARED-INITIALIZE" *table*)
   '("" EOL "Standard Generic Function " "`SHARED-INITIALIZE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`shared-initialize`" " *instance* *slot-names*" EOL
@@ -22340,7 +22340,7 @@
     "実際には完全な" "初期化引数" "リストを作成せず、" EOL "*initargs*とスロットを関連付けるよう、" EOL
     "デフォルト初期値フォームを最適化することが許可されています。" EOL "この場合、デフォルトの初期値フォームは、" EOL "" "`:initform`"
     "フォームのように扱うことができます。" EOL "この最適化には、パフォーマンスの向上以外に目に見える効果はありません。" EOL "" EOL))
-(setf (gethash '("SHARED-INITIALIZE" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "SHARED-INITIALIZE" *table*))
+(setf (gethash '("SHARED-INITIALIZE" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "SHARED-INITIALIZE" *table*))
 (setf (gethash "SHIFTF" *table*)
   '("" EOL "Macro " "`SHIFTF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`shiftf`" " *place*+ *newvalue* => *old-value-1*" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -22376,7 +22376,7 @@
     "(setq x (list 'a 'b 'c 'd)) =>  (A B C D)" EOL "(prog1 (nth (setq n (+ n 1)) x)" EOL
     "       (setf (nth (setq n (+ n 1)) x) 'z)) =>  B" EOL "x =>  (A B Z D)" EOL "```"
     EOL "" EOL))
-(setf (gethash '("SHIFTF" . MACRO) *table*) (gethash "SHIFTF" *table*))
+(setf (gethash '("SHIFTF" . "MACRO") *table*) (gethash "SHIFTF" *table*))
 (setf (gethash "SIGNAL" *table*)
   '("" EOL "Function " "`SIGNAL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`signal`" " *datum* &rest *arguments* => " "`nil`" "" EOL "" EOL "" EOL "## "
@@ -22414,7 +22414,7 @@
     "## " "備考" "" EOL "" EOL "もし" "`(typep datum *break-on-signals*)`" "が*true*のときは、" EOL
     "通知処理を行う前にデバッガーに入ります。" EOL "" "`continue`" " " "`restart`" "は通知処理を継続するときに使われます。" EOL
     "このことは、条件を通知すべき、あるいは通知しなければならない" EOL "他のすべての関数やマクロにも当てはまります。" EOL "" EOL))
-(setf (gethash '("SIGNAL" . FUNCTION) *table*) (gethash "SIGNAL" *table*))
+(setf (gethash '("SIGNAL" . "FUNCTION") *table*) (gethash "SIGNAL" *table*))
 (setf (gethash "SIMPLE-ARRAY" *table*)
   '("" EOL "Type " "`SIMPLE-ARRAY`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL
     "" "`simple-array`" "," EOL "" "`array`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## "
@@ -22439,7 +22439,7 @@
     "は要素の型によらず全ての" "`simple-array`" "を参照し、" EOL "" "`(simple-array type-specifier)`" "は"
     EOL "" "`make-array`" "の" "`:element-type`" "引数として指定された*type-specifier*の" EOL "結果の"
     "`simple-array`" "のみを参照します。" EOL "" EOL))
-(setf (gethash '("SIMPLE-ARRAY" . TYPE) *table*) (gethash "SIMPLE-ARRAY" *table*))
+(setf (gethash '("SIMPLE-ARRAY" . "TYPE") *table*) (gethash "SIMPLE-ARRAY" *table*))
 (setf (gethash "SIMPLE-BASE-STRING" *table*)
   '("" EOL "Type " "`SIMPLE-BASE-STRING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`simple-base-string`" ", " "`base-string`" ", " "`simple-string`" "," EOL
@@ -22451,7 +22451,7 @@
     EOL "*size* - 非負の" "`fixnum`" "か、シンボル" "`*`" "" EOL "" EOL "" EOL "## " "型指定子の定義" ""
     EOL "" EOL "型" "`(simple-array base-char (size))`" "と同一です。" EOL "このとき、*size*は"
     "simple-base-string" "の集合のサイズです。" EOL "" EOL))
-(setf (gethash '("SIMPLE-BASE-STRING" . TYPE) *table*) (gethash "SIMPLE-BASE-STRING" *table*))
+(setf (gethash '("SIMPLE-BASE-STRING" . "TYPE") *table*) (gethash "SIMPLE-BASE-STRING" *table*))
 (setf (gethash "SIMPLE-BIT-VECTOR" *table*)
   '("" EOL "Type " "`SIMPLE-BIT-VECTOR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`simple-bit-vector`" "," EOL "" "`bit-vector`" "," EOL "" "`vector`" ","
@@ -22464,7 +22464,7 @@
     "か、シンボル" "`*`" "。デフォルトはシンボル" "`*`" "。" EOL "" EOL "" EOL "## " "型指定子の定義" "" EOL ""
     EOL "これは型" "`(simple-array bit (size))`" "と同じであり、" EOL "つまりサイズ*size*の"
     "`simple-bit-vector`" "の集合です。" EOL "" EOL))
-(setf (gethash '("SIMPLE-BIT-VECTOR" . TYPE) *table*) (gethash "SIMPLE-BIT-VECTOR" *table*))
+(setf (gethash '("SIMPLE-BIT-VECTOR" . "TYPE") *table*) (gethash "SIMPLE-BIT-VECTOR" *table*))
 (setf (gethash "SIMPLE-BIT-VECTOR-P" *table*)
   '("" EOL "Function " "`SIMPLE-BIT-VECTOR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`simple-bit-vector-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -22478,7 +22478,7 @@
     "`simple-vector-p`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(simple-bit-vector-p object) ==  (typep object 'simple-bit-vector)" EOL "```" EOL ""
     EOL))
-(setf (gethash '("SIMPLE-BIT-VECTOR-P" . FUNCTION) *table*) (gethash "SIMPLE-BIT-VECTOR-P" *table*))
+(setf (gethash '("SIMPLE-BIT-VECTOR-P" . "FUNCTION") *table*) (gethash "SIMPLE-BIT-VECTOR-P" *table*))
 (setf (gethash "SIMPLE-CONDITION" *table*)
   '("" EOL "Condition Type " "`SIMPLE-CONDITION`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`simple-condition`" "," EOL "" "`condition`" "," EOL "" "`t`" ""
@@ -22491,7 +22491,7 @@
     "デフォルト値として" "`nil`" "が使用されます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`simple-condition-format-control`" "," EOL "" "`simple-condition-format-arguments`"
     "" EOL "" EOL))
-(setf (gethash '("SIMPLE-CONDITION" . CONDITION-TYPE) *table*) (gethash "SIMPLE-CONDITION" *table*))
+(setf (gethash '("SIMPLE-CONDITION" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-CONDITION" *table*))
 (setf (gethash "SIMPLE-CONDITION-FORMAT-ARGUMENTS" *table*)
   '("" EOL "Function " "`SIMPLE-CONDITION-FORMAT-CONTROL`" ", "
     "`SIMPLE-CONDITION-FORMAT-ARGUMENTS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
@@ -22514,7 +22514,7 @@
     "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`simple-condition`" "," EOL ""
     "9.1. コンディションシステムの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SIMPLE-CONDITION-FORMAT-ARGUMENTS" . FUNCTION) *table*) (gethash "SIMPLE-CONDITION-FORMAT-ARGUMENTS" *table*))
+(setf (gethash '("SIMPLE-CONDITION-FORMAT-ARGUMENTS" . "FUNCTION") *table*) (gethash "SIMPLE-CONDITION-FORMAT-ARGUMENTS" *table*))
 (setf (gethash "SIMPLE-CONDITION-FORMAT-CONTROL" *table*)
   '("" EOL "Function " "`SIMPLE-CONDITION-FORMAT-CONTROL`" ", "
     "`SIMPLE-CONDITION-FORMAT-ARGUMENTS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
@@ -22537,7 +22537,7 @@
     "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`simple-condition`" "," EOL ""
     "9.1. コンディションシステムの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SIMPLE-CONDITION-FORMAT-CONTROL" . FUNCTION) *table*) (gethash "SIMPLE-CONDITION-FORMAT-CONTROL" *table*))
+(setf (gethash '("SIMPLE-CONDITION-FORMAT-CONTROL" . "FUNCTION") *table*) (gethash "SIMPLE-CONDITION-FORMAT-CONTROL" *table*))
 (setf (gethash "SIMPLE-ERROR" *table*)
   '("" EOL "Condition Type " "`SIMPLE-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`simple-error`" "," EOL "" "`simple-condition`" "," EOL "" "`error`"
@@ -22545,7 +22545,7 @@
     EOL "" EOL "## " "定義" "" EOL "" EOL "型" "`simple-error`" "は、" EOL "" "`error`" "か"
     "`cerror`" "によって" EOL "" "format-control" "が関数の最初の引数として与えられたときに" EOL
     "通知されるコンディションを含みます。" EOL "" EOL))
-(setf (gethash '("SIMPLE-ERROR" . CONDITION-TYPE) *table*) (gethash "SIMPLE-ERROR" *table*))
+(setf (gethash '("SIMPLE-ERROR" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-ERROR" *table*))
 (setf (gethash "SIMPLE-STRING" *table*)
   '("" EOL "Type " "`SIMPLE-STRING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`simple-string`" ", " "`string`" ", " "`vector`" "," EOL "" "`simple-array`"
@@ -22559,7 +22559,7 @@
     "" EOL "## " "型指定子の定義" "" EOL "" EOL "" "`character`" "の全てのサブタイプを" "`c`" "としたとき、" EOL
     "全ての" "`(simple-array c (size))`" "の和集合を示します。" EOL "このとき、*size*は" "simple-string"
     "の集合のサイズです。" EOL "" EOL))
-(setf (gethash '("SIMPLE-STRING" . TYPE) *table*) (gethash "SIMPLE-STRING" *table*))
+(setf (gethash '("SIMPLE-STRING" . "TYPE") *table*) (gethash "SIMPLE-STRING" *table*))
 (setf (gethash "SIMPLE-STRING-P" *table*)
   '("" EOL "Function " "`SIMPLE-STRING-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`simple-string-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -22574,7 +22574,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(simple-string-p object) ==  (typep object 'simple-string)" EOL "```" EOL "" EOL))
-(setf (gethash '("SIMPLE-STRING-P" . FUNCTION) *table*) (gethash "SIMPLE-STRING-P" *table*))
+(setf (gethash '("SIMPLE-STRING-P" . "FUNCTION") *table*) (gethash "SIMPLE-STRING-P" *table*))
 (setf (gethash "SIMPLE-TYPE-ERROR" *table*)
   '("" EOL "Condition Type " "`SIMPLE-TYPE-ERROR`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`simple-type-error`" "," EOL "" "`simple-condition`"
@@ -22586,7 +22586,7 @@
     EOL "" "`simple-condition-format-control`" "," EOL ""
     "`simple-condition-format-arguments`" "," EOL "" "`type-error-datum`" "," EOL ""
     "`type-error-expected-type`" "" EOL "" EOL))
-(setf (gethash '("SIMPLE-TYPE-ERROR" . CONDITION-TYPE) *table*) (gethash "SIMPLE-TYPE-ERROR" *table*))
+(setf (gethash '("SIMPLE-TYPE-ERROR" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-TYPE-ERROR" *table*))
 (setf (gethash "SIMPLE-VECTOR" *table*)
   '("" EOL "Type " "`SIMPLE-VECTOR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`simple-vector`" "," EOL "" "`vector`" "," EOL "" "`simple-array`" "," EOL ""
@@ -22599,7 +22599,7 @@
     EOL "" EOL "## " "型指定子の引数" "" EOL "" EOL "*size* - 非負の" "`fixnum`" "か、シンボル" "`*`"
     "。デフォルトはシンボル" "`*`" "。" EOL "" EOL "" EOL "## " "型指定子の定義" "" EOL "" EOL ""
     "`(simple-array t (size))`" "と同じ。" EOL "" EOL))
-(setf (gethash '("SIMPLE-VECTOR" . TYPE) *table*) (gethash "SIMPLE-VECTOR" *table*))
+(setf (gethash '("SIMPLE-VECTOR" . "TYPE") *table*) (gethash "SIMPLE-VECTOR" *table*))
 (setf (gethash "SIMPLE-VECTOR-P" *table*)
   '("" EOL "Function " "`SIMPLE-VECTOR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`simple-vector-p`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## "
@@ -22613,14 +22613,14 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`simple-vector`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp"
     EOL "(simple-vector-p object) == (typep object 'simple-vector)" EOL "```" EOL "" EOL))
-(setf (gethash '("SIMPLE-VECTOR-P" . FUNCTION) *table*) (gethash "SIMPLE-VECTOR-P" *table*))
+(setf (gethash '("SIMPLE-VECTOR-P" . "FUNCTION") *table*) (gethash "SIMPLE-VECTOR-P" *table*))
 (setf (gethash "SIMPLE-WARNING" *table*)
   '("" EOL "Condition Type " "`SIMPLE-WARNING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`simple-warning`" "," EOL "" "`simple-condition`" "," EOL ""
     "`warning`" "," EOL "" "`condition`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義"
     "" EOL "" EOL "型" "`simple-warning`" "は、" "`warn`" "関数が" EOL
     "その最初の引数を*format-control*で指定して" EOL "いつでも通知できるようなコンディションの表現です。" EOL "" EOL))
-(setf (gethash '("SIMPLE-WARNING" . CONDITION-TYPE) *table*) (gethash "SIMPLE-WARNING" *table*))
+(setf (gethash '("SIMPLE-WARNING" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-WARNING" *table*))
 (setf (gethash "SIXTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -22668,7 +22668,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("SIXTH" . ACCESSOR) *table*) (gethash "SIXTH" *table*))
+(setf (gethash '("SIXTH" . "ACCESSOR") *table*) (gethash "SIXTH" *table*))
 (setf (gethash "SLOT-BOUNDP" *table*)
   '("" EOL "Function " "`SLOT-BOUNDP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`slot-boundp`" " *instance* *slot-name* => *generalized-boolean*" EOL "" EOL "## "
@@ -22693,7 +22693,7 @@
     "実装は必須ではありませんが、" EOL "実装者はMetaobject Protocolで説明されている" EOL "関数"
     "`slot-boundp-using-class`" "を使用して" EOL "関数" "`slot-boundp`" "を実装することが強く推奨されます。" EOL
     "" EOL))
-(setf (gethash '("SLOT-BOUNDP" . FUNCTION) *table*) (gethash "SLOT-BOUNDP" *table*))
+(setf (gethash '("SLOT-BOUNDP" . "FUNCTION") *table*) (gethash "SLOT-BOUNDP" *table*))
 (setf (gethash "SLOT-BOUNDP-USING-CLASS" *table*)
   '("" EOL "Generic Function " "`SLOT-BOUNDP-USING-CLASS`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`slot-boundp-using-class`"
@@ -22728,7 +22728,7 @@
     "### " "定義" "" EOL "" EOL "このメソッドはエラーが発生します。" EOL "" EOL "## " "コメントと備考" "" EOL ""
     EOL "もしクラスのメタオブジェクトのクラスが" EOL "スロットについて" "`unbound`" "かどうか区別がつかないときは、" EOL
     "*true*を返却するべきです。" EOL "" EOL))
-(setf (gethash '("SLOT-BOUNDP-USING-CLASS" . GENERIC-FUNCTION) *table*) (gethash "SLOT-BOUNDP-USING-CLASS" *table*))
+(setf (gethash '("SLOT-BOUNDP-USING-CLASS" . "GENERIC-FUNCTION") *table*) (gethash "SLOT-BOUNDP-USING-CLASS" *table*))
 (setf (gethash "SLOT-EXISTS-P" *table*)
   '("" EOL "Function " "`SLOT-EXISTS-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`slot-exists-p`" " *object* *slot-name* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -22741,7 +22741,7 @@
     "`slot-missing`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "実装は必須ではありませんが、" EOL
     "実装者はMetaobject Protocolで説明されている" EOL "関数" "`slot-exists-p-using-class`" "を使用して" EOL
     "関数" "`slot-exists-p`" "を実装することが強く推奨されます。" EOL "" EOL))
-(setf (gethash '("SLOT-EXISTS-P" . FUNCTION) *table*) (gethash "SLOT-EXISTS-P" *table*))
+(setf (gethash '("SLOT-EXISTS-P" . "FUNCTION") *table*) (gethash "SLOT-EXISTS-P" *table*))
 (setf (gethash "SLOT-MAKUNBOUND" *table*)
   '("" EOL "Function " "`SLOT-MAKUNBOUND`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`slot-makunbound`" " *instance* *slot-name* => *instance*" EOL "" EOL "" EOL
@@ -22762,7 +22762,7 @@
     EOL "実装は必須ではありませんが、" EOL "実装者はMetaobject Protocolで説明されている" EOL "関数"
     "`slot-makunbound-using-class`" "を使用して" EOL "関数" "`slot-makunbound`"
     "を実装することが強く推奨されます。" EOL "" EOL))
-(setf (gethash '("SLOT-MAKUNBOUND" . FUNCTION) *table*) (gethash "SLOT-MAKUNBOUND" *table*))
+(setf (gethash '("SLOT-MAKUNBOUND" . "FUNCTION") *table*) (gethash "SLOT-MAKUNBOUND" *table*))
 (setf (gethash "SLOT-MAKUNBOUND-USING-CLASS" *table*)
   '("" EOL "Generic Function " "`SLOT-MAKUNBOUND-USING-CLASS`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`slot-makunbound-using-class`"
@@ -22795,7 +22795,7 @@
     "`slot-makunbound-using-class`" "" EOL "" EOL "" "`slot-makunbound-using-class`"
     " (*class* " "`built-in-class`" ") *object* *slot*" EOL " => " "`|`" "" EOL "" EOL
     "### " "定義" "" EOL "" EOL "このメソッドはエラーが発生します。" EOL "" EOL))
-(setf (gethash '("SLOT-MAKUNBOUND-USING-CLASS" . GENERIC-FUNCTION) *table*) (gethash "SLOT-MAKUNBOUND-USING-CLASS" *table*))
+(setf (gethash '("SLOT-MAKUNBOUND-USING-CLASS" . "GENERIC-FUNCTION") *table*) (gethash "SLOT-MAKUNBOUND-USING-CLASS" *table*))
 (setf (gethash "SLOT-MISSING" *table*)
   '("" EOL "Standard Generic Function " "`SLOT-MISSING`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`slot-missing`"
@@ -22826,7 +22826,7 @@
     "" EOL "" EOL "" "`defclass`" "," EOL "" "`slot-exists-p`" "," EOL "" "`slot-value`"
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "引数のセット（インスタンスのクラス*class*を含む）は、" EOL ""
     "`slot-missing`" "のメタクラスによるメソッドの定義が容易になります。" EOL "" EOL))
-(setf (gethash '("SLOT-MISSING" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "SLOT-MISSING" *table*))
+(setf (gethash '("SLOT-MISSING" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "SLOT-MISSING" *table*))
 (setf (gethash "SLOT-UNBOUND" *table*)
   '("" EOL "Standard Generic Function " "`SLOT-UNBOUND`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`slot-unbound`" " *class* *instance* *slot-name* => *result\\**"
@@ -22849,7 +22849,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "スロットに" "`:initform`"
     "が指定されず値もセットされていないときか、" EOL "あるいは" "`slot-makunbound`" "がスロットに対して呼び出されたとき、" EOL ""
     "`unbound`" "スロットが起こることがあります。" EOL "" EOL))
-(setf (gethash '("SLOT-UNBOUND" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "SLOT-UNBOUND" *table*))
+(setf (gethash '("SLOT-UNBOUND" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "SLOT-UNBOUND" *table*))
 (setf (gethash "SLOT-VALUE" *table*)
   '("" EOL "Function " "`SLOT-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`slot-value`" " *object* *slot-name* => *value*" EOL "" EOL "" EOL
@@ -22887,7 +22887,7 @@
     "実装者はMetaobject Protocolで説明されている" EOL "関数" "`slot-value-using-class`" "を使用して" EOL
     "関数" "`slot-value`" "を実装することが強く推奨されます。" EOL "" EOL "実装者は" "`slot-value`"
     "をコンパイル時にインラインに最適化するかもしれません。" EOL "" EOL))
-(setf (gethash '("SLOT-VALUE" . FUNCTION) *table*) (gethash "SLOT-VALUE" *table*))
+(setf (gethash '("SLOT-VALUE" . "FUNCTION") *table*) (gethash "SLOT-VALUE" *table*))
 (setf (gethash "SLOT-VALUE-USING-CLASS" *table*)
   '("" EOL "Generic Function " "`SLOT-VALUE-USING-CLASS`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`slot-value-using-class`" " *class* *object* *slot* => *value*" EOL
@@ -22919,7 +22919,7 @@
     "## Method " "`slot-value-using-class`" "" EOL "" EOL "" "`slot-value-using-class`"
     " (*class* " "`built-in-class`" ") *object* *slot*" EOL " => " "`|`" "" EOL "" EOL
     "### " "定義" "" EOL "" EOL "このメソッドはエラーが発生します。" EOL "" EOL))
-(setf (gethash '("SLOT-VALUE-USING-CLASS" . GENERIC-FUNCTION) *table*) (gethash "SLOT-VALUE-USING-CLASS" *table*))
+(setf (gethash '("SLOT-VALUE-USING-CLASS" . "GENERIC-FUNCTION") *table*) (gethash "SLOT-VALUE-USING-CLASS" *table*))
 (setf (gethash "SOME" *table*)
   '("" EOL "Function " "`EVERY`" ", " "`SOME`" ", " "`NOTEVERY`" ", " "`NOTANY`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`every`"
@@ -22959,7 +22959,7 @@
     "(notany predicate sequence*) == (not (some predicate sequence*))" EOL
     "(notevery predicate sequence*) == (not (every predicate sequence*))" EOL "```" EOL
     "" EOL))
-(setf (gethash '("SOME" . FUNCTION) *table*) (gethash "SOME" *table*))
+(setf (gethash '("SOME" . "FUNCTION") *table*) (gethash "SOME" *table*))
 (setf (gethash "SORT" *table*)
   '("" EOL "Function " "`SORT`" ", " "`STABLE-SORT`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`sort`" " *sequence* *predicate* &key *key* => *sorted-sequence*  "
@@ -23035,7 +23035,7 @@
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "もし*sequence*が" "`vector`" "なら、" EOL "返却値は"
     "`simple`" "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL
     "そうでないかもしれません。" EOL "" EOL))
-(setf (gethash '("SORT" . FUNCTION) *table*) (gethash "SORT" *table*))
+(setf (gethash '("SORT" . "FUNCTION") *table*) (gethash "SORT" *table*))
 (setf (gethash "SPECIAL" *table*)
   '("" EOL "Declaration " "`SPECIAL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "("
     "`special`" " *var\\**)" EOL "" EOL "" EOL "## " "引数" "" EOL "" EOL "*var* - シンボル"
@@ -23090,7 +23090,7 @@
     "です" EOL "（この束縛は偶然にも外側のレベルでレキシカルに囲まれているものです）。" EOL "しかしながら" "`proclamation`" "によって"
     "`x`" "が常に" "`special`" "なので、" EOL "全ての" "`x`" "の束縛と" "`x`" "の参照は動的です。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`defparameter`" "," EOL "" "`defvar`" "" EOL "" EOL))
-(setf (gethash '("SPECIAL" . DECLARATION) *table*) (gethash "SPECIAL" *table*))
+(setf (gethash '("SPECIAL" . "DECLARATION") *table*) (gethash "SPECIAL" *table*))
 (setf (gethash "SPECIAL-OPERATOR-P" *table*)
   '("" EOL "Function " "`SPECIAL-OPERATOR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`special-operator-p`" " *symbol* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -23105,7 +23105,7 @@
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "歴史的にこの関数は" "`special-form-p`" "と呼ばれていました。"
     EOL "この関数は" "`special form`" "ではなく" "`special operator`" "のときに*true*となるので、" EOL
     "最終的に誤った名称であると考えられて変更されました。" EOL "" EOL))
-(setf (gethash '("SPECIAL-OPERATOR-P" . FUNCTION) *table*) (gethash "SPECIAL-OPERATOR-P" *table*))
+(setf (gethash '("SPECIAL-OPERATOR-P" . "FUNCTION") *table*) (gethash "SPECIAL-OPERATOR-P" *table*))
 (setf (gethash "STABLE-SORT" *table*)
   '("" EOL "Function " "`SORT`" ", " "`STABLE-SORT`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`sort`" " *sequence* *predicate* &key *key* => *sorted-sequence*  "
@@ -23181,7 +23181,7 @@
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "もし*sequence*が" "`vector`" "なら、" EOL "返却値は"
     "`simple`" "かもしれませんし、そうでないかもしれません。" EOL "また、返却値は*sequence*と同一かもしれませんし、" EOL
     "そうでないかもしれません。" EOL "" EOL))
-(setf (gethash '("STABLE-SORT" . FUNCTION) *table*) (gethash "STABLE-SORT" *table*))
+(setf (gethash '("STABLE-SORT" . "FUNCTION") *table*) (gethash "STABLE-SORT" *table*))
 (setf (gethash "STANDARD-CHAR" *table*)
   '("" EOL "Type " "`STANDARD-CHAR`" "" EOL "" EOL "" EOL "## " "スーパータイプ" "" EOL "" EOL
     "" "`standard-char`" ", " "`base-char`" "," EOL "" "`character`" ", " "`t`" "" EOL ""
@@ -23189,7 +23189,7 @@
     EOL "" "標準文字" "は、" "2.1.3. 標準文字" "で定義されています。" EOL "" EOL
     "単純ではない文字（つまり文字の属性が定義されている文字）は、" EOL "" "標準文字" "ではありません。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "2.1.3. 標準文字" "" EOL "" EOL))
-(setf (gethash '("STANDARD-CHAR" . TYPE) *table*) (gethash "STANDARD-CHAR" *table*))
+(setf (gethash '("STANDARD-CHAR" . "TYPE") *table*) (gethash "STANDARD-CHAR" *table*))
 (setf (gethash "STANDARD-CHAR-P" *table*)
   '("" EOL "Function " "`STANDARD-CHAR-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`standard-char-p`" " *character* => *generalized-boolean*" EOL "" EOL "" EOL
@@ -23202,13 +23202,13 @@
     "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "もし*character*が文字ではなかったら、型"
     "`type-error`" "のエラーが生じます。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL ""
     EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("STANDARD-CHAR-P" . FUNCTION) *table*) (gethash "STANDARD-CHAR-P" *table*))
+(setf (gethash '("STANDARD-CHAR-P" . "FUNCTION") *table*) (gethash "STANDARD-CHAR-P" *table*))
 (setf (gethash "STANDARD-CLASS" *table*)
   '("" EOL "System Class " "`STANDARD-CLASS`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`standard-class`" "," EOL "" "`class`" "," EOL "" "`standard-object`"
     "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`standard-class`"
     "クラスは、" EOL "" "`defclass`" "によって定義されたクラスの標準のクラスです。" EOL "" EOL))
-(setf (gethash '("STANDARD-CLASS" . SYSTEM-CLASS) *table*) (gethash "STANDARD-CLASS" *table*))
+(setf (gethash '("STANDARD-CLASS" . "SYSTEM-CLASS") *table*) (gethash "STANDARD-CLASS" *table*))
 (setf (gethash "STANDARD-GENERIC-FUNCTION" *table*)
   '("" EOL "System Class " "`STANDARD-GENERIC-FUNCTION`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`standard-generic-function`" "," EOL ""
@@ -23216,20 +23216,20 @@
     "## " "定義" "" EOL "" EOL "" "`standard-generic-function`" "クラスは、" EOL ""
     "`defmethod`" "," EOL "" "`ensure-generic-function`" "," EOL "" "`defgeneric`" ","
     EOL "" "`defclass`" "のフォームによって確立される" EOL "ジェネリック関数の標準のクラスです。" EOL "" EOL))
-(setf (gethash '("STANDARD-GENERIC-FUNCTION" . SYSTEM-CLASS) *table*) (gethash "STANDARD-GENERIC-FUNCTION" *table*))
+(setf (gethash '("STANDARD-GENERIC-FUNCTION" . "SYSTEM-CLASS") *table*) (gethash "STANDARD-GENERIC-FUNCTION" *table*))
 (setf (gethash "STANDARD-METHOD" *table*)
   '("" EOL "System Class " "`STANDARD-METHOD`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`standard-method`" "," EOL "" "`method`" "," EOL ""
     "`standard-object`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL ""
     "`standard-method`" "クラスは、" EOL "" "`defmethod`" "と" "`defgeneric`" "フォームによって定義された"
     EOL "メソッドの標準のクラスです。" EOL "" EOL))
-(setf (gethash '("STANDARD-METHOD" . SYSTEM-CLASS) *table*) (gethash "STANDARD-METHOD" *table*))
+(setf (gethash '("STANDARD-METHOD" . "SYSTEM-CLASS") *table*) (gethash "STANDARD-METHOD" *table*))
 (setf (gethash "STANDARD-OBJECT" *table*)
   '("" EOL "Class " "`STANDARD-OBJECT`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`standard-object`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL ""
     EOL "" "`standard-object`" "クラスは" EOL "" "`standard-class`" "のインスタンスであり、" EOL "自分以外の"
     "`standard-class`" "のインスタンスの" EOL "全てのクラスのスーパークラスです。" EOL "" EOL))
-(setf (gethash '("STANDARD-OBJECT" . CLASS) *table*) (gethash "STANDARD-OBJECT" *table*))
+(setf (gethash '("STANDARD-OBJECT" . "CLASS") *table*) (gethash "STANDARD-OBJECT" *table*))
 (setf (gethash "STORAGE-CONDITION" *table*)
   '("" EOL "Condition Type " "`STORAGE-CONDITION`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`storage-condition`" "," EOL "" "`serious-condition`"
@@ -23247,10 +23247,10 @@
     "`storage-condition`" "が" EOL "通知されるかもしれません。" EOL "このようなコンディションは実装の制限の指標であり、" EOL
     "プログラムのエラーというよりは実装のイメージであるため、" EOL "" "`storage-condition`" "の型のオブジェクトは" EOL ""
     "`error`" "の型になってはいません。" EOL "" EOL))
-(setf (gethash '("STORAGE-CONDITION" . CONDITION-TYPE) *table*) (gethash "STORAGE-CONDITION" *table*))
+(setf (gethash '("STORAGE-CONDITION" . "CONDITION-TYPE") *table*) (gethash "STORAGE-CONDITION" *table*))
 (setf (gethash "STORE-VALUE" *table*)
   '("STORE-VALUE FUNCTION" EOL "STORE-VALUE RESTART" EOL))
-(setf (gethash '("STORE-VALUE" . FUNCTION) *table*)
+(setf (gethash '("STORE-VALUE" . "FUNCTION") *table*)
   '("" EOL "Function " "`ABORT`" ", " "`CONTINUE`" ", " "`MUFFLE-WARNING`" ", "
     "`STORE-VALUE`" ", " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`abort`" " " "`&optional`" " *condition* => " "`|`" "  " EOL "" "`continue`" " "
@@ -23341,7 +23341,7 @@
     "(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))"
     EOL "```" EOL "" EOL "この仕様書で" "`use-value`" " " "`restart`" "の提供に" EOL
     "要求される関数定義はありません。" EOL "" EOL))
-(setf (gethash '("STORE-VALUE" . RESTART) *table*)
+(setf (gethash '("STORE-VALUE" . "RESTART") *table*)
   '("" EOL "Restart " "`STORE-VALUE`" "" EOL "" EOL "" EOL "## " "要求される引数のデータ" "" EOL ""
     EOL "かわりに使う値（基本的に使い続ける）" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL ""
     "`store-value`" " " "`restart`" "は、" EOL "一般的には" "`cell-error`" "か" "`type-error`"
@@ -23366,7 +23366,7 @@
     "より完全な情報は" "21.1. ストリームの説明" "をご確認ください。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "21.1. ストリームの説明" "," EOL "" "22.1.3.13. 他のオブジェクトの印字" "," EOL "" "22. プリンター" "," EOL
     "" "23. リーダー" "" EOL "" EOL))
-(setf (gethash '("STREAM" . SYSTEM-CLASS) *table*) (gethash "STREAM" *table*))
+(setf (gethash '("STREAM" . "SYSTEM-CLASS") *table*) (gethash "STREAM" *table*))
 (setf (gethash "STREAM-ELEMENT-TYPE" *table*)
   '("" EOL "Function " "`STREAM-ELEMENT-TYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`stream-element-type`" " *stream* => *typespec*" EOL "" EOL "" EOL "## "
@@ -23387,7 +23387,7 @@
     "" EOL "*stream*がストリームではないとき、" EOL "型" "`type-error`" "のエラーを発生させるべきです。" EOL "" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("STREAM-ELEMENT-TYPE" . FUNCTION) *table*) (gethash "STREAM-ELEMENT-TYPE" *table*))
+(setf (gethash '("STREAM-ELEMENT-TYPE" . "FUNCTION") *table*) (gethash "STREAM-ELEMENT-TYPE" *table*))
 (setf (gethash "STREAM-ERROR" *table*)
   '("" EOL "Condition Type " "`STREAM-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`stream-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
@@ -23396,7 +23396,7 @@
     "エラーのコンディションを含みます。" EOL "「問題のあるストリーム」は" "`make-condition`" "の" EOL "初期化引数である"
     "`:stream`" "によって初期化され、" EOL "" "`stream-error-stream`" "関数によってアクセスできます。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "`stream-error-stream`" "" EOL "" EOL))
-(setf (gethash '("STREAM-ERROR" . CONDITION-TYPE) *table*) (gethash "STREAM-ERROR" *table*))
+(setf (gethash '("STREAM-ERROR" . "CONDITION-TYPE") *table*) (gethash "STREAM-ERROR" *table*))
 (setf (gethash "STREAM-ERROR-STREAM" *table*)
   '("" EOL "Function " "`STREAM-ERROR-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`stream-error-stream`" " *condition* => *stream*" EOL "" EOL "" EOL "## "
@@ -23411,7 +23411,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`stream-error`" "," EOL "" "9. コンディション" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("STREAM-ERROR-STREAM" . FUNCTION) *table*) (gethash "STREAM-ERROR-STREAM" *table*))
+(setf (gethash '("STREAM-ERROR-STREAM" . "FUNCTION") *table*) (gethash "STREAM-ERROR-STREAM" *table*))
 (setf (gethash "STREAM-EXTERNAL-FORMAT" *table*)
   '("" EOL "Function " "`STREAM-EXTERNAL-FORMAT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`stream-external-format`" " *stream* => *format*" EOL "" EOL "" EOL "## "
@@ -23426,7 +23426,7 @@
     EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`open`" "関数と" "`with-open-file`" "マクロの" "`:external-format`" "引数" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "返却された*format*は、他の実装で意味がある必要はありません。" EOL "" EOL))
-(setf (gethash '("STREAM-EXTERNAL-FORMAT" . FUNCTION) *table*) (gethash "STREAM-EXTERNAL-FORMAT" *table*))
+(setf (gethash '("STREAM-EXTERNAL-FORMAT" . "FUNCTION") *table*) (gethash "STREAM-EXTERNAL-FORMAT" *table*))
 (setf (gethash "STREAMP" *table*)
   '("" EOL "Function " "`STREAMP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`streamp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -23439,10 +23439,10 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(streamp object) ==  (typep object 'stream)" EOL "```" EOL "" EOL))
-(setf (gethash '("STREAMP" . FUNCTION) *table*) (gethash "STREAMP" *table*))
+(setf (gethash '("STREAMP" . "FUNCTION") *table*) (gethash "STREAMP" *table*))
 (setf (gethash "STRING" *table*)
   '("STRING FUNCTION" EOL "STRING SYSTEM-CLASS" EOL))
-(setf (gethash '("STRING" . FUNCTION) *table*)
+(setf (gethash '("STRING" . "FUNCTION") *table*)
   '("" EOL "Function " "`STRING`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`string`" " *x* => *string*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
     "*x* - 文字列か、シンボルか、文字  " EOL "*string* - 文字列" EOL "" EOL "" EOL "## " "定義" "" EOL ""
@@ -23457,7 +23457,7 @@
     "備考" "" EOL "" EOL "" "`coerce`" "は、文字のシーケンスを文字列に変換するのに使われます。" EOL "" EOL ""
     "`prin1-to-string`" ", " "`princ-to-string`" ", " "`write-to-string`" "," EOL ""
     "`format`" " (最初の引数が" "`nil`" ")は、" EOL "数や他のオブジェクトの文字列の表現を取得するのに使われます。" EOL "" EOL))
-(setf (gethash '("STRING" . SYSTEM-CLASS) *table*)
+(setf (gethash '("STRING" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`STRING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`string`" ", " "`vector`" "," EOL "" "`array`" ", " "`sequence`" ", " "`t`"
     "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "文字列(string)とは、要素が" "`character`" "か、"
@@ -23525,7 +23525,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("STRING-CAPITALIZE" . FUNCTION) *table*) (gethash "STRING-CAPITALIZE" *table*))
+(setf (gethash '("STRING-CAPITALIZE" . "FUNCTION") *table*) (gethash "STRING-CAPITALIZE" *table*))
 (setf (gethash "STRING-DOWNCASE" *table*)
   '("" EOL "Function " "`STRING-UPCASE`" ", " "`STRING-DOWNCASE`" ", "
     "`STRING-CAPITALIZE`" "," EOL "" "`NSTRING-UPCASE`" ", " "`NSTRING-DOWNCASE`" ", "
@@ -23581,7 +23581,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("STRING-DOWNCASE" . FUNCTION) *table*) (gethash "STRING-DOWNCASE" *table*))
+(setf (gethash '("STRING-DOWNCASE" . "FUNCTION") *table*) (gethash "STRING-DOWNCASE" *table*))
 (setf (gethash "STRING-EQUAL" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -23662,7 +23662,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-EQUAL" . FUNCTION) *table*) (gethash "STRING-EQUAL" *table*))
+(setf (gethash '("STRING-EQUAL" . "FUNCTION") *table*) (gethash "STRING-EQUAL" *table*))
 (setf (gethash "STRING-GREATERP" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -23743,7 +23743,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-GREATERP" . FUNCTION) *table*) (gethash "STRING-GREATERP" *table*))
+(setf (gethash '("STRING-GREATERP" . "FUNCTION") *table*) (gethash "STRING-GREATERP" *table*))
 (setf (gethash "STRING-LEFT-TRIM" *table*)
   '("" EOL "Function " "`STRING-TRIM`" ", " "`STRING-LEFT-TRIM`" ", "
     "`STRING-RIGHT-TRIM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
@@ -23770,7 +23770,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "処理系。" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("STRING-LEFT-TRIM" . FUNCTION) *table*) (gethash "STRING-LEFT-TRIM" *table*))
+(setf (gethash '("STRING-LEFT-TRIM" . "FUNCTION") *table*) (gethash "STRING-LEFT-TRIM" *table*))
 (setf (gethash "STRING-LESSP" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -23851,7 +23851,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-LESSP" . FUNCTION) *table*) (gethash "STRING-LESSP" *table*))
+(setf (gethash '("STRING-LESSP" . "FUNCTION") *table*) (gethash "STRING-LESSP" *table*))
 (setf (gethash "STRING-NOT-EQUAL" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -23932,7 +23932,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-NOT-EQUAL" . FUNCTION) *table*) (gethash "STRING-NOT-EQUAL" *table*))
+(setf (gethash '("STRING-NOT-EQUAL" . "FUNCTION") *table*) (gethash "STRING-NOT-EQUAL" *table*))
 (setf (gethash "STRING-NOT-GREATERP" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24013,7 +24013,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-NOT-GREATERP" . FUNCTION) *table*) (gethash "STRING-NOT-GREATERP" *table*))
+(setf (gethash '("STRING-NOT-GREATERP" . "FUNCTION") *table*) (gethash "STRING-NOT-GREATERP" *table*))
 (setf (gethash "STRING-NOT-LESSP" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24094,7 +24094,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING-NOT-LESSP" . FUNCTION) *table*) (gethash "STRING-NOT-LESSP" *table*))
+(setf (gethash '("STRING-NOT-LESSP" . "FUNCTION") *table*) (gethash "STRING-NOT-LESSP" *table*))
 (setf (gethash "STRING-RIGHT-TRIM" *table*)
   '("" EOL "Function " "`STRING-TRIM`" ", " "`STRING-LEFT-TRIM`" ", "
     "`STRING-RIGHT-TRIM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
@@ -24121,7 +24121,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "処理系。" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("STRING-RIGHT-TRIM" . FUNCTION) *table*) (gethash "STRING-RIGHT-TRIM" *table*))
+(setf (gethash '("STRING-RIGHT-TRIM" . "FUNCTION") *table*) (gethash "STRING-RIGHT-TRIM" *table*))
 (setf (gethash "STRING-STREAM" *table*)
   '("" EOL "System Class " "`STRING-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`string-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL "" EOL
@@ -24131,7 +24131,7 @@
     EOL "" EOL "" "`make-string-input-stream`" "," EOL "" "`make-string-output-stream`"
     "," EOL "" "`with-input-from-string`" "," EOL "" "`with-output-to-string`" "" EOL ""
     EOL))
-(setf (gethash '("STRING-STREAM" . SYSTEM-CLASS) *table*) (gethash "STRING-STREAM" *table*))
+(setf (gethash '("STRING-STREAM" . "SYSTEM-CLASS") *table*) (gethash "STRING-STREAM" *table*))
 (setf (gethash "STRING-TRIM" *table*)
   '("" EOL "Function " "`STRING-TRIM`" ", " "`STRING-LEFT-TRIM`" ", "
     "`STRING-RIGHT-TRIM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
@@ -24158,7 +24158,7 @@
     EOL "なし。" EOL "" EOL "" EOL "## " "影響" "" EOL "" EOL "処理系。" EOL "" EOL "" EOL "## "
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("STRING-TRIM" . FUNCTION) *table*) (gethash "STRING-TRIM" *table*))
+(setf (gethash '("STRING-TRIM" . "FUNCTION") *table*) (gethash "STRING-TRIM" *table*))
 (setf (gethash "STRING-UPCASE" *table*)
   '("" EOL "Function " "`STRING-UPCASE`" ", " "`STRING-DOWNCASE`" ", "
     "`STRING-CAPITALIZE`" "," EOL "" "`NSTRING-UPCASE`" ", " "`NSTRING-DOWNCASE`" ", "
@@ -24214,7 +24214,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`char-upcase`" ", " "`char-downcase`" "." EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "返却値は常に*string*と同じ長さです。" EOL "" EOL))
-(setf (gethash '("STRING-UPCASE" . FUNCTION) *table*) (gethash "STRING-UPCASE" *table*))
+(setf (gethash '("STRING-UPCASE" . "FUNCTION") *table*) (gethash "STRING-UPCASE" *table*))
 (setf (gethash "STRING/=" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24295,7 +24295,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING/=" . FUNCTION) *table*) (gethash "STRING/=" *table*))
+(setf (gethash '("STRING/=" . "FUNCTION") *table*) (gethash "STRING/=" *table*))
 (setf (gethash "STRING<" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24376,7 +24376,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING<" . FUNCTION) *table*) (gethash "STRING<" *table*))
+(setf (gethash '("STRING<" . "FUNCTION") *table*) (gethash "STRING<" *table*))
 (setf (gethash "STRING<=" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24457,7 +24457,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING<=" . FUNCTION) *table*) (gethash "STRING<=" *table*))
+(setf (gethash '("STRING<=" . "FUNCTION") *table*) (gethash "STRING<=" *table*))
 (setf (gethash "STRING=" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24538,7 +24538,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING=" . FUNCTION) *table*) (gethash "STRING=" *table*))
+(setf (gethash '("STRING=" . "FUNCTION") *table*) (gethash "STRING=" *table*))
 (setf (gethash "STRING>" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24619,7 +24619,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING>" . FUNCTION) *table*) (gethash "STRING>" *table*))
+(setf (gethash '("STRING>" . "FUNCTION") *table*) (gethash "STRING>" *table*))
 (setf (gethash "STRING>=" *table*)
   '("" EOL "Function " "`STRING=`" ", " "`STRING/=`" ", " EOL "" "`STRING<`" ", "
     "`STRING>`" ", " "`STRING<=`" ", " "`STRING>=`" ", " EOL "" "`STRING-EQUAL`" ", "
@@ -24700,7 +24700,7 @@
     "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`char=`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`equal`"
     "は、2つの文字列を比較するとき" "`string=`" "を呼び出します。" EOL "" EOL))
-(setf (gethash '("STRING>=" . FUNCTION) *table*) (gethash "STRING>=" *table*))
+(setf (gethash '("STRING>=" . "FUNCTION") *table*) (gethash "STRING>=" *table*))
 (setf (gethash "STRINGP" *table*)
   '("" EOL "Function " "`STRINGP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`stringp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -24712,13 +24712,13 @@
     "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`typep`" ", 型" "`string`" "" EOL
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(stringp object) ==  (typep object 'string)" EOL "```" EOL "" EOL))
-(setf (gethash '("STRINGP" . FUNCTION) *table*) (gethash "STRINGP" *table*))
+(setf (gethash '("STRINGP" . "FUNCTION") *table*) (gethash "STRINGP" *table*))
 (setf (gethash "STRUCTURE-CLASS" *table*)
   '("" EOL "System Class " "`STRUCTURE-CLASS`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`structure-class`" "," EOL "" "`class`" "," EOL "" "`standard-object`"
     "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`defstruct`"
     "によって定義された全てのクラスは、" EOL "" "`structure-class`" "クラスのインスタンスです。" EOL "" EOL))
-(setf (gethash '("STRUCTURE-CLASS" . SYSTEM-CLASS) *table*) (gethash "STRUCTURE-CLASS" *table*))
+(setf (gethash '("STRUCTURE-CLASS" . "SYSTEM-CLASS") *table*) (gethash "STRUCTURE-CLASS" *table*))
 (setf (gethash "STRUCTURE-OBJECT" *table*)
   '("" EOL "Class " "`STRUCTURE-OBJECT`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`structure-object`" "," EOL "" "`t`" "" EOL "" EOL "" EOL "## " "定義" ""
@@ -24727,7 +24727,7 @@
     "`defstruct`" "によって定義された" EOL "全てのクラスのスーパークラスです。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`defstruct`" "," EOL "" "2.4.8.13. シャープサイン S" "," EOL ""
     "22.1.3.12. 構造体の印字" "" EOL "" EOL))
-(setf (gethash '("STRUCTURE-OBJECT" . CLASS) *table*) (gethash "STRUCTURE-OBJECT" *table*))
+(setf (gethash '("STRUCTURE-OBJECT" . "CLASS") *table*) (gethash "STRUCTURE-OBJECT" *table*))
 (setf (gethash "STYLE-WARNING" *table*)
   '("" EOL "Condition Type " "`STYLE-WARNING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`style-warning`" "," EOL "" "`warning`" "," EOL "" "`condition`" ","
@@ -24740,7 +24740,7 @@
     EOL "主観的に決められます。" EOL "そのような機能が主観的な理由でコードに文句をつけたいときはいつでも、" EOL
     "この型のコンディションをを使うべきであり、" EOL "そうすれば余計な警告をリダイレクトしたり消したりしたいクライアントが、" EOL
     "他のもっと重大な警告をリダイレクトしたり消したりする" EOL "危険を冒すことなく実施することができます。" EOL "" EOL))
-(setf (gethash '("STYLE-WARNING" . CONDITION-TYPE) *table*) (gethash "STYLE-WARNING" *table*))
+(setf (gethash '("STYLE-WARNING" . "CONDITION-TYPE") *table*) (gethash "STYLE-WARNING" *table*))
 (setf (gethash "SUBLIS" *table*)
   '("" EOL "Function " "`SUBLIS`" ", " "`NSUBLIS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`sublis`" " *alist* *tree* &key *key* *test* *test-not* => *new-tree*  "
@@ -24794,7 +24794,7 @@
     "    (funcall fn '((a . b) (b . a)) data)))" EOL
     "(test-it #'sublis) =>  ((B A) (B A))" EOL "(test-it #'nsublis) =>  ((A B) (A B))"
     EOL "```" EOL "" EOL))
-(setf (gethash '("SUBLIS" . FUNCTION) *table*) (gethash "SUBLIS" *table*))
+(setf (gethash '("SUBLIS" . "FUNCTION") *table*) (gethash "SUBLIS" *table*))
 (setf (gethash "SUBSEQ" *table*)
   '("" EOL "Accessor " "`SUBSEQ`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`subseq`" " *sequence* *start* &optional *end* => *subsequence*  " EOL "(" "`setf`"
@@ -24822,7 +24822,7 @@
     "でないとき、" EOL "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`replace`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("SUBSEQ" . ACCESSOR) *table*) (gethash "SUBSEQ" *table*))
+(setf (gethash '("SUBSEQ" . "ACCESSOR") *table*) (gethash "SUBSEQ" *table*))
 (setf (gethash "SUBSETP" *table*)
   '("" EOL "Function " "`SUBSETP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`subsetp`"
@@ -24852,7 +24852,7 @@
     "型" "`type-error`" "のエラーを通知する準備をしなければなりません。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL))
-(setf (gethash '("SUBSETP" . FUNCTION) *table*) (gethash "SUBSETP" *table*))
+(setf (gethash '("SUBSETP" . "FUNCTION") *table*) (gethash "SUBSETP" *table*))
 (setf (gethash "SUBST" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -24916,7 +24916,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBST" . FUNCTION) *table*) (gethash "SUBST" *table*))
+(setf (gethash '("SUBST" . "FUNCTION") *table*) (gethash "SUBST" *table*))
 (setf (gethash "SUBST-IF" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -24980,7 +24980,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBST-IF" . FUNCTION) *table*) (gethash "SUBST-IF" *table*))
+(setf (gethash '("SUBST-IF" . "FUNCTION") *table*) (gethash "SUBST-IF" *table*))
 (setf (gethash "SUBST-IF-NOT" *table*)
   '("" EOL "Function " "`SUBST`" ", " "`SUBST-IF`" ", " "`SUBST-IF-NOT`" "," EOL ""
     "`NSUBST`" ", " "`NSUBST-IF`" ", " "`NSUBST-IF-NOT`" "" EOL "" EOL "" EOL "## " "構文"
@@ -25044,7 +25044,7 @@
     "             (if (and (eql a (car tree))" EOL
     "                      (eql d (cdr tree)))" EOL "                 tree" EOL
     "                 (cons a d))))))" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBST-IF-NOT" . FUNCTION) *table*) (gethash "SUBST-IF-NOT" *table*))
+(setf (gethash '("SUBST-IF-NOT" . "FUNCTION") *table*) (gethash "SUBST-IF-NOT" *table*))
 (setf (gethash "SUBSTITUTE" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -25126,7 +25126,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBSTITUTE" . FUNCTION) *table*) (gethash "SUBSTITUTE" *table*))
+(setf (gethash '("SUBSTITUTE" . "FUNCTION") *table*) (gethash "SUBSTITUTE" *table*))
 (setf (gethash "SUBSTITUTE-IF" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -25208,7 +25208,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBSTITUTE-IF" . FUNCTION) *table*) (gethash "SUBSTITUTE-IF" *table*))
+(setf (gethash '("SUBSTITUTE-IF" . "FUNCTION") *table*) (gethash "SUBSTITUTE-IF" *table*))
 (setf (gethash "SUBSTITUTE-IF-NOT" *table*)
   '("" EOL "Function " "`SUBSTITUTE`" ", " "`SUBSTITUTE-IF`" ", " "`SUBSTITUTE-IF-NOT`"
     "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`substitute`"
@@ -25290,7 +25290,7 @@
     "    (funcall fn 'a 'b x :count 1)))" EOL
     "(test-it #'substitute) =>  (A . #1=(B . #1#))" EOL
     "(test-it #'nsubstitute) =>  (A . #1#)" EOL "```" EOL "" EOL))
-(setf (gethash '("SUBSTITUTE-IF-NOT" . FUNCTION) *table*) (gethash "SUBSTITUTE-IF-NOT" *table*))
+(setf (gethash '("SUBSTITUTE-IF-NOT" . "FUNCTION") *table*) (gethash "SUBSTITUTE-IF-NOT" *table*))
 (setf (gethash "SUBTYPEP" *table*)
   '("" EOL "Function " "`SUBTYPEP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`subtypep`" " *type-1* *type-2* " "`&optional`"
@@ -25383,7 +25383,7 @@
     "`17`" "は" "`(mod 18)`" "の型ですし、" EOL "同様に" "`(mod 256)`" "の型であり、" "`integer`" "の型です。"
     EOL "そして、" "`2.3f5`" "は" "`single-float`" "の型であり、" EOL "" "`float`" "の型でもあります。" EOL
     "" EOL))
-(setf (gethash '("SUBTYPEP" . FUNCTION) *table*) (gethash "SUBTYPEP" *table*))
+(setf (gethash '("SUBTYPEP" . "FUNCTION") *table*) (gethash "SUBTYPEP" *table*))
 (setf (gethash "SVREF" *table*)
   '("" EOL "Accessor " "`SVREF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`svref`" " *simple-vector* *index* => *element*  " EOL "(" "`setf`" " (" "`svref`"
@@ -25402,7 +25402,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`svref`" "は、" EOL "最初の引数が"
     "`simple-vector`" "を要求するところを除けば、" EOL "" "`aref`" "と同じです。" EOL "" EOL "```lisp" EOL
     "(svref v i) == (aref (the simple-vector v) i)" EOL "```" EOL "" EOL))
-(setf (gethash '("SVREF" . ACCESSOR) *table*) (gethash "SVREF" *table*))
+(setf (gethash '("SVREF" . "ACCESSOR") *table*) (gethash "SVREF" *table*))
 (setf (gethash "SXHASH" *table*)
   '("" EOL "Function " "`SXHASH`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`sxhash`" " *object* => *hash-code*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -25438,7 +25438,7 @@
     EOL "" EOL "シンボルの類似性は、シンボル名とそのシンボルがアクセス可能な" EOL "パッケージの両方で定義されますが、" EOL
     "あるシンボルのパッケージの状態は変更されてもイコールで見えないため、" EOL "項目3ではパッケージ情報を使ってハッシュコードを計算することを禁止しています。"
     EOL "" EOL))
-(setf (gethash '("SXHASH" . FUNCTION) *table*) (gethash "SXHASH" *table*))
+(setf (gethash '("SXHASH" . "FUNCTION") *table*) (gethash "SXHASH" *table*))
 (setf (gethash "SYMBOL" *table*)
   '("" EOL "System Class " "`SYMBOL`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`symbol`" ", " "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL
@@ -25489,7 +25489,7 @@
     "影響を与えるような操作は提供されません。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "2.3.4. トークンとしてのシンボル" "," EOL "" "2.3.1.1. トークンとしての潜在的数" "," EOL ""
     "22.1.3.3. シンボルの印字" "" EOL "" EOL))
-(setf (gethash '("SYMBOL" . SYSTEM-CLASS) *table*) (gethash "SYMBOL" *table*))
+(setf (gethash '("SYMBOL" . "SYSTEM-CLASS") *table*) (gethash "SYMBOL" *table*))
 (setf (gethash "SYMBOL-FUNCTION" *table*)
   '("" EOL "Accessor " "`SYMBOL-FUNCTION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`symbol-function`" " *symbol* => *contents*  " EOL "(" "`setf`" " ("
@@ -25532,7 +25532,7 @@
     "として表現されていない場合は、" EOL "グローバルな関数定義を置き換えます。" EOL "" EOL "```lisp" EOL
     "(symbol-function symbol) ==  (fdefinition symbol)" EOL "```" EOL "" EOL "しかし、"
     "`fdefinition`" "は、引数にシンボル以外を受け付けます。" EOL "" EOL))
-(setf (gethash '("SYMBOL-FUNCTION" . ACCESSOR) *table*) (gethash "SYMBOL-FUNCTION" *table*))
+(setf (gethash '("SYMBOL-FUNCTION" . "ACCESSOR") *table*) (gethash "SYMBOL-FUNCTION" *table*))
 (setf (gethash "SYMBOL-MACROLET" *table*)
   '("" EOL "Special Operator " "`SYMBOL-MACROLET`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`symbol-macrolet`"
@@ -25569,7 +25569,7 @@
     "`with-slots`" "の実装に使用されています。" EOL "" EOL "" "`symbol-macrolet`" "フォームが" "トップレベルフォーム"
     "であるとき、" EOL "*form*もまた" "トップレベルフォーム" "として処理されます。" EOL "" "3.2.3. ファイルのコンパイル"
     "をご確認ください。" EOL "" EOL))
-(setf (gethash '("SYMBOL-MACROLET" . SPECIAL-OPERATOR) *table*) (gethash "SYMBOL-MACROLET" *table*))
+(setf (gethash '("SYMBOL-MACROLET" . "SPECIAL-OPERATOR") *table*) (gethash "SYMBOL-MACROLET" *table*))
 (setf (gethash "SYMBOL-NAME" *table*)
   '("" EOL "Function " "`SYMBOL-NAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`symbol-name`" " *symbol* => *name*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -25582,7 +25582,7 @@
     "## " "例外" "" EOL "" EOL "もし*symbol*がシンボルでないときは、" EOL "型" "`type-error`"
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SYMBOL-NAME" . FUNCTION) *table*) (gethash "SYMBOL-NAME" *table*))
+(setf (gethash '("SYMBOL-NAME" . "FUNCTION") *table*) (gethash "SYMBOL-NAME" *table*))
 (setf (gethash "SYMBOL-PACKAGE" *table*)
   '("" EOL "Function " "`SYMBOL-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`symbol-package`" " *symbol* => *contents*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -25612,7 +25612,7 @@
     "例外" "" EOL "" EOL "もし*symbol*がシンボルでないとき、" EOL "型" "`type-error`" "のエラーが発生します。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`intern`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SYMBOL-PACKAGE" . FUNCTION) *table*) (gethash "SYMBOL-PACKAGE" *table*))
+(setf (gethash '("SYMBOL-PACKAGE" . "FUNCTION") *table*) (gethash "SYMBOL-PACKAGE" *table*))
 (setf (gethash "SYMBOL-PLIST" *table*)
   '("" EOL "Accessor " "`SYMBOL-PLIST`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`symbol-plist`" " *symbol* => *plist*  " EOL "(" "`setf`" " (" "`symbol-plist`"
@@ -25631,7 +25631,7 @@
     "" EOL "## " "備考" "" EOL "" EOL "シンボルのプロパティリストはグローバルな資源であり、" EOL
     "同じLispイメージ内の無関係なプログラムが" EOL "操作し依存する情報を含む可能性があるため、" EOL "" "`setf`" "の使用は避けるべきです。"
     EOL "" EOL))
-(setf (gethash '("SYMBOL-PLIST" . ACCESSOR) *table*) (gethash "SYMBOL-PLIST" *table*))
+(setf (gethash '("SYMBOL-PLIST" . "ACCESSOR") *table*) (gethash "SYMBOL-PLIST" *table*))
 (setf (gethash "SYMBOL-VALUE" *table*)
   '("" EOL "Accessor " "`SYMBOL-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`symbol-value`" " *symbol* => *value*  " EOL "(" "`setf`" " (" "`symbol-value`"
@@ -25658,7 +25658,7 @@
     "" EOL "" "`boundp`" "," EOL "" "`makunbound`" "," EOL "" "`set`" "," EOL "" "`setq`"
     "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`symbol-value`" "は、定数の値を取得できます。"
     EOL "" "`symbol-value`" "は、" "レキシカルな変数" "の値にアクセスできません。" EOL "" EOL))
-(setf (gethash '("SYMBOL-VALUE" . ACCESSOR) *table*) (gethash "SYMBOL-VALUE" *table*))
+(setf (gethash '("SYMBOL-VALUE" . "ACCESSOR") *table*) (gethash "SYMBOL-VALUE" *table*))
 (setf (gethash "SYMBOLP" *table*)
   '("" EOL "Function " "`SYMBOLP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`symbolp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -25672,7 +25672,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`keywordp`"
     "," EOL "" "`symbol`" "," EOL "" "`typep`" "" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "```lisp" EOL "(symbolp object) ==  (typep object 'symbol)" EOL "```" EOL "" EOL))
-(setf (gethash '("SYMBOLP" . FUNCTION) *table*) (gethash "SYMBOLP" *table*))
+(setf (gethash '("SYMBOLP" . "FUNCTION") *table*) (gethash "SYMBOLP" *table*))
 (setf (gethash "SYNONYM-STREAM" *table*)
   '("" EOL "System Class " "`SYNONYM-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`synonym-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL "" EOL
@@ -25682,7 +25682,7 @@
     EOL "もし変数の値が変更されたか、" EOL "あるいは変数に対して束縛が生じたときは、" EOL "ストリームは変数の新しい値に対して処理を行います。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`make-synonym-stream`" "," EOL ""
     "`synonym-stream-symbol`" "" EOL "" EOL))
-(setf (gethash '("SYNONYM-STREAM" . SYSTEM-CLASS) *table*) (gethash "SYNONYM-STREAM" *table*))
+(setf (gethash '("SYNONYM-STREAM" . "SYSTEM-CLASS") *table*) (gethash "SYNONYM-STREAM" *table*))
 (setf (gethash "SYNONYM-STREAM-SYMBOL" *table*)
   '("" EOL "Function " "`SYNONYM-STREAM-SYMBOL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`synonym-stream-symbol`" " *synonym-stream* => *symbol*" EOL "" EOL "" EOL
@@ -25693,10 +25693,10 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`make-synonym-stream`" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("SYNONYM-STREAM-SYMBOL" . FUNCTION) *table*) (gethash "SYNONYM-STREAM-SYMBOL" *table*))
+(setf (gethash '("SYNONYM-STREAM-SYMBOL" . "FUNCTION") *table*) (gethash "SYNONYM-STREAM-SYMBOL" *table*))
 (setf (gethash "T" *table*)
   '("T CONSTANT-VARIABLE" EOL "T SYSTEM-CLASS" EOL))
-(setf (gethash '("T" . CONSTANT-VARIABLE) *table*)
+(setf (gethash '("T" . "CONSTANT-VARIABLE") *table*)
   '("" EOL "Constant Variable " "`T`" "" EOL "" EOL "" EOL "## " "定数値" "" EOL "" EOL ""
     "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "ブール値の真を表現しており、" EOL "また標準的な"
     "generalized-boolean" "の真を表しています。" EOL "" "`nil`" "ではないどんなオブジェクトも" EOL
@@ -25709,7 +25709,7 @@
     "(case 'b (a 1) (t 2)) =>  2" EOL "(prin1 'hello t)" EOL ">>  HELLO" EOL "=>  HELLO"
     EOL "```" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`nil`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("T" . SYSTEM-CLASS) *table*)
+(setf (gethash '("T" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`T`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL "" EOL ""
     "`t`" "" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "全てのオブジェクトの集合を表します。" EOL "型"
     "`t`" "は、自分自身を含む全ての方の" "スーパータイプ" "です。" EOL "全てのオブジェクトは、型" "`t`" "です。" EOL "" EOL))
@@ -25749,7 +25749,7 @@
     "            |" "`do-symbols`" "          |" "`prog`" "    |" EOL ""
     "`do-all-symbols`" " |" "`dolist`" "              |" "`prog*`" "   |" EOL "" EOL
     "Figure 5-10. " "暗黙の`tagbody`" "をもつマクロ" EOL "" EOL))
-(setf (gethash '("TAGBODY" . SPECIAL-OPERATOR) *table*) (gethash "TAGBODY" *table*))
+(setf (gethash '("TAGBODY" . "SPECIAL-OPERATOR") *table*) (gethash "TAGBODY" *table*))
 (setf (gethash "TAILP" *table*)
   '("" EOL "Function " "`LDIFF`" ", " "`TAILP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`ldiff`" " *list* *object* => *result-list*  " EOL "" "`tailp`"
@@ -25804,7 +25804,7 @@
     "       (if (eql list object) (nreverse r) (nreconc r list)))" EOL
     "    (when (eql object list)" EOL "      (return (nreverse r)))))" EOL "```" EOL ""
     EOL))
-(setf (gethash '("TAILP" . FUNCTION) *table*) (gethash "TAILP" *table*))
+(setf (gethash '("TAILP" . "FUNCTION") *table*) (gethash "TAILP" *table*))
 (setf (gethash "TENTH" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -25852,7 +25852,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("TENTH" . ACCESSOR) *table*) (gethash "TENTH" *table*))
+(setf (gethash '("TENTH" . "ACCESSOR") *table*) (gethash "TENTH" *table*))
 (setf (gethash "TERPRI" *table*)
   '("" EOL "Function " "`TERPRI`" ", " "`FRESH-LINE`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`terpri`" " " "`&optional`" " *output-stream* => " "`nil`" "  " EOL ""
@@ -25875,7 +25875,7 @@
     EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL ""
     "`terpri`" "の効果は下記の同等です。" EOL "" EOL "```lisp" EOL
     "(write-char #\\Newline output-stream)" EOL "```" EOL "" EOL))
-(setf (gethash '("TERPRI" . FUNCTION) *table*) (gethash "TERPRI" *table*))
+(setf (gethash '("TERPRI" . "FUNCTION") *table*) (gethash "TERPRI" *table*))
 (setf (gethash "THE" *table*)
   '("" EOL "Special Operator " "`THE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`the`" " *value-type* *form* => *result\\**" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -25907,7 +25907,7 @@
     "     (gethash the-key the-string-table))" EOL "```" EOL "" EOL "" "`setf`" "は、"
     "`the`" "の型指定子を使用できます。" EOL "この場合、宣言は新しい値を指定したフォームへ変換されます。" EOL "その" "`setf`"
     "の結果が解析されます。" EOL "" EOL))
-(setf (gethash '("THE" . SPECIAL-OPERATOR) *table*) (gethash "THE" *table*))
+(setf (gethash '("THE" . "SPECIAL-OPERATOR") *table*) (gethash "THE" *table*))
 (setf (gethash "THIRD" *table*)
   '("" EOL "Macro " "`FIRST`" ", " "`SECOND`" ", " "`THIRD`" ", " "`FOURTH`" ", "
     "`FIFTH`" "," EOL "" "`SIXTH`" ", " "`SEVENTH`" ", " "`EIGHTH`" ", " "`NINTH`" ", "
@@ -25955,7 +25955,7 @@
     "`third`" "は機能的には" "`caddr`" "と同じです。" EOL "" "`fourth`" "は機能的には" "`cadddr`" "と同じです。"
     EOL "" EOL "通常の番号付けは1から開始しますが、" EOL "" "`nth`" "によって使われる採番は0開始であり、" EOL
     "次の関係が成り立ちます。" EOL "" EOL "```lisp" EOL "(fifth x) == (nth 4 x)" EOL "```" EOL "" EOL))
-(setf (gethash '("THIRD" . ACCESSOR) *table*) (gethash "THIRD" *table*))
+(setf (gethash '("THIRD" . "ACCESSOR") *table*) (gethash "THIRD" *table*))
 (setf (gethash "THROW" *table*)
   '("" EOL "Special Operator " "`THROW`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`throw`" " *tag* *result-form* =>" "`|`" "" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -25992,7 +25992,7 @@
     "は通常、" EOL "退出点が動的スコープのとき（例えば、" EOL "" "`throw`" "がレキシカルな" "`catch`"
     "に囲まれていないとき）に使われ、" EOL "それに対して" "`block`" "と" "`return-from`" "は、" EOL
     "レキシカルスコープで十分のときに使用されます。" EOL "" EOL))
-(setf (gethash '("THROW" . SPECIAL-OPERATOR) *table*) (gethash "THROW" *table*))
+(setf (gethash '("THROW" . "SPECIAL-OPERATOR") *table*) (gethash "THROW" *table*))
 (setf (gethash "TRANSLATE-LOGICAL-PATHNAME" *table*)
   '("" EOL "Function " "`TRANSLATE-LOGICAL-PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`translate-logical-pathname`" " *pathname* " "`&key`"
@@ -26024,7 +26024,7 @@
     "`logical-pathname-translations`" "," EOL "" "`logical-pathname`" "," EOL ""
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("TRANSLATE-LOGICAL-PATHNAME" . FUNCTION) *table*) (gethash "TRANSLATE-LOGICAL-PATHNAME" *table*))
+(setf (gethash '("TRANSLATE-LOGICAL-PATHNAME" . "FUNCTION") *table*) (gethash "TRANSLATE-LOGICAL-PATHNAME" *table*))
 (setf (gethash "TRANSLATE-PATHNAME" *table*)
   '("" EOL "Function " "`TRANSLATE-PATHNAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`translate-pathname`" " *source* *from-wildcard* *to-wildcard* " "`&key`" ""
@@ -26107,7 +26107,7 @@
     "のような複雑なワイルドカードであり、" EOL "*from-wildcard*の部分はワイルドカードでなければなりません。" EOL
     "*source*の部分のうち、*from-wildcard*の部分のワイルドカードにマッチする部分は、" EOL
     "*to-wildcard*のワイルドカードの部分を置き換え、" EOL "その生成された値が結果として使われます。" EOL "" EOL))
-(setf (gethash '("TRANSLATE-PATHNAME" . FUNCTION) *table*) (gethash "TRANSLATE-PATHNAME" *table*))
+(setf (gethash '("TRANSLATE-PATHNAME" . "FUNCTION") *table*) (gethash "TRANSLATE-PATHNAME" *table*))
 (setf (gethash "TREE-EQUAL" *table*)
   '("" EOL "Function " "`TREE-EQUAL`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`tree-equal`" " *tree-1* *tree-2* &key *test* *test-not* => *generalized-boolean*"
@@ -26133,7 +26133,7 @@
     EOL "## " "例外" "" EOL "" EOL "*tree-1*と*tree-2*がどちらも循環しているときの結果は未定義です。" EOL "" EOL ""
     EOL "## " "参考" "" EOL "" EOL "" "`equal`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL "" EOL))
-(setf (gethash '("TREE-EQUAL" . FUNCTION) *table*) (gethash "TREE-EQUAL" *table*))
+(setf (gethash '("TREE-EQUAL" . "FUNCTION") *table*) (gethash "TREE-EQUAL" *table*))
 (setf (gethash "TRUENAME" *table*)
   '("" EOL "Function " "`TRUENAME`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`truename`" " *filespec* => *truename*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL ""
@@ -26168,7 +26168,7 @@
     "20.1. ファイルシステムの説明" "," EOL "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "" "`truename`" "はファイルシステムによって実行できるような" EOL "ファイル名に変換するときに使用されます。" EOL
     "" EOL))
-(setf (gethash '("TRUENAME" . FUNCTION) *table*) (gethash "TRUENAME" *table*))
+(setf (gethash '("TRUENAME" . "FUNCTION") *table*) (gethash "TRUENAME" *table*))
 (setf (gethash "TWO-WAY-STREAM" *table*)
   '("" EOL "System Class " "`TWO-WAY-STREAM`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`two-way-stream`" "," EOL "" "`stream`" "," EOL "" "`t`" "" EOL "" EOL
@@ -26176,7 +26176,7 @@
     EOL "関連付けられた出力ストリームへ出力を送信をします。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-two-way-stream`" "," EOL "" "`two-way-stream-input-stream`" "," EOL ""
     "`two-way-stream-output-stream`" "" EOL "" EOL))
-(setf (gethash '("TWO-WAY-STREAM" . SYSTEM-CLASS) *table*) (gethash "TWO-WAY-STREAM" *table*))
+(setf (gethash '("TWO-WAY-STREAM" . "SYSTEM-CLASS") *table*) (gethash "TWO-WAY-STREAM" *table*))
 (setf (gethash "TWO-WAY-STREAM-INPUT-STREAM" *table*)
   '("" EOL "Function " "`TWO-WAY-STREAM-INPUT-STREAM`" ", "
     "`TWO-WAY-STREAM-OUTPUT-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
@@ -26191,7 +26191,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("TWO-WAY-STREAM-INPUT-STREAM" . FUNCTION) *table*) (gethash "TWO-WAY-STREAM-INPUT-STREAM" *table*))
+(setf (gethash '("TWO-WAY-STREAM-INPUT-STREAM" . "FUNCTION") *table*) (gethash "TWO-WAY-STREAM-INPUT-STREAM" *table*))
 (setf (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *table*)
   '("" EOL "Function " "`TWO-WAY-STREAM-INPUT-STREAM`" ", "
     "`TWO-WAY-STREAM-OUTPUT-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
@@ -26206,7 +26206,7 @@
     "## " "影響" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL
     "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "備考" "" EOL ""
     EOL "なし。" EOL "" EOL))
-(setf (gethash '("TWO-WAY-STREAM-OUTPUT-STREAM" . FUNCTION) *table*) (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *table*))
+(setf (gethash '("TWO-WAY-STREAM-OUTPUT-STREAM" . "FUNCTION") *table*) (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *table*))
 (setf (gethash "TYPE" *table*)
   '("" EOL "Declaration " "`TYPE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "("
     "`type`" " *typespec* *var\\**)  " EOL "(*typespec* *var\\**)" EOL "" EOL "" EOL
@@ -26278,7 +26278,7 @@
     "の" EOL "" "`fixnum`" "のみの演算が重要なのであれば、" EOL "かわりに次のような記載を考えてみて下さい。" EOL "" EOL
     "```lisp" EOL "(defun f (x y)" EOL "  (declare (fixnum x y z))" EOL
     "  (the fixnum (+ (the fixnum (+ x y)) z)))" EOL "```" EOL "" EOL))
-(setf (gethash '("TYPE" . DECLARATION) *table*) (gethash "TYPE" *table*))
+(setf (gethash '("TYPE" . "DECLARATION") *table*) (gethash "TYPE" *table*))
 (setf (gethash "TYPE-ERROR" *table*)
   '("" EOL "Condition Type " "`TYPE-ERROR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`type-error`" "," EOL "" "`error`" "," EOL "" "`serious-condition`"
@@ -26289,7 +26289,7 @@
     "`type-error-expected-type`" "という" EOL "関数によってアクセスできます。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`type-error-datum`" "," EOL "" "`type-error-expected-type`" "" EOL
     "" EOL))
-(setf (gethash '("TYPE-ERROR" . CONDITION-TYPE) *table*) (gethash "TYPE-ERROR" *table*))
+(setf (gethash '("TYPE-ERROR" . "CONDITION-TYPE") *table*) (gethash "TYPE-ERROR" *table*))
 (setf (gethash "TYPE-ERROR-DATUM" *table*)
   '("" EOL "Function " "`TYPE-ERROR-DATUM`" ", " "`TYPE-ERROR-EXPECTED-TYPE`" "" EOL ""
     EOL "" EOL "## " "構文" "" EOL "" EOL "" "`type-error-datum`"
@@ -26312,7 +26312,7 @@
     "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`type-error`" "," EOL "" "9. コンディション" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("TYPE-ERROR-DATUM" . FUNCTION) *table*) (gethash "TYPE-ERROR-DATUM" *table*))
+(setf (gethash '("TYPE-ERROR-DATUM" . "FUNCTION") *table*) (gethash "TYPE-ERROR-DATUM" *table*))
 (setf (gethash "TYPE-ERROR-EXPECTED-TYPE" *table*)
   '("" EOL "Function " "`TYPE-ERROR-DATUM`" ", " "`TYPE-ERROR-EXPECTED-TYPE`" "" EOL ""
     EOL "" EOL "## " "構文" "" EOL "" EOL "" "`type-error-datum`"
@@ -26335,7 +26335,7 @@
     "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`type-error`" "," EOL "" "9. コンディション" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("TYPE-ERROR-EXPECTED-TYPE" . FUNCTION) *table*) (gethash "TYPE-ERROR-EXPECTED-TYPE" *table*))
+(setf (gethash '("TYPE-ERROR-EXPECTED-TYPE" . "FUNCTION") *table*) (gethash "TYPE-ERROR-EXPECTED-TYPE" *table*))
 (setf (gethash "TYPE-OF" *table*)
   '("" EOL "Function " "`TYPE-OF`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`type-of`" " *object* => *typespec*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -26377,7 +26377,7 @@
     EOL "" "`typecase`" "," EOL "" "`typep`" "," EOL "" "4.2. 型" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "実装は" "`type-of`" "が移植可能な値を返却するように" EOL "改良することを勧められます。" EOL
     "" EOL))
-(setf (gethash '("TYPE-OF" . FUNCTION) *table*) (gethash "TYPE-OF" *table*))
+(setf (gethash '("TYPE-OF" . "FUNCTION") *table*) (gethash "TYPE-OF" *table*))
 (setf (gethash "TYPECASE" *table*)
   '("" EOL "Function " "`TYPECASE`" ", " "`CTYPECASE`" ", " "`ETYPECASE`" "" EOL "" EOL
     "" EOL "## " "構文" "" EOL "" EOL "" "`typecase`" " *keyform* " "`{`" "*normal-clause*"
@@ -26454,7 +26454,7 @@
     EOL "" EOL "" "`etypecase`" "と" "`ctypecase`" "によって使われる特定のエラーメッセージは、" EOL
     "実装によって変わります。" EOL "そんな中で、エラーメッセージの特定の単語の制御が必要なときは、" EOL "" "`typecase`"
     "の*otherwise-clause*で" EOL "明示的に適切なエラーメッセージを発生させるのが良いでしょう。" EOL "" EOL))
-(setf (gethash '("TYPECASE" . MACRO) *table*) (gethash "TYPECASE" *table*))
+(setf (gethash '("TYPECASE" . "MACRO") *table*) (gethash "TYPECASE" *table*))
 (setf (gethash "TYPEP" *table*)
   '("" EOL "Function " "`TYPEP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`typep`" " *object* *type-specifier* " "`&optional`"
@@ -26501,7 +26501,7 @@
     "`upgraded-complex-part-type`" "," EOL "" "4.2.3. 型指定子" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "実装は、" "`(typep x (the class y))`" "のような式の場合は、" EOL "実行時に"
     "`deftype`" "による展開の実行が必要無いように" EOL "最適化を行うよう推奨されます。" EOL "" EOL))
-(setf (gethash '("TYPEP" . FUNCTION) *table*) (gethash "TYPEP" *table*))
+(setf (gethash '("TYPEP" . "FUNCTION") *table*) (gethash "TYPEP" *table*))
 (setf (gethash "UNBOUND-SLOT" *table*)
   '("" EOL "Contition Type " "`UNBOUND-SLOT`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" ""
     EOL "" EOL "" "`unbound-slot`" "," EOL "" "`cell-error`" "," EOL "" "`error`" "," EOL
@@ -26511,7 +26511,7 @@
     "`unbound-slot-instance`" "関数によってアクセスできます。" EOL "" EOL "" "`cell`" "の名前（"
     "`cell-error`" "を参照）は、スロットの名前です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`cell-error-name`" "," EOL "" "9.1. コンディションシステムの説明" "" EOL "" EOL))
-(setf (gethash '("UNBOUND-SLOT" . CONDITION-TYPE) *table*) (gethash "UNBOUND-SLOT" *table*))
+(setf (gethash '("UNBOUND-SLOT" . "CONDITION-TYPE") *table*) (gethash "UNBOUND-SLOT" *table*))
 (setf (gethash "UNBOUND-SLOT-INSTANCE" *table*)
   '("" EOL "Function " "`UNBOUND-SLOT-INSTANCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`unbound-slot-instance`" " *condition* => *instance*" EOL "" EOL "" EOL
@@ -26522,7 +26522,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`cell-error-name`" "," EOL "" "`unbound-slot`" "," EOL ""
     "9.1. コンディションシステムの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("UNBOUND-SLOT-INSTANCE" . FUNCTION) *table*) (gethash "UNBOUND-SLOT-INSTANCE" *table*))
+(setf (gethash '("UNBOUND-SLOT-INSTANCE" . "FUNCTION") *table*) (gethash "UNBOUND-SLOT-INSTANCE" *table*))
 (setf (gethash "UNBOUND-VARIABLE" *table*)
   '("" EOL "Condition Type " "`UNBOUND-VARIABLE`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト"
     "" EOL "" EOL "" "`unbound-variable`" "," EOL "" "`cell-error`" "," EOL "" "`error`"
@@ -26531,7 +26531,7 @@
     "の変数から値を読み込もうとしたときの" EOL "エラーコンディションを表します。" EOL "" EOL "セルの名前（" "`cell-error`"
     "を参照）は、" "`unbound`" "であった変数名です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`cell-error-name`" "" EOL "" EOL))
-(setf (gethash '("UNBOUND-VARIABLE" . CONDITION-TYPE) *table*) (gethash "UNBOUND-VARIABLE" *table*))
+(setf (gethash '("UNBOUND-VARIABLE" . "CONDITION-TYPE") *table*) (gethash "UNBOUND-VARIABLE" *table*))
 (setf (gethash "UNDEFINED-FUNCTION" *table*)
   '("" EOL "Condition Type " "`UNDEFINED-FUNCTION`" "" EOL "" EOL "" EOL "## "
     "クラス優先順位リスト" "" EOL "" EOL "" "`undefined-function`" "," EOL "" "`cell-error`" ","
@@ -26540,7 +26540,7 @@
     EOL "定義されていない関数への読み込みを実施しようとしたときを表現する" EOL "エラーの状態で構成されています。" EOL "" EOL "セルの名前（"
     "`cell-error`" "を参照）は" "`funbound`" "の関数名です。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`cell-error-name`" "" EOL "" EOL))
-(setf (gethash '("UNDEFINED-FUNCTION" . CONDITION-TYPE) *table*) (gethash "UNDEFINED-FUNCTION" *table*))
+(setf (gethash '("UNDEFINED-FUNCTION" . "CONDITION-TYPE") *table*) (gethash "UNDEFINED-FUNCTION" *table*))
 (setf (gethash "UNEXPORT" *table*)
   '("" EOL "Function " "`UNEXPORT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`unexport`" " *symbols* " "`&optional`" " *package* => " "`t`" "" EOL "" EOL "" EOL
@@ -26562,7 +26562,7 @@
     "`COMMON-LISP`" "パッケージのときの結果は未定義です。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`export`" "," EOL "" "11.1. パッケージの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "なし。" EOL "" EOL))
-(setf (gethash '("UNEXPORT" . FUNCTION) *table*) (gethash "UNEXPORT" *table*))
+(setf (gethash '("UNEXPORT" . "FUNCTION") *table*) (gethash "UNEXPORT" *table*))
 (setf (gethash "UNINTERN" *table*)
   '("" EOL "Function " "`UNINTERN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`unintern`" " *symbol* " "`&optional`" " *package* => *generalized-boolean*" EOL ""
@@ -26592,7 +26592,7 @@
     "を取り除くような状況で、" EOL "もし" "`b:x`" "と" "`c:x`" "がそれぞれ別物であるときには" EOL "名前の衝突が表に出てきます。" EOL
     "このような状況では、" "`unintern`" "はエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "11.1. パッケージの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("UNINTERN" . FUNCTION) *table*) (gethash "UNINTERN" *table*))
+(setf (gethash '("UNINTERN" . "FUNCTION") *table*) (gethash "UNINTERN" *table*))
 (setf (gethash "UNION" *table*)
   '("" EOL "Function " "`UNION`" ", " "`NUNION`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`union`"
@@ -26633,7 +26633,7 @@
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`:test-not`" "パラメーターは非推奨です。" EOL ""
     EOL "" "`nunion`" "の副作用は必要ないため、" EOL "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。" EOL ""
     EOL))
-(setf (gethash '("UNION" . FUNCTION) *table*) (gethash "UNION" *table*))
+(setf (gethash '("UNION" . "FUNCTION") *table*) (gethash "UNION" *table*))
 (setf (gethash "UNLESS" *table*)
   '("" EOL "Macro " "`WHEN`" ", " "`UNLESS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`when`" " *test-form* *form\\** => *result\\**  " EOL "" "`unless`"
@@ -26675,7 +26675,7 @@
     "(unless test {form}+) == (cond ((not test) {form}+))" EOL
     "(unless test {form}+) == (if test nil (progn {form}+))" EOL
     "(unless test {form}+) == (when (not test) {form}+)" EOL "```" EOL "" EOL))
-(setf (gethash '("UNLESS" . MACRO) *table*) (gethash "UNLESS" *table*))
+(setf (gethash '("UNLESS" . "MACRO") *table*) (gethash "UNLESS" *table*))
 (setf (gethash "UNREAD-CHAR" *table*)
   '("" EOL "Function " "`UNREAD-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`unread-char`" " *character* " "`&optional`" " *input-stream* => " "`nil`" "" EOL ""
@@ -26702,7 +26702,7 @@
     "" EOL "" EOL "## " "備考" "" EOL "" EOL "" "`unread-char`" "は、" EOL
     "Lispリーダーやその他の構文解析を実行するときに" EOL "*input-stream*からひとつの文字を先読みできるような" EOL
     "効率的な仕組みの提供を目的としています。" EOL "" EOL))
-(setf (gethash '("UNREAD-CHAR" . FUNCTION) *table*) (gethash "UNREAD-CHAR" *table*))
+(setf (gethash '("UNREAD-CHAR" . "FUNCTION") *table*) (gethash "UNREAD-CHAR" *table*))
 (setf (gethash "UNUSE-PACKAGE" *table*)
   '("" EOL "Function " "`UNUSE-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`unuse-package`" " *packages-to-unuse* " "`&optional`" " *package* => " "`t`" "" EOL
@@ -26724,7 +26724,7 @@
     "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`use-package`" "," EOL "" "`package-use-list`" "" EOL "" EOL "" EOL "## " "備考" ""
     EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("UNUSE-PACKAGE" . FUNCTION) *table*) (gethash "UNUSE-PACKAGE" *table*))
+(setf (gethash '("UNUSE-PACKAGE" . "FUNCTION") *table*) (gethash "UNUSE-PACKAGE" *table*))
 (setf (gethash "UNWIND-PROTECT" *table*)
   '("" EOL "Special Operator " "`UNWIND-PROTECT`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`unwind-protect`" " *protected-form* *cleanup-form\\* => *result\\*" EOL
@@ -26793,7 +26793,7 @@
     "`restart-case`" "," EOL "" "`return`" "," EOL "" "`return-from`" "," EOL ""
     "`throw`" "," EOL "" "3.1. 評価" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。"
     EOL "" EOL))
-(setf (gethash '("UNWIND-PROTECT" . SPECIAL-OPERATOR) *table*) (gethash "UNWIND-PROTECT" *table*))
+(setf (gethash '("UNWIND-PROTECT" . "SPECIAL-OPERATOR") *table*) (gethash "UNWIND-PROTECT" *table*))
 (setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *table*)
   '("" EOL "Standard Generic Function " "`UPDATE-INSTANCE-FOR-DIFFERENT-CLASS`" "" EOL ""
     EOL "" EOL "## " "構文" "" EOL "" EOL "" "`update-instance-for-different-class`"
@@ -26842,7 +26842,7 @@
     "それらのメソッドが適用されるすべてのクラスに対して、" EOL "有効な" "初期化引数" "の名前として宣言されます。" EOL "" EOL ""
     "`update-instance-for-different-class`" "の返却値は、" EOL "" "`change-class`"
     "によって無視されます。" EOL "" EOL))
-(setf (gethash '("UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *table*))
+(setf (gethash '("UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *table*))
 (setf (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *table*)
   '("" EOL "Standard Generic Function " "`UPDATE-INSTANCE-FOR-REDEFINED-CLASS`" "" EOL ""
     EOL "" EOL "## " "構文" "" EOL "" EOL "" "`update-instance-for-redefined-class`" "" EOL
@@ -26912,7 +26912,7 @@
     "か" EOL "" "`shared-initialize`" "の各メソッドの宣言のラムダリストにある、" EOL
     "各キーワードパラメーター指定子のキーワード名は、" EOL "それらのメソッドが適用されるすべてのクラスに対して、" EOL "有効な" "初期化引数"
     "の名前として宣言されます。" EOL "" EOL))
-(setf (gethash '("UPDATE-INSTANCE-FOR-REDEFINED-CLASS" . STANDARD-GENERIC-FUNCTION) *table*) (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *table*))
+(setf (gethash '("UPDATE-INSTANCE-FOR-REDEFINED-CLASS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *table*))
 (setf (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *table*)
   '("" EOL "Function " "`UPGRADED-ARRAY-ELEMENT-TYPE`" "" EOL "" EOL "" EOL "## " "構文" ""
     EOL "" EOL "" "`upgraded-array-element-type`" " *typespec* " "`&optional`"
@@ -26935,7 +26935,7 @@
     "`upgraded-array-element-type`" "は次のように定義できます。" EOL "" EOL "```lisp" EOL
     "(defun upgraded-array-element-type (type &optional environment)" EOL
     "  (array-element-type (make-array 0 :element-type type)))" EOL "```" EOL "" EOL))
-(setf (gethash '("UPGRADED-ARRAY-ELEMENT-TYPE" . FUNCTION) *table*) (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *table*))
+(setf (gethash '("UPGRADED-ARRAY-ELEMENT-TYPE" . "FUNCTION") *table*) (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *table*))
 (setf (gethash "UPPER-CASE-P" *table*)
   '("" EOL "Function " "`UPPER-CASE-P`" ", " "`LOWER-CASE-P`" ", " "`BOTH-CASE-P`" "" EOL
     "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`upper-case-p`"
@@ -26958,7 +26958,7 @@
     "" EOL "" EOL "" "`char-upcase`" ", " "`char-downcase`" ", " "13.1.4.3. 文字のケース" ", "
     "13.1.10. 処理系実装のスクリプトの説明" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("UPPER-CASE-P" . FUNCTION) *table*) (gethash "UPPER-CASE-P" *table*))
+(setf (gethash '("UPPER-CASE-P" . "FUNCTION") *table*) (gethash "UPPER-CASE-P" *table*))
 (setf (gethash "USE-PACKAGE" *table*)
   '("" EOL "Function " "`USE-PACKAGE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`use-package`" " *packages-to-use* " "`&optional`" " *package* => " "`t`" "" EOL ""
@@ -26988,10 +26988,10 @@
     EOL "" EOL "パッケージ" "`P2`" "がすでにパッケージ" "`P1`" "を使用していたときでさえ、" EOL "" "`P1`" "が" "`P2`"
     "を使用することは許されます。" EOL "パッケージの" "`use`" "は推移的ではないので、" EOL "循環構造が現れても問題がありません。" EOL ""
     EOL))
-(setf (gethash '("USE-PACKAGE" . FUNCTION) *table*) (gethash "USE-PACKAGE" *table*))
+(setf (gethash '("USE-PACKAGE" . "FUNCTION") *table*) (gethash "USE-PACKAGE" *table*))
 (setf (gethash "USE-VALUE" *table*)
   '("USE-VALUE FUNCTION" EOL "USE-VALUE RESTART" EOL))
-(setf (gethash '("USE-VALUE" . FUNCTION) *table*)
+(setf (gethash '("USE-VALUE" . "FUNCTION") *table*)
   '("" EOL "Function " "`ABORT`" ", " "`CONTINUE`" ", " "`MUFFLE-WARNING`" ", "
     "`STORE-VALUE`" ", " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`abort`" " " "`&optional`" " *condition* => " "`|`" "  " EOL "" "`continue`" " "
@@ -27082,7 +27082,7 @@
     "(store-value x) ==  (let ((r (find-restart 'store-value))) (if r (invoke-restart r x)))"
     EOL "```" EOL "" EOL "この仕様書で" "`use-value`" " " "`restart`" "の提供に" EOL
     "要求される関数定義はありません。" EOL "" EOL))
-(setf (gethash '("USE-VALUE" . RESTART) *table*)
+(setf (gethash '("USE-VALUE" . "RESTART") *table*)
   '("" EOL "Restart " "`USE-VALUE`" "" EOL "" EOL "" EOL "## " "要求される引数のデータ" "" EOL ""
     EOL "かわりに使う値（一度だけ）" EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "" "`use-value`" " "
     "`restart`" "は、" EOL "一般的には" "`cell-error`" "か" "`type-error`" "のような" EOL
@@ -27093,7 +27093,7 @@
     EOL "" "`store-value`" "（" "`restart`" "）" EOL "" EOL))
 (setf (gethash "VALUES" *table*)
   '("VALUES ACCESSOR" EOL "VALUES TYPE-SPECIFIER" EOL))
-(setf (gethash '("VALUES" . ACCESSOR) *table*)
+(setf (gethash '("VALUES" . "ACCESSOR") *table*)
   '("" EOL "Accessor " "`VALUES`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`values`" " &rest *object* => *object\\**  " EOL "(" "`setf`" " (" "`values`"
     " &rest *place*) *new-values*)" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL "" EOL
@@ -27120,7 +27120,7 @@
     "`multiple-values-limit`" "," EOL "" "3.1. 評価" "" EOL "" EOL "" EOL "## " "備考" "" EOL
     "" EOL "" "`values`" "は関数であり、マクロや" "特殊フォーム" "でもないので、" EOL
     "その引数のフォームはただ主値のみ引数として受け取ります。" EOL "" EOL))
-(setf (gethash '("VALUES" . TYPE-SPECIFIER) *table*)
+(setf (gethash '("VALUES" . "TYPE-SPECIFIER") *table*)
   '("" EOL "Type Specifier " "`VALUES`" "" EOL "" EOL "" EOL "## " "型指定子の種類" "" EOL ""
     EOL "特定化" EOL "" EOL "" EOL "## " "型指定子の構文" "" EOL "" EOL "```" EOL
     "value-typespec::= typespec* [&optional typespec*] [&rest typespec] [&allow-other-keys] "
@@ -27147,10 +27147,10 @@
     " (values-list list) ==  (apply #'values list)" EOL "```" EOL "" EOL ""
     "`(equal x (multiple-value-list (values-list x)))`" "は、" EOL "全てのリスト" "`x`"
     "において*true*を返却します。" EOL "" EOL))
-(setf (gethash '("VALUES-LIST" . FUNCTION) *table*) (gethash "VALUES-LIST" *table*))
+(setf (gethash '("VALUES-LIST" . "FUNCTION") *table*) (gethash "VALUES-LIST" *table*))
 (setf (gethash "VECTOR" *table*)
   '("VECTOR FUNCTION" EOL "VECTOR SYSTEM-CLASS" EOL))
-(setf (gethash '("VECTOR" . FUNCTION) *table*)
+(setf (gethash '("VECTOR" . "FUNCTION") *table*)
   '("" EOL "Function " "`VECTOR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`vector`" " " "`&rest`" " *objects* => *vector*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
     EOL "" EOL "*object* - オブジェクト  " EOL "*vector* - 型" "`(vector t *)`" "の" "`vector`"
@@ -27166,7 +27166,7 @@
     EOL " ==  (make-array (list n) :element-type t" EOL
     "                         :initial-contents " EOL
     "                           (list a1 a2 ... an))" EOL "```" EOL "" EOL))
-(setf (gethash '("VECTOR" . SYSTEM-CLASS) *table*)
+(setf (gethash '("VECTOR" . "SYSTEM-CLASS") *table*)
   '("" EOL "System Class " "`VECTOR`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL ""
     EOL "" "`vector`" "," EOL "" "`array`" "," EOL "" "`sequence`" "," EOL "" "`t`" ""
     EOL "" EOL "" EOL "## " "定義" "" EOL "" EOL "一次元の配列は" "`vector`" "です。" EOL "" EOL "型"
@@ -27211,7 +27211,7 @@
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`vector-push`" "," EOL
     "" "`vector-push-extend`" "," EOL "" "`fill-pointer`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("VECTOR-POP" . FUNCTION) *table*) (gethash "VECTOR-POP" *table*))
+(setf (gethash '("VECTOR-POP" . "FUNCTION") *table*) (gethash "VECTOR-POP" *table*))
 (setf (gethash "VECTOR-PUSH" *table*)
   '("" EOL "Function " "`VECTOR-PUSH`" ", " "`VECTOR-PUSH-EXTEND`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`vector-push`"
@@ -27254,7 +27254,7 @@
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`adjustable-array-p`"
     "," EOL "" "`fill-pointer`" "," EOL "" "`vector-pop`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("VECTOR-PUSH" . FUNCTION) *table*) (gethash "VECTOR-PUSH" *table*))
+(setf (gethash '("VECTOR-PUSH" . "FUNCTION") *table*) (gethash "VECTOR-PUSH" *table*))
 (setf (gethash "VECTOR-PUSH-EXTEND" *table*)
   '("" EOL "Function " "`VECTOR-PUSH`" ", " "`VECTOR-PUSH-EXTEND`" "" EOL "" EOL "" EOL
     "## " "構文" "" EOL "" EOL "" "`vector-push`"
@@ -27297,7 +27297,7 @@
     "のエラーが発生します。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`adjustable-array-p`"
     "," EOL "" "`fill-pointer`" "," EOL "" "`vector-pop`" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("VECTOR-PUSH-EXTEND" . FUNCTION) *table*) (gethash "VECTOR-PUSH-EXTEND" *table*))
+(setf (gethash '("VECTOR-PUSH-EXTEND" . "FUNCTION") *table*) (gethash "VECTOR-PUSH-EXTEND" *table*))
 (setf (gethash "VECTORP" *table*)
   '("" EOL "Function " "`VECTORP`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`vectorp`" " *object* => *generalized-boolean*" EOL "" EOL "" EOL "## " "引数と戻り値" ""
@@ -27312,7 +27312,7 @@
     "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "なし。" EOL "" EOL ""
     EOL "## " "備考" "" EOL "" EOL "```lisp" EOL
     "(vectorp object) == (typep object 'vector)" EOL "```" EOL "" EOL))
-(setf (gethash '("VECTORP" . FUNCTION) *table*) (gethash "VECTORP" *table*))
+(setf (gethash '("VECTORP" . "FUNCTION") *table*) (gethash "VECTORP" *table*))
 (setf (gethash "WARN" *table*)
   '("" EOL "Function " "`WARN`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL "" "`warn`"
     " *datum* " "`&rest`" " *arguments* => " "`nil`" "" EOL "" EOL "" EOL "## " "引数と戻り値"
@@ -27348,13 +27348,13 @@
     EOL "そうでないときは型" "`type-error`" "おエラーが通知されます。" EOL "" EOL "" EOL "## " "参考" "" EOL ""
     EOL "" "`*break-on-signals*`" "," EOL "" "`muffle-warning`" "," EOL "" "`signal`" ","
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WARN" . FUNCTION) *table*) (gethash "WARN" *table*))
+(setf (gethash '("WARN" . "FUNCTION") *table*) (gethash "WARN" *table*))
 (setf (gethash "WARNING" *table*)
   '("" EOL "Condition Type " "`WARNING`" "" EOL "" EOL "" EOL "## " "クラス優先順位リスト" "" EOL
     "" EOL "" "`warning`" "," EOL "" "`condition`" "," EOL "" "`t`" "" EOL "" EOL "" EOL
     "## " "定義" "" EOL "" EOL "型" "`warning`" "は全ての警告の型を含みます。" EOL "" EOL "" EOL "## "
     "参考" "" EOL "" EOL "" "`style-warning`" "" EOL "" EOL))
-(setf (gethash '("WARNING" . CONDITION-TYPE) *table*) (gethash "WARNING" *table*))
+(setf (gethash '("WARNING" . "CONDITION-TYPE") *table*) (gethash "WARNING" *table*))
 (setf (gethash "WHEN" *table*)
   '("" EOL "Macro " "`WHEN`" ", " "`UNLESS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`when`" " *test-form* *form\\** => *result\\**  " EOL "" "`unless`"
@@ -27396,7 +27396,7 @@
     "(unless test {form}+) == (cond ((not test) {form}+))" EOL
     "(unless test {form}+) == (if test nil (progn {form}+))" EOL
     "(unless test {form}+) == (when (not test) {form}+)" EOL "```" EOL "" EOL))
-(setf (gethash '("WHEN" . MACRO) *table*) (gethash "WHEN" *table*))
+(setf (gethash '("WHEN" . "MACRO") *table*) (gethash "WHEN" *table*))
 (setf (gethash "WILD-PATHNAME-P" *table*)
   '("" EOL "Function " "`WILD-PATHNAME-P`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`wild-pathname-p`" " *pathname* " "`&optional`"
@@ -27427,7 +27427,7 @@
     "" "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL
     "全ての実装が全ての要素にワイルドカードをサポートしているわけではありません。" EOL "" "19.2.2.2.2. 要素の値としての:WILD" "と"
     "19.2.2.3. ワイルドカードのパス名の制限" "をご確認ください。" EOL "" EOL))
-(setf (gethash '("WILD-PATHNAME-P" . FUNCTION) *table*) (gethash "WILD-PATHNAME-P" *table*))
+(setf (gethash '("WILD-PATHNAME-P" . "FUNCTION") *table*) (gethash "WILD-PATHNAME-P" *table*))
 (setf (gethash "WITH-ACCESSORS" *table*)
   '("" EOL "Macro " "`WITH-ACCESSORS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`with-accessors`" " (*slot-entry\\**) *instance-form* *declaration\\** *form\\**"
@@ -27471,7 +27471,7 @@
     "(let ((in instance-form))" EOL "  (symbol-macrolet (Q1 ... Qn) form1 ... formk))"
     EOL "```" EOL "" EOL "ただし、" "`Qi`" "は下記のようになります。" EOL "" EOL "```lisp" EOL
     "(variable-namei () (accessor-namei in))" EOL "```" EOL "" EOL))
-(setf (gethash '("WITH-ACCESSORS" . MACRO) *table*) (gethash "WITH-ACCESSORS" *table*))
+(setf (gethash '("WITH-ACCESSORS" . "MACRO") *table*) (gethash "WITH-ACCESSORS" *table*))
 (setf (gethash "WITH-CONDITION-RESTARTS" *table*)
   '("" EOL "Macro " "`WITH-CONDITION-RESTARTS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`with-condition-restarts`" " *condition-form* *restarts-form* *form\\**  "
@@ -27490,7 +27490,7 @@
     EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`restart-case`" "" EOL "" EOL "" EOL
     "## " "備考" "" EOL "" EOL "" "`restart-case`" "の捕捉が" EOL "この機能を文法的により簡潔にあらわす" EOL
     "もっとも一般的な場合であり、" EOL "通常このマクロはコードに明確に使用されません。" EOL "" EOL))
-(setf (gethash '("WITH-CONDITION-RESTARTS" . MACRO) *table*) (gethash "WITH-CONDITION-RESTARTS" *table*))
+(setf (gethash '("WITH-CONDITION-RESTARTS" . "MACRO") *table*) (gethash "WITH-CONDITION-RESTARTS" *table*))
 (setf (gethash "WITH-HASH-TABLE-ITERATOR" *table*)
   '("" EOL "Macro " "`WITH-HASH-TABLE-ITERATOR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL
     "" EOL "" "`with-hash-table-iterator`"
@@ -27537,7 +27537,7 @@
     "*name*というローカル関数は、" EOL "それが第一返却値として*false*を返却したあとに" EOL "呼び出された結果は未定義です。" EOL "" EOL
     "" EOL "## " "参考" "" EOL "" EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考"
     "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WITH-HASH-TABLE-ITERATOR" . MACRO) *table*) (gethash "WITH-HASH-TABLE-ITERATOR" *table*))
+(setf (gethash '("WITH-HASH-TABLE-ITERATOR" . "MACRO") *table*) (gethash "WITH-HASH-TABLE-ITERATOR" *table*))
 (setf (gethash "WITH-INPUT-FROM-STRING" *table*)
   '("" EOL "Macro " "`WITH-INPUT-FROM-STRING`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`with-input-from-string`" "" EOL " " "`(`" "*var* *string* " "`&key`"
@@ -27570,7 +27570,7 @@
     "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`make-string-input-stream`" "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WITH-INPUT-FROM-STRING" . MACRO) *table*) (gethash "WITH-INPUT-FROM-STRING" *table*))
+(setf (gethash '("WITH-INPUT-FROM-STRING" . "MACRO") *table*) (gethash "WITH-INPUT-FROM-STRING" *table*))
 (setf (gethash "WITH-OPEN-FILE" *table*)
   '("" EOL "Macro " "`WITH-OPEN-FILE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`with-open-file`" " " "`(`" " *stream *  *filespec* *options\\** " "`)`" "" EOL
@@ -27613,7 +27613,7 @@
     "関数をご確認ください。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL "" "`open`" "," EOL ""
     "`close`" "," EOL "" "`pathname`" "," EOL "" "`logical-pathname`" "," EOL ""
     "19.1.2. ファイル名としてのパス名" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WITH-OPEN-FILE" . MACRO) *table*) (gethash "WITH-OPEN-FILE" *table*))
+(setf (gethash '("WITH-OPEN-FILE" . "MACRO") *table*) (gethash "WITH-OPEN-FILE" *table*))
 (setf (gethash "WITH-OPEN-STREAM" *table*)
   '("" EOL "Macro " "`WITH-OPEN-STREAM`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`with-open-stream`" " " "`(`" "*var* *stream*" "`)`" " *declaration\\** *form\\**  "
@@ -27632,7 +27632,7 @@
     "なし。" EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考"
     "" EOL "" EOL "" "`close`" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL ""
     EOL))
-(setf (gethash '("WITH-OPEN-STREAM" . MACRO) *table*) (gethash "WITH-OPEN-STREAM" *table*))
+(setf (gethash '("WITH-OPEN-STREAM" . "MACRO") *table*) (gethash "WITH-OPEN-STREAM" *table*))
 (setf (gethash "WITH-OUTPUT-TO-STRING" *table*)
   '("" EOL "Macro " "`WITH-OUTPUT-TO-STRING`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`with-output-to-string`" "" EOL " " "`(`" "*var* " "`&optional`"
@@ -27666,7 +27666,7 @@
     "参考" "" EOL "" EOL "" "`make-string-output-stream`" "," EOL "" "`vector-push-extend`"
     "," EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL
     "" EOL))
-(setf (gethash '("WITH-OUTPUT-TO-STRING" . MACRO) *table*) (gethash "WITH-OUTPUT-TO-STRING" *table*))
+(setf (gethash '("WITH-OUTPUT-TO-STRING" . "MACRO") *table*) (gethash "WITH-OUTPUT-TO-STRING" *table*))
 (setf (gethash "WITH-PACKAGE-ITERATOR" *table*)
   '("" EOL "Macro " "`WITH-PACKAGE-ITERATOR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL ""
     EOL "" "`with-package-iterator`" "" EOL " (*name* *package-list-form* " "`&rest`"
@@ -27737,7 +27737,7 @@
     EOL "*name*という名前のローカル関数が、" EOL "その主値が*false*を返却したあとで" EOL "呼び出されたときの結果は未定義です" EOL ""
     EOL "" EOL "## " "参考" "" EOL "" EOL "" "3.6. 横断の規則と副作用" "" EOL "" EOL "" EOL "## "
     "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WITH-PACKAGE-ITERATOR" . MACRO) *table*) (gethash "WITH-PACKAGE-ITERATOR" *table*))
+(setf (gethash '("WITH-PACKAGE-ITERATOR" . "MACRO") *table*) (gethash "WITH-PACKAGE-ITERATOR" *table*))
 (setf (gethash "WITH-SIMPLE-RESTART" *table*)
   '("" EOL "Macro " "`WITH-SIMPLE-RESTART`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`with-simple-restart`"
@@ -27789,7 +27789,7 @@
     "        (values nil t))))" EOL "```" EOL "" EOL "例外的な状況では第二返却値が" "`t`" "になるため、" EOL
     "通常の場合は第二返却値を省略するか" "`nil`" "にして、" EOL "2つの状況を区別できるようにするのが一般的です（ただし必須ではありません）。" EOL
     "" EOL))
-(setf (gethash '("WITH-SIMPLE-RESTART" . MACRO) *table*) (gethash "WITH-SIMPLE-RESTART" *table*))
+(setf (gethash '("WITH-SIMPLE-RESTART" . "MACRO") *table*) (gethash "WITH-SIMPLE-RESTART" *table*))
 (setf (gethash "WITH-SLOTS" *table*)
   '("" EOL "Macro " "`WITH-SLOTS`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`with-slots`" " (*slot-entry\\**) *instance-form* *declaration\\** *form\\**" EOL
@@ -27842,7 +27842,7 @@
     "(variable-namei () (slot-value in 'slot-namei))" EOL "```" EOL "" EOL
     "もし*slot-entry_i*がフォームなら次のようになります。" EOL "" EOL "```lisp" EOL
     "(variable-namei 'slot-namei)" EOL "```" EOL "" EOL))
-(setf (gethash '("WITH-SLOTS" . MACRO) *table*) (gethash "WITH-SLOTS" *table*))
+(setf (gethash '("WITH-SLOTS" . "MACRO") *table*) (gethash "WITH-SLOTS" *table*))
 (setf (gethash "WRITE-BYTE" *table*)
   '("" EOL "Function " "`WRITE-BYTE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`write-byte`" " *byte* *stream* => *byte*" EOL "" EOL "" EOL "## " "引数と戻り値" "" EOL
@@ -27859,7 +27859,7 @@
     "`type-error`" "のエラーを通知されるでしょう。" EOL "" EOL "" EOL "## " "参考" "" EOL "" EOL ""
     "`read-byte`" "," EOL "" "`write-char`" "," EOL "" "`write-sequence`" "" EOL "" EOL
     "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WRITE-BYTE" . FUNCTION) *table*) (gethash "WRITE-BYTE" *table*))
+(setf (gethash '("WRITE-BYTE" . "FUNCTION") *table*) (gethash "WRITE-BYTE" *table*))
 (setf (gethash "WRITE-CHAR" *table*)
   '("" EOL "Function " "`WRITE-CHAR`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL ""
     "`write-char`" " *character* " "`&optional`" " *output-stream* => *character*" EOL ""
@@ -27874,7 +27874,7 @@
     EOL "" EOL "" EOL "## " "例外" "" EOL "" EOL "なし。" EOL "" EOL "" EOL "## " "参考" "" EOL
     "" EOL "" "`read-char`" "," EOL "" "`write-byte`" "," EOL "" "`write-sequence`" ""
     EOL "" EOL "" EOL "## " "備考" "" EOL "" EOL "なし。" EOL "" EOL))
-(setf (gethash '("WRITE-CHAR" . FUNCTION) *table*) (gethash "WRITE-CHAR" *table*))
+(setf (gethash '("WRITE-CHAR" . "FUNCTION") *table*) (gethash "WRITE-CHAR" *table*))
 (setf (gethash "WRITE-LINE" *table*)
   '("" EOL "Function " "`WRITE-STRING`" ", " "`WRITE-LINE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`write-string`" " *string* " "`&optional`" " *output-stream* "
@@ -27899,7 +27899,7 @@
     EOL "```lisp" EOL "(write-string string)" EOL "==  (dotimes (i (length string)" EOL
     "      (write-char (char string i)))" EOL "" EOL "(write-line string)" EOL
     "==  (prog1 (write-string string) (terpri))" EOL "```" EOL "" EOL))
-(setf (gethash '("WRITE-LINE" . FUNCTION) *table*) (gethash "WRITE-LINE" *table*))
+(setf (gethash '("WRITE-LINE" . "FUNCTION") *table*) (gethash "WRITE-LINE" *table*))
 (setf (gethash "WRITE-SEQUENCE" *table*)
   '("" EOL "Function " "`WRITE-SEQUENCE`" "" EOL "" EOL "" EOL "## " "構文" "" EOL "" EOL
     "" "`write-sequence`" " *sequence* *stream* " "`&key`" " *start* *end* => *sequence*"
@@ -27923,7 +27923,7 @@
     "ひとつずつ要素を*stream*に書き込む繰り返しと同じ効果ですが、" EOL "おそらくは同等のループよりもより効率的になります。" EOL "" EOL
     "ある効率の良い実装では、" EOL "*sequence*が*stream*の要素と同じ型の" "`vector`" "である場合に" EOL
     "より効率的になるかもしれません。" EOL "" EOL))
-(setf (gethash '("WRITE-SEQUENCE" . FUNCTION) *table*) (gethash "WRITE-SEQUENCE" *table*))
+(setf (gethash '("WRITE-SEQUENCE" . "FUNCTION") *table*) (gethash "WRITE-SEQUENCE" *table*))
 (setf (gethash "WRITE-STRING" *table*)
   '("" EOL "Function " "`WRITE-STRING`" ", " "`WRITE-LINE`" "" EOL "" EOL "" EOL "## "
     "構文" "" EOL "" EOL "" "`write-string`" " *string* " "`&optional`" " *output-stream* "
@@ -27948,7 +27948,7 @@
     EOL "```lisp" EOL "(write-string string)" EOL "==  (dotimes (i (length string)" EOL
     "      (write-char (char string i)))" EOL "" EOL "(write-line string)" EOL
     "==  (prog1 (write-string string) (terpri))" EOL "```" EOL "" EOL))
-(setf (gethash '("WRITE-STRING" . FUNCTION) *table*) (gethash "WRITE-STRING" *table*))
+(setf (gethash '("WRITE-STRING" . "FUNCTION") *table*) (gethash "WRITE-STRING" *table*))
 (setf (gethash "Y-OR-N-P" *table*)
   '("" EOL "Function " "`Y-OR-N-P`" ", " "`YES-OR-NO-P`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`y-or-n-p`" " " "`&optional`" " *control* " "`&rest`"
@@ -27984,7 +27984,7 @@
     "" EOL "" EOL "yes-or-no-p:link}と" "`y-or-n-p`" "はプロンプトの文字列の" EOL
     "最後にクエスチョン文字を追加しないので、" EOL "クエスチョンの文字や他の句読点を使いたいのであれば、" EOL
     "テキストの質問文に明示的に含める必要があります。" EOL "" EOL))
-(setf (gethash '("Y-OR-N-P" . FUNCTION) *table*) (gethash "Y-OR-N-P" *table*))
+(setf (gethash '("Y-OR-N-P" . "FUNCTION") *table*) (gethash "Y-OR-N-P" *table*))
 (setf (gethash "YES-OR-NO-P" *table*)
   '("" EOL "Function " "`Y-OR-N-P`" ", " "`YES-OR-NO-P`" "" EOL "" EOL "" EOL "## " "構文"
     "" EOL "" EOL "" "`y-or-n-p`" " " "`&optional`" " *control* " "`&rest`"
@@ -28020,7 +28020,7 @@
     "" EOL "" EOL "yes-or-no-p:link}と" "`y-or-n-p`" "はプロンプトの文字列の" EOL
     "最後にクエスチョン文字を追加しないので、" EOL "クエスチョンの文字や他の句読点を使いたいのであれば、" EOL
     "テキストの質問文に明示的に含める必要があります。" EOL "" EOL))
-(setf (gethash '("YES-OR-NO-P" . FUNCTION) *table*) (gethash "YES-OR-NO-P" *table*))
+(setf (gethash '("YES-OR-NO-P" . "FUNCTION") *table*) (gethash "YES-OR-NO-P" *table*))
 
 
 ;;
@@ -28034,20 +28034,33 @@
            (princ x))
           (t (error "Invalid object, ~S." x)))))
 
-(defun search-partial (x)
-  (declare (ignore x)))
+(defun search-partial-list (x)
+  (let (list)
+    (maphash
+      (lambda (key value)
+        (declare (ignore value))
+        (when (search x key)
+          (push key list)))
+      *name*)
+    (sort list #'string<)))
 
-(defun gettable (x)
-  (gethash (string x) *table*))
+(defun search-partial (x)
+  (dolist (y (search-partial-list x))
+    (format t "~A~%" y)))
 
 (defun search-single (x)
-  (multiple-value-bind (value check) (gettable x)
-    (if check
-      (search-output value)
-      (search-partial x))))
+  (let ((x (string x)))
+    (multiple-value-bind (value check) (gethash x *table*)
+      (if check
+        (search-output value)
+        (search-partial x)))))
 
 (defun search-double (car cdr)
-  (declare (ignore car cdr)))
+  (destructuring-bind (type) cdr
+    (let ((key (cons (string car) (string type))))
+      (multiple-value-bind (value check) (gethash key *table*)
+        (if check
+          (search-output value))))))
 
 (defun search-fasl (args)
   (destructuring-bind (car . cdr) args

@@ -27,13 +27,16 @@
     (ecase car
       (ref (reference-fasl cdr)))))
 
-(defun table-fasl (key)
+(defun replace-reference-fasl (key)
   (mapcar
     (lambda (x)
       (if (consp x)
         (table-select-fasl x)
         x))
     (errhash key *fasl-table*)))
+
+(defun table-fasl (key)
+  (replace-reference-fasl key))
 
 
 ;;
@@ -50,7 +53,7 @@
   (format s "(setq *table* (make-hash-table :test 'equal))~%")
   (format s "(setq *name* (make-hash-table :test 'equal))~%")
   (dolist (x keys)
-    (format s "(setf (gethash ~S *name*) '~(~S~))~%" x (errhash x *fasl-name*))))
+    (format s "(setf (gethash ~S *name*) '~S)~%" x (errhash x *fasl-name*))))
 
 (defun output-single-fasl (s x y)
   (let* ((key (cons x y))
@@ -154,6 +157,7 @@
         (mvbind (front check) (dictionary-split-fasl name type)
           (when check
             (setq type check))
+          (setq type (string-upcase type))
           (dictionary-table-fasl front type list)
           (dictionary-name-fasl front type))))))
 

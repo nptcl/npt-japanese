@@ -1,4 +1,4 @@
-(defsystem strjis
+(defsystem npt-japanese
   :description "npt-japanese"
   :version "1.0.0"
   :author "nptcl <nptlisp@gmail.com>"

@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PPRINT-INDENT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-indent
+@name: pprint-indent
+@type: function
+
+Function `PPRINT-INDENT`
+
+
+## {syntax}
+
+`pprint-indent` *relative-to* *n* `&optional` *stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*relative-to* - `:block`か`:current`のどちらか  
+*n* - 実数  
+*stream* - 出力ストリーム指定子。デフォルトは標準出力。
+
+
+## {description}
+
+{pprint-indent:link}は、
+*stream*上で使用される論理ブロックのインデントを指定します。
+*stream*が{pretty-printing-stream}であり、
+{*print-pretty*:link}が*true*のとき、
+{pprint-indent:link}は
+もっとも内側の動的に閉じられた論理ブロック内の
+インデントを設定します。
+それ以外の場合は、{pprint-indent:link}は何もしません。
+
+`n`はインデントを`ems`で指定します。
+*relative-to*が`:block`のとき、
+動的な現在の論理ブロック内において最初の文字から
+`n ems`を加算した水平位置をインデントに設定します。
+*relative-to*が`:current`のとき、
+現在の出力位置に`n ems`を加算したものをインデントに設定します
+（可変幅のフォントに対応するため、
+可能な限り`:current`において`n` が`0`を使用することが推奨されます）。
+
+`n`が負の数のとき、
+インデントの合計は行の始まりの左には移動できませんし、
+行ごとのプレフィックスの右の終端より左には移動できませんが、
+これらの制限を越えて移動しようとしたときは、
+その制限に移動したものと同じように扱われます。
+{pprint-indent:link}によってインデントを変更したときは、
+次の行の区切りの後までは効果が現れません。
+さらに、マイザーモードにおいては
+{pprint-indent:link}の全ての呼び出しは無視され、
+論理ブロック内の対応する行は、
+そのブロック内の最初の文字の元に揃えられます。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*relative-to*が`:block`でも`:current`でもない
+別のオブジェクトのときはエラーが発生します。
+
+
+## {see-also}
+
+{22.3.5.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

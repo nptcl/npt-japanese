@@ -19,7 +19,6 @@
 (load #p"reference.lisp")
 (load #p"load.lisp")
 (load #p"read.lisp")
-(load #p"output.lisp")
 (load #p"fasl.lisp")
 
 (in-package :ansicl)

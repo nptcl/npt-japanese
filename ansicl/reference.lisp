@@ -2,6 +2,8 @@
 
 (defconstant +load-reference+ #p"replace.lisp")
 (defvar *reference-value*)
+(defvar *reference-update*)
+(defvar *reference-fasl*)
 
 ;;
 ;;  reference
@@ -12,7 +14,8 @@
          (index (contents-join v))
          (title (contents-title v))
          (file (filename-html index)))
-    (if (contents-exists-p v)
+    (if (and (null *reference-fasl*)
+             (contents-exists-p v))
       (format nil "[~A](~A)" title file)
       title)))
 
@@ -22,14 +25,20 @@
          (index (contents-join v))
          (title (contents-title v))
          (file (filename-html index)))
-    (if (contents-exists-p v)
+    (if (and (null *reference-fasl*)
+             (contents-exists-p v))
       (format nil "[~A. ~A](~A)" index title file)
       (format nil "~A. ~A" index title))))
+
+(defun reference-link (key)
+  (if *reference-fasl*
+    (format nil "`~A`" (delete-attribute (car key)))
+    (getlink key)))
 
 (defun reference-cons (key cdr)
   (dbind (type) cdr
     (ecase type
-      (link (getlink key))
+      (link (reference-link key))
       (a (reference-a key))
       (ab (reference-ab key)))))
 
@@ -49,8 +58,6 @@
 ;;
 ;;  recursive replace
 ;;
-(defvar *reference-update*)
-
 (defun reference-update (str)
   (setq *reference-update* t)
   (reference-find (read-colon str)))
@@ -84,13 +91,18 @@
       str)))
 
 (defun reference (key)
-  (let (*reference-update*)
+  (let (*reference-update* *reference-fasl*)
     (reference-loop
       (reference-find key))))
 
 (defun reference-string (str)
-  (let (*reference-update*)
+  (let (*reference-update* *reference-fasl*)
     (reference-loop str)))
+
+(defun reference-fasl (key)
+  (let (*reference-update* (*reference-fasl* t))
+    (reference-loop
+      (reference-find key))))
 
 
 ;;

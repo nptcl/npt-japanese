@@ -77,6 +77,14 @@
           (errorp (error "There is no value, ~S." key))
           (t (values nil nil)))))
 
+(defun hash-table-keys (hash &aux list)
+  (maphash
+    (lambda (key value)
+      (declare (ignore value))
+      (push key list))
+    hash)
+  list)
+
 
 ;;
 ;;  anaphora

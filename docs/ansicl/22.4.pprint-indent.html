@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>22.4. プリンターの辞書</title>
+  <title>Function PPRINT-INDENT</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,23 +151,34 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">22.4. プリンターの辞書</h1>
+<h1 class="title">Function PPRINT-INDENT</h1>
 </header>
-<p><a href="22.html">UP</a></p>
+<p><a href="22.4.html">UP</a></p>
 <hr />
-<p>22.4. プリンターの辞書</p>
-<ul>
-<li><a href="22.4.copy-pprint-dispatch.html">Function <strong>COPY-PPRINT-DISPATCH</strong></a></li>
-<li><a href="22.4.formatter.html">Macro <strong>FORMATTER</strong></a></li>
-<li><a href="22.4.pprint-dispatch.html">Function <strong>PPRINT-DISPATCH</strong></a></li>
-<li><a href="22.4.pprint-exit-if-list-exhausted.html">Function <strong>PPRINT-EXIT-IF-LIST-EXHAUSTED</strong></a></li>
-<li><a href="22.4.pprint-fill.html">Function <strong>PPRINT-FILL, PPRINT-LINEAR, PPRINT-TABULAR</strong></a></li>
-<li><a href="22.4.pprint-indent.html">Function <strong>PPRINT-INDENT</strong></a></li>
-<li><a href="22.4.print-array.html">Variable <strong>*PRINT-ARRAY*</strong></a></li>
-<li><a href="22.4.print-circle.html">Variable <strong>*PRINT-CIRCLE*</strong></a></li>
-<li><a href="22.4.print-escape.html">Variable <strong>*PRINT-ESCAPE*</strong></a></li>
-<li><a href="22.4.print-level.html">Variable <strong>*PRINT-LEVEL*, *PRINT-LENGTH*</strong></a></li>
-</ul>
+<h1 id="function-pprint-indent">Function <strong>PPRINT-INDENT</strong></h1>
+<p>Function <code>PPRINT-INDENT</code></p>
+<h2 id="構文">構文</h2>
+<p><code>pprint-indent</code> <em>relative-to</em> <em>n</em> <code>&amp;optional</code> <em>stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>relative-to</em> - <code>:block</code>か<code>:current</code>のどちらか<br />
+<em>n</em> - 実数<br />
+<em>stream</em> - 出力ストリーム指定子。デフォルトは標準出力。</p>
+<h2 id="定義">定義</h2>
+<p><a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は、 <em>stream</em>上で使用される論理ブロックのインデントを指定します。 <em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>が<em>true</em>のとき、 <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は もっとも内側の動的に閉じられた論理ブロック内の インデントを設定します。 それ以外の場合は、<a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は何もしません。</p>
+<p><code>n</code>はインデントを<code>ems</code>で指定します。 <em>relative-to</em>が<code>:block</code>のとき、 動的な現在の論理ブロック内において最初の文字から <code>n ems</code>を加算した水平位置をインデントに設定します。 <em>relative-to</em>が<code>:current</code>のとき、 現在の出力位置に<code>n ems</code>を加算したものをインデントに設定します （可変幅のフォントに対応するため、 可能な限り<code>:current</code>において<code>n</code> が<code>0</code>を使用することが推奨されます）。</p>
+<p><code>n</code>が負の数のとき、 インデントの合計は行の始まりの左には移動できませんし、 行ごとのプレフィックスの右の終端より左には移動できませんが、 これらの制限を越えて移動しようとしたときは、 その制限に移動したものと同じように扱われます。 <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>によってインデントを変更したときは、 次の行の区切りの後までは効果が現れません。 さらに、マイザーモードにおいては <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>の全ての呼び出しは無視され、 論理ブロック内の対応する行は、 そのブロック内の最初の文字の元に揃えられます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><em>relative-to</em>が<code>:block</code>でも<code>:current</code>でもない 別のオブジェクトのときはエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p>22.3.5.3. チルダ<code>I</code>: インデント</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

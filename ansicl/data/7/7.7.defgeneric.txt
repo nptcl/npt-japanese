@@ -41,7 +41,7 @@ method-description ::=
 *method-class* - `nil`ではない、クラス名のシンボル  
 *method-combination-argument* - オブジェクト  
 *method-combination-name* - `nil`ではない、method-combinationの型の名前のシンボル  
-*method-qualifiers*, *specialized-lambda-list,
+*method-qualifiers*, *specialized-lambda-list*,
 *declarations*, *documentation*, *forms* - {defmethod:link}に従います。  
 *new-generic* - ジェネリック関数オブジェクト  
 *parameter-name* - ラムダリスト内にある{required-parameter}の名前のシンボル。

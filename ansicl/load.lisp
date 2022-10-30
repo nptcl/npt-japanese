@@ -15,7 +15,7 @@
     (error "There is no @begin line.")))
 
 (defun load-push-enqueue (x)
-  (dolist (y (parse-markdown *load-parse* x))
+  (dolist (y (parse-mdinput *load-parse* x))
     (enqueue *load-list* y))
   (enqueue *load-list* 'eol))
 
@@ -35,7 +35,7 @@
   (dbind (key) cdr
     (clear-queue *load-list*)
     (clear-queue *load-name*)
-    (clear-markdown *load-parse*)
+    (clear-mdinput *load-parse*)
     (setq *load-link* nil)
     (setq *load-type* nil)
     (setq *load-begin* (find-contents key))))
@@ -141,7 +141,7 @@
 
 (defun load-textfile (file)
   (let ((*load-begin* nil)
-        (*load-parse* (make-markdown))
+        (*load-parse* (make-mdinput))
         (*load-list* (make-queue))
         (*load-name* (make-queue))
         (*load-link* nil)

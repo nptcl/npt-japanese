@@ -26,7 +26,7 @@ Special Operator `FLET`, `LABELS`, `MACROLET`
 
 `labels` ((*function-name* *lambda-list*
  [[*local-declaration\** `|` *local-documentation*]] *local-form\**)\*)
- *declaration* form*
+ *declaration* *form\**
  *declaration\** *form\**  
 => *result\**
 

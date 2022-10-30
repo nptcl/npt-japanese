@@ -1,13 +1,44 @@
 ;;
-;;  search  [TODO]
+;;  search
 ;;
+(declaim (ftype function search-object))
+
+(defun search-output-cons (car cdr)
+  (case car
+    (chapter
+      (fresh-line)
+      (dolist (x (car cdr))
+        (search-object x)
+        (terpri))
+      (dolist (x (cddr cdr))
+        (search-object x))
+      (fresh-line)
+      (terpri))
+    (code1
+      (princ (car cdr)))
+    (code3
+      (fresh-line)
+      (dolist (x (cddr cdr))
+        (princ x)
+        (terpri)))
+    (bold
+      (search-object (car cdr)))))
+
+(defun search-object (x)
+  (cond ((consp x)
+         (search-output-cons (car x) (cdr x)))
+        ((stringp x)
+         (princ x))
+        ((eq x 'eol1)
+         (fresh-line))
+        ((eq x 'eol2)
+         (fresh-line)
+         (terpri))
+        (t (error "Invalid object, ~S." x))))
+
 (defun search-output (list)
   (dolist (x list)
-    (cond ((eq x 'eol)
-           (terpri))
-          ((stringp x)
-           (princ x))
-          (t (error "Invalid object, ~S." x)))))
+    (search-object x)))
 
 (defun search-partial-list (x)
   (let (list)

@@ -229,7 +229,7 @@
 <p><em>tag</em>によってラベル付けされた場所へ制御を移す機能を提供するための レキシカル環境下において、0個か複数の<em>statement</em>を実行します。</p>
 <p><a href="5.3.tagbody.html"><code>tagbody</code></a>の<em>statement</em>は、左から右の順番で評価され、 それらの値は捨てられます。 もしどんなときでも、残りの<em>statement</em>がない場合は、 <a href="5.3.tagbody.html"><code>tagbody</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。 しかし、もし<code>(go tag)</code>が評価されたときは、 制御が<em>tag</em>でラベル付けされたボディ部の部分にジャンプします （タグは<a href="5.3.eql-function.html"><code>eql</code></a>によって比較されます）。</p>
 <p><a href="5.3.tagbody.html"><code>tagbody</code></a>で確立した<em>tag</em>は、レキシカルスコープと動的エクステントを持ちます。 いったん<a href="5.3.tagbody.html"><code>tagbody</code></a>を終えると、 そのボディの<em>tag</em>に対する<a href="5.3.go.html"><code>go</code></a>はもはや有効ではありません。 <a href="5.3.go.html"><code>go</code></a>のジャンプは、 その<a href="5.3.go.html"><code>go</code></a>が含まれるもっとも内側の<a href="5.3.tagbody.html"><code>tagbody</code></a>以外への ものも許されます。 <a href="5.3.tagbody.html"><code>tagbody</code></a>の<em>tag</em>の確立は、 ただ同じ名前の他のタグをシャドウします。</p>
-<p>ボディのどの要素が<em>tagでどの要素が</em>statement<em>であるかの判断は、 その要素のマクロ展開の前に行われます。 もし</em>statement<em>がマクロフォームで、 そのマクロ展開がアトムである場合、 そのアトムは</em>tag<em>ではなく</em>statement*として扱われます。</p>
+<p>ボディのどの要素が<em>tag</em>でどの要素が<em>statement</em>であるかの判断は、 その要素のマクロ展開の前に行われます。 もし<em>statement</em>がマクロフォームで、 そのマクロ展開がアトムである場合、 そのアトムは<em>tag</em>ではなく<em>statement</em>として扱われます。</p>
 <p>Examples:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> (val)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">tagbody</span></span>

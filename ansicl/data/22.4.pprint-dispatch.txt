@@ -20,7 +20,7 @@ Function `PPRINT-DISPATCH`
 
 ## {arguments-and-values}
 
-*object - オブジェクト  
+*object* - オブジェクト  
 *table* - {pprint-dispatch-table}か、{nil!variable:link}。
 デフォルトは{*print-pprint-dispatch*:link}の値。  
 *function* - 関数指定子  

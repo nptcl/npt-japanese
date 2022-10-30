@@ -16,7 +16,7 @@ Macro `WITH-SIMPLE-RESTART`
 ## {syntax}
 
 `with-simple-restart` (*name* *format-control* *format-argument\**) *form\**  
-=> result*
+=> *result*
 
 
 ## {arguments-and-values}

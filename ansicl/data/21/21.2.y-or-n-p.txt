@@ -18,7 +18,7 @@ Function `Y-OR-N-P`, `YES-OR-NO-P`
 ## {syntax}
 
 `y-or-n-p` `&optional` *control* `&rest` *arguments* => *generalized-boolean*  
-`yes-or-no-p` `&optional` *control* `&rest` arguments* => *generalized-boolean*
+`yes-or-no-p` `&optional` *control* `&rest` *arguments* => *generalized-boolean*
 
 
 ## {arguments-and-values}

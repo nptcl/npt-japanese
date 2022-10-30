@@ -13,7 +13,7 @@
     "ドラフト版提案書　ANSIプログラミング言語Common Lisp"
     "Version 15.17R, X3J13/94-101R."
     "1994年8月12日金曜日　午後6時35分（米国東部標準時・夏時間）"
-    "https://github.com/nptcl/npt-japanese~%"))
+    "https://github.com/nptcl/npt-japanese"))
 
 (defvar *fasl-table*)
 (defvar *fasl-name*)
@@ -36,7 +36,8 @@
     (errhash key *fasl-table*)))
 
 (defun table-fasl (key)
-  (replace-reference-fasl key))
+  (fasl-markdown
+    (replace-reference-fasl key)))
 
 
 ;;

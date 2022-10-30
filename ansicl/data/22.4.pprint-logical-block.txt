@@ -1,0 +1,48 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PPRINT-LOGICAL-BLOCK
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-logical-block
+@name: pprint-logical-block
+@type: macro
+
+Macro `PPRINT-LOGICAL-BLOCK`
+
+
+## {syntax}
+
+`pprint-logical-block`
+ `(`*stream-symbol* *object* `&key` *prefix* *per-line-prefix* *suffix*`)`
+ *declaration\** *form\**
+ => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*stream-symbol* - ストリーム変数指定子  
+*object* - オブジェクト。評価されます。  
+*prefix* - 文字列。評価されます。標準の動作は複雑なので説明を参照。  
+*per-line-prefix* - 文字列。評価されます。標準の動作は複雑なので説明を参照。  
+*suffix* - 文字列。評価されます。デフォルトは空文字。  
+*declaration* - 宣言式。評価されません。  
+*form* - {implicit-progn}
+
+
+## {description}
+
+プリントを行う際の論理ブロックのグルーピングを行います。
+論理ブロックは、ストリームに対して印刷を行い、
+そのストリームの値は*stream-symbol*によって示された変数の値になります。
+*form*を実行している間、
+その変数には{pretty-printing-stream}が束縛されており、
+
+
+
+TODO
+
+@end
+

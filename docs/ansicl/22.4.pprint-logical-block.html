@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function PPRINT-EXIT-IF-LIST-EXHAUSTED</title>
+  <title>Macro PPRINT-LOGICAL-BLOCK</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,31 +151,25 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function PPRINT-EXIT-IF-LIST-EXHAUSTED</h1>
+<h1 class="title">Macro PPRINT-LOGICAL-BLOCK</h1>
 </header>
 <p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="function-pprint-exit-if-list-exhausted">Function <strong>PPRINT-EXIT-IF-LIST-EXHAUSTED</strong></h1>
-<p>Function <code>PPRINT-EXIT-IF-LIST-EXHAUSTED</code></p>
+<h1 id="macro-pprint-logical-block">Macro <strong>PPRINT-LOGICAL-BLOCK</strong></h1>
+<p>Macro <code>PPRINT-LOGICAL-BLOCK</code></p>
 <h2 id="構文">構文</h2>
-<p><code>pprint-exit-if-list-exhausted</code> <引数なし> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><code>pprint-logical-block</code> <code>(</code><em>stream-symbol</em> <em>object</em> <code>&amp;key</code> <em>prefix</em> <em>per-line-prefix</em> <em>suffix</em><code>)</code> <em>declaration*</em> <em>form*</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p>なし。</p>
+<p><em>stream-symbol</em> - ストリーム変数指定子<br />
+<em>object</em> - オブジェクト。評価されます。<br />
+<em>prefix</em> - 文字列。評価されます。標準の動作は複雑なので説明を参照。<br />
+<em>per-line-prefix</em> - 文字列。評価されます。標準の動作は複雑なので説明を参照。<br />
+<em>suffix</em> - 文字列。評価されます。デフォルトは空文字。<br />
+<em>declaration</em> - 宣言式。評価されません。<br />
+<em>form</em> - 暗黙のprogn</p>
 <h2 id="定義">定義</h2>
-<p><em>list</em> レキシカル環境の現在の論理ブロックに渡された <em>list</em>が使い果たされたかどうかをテストします。 22.2.1.1. 出力の配置の動的制御をご確認ください。 もしこの<em>list</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>にまで使われたとき、 <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>は レキシカル環境の現在の論理ブロックの実行を、 サフィックスの出力を行い終了します。 それ以外の場合は、<a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>は <a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
-<p>グローバル環境下で <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>が<code>fbound</code>かどうかは 実装依存ですが、 グローバル環境において<code>COMMON-LISP</code>パッケージ内の <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>という同じシンボルを シャドウするように再定義することは制限されます。 <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>の外側で <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>を 使用しようとしたときの結果は未定義です。</p>
-<h2 id="例文">例文</h2>
-<p>なし。</p>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
-<h2 id="影響">影響</h2>
-<p>なし。</p>
-<h2 id="例外">例外</h2>
-<p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>のレキシカル環境内で 呼び出されたものではなく それ以外のどこかで<a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>が呼ばれたときは、 （マクロ展開時か実行時かで）エラーが発生します。 また、レキシカル環境内に含まれる<a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>の 動的エクステントの外側で<a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>を 実行したときの結果は未定義です。</p>
-<h2 id="参考">参考</h2>
-<p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>, <code>pprint-pop</code></p>
-<h2 id="備考">備考</h2>
-<p>なし。</p>
+<p>プリントを行う際の論理ブロックのグルーピングを行います。 論理ブロックは、ストリームに対して印刷を行い、 そのストリームの値は<em>stream-symbol</em>によって示された変数の値になります。 <em>form</em>を実行している間、 その変数にはプリティプリントのストリームが束縛されており、</p>
+<p>TODO</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

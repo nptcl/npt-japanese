@@ -63,17 +63,17 @@
   (reference-find (read-colon str)))
 
 (defun reference-parensis (str)
-  (mvbind (x y z) (parensis-bracket-markdown str)
+  (mvbind (x y z) (parensis-bracket-mdinput str)
     (if x
       (list* x (reference-update y) (reference-parensis z))
       (list str))))
 
 (defun reference-code (str)
-  (mvbind (x y z) (parensis-code-markdown str)
+  (mvbind (x y z) (parensis-code-mdinput str)
     (if x
       (nconc (reference-parensis x)
              (list y)
-             (code-split-markdown z))
+             (code-split-mdinput z))
       (reference-parensis str))))
 
 (defun reference-concatenate (str)

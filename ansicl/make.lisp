@@ -15,10 +15,11 @@
 (load #p"define.lisp")
 (load #p"link.lisp")
 (load #p"contents.lisp")
-(load #p"markdown.lisp")
+(load #p"mdinput.lisp")
 (load #p"reference.lisp")
 (load #p"load.lisp")
 (load #p"read.lisp")
+(load #p"markdown.lisp")
 (load #p"fasl.lisp")
 
 (in-package :ansicl)

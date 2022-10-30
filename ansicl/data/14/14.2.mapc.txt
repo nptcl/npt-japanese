@@ -24,8 +24,6 @@ Function `MAPC`, `MAPCAR`, `MAPCAN`, `MAPL`, `MAPLIST`, `MAPCON`
 
 ## {syntax}
 
-Syntax:
-
 `mapc` *function* &rest *lists+* => *list-1*  
 `mapcar` *function* &rest *lists+* => *result-list*  
 `mapcan` *function* &rest *lists+* => *concatenated-results*  

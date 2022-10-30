@@ -49,7 +49,7 @@ Function `NULL`
 
 ## {syntax}
 
-`null` *object* => *boolean8
+`null` *object* => *boolean*
 
 
 ## {arguments-and-values}

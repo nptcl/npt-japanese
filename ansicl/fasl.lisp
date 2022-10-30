@@ -65,7 +65,7 @@
 (defun output-select-fasl (x list)
   (mapcan
     (lambda (y)
-      (list (format nil "~A ~A" x y) 'eol))
+      (list (format nil "~A ~A" x y) 'eol1))
     list))
 
 (defun output-multiple-fasl (s x list)

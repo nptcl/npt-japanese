@@ -168,8 +168,29 @@
 <em>declaration</em> - 宣言式。評価されません。<br />
 <em>form</em> - 暗黙のprogn</p>
 <h2 id="定義">定義</h2>
-<p>プリントを行う際の論理ブロックのグルーピングを行います。 論理ブロックは、ストリームに対して印刷を行い、 そのストリームの値は<em>stream-symbol</em>によって示された変数の値になります。 <em>form</em>を実行している間、 その変数にはプリティプリントのストリームが束縛されており、</p>
-<p>TODO</p>
+<p>プリントを行う際の論理ブロックのグルーピングを行います。 論理ブロックは、ストリームに対して印刷を行い、 そのストリームの値は<em>stream-symbol</em>によって示された変数の値になります。 <em>form</em>を実行している間、 その変数にはプリティプリントのストリームが束縛されており、 そのストリームは出力の配置についての決定を行い、 その結果を宛先の出力ストリームに送信します。 標準の印刷関数の全て（例えば<code>write</code>, <code>princ</code>, <a href="21.2.terpri.html"><code>terpri</code></a>）は、 プリティプリントのストリームへ印刷を出力するために使用できます。 プリティプリントのストリームへの全ての出力は、 ただ論理ブロック内にあるもののみ扱われます。</p>
+<p><em>prefix</em>は、論理ブロックの開始の前に印刷されるプレフィックスを指定します。 <em>per-line-prefix</em>は、ブロックの前と ブロック内の新しい各行の始まりに印刷されるプレフィックスを指定します。 <code>:prefix</code>と<code>:per-line-prefix</code>引数は、互いに排他的です。 もし<code>:prefix</code>と<code>:per-line-prefix</code>がどちらも指定されなかったら、 <em>prefix</em>が空文字であると仮定されます。</p>
+<p><em>suffix</em>は、ちょうど論理ブロックのあとに 印刷されるサフィックスを指定します。</p>
+<p><em>object</em>は普通はリストであり、 ボディ部である<em>form</em>において印刷のために使用されます。 もし<em>object</em>がリストではなかったとき、 それは<code>write</code>によって印刷されます （これにより、不正な引数に直面しても 堅牢な印刷関数を簡単に書くことができます）。 もし<a href="22.4.print-circle.html"><code>*print-circle*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではなく、 <em>object</em>がコンスへ循環（あるいは共有）した参照があったとき、 適切な<code>#n#</code>という印が印刷されます （これにより、循環と共有の省略形を完全にサポートした 印刷関数を簡単に書くことができます）。 もし<a href="22.4.print-level.html"><code>*print-level*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではなく、 論理ブロックが、複数の論理ブロック内において 動的にネストされた深さが<a href="22.4.print-level.html"><code>*print-level*</code></a>より大きいとき、 <code>#</code>が印刷されます。 （これにより、深さの省略形を完全にサポートした 印刷関数を簡単に書くことができます）。</p>
+<p>もし上記の3つの状況のどれかが生じたとき、 示された出力が<em>stream-symbol</em>上に印刷され、 ボディ部の<em>form</em>は<code>:prefix</code>と<code>:suffix</code>の印刷とともにスキップされます （ボディ部の<em>form</em>がリストの印刷を担当しないときは、 引数<em>object</em>に<a href="5.3.nil-variable.html"><code>nil</code></a>指定することで、 上記の最初の2つのテストをオフにすることができます）。</p>
+<p>さらに<a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>の引数<em>object</em>は、 標準印刷関数（<code>write</code>, <code>print</code>, <code>princ</code>, <code>pprint</code>や、 標準の<code>format</code>指示子の<code>~A</code>と<code>~S</code>（そして<code>~W</code>も）の引数と同様に） （必要であれば）循環と要求のチェックが全てにおいて行われます。 しかし、そのようなチェックは <a href="21.2.write-string.html"><code>write-line</code></a>, <a href="21.2.write-string.html"><code>write-string</code></a>, そして<a href="21.2.write-char.html"><code>write-char</code></a>の引数か、 <code>format</code>によるリテラルテキストの出力については行われません。 これらの結果から、 もし何らかのリテラルテキストを出力する際に 循環と共有のチェックをして欲しくないときは、 後者の関数のうちのひとつを使用するべきです。</p>
+<p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>のボディ部である<em>form</em>は、 周囲の環境上において何も副作用を実施するべきではありません。 例えば、そのスコープ内において束縛されていない変数に代入してはいけません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p><a href="22.4.print-circle.html"><code>*print-circle*</code></a>, <a href="22.4.print-level.html"><code>*print-level*</code></a></p>
+<h2 id="例外">例外</h2>
+<p><code>:suffix</code>, <code>:prefix</code>, <code>:per-line-prefix</code>のどれかが指定されたものの 文字列に評価されなかったときは型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
+<p><code>:prefix</code>と<code>:per-line-prefix</code>の両方が使用されたときはエラーが発生します。</p>
+<p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>は動的エクステントを持っており、 プリティプリントのストリームを生成します。 もしそのエクステントの外側において 生成されたプリティプリントのストリームへ 出力しようとしたときの結果は未定義です。</p>
+<p>また、そのエクステントの内側において、 元となる宛先のストリームに直接出力を送信したときの結果は指定されていません。</p>
+<h2 id="参考">参考</h2>
+<p><code>pprint-pop</code>, <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>, 22.3.5.2. チルダ<code>&lt;</code>: 論理ブロック</p>
+<h2 id="備考">備考</h2>
+<p><code>*print-pretty*</code>の値が<a href="5.3.nil-variable.html"><code>nil</code></a>のときに <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>マクロを使用するひとつの理由は、 ドットリストのチェックを行うということ、 また同様に（<code>pprint-pop</code>によって） <a href="22.4.print-level.html"><code>*print-level*</code></a>か<a href="22.4.print-level.html"><code>*print-length*</code></a>を超過したかどうかの チェックを行うということです。</p>
+<p>循環と共有の検出は、プリティプリンターによって 要求された出力を二回行うことで実現します。 最初の実行では循環と共有を検出し、実際の文字の出力は抑制されます。 二回目の実行では、 <code>#n=</code>と<code>#n#</code>のマークを適切な位置に挿入し、そして文字を出力します。 これが、なぜ副作用を制限する必要があるかという理由です。 この制限に従うと、 <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>のボディ部<em>form</em>において、 リストの内容を出力していく際に 通常の<a href="14.2.pop.html"><code>pop</code></a>のかわりに<code>pprint-pop</code>を使用することにより、 実装が容易になります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

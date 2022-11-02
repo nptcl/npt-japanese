@@ -41,6 +41,7 @@
 ```lisp
 (width (make-instance 'character-picture-class :char #\Q)
        :font 'baskerville :pixel-size 10)
+```
 
 @end
 

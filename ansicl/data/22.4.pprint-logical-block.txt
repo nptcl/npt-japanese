@@ -39,10 +39,125 @@ Macro `PPRINT-LOGICAL-BLOCK`
 そのストリームの値は*stream-symbol*によって示された変数の値になります。
 *form*を実行している間、
 その変数には{pretty-printing-stream}が束縛されており、
+そのストリームは出力の配置についての決定を行い、
+その結果を宛先の出力ストリームに送信します。
+標準の印刷関数の全て（例えば{write:link}, {princ:link}, {terpri:link}）は、
+{pretty-printing-stream}へ印刷を出力するために使用できます。
+{pretty-printing-stream}への全ての出力は、
+ただ論理ブロック内にあるもののみ扱われます。
+
+*prefix*は、論理ブロックの開始の前に印刷されるプレフィックスを指定します。
+*per-line-prefix*は、ブロックの前と
+ブロック内の新しい各行の始まりに印刷されるプレフィックスを指定します。
+`:prefix`と`:per-line-prefix`引数は、互いに排他的です。
+もし`:prefix`と`:per-line-prefix`がどちらも指定されなかったら、
+*prefix*が空文字であると仮定されます。
+
+*suffix*は、ちょうど論理ブロックのあとに
+印刷されるサフィックスを指定します。
+
+*object*は普通はリストであり、
+ボディ部である*form*において印刷のために使用されます。
+もし*object*がリストではなかったとき、
+それは{write:link}によって印刷されます
+（これにより、不正な引数に直面しても
+堅牢な印刷関数を簡単に書くことができます）。
+もし{*print-circle*:link}が{nil!variable:link}ではなく、
+*object*がコンスへ循環（あるいは共有）した参照があったとき、
+適切な`#n#`という印が印刷されます
+（これにより、循環と共有の省略形を完全にサポートした
+印刷関数を簡単に書くことができます）。
+もし{*print-level*:link}が{nil!variable:link}ではなく、
+論理ブロックが、複数の論理ブロック内において
+動的にネストされた深さが{*print-level*:link}より大きいとき、
+`#`が印刷されます。
+（これにより、深さの省略形を完全にサポートした
+印刷関数を簡単に書くことができます）。
+
+もし上記の3つの状況のどれかが生じたとき、
+示された出力が*stream-symbol*上に印刷され、
+ボディ部の*form*は`:prefix`と`:suffix`の印刷とともにスキップされます
+（ボディ部の*form*がリストの印刷を担当しないときは、
+引数*object*に{nil!variable:link}指定することで、
+上記の最初の2つのテストをオフにすることができます）。
+
+さらに{pprint-logical-block:link}の引数*object*は、
+標準印刷関数（{write:link}, {print:link}, {princ:link}, {pprint:link}や、
+標準の{format-directive}の`~A`と`~S`（そして`~W`も）の引数と同様に）
+（必要であれば）循環と要求のチェックが全てにおいて行われます。
+しかし、そのようなチェックは
+{write-line:link}, {write-string:link}, そして{write-char:link}の引数か、
+{format:link}によるリテラルテキストの出力については行われません。
+これらの結果から、
+もし何らかのリテラルテキストを出力する際に
+循環と共有のチェックをして欲しくないときは、
+後者の関数のうちのひとつを使用するべきです。
+
+{pprint-logical-block:link}のボディ部である*form*は、
+周囲の環境上において何も副作用を実施するべきではありません。
+例えば、そのスコープ内において束縛されていない変数に代入してはいけません。
 
 
+## {examples}
 
-TODO
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*print-circle*:link},
+{*print-level*:link}
+
+
+## {exceptional-situations}
+
+`:suffix`, `:prefix`, `:per-line-prefix`のどれかが指定されたものの
+文字列に評価されなかったときは型{type-error:link}のエラーが発生します。
+
+`:prefix`と`:per-line-prefix`の両方が使用されたときはエラーが発生します。
+
+{pprint-logical-block:link}は動的エクステントを持っており、
+{pretty-printing-stream}を生成します。
+もしそのエクステントの外側において
+ 生成された{pretty-printing-stream}へ
+出力しようとしたときの結果は未定義です。
+
+また、そのエクステントの内側において、
+元となる宛先のストリームに直接出力を送信したときの結果は指定されていません。
+
+
+## {see-also}
+
+{pprint-pop:link},
+{pprint-exit-if-list-exhausted:link},
+{22.3.5.2:ab}
+
+
+## {notes}
+
+{*print-pretty*:link}の値が{nil!variable:link}のときに
+{pprint-logical-block:link}マクロを使用するひとつの理由は、
+ドットリストのチェックを行うということ、
+また同様に（{pprint-pop:link}によって）
+{*print-level*:link}か{*print-length*:link}を超過したかどうかの
+チェックを行うということです。
+
+循環と共有の検出は、プリティプリンターによって
+要求された出力を二回行うことで実現します。
+最初の実行では循環と共有を検出し、実際の文字の出力は抑制されます。
+二回目の実行では、
+`#n=`と`#n#`のマークを適切な位置に挿入し、そして文字を出力します。
+これが、なぜ副作用を制限する必要があるかという理由です。
+この制限に従うと、
+{pprint-logical-block:link}のボディ部*form*において、
+リストの内容を出力していく際に
+通常の{pop:link}のかわりに{pprint-pop:link}を使用することにより、
+実装が容易になります。
 
 @end
 

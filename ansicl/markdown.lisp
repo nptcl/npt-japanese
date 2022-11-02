@@ -10,8 +10,8 @@
 (defun check-code3-p (x)
   (cons-symbol-p x 'code3))
 
-(defun check-bold-p (x)
-  (cons-symbol-p x 'bold))
+(defun check-strong-p (x)
+  (cons-symbol-p x 'strong))
 
 (defun check-chapter-p (x)
   (cons-symbol-p x 'chapter))
@@ -120,7 +120,7 @@
 
 (defun position-character-markdown (escapep x str)
   (cond ((check-code1-p str) nil)
-        ((check-bold-p str) nil)
+        ((check-strong-p str) nil)
         ((stringp str)
          (position-escape escapep x str))
         (t (error "Invalid object, ~S." str))))
@@ -157,14 +157,14 @@
         (mapcan-character-markdown key left right escapep x)))
     list))
 
-(defun parensis-bold-markdown (list)
-  (parensis-character-markdown 'bold #\* #\* t list))
+(defun parensis-strong-markdown (list)
+  (parensis-character-markdown 'strong #\* #\* t list))
 
 (defun parensis-code1-markdown (list)
   (parensis-character-markdown 'code1 #\` #\` nil list))
 
 (defun split-parensis-markdown (list)
-  (parensis-bold-markdown
+  (parensis-strong-markdown
     (parensis-code1-markdown list)))
 
 

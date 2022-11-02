@@ -719,9 +719,9 @@
 (dictionary 16.2.make-string)
 
 ;; Chapter 17
-(index 17.3 "シーケンスの辞書" "Sequences Dictionary")
 (index 17.2 "テスト関数のルール" "Rules about Test Functions")
 (text 17.2.1 "2つの引数のテスト" "Satisfying a Two-Argument Test")
+(index 17.3 "シーケンスの辞書" "Sequences Dictionary")
 (dictionary 17.3.sequence)
 (dictionary 17.3.copy-seq)
 (dictionary 17.3.elt)
@@ -894,6 +894,7 @@
 (text 22.2.1.1 "出力の配置の動的制御" "Dynamic Control of the Arrangement of Output")
 (text 22.3 "書式出力" "Formatted Output")
 (text 22.3.5 "`FORMAT`プリティプリンター操作" "FORMAT Pretty Printer Operations")
+(text 22.3.5.2 "チルダ`<`: 論理ブロック" "Tilde Less-Than-Sign: Logical Block")
 (text 22.3.5.3 "チルダ`I`: インデント" "Tilde I: Indent")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
 (dictionary 22.4.copy-pprint-dispatch)
@@ -912,6 +913,7 @@
 (dictionary 22.4.write)
 (dictionary 22.4.prin1)  ;; delete
 (dictionary 22.4.print)  ;; delete
+(dictionary 22.4.pprint)  ;; delete
 (dictionary 22.4.princ)  ;; delete
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.prin1-to-string) ;; delete

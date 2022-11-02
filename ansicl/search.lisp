@@ -21,7 +21,7 @@
       (dolist (x (cddr cdr))
         (princ x)
         (terpri)))
-    (bold
+    (strong
       (search-object (car cdr)))))
 
 (defun search-object (x)

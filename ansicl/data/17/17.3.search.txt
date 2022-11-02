@@ -86,7 +86,7 @@ Function `SEARCH`
 
 ## {notes}
 
-The :test-not argument is deprecated.
+`:test-not`パラメーターは非推奨です。
 
 @end
 

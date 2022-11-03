@@ -15,7 +15,7 @@ Function `PPRINT-EXIT-IF-LIST-EXHAUSTED`
 
 ## {syntax}
 
-`pprint-exit-if-list-exhausted` <引数なし> => {nil!variable:link}
+`pprint-exit-if-list-exhausted` `<引数なし>` => {nil!variable:link}
 
 
 ## {arguments-and-values}

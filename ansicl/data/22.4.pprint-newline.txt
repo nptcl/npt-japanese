@@ -1,0 +1,131 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PPRINT-NEWLINE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-newline
+@name: pprint-newline
+@type: function
+
+Function `PPRINT-NEWLINE`
+
+
+## {syntax}
+
+`pprint-newline` *kind* `&optional` *stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*kind* - `:linear`, `:fill`, `:miser`, `:mandatory`のうちのひとつ  
+*stream* - ストリーム指定子。デフォルトは標準出力。
+
+
+## {description}
+
+もし*stream*が{pretty-printing-stream}であり、
+{*print-pretty*:link}の値が*true*のとき、
+下記の示す適切な状況である場合は改行が挿入されます。
+それ以外のときは、{pprint-newline:link}は効果を持ちません。
+
+*kind*は{conditional-newline}のスタイルを指定します。
+このパラメーターは下記のように扱われます。
+
+- `:linear`
+  - 「線形スタイル」の{conditional-newline}を指定します。
+    もし直前に含まれるセクションが一行で印刷できないときのみ、
+    改行が挿入されます。
+    その結果、論理ブロック内のすべての線形スタイルの{conditional-newline}で
+    改行が行われるか、あるいは全く改行されないかのどちらかになります。
+
+- `:miser`
+  - 「マイザースタイル」の{conditional-newline}を指定します。
+    もし直前に含まれるセクションが一行で印刷できず、
+    かつ直前に含まれる論理ブロックが
+    マイザースタイルの効果を持っているときのみ、
+    改行が挿入されます。
+    その結果、マイザースタイルの{conditional-newline}は
+    線形スタイルの{conditional-newline}と似た動作をしますが、
+    ただマイザースタイルの効果を持ったもののみ出力を行います。
+    論理ブロックのマイザースタイルは、
+    論理ブロックの開始位置が左マージンから
+    {*print-miser-width*:link} `ems`以下のときのみ効果を持ちます。
+
+- `:fill`
+  - 「フィルスタイル」の{conditional-newline}を指定します。
+    もし下記のいずれかの状況の場合に改行が挿入されます。
+      - (a) 後に続くセクションが現在の行の終わりに印刷できないとき。
+      - (b) 前のセクションが一行で印刷できないとき。
+      - (c) 直前に含まれるセクションが一行で印刷できず、
+        かつ直前に含まれる論理ブロックがマイザースタイルの効果を持っている。
+  - もし論理ブロックがフィルスタイルの{conditional-newline}によって
+    いくつかのサブセクションに分割されるとき、
+    基本的な効果は、論理ブロックが各行にできるだけ多くの
+    サブセクションを持つように印刷することです。
+
+- `:mandatory`
+  - 「強制スタイル」の{conditional-newline}を指定します。
+    改行は常に挿入されます。
+    これは暗に一行で印刷できるセクションが存在せず、
+    したがってこれらのセクション内のにある
+    線形スタイルの{conditional-newline}が
+    改行を挿入するトリガーになることを意味します。
+
+何らかのタイプの{conditional-newline}によって改行が挿入されたとき、
+先行する{conditional-newline}の直前の空白は出力から省かれ、
+次の行の先頭にインデントが挿入されます。
+標準では、インデントは
+ 直前に含まれる論理ブロック内の最初の文字と同じ水平位置から始まるように、
+次の行の開始位置を調整します
+（インデントは{pprint-indent:link}によって変更できます）。
+
+条件付きではない改行は様々あり、その出力を行うことができます
+（例えば{terpri:link}や文字列に含まれる改行文字の出力など）。
+強制スタイルの{conditional-newline}と同様に、
+これを含むセクションが一行に印刷されないようにすることができます。
+一般的に、条件付きではない改行に遭遇したとき、
+前に現れる空白を抑制し、続くインデントを行わずに出力します。
+しかしもし`:per-line-prefix`が指定されたとき
+（{pprint-logical-block:link}を参照）、
+このプレフィックスは改行がどのように発生しても常に表示されます。
+
+
+## {examples}
+
+{22.2.2:ab}
+
+
+## {side-effects}
+
+*stream*へ出力を行います。
+
+
+## {affected-by}
+
+{*print-pretty*:link},
+{*print-miser-width*:link}。
+論理ブロックに含まれる存在。
+改行と{conditional-newline}の場所。
+
+
+## {exceptional-situations}
+
+*kind*が`:linear`, `:fill`, `:miser`, `:mandatory`のどれでもないときは、
+型{type-error:link}のエラーが発生します。
+
+
+## {see-also}
+
+{22.3.5.1:ab},
+{22.2.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

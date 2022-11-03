@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function PPRINT-NEWLINE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function PPRINT-NEWLINE</h1>
+</header>
+<p><a href="22.4.html">UP</a></p>
+<hr />
+<h1 id="function-pprint-newline">Function <strong>PPRINT-NEWLINE</strong></h1>
+<p>Function <code>PPRINT-NEWLINE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>pprint-newline</code> <em>kind</em> <code>&amp;optional</code> <em>stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>kind</em> - <code>:linear</code>, <code>:fill</code>, <code>:miser</code>, <code>:mandatory</code>のうちのひとつ<br />
+<em>stream</em> - ストリーム指定子。デフォルトは標準出力。</p>
+<h2 id="定義">定義</h2>
+<p>もし<em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>の値が<em>true</em>のとき、 下記の示す適切な状況である場合は改行が挿入されます。 それ以外のときは、<a href="22.4.pprint-newline.html"><code>pprint-newline</code></a>は効果を持ちません。</p>
+<p><em>kind</em>は条件付き改行のスタイルを指定します。 このパラメーターは下記のように扱われます。</p>
+<ul>
+<li><code>:linear</code>
+<ul>
+<li>「線形スタイル」の条件付き改行を指定します。 もし直前に含まれるセクションが一行で印刷できないときのみ、 改行が挿入されます。 その結果、論理ブロック内のすべての線形スタイルの条件付き改行で 改行が行われるか、あるいは全く改行されないかのどちらかになります。</li>
+</ul></li>
+<li><code>:miser</code>
+<ul>
+<li>「マイザースタイル」の条件付き改行を指定します。 もし直前に含まれるセクションが一行で印刷できず、 かつ直前に含まれる論理ブロックが マイザースタイルの効果を持っているときのみ、 改行が挿入されます。 その結果、マイザースタイルの条件付き改行は 線形スタイルの条件付き改行と似た動作をしますが、 ただマイザースタイルの効果を持ったもののみ出力を行います。 論理ブロックのマイザースタイルは、 論理ブロックの開始位置が左マージンから <code>*print-miser-width*</code> <code>ems</code>以下のときのみ効果を持ちます。</li>
+</ul></li>
+<li><code>:fill</code>
+<ul>
+<li>「フィルスタイル」の条件付き改行を指定します。 もし下記のいずれかの状況の場合に改行が挿入されます。
+<ul>
+<li><ol type="a">
+<li>後に続くセクションが現在の行の終わりに印刷できないとき。</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>前のセクションが一行で印刷できないとき。</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>直前に含まれるセクションが一行で印刷できず、 かつ直前に含まれる論理ブロックがマイザースタイルの効果を持っている。</li>
+</ol></li>
+</ul></li>
+<li>もし論理ブロックがフィルスタイルの条件付き改行によって いくつかのサブセクションに分割されるとき、 基本的な効果は、論理ブロックが各行にできるだけ多くの サブセクションを持つように印刷することです。</li>
+</ul></li>
+<li><code>:mandatory</code>
+<ul>
+<li>「強制スタイル」の条件付き改行を指定します。 改行は常に挿入されます。 これは暗に一行で印刷できるセクションが存在せず、 したがってこれらのセクション内のにある 線形スタイルの条件付き改行が 改行を挿入するトリガーになることを意味します。</li>
+</ul></li>
+</ul>
+<p>何らかのタイプの条件付き改行によって改行が挿入されたとき、 先行する条件付き改行の直前の空白は出力から省かれ、 次の行の先頭にインデントが挿入されます。 標準では、インデントは 直前に含まれる論理ブロック内の最初の文字と同じ水平位置から始まるように、 次の行の開始位置を調整します （インデントは<a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>によって変更できます）。</p>
+<p>条件付きではない改行は様々あり、その出力を行うことができます （例えば<a href="21.2.terpri.html"><code>terpri</code></a>や文字列に含まれる改行文字の出力など）。 強制スタイルの条件付き改行と同様に、 これを含むセクションが一行に印刷されないようにすることができます。 一般的に、条件付きではない改行に遭遇したとき、 前に現れる空白を抑制し、続くインデントを行わずに出力します。 しかしもし<code>:per-line-prefix</code>が指定されたとき （<a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>を参照）、 このプレフィックスは改行がどのように発生しても常に表示されます。</p>
+<h2 id="例文">例文</h2>
+<p>22.2.2. プリティプリンターの使用例</p>
+<h2 id="副作用">副作用</h2>
+<p><em>stream</em>へ出力を行います。</p>
+<h2 id="影響">影響</h2>
+<p><code>*print-pretty*</code>, <code>*print-miser-width*</code>。 論理ブロックに含まれる存在。 改行と条件付き改行の場所。</p>
+<h2 id="例外">例外</h2>
+<p><em>kind</em>が<code>:linear</code>, <code>:fill</code>, <code>:miser</code>, <code>:mandatory</code>のどれでもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p>22.3.5.1. チルダ<code>_</code>: {conditional-newline}, 22.2.2. プリティプリンターの使用例</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

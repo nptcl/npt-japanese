@@ -480,6 +480,7 @@
 (setf (gethash "PPRINT-INDENT" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-LINEAR" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-LOGICAL-BLOCK" *name*) '("MACRO"))
+(setf (gethash "PPRINT-NEWLINE" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-TABULAR" *name*) '("FUNCTION"))
 (setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
 (setf (gethash "PROCLAIM" *name*) '("FUNCTION"))
@@ -22952,8 +22953,8 @@
 (setf (gethash '("PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "PPRINT-DISPATCH" *table*))
 (setf (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-EXIT-IF-LIST-EXHAUSTED"))
-    (CHAPTER ("## 構文") 2 (CODE1 "pprint-exit-if-list-exhausted") " <引数なし> => "
-     (CODE1 "nil"))
+    (CHAPTER ("## 構文") 2 (CODE1 "pprint-exit-if-list-exhausted") " " (CODE1 "<引数なし>")
+     " => " (CODE1 "nil"))
     (CHAPTER ("## 引数と戻り値") 2 "なし。")
     (CHAPTER ("## 定義") 2 (STRONG "list") "レキシカル環境の現在の論理ブロックに渡された" (STRONG "list")
      "が使い果たされたかどうかをテストします。" "22.2.1.1. 出力の配置の動的制御をご確認ください。" "もしこの" (STRONG "list") "が"
@@ -23167,6 +23168,50 @@
      (STRONG "form") "において、" "リストの内容を出力していく際に" "通常の" (CODE1 "pop") "のかわりに"
      (CODE1 "pprint-pop") "を使用することにより、" "実装が容易になります。")))
 (setf (gethash '("PPRINT-LOGICAL-BLOCK" . "MACRO") *table*) (gethash "PPRINT-LOGICAL-BLOCK" *table*))
+(setf (gethash "PPRINT-NEWLINE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-NEWLINE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "pprint-newline") " " (STRONG "kind") " "
+     (CODE1 "&optional") " " (STRONG "stream") " => " (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "kind") " - " (CODE1 ":linear") ", " (CODE1 ":fill")
+     ", " (CODE1 ":miser") ", " (CODE1 ":mandatory") "のうちのひとつ" EOL1 (STRONG "stream")
+     " - ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 "もし" (STRONG "stream") "がプリティプリントのストリームであり、"
+     (CODE1 "*print-pretty*") "の値が" (STRONG "true") "のとき、" "下記の示す適切な状況である場合は改行が挿入されます。"
+     "それ以外のときは、" (CODE1 "pprint-newline") "は効果を持ちません。" EOL2 (STRONG "kind")
+     "は条件付き改行のスタイルを指定します。" "このパラメーターは下記のように扱われます。" EOL2 "- " (CODE1 ":linear")
+     "  - 「線形スタイル」の条件付き改行を指定します。" "    もし直前に含まれるセクションが一行で印刷できないときのみ、" "    改行が挿入されます。"
+     "    その結果、論理ブロック内のすべての線形スタイルの条件付き改行で" "    改行が行われるか、あるいは全く改行されないかのどちらかになります。" EOL2
+     "- " (CODE1 ":miser") "  - 「マイザースタイル」の条件付き改行を指定します。" "    もし直前に含まれるセクションが一行で印刷できず、"
+     "    かつ直前に含まれる論理ブロックが" "    マイザースタイルの効果を持っているときのみ、" "    改行が挿入されます。"
+     "    その結果、マイザースタイルの条件付き改行は" "    線形スタイルの条件付き改行と似た動作をしますが、"
+     "    ただマイザースタイルの効果を持ったもののみ出力を行います。" "    論理ブロックのマイザースタイルは、"
+     "    論理ブロックの開始位置が左マージンから" "    " (CODE1 "*print-miser-width*") " " (CODE1 "ems")
+     "以下のときのみ効果を持ちます。" EOL2 "- " (CODE1 ":fill") "  - 「フィルスタイル」の条件付き改行を指定します。"
+     "    もし下記のいずれかの状況の場合に改行が挿入されます。" "      - (a) 後に続くセクションが現在の行の終わりに印刷できないとき。"
+     "      - (b) 前のセクションが一行で印刷できないとき。" "      - (c) 直前に含まれるセクションが一行で印刷できず、"
+     "        かつ直前に含まれる論理ブロックがマイザースタイルの効果を持っている。" "  - もし論理ブロックがフィルスタイルの条件付き改行によって"
+     "    いくつかのサブセクションに分割されるとき、" "    基本的な効果は、論理ブロックが各行にできるだけ多くの"
+     "    サブセクションを持つように印刷することです。" EOL2 "- " (CODE1 ":mandatory")
+     "  - 「強制スタイル」の条件付き改行を指定します。" "    改行は常に挿入されます。" "    これは暗に一行で印刷できるセクションが存在せず、"
+     "    したがってこれらのセクション内のにある" "    線形スタイルの条件付き改行が" "    改行を挿入するトリガーになることを意味します。" EOL2
+     "何らかのタイプの条件付き改行によって改行が挿入されたとき、" "先行する条件付き改行の直前の空白は出力から省かれ、" "次の行の先頭にインデントが挿入されます。"
+     "標準では、インデントは" " 直前に含まれる論理ブロック内の最初の文字と同じ水平位置から始まるように、" "次の行の開始位置を調整します" "（インデントは"
+     (CODE1 "pprint-indent") "によって変更できます）。" EOL2 "条件付きではない改行は様々あり、その出力を行うことができます" "（例えば"
+     (CODE1 "terpri") "や文字列に含まれる改行文字の出力など）。" "強制スタイルの条件付き改行と同様に、"
+     "これを含むセクションが一行に印刷されないようにすることができます。" "一般的に、条件付きではない改行に遭遇したとき、"
+     "前に現れる空白を抑制し、続くインデントを行わずに出力します。" "しかしもし" (CODE1 ":per-line-prefix") "が指定されたとき" "（"
+     (CODE1 "pprint-logical-block") "を参照）、" "このプレフィックスは改行がどのように発生しても常に表示されます。")
+    (CHAPTER ("## 例文") 2 "22.2.2. プリティプリンターの使用例")
+    (CHAPTER ("## 副作用") 2 (STRONG "stream") "へ出力を行います。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*print-pretty*") "," (CODE1 "*print-miser-width*") "。"
+     "論理ブロックに含まれる存在。" "改行と条件付き改行の場所。")
+    (CHAPTER ("## 例外") 2 (STRONG "kind") "が" (CODE1 ":linear") ", " (CODE1 ":fill") ", "
+     (CODE1 ":miser") ", " (CODE1 ":mandatory") "のどれでもないときは、" "型" (CODE1 "type-error")
+     "のエラーが発生します。")
+    (CHAPTER ("## 参考") 2 "22.3.5.1. チルダ" (CODE1 "_") ": {conditional-newline},"
+     "22.2.2. プリティプリンターの使用例")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PPRINT-NEWLINE" . "FUNCTION") *table*) (gethash "PPRINT-NEWLINE" *table*))
 (setf (gethash "PPRINT-TABULAR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-FILL") ", " (CODE1 "PPRINT-LINEAR") ", "
      (CODE1 "PPRINT-TABULAR"))

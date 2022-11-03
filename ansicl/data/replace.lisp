@@ -148,6 +148,7 @@
 (replace pprint-dispatch-table "`pprint`ディスパッチテーブル")
 (replace initial-pprint-dispatch-table "{pprint-dispatch-table}の初期値")
 (replace pretty-printing-stream "プリティプリントのストリーム")
+(replace conditional-newline "条件付き改行")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

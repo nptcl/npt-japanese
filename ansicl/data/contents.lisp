@@ -892,8 +892,11 @@
 (text 22.2 "Lispプリティプリンター" "The Lisp Pretty Printer")
 (text 22.2.1 "プリティプリンターの説明" "Pretty Printer Concepts")
 (text 22.2.1.1 "出力の配置の動的制御" "Dynamic Control of the Arrangement of Output")
+(text 22.2.2 "プリティプリンターの使用例" "Examples of using the Pretty Printer")
 (text 22.3 "書式出力" "Formatted Output")
 (text 22.3.5 "`FORMAT`プリティプリンター操作" "FORMAT Pretty Printer Operations")
+(text 22.3.5.1 "チルダ`_`: {conditional-newline}"
+      "Tilde Underscore: Conditional Newline")
 (text 22.3.5.2 "チルダ`<`: 論理ブロック" "Tilde Less-Than-Sign: Logical Block")
 (text 22.3.5.3 "チルダ`I`: インデント" "Tilde I: Indent")
 (index 22.4 "プリンターの辞書" "Printer Dictionary")
@@ -926,7 +929,7 @@
 (dictionary 22.4.print-gensym)
 (dictionary 22.4.print-level)
 (dictionary 22.4.print-lines)
-(dictionary 22.4.print-miser-width)
+(dictionary 22.4.*print-miser-width*)  ;; rename
 (dictionary 22.4.*print-pprint-dispatch*)  ;; rename
 (dictionary 22.4.*print-pretty*)  ;; rename
 (dictionary 22.4.print-readably)

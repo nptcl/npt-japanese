@@ -187,10 +187,10 @@
 <p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>は動的エクステントを持っており、 プリティプリントのストリームを生成します。 もしそのエクステントの外側において 生成されたプリティプリントのストリームへ 出力しようとしたときの結果は未定義です。</p>
 <p>また、そのエクステントの内側において、 元となる宛先のストリームに直接出力を送信したときの結果は指定されていません。</p>
 <h2 id="参考">参考</h2>
-<p><code>pprint-pop</code>, <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>, 22.3.5.2. チルダ<code>&lt;</code>: 論理ブロック</p>
+<p><a href="22.4.pprint-pop.html"><code>pprint-pop</code></a>, <a href="22.4.pprint-exit-if-list-exhausted.html"><code>pprint-exit-if-list-exhausted</code></a>, 22.3.5.2. チルダ<code>&lt;</code>: 論理ブロック</p>
 <h2 id="備考">備考</h2>
-<p><code>*print-pretty*</code>の値が<a href="5.3.nil-variable.html"><code>nil</code></a>のときに <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>マクロを使用するひとつの理由は、 ドットリストのチェックを行うということ、 また同様に（<code>pprint-pop</code>によって） <a href="22.4.print-level.html"><code>*print-level*</code></a>か<a href="22.4.print-level.html"><code>*print-length*</code></a>を超過したかどうかの チェックを行うということです。</p>
-<p>循環と共有の検出は、プリティプリンターによって 要求された出力を二回行うことで実現します。 最初の実行では循環と共有を検出し、実際の文字の出力は抑制されます。 二回目の実行では、 <code>#n=</code>と<code>#n#</code>のマークを適切な位置に挿入し、そして文字を出力します。 これが、なぜ副作用を制限する必要があるかという理由です。 この制限に従うと、 <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>のボディ部<em>form</em>において、 リストの内容を出力していく際に 通常の<a href="14.2.pop.html"><code>pop</code></a>のかわりに<code>pprint-pop</code>を使用することにより、 実装が容易になります。</p>
+<p><code>*print-pretty*</code>の値が<a href="5.3.nil-variable.html"><code>nil</code></a>のときに <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>マクロを使用するひとつの理由は、 ドットリストのチェックを行うということ、 また同様に（<a href="22.4.pprint-pop.html"><code>pprint-pop</code></a>によって） <a href="22.4.print-level.html"><code>*print-level*</code></a>か<a href="22.4.print-level.html"><code>*print-length*</code></a>を超過したかどうかの チェックを行うということです。</p>
+<p>循環と共有の検出は、プリティプリンターによって 要求された出力を二回行うことで実現します。 最初の実行では循環と共有を検出し、実際の文字の出力は抑制されます。 二回目の実行では、 <code>#n=</code>と<code>#n#</code>のマークを適切な位置に挿入し、そして文字を出力します。 これが、なぜ副作用を制限する必要があるかという理由です。 この制限に従うと、 <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>のボディ部<em>form</em>において、 リストの内容を出力していく際に 通常の<a href="14.2.pop.html"><code>pop</code></a>のかわりに<a href="22.4.pprint-pop.html"><code>pprint-pop</code></a>を使用することにより、 実装が容易になります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

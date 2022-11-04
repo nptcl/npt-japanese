@@ -481,6 +481,7 @@
 (setf (gethash "PPRINT-LINEAR" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-LOGICAL-BLOCK" *name*) '("MACRO"))
 (setf (gethash "PPRINT-NEWLINE" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT-POP" *name*) '("LOCAL-MACRO"))
 (setf (gethash "PPRINT-TABULAR" *name*) '("FUNCTION"))
 (setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
 (setf (gethash "PROCLAIM" *name*) '("FUNCTION"))
@@ -23212,6 +23213,46 @@
      "22.2.2. プリティプリンターの使用例")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("PPRINT-NEWLINE" . "FUNCTION") *table*) (gethash "PPRINT-NEWLINE" *table*))
+(setf (gethash "PPRINT-POP" *table*)
+  '((CHAPTER NIL 0 "Local Macro " (CODE1 "PPRINT-POP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "pprint-pop") " " (CODE1 "<引数なし>") " => "
+     (STRONG "object"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - レキシカルな現在の論理ブロック内における" "印刷されるリストの要素か、"
+     (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 "レキシカルな現在の論理ブロック内における印刷されるリストの要素のひとつを" (CODE1 "pop") "し、"
+     "下記に定義に従い" (CODE1 "*print-length*") "と" (CODE1 "*print-circle*") "を処理します。" EOL2
+     (CODE1 "pprint-pop") "が呼び出されるたびに、" "レキシカルな現在の論理ブロックへ通されたリストの次の値を" (CODE1 "pop") "し、"
+     "その値を返却します。" "しかし、実行する前に下記の3つのテストを行います。" EOL2 "- もし残りの" (CODE1 "list")
+     "がリストではなかったとき、" (CODE1 ".") "と続いて" (CODE1 "list") "の残りが印刷されます"
+     "  （これにより不正な引数に直面しても堅牢な印刷関数を簡単に書くことができます）。" "- もし" (CODE1 "*print-length*") "が"
+     (CODE1 "nil") "ではなく、" "  直前の論理ブロックに含まれる中で" (CODE1 "pprint-pop") "が" "  すでに"
+     (CODE1 "*print-length*") "の回数分呼び出されたとき、" (CODE1 "...") "を印刷します" "  （これにより"
+     (CODE1 "*print-length*") "を適切に扱う印刷関数を簡単に書くことができます）。" "- もし" (CODE1 "*print-circle*")
+     "が" (CODE1 "nil") "ではなく、" "  のこりのリストが循環か共有の参照であるとき、" "  " (CODE1 ".") "が印刷され続けて適切な"
+     (CODE1 "#n#") "の印が印刷されます" "  （これは、リスト内の" (CODE1 "cdr") "の部分に循環か共有があったということです）。" EOL2
+     "もし上記3つの状態のどれかが生じたとき、" "指示された出力が" "直前に含まれる" (CODE1 "pprint-logical-block")
+     "によって生成された" "プリティプリントのストリームへ出力され、" "直前に含まれる" (CODE1 "pprint-logical-block") "の実行は"
+     "サフィックスの出力を除いて終了されます。" EOL2 "もし" (CODE1 "pprint-logical-block") "が" "引数の"
+     (CODE1 "list") "に" (CODE1 "nil") "を与えられたとき、" "リストの処理はできませんが、" (CODE1 "pprint-pop")
+     "はまだ" (CODE1 "*print-length*") "の" "サポートを得るために使うことができます。" "このような状況では、"
+     "上記の最初のテストと3つめのテストは実施できず、" (CODE1 "pprint-pop") "は常に" (CODE1 "nil") "を返却します。"
+     "22.2.2. プリティプリンターの使用例の、特に" (CODE1 "pprint-vector") "の例をご確認ください" EOL2 "グローバル環境において"
+     (CODE1 "pprint-pop") "が" (CODE1 "fbound") "かどうかは" "実装依存です。" "しかし、グローバル環境で"
+     (CODE1 "fbound") "にある" (CODE1 "COMMON-LISP") "パッケージ内の" (CODE1 "pprint-pop")
+     "と同じシンボルを" "再定義したりシャドウすることは制限されています。" (CODE1 "pprint-logical-block") "の外側で"
+     (CODE1 "pprint-pop") "を使用しようとしたときの結果は未定義です。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 副作用") 2 "現在の論理ブロックにレキシカルで関連づいたプリティプリントのストリームへ" "出力が生じるかもしれません。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*print-length*") "," (CODE1 "*print-circle*"))
+    (CHAPTER ("## 例外") 2 (CODE1 "pprint-logical-block") "フォームのレキシカルではない場所で"
+     (CODE1 "pprint-pop") "が使用されたときは、" "（マクロ展開時か実行時かのどちらかで）エラーが発生します。" EOL2
+     (CODE1 "pprint-pop") "が、" (CODE1 "pprint-logical-block") "の"
+     "動的エクステントの外側で実行されたときの結果は未定義です。")
+    (CHAPTER ("## 参考") 2 (CODE1 "pprint-exit-if-list-exhausted") ","
+     (CODE1 "pprint-logical-block"))
+    (CHAPTER ("## 備考") 2 (CODE1 "pprint-pop") "を呼び出す前に"
+     (CODE1 "pprint-exit-if-list-exhausted") "を呼ぶという状況は" "頻繁にあります。")))
+(setf (gethash '("PPRINT-POP" . "LOCAL-MACRO") *table*) (gethash "PPRINT-POP" *table*))
 (setf (gethash "PPRINT-TABULAR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-FILL") ", " (CODE1 "PPRINT-LINEAR") ", "
      (CODE1 "PPRINT-TABULAR"))

@@ -1,0 +1,114 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Local Macro PPRINT-POP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-pop
+@name: pprint-pop
+@type: local-macro
+
+Local Macro `PPRINT-POP`
+
+
+## {syntax}
+
+`pprint-pop` `<引数なし>` => *object*
+
+
+## {arguments-and-values}
+
+*object* - レキシカルな現在の論理ブロック内における
+印刷されるリストの要素か、{nil!variable:link}
+
+
+## {description}
+
+レキシカルな現在の論理ブロック内における印刷されるリストの要素のひとつを`pop`し、
+下記に定義に従い{*print-length*:link}と{*print-circle*:link}を処理します。
+
+{pprint-pop:link}が呼び出されるたびに、
+レキシカルな現在の論理ブロックへ通されたリストの次の値を`pop`し、
+その値を返却します。
+しかし、実行する前に下記の3つのテストを行います。
+
+- もし残りの`list`がリストではなかったとき、`.`と続いて`list`の残りが印刷されます
+  （これにより不正な引数に直面しても堅牢な印刷関数を簡単に書くことができます）。
+- もし{*print-length*:link}が{nil!variable:link}ではなく、
+  直前の論理ブロックに含まれる中で{pprint-pop:link}が
+  すでに{*print-length*:link}の回数分呼び出されたとき、`...`を印刷します
+  （これにより{*print-length*:link}を適切に扱う印刷関数を簡単に書くことができます）。
+- もし{*print-circle*:link}が{nil!variable:link}ではなく、
+  のこりのリストが循環か共有の参照であるとき、
+  `.`が印刷され続けて適切な`#n#`の印が印刷されます
+  （これは、リスト内の`cdr`の部分に循環か共有があったということです）。
+
+もし上記3つの状態のどれかが生じたとき、
+指示された出力が
+直前に含まれる{pprint-logical-block:link}によって生成された
+{pretty-printing-stream}へ出力され、
+直前に含まれる{pprint-logical-block:link}の実行は
+サフィックスの出力を除いて終了されます。
+
+もし{pprint-logical-block:link}が
+引数の`list`に{nil!variable:link}を与えられたとき、
+リストの処理はできませんが、
+{pprint-pop:link}はまだ{*print-length*:link}の
+サポートを得るために使うことができます。
+このような状況では、
+上記の最初のテストと3つめのテストは実施できず、
+{pprint-pop:link}は常に{nil!variable:link}を返却します。
+{22.2.2:ab}の、特に`pprint-vector`の例をご確認ください
+
+グローバル環境において{pprint-pop:link}が`fbound`かどうかは
+{implementation-dependent}です。
+しかし、グローバル環境で`fbound`にある
+`COMMON-LISP`パッケージ内の{pprint-pop:link}と同じシンボルを
+再定義したりシャドウすることは制限されています。
+{pprint-logical-block:link}の外側で
+{pprint-pop:link}を使用しようとしたときの結果は未定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+現在の論理ブロックにレキシカルで関連づいた{pretty-printing-stream}へ
+出力が生じるかもしれません。
+
+
+## {affected-by}
+
+{*print-length*:link},
+{*print-circle*:link}
+
+
+## {exceptional-situations}
+
+{pprint-logical-block:link}フォームのレキシカルではない場所で
+{pprint-pop:link}が使用されたときは、
+（マクロ展開時か実行時かのどちらかで）エラーが発生します。
+
+{pprint-pop:link}が、{pprint-logical-block:link}の
+動的エクステントの外側で実行されたときの結果は未定義です。
+
+
+## {see-also}
+
+{pprint-exit-if-list-exhausted:link},
+{pprint-logical-block:link}
+
+
+## {notes}
+
+{pprint-pop:link}を呼び出す前に
+{pprint-exit-if-list-exhausted:link}を呼ぶという状況は
+頻繁にあります。
+
+@end
+

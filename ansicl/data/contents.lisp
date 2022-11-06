@@ -56,6 +56,7 @@
 (text 2.4.8.12 "シャープサイン A" "Sharpsign A")
 (text 2.4.8.13 "シャープサイン S" "Sharpsign S")
 (text 2.4.8.14 "シャープサイン P" "Sharpsign P")
+(text 2.4.8.20 "シャープサイン `<`" "Sharpsign Less-Than-Sign")
 
 ;; Chapter 3
 (text 3.1 "評価" "Evaluation")
@@ -897,6 +898,7 @@
       "Pretty Print Dispatch Tables")
 (text 22.2.2 "プリティプリンターの使用例" "Examples of using the Pretty Printer")
 (text 22.3 "書式出力" "Formatted Output")
+(index 22.3.4 "`FORMAT`プリンター操作" "FORMAT Printer Operations")
 (text 22.3.5 "`FORMAT`プリティプリンター操作" "FORMAT Pretty Printer Operations")
 (text 22.3.5.1 "チルダ`_`: {conditional-newline}"
       "Tilde Underscore: Conditional Newline")
@@ -917,13 +919,7 @@
 (dictionary 22.4.print-unreadable-object)
 (dictionary 22.4.set-pprint-dispatch)
 (dictionary 22.4.write)
-(dictionary 22.4.prin1)  ;; delete
-(dictionary 22.4.print)  ;; delete
-(dictionary 22.4.pprint)  ;; delete
-(dictionary 22.4.princ)  ;; delete
 (dictionary 22.4.write-to-string)
-(dictionary 22.4.prin1-to-string) ;; delete
-(dictionary 22.4.princ-to-string) ;; delete
 (dictionary 22.4.print-array)
 (dictionary 22.4.*print-base*)  ;; rename
 (dictionary 22.4.*print-radix*)  ;; delete
@@ -931,13 +927,13 @@
 (dictionary 22.4.print-circle)
 (dictionary 22.4.print-escape)
 (dictionary 22.4.*print-gensym*)  ;; rename
-(dictionary 22.4.print-level)
-(dictionary 22.4.print-lines)
+(dictionary 22.4.print-level)  ;; rename
+(dictionary 22.4.*print-lines*)  ;; rename
 (dictionary 22.4.*print-miser-width*)  ;; rename
 (dictionary 22.4.*print-pprint-dispatch*)  ;; rename
 (dictionary 22.4.*print-pretty*)  ;; rename
 (dictionary 22.4.*print-readably*)  ;; rename
-(dictionary 22.4.print-right-margin)
+(dictionary 22.4.*print-right-margin*)  ;; rename
 (dictionary 22.4.print-not-readable)
 (dictionary 22.4.print-not-readable-object)
 (dictionary 22.4.format)
@@ -956,7 +952,7 @@
 (dictionary 23.2.set-macro-character)
 (dictionary 23.2.set-syntax-from-char)
 (dictionary 23.2.read-base)
-(dictionary 23.2.read-default-float-format)
+(dictionary 23.2.*read-default-float-format*)  ;; rename
 (dictionary 23.2.read-eval)
 (dictionary 23.2.read-suppress)
 (dictionary 23.2.*readtable*)  ;; delete

@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET-PPRINT-DISPATCH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.set-pprint-dispatch
+@name: set-pprint-dispatch
+@type: function
+
+Function `SET-PPRINT-DISPATCH`
+
+
+## {syntax}
+
+`set-pprint-dispatch` *type-specifier* *function*
+ `&optional` *priority* *table* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*type-specifier* - 型指定子  
+*function* - 関数か、関数名か、{nil!variable:link}  
+*priority* - 実数。デフォルトは`0`。  
+*table* - {pprint-dispatch-table}。デフォルトは{*print-pprint-dispatch*:link}の値。
+
+
+## {description}
+
+*table*で指定された{pprint-dispatch-table}にエントリーを導入します。
+
+*type-specifier*はエントリーのキーです。
+{set-pprint-dispatch:link}の最初の動作は、
+*type-specifier*に関連付けられた
+以前に存在していたエントリーを削除することです。
+これにより、与えられた{pprint-dispatch-table}内において
+同じ型指定子に関連付けられるエントリーが
+2つになることがあり得ないことを保証します。
+型指定子の同一性は{equal:link}によってテストします。
+
+{pprint-dispatch-table}内の各型指定子にには、
+*function*と*priority*の2つの値が 関連付けられます。
+*function*は2つの引数を受け付ける必要があり、
+最初の引数は出力を送信するストリーム、
+次の引数は印刷するオブジェクトです。
+*function*はオブジェクトをストリームへ
+プリティプリントとして印刷とするべきです。
+*function*はオブジェクトが与えられた*type-specifier*を
+満たすと仮定することができます。
+*function*は{*print-readably*:link}に従うべきです。
+*function*によって返却されるどんな値も無視されます。
+
+*priority*は、オブジェクトがひとつ以上のエントリーと
+マッチするような衝突を解決するための優先順位です。
+
+*function*は{nil!variable:link}であることが許されます。
+このような状況においては、
+{set-pprint-dispatch:link}が返却されたあとは、
+*table*内に*type-specifier*のエントリーが無くなります。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*priority*が実数ではないときは、エラーが発生します。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{pprint-dispatch-table}は
+Lispコードのプリティプリンターを制御するときによく使用され、
+次のような式のフォームによって示される型指定子が使われることが多いです。
+
+```lisp
+(cons car-type cdr-type)
+```
+
+これは対応するオブジェクトが`cons`のセルであり、
+`car`部は*car-type*という型指定子にマッチし、
+`cdr`部は*cdr-type*という型指定子にマッチするようなことを意味しています。
+*cdr-type*は省略することができ、
+そのような場合はデフォルトでは{t!system-class:link}になります。
+
+@end
+

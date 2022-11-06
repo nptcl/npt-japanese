@@ -239,7 +239,7 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">print</span> x)))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> out</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ...)</span></code></pre></div>
-<p><a href="5.3.go.html"><code>go</code></a>が実行されたとき、 最初に<code>print</code>が実行され、 そのあとにタグ<code>out</code>の制御の遷移が完了します。</p>
+<p><a href="5.3.go.html"><code>go</code></a>が実行されたとき、 最初に<a href="22.4.write.html"><code>print</code></a>が実行され、 そのあとにタグ<code>out</code>の制御の遷移が完了します。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> dummy-function </span>(x)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">setq</span> state &#39;running)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">unless</span> (<span class="kw">numberp</span> x) (<span class="kw">throw</span> &#39;abort &#39;not-a-number))</span>

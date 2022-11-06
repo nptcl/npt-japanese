@@ -13,5 +13,48 @@
 Variable `*PRINT-ARRAY*`
 
 
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+配列の印刷についての書式を制御します。
+もしこの値が*false*のとき、
+文字列以外の配列の内容は印刷されません。
+代わりに、配列は`#<`を用いて簡潔なフォームとして印刷され、
+ユーザーがその配列の同一性を確認できるのに十分な情報が表示されます。
+しかし配列の全体の内容は含まれません。
+もしこの値が*true*のとき、
+文字列ではない配列は、
+`#(...)`か、`#*`か、`#nA`の構文で印刷されます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+実装。
+
+
+## {see-also}
+
+{2.4.8.3:ab},
+{2.4.8.20:ab}
+
+
+## {notes}
+
+なし。
+
 @end
 

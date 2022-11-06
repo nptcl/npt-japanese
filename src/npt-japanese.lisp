@@ -474,6 +474,7 @@
 (setf (gethash "POSITION" *name*) '("FUNCTION"))
 (setf (gethash "POSITION-IF" *name*) '("FUNCTION"))
 (setf (gethash "POSITION-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "PPRINT" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-DISPATCH" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-EXIT-IF-LIST-EXHAUSTED" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-FILL" *name*) '("FUNCTION"))
@@ -484,6 +485,11 @@
 (setf (gethash "PPRINT-POP" *name*) '("LOCAL-MACRO"))
 (setf (gethash "PPRINT-TAB" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-TABULAR" *name*) '("FUNCTION"))
+(setf (gethash "PRIN1" *name*) '("FUNCTION"))
+(setf (gethash "PRIN1-TO-STRING" *name*) '("FUNCTION"))
+(setf (gethash "PRINC" *name*) '("FUNCTION"))
+(setf (gethash "PRINC-TO-STRING" *name*) '("FUNCTION"))
+(setf (gethash "PRINT" *name*) '("FUNCTION"))
 (setf (gethash "PRINT-OBJECT" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "PRINT-UNREADABLE-OBJECT" *name*) '("MACRO"))
 (setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
@@ -544,6 +550,7 @@
 (setf (gethash "SET" *name*) '("FUNCTION"))
 (setf (gethash "SET-DIFFERENCE" *name*) '("FUNCTION"))
 (setf (gethash "SET-EXCLUSIVE-OR" *name*) '("FUNCTION"))
+(setf (gethash "SET-PPRINT-DISPATCH" *name*) '("FUNCTION"))
 (setf (gethash "SETF" *name*) '("MACRO"))
 (setf (gethash "SETQ" *name*) '("SPECIAL-FORM"))
 (setf (gethash "SEVENTH" *name*) '("ACCESSOR"))
@@ -701,11 +708,13 @@
 (setf (gethash "WITH-PACKAGE-ITERATOR" *name*) '("MACRO"))
 (setf (gethash "WITH-SIMPLE-RESTART" *name*) '("MACRO"))
 (setf (gethash "WITH-SLOTS" *name*) '("MACRO"))
+(setf (gethash "WRITE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-BYTE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-LINE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-SEQUENCE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-STRING" *name*) '("FUNCTION"))
+(setf (gethash "WRITE-TO-STRING" *name*) '("FUNCTION"))
 (setf (gethash "Y-OR-N-P" *name*) '("FUNCTION"))
 (setf (gethash "YES-OR-NO-P" *name*) '("FUNCTION"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *table*)
@@ -971,7 +980,16 @@
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PACKAGE*" . "VARIABLE") *table*) (gethash "*PACKAGE*" *table*))
 (setf (gethash "*PRINT-ARRAY*" *table*)
-  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-ARRAY*"))))
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-ARRAY*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "配列の印刷についての書式を制御します。" "もしこの値が" (STRONG "false") "のとき、"
+     "文字列以外の配列の内容は印刷されません。" "代わりに、配列は" (CODE1 "#<") "を用いて簡潔なフォームとして印刷され、"
+     "ユーザーがその配列の同一性を確認できるのに十分な情報が表示されます。" "しかし配列の全体の内容は含まれません。" "もしこの値が" (STRONG "true")
+     "のとき、" "文字列ではない配列は、" (CODE1 "#(...)") "か、" (CODE1 "#*") "か、" (CODE1 "#nA")
+     "の構文で印刷されます。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "実装。")
+    (CHAPTER ("## 参考") 2 "2.4.8.3. シャープサイン 左かっこ," "2.4.8.20. シャープサイン " (CODE1 "<"))
+    (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-ARRAY*" . "VARIABLE") *table*) (gethash "*PRINT-ARRAY*" *table*))
 (setf (gethash "*PRINT-CIRCLE*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-CIRCLE*"))))
@@ -22929,6 +22947,94 @@
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。" EOL2 "関数"
      (CODE1 "position-if-not") "は非推奨です。")))
 (setf (gethash '("POSITION-IF-NOT" . "FUNCTION") *table*) (gethash "POSITION-IF-NOT" *table*))
+(setf (gethash "PPRINT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
+     ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write") " " (STRONG "object") " " (CODE1 "&key") " "
+     (STRONG "array") " " (STRONG "base") " " (STRONG "case") " " (STRONG "circle") " "
+     (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length") " " (STRONG "level")
+     " " (STRONG "lines") " " (STRONG "miser-width") " " (STRONG "pprint-dispatch") " "
+     (STRONG "pretty") " " (STRONG "radix") " " (STRONG "readably") " "
+     (STRONG "right-margin") " " (STRONG "stream") " => " (STRONG "object") EOL1
+     (CODE1 "prin1") " " (STRONG "object") " " (CODE1 "&optional") " "
+     (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "princ") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (STRONG "object") EOL1 (CODE1 "print") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "pprint") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (CODE1 "<返却値なし>"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "output-stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。" EOL1 (STRONG "array") " - generalized-boolean" EOL1
+     (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" (STRONG "object") "の印刷表現を"
+     (STRONG "output-stream") "に書き込みます。" EOL2 (CODE1 "write") "は、Lispプリンターの一般的な入り口です。"
+     "次の表で示されるような名前のキーワードパラメーターが明に指定されたとき、" "印刷が実行されている間はそれらの値が対応する"
+     "プリンター制御変数に動的に束縛されます。" "次の表で示されるような名前のキーワードパラメーターが明に指定されなかったとき、" "対応するプリンター制御変数の値は"
+     (CODE1 "write") "が実行された時点でのものと同じになります。" "いちど適切な束縛が確立されたら、"
+     "オブジェクトはLispプリンターによって出力されます。" EOL2 "|パラメーター     |対応する動的変数               |"
+     "|:----------------|:------------------------------|" "|array            |"
+     (CODE1 "*print-array*") "           |" "|base             |" (CODE1 "*print-base*")
+     "            |" "|case             |" (CODE1 "*print-case*") "            |"
+     "|circle           |" (CODE1 "*print-circle*") "          |" "|escape           |"
+     (CODE1 "*print-escape*") "          |" "|gensym           |"
+     (CODE1 "*print-gensym*") "          |" "|length           |"
+     (CODE1 "*print-length*") "          |" "|level            |" (CODE1 "*print-level*")
+     "           |" "|lines            |" (CODE1 "*print-lines*") "           |"
+     "|miser-width      |" (CODE1 "*print-miser-width*") "     |" "|pprint-dispatch  |"
+     (CODE1 "*print-pprint-dispatch*") " |" "|pretty           |"
+     (CODE1 "*print-pretty*") "          |" "|radix            |" (CODE1 "*print-radix*")
+     "           |" "|readably         |" (CODE1 "*print-readably*") "        |"
+     "|right-margin     |" (CODE1 "*print-right-margin*") "    |" EOL2 "Figure 22-7. "
+     (CODE1 "WRITE") "関数の引数の対応" EOL2 (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" "特定の印刷パラメーターを特定の値に暗に束縛します。"
+     "残りのパラメーターの値は、" (CODE1 "*print-array*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-case*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-length*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-lines*") "," (CODE1 "*print-miser-width*") ","
+     (CODE1 "*print-pprint-dispatch*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-right-margin*") "から取得します。" EOL2
+     (CODE1 "prin1") "は、" (CODE1 "read") "からの入力に適切な出力を生成します。" "それは"
+     (CODE1 "*print-escape*") "を" (STRONG "true") "に束縛します。" EOL2 (CODE1 "princ") "は、ちょうど"
+     (CODE1 "prin1") "と似ていますが、" "出力にエスケープ文字を含めない所が違っています。" (CODE1 "*print-escape*") "を"
+     (STRONG "false") "に、" (CODE1 "*print-readably*") "を" (STRONG "false") "に束縛します。"
+     "一般的なルールは、" (CODE1 "princ") "による出力は人に見やすいことを意図しており、" (CODE1 "prin1") "による出力は"
+     (CODE1 "read") "に受け入れられることを意図しています。" EOL2 (CODE1 "print") "は、ちょうど" (CODE1 "prin1")
+     "に似ていますが、" (STRONG "object") "の印刷表現の前に改行を、" "その後にスペースを入れるところが違っています。" EOL2
+     (CODE1 "pprint") "は、ちょうど" (CODE1 "print") "に似ていますが、" "末尾の空白が省略され、かつ"
+     (STRONG "object") "を印刷するときに" (CODE1 "*print-pretty*") "に" (CODE1 "nil") "以外の値を指定し、"
+     "プリティプリントの出力を行うということが違っています。" EOL2 (STRONG "output-stream") "は出力を送信するストリームを指定します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*")
+     "," (CODE1 "*print-array*") "," (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable-case") "," "22.3.4. " (CODE1 "FORMAT")
+     "プリンター操作")
+    (CHAPTER ("## 備考") 2 "関数の" (CODE1 "prin1") "と" (CODE1 "print") "は、"
+     (CODE1 "*print-readably*") "を束縛しません。"
+     (CODE3 "```lisp" "```" "(prin1 object output-stream)"
+      "==  (write object :stream output-stream :escape t)" NIL
+      "(princ object output-stream)"
+      "==  (write object stream output-stream :escape nil :readably nil)" NIL
+      "(print object output-stream)" "==  (progn (terpri output-stream)"
+      "           (write object :stream output-stream"
+      "                         :escape t)"
+      "           (write-char #\\space output-stream))" NIL
+      "(pprint object output-stream)"
+      "==  (write object :stream output-stream :escape t :pretty t)"))))
+(setf (gethash '("PPRINT" . "FUNCTION") *table*) (gethash "PPRINT" *table*))
 (setf (gethash "PPRINT-DISPATCH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-DISPATCH"))
     (CHAPTER ("## 構文") 2 (CODE1 "pprint-dispatch object") " " (CODE1 "&optional") " "
@@ -23332,6 +23438,374 @@
      "なぜならリストの繰り返し内にある" (CODE1 "format") "の命令" (CODE1 "~:T") "に" (CODE1 "tabsize")
      "引数を渡す必要があるためです。")))
 (setf (gethash '("PPRINT-TABULAR" . "FUNCTION") *table*) (gethash "PPRINT-TABULAR" *table*))
+(setf (gethash "PRIN1" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
+     ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write") " " (STRONG "object") " " (CODE1 "&key") " "
+     (STRONG "array") " " (STRONG "base") " " (STRONG "case") " " (STRONG "circle") " "
+     (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length") " " (STRONG "level")
+     " " (STRONG "lines") " " (STRONG "miser-width") " " (STRONG "pprint-dispatch") " "
+     (STRONG "pretty") " " (STRONG "radix") " " (STRONG "readably") " "
+     (STRONG "right-margin") " " (STRONG "stream") " => " (STRONG "object") EOL1
+     (CODE1 "prin1") " " (STRONG "object") " " (CODE1 "&optional") " "
+     (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "princ") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (STRONG "object") EOL1 (CODE1 "print") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "pprint") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (CODE1 "<返却値なし>"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "output-stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。" EOL1 (STRONG "array") " - generalized-boolean" EOL1
+     (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" (STRONG "object") "の印刷表現を"
+     (STRONG "output-stream") "に書き込みます。" EOL2 (CODE1 "write") "は、Lispプリンターの一般的な入り口です。"
+     "次の表で示されるような名前のキーワードパラメーターが明に指定されたとき、" "印刷が実行されている間はそれらの値が対応する"
+     "プリンター制御変数に動的に束縛されます。" "次の表で示されるような名前のキーワードパラメーターが明に指定されなかったとき、" "対応するプリンター制御変数の値は"
+     (CODE1 "write") "が実行された時点でのものと同じになります。" "いちど適切な束縛が確立されたら、"
+     "オブジェクトはLispプリンターによって出力されます。" EOL2 "|パラメーター     |対応する動的変数               |"
+     "|:----------------|:------------------------------|" "|array            |"
+     (CODE1 "*print-array*") "           |" "|base             |" (CODE1 "*print-base*")
+     "            |" "|case             |" (CODE1 "*print-case*") "            |"
+     "|circle           |" (CODE1 "*print-circle*") "          |" "|escape           |"
+     (CODE1 "*print-escape*") "          |" "|gensym           |"
+     (CODE1 "*print-gensym*") "          |" "|length           |"
+     (CODE1 "*print-length*") "          |" "|level            |" (CODE1 "*print-level*")
+     "           |" "|lines            |" (CODE1 "*print-lines*") "           |"
+     "|miser-width      |" (CODE1 "*print-miser-width*") "     |" "|pprint-dispatch  |"
+     (CODE1 "*print-pprint-dispatch*") " |" "|pretty           |"
+     (CODE1 "*print-pretty*") "          |" "|radix            |" (CODE1 "*print-radix*")
+     "           |" "|readably         |" (CODE1 "*print-readably*") "        |"
+     "|right-margin     |" (CODE1 "*print-right-margin*") "    |" EOL2 "Figure 22-7. "
+     (CODE1 "WRITE") "関数の引数の対応" EOL2 (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" "特定の印刷パラメーターを特定の値に暗に束縛します。"
+     "残りのパラメーターの値は、" (CODE1 "*print-array*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-case*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-length*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-lines*") "," (CODE1 "*print-miser-width*") ","
+     (CODE1 "*print-pprint-dispatch*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-right-margin*") "から取得します。" EOL2
+     (CODE1 "prin1") "は、" (CODE1 "read") "からの入力に適切な出力を生成します。" "それは"
+     (CODE1 "*print-escape*") "を" (STRONG "true") "に束縛します。" EOL2 (CODE1 "princ") "は、ちょうど"
+     (CODE1 "prin1") "と似ていますが、" "出力にエスケープ文字を含めない所が違っています。" (CODE1 "*print-escape*") "を"
+     (STRONG "false") "に、" (CODE1 "*print-readably*") "を" (STRONG "false") "に束縛します。"
+     "一般的なルールは、" (CODE1 "princ") "による出力は人に見やすいことを意図しており、" (CODE1 "prin1") "による出力は"
+     (CODE1 "read") "に受け入れられることを意図しています。" EOL2 (CODE1 "print") "は、ちょうど" (CODE1 "prin1")
+     "に似ていますが、" (STRONG "object") "の印刷表現の前に改行を、" "その後にスペースを入れるところが違っています。" EOL2
+     (CODE1 "pprint") "は、ちょうど" (CODE1 "print") "に似ていますが、" "末尾の空白が省略され、かつ"
+     (STRONG "object") "を印刷するときに" (CODE1 "*print-pretty*") "に" (CODE1 "nil") "以外の値を指定し、"
+     "プリティプリントの出力を行うということが違っています。" EOL2 (STRONG "output-stream") "は出力を送信するストリームを指定します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*")
+     "," (CODE1 "*print-array*") "," (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable-case") "," "22.3.4. " (CODE1 "FORMAT")
+     "プリンター操作")
+    (CHAPTER ("## 備考") 2 "関数の" (CODE1 "prin1") "と" (CODE1 "print") "は、"
+     (CODE1 "*print-readably*") "を束縛しません。"
+     (CODE3 "```lisp" "```" "(prin1 object output-stream)"
+      "==  (write object :stream output-stream :escape t)" NIL
+      "(princ object output-stream)"
+      "==  (write object stream output-stream :escape nil :readably nil)" NIL
+      "(print object output-stream)" "==  (progn (terpri output-stream)"
+      "           (write object :stream output-stream"
+      "                         :escape t)"
+      "           (write-char #\\space output-stream))" NIL
+      "(pprint object output-stream)"
+      "==  (write object :stream output-stream :escape t :pretty t)"))))
+(setf (gethash '("PRIN1" . "FUNCTION") *table*) (gethash "PRIN1" *table*))
+(setf (gethash "PRIN1-TO-STRING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE-TO-STRING") ", " (CODE1 "PRIN1-TO-STRING")
+     ", " (CODE1 "PRINC-TO-STRING"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write-to-string") " " (STRONG "object") " "
+     (CODE1 "&key") " " (STRONG "array") " " (STRONG "base") " " (STRONG "case") " "
+     (STRONG "circle") " " (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length")
+     " " (STRONG "level") " " (STRONG "lines") " " (STRONG "miser-width") " "
+     (STRONG "pprint-dispatch") " " (STRONG "pretty") " " (STRONG "radix") " "
+     (STRONG "readably") " " (STRONG "right-margin") " => " (STRONG "string") EOL1
+     (CODE1 "prin1-to-string") " " (STRONG "object") " => " (STRONG "string") EOL1
+     (CODE1 "princ-to-string") " " (STRONG "object") " => " (STRONG "string"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "array")
+     " - generalized-boolean" EOL1 (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "string") " - 文字列")
+    (CHAPTER ("## 定義") 2 (CODE1 "write-to-string") ", " (CODE1 "prin1-to-string") ", "
+     (CODE1 "princ-to-string") "は、" (STRONG "object") "の印刷表現を含む文字列を生成するときに使用されます。"
+     (STRONG "object") "は、それぞれ" (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ")
+     "によるものとして" "効率的に印刷され、" "出力の文字が文字列の中に作成されます。" EOL2 (CODE1 "write-to-string")
+     "は一般的な出力関数です。" "これは指定されたすべてのパラメーターを適切に扱い" (STRONG "object") "を印刷する能力があります。" EOL2
+     (CODE1 "prin1-to-string") "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape t")
+     "を付与したように動作し、" "これはエスケープ文字が適切な場所に記載されることを意味しています。" EOL2 (CODE1 "princ-to-string")
+     "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape nil :readably nil")
+     "を付与したように動作します。" "したがってエスケープ文字は記載されません。" EOL2 (CODE1 "prin1-to-string") "か"
+     (CODE1 "princ-to-string") "が実行されたとき、" "他の全てのキーワードは" (CODE1 "write-to-string")
+     "に指定されたもののデフォルト値になります。" EOL2 "この意味は、" (CODE1 "write-to-string") "のキーワード引数のデフォルトは、"
+     (CODE1 "write") "のものと同じであるということです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(prin1-to-string \"abc\") =>  \"\\\"abc\\\"\""
+      "(princ-to-string \"abc\") =>  \"abc\""))
+    (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") ","
+     (CODE1 "*print-base*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-level*") "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-array*") ","
+     (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(write-to-string object {key argument}*)"
+      "==  (with-output-to-string (#1=#:string-stream) "
+      "      (write object :stream #1# {key argument}*))" NIL "(princ-to-string object)"
+      "==  (with-output-to-string (string-stream)" "      (princ object string-stream))"
+      NIL "(prin1-to-string object)" "==  (with-output-to-string (string-stream)"
+      "      (prin1 object string-stream))"))))
+(setf (gethash '("PRIN1-TO-STRING" . "FUNCTION") *table*) (gethash "PRIN1-TO-STRING" *table*))
+(setf (gethash "PRINC" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
+     ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write") " " (STRONG "object") " " (CODE1 "&key") " "
+     (STRONG "array") " " (STRONG "base") " " (STRONG "case") " " (STRONG "circle") " "
+     (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length") " " (STRONG "level")
+     " " (STRONG "lines") " " (STRONG "miser-width") " " (STRONG "pprint-dispatch") " "
+     (STRONG "pretty") " " (STRONG "radix") " " (STRONG "readably") " "
+     (STRONG "right-margin") " " (STRONG "stream") " => " (STRONG "object") EOL1
+     (CODE1 "prin1") " " (STRONG "object") " " (CODE1 "&optional") " "
+     (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "princ") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (STRONG "object") EOL1 (CODE1 "print") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "pprint") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (CODE1 "<返却値なし>"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "output-stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。" EOL1 (STRONG "array") " - generalized-boolean" EOL1
+     (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" (STRONG "object") "の印刷表現を"
+     (STRONG "output-stream") "に書き込みます。" EOL2 (CODE1 "write") "は、Lispプリンターの一般的な入り口です。"
+     "次の表で示されるような名前のキーワードパラメーターが明に指定されたとき、" "印刷が実行されている間はそれらの値が対応する"
+     "プリンター制御変数に動的に束縛されます。" "次の表で示されるような名前のキーワードパラメーターが明に指定されなかったとき、" "対応するプリンター制御変数の値は"
+     (CODE1 "write") "が実行された時点でのものと同じになります。" "いちど適切な束縛が確立されたら、"
+     "オブジェクトはLispプリンターによって出力されます。" EOL2 "|パラメーター     |対応する動的変数               |"
+     "|:----------------|:------------------------------|" "|array            |"
+     (CODE1 "*print-array*") "           |" "|base             |" (CODE1 "*print-base*")
+     "            |" "|case             |" (CODE1 "*print-case*") "            |"
+     "|circle           |" (CODE1 "*print-circle*") "          |" "|escape           |"
+     (CODE1 "*print-escape*") "          |" "|gensym           |"
+     (CODE1 "*print-gensym*") "          |" "|length           |"
+     (CODE1 "*print-length*") "          |" "|level            |" (CODE1 "*print-level*")
+     "           |" "|lines            |" (CODE1 "*print-lines*") "           |"
+     "|miser-width      |" (CODE1 "*print-miser-width*") "     |" "|pprint-dispatch  |"
+     (CODE1 "*print-pprint-dispatch*") " |" "|pretty           |"
+     (CODE1 "*print-pretty*") "          |" "|radix            |" (CODE1 "*print-radix*")
+     "           |" "|readably         |" (CODE1 "*print-readably*") "        |"
+     "|right-margin     |" (CODE1 "*print-right-margin*") "    |" EOL2 "Figure 22-7. "
+     (CODE1 "WRITE") "関数の引数の対応" EOL2 (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" "特定の印刷パラメーターを特定の値に暗に束縛します。"
+     "残りのパラメーターの値は、" (CODE1 "*print-array*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-case*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-length*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-lines*") "," (CODE1 "*print-miser-width*") ","
+     (CODE1 "*print-pprint-dispatch*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-right-margin*") "から取得します。" EOL2
+     (CODE1 "prin1") "は、" (CODE1 "read") "からの入力に適切な出力を生成します。" "それは"
+     (CODE1 "*print-escape*") "を" (STRONG "true") "に束縛します。" EOL2 (CODE1 "princ") "は、ちょうど"
+     (CODE1 "prin1") "と似ていますが、" "出力にエスケープ文字を含めない所が違っています。" (CODE1 "*print-escape*") "を"
+     (STRONG "false") "に、" (CODE1 "*print-readably*") "を" (STRONG "false") "に束縛します。"
+     "一般的なルールは、" (CODE1 "princ") "による出力は人に見やすいことを意図しており、" (CODE1 "prin1") "による出力は"
+     (CODE1 "read") "に受け入れられることを意図しています。" EOL2 (CODE1 "print") "は、ちょうど" (CODE1 "prin1")
+     "に似ていますが、" (STRONG "object") "の印刷表現の前に改行を、" "その後にスペースを入れるところが違っています。" EOL2
+     (CODE1 "pprint") "は、ちょうど" (CODE1 "print") "に似ていますが、" "末尾の空白が省略され、かつ"
+     (STRONG "object") "を印刷するときに" (CODE1 "*print-pretty*") "に" (CODE1 "nil") "以外の値を指定し、"
+     "プリティプリントの出力を行うということが違っています。" EOL2 (STRONG "output-stream") "は出力を送信するストリームを指定します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*")
+     "," (CODE1 "*print-array*") "," (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable-case") "," "22.3.4. " (CODE1 "FORMAT")
+     "プリンター操作")
+    (CHAPTER ("## 備考") 2 "関数の" (CODE1 "prin1") "と" (CODE1 "print") "は、"
+     (CODE1 "*print-readably*") "を束縛しません。"
+     (CODE3 "```lisp" "```" "(prin1 object output-stream)"
+      "==  (write object :stream output-stream :escape t)" NIL
+      "(princ object output-stream)"
+      "==  (write object stream output-stream :escape nil :readably nil)" NIL
+      "(print object output-stream)" "==  (progn (terpri output-stream)"
+      "           (write object :stream output-stream"
+      "                         :escape t)"
+      "           (write-char #\\space output-stream))" NIL
+      "(pprint object output-stream)"
+      "==  (write object :stream output-stream :escape t :pretty t)"))))
+(setf (gethash '("PRINC" . "FUNCTION") *table*) (gethash "PRINC" *table*))
+(setf (gethash "PRINC-TO-STRING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE-TO-STRING") ", " (CODE1 "PRIN1-TO-STRING")
+     ", " (CODE1 "PRINC-TO-STRING"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write-to-string") " " (STRONG "object") " "
+     (CODE1 "&key") " " (STRONG "array") " " (STRONG "base") " " (STRONG "case") " "
+     (STRONG "circle") " " (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length")
+     " " (STRONG "level") " " (STRONG "lines") " " (STRONG "miser-width") " "
+     (STRONG "pprint-dispatch") " " (STRONG "pretty") " " (STRONG "radix") " "
+     (STRONG "readably") " " (STRONG "right-margin") " => " (STRONG "string") EOL1
+     (CODE1 "prin1-to-string") " " (STRONG "object") " => " (STRONG "string") EOL1
+     (CODE1 "princ-to-string") " " (STRONG "object") " => " (STRONG "string"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "array")
+     " - generalized-boolean" EOL1 (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "string") " - 文字列")
+    (CHAPTER ("## 定義") 2 (CODE1 "write-to-string") ", " (CODE1 "prin1-to-string") ", "
+     (CODE1 "princ-to-string") "は、" (STRONG "object") "の印刷表現を含む文字列を生成するときに使用されます。"
+     (STRONG "object") "は、それぞれ" (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ")
+     "によるものとして" "効率的に印刷され、" "出力の文字が文字列の中に作成されます。" EOL2 (CODE1 "write-to-string")
+     "は一般的な出力関数です。" "これは指定されたすべてのパラメーターを適切に扱い" (STRONG "object") "を印刷する能力があります。" EOL2
+     (CODE1 "prin1-to-string") "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape t")
+     "を付与したように動作し、" "これはエスケープ文字が適切な場所に記載されることを意味しています。" EOL2 (CODE1 "princ-to-string")
+     "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape nil :readably nil")
+     "を付与したように動作します。" "したがってエスケープ文字は記載されません。" EOL2 (CODE1 "prin1-to-string") "か"
+     (CODE1 "princ-to-string") "が実行されたとき、" "他の全てのキーワードは" (CODE1 "write-to-string")
+     "に指定されたもののデフォルト値になります。" EOL2 "この意味は、" (CODE1 "write-to-string") "のキーワード引数のデフォルトは、"
+     (CODE1 "write") "のものと同じであるということです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(prin1-to-string \"abc\") =>  \"\\\"abc\\\"\""
+      "(princ-to-string \"abc\") =>  \"abc\""))
+    (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") ","
+     (CODE1 "*print-base*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-level*") "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-array*") ","
+     (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(write-to-string object {key argument}*)"
+      "==  (with-output-to-string (#1=#:string-stream) "
+      "      (write object :stream #1# {key argument}*))" NIL "(princ-to-string object)"
+      "==  (with-output-to-string (string-stream)" "      (princ object string-stream))"
+      NIL "(prin1-to-string object)" "==  (with-output-to-string (string-stream)"
+      "      (prin1 object string-stream))"))))
+(setf (gethash '("PRINC-TO-STRING" . "FUNCTION") *table*) (gethash "PRINC-TO-STRING" *table*))
+(setf (gethash "PRINT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
+     ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write") " " (STRONG "object") " " (CODE1 "&key") " "
+     (STRONG "array") " " (STRONG "base") " " (STRONG "case") " " (STRONG "circle") " "
+     (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length") " " (STRONG "level")
+     " " (STRONG "lines") " " (STRONG "miser-width") " " (STRONG "pprint-dispatch") " "
+     (STRONG "pretty") " " (STRONG "radix") " " (STRONG "readably") " "
+     (STRONG "right-margin") " " (STRONG "stream") " => " (STRONG "object") EOL1
+     (CODE1 "prin1") " " (STRONG "object") " " (CODE1 "&optional") " "
+     (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "princ") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (STRONG "object") EOL1 (CODE1 "print") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "pprint") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (CODE1 "<返却値なし>"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "output-stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。" EOL1 (STRONG "array") " - generalized-boolean" EOL1
+     (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" (STRONG "object") "の印刷表現を"
+     (STRONG "output-stream") "に書き込みます。" EOL2 (CODE1 "write") "は、Lispプリンターの一般的な入り口です。"
+     "次の表で示されるような名前のキーワードパラメーターが明に指定されたとき、" "印刷が実行されている間はそれらの値が対応する"
+     "プリンター制御変数に動的に束縛されます。" "次の表で示されるような名前のキーワードパラメーターが明に指定されなかったとき、" "対応するプリンター制御変数の値は"
+     (CODE1 "write") "が実行された時点でのものと同じになります。" "いちど適切な束縛が確立されたら、"
+     "オブジェクトはLispプリンターによって出力されます。" EOL2 "|パラメーター     |対応する動的変数               |"
+     "|:----------------|:------------------------------|" "|array            |"
+     (CODE1 "*print-array*") "           |" "|base             |" (CODE1 "*print-base*")
+     "            |" "|case             |" (CODE1 "*print-case*") "            |"
+     "|circle           |" (CODE1 "*print-circle*") "          |" "|escape           |"
+     (CODE1 "*print-escape*") "          |" "|gensym           |"
+     (CODE1 "*print-gensym*") "          |" "|length           |"
+     (CODE1 "*print-length*") "          |" "|level            |" (CODE1 "*print-level*")
+     "           |" "|lines            |" (CODE1 "*print-lines*") "           |"
+     "|miser-width      |" (CODE1 "*print-miser-width*") "     |" "|pprint-dispatch  |"
+     (CODE1 "*print-pprint-dispatch*") " |" "|pretty           |"
+     (CODE1 "*print-pretty*") "          |" "|radix            |" (CODE1 "*print-radix*")
+     "           |" "|readably         |" (CODE1 "*print-readably*") "        |"
+     "|right-margin     |" (CODE1 "*print-right-margin*") "    |" EOL2 "Figure 22-7. "
+     (CODE1 "WRITE") "関数の引数の対応" EOL2 (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" "特定の印刷パラメーターを特定の値に暗に束縛します。"
+     "残りのパラメーターの値は、" (CODE1 "*print-array*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-case*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-length*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-lines*") "," (CODE1 "*print-miser-width*") ","
+     (CODE1 "*print-pprint-dispatch*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-right-margin*") "から取得します。" EOL2
+     (CODE1 "prin1") "は、" (CODE1 "read") "からの入力に適切な出力を生成します。" "それは"
+     (CODE1 "*print-escape*") "を" (STRONG "true") "に束縛します。" EOL2 (CODE1 "princ") "は、ちょうど"
+     (CODE1 "prin1") "と似ていますが、" "出力にエスケープ文字を含めない所が違っています。" (CODE1 "*print-escape*") "を"
+     (STRONG "false") "に、" (CODE1 "*print-readably*") "を" (STRONG "false") "に束縛します。"
+     "一般的なルールは、" (CODE1 "princ") "による出力は人に見やすいことを意図しており、" (CODE1 "prin1") "による出力は"
+     (CODE1 "read") "に受け入れられることを意図しています。" EOL2 (CODE1 "print") "は、ちょうど" (CODE1 "prin1")
+     "に似ていますが、" (STRONG "object") "の印刷表現の前に改行を、" "その後にスペースを入れるところが違っています。" EOL2
+     (CODE1 "pprint") "は、ちょうど" (CODE1 "print") "に似ていますが、" "末尾の空白が省略され、かつ"
+     (STRONG "object") "を印刷するときに" (CODE1 "*print-pretty*") "に" (CODE1 "nil") "以外の値を指定し、"
+     "プリティプリントの出力を行うということが違っています。" EOL2 (STRONG "output-stream") "は出力を送信するストリームを指定します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*")
+     "," (CODE1 "*print-array*") "," (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable-case") "," "22.3.4. " (CODE1 "FORMAT")
+     "プリンター操作")
+    (CHAPTER ("## 備考") 2 "関数の" (CODE1 "prin1") "と" (CODE1 "print") "は、"
+     (CODE1 "*print-readably*") "を束縛しません。"
+     (CODE3 "```lisp" "```" "(prin1 object output-stream)"
+      "==  (write object :stream output-stream :escape t)" NIL
+      "(princ object output-stream)"
+      "==  (write object stream output-stream :escape nil :readably nil)" NIL
+      "(print object output-stream)" "==  (progn (terpri output-stream)"
+      "           (write object :stream output-stream"
+      "                         :escape t)"
+      "           (write-char #\\space output-stream))" NIL
+      "(pprint object output-stream)"
+      "==  (write object :stream output-stream :escape t :pretty t)"))))
+(setf (gethash '("PRINT" . "FUNCTION") *table*) (gethash "PRINT" *table*))
 (setf (gethash "PRINT-OBJECT" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "PRINT-OBJECT"))
     (CHAPTER ("## 構文") 2 (CODE1 "print-object") " " (STRONG "object") " "
@@ -25588,6 +26062,40 @@
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。" EOL2
      (CODE1 "nset-exclusive-or") "の副作用は必要ないため、" "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。")))
 (setf (gethash '("SET-EXCLUSIVE-OR" . "FUNCTION") *table*) (gethash "SET-EXCLUSIVE-OR" *table*))
+(setf (gethash "SET-PPRINT-DISPATCH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-PPRINT-DISPATCH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "set-pprint-dispatch") " " (STRONG "type-specifier") " "
+     (STRONG "function") " " (CODE1 "&optional") " " (STRONG "priority") " "
+     (STRONG "table") " => " (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "type-specifier") " - 型指定子" EOL1 (STRONG "function")
+     " - 関数か、関数名か、" (CODE1 "nil") EOL1 (STRONG "priority") " - 実数。デフォルトは" (CODE1 "0") "。"
+     EOL1 (STRONG "table") " - " (CODE1 "pprint") "ディスパッチテーブル。デフォルトは"
+     (CODE1 "*print-pprint-dispatch*") "の値。")
+    (CHAPTER ("## 定義") 2 (STRONG "table") "で指定された" (CODE1 "pprint")
+     "ディスパッチテーブルにエントリーを導入します。" EOL2 (STRONG "type-specifier") "はエントリーのキーです。"
+     (CODE1 "set-pprint-dispatch") "の最初の動作は、" (STRONG "type-specifier") "に関連付けられた"
+     "以前に存在していたエントリーを削除することです。" "これにより、与えられた" (CODE1 "pprint") "ディスパッチテーブル内において"
+     "同じ型指定子に関連付けられるエントリーが" "2つになることがあり得ないことを保証します。" "型指定子の同一性は" (CODE1 "equal")
+     "によってテストします。" EOL2 (CODE1 "pprint") "ディスパッチテーブル内の各型指定子にには、" (STRONG "function") "と"
+     (STRONG "priority") "の2つの値が 関連付けられます。" (STRONG "function") "は2つの引数を受け付ける必要があり、"
+     "最初の引数は出力を送信するストリーム、" "次の引数は印刷するオブジェクトです。" (STRONG "function") "はオブジェクトをストリームへ"
+     "プリティプリントとして印刷とするべきです。" (STRONG "function") "はオブジェクトが与えられた"
+     (STRONG "type-specifier") "を" "満たすと仮定することができます。" (STRONG "function") "は"
+     (CODE1 "*print-readably*") "に従うべきです。" (STRONG "function") "によって返却されるどんな値も無視されます。"
+     EOL2 (STRONG "priority") "は、オブジェクトがひとつ以上のエントリーと" "マッチするような衝突を解決するための優先順位です。" EOL2
+     (STRONG "function") "は" (CODE1 "nil") "であることが許されます。" "このような状況においては、"
+     (CODE1 "set-pprint-dispatch") "が返却されたあとは、" (STRONG "table") "内に"
+     (STRONG "type-specifier") "のエントリーが無くなります。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "priority") "が実数ではないときは、エラーが発生します。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "pprint") "ディスパッチテーブルは"
+     "Lispコードのプリティプリンターを制御するときによく使用され、" "次のような式のフォームによって示される型指定子が使われることが多いです。"
+     (CODE3 "```lisp" "```" "(cons car-type cdr-type)") EOL2 "これは対応するオブジェクトが"
+     (CODE1 "cons") "のセルであり、" (CODE1 "car") "部は" (STRONG "car-type") "という型指定子にマッチし、"
+     (CODE1 "cdr") "部は" (STRONG "cdr-type") "という型指定子にマッチするようなことを意味しています。"
+     (STRONG "cdr-type") "は省略することができ、" "そのような場合はデフォルトでは" (CODE1 "t") "になります。")))
+(setf (gethash '("SET-PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "SET-PPRINT-DISPATCH" *table*))
 (setf (gethash "SETF" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "SETF") ", " (CODE1 "PSETF"))
     (CHAPTER ("## 構文") 2 (CODE1 "setf") " " (CODE1 "{") (STRONG "pair") (CODE1 "}")
@@ -32078,6 +32586,94 @@
      (STRONG "slot-entry_i") "がフォームなら次のようになります。"
      (CODE3 "```lisp" "```" "(variable-namei 'slot-namei)"))))
 (setf (gethash '("WITH-SLOTS" . "MACRO") *table*) (gethash "WITH-SLOTS" *table*))
+(setf (gethash "WRITE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
+     ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write") " " (STRONG "object") " " (CODE1 "&key") " "
+     (STRONG "array") " " (STRONG "base") " " (STRONG "case") " " (STRONG "circle") " "
+     (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length") " " (STRONG "level")
+     " " (STRONG "lines") " " (STRONG "miser-width") " " (STRONG "pprint-dispatch") " "
+     (STRONG "pretty") " " (STRONG "radix") " " (STRONG "readably") " "
+     (STRONG "right-margin") " " (STRONG "stream") " => " (STRONG "object") EOL1
+     (CODE1 "prin1") " " (STRONG "object") " " (CODE1 "&optional") " "
+     (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "princ") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (STRONG "object") EOL1 (CODE1 "print") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "output-stream") " => " (STRONG "object") EOL1 (CODE1 "pprint") " "
+     (STRONG "object") " " (CODE1 "&optional") " " (STRONG "output-stream") " => "
+     (CODE1 "<返却値なし>"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "output-stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。" EOL1 (STRONG "array") " - generalized-boolean" EOL1
+     (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" (STRONG "object") "の印刷表現を"
+     (STRONG "output-stream") "に書き込みます。" EOL2 (CODE1 "write") "は、Lispプリンターの一般的な入り口です。"
+     "次の表で示されるような名前のキーワードパラメーターが明に指定されたとき、" "印刷が実行されている間はそれらの値が対応する"
+     "プリンター制御変数に動的に束縛されます。" "次の表で示されるような名前のキーワードパラメーターが明に指定されなかったとき、" "対応するプリンター制御変数の値は"
+     (CODE1 "write") "が実行された時点でのものと同じになります。" "いちど適切な束縛が確立されたら、"
+     "オブジェクトはLispプリンターによって出力されます。" EOL2 "|パラメーター     |対応する動的変数               |"
+     "|:----------------|:------------------------------|" "|array            |"
+     (CODE1 "*print-array*") "           |" "|base             |" (CODE1 "*print-base*")
+     "            |" "|case             |" (CODE1 "*print-case*") "            |"
+     "|circle           |" (CODE1 "*print-circle*") "          |" "|escape           |"
+     (CODE1 "*print-escape*") "          |" "|gensym           |"
+     (CODE1 "*print-gensym*") "          |" "|length           |"
+     (CODE1 "*print-length*") "          |" "|level            |" (CODE1 "*print-level*")
+     "           |" "|lines            |" (CODE1 "*print-lines*") "           |"
+     "|miser-width      |" (CODE1 "*print-miser-width*") "     |" "|pprint-dispatch  |"
+     (CODE1 "*print-pprint-dispatch*") " |" "|pretty           |"
+     (CODE1 "*print-pretty*") "          |" "|radix            |" (CODE1 "*print-radix*")
+     "           |" "|readably         |" (CODE1 "*print-readably*") "        |"
+     "|right-margin     |" (CODE1 "*print-right-margin*") "    |" EOL2 "Figure 22-7. "
+     (CODE1 "WRITE") "関数の引数の対応" EOL2 (CODE1 "prin1") ", " (CODE1 "princ") ", "
+     (CODE1 "print") ", " (CODE1 "pprint") "は、" "特定の印刷パラメーターを特定の値に暗に束縛します。"
+     "残りのパラメーターの値は、" (CODE1 "*print-array*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-case*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-length*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-lines*") "," (CODE1 "*print-miser-width*") ","
+     (CODE1 "*print-pprint-dispatch*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-right-margin*") "から取得します。" EOL2
+     (CODE1 "prin1") "は、" (CODE1 "read") "からの入力に適切な出力を生成します。" "それは"
+     (CODE1 "*print-escape*") "を" (STRONG "true") "に束縛します。" EOL2 (CODE1 "princ") "は、ちょうど"
+     (CODE1 "prin1") "と似ていますが、" "出力にエスケープ文字を含めない所が違っています。" (CODE1 "*print-escape*") "を"
+     (STRONG "false") "に、" (CODE1 "*print-readably*") "を" (STRONG "false") "に束縛します。"
+     "一般的なルールは、" (CODE1 "princ") "による出力は人に見やすいことを意図しており、" (CODE1 "prin1") "による出力は"
+     (CODE1 "read") "に受け入れられることを意図しています。" EOL2 (CODE1 "print") "は、ちょうど" (CODE1 "prin1")
+     "に似ていますが、" (STRONG "object") "の印刷表現の前に改行を、" "その後にスペースを入れるところが違っています。" EOL2
+     (CODE1 "pprint") "は、ちょうど" (CODE1 "print") "に似ていますが、" "末尾の空白が省略され、かつ"
+     (STRONG "object") "を印刷するときに" (CODE1 "*print-pretty*") "に" (CODE1 "nil") "以外の値を指定し、"
+     "プリティプリントの出力を行うということが違っています。" EOL2 (STRONG "output-stream") "は出力を送信するストリームを指定します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") "," (CODE1 "*print-base*") ","
+     (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-level*")
+     "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*")
+     "," (CODE1 "*print-array*") "," (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable-case") "," "22.3.4. " (CODE1 "FORMAT")
+     "プリンター操作")
+    (CHAPTER ("## 備考") 2 "関数の" (CODE1 "prin1") "と" (CODE1 "print") "は、"
+     (CODE1 "*print-readably*") "を束縛しません。"
+     (CODE3 "```lisp" "```" "(prin1 object output-stream)"
+      "==  (write object :stream output-stream :escape t)" NIL
+      "(princ object output-stream)"
+      "==  (write object stream output-stream :escape nil :readably nil)" NIL
+      "(print object output-stream)" "==  (progn (terpri output-stream)"
+      "           (write object :stream output-stream"
+      "                         :escape t)"
+      "           (write-char #\\space output-stream))" NIL
+      "(pprint object output-stream)"
+      "==  (write object :stream output-stream :escape t :pretty t)"))))
+(setf (gethash '("WRITE" . "FUNCTION") *table*) (gethash "WRITE" *table*))
 (setf (gethash "WRITE-BYTE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "WRITE-BYTE"))
     (CHAPTER ("## 構文") 2 (CODE1 "write-byte") " " (STRONG "byte") " " (STRONG "stream")
@@ -32215,6 +32811,58 @@
       "      (write-char (char string i)))" NIL "(write-line string)"
       "==  (prog1 (write-string string) (terpri))"))))
 (setf (gethash '("WRITE-STRING" . "FUNCTION") *table*) (gethash "WRITE-STRING" *table*))
+(setf (gethash "WRITE-TO-STRING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "WRITE-TO-STRING") ", " (CODE1 "PRIN1-TO-STRING")
+     ", " (CODE1 "PRINC-TO-STRING"))
+    (CHAPTER ("## 構文") 2 (CODE1 "write-to-string") " " (STRONG "object") " "
+     (CODE1 "&key") " " (STRONG "array") " " (STRONG "base") " " (STRONG "case") " "
+     (STRONG "circle") " " (STRONG "escape") " " (STRONG "gensym") " " (STRONG "length")
+     " " (STRONG "level") " " (STRONG "lines") " " (STRONG "miser-width") " "
+     (STRONG "pprint-dispatch") " " (STRONG "pretty") " " (STRONG "radix") " "
+     (STRONG "readably") " " (STRONG "right-margin") " => " (STRONG "string") EOL1
+     (CODE1 "prin1-to-string") " " (STRONG "object") " => " (STRONG "string") EOL1
+     (CODE1 "princ-to-string") " " (STRONG "object") " => " (STRONG "string"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "array")
+     " - generalized-boolean" EOL1 (STRONG "base") " - 基数" EOL1 (STRONG "case") " - 型"
+     (CODE1 "(member :upcase :downcase :capitalize)") "のシンボル" EOL1 (STRONG "circle")
+     " - generalized-boolean" EOL1 (STRONG "escape") " - generalized-boolean" EOL1
+     (STRONG "gensym") " - generalized-boolean" EOL1 (STRONG "length") " - 非負の整数か、"
+     (CODE1 "nil") EOL1 (STRONG "level") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "lines")
+     " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "miser-width") " - 非負の整数か、" (CODE1 "nil")
+     EOL1 (STRONG "pprint-dispatch") " - " (CODE1 "pprint") "ディスパッチテーブル" EOL1
+     (STRONG "pretty") " - generalized-boolean" EOL1 (STRONG "radix")
+     " - generalized-boolean" EOL1 (STRONG "readably") " - generalized-boolean" EOL1
+     (STRONG "right-margin") " - 非負の整数か、" (CODE1 "nil") EOL1 (STRONG "string") " - 文字列")
+    (CHAPTER ("## 定義") 2 (CODE1 "write-to-string") ", " (CODE1 "prin1-to-string") ", "
+     (CODE1 "princ-to-string") "は、" (STRONG "object") "の印刷表現を含む文字列を生成するときに使用されます。"
+     (STRONG "object") "は、それぞれ" (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ")
+     "によるものとして" "効率的に印刷され、" "出力の文字が文字列の中に作成されます。" EOL2 (CODE1 "write-to-string")
+     "は一般的な出力関数です。" "これは指定されたすべてのパラメーターを適切に扱い" (STRONG "object") "を印刷する能力があります。" EOL2
+     (CODE1 "prin1-to-string") "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape t")
+     "を付与したように動作し、" "これはエスケープ文字が適切な場所に記載されることを意味しています。" EOL2 (CODE1 "princ-to-string")
+     "は、" (CODE1 "write-to-string") "に" (CODE1 ":escape nil :readably nil")
+     "を付与したように動作します。" "したがってエスケープ文字は記載されません。" EOL2 (CODE1 "prin1-to-string") "か"
+     (CODE1 "princ-to-string") "が実行されたとき、" "他の全てのキーワードは" (CODE1 "write-to-string")
+     "に指定されたもののデフォルト値になります。" EOL2 "この意味は、" (CODE1 "write-to-string") "のキーワード引数のデフォルトは、"
+     (CODE1 "write") "のものと同じであるということです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(prin1-to-string \"abc\") =>  \"\\\"abc\\\"\""
+      "(princ-to-string \"abc\") =>  \"abc\""))
+    (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*print-escape*") "," (CODE1 "*print-radix*") ","
+     (CODE1 "*print-base*") "," (CODE1 "*print-circle*") "," (CODE1 "*print-pretty*") ","
+     (CODE1 "*print-level*") "," (CODE1 "*print-length*") "," (CODE1 "*print-case*") ","
+     (CODE1 "*print-gensym*") "," (CODE1 "*print-array*") ","
+     (CODE1 "*read-default-float-format*"))
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(write-to-string object {key argument}*)"
+      "==  (with-output-to-string (#1=#:string-stream) "
+      "      (write object :stream #1# {key argument}*))" NIL "(princ-to-string object)"
+      "==  (with-output-to-string (string-stream)" "      (princ object string-stream))"
+      NIL "(prin1-to-string object)" "==  (with-output-to-string (string-stream)"
+      "      (prin1 object string-stream))"))))
+(setf (gethash '("WRITE-TO-STRING" . "FUNCTION") *table*) (gethash "WRITE-TO-STRING" *table*))
 (setf (gethash "Y-OR-N-P" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "Y-OR-N-P") ", " (CODE1 "YES-OR-NO-P"))
     (CHAPTER ("## 構文") 2 (CODE1 "y-or-n-p") " " (CODE1 "&optional") " "

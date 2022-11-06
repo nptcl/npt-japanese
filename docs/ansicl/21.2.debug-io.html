@@ -273,7 +273,7 @@
 <p><a href="21.2.debug-io.html"><code>*debug-io*</code></a>と<a href="21.2.debug-io.html"><code>*query-io*</code></a>の初期値を同じストリームに、 <a href="21.2.debug-io.html"><code>*error-output*</code></a>と<a href="21.2.debug-io.html"><code>*standard-output*</code></a>の初期値を同じストリームにするような 実装が一般的です。</p>
 <p><a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>と<a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>関数は、 入出力にクエリ―I/Oを使用します。</p>
 <p>通常の<code>Lisp read-eval-print-loop</code>では、入力は標準入力から行います。 多くの入力関数について、<code>read</code>と<a href="21.2.read-char.html"><code>read-char</code></a>を含む関数は、 引数のデフォルトに標準入力のストリームを取ります。</p>
-<p>通常の<code>Lisp read-eval-print-loop</code>では、出力は標準出力から行います。 多くの出力関数について、<code>print</code>と<a href="21.2.write-char.html"><code>write-char</code></a>を含む関数は、 引数のデフォルトに標準出力のストリームを取ります。</p>
+<p>通常の<code>Lisp read-eval-print-loop</code>では、出力は標準出力から行います。 多くの出力関数について、<a href="22.4.write.html"><code>print</code></a>と<a href="21.2.write-char.html"><code>write-char</code></a>を含む関数は、 引数のデフォルトに標準出力のストリームを取ります。</p>
 <p>例えば、あるプログラムは出力をファイルに対して行いたいときは <a href="21.2.debug-io.html"><code>*standard-output*</code></a>を束縛することによって実施するべきです。 そうすることによって （<a href="21.2.debug-io.html"><code>*error-output*</code></a>が<a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>に束縛されているときは）、 <a href="21.2.debug-io.html"><code>*error-output*</code></a>に送信されたエラーメッセージは、 通常望まれる形で、 <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>を経由してユーザーに届きます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

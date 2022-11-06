@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function STRING</title>
+  <title>Function SET-PPRINT-DISPATCH</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,38 +214,39 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function STRING</h1>
+<h1 class="title">Function SET-PPRINT-DISPATCH</h1>
 </header>
-<p><a href="16.2.html">UP</a></p>
+<p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="function-string">Function <strong>STRING</strong></h1>
-<p>Function <code>STRING</code></p>
+<h1 id="function-set-pprint-dispatch">Function <strong>SET-PPRINT-DISPATCH</strong></h1>
+<p>Function <code>SET-PPRINT-DISPATCH</code></p>
 <h2 id="構文">構文</h2>
-<p><code>string</code> <em>x</em> =&gt; <em>string</em></p>
+<p><code>set-pprint-dispatch</code> <em>type-specifier</em> <em>function</em> <code>&amp;optional</code> <em>priority</em> <em>table</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>x</em> - 文字列か、シンボルか、文字<br />
-<em>string</em> - 文字列</p>
+<p><em>type-specifier</em> - 型指定子<br />
+<em>function</em> - 関数か、関数名か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>priority</em> - 実数。デフォルトは<code>0</code>。<br />
+<em>table</em> - <code>pprint</code>ディスパッチテーブル。デフォルトは<code>*print-pprint-dispatch*</code>の値。</p>
 <h2 id="定義">定義</h2>
-<p><em>x</em>が次のようなときに文字列を返却します。</p>
-<ul>
-<li>もし<em>x</em>が文字列の場合は、それが返却されます</li>
-<li>もし<em>x</em>がシンボルの場合は、シンボルの名前が返却されます</li>
-<li>もし<em>x</em>が文字の場合は、一文字で構成される文字列が返却されます</li>
-<li>加えて、<a href="16.2.string-function.html"><code>string</code></a>は実装依存の変換を行います</li>
-</ul>
+<p><em>table</em>で指定された<code>pprint</code>ディスパッチテーブルにエントリーを導入します。</p>
+<p><em>type-specifier</em>はエントリーのキーです。 <a href="22.4.set-pprint-dispatch.html"><code>set-pprint-dispatch</code></a>の最初の動作は、 <em>type-specifier</em>に関連付けられた 以前に存在していたエントリーを削除することです。 これにより、与えられた<code>pprint</code>ディスパッチテーブル内において 同じ型指定子に関連付けられるエントリーが 2つになることがあり得ないことを保証します。 型指定子の同一性は<a href="5.3.equal.html"><code>equal</code></a>によってテストします。</p>
+<p><code>pprint</code>ディスパッチテーブル内の各型指定子にには、 <em>function</em>と<em>priority</em>の2つの値が 関連付けられます。 <em>function</em>は2つの引数を受け付ける必要があり、 最初の引数は出力を送信するストリーム、 次の引数は印刷するオブジェクトです。 <em>function</em>はオブジェクトをストリームへ プリティプリントとして印刷とするべきです。 <em>function</em>はオブジェクトが与えられた<em>type-specifier</em>を 満たすと仮定することができます。 <em>function</em>は<code>*print-readably*</code>に従うべきです。 <em>function</em>によって返却されるどんな値も無視されます。</p>
+<p><em>priority</em>は、オブジェクトがひとつ以上のエントリーと マッチするような衝突を解決するための優先順位です。</p>
+<p><em>function</em>は<a href="5.3.nil-variable.html"><code>nil</code></a>であることが許されます。 このような状況においては、 <a href="22.4.set-pprint-dispatch.html"><code>set-pprint-dispatch</code></a>が返却されたあとは、 <em>table</em>内に<em>type-specifier</em>のエントリーが無くなります。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string</span> <span class="st">&quot;already a string&quot;</span>) <span class="op">=&gt;</span>  <span class="st">&quot;already a string&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string</span> &#39;elm) <span class="op">=&gt;</span>  <span class="st">&quot;ELM&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string</span> <span class="ch">#\c</span>) <span class="op">=&gt;</span>  <span class="st">&quot;c&quot;</span></span></code></pre></div>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>もし変換が仕様にも実装にも定義されていなかった場合は、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが生じます。</p>
+<p><em>priority</em>が実数ではないときは、エラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><a href="4.4.coerce.html"><code>coerce</code></a>, <a href="16.2.string-system-class.html"><code>string</code></a>.</p>
+<p>なし。</p>
 <h2 id="備考">備考</h2>
-<p><a href="4.4.coerce.html"><code>coerce</code></a>は、文字のシーケンスを文字列に変換するのに使われます。</p>
-<p><a href="22.4.write-to-string.html"><code>prin1-to-string</code></a>, <a href="22.4.write-to-string.html"><code>princ-to-string</code></a>, <a href="22.4.write-to-string.html"><code>write-to-string</code></a>, <code>format</code> (最初の引数が<a href="5.3.nil-variable.html"><code>nil</code></a>)は、 数や他のオブジェクトの文字列の表現を取得するのに使われます。</p>
+<p><code>pprint</code>ディスパッチテーブルは Lispコードのプリティプリンターを制御するときによく使用され、 次のような式のフォームによって示される型指定子が使われることが多いです。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cons</span> car-type cdr-type)</span></code></pre></div>
+<p>これは対応するオブジェクトが<code>cons</code>のセルであり、 <code>car</code>部は<em>car-type</em>という型指定子にマッチし、 <code>cdr</code>部は<em>cdr-type</em>という型指定子にマッチするようなことを意味しています。 <em>cdr-type</em>は省略することができ、 そのような場合はデフォルトでは<a href="4.4.t-system-class.html"><code>t</code></a>になります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PPRINT-TAB
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.pprint-tab
+@name: pprint-tab
+@type: function
+
+Function `PPRINT-TAB`
+
+
+## {syntax}
+
+`pprint-tab` *kind* *colnum* *colinc* `&optional` *stream* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*kind* - `:line`, `:section`, `:line-relative`, `:section-relative`のうちのひとつ  
+*colnum* - 非負の整数  
+colinc - 非負の整数  
+*stream* - 出力ストリーム指定子
+
+
+## {description}
+
+標準の{format-directive}である`~T`として実行される
+*stream*へのタブを指定します。
+もし*stream*が{pretty-printing-stream}であり、
+{*print-pretty*:link}が*true*のとき、
+タブは実行されます。
+それ以外のときは{pprint-tab:link}は効果を持ちません。
+
+引数の*colnum*と*clink*は`~T`の2つのパラメーターに対応し、
+単位は`ems`になります。
+引数の*kind*は、タブのスタイルを指定します。
+それは、`:line`（`~T`によるタブ）、
+`:section`（`~T`によるタブですが、計測される水平位置は
+動的に囲まれたセクションの開始からの相対位置）、
+`:line-relative`（`~T`によるタブ）、
+`:section-relative`（`~T`によるタブですが、計測される水平位置は
+動的に囲まれたセクションの開始からの相対位置）のうちの
+ひとつでなければなりません。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*kind*が`:line`, `:section`, `:line-relative`, `:section-relative`の
+うちのひとつではなかったとき、エラーが発生します。
+
+
+## {see-also}
+
+{pprint-logical-block:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

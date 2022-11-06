@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro PRINT-UNREADABLE-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-unreadable-object
+@name: print-unreadable-object
+@type: macro
+
+Macro `PRINT-UNREADABLE-OBJECT`
+
+
+## {syntax}
+
+`print-unreadable-object`
+ `(` *object* *stream* `&key` *type* *identity* `)`
+ *form\** => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト。評価されます。  
+*stream* - ストリーム指定子。評価されます。  
+*type* - {generalized-boolean}。評価されます。  
+*identity* - {generalized-boolean}。評価されます。  
+*form* - {implicit-progn}
+
+
+## {description}
+
+*stream*へ*object*の表現として、`#<`で始まり`>`で終わるような印刷を出力します。
+
+ボディ部である*form*によって*stream*へ出力された全てのものは、
+山かっこで囲まれます。
+もし*type*が*true*のとき、 フォーム*form*による出力の前に、
+*object*の型の簡潔な説明と空白文字が出力されます。
+もし*identity*が*true*のとき、フォーム*form*による出力に続き、
+スペース文字と*object*の同一性の表現が出力され、
+それは典型的にはストレージのアドレスになります。
+
+もし*type*か*identity*が指定されなかったとき、その値は*false*になります。
+ボディ部の*form*を省略するのは正当です。
+もし*type*と*identity*が両方*true*であり、
+ボディ部の*form*がない場合は、
+ただひとつのスペースだけが型と同一性の区切りに使用されます。
+
+
+## {examples}
+
+```lisp
+;; この例の正確なフォームの出力は実装依存であることに注意してください。
+
+(defmethod print-object ((obj airplane) stream)
+  (print-unreadable-object (obj stream :type t :identity t)
+    (princ (tail-number obj) stream)))
+
+(prin1-to-string my-airplane)
+=>  "#<Airplane NW0773 36000123135>"
+OR=>  "#<FAA:AIRPLANE NW0773 17>"
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし{*print-readably*:link}が*true*のとき、
+{print-unreadable-object:link}は何も印刷せず、
+型{print-not-readable:link}のエラーを通知します。
+
+
+## {see-also}
+
+なし。
+
+## {notes}
+
+なし。
+
+@end
+

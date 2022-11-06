@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function PPRINT-DISPATCH</title>
+  <title>Macro PRINT-UNREADABLE-OBJECT</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,37 +214,42 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function PPRINT-DISPATCH</h1>
+<h1 class="title">Macro PRINT-UNREADABLE-OBJECT</h1>
 </header>
 <p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="function-pprint-dispatch">Function <strong>PPRINT-DISPATCH</strong></h1>
-<p>Function <code>PPRINT-DISPATCH</code></p>
+<h1 id="macro-print-unreadable-object">Macro <strong>PRINT-UNREADABLE-OBJECT</strong></h1>
+<p>Macro <code>PRINT-UNREADABLE-OBJECT</code></p>
 <h2 id="構文">構文</h2>
-<p><code>pprint-dispatch object</code> <code>&amp;optional</code> <em>table</em> =&gt; <em>function</em>, <em>found-p</em></p>
+<p><code>print-unreadable-object</code> <code>(</code> <em>object</em> <em>stream</em> <code>&amp;key</code> <em>type</em> <em>identity</em> <code>)</code> <em>form*</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>object</em> - オブジェクト<br />
-<em>table</em> - <code>pprint</code>ディスパッチテーブルか、<a href="5.3.nil-variable.html"><code>nil</code></a>。 デフォルトは<code>*print-pprint-dispatch*</code>の値。<br />
-<em>function</em> - 関数指定子<br />
-<em>found-p</em> - generalized-boolean</p>
+<p><em>object</em> - オブジェクト。評価されます。<br />
+<em>stream</em> - ストリーム指定子。評価されます。<br />
+<em>type</em> - generalized-boolean。評価されます。<br />
+<em>identity</em> - generalized-boolean。評価されます。<br />
+<em>form</em> - 暗黙のprogn</p>
 <h2 id="定義">定義</h2>
-<p><em>table</em>の中から、<em>object</em>にマッチする型指定子と関連づけられた 優先度の高い関数を検索します。 その関数は、<em>table</em>の中の<em>object</em>にマッチする全ての型指定子から検索され、 それらの型指定子の中に関連づいた最も高い優先度の関数が選択されます。 もし最も高い優先度の関数がひとつではなく複数あったとき、 任意のものが選ばれます。 もし型指定子が<em>object</em>にマッチしなかったときは、 <em>object</em>が出力されるときに使われる<a href="22.4.print-object.html"><code>print-object</code></a>の関数が返却されます。</p>
-<p>第二返却値の<em>found-p</em>は、 もし型指定子が<em>table</em>にマッチされたときは<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
-<p>もし<em>table</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <code>pprint</code>ディスパッチテーブルの初期値から検索が行われます。</p>
+<p><em>stream</em>へ<em>object</em>の表現として、<code>#&lt;</code>で始まり<code>&gt;</code>で終わるような印刷を出力します。</p>
+<p>ボディ部である<em>form</em>によって<em>stream</em>へ出力された全てのものは、 山かっこで囲まれます。 もし<em>type</em>が<em>true</em>のとき、 フォーム<em>form</em>による出力の前に、 <em>object</em>の型の簡潔な説明と空白文字が出力されます。 もし<em>identity</em>が<em>true</em>のとき、フォーム<em>form</em>による出力に続き、 スペース文字と<em>object</em>の同一性の表現が出力され、 それは典型的にはストレージのアドレスになります。</p>
+<p>もし<em>type</em>か<em>identity</em>が指定されなかったとき、その値は<em>false</em>になります。 ボディ部の<em>form</em>を省略するのは正当です。 もし<em>type</em>と<em>identity</em>が両方<em>true</em>であり、 ボディ部の<em>form</em>がない場合は、 ただひとつのスペースだけが型と同一性の区切りに使用されます。</p>
 <h2 id="例文">例文</h2>
-<p>なし。</p>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; この例の正確なフォームの出力は実装依存であることに注意してください。</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> print-object </span>((obj airplane) <span class="kw">stream</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">print-unreadable-object</span> (obj <span class="kw">stream</span> <span class="bu">:type</span> <span class="kw">t</span> :identity <span class="kw">t</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">princ</span> (tail-number obj) <span class="kw">stream</span>)))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prin1-to-string</span> my-airplane)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;#&lt;Airplane NW0773 36000123135&gt;&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>OR=&gt;  <span class="st">&quot;#&lt;FAA:AIRPLANE NW0773 17&gt;&quot;</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p><em>table</em>の状態</p>
+<p>なし。</p>
 <h2 id="例外">例外</h2>
-<p><em>table</em>が<code>pprint</code>ディスパッチテーブルでも<a href="5.3.nil-variable.html"><code>nil</code></a>でもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが通知されるべきです。</p>
+<p>もし<code>*print-readably*</code>が<em>true</em>のとき、 <a href="22.4.print-unreadable-object.html"><code>print-unreadable-object</code></a>は何も印刷せず、 型<code>print-not-readable</code>のエラーを通知します。</p>
 <h2 id="参考">参考</h2>
 <p>なし。</p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*print-pretty*</span> <span class="kw">t</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">write</span> object <span class="bu">:stream</span> s))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">funcall</span> (<span class="kw">pprint-dispatch</span> object) s object)</span></code></pre></div>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

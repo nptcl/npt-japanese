@@ -316,7 +316,7 @@ report-name::= string | symbol | lambda expression </code></pre>
 </ul></li>
 <li><code>:report</code>
 <ul>
-<li>コンディションの報告は、そのコンディションの型の質問に対して <a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>に指定されているときはいつでも <code>print-object</code>メソッドを仲介します。 そのコンディションの型<code>C</code>の定義に<code>(:report report-name)</code>が指定されたときは、 それは下記のものと同等です。</li>
+<li>コンディションの報告は、そのコンディションの型の質問に対して <a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<a href="5.3.nil-variable.html"><code>nil</code></a>に指定されているときはいつでも <a href="22.4.print-object.html"><code>print-object</code></a>メソッドを仲介します。 そのコンディションの型<code>C</code>の定義に<code>(:report report-name)</code>が指定されたときは、 それは下記のものと同等です。</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> print-object </span>((x c) <span class="kw">stream</span>)</span>

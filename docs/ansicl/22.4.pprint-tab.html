@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Condition-Type CONDITION</title>
+  <title>Function PPRINT-TAB</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,25 +151,34 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Condition-Type CONDITION</h1>
+<h1 class="title">Function PPRINT-TAB</h1>
 </header>
-<p><a href="9.2.html">UP</a></p>
+<p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="condition-type-condition">Condition-Type <strong>CONDITION</strong></h1>
-<p>Condition Type <code>CONDITION</code></p>
-<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
-<p><a href="9.2.condition.html"><code>condition</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h1 id="function-pprint-tab">Function <strong>PPRINT-TAB</strong></h1>
+<p>Function <code>PPRINT-TAB</code></p>
+<h2 id="構文">構文</h2>
+<p><code>pprint-tab</code> <em>kind</em> <em>colnum</em> <em>colinc</em> <code>&amp;optional</code> <em>stream</em> =&gt; <a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>kind</em> - <code>:line</code>, <code>:section</code>, <code>:line-relative</code>, <code>:section-relative</code>のうちのひとつ<br />
+<em>colnum</em> - 非負の整数<br />
+colinc - 非負の整数<br />
+<em>stream</em> - 出力ストリーム指定子</p>
 <h2 id="定義">定義</h2>
-<p>全てのコンディションの型は、 エラーか非エラー関わらず、この型を継承しなければなりません。</p>
-<p>本文中で明示的に言及されている場合を除き、 指定された型<a href="9.2.condition.html"><code>condition</code></a>のサブタイプの間で 追加のサブタイプの関係は許可されません。 しかし実装であれば追加の型を導入することが許されており、 これらの型のひとつは、 任意の数の型<a href="9.2.condition.html"><code>condition</code></a>のサブタイプの さらなるサブタイプであることができます。</p>
-<p>ユーザーで定義したコンディションの型が持つスロットを <a href="7.7.with-slots.html"><code>with-slots</code></a>によってアクセスできるかどうかは 実装依存です。 さらに実装内にあるユーザー定義のコンディション型がスロットを持っているかどうか、 またコンディション型のドキュメントにそのようなスロットが定義されているか、 それらのスロットが名前を持っており実際に扱っているかどうかなどは、 すべて実装依存です。 移植可能なコードが参考にできるのは、 ただ仕様書に記載されているリーダー関数のみです。</p>
-<p>仕様に適合したコードはコンディションに関係する 下記の制約に従わなければなりません。</p>
-<ul>
-<li><p>新しいコンディション型を定義するときは <a href="9.2.define-condition.html"><code>define-condition</code></a>を使用しなければならず、 <a href="7.7.defclass.html"><code>defclass</code></a>ではいけません。</p></li>
-<li><p>コンディションのオブジェクトを明に作成するときは、 <a href="9.2.make-condition.html"><code>make-condition</code></a>を使用しなければならず、 <a href="7.7.make-instance.html"><code>make-instance</code></a>ではいけません。</p></li>
-<li><p>コンディションの報告を定義するときは <a href="9.2.define-condition.html"><code>define-condition</code></a>の<code>:report</code>オプションを使用しなければならず、 <a href="22.4.print-object.html"><code>print-object</code></a>の<a href="7.7.defmethod.html"><code>defmethod</code></a>を定義してはいけません。</p></li>
-<li><p><a href="7.7.slot-value.html"><code>slot-value</code></a>, <a href="7.7.slot-boundp.html"><code>slot-boundp</code></a>, <a href="7.7.slot-makunbound.html"><code>slot-makunbound</code></a>, <a href="7.7.with-slots.html"><code>with-slots</code></a>は コンディションオブジェクトに使用してはいけません。 かわりに（<a href="9.2.define-condition.html"><code>define-condition</code></a>によって定義された） 適切なアクセス関数を使用する必要があります。</p></li>
-</ul>
+<p>標準の<code>format</code>指示子である<code>~T</code>として実行される <em>stream</em>へのタブを指定します。 もし<em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>が<em>true</em>のとき、 タブは実行されます。 それ以外のときは<a href="22.4.pprint-tab.html"><code>pprint-tab</code></a>は効果を持ちません。</p>
+<p>引数の<em>colnum</em>と<em>clink</em>は<code>~T</code>の2つのパラメーターに対応し、 単位は<code>ems</code>になります。 引数の<em>kind</em>は、タブのスタイルを指定します。 それは、<code>:line</code>（<code>~T</code>によるタブ）、 <code>:section</code>（<code>~T</code>によるタブですが、計測される水平位置は 動的に囲まれたセクションの開始からの相対位置）、 <code>:line-relative</code>（<code>~T</code>によるタブ）、 <code>:section-relative</code>（<code>~T</code>によるタブですが、計測される水平位置は 動的に囲まれたセクションの開始からの相対位置）のうちの ひとつでなければなりません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><em>kind</em>が<code>:line</code>, <code>:section</code>, <code>:line-relative</code>, <code>:section-relative</code>の うちのひとつではなかったとき、エラーが発生します。</p>
+<h2 id="参考">参考</h2>
+<p><a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

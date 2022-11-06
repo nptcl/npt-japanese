@@ -74,6 +74,7 @@
 (text 3.2.3 "ファイルのコンパイル" "File Compilation")
 (text 3.2.4 "ファイルコンパイル時の{literal-object}"
       "Literal Objects in Compiled Files")
+(index 3.2.4.2 "リテラルオブジェクトの類似性" "Similarity of Literal Objects")
 (text 3.2.4.4 "外部オブジェクトの制約の追記"
       "Additional Constraints on Externalizable Objects")
 (text 3.2.5 "コンパイラーの例外状況" "Exceptional Situations in the Compiler")
@@ -892,6 +893,8 @@
 (text 22.2 "Lispプリティプリンター" "The Lisp Pretty Printer")
 (text 22.2.1 "プリティプリンターの説明" "Pretty Printer Concepts")
 (text 22.2.1.1 "出力の配置の動的制御" "Dynamic Control of the Arrangement of Output")
+(text 22.2.1.4 "プリティプリンターのディスパッチテーブル"
+      "Pretty Print Dispatch Tables")
 (text 22.2.2 "プリティプリンターの使用例" "Examples of using the Pretty Printer")
 (text 22.3 "書式出力" "Formatted Output")
 (text 22.3.5 "`FORMAT`プリティプリンター操作" "FORMAT Pretty Printer Operations")
@@ -922,17 +925,18 @@
 (dictionary 22.4.prin1-to-string) ;; delete
 (dictionary 22.4.princ-to-string) ;; delete
 (dictionary 22.4.print-array)
-(dictionary 22.4.print-base)
-(dictionary 22.4.print-case)
+(dictionary 22.4.*print-base*)  ;; rename
+(dictionary 22.4.*print-radix*)  ;; delete
+(dictionary 22.4.*print-case*)  ;; rename
 (dictionary 22.4.print-circle)
 (dictionary 22.4.print-escape)
-(dictionary 22.4.print-gensym)
+(dictionary 22.4.*print-gensym*)  ;; rename
 (dictionary 22.4.print-level)
 (dictionary 22.4.print-lines)
 (dictionary 22.4.*print-miser-width*)  ;; rename
 (dictionary 22.4.*print-pprint-dispatch*)  ;; rename
 (dictionary 22.4.*print-pretty*)  ;; rename
-(dictionary 22.4.print-readably)
+(dictionary 22.4.*print-readably*)  ;; rename
 (dictionary 22.4.print-right-margin)
 (dictionary 22.4.print-not-readable)
 (dictionary 22.4.print-not-readable-object)

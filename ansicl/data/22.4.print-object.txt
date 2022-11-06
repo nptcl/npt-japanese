@@ -1,0 +1,163 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function PRINT-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-object
+@name: print-object
+@type: standard-generic-function
+
+Standard Generic Function `PRINT-OBJECT`
+
+
+## {syntax}
+
+`print-object` *object* *stream* => *object*
+
+
+## {method-signatures}
+
+`print-object` `(` *object* {standard-object:link} `)` *stream*  
+`print-object` `(` *object* {structure-object:link} `)` *stream*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*stream* - ストリーム
+
+
+## {description}
+
+ジェネリック関数{print-object:link}は、
+*object*の印刷表現を*stream*へ書き込みます。
+この関数{print-object:link}は、
+`Lisp`のプリンターによって呼び出されるものであり、
+ユーザーが呼び出すべきではありません。
+
+各実装は、クラス{standard-object:link}とクラス{structure-object:link}の
+それぞれのクラスを提供するよう要求されます。
+さらに各実装は、常に適切なメソッドが存在することが保証されるよう、
+その他の十分なクラスを提供しなければなりません。
+その他のクラスのメソッドを追加するかどうかは実装の自由です。
+ユーザーは、自身のクラスに対して
+その{implementation-dependent}のメソッドを継承したくないときは、
+{print-object:link}のメソッドを書くことができます。
+
+{structure-object:link}のメソッドは
+デフォルトでは`#S`表記によってオブジェクトを印刷します。
+{22.1.3.2:ab}をご確認ください。
+
+{print-object:link}のメソッドは、
+下記に示すプリンター制御の変数の意味の一部を実装する責任があります。
+
+- {*print-readably*:link}
+  - {print-object:link}の全てのメソッドは、
+    {*print-readably*:link}に従う必要があります。
+    これはユーザー定義メソッドと実装定義のメソッドの両方が含まれます。
+    構造体と{standard-object:link}のオブジェクトの
+    読み込み可能な印刷を制御するのは
+    それらの{print-object:link}のメソッドであり、
+    それらの{make-load-form:link}メソッドによってではありません。
+    これらのオブジェクトの類似性はアプリケーションに依存するので、
+    したがってこれらのメソッドが行うことは何でも定義できます。
+    {3.2.4.2:ab}をご確認ください。
+
+- {*print-escape*:link}
+  - 各メソッドは{*print-escape*:link}を実装しなければなりません。
+
+- {*print-pretty*:link}
+  - メソッドは{*print-pretty*:link}の値によって
+    改行やその他の出力の状態を特別に実行したいかもしれません。
+    より詳しい情報は、（例えば）マクロ{pprint-fill:link}をご確認ください。
+    {22.2.1.4:ab}と{22.2.2:ab}も合わせてご確認ください。
+
+- {*print-length*:link}
+  - 長さが不定の出力を行うメソッドは、
+    {*print-length*:link}に従わなければなりません。
+    より詳しい情報は、（例えば）マクロ{pprint-logical-block:link}や
+    {pprint-pop:link}をご確認ください。
+    {22.2.1.4:ab}と{22.2.2:ab}も合わせてご確認ください。
+
+- {*print-level*:link}
+  - プリンターは自動的に{*print-level*:link}を扱い、
+    各メソッドは正確にひとつの構造の階層として扱うように提供されます。
+    よって、より深い階層のときでも{write:link}（あるいは同等の関数）を
+    再帰的に呼び出すことができます。
+    プリンターによるオブジェクトが要素を持つかどうかの決定
+    （したがって印刷の階層が{*print-level*:link}未満ではないときに
+    印刷するべきではないという決定）は、
+    {implementation-dependent}です。
+    いくつかの実装は{print-object:link}メソッドが呼ばれず、
+    他のメソッドが呼び出され、そしてオブジェクトが要素を持つかどうかの決定は、
+    *stream*へ書き込みが行われようとしたときが元になります。
+
+- {*print-circle*:link}
+  - {*print-circle*:link}の値が*true*Nおとき、
+    {print-object:link}のユーザー定義メソッドは、
+    {write:link}, {prin1:link}, {princ:link}, {format:link}の
+    どれかを使用することで、ストリームに対してオブジェクトを印刷できますが、
+    例外として循環が検出されたときは、`#n#`構文が使われて印刷されます。
+    もし{print-object:link}のユーザー定義メソッドが
+    指定されたストリーム以外のストリームに印刷するときは、
+    循環の検出はそのストリームに対してやり直されます。
+    {*print-circle*:link}をご確認ください。
+
+- {*print-base*:link}, {*print-radix*:link}, {*print-case*:link}, {*print-gensym*:link}, {*print-array*:link}
+  - これらのプリンター制御変数は指定したオブジェクトの型により適用され、
+    それらのオブジェクトのメソッドによって捕捉されます。
+
+もしこれらのルールに従わなかったときの結果は未定義です。
+
+一般的にプリンターと{print-object:link}のメソッドは、
+構造を通して再帰的に操作されるため
+プリンター制御変数を再束縛するべきではありません。
+
+いくつかの実装では、
+{print-object:link}メソッドに渡される引数の*stream*が
+元のストリームではななく、
+プリンターの一部として実装された中間のストリームになるため、
+したがってメソッドはこのストリームの
+同一性に依存するべきではありません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{pprint-fill:link},
+{pprint-logical-block:link},
+{pprint-pop:link},
+{write:link},
+{*print-readably*:link},
+{*print-escape*:link},
+{*print-pretty*:link},
+{*print-length*:link},
+{22.1.3:ab},
+{22.1.3.12:ab},
+{22.2.1.4:ab},
+{22.2.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

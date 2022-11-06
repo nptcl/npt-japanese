@@ -482,7 +482,10 @@
 (setf (gethash "PPRINT-LOGICAL-BLOCK" *name*) '("MACRO"))
 (setf (gethash "PPRINT-NEWLINE" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-POP" *name*) '("LOCAL-MACRO"))
+(setf (gethash "PPRINT-TAB" *name*) '("FUNCTION"))
 (setf (gethash "PPRINT-TABULAR" *name*) '("FUNCTION"))
+(setf (gethash "PRINT-OBJECT" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "PRINT-UNREADABLE-OBJECT" *name*) '("MACRO"))
 (setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
 (setf (gethash "PROCLAIM" *name*) '("FUNCTION"))
 (setf (gethash "PROG" *name*) '("MACRO"))
@@ -23253,6 +23256,30 @@
     (CHAPTER ("## 備考") 2 (CODE1 "pprint-pop") "を呼び出す前に"
      (CODE1 "pprint-exit-if-list-exhausted") "を呼ぶという状況は" "頻繁にあります。")))
 (setf (gethash '("PPRINT-POP" . "LOCAL-MACRO") *table*) (gethash "PPRINT-POP" *table*))
+(setf (gethash "PPRINT-TAB" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-TAB"))
+    (CHAPTER ("## 構文") 2 (CODE1 "pprint-tab") " " (STRONG "kind") " " (STRONG "colnum")
+     " " (STRONG "colinc") " " (CODE1 "&optional") " " (STRONG "stream") " => "
+     (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "kind") " - " (CODE1 ":line") ", "
+     (CODE1 ":section") ", " (CODE1 ":line-relative") ", " (CODE1 ":section-relative")
+     "のうちのひとつ" EOL1 (STRONG "colnum") " - 非負の整数" EOL1 "colinc - 非負の整数" EOL1
+     (STRONG "stream") " - 出力ストリーム指定子")
+    (CHAPTER ("## 定義") 2 "標準の" (CODE1 "format") "指示子である" (CODE1 "~T") "として実行される"
+     (STRONG "stream") "へのタブを指定します。" "もし" (STRONG "stream") "がプリティプリントのストリームであり、"
+     (CODE1 "*print-pretty*") "が" (STRONG "true") "のとき、" "タブは実行されます。" "それ以外のときは"
+     (CODE1 "pprint-tab") "は効果を持ちません。" EOL2 "引数の" (STRONG "colnum") "と" (STRONG "clink")
+     "は" (CODE1 "~T") "の2つのパラメーターに対応し、" "単位は" (CODE1 "ems") "になります。" "引数の"
+     (STRONG "kind") "は、タブのスタイルを指定します。" "それは、" (CODE1 ":line") "（" (CODE1 "~T") "によるタブ）、"
+     (CODE1 ":section") "（" (CODE1 "~T") "によるタブですが、計測される水平位置は" "動的に囲まれたセクションの開始からの相対位置）、"
+     (CODE1 ":line-relative") "（" (CODE1 "~T") "によるタブ）、" (CODE1 ":section-relative") "（"
+     (CODE1 "~T") "によるタブですが、計測される水平位置は" "動的に囲まれたセクションの開始からの相対位置）のうちの" "ひとつでなければなりません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "kind") "が" (CODE1 ":line") ", " (CODE1 ":section") ", "
+     (CODE1 ":line-relative") ", " (CODE1 ":section-relative") "の"
+     "うちのひとつではなかったとき、エラーが発生します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "pprint-logical-block")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PPRINT-TAB" . "FUNCTION") *table*) (gethash "PPRINT-TAB" *table*))
 (setf (gethash "PPRINT-TABULAR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PPRINT-FILL") ", " (CODE1 "PPRINT-LINEAR") ", "
      (CODE1 "PPRINT-TABULAR"))
@@ -23305,6 +23332,99 @@
      "なぜならリストの繰り返し内にある" (CODE1 "format") "の命令" (CODE1 "~:T") "に" (CODE1 "tabsize")
      "引数を渡す必要があるためです。")))
 (setf (gethash '("PPRINT-TABULAR" . "FUNCTION") *table*) (gethash "PPRINT-TABULAR" *table*))
+(setf (gethash "PRINT-OBJECT" *table*)
+  '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "PRINT-OBJECT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "print-object") " " (STRONG "object") " "
+     (STRONG "stream") " => " (STRONG "object"))
+    (CHAPTER ("## メソッド宣言") 2 (CODE1 "print-object") " " (CODE1 "(") " " (STRONG "object")
+     " " (CODE1 "standard-object") " " (CODE1 ")") " " (STRONG "stream") EOL1
+     (CODE1 "print-object") " " (CODE1 "(") " " (STRONG "object") " "
+     (CODE1 "structure-object") " " (CODE1 ")") " " (STRONG "stream"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "stream")
+     " - ストリーム")
+    (CHAPTER ("## 定義") 2 "ジェネリック関数" (CODE1 "print-object") "は、" (STRONG "object")
+     "の印刷表現を" (STRONG "stream") "へ書き込みます。" "この関数" (CODE1 "print-object") "は、"
+     (CODE1 "Lisp") "のプリンターによって呼び出されるものであり、" "ユーザーが呼び出すべきではありません。" EOL2 "各実装は、クラス"
+     (CODE1 "standard-object") "とクラス" (CODE1 "structure-object") "の"
+     "それぞれのクラスを提供するよう要求されます。" "さらに各実装は、常に適切なメソッドが存在することが保証されるよう、"
+     "その他の十分なクラスを提供しなければなりません。" "その他のクラスのメソッドを追加するかどうかは実装の自由です。" "ユーザーは、自身のクラスに対して"
+     "その実装依存のメソッドを継承したくないときは、" (CODE1 "print-object") "のメソッドを書くことができます。" EOL2
+     (CODE1 "structure-object") "のメソッドは" "デフォルトでは" (CODE1 "#S") "表記によってオブジェクトを印刷します。"
+     "22.1.3.2. 文字の印字をご確認ください。" EOL2 (CODE1 "print-object") "のメソッドは、"
+     "下記に示すプリンター制御の変数の意味の一部を実装する責任があります。" EOL2 "- " (CODE1 "*print-readably*") "  - "
+     (CODE1 "print-object") "の全てのメソッドは、" "    " (CODE1 "*print-readably*") "に従う必要があります。"
+     "    これはユーザー定義メソッドと実装定義のメソッドの両方が含まれます。" "    構造体と" (CODE1 "standard-object")
+     "のオブジェクトの" "    読み込み可能な印刷を制御するのは" "    それらの" (CODE1 "print-object") "のメソッドであり、"
+     "    それらの" (CODE1 "make-load-form") "メソッドによってではありません。"
+     "    これらのオブジェクトの類似性はアプリケーションに依存するので、" "    したがってこれらのメソッドが行うことは何でも定義できます。"
+     "    3.2.4.2. リテラルオブジェクトの類似性をご確認ください。" EOL2 "- " (CODE1 "*print-escape*")
+     "  - 各メソッドは" (CODE1 "*print-escape*") "を実装しなければなりません。" EOL2 "- "
+     (CODE1 "*print-pretty*") "  - メソッドは" (CODE1 "*print-pretty*") "の値によって"
+     "    改行やその他の出力の状態を特別に実行したいかもしれません。" "    より詳しい情報は、（例えば）マクロ" (CODE1 "pprint-fill")
+     "をご確認ください。" "    22.2.1.4. プリティプリンターのディスパッチテーブルと22.2.2. プリティプリンターの使用例も合わせてご確認ください。"
+     EOL2 "- " (CODE1 "*print-length*") "  - 長さが不定の出力を行うメソッドは、" "    "
+     (CODE1 "*print-length*") "に従わなければなりません。" "    より詳しい情報は、（例えば）マクロ"
+     (CODE1 "pprint-logical-block") "や" "    " (CODE1 "pprint-pop") "をご確認ください。"
+     "    22.2.1.4. プリティプリンターのディスパッチテーブルと22.2.2. プリティプリンターの使用例も合わせてご確認ください。" EOL2 "- "
+     (CODE1 "*print-level*") "  - プリンターは自動的に" (CODE1 "*print-level*") "を扱い、"
+     "    各メソッドは正確にひとつの構造の階層として扱うように提供されます。" "    よって、より深い階層のときでも" (CODE1 "write")
+     "（あるいは同等の関数）を" "    再帰的に呼び出すことができます。" "    プリンターによるオブジェクトが要素を持つかどうかの決定"
+     "    （したがって印刷の階層が" (CODE1 "*print-level*") "未満ではないときに" "    印刷するべきではないという決定）は、"
+     "    実装依存です。" "    いくつかの実装は" (CODE1 "print-object") "メソッドが呼ばれず、"
+     "    他のメソッドが呼び出され、そしてオブジェクトが要素を持つかどうかの決定は、" "    " (STRONG "stream")
+     "へ書き込みが行われようとしたときが元になります。" EOL2 "- " (CODE1 "*print-circle*") "  - "
+     (CODE1 "*print-circle*") "の値が" (STRONG "true") "Nおとき、" "    " (CODE1 "print-object")
+     "のユーザー定義メソッドは、" "    " (CODE1 "write") ", " (CODE1 "prin1") ", " (CODE1 "princ")
+     ", " (CODE1 "format") "の" "    どれかを使用することで、ストリームに対してオブジェクトを印刷できますが、"
+     "    例外として循環が検出されたときは、" (CODE1 "#n#") "構文が使われて印刷されます。" "    もし"
+     (CODE1 "print-object") "のユーザー定義メソッドが" "    指定されたストリーム以外のストリームに印刷するときは、"
+     "    循環の検出はそのストリームに対してやり直されます。" "    " (CODE1 "*print-circle*") "をご確認ください。" EOL2
+     "- " (CODE1 "*print-base*") ", " (CODE1 "*print-radix*") ", " (CODE1 "*print-case*")
+     ", " (CODE1 "*print-gensym*") ", " (CODE1 "*print-array*")
+     "  - これらのプリンター制御変数は指定したオブジェクトの型により適用され、" "    それらのオブジェクトのメソッドによって捕捉されます。" EOL2
+     "もしこれらのルールに従わなかったときの結果は未定義です。" EOL2 "一般的にプリンターと" (CODE1 "print-object") "のメソッドは、"
+     "構造を通して再帰的に操作されるため" "プリンター制御変数を再束縛するべきではありません。" EOL2 "いくつかの実装では、"
+     (CODE1 "print-object") "メソッドに渡される引数の" (STRONG "stream") "が" "元のストリームではななく、"
+     "プリンターの一部として実装された中間のストリームになるため、" "したがってメソッドはこのストリームの" "同一性に依存するべきではありません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "pprint-fill") "," (CODE1 "pprint-logical-block") ","
+     (CODE1 "pprint-pop") "," (CODE1 "write") "," (CODE1 "*print-readably*") ","
+     (CODE1 "*print-escape*") "," (CODE1 "*print-pretty*") "," (CODE1 "*print-length*")
+     "," "22.1.3. 標準のPrint-Objectメソッド," "22.1.3.12. 構造体の印字,"
+     "22.2.1.4. プリティプリンターのディスパッチテーブル," "22.2.2. プリティプリンターの使用例")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PRINT-OBJECT" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "PRINT-OBJECT" *table*))
+(setf (gethash "PRINT-UNREADABLE-OBJECT" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "PRINT-UNREADABLE-OBJECT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "print-unreadable-object") " " (CODE1 "(") " "
+     (STRONG "object") " " (STRONG "stream") " " (CODE1 "&key") " " (STRONG "type") " "
+     (STRONG "identity") " " (CODE1 ")") " " (STRONG "form\\*") " => " (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト。評価されます。" EOL1 (STRONG "stream")
+     " - ストリーム指定子。評価されます。" EOL1 (STRONG "type") " - generalized-boolean。評価されます。" EOL1
+     (STRONG "identity") " - generalized-boolean。評価されます。" EOL1 (STRONG "form")
+     " - 暗黙のprogn")
+    (CHAPTER ("## 定義") 2 (STRONG "stream") "へ" (STRONG "object") "の表現として、" (CODE1 "#<")
+     "で始まり" (CODE1 ">") "で終わるような印刷を出力します。" EOL2 "ボディ部である" (STRONG "form") "によって"
+     (STRONG "stream") "へ出力された全てのものは、" "山かっこで囲まれます。" "もし" (STRONG "type") "が"
+     (STRONG "true") "のとき、 フォーム" (STRONG "form") "による出力の前に、" (STRONG "object")
+     "の型の簡潔な説明と空白文字が出力されます。" "もし" (STRONG "identity") "が" (STRONG "true") "のとき、フォーム"
+     (STRONG "form") "による出力に続き、" "スペース文字と" (STRONG "object") "の同一性の表現が出力され、"
+     "それは典型的にはストレージのアドレスになります。" EOL2 "もし" (STRONG "type") "か" (STRONG "identity")
+     "が指定されなかったとき、その値は" (STRONG "false") "になります。" "ボディ部の" (STRONG "form") "を省略するのは正当です。"
+     "もし" (STRONG "type") "と" (STRONG "identity") "が両方" (STRONG "true") "であり、" "ボディ部の"
+     (STRONG "form") "がない場合は、" "ただひとつのスペースだけが型と同一性の区切りに使用されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; この例の正確なフォームの出力は実装依存であることに注意してください。" NIL
+      "(defmethod print-object ((obj airplane) stream)"
+      "  (print-unreadable-object (obj stream :type t :identity t)"
+      "    (princ (tail-number obj) stream)))" NIL "(prin1-to-string my-airplane)"
+      "=>  \"#<Airplane NW0773 36000123135>\"" "OR=>  \"#<FAA:AIRPLANE NW0773 17>\""))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "もし" (CODE1 "*print-readably*") "が" (STRONG "true") "のとき、"
+     (CODE1 "print-unreadable-object") "は何も印刷せず、" "型" (CODE1 "print-not-readable")
+     "のエラーを通知します。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PRINT-UNREADABLE-OBJECT" . "MACRO") *table*) (gethash "PRINT-UNREADABLE-OBJECT" *table*))
 (setf (gethash "PROBE-FILE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PROBE-FILE"))
     (CHAPTER ("## 構文") 2 (CODE1 "probe-file") " " (STRONG "pathspec") " => "

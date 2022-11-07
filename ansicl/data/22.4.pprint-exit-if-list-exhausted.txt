@@ -25,7 +25,6 @@ Function `PPRINT-EXIT-IF-LIST-EXHAUSTED`
 
 ## {description}
 
-*list*
 レキシカル環境の現在の論理ブロックに渡された
 *list*が使い果たされたかどうかをテストします。
 {22.2.1.1:ab}をご確認ください。

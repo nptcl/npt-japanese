@@ -29,10 +29,12 @@
 (setf (gethash "*MACROEXPAND-HOOK*" *name*) '("VARIABLE"))
 (setf (gethash "*PACKAGE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-ARRAY*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-BASE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-CIRCLE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-ESCAPE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LENGTH*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LEVEL*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-RADIX*" *name*) '("VARIABLE"))
 (setf (gethash "*QUERY-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-INPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
@@ -991,6 +993,42 @@
     (CHAPTER ("## 参考") 2 "2.4.8.3. シャープサイン 左かっこ," "2.4.8.20. シャープサイン " (CODE1 "<"))
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-ARRAY*" . "VARIABLE") *table*) (gethash "*PRINT-ARRAY*" *table*))
+(setf (gethash "*PRINT-BASE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-BASE*") ", " (CODE1 "*PRINT-RADIX*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*print-base*") " - 基数" EOL1 (CODE1 "*print-radix*")
+     " - generalized-boolean")
+    (CHAPTER ("## 初期値") 2 (CODE1 "*print-base*") "の初期値は" (CODE1 "10") "。" EOL1
+     (CODE1 "*print-radix*") "の初期値は" (STRONG "false") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*") "は、"
+     (CODE1 "rational") "の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
+     (CODE1 "*print-base*") "の値は、プリンターが" (CODE1 "rational") "を印刷する基数です。" "基数が"
+     (CODE1 "10") "より大きいとき、" "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*")
+     "の値が" (STRONG "true") "のとき、" "プリンターは" (CODE1 "rational") "の数を印刷するときに"
+     "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし" (CODE1 "*print-base*") "が"
+     (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、" "基数指定子はそれぞれ" (CODE1 "#b") ", "
+     (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
+     "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t)) "
+      "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
+      "(setq *print-radix* nil) =>  NIL                                          "
+      "(dotimes (i 35)" "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
+      "     (write 40)                            ;それぞれ印刷します"
+      "     (if (zerop (mod i 10)) (terpri) (format t \" \"))))" ">>  101000"
+      ">>  1111 220 130 104 55 50 44 40 37 34" ">>  31 2C 2A 28 26 24 22 20 1J 1I"
+      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14 " "=>  NIL"
+      "(dolist (pb '(2 3 8 10 16))               "
+      "   (let ((*print-radix* t)                 ;整数の10と分数の1/10を"
+      "         (*print-base* pb))                ;基数2, 3, 8, 10, 16で"
+      "    (format t \"~&~S  ~S~%\" 10 1/10)))        ;それぞれ印刷します" ">>  #b1010  #b1/1010"
+      ">>  #3r101  #3r1/101" ">>  #o12  #o1/12" ">>  10.  #10r1/10" ">>  #xA  #x1/A"
+      "=>  NIL"))
+    (CHAPTER ("## 影響") 2 (CODE1 "format") ", " (CODE1 "write") ", "
+     (CODE1 "write-to-string") "によって" "束縛が生じるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "format") "," (CODE1 "write") ","
+     (CODE1 "write-to-string"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*PRINT-BASE*" . "VARIABLE") *table*) (gethash "*PRINT-BASE*" *table*))
 (setf (gethash "*PRINT-CIRCLE*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-CIRCLE*"))))
 (setf (gethash '("*PRINT-CIRCLE*" . "VARIABLE") *table*) (gethash "*PRINT-CIRCLE*" *table*))
@@ -1003,6 +1041,42 @@
 (setf (gethash "*PRINT-LEVEL*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LEVEL*") ", " (CODE1 "*PRINT-LENGTH*"))))
 (setf (gethash '("*PRINT-LEVEL*" . "VARIABLE") *table*) (gethash "*PRINT-LEVEL*" *table*))
+(setf (gethash "*PRINT-RADIX*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-BASE*") ", " (CODE1 "*PRINT-RADIX*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*print-base*") " - 基数" EOL1 (CODE1 "*print-radix*")
+     " - generalized-boolean")
+    (CHAPTER ("## 初期値") 2 (CODE1 "*print-base*") "の初期値は" (CODE1 "10") "。" EOL1
+     (CODE1 "*print-radix*") "の初期値は" (STRONG "false") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*") "は、"
+     (CODE1 "rational") "の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
+     (CODE1 "*print-base*") "の値は、プリンターが" (CODE1 "rational") "を印刷する基数です。" "基数が"
+     (CODE1 "10") "より大きいとき、" "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*")
+     "の値が" (STRONG "true") "のとき、" "プリンターは" (CODE1 "rational") "の数を印刷するときに"
+     "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし" (CODE1 "*print-base*") "が"
+     (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、" "基数指定子はそれぞれ" (CODE1 "#b") ", "
+     (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
+     "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t)) "
+      "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
+      "(setq *print-radix* nil) =>  NIL                                          "
+      "(dotimes (i 35)" "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
+      "     (write 40)                            ;それぞれ印刷します"
+      "     (if (zerop (mod i 10)) (terpri) (format t \" \"))))" ">>  101000"
+      ">>  1111 220 130 104 55 50 44 40 37 34" ">>  31 2C 2A 28 26 24 22 20 1J 1I"
+      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14 " "=>  NIL"
+      "(dolist (pb '(2 3 8 10 16))               "
+      "   (let ((*print-radix* t)                 ;整数の10と分数の1/10を"
+      "         (*print-base* pb))                ;基数2, 3, 8, 10, 16で"
+      "    (format t \"~&~S  ~S~%\" 10 1/10)))        ;それぞれ印刷します" ">>  #b1010  #b1/1010"
+      ">>  #3r101  #3r1/101" ">>  #o12  #o1/12" ">>  10.  #10r1/10" ">>  #xA  #x1/A"
+      "=>  NIL"))
+    (CHAPTER ("## 影響") 2 (CODE1 "format") ", " (CODE1 "write") ", "
+     (CODE1 "write-to-string") "によって" "束縛が生じるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "format") "," (CODE1 "write") ","
+     (CODE1 "write-to-string"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*PRINT-RADIX*" . "VARIABLE") *table*) (gethash "*PRINT-RADIX*" *table*))
 (setf (gethash "*QUERY-IO*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*DEBUG-IO*") ", " (CODE1 "*ERROR-OUTPUT*") ", "
      (CODE1 "*QUERY-IO*") "," " " (CODE1 "*STANDARD-INPUT*") ", "
@@ -23066,13 +23140,12 @@
     (CHAPTER ("## 構文") 2 (CODE1 "pprint-exit-if-list-exhausted") " " (CODE1 "<引数なし>")
      " => " (CODE1 "nil"))
     (CHAPTER ("## 引数と戻り値") 2 "なし。")
-    (CHAPTER ("## 定義") 2 (STRONG "list") "レキシカル環境の現在の論理ブロックに渡された" (STRONG "list")
-     "が使い果たされたかどうかをテストします。" "22.2.1.1. 出力の配置の動的制御をご確認ください。" "もしこの" (STRONG "list") "が"
-     (CODE1 "nil") "にまで使われたとき、" (CODE1 "pprint-exit-if-list-exhausted") "は"
-     "レキシカル環境の現在の論理ブロックの実行を、" "サフィックスの出力を行い終了します。" "それ以外の場合は、"
-     (CODE1 "pprint-exit-if-list-exhausted") "は" (CODE1 "nil") "を返却します。" EOL2 "グローバル環境下で"
-     (CODE1 "pprint-exit-if-list-exhausted") "が" (CODE1 "fbound") "かどうかは" "実装依存ですが、"
-     "グローバル環境において" (CODE1 "COMMON-LISP") "パッケージ内の"
+    (CHAPTER ("## 定義") 2 "レキシカル環境の現在の論理ブロックに渡された" (STRONG "list") "が使い果たされたかどうかをテストします。"
+     "22.2.1.1. 出力の配置の動的制御をご確認ください。" "もしこの" (STRONG "list") "が" (CODE1 "nil")
+     "にまで使われたとき、" (CODE1 "pprint-exit-if-list-exhausted") "は" "レキシカル環境の現在の論理ブロックの実行を、"
+     "サフィックスの出力を行い終了します。" "それ以外の場合は、" (CODE1 "pprint-exit-if-list-exhausted") "は"
+     (CODE1 "nil") "を返却します。" EOL2 "グローバル環境下で" (CODE1 "pprint-exit-if-list-exhausted") "が"
+     (CODE1 "fbound") "かどうかは" "実装依存ですが、" "グローバル環境において" (CODE1 "COMMON-LISP") "パッケージ内の"
      (CODE1 "pprint-exit-if-list-exhausted") "という同じシンボルを" "シャドウするように再定義することは制限されます。"
      (CODE1 "pprint-logical-block") "の外側で" (CODE1 "pprint-exit-if-list-exhausted") "を"
      "使用しようとしたときの結果は未定義です。")
@@ -32293,7 +32366,7 @@
 (setf (gethash '("WITH-INPUT-FROM-STRING" . "MACRO") *table*) (gethash "WITH-INPUT-FROM-STRING" *table*))
 (setf (gethash "WITH-OPEN-FILE" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "WITH-OPEN-FILE"))
-    (CHAPTER ("## 構文") 2 (CODE1 "with-open-file") " " (CODE1 "(") " " (STRONG "stream ")
+    (CHAPTER ("## 構文") 2 (CODE1 "with-open-file") " " (CODE1 "(") " " (STRONG "stream")
      "  " (STRONG "filespec") " " (STRONG "options\\*") " " (CODE1 ")") " "
      (STRONG "declaration\\*") " " (STRONG "form\\*") " => " (STRONG "result"))
     (CHAPTER ("## 引数と戻り値") 2 (STRONG "stream") " - 変数" EOL1 (STRONG "filespec")

@@ -921,8 +921,7 @@
 (dictionary 22.4.write)
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.print-array)
-(dictionary 22.4.*print-base*)  ;; rename
-(dictionary 22.4.*print-radix*)  ;; delete
+(dictionary 22.4.print-base)
 (dictionary 22.4.*print-case*)  ;; rename
 (dictionary 22.4.print-circle)
 (dictionary 22.4.print-escape)

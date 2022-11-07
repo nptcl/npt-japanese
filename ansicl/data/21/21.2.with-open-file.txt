@@ -15,7 +15,7 @@ Macro `WITH-OPEN-FILE`
 
 ## {syntax}
 
-`with-open-file` `(` *stream *  *filespec* *options\** `)`
+`with-open-file` `(` *stream*  *filespec* *options\** `)`
  *declaration\** *form\**
  => *result*
 

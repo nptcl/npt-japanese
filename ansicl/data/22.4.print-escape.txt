@@ -13,5 +13,60 @@
 Variable `*PRINT-ESCAPE*`
 
 
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+*true*
+
+
+## {description}
+
+もし値が*false*のとき、
+式が印刷されるときにエスケープ文字と
+パッケージのパッケージのプレフィックスは出力されません。
+
+もし値が*true*のとき、
+ある式が印刷され、
+その出力された結果が再び読み込まれたときに
+{equal:link}式で同一になるようなものを生成できるような方法によって
+印刷するように試みられます
+（これはただのガイドラインであって、要求ではありません。
+{*print-readably*:link}をご確認ください）。
+
+
+## {examples}
+
+```lisp
+(let ((*print-escape* t)) (write #\a))
+>>  #\a
+=>  #\a
+(let ((*print-escape* nil)) (write #\a))
+>>  a
+=>  #\a
+```
+
+
+## {affected-by}
+
+{princ:link},
+{prin1:link},
+{format:link}
+
+
+## {see-also}
+
+{write:link},
+{readtable-case:link}
+
+
+## {notes}
+
+{princ:link}は、{*print-escape*:link}に*false*を束縛する効果があります。
+{prin1:link}は、{*print-escape*:link}に*true*を束縛する効果があります。
+
 @end
 

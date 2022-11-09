@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-GENSYM*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-gensym
+@name: *print-gensym*
+@type: variable
+
+Variable `*PRINT-GENSYM*`
+
+
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+*true*
+
+
+## {description}
+
+`intern`されていないシンボルの前に
+プレフィックスの`#:`が印刷されるかどうかを制御します。
+このプレフィックスは
+そのようなシンボルに対して
+{*print-gensym*:link}の値が*true*のときのみに印刷されます。
+
+
+## {examples}
+
+```lisp
+(let ((*print-gensym* nil))
+  (print (gensym)))
+>>  G6040
+=>  #:G6040
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{write:link},
+{*print-escape*:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

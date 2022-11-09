@@ -30,10 +30,13 @@
 (setf (gethash "*PACKAGE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-ARRAY*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-BASE*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-CASE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-CIRCLE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-ESCAPE*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-GENSYM*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LENGTH*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LEVEL*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-LINES*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-RADIX*" *name*) '("VARIABLE"))
 (setf (gethash "*QUERY-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-INPUT*" *name*) '("VARIABLE"))
@@ -1009,15 +1012,15 @@
      (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
      "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
     (CHAPTER ("## 例文") 2
-     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t)) "
+     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t))"
       "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
-      "(setq *print-radix* nil) =>  NIL                                          "
-      "(dotimes (i 35)" "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
+      "(setq *print-radix* nil) =>  NIL" "(dotimes (i 35)"
+      "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
       "     (write 40)                            ;それぞれ印刷します"
       "     (if (zerop (mod i 10)) (terpri) (format t \" \"))))" ">>  101000"
       ">>  1111 220 130 104 55 50 44 40 37 34" ">>  31 2C 2A 28 26 24 22 20 1J 1I"
-      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14 " "=>  NIL"
-      "(dolist (pb '(2 3 8 10 16))               "
+      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14" "=>  NIL"
+      "(dolist (pb '(2 3 8 10 16))"
       "   (let ((*print-radix* t)                 ;整数の10と分数の1/10を"
       "         (*print-base* pb))                ;基数2, 3, 8, 10, 16で"
       "    (format t \"~&~S  ~S~%\" 10 1/10)))        ;それぞれ印刷します" ">>  #b1010  #b1/1010"
@@ -1029,18 +1032,182 @@
      (CODE1 "write-to-string"))
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-BASE*" . "VARIABLE") *table*) (gethash "*PRINT-BASE*" *table*))
+(setf (gethash "*PRINT-CASE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-CASE*"))
+    (CHAPTER ("## 値の型") 2 "シンボル" (CODE1 ":upcase") ", " (CODE1 ":downcase") ", "
+     (CODE1 ":capitalize") "のうちのひとつ。")
+    (CHAPTER ("## 初期値") 2 "シンボルの" (CODE1 ":upcase") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-case*") "の値は、" "垂直バー構文を使用していないもののシンボルの名前に対して、"
+     "各文字を大文字に印刷するかどうかという" "文字の種別（大文字、小文字、あるいは混合）を制御します。" EOL2 (CODE1 "*print-case*") "は"
+     (CODE1 "*print-escape*") "の値が" (STRONG "false") "のときは" "いつでも効果があります。"
+     (CODE1 "*print-case*") "は、また" (CODE1 "*print-escape*") "の値が" (STRONG "false")
+     "のときでも、" "内部にエスケープ構文" "（例えば、垂直バー間かスラッシュのあとではないとき）" "がない限り効果があります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(defun test-print-case ()"
+      "  (dolist (*print-case* '(:upcase :downcase :capitalize))"
+      "    (format t \"~&~S ~S~%\" 'this-and-that '|And-something-elSE|)))" "=>  TEST-PC"
+      ";; エスケープが指定された文字は*PRINT-CASE*によって扱われますが、" ";; それらの文字（例えば、単体のエスケープか複数のエスケープかによらず）が"
+      ";; どのように扱われるかは処理系依存です。" ";; 下記に示す2つの例は、エスケープを表す方法としては正当です。"
+      "(test-print-case) ;実装A" ">>  THIS-AND-THAT |And-something-elSE|"
+      ">>  this-and-that a\\n\\d-\\s\\o\\m\\e\\t\\h\\i\\n\\g-\\e\\lse"
+      ">>  This-And-That A\\n\\d-\\s\\o\\m\\e\\t\\h\\i\\n\\g-\\e\\lse" "=>  NIL"
+      "(test-print-case) ;実装B" ">>  THIS-AND-THAT |And-something-elSE|"
+      ">>  this-and-that a|nd-something-el|se" ">>  This-And-That A|nd-something-el|se"
+      "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2 (CODE1 "read") "は通常は" "シンボルに現れる小文字を対応する大文字に変換しますが、"
+     "内部では通常は大文字の文字のみ含むような名前で印刷します。" EOL2 "もし" (CODE1 "*print-escape*") "が"
+     (STRONG "true") "のとき、" "シンボルの名前にある小文字は、" "常に小文字として印刷され、"
+     "その文字に先行して単体のエスケープ文字が配置されるか、" "あるいは複数のエスケープ文字によって囲まれます。" "一方、シンボルの名前にある大文字は、"
+     "大文字か、小文字か、" "単語として大文字で書かれたような混合した場合は、" (CODE1 "*print-case*") "の値に従って印刷されます。"
+     "「単語」がどのように構成されて変換するかは、" (CODE1 "string-capitalize") "と同じです。")))
+(setf (gethash '("*PRINT-CASE*" . "VARIABLE") *table*) (gethash "*PRINT-CASE*" *table*))
 (setf (gethash "*PRINT-CIRCLE*" *table*)
-  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-CIRCLE*"))))
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-CIRCLE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "false"))
+    (CHAPTER ("## 定義") 2 "印刷を行うオブジェクトの" "循環と共有を検出するかどうかを制御します。" EOL2 "もし値が"
+     (STRONG "false") "のとき、" "印刷の処理は、循環と共有の検出をすることなく" "再帰的に降下していくことによって行います。" EOL2 "もし値が"
+     (STRONG "true") "のとき、" "プリンターは構造を印刷する中で" "循環と共有を検出するよう努力し、" "循環か共有の要素を示す"
+     (CODE1 "#n=") "と" (CODE1 "#n#") "構文を使用します。" "もしユーザーが定義した" (CODE1 "print-object")
+     "メソッドが" "提供されたストリーム以外に印刷するとき、" "循環の検出はそのストリームに対してやり直しされます。" EOL2
+     "Lispリーダーが自動的にオブジェクトの共有の保証を行うときは" "（例えば内部シンボルに生じたときなど）、" "実装は" (CODE1 "#n#")
+     "表記を使用するべきではないことに注意してください。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((a (list 1 2 3)))" "  (setf (cdddr a) a)"
+      "  (let ((*print-circle* t))" "    (write a)" "    :done))" ">>  #1=(1 2 3 . #1#)"
+      "=>  :DONE"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2 (CODE1 "*print-circle*") "に" (CODE1 "nil") "がされた状態で"
+     "循環構造を印刷しようとしたときは、" "おそらくループの状態を引き起こし、" "終了できない状態になります。")))
 (setf (gethash '("*PRINT-CIRCLE*" . "VARIABLE") *table*) (gethash "*PRINT-CIRCLE*" *table*))
 (setf (gethash "*PRINT-ESCAPE*" *table*)
-  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-ESCAPE*"))))
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-ESCAPE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "true"))
+    (CHAPTER ("## 定義") 2 "もし値が" (STRONG "false") "のとき、" "式が印刷されるときにエスケープ文字と"
+     "パッケージのパッケージのプレフィックスは出力されません。" EOL2 "もし値が" (STRONG "true") "のとき、" "ある式が印刷され、"
+     "その出力された結果が再び読み込まれたときに" (CODE1 "equal") "式で同一になるようなものを生成できるような方法によって"
+     "印刷するように試みられます" "（これはただのガイドラインであって、要求ではありません。" (CODE1 "*print-readably*")
+     "をご確認ください）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*print-escape* t)) (write #\\a))" ">>  #\\a"
+      "=>  #\\a" "(let ((*print-escape* nil)) (write #\\a))" ">>  a" "=>  #\\a"))
+    (CHAPTER ("## 影響") 2 (CODE1 "princ") "," (CODE1 "prin1") "," (CODE1 "format"))
+    (CHAPTER ("## 参考") 2 (CODE1 "write") "," (CODE1 "readtable-case"))
+    (CHAPTER ("## 備考") 2 (CODE1 "princ") "は、" (CODE1 "*print-escape*") "に"
+     (STRONG "false") "を束縛する効果があります。" (CODE1 "prin1") "は、" (CODE1 "*print-escape*") "に"
+     (STRONG "true") "を束縛する効果があります。")))
 (setf (gethash '("*PRINT-ESCAPE*" . "VARIABLE") *table*) (gethash "*PRINT-ESCAPE*" *table*))
+(setf (gethash "*PRINT-GENSYM*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-GENSYM*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "true"))
+    (CHAPTER ("## 定義") 2 (CODE1 "intern") "されていないシンボルの前に" "プレフィックスの" (CODE1 "#:")
+     "が印刷されるかどうかを制御します。" "このプレフィックスは" "そのようなシンボルに対して" (CODE1 "*print-gensym*") "の値が"
+     (STRONG "true") "のときのみに印刷されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*print-gensym* nil))" "  (print (gensym)))"
+      ">>  G6040" "=>  #:G6040"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "write") "," (CODE1 "*print-escape*"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*PRINT-GENSYM*" . "VARIABLE") *table*) (gethash "*PRINT-GENSYM*" *table*))
 (setf (gethash "*PRINT-LENGTH*" *table*)
-  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LEVEL*") ", " (CODE1 "*PRINT-LENGTH*"))))
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LEVEL*") ", " (CODE1 "*PRINT-LENGTH*"))
+    (CHAPTER ("## 値の型") 2 "非負の整数か、" (CODE1 "nil")) (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-level*") "は、"
+     "どれくらい深いレベルの階層にネストされたオブジェクトを印刷するかを制御します。" "もし値が" (STRONG "false") "のときは、制御は行われません。"
+     "そうではないとき、その整数は印刷する最大の階層のレベルを示します。" "オブジェクトが印刷されるときが階層" (CODE1 "0") "であり、"
+     "その要素（リストか配列の）が階層" (CODE1 "1") "であり、それが続きます。" "もし再帰的に印刷されるオブジェクトが要素を持っており、"
+     "オブジェクトの階層のレベルが" (CODE1 "*print-level*") "の値以上のときは、" "そのオブジェクトは" (CODE1 "#")
+     "として印刷されます。" EOL2 (CODE1 "*print-length*") "は" "どれくらいの要素を印刷するかを制御します。" "もし値が"
+     (STRONG "false") "のときは、印刷される要素の数に制限はありません。" "そうではないとき、"
+     "疎の整数は印刷されるオブジェクトの最大の要素数を示します。" "もし超過したとき、プリンターはその他の要素の場所に" (CODE1 "...") "を印刷します。"
+     "ドットリストの場合、そのリストが正確に" (CODE1 "*print-length*") "の値と同じ要素数を含んでいたとき、" (CODE1 "...")
+     "を印刷するのではなく、終端しているアトムが印刷されます。" EOL2 (CODE1 "*print-level*") "と"
+     (CODE1 "*print-length*") "は、" "リストのような構文で印刷されるどのような" "オブジェクトの印刷にも影響を与えます。"
+     "シンボル、文字列、ビット配列といった印刷には影響しません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(setq a '(1 (2 (3 (4 (5 (6))))))) =>  (1 (2 (3 (4 (5 (6))))))" "(dotimes (i 8)"
+      "  (let ((*print-level* i))" "    (format t \"~&~D -- ~S~%\" i a)))" ">>  0 -- #"
+      ">>  1 -- (1 #)" ">>  2 -- (1 (2 #))" ">>  3 -- (1 (2 (3 #)))"
+      ">>  4 -- (1 (2 (3 (4 #))))" ">>  5 -- (1 (2 (3 (4 (5 #)))))"
+      ">>  6 -- (1 (2 (3 (4 (5 (6))))))" ">>  7 -- (1 (2 (3 (4 (5 (6))))))" "=>  NIL" NIL
+      "(setq a '(1 2 3 4 5 6)) =>  (1 2 3 4 5 6)" "(dotimes (i 7)"
+      "  (let ((*print-length* i))" "    (format t \"~&~D -- ~S~%\" i a)))"
+      ">>  0 -- (...)" ">>  1 -- (1 ...)" ">>  2 -- (1 2 ...)" ">>  3 -- (1 2 3 ...)"
+      ">>  4 -- (1 2 3 4 ...)" ">>  5 -- (1 2 3 4 5 6)" ">>  6 -- (1 2 3 4 5 6)"
+      "=>  NIL" NIL "(dolist (level-length '((0 1) (1 1) (1 2) (1 3) (1 4)"
+      "                        (2 1) (2 2) (2 3) (3 2) (3 3) (3 4)))"
+      " (let ((*print-level*  (first  level-length))"
+      "       (*print-length* (second level-length)))" "   (format t \"~&~D ~D -- ~S~%\""
+      "           *print-level* *print-length*"
+      "           '(if (member x y) (+ (car x) 3) '(foo . #(a b c d \"Baz\"))))))"
+      ">>  0 1 -- #" ">>  1 1 -- (IF ...)" ">>  1 2 -- (IF # ...)"
+      ">>  1 3 -- (IF # # ...)" ">>  1 4 -- (IF # # #)" ">>  2 1 -- (IF ...)"
+      ">>  2 2 -- (IF (MEMBER X ...) ...)" ">>  2 3 -- (IF (MEMBER X Y) (+ # 3) ...)"
+      ">>  3 2 -- (IF (MEMBER X ...) ...)"
+      ">>  3 3 -- (IF (MEMBER X Y) (+ (CAR X) 3) ...)"
+      ">>  3 4 -- (IF (MEMBER X Y) (+ (CAR X) 3) '(FOO . #(A B C D ...)))" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-LENGTH*" . "VARIABLE") *table*) (gethash "*PRINT-LENGTH*" *table*))
 (setf (gethash "*PRINT-LEVEL*" *table*)
-  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LEVEL*") ", " (CODE1 "*PRINT-LENGTH*"))))
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LEVEL*") ", " (CODE1 "*PRINT-LENGTH*"))
+    (CHAPTER ("## 値の型") 2 "非負の整数か、" (CODE1 "nil")) (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-level*") "は、"
+     "どれくらい深いレベルの階層にネストされたオブジェクトを印刷するかを制御します。" "もし値が" (STRONG "false") "のときは、制御は行われません。"
+     "そうではないとき、その整数は印刷する最大の階層のレベルを示します。" "オブジェクトが印刷されるときが階層" (CODE1 "0") "であり、"
+     "その要素（リストか配列の）が階層" (CODE1 "1") "であり、それが続きます。" "もし再帰的に印刷されるオブジェクトが要素を持っており、"
+     "オブジェクトの階層のレベルが" (CODE1 "*print-level*") "の値以上のときは、" "そのオブジェクトは" (CODE1 "#")
+     "として印刷されます。" EOL2 (CODE1 "*print-length*") "は" "どれくらいの要素を印刷するかを制御します。" "もし値が"
+     (STRONG "false") "のときは、印刷される要素の数に制限はありません。" "そうではないとき、"
+     "疎の整数は印刷されるオブジェクトの最大の要素数を示します。" "もし超過したとき、プリンターはその他の要素の場所に" (CODE1 "...") "を印刷します。"
+     "ドットリストの場合、そのリストが正確に" (CODE1 "*print-length*") "の値と同じ要素数を含んでいたとき、" (CODE1 "...")
+     "を印刷するのではなく、終端しているアトムが印刷されます。" EOL2 (CODE1 "*print-level*") "と"
+     (CODE1 "*print-length*") "は、" "リストのような構文で印刷されるどのような" "オブジェクトの印刷にも影響を与えます。"
+     "シンボル、文字列、ビット配列といった印刷には影響しません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(setq a '(1 (2 (3 (4 (5 (6))))))) =>  (1 (2 (3 (4 (5 (6))))))" "(dotimes (i 8)"
+      "  (let ((*print-level* i))" "    (format t \"~&~D -- ~S~%\" i a)))" ">>  0 -- #"
+      ">>  1 -- (1 #)" ">>  2 -- (1 (2 #))" ">>  3 -- (1 (2 (3 #)))"
+      ">>  4 -- (1 (2 (3 (4 #))))" ">>  5 -- (1 (2 (3 (4 (5 #)))))"
+      ">>  6 -- (1 (2 (3 (4 (5 (6))))))" ">>  7 -- (1 (2 (3 (4 (5 (6))))))" "=>  NIL" NIL
+      "(setq a '(1 2 3 4 5 6)) =>  (1 2 3 4 5 6)" "(dotimes (i 7)"
+      "  (let ((*print-length* i))" "    (format t \"~&~D -- ~S~%\" i a)))"
+      ">>  0 -- (...)" ">>  1 -- (1 ...)" ">>  2 -- (1 2 ...)" ">>  3 -- (1 2 3 ...)"
+      ">>  4 -- (1 2 3 4 ...)" ">>  5 -- (1 2 3 4 5 6)" ">>  6 -- (1 2 3 4 5 6)"
+      "=>  NIL" NIL "(dolist (level-length '((0 1) (1 1) (1 2) (1 3) (1 4)"
+      "                        (2 1) (2 2) (2 3) (3 2) (3 3) (3 4)))"
+      " (let ((*print-level*  (first  level-length))"
+      "       (*print-length* (second level-length)))" "   (format t \"~&~D ~D -- ~S~%\""
+      "           *print-level* *print-length*"
+      "           '(if (member x y) (+ (car x) 3) '(foo . #(a b c d \"Baz\"))))))"
+      ">>  0 1 -- #" ">>  1 1 -- (IF ...)" ">>  1 2 -- (IF # ...)"
+      ">>  1 3 -- (IF # # ...)" ">>  1 4 -- (IF # # #)" ">>  2 1 -- (IF ...)"
+      ">>  2 2 -- (IF (MEMBER X ...) ...)" ">>  2 3 -- (IF (MEMBER X Y) (+ # 3) ...)"
+      ">>  3 2 -- (IF (MEMBER X ...) ...)"
+      ">>  3 3 -- (IF (MEMBER X Y) (+ (CAR X) 3) ...)"
+      ">>  3 4 -- (IF (MEMBER X Y) (+ (CAR X) 3) '(FOO . #(A B C D ...)))" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-LEVEL*" . "VARIABLE") *table*) (gethash "*PRINT-LEVEL*" *table*))
+(setf (gethash "*PRINT-LINES*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-LINES*"))
+    (CHAPTER ("## 値の型") 2 "非負の整数か、" (CODE1 "nil")) (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-lines*") "の値が" (CODE1 "nil") "ではないとき、"
+     "何かをプリティプリンターで印刷するときに" "生成された出力の行数を制限します。" "もし行数を越えて行こうとしたとき、" "最後の行の終端に"
+     (CODE1 "..") "を印刷し、" "続いて保留されていた全てのサフィックス（閉じる区切り記号）を印刷します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*print-right-margin* 25) (*print-lines* 3))"
+      "  (pprint '(progn (setq a 1 b 2 c 3 d 4))))" ">>  (PROGN (SETQ A 1"
+      ">>               B 2" ">>               C 3 ..))" "=>  <no values>"))
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "..") "の表記は、レベルの省略形として使われる" (CODE1 "...")
+     "とは意図的に違うものにしています。" "よって二つの違った状況は視覚的に区別できます。" EOL2 "この表記は、省略された出力を後で読もうとしたときに、"
+     "Lispリーダーがエラーを通知する可能性を高めるために使用されます。" "ただし、" (CODE1 "\"この文字列は切り捨てられた... \"") "のように"
+     "文字列の中で切り捨てが発生した場合は、" "後で問題の状況を検出することができないため、" "そのようなエラーは通知されないことに注意してください。")))
+(setf (gethash '("*PRINT-LINES*" . "VARIABLE") *table*) (gethash "*PRINT-LINES*" *table*))
 (setf (gethash "*PRINT-RADIX*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-BASE*") ", " (CODE1 "*PRINT-RADIX*"))
     (CHAPTER ("## 値の型") 2 (CODE1 "*print-base*") " - 基数" EOL1 (CODE1 "*print-radix*")
@@ -1057,15 +1224,15 @@
      (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
      "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
     (CHAPTER ("## 例文") 2
-     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t)) "
+     (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t))"
       "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
-      "(setq *print-radix* nil) =>  NIL                                          "
-      "(dotimes (i 35)" "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
+      "(setq *print-radix* nil) =>  NIL" "(dotimes (i 35)"
+      "   (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で"
       "     (write 40)                            ;それぞれ印刷します"
       "     (if (zerop (mod i 10)) (terpri) (format t \" \"))))" ">>  101000"
       ">>  1111 220 130 104 55 50 44 40 37 34" ">>  31 2C 2A 28 26 24 22 20 1J 1I"
-      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14 " "=>  NIL"
-      "(dolist (pb '(2 3 8 10 16))               "
+      ">>  1H 1G 1F 1E 1D 1C 1B 1A 19 18" ">>  17 16 15 14" "=>  NIL"
+      "(dolist (pb '(2 3 8 10 16))"
       "   (let ((*print-radix* t)                 ;整数の10と分数の1/10を"
       "         (*print-base* pb))                ;基数2, 3, 8, 10, 16で"
       "    (format t \"~&~S  ~S~%\" 10 1/10)))        ;それぞれ印刷します" ">>  #b1010  #b1/1010"

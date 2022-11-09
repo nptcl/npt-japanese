@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Variable *PRINT-CIRCLE*</title>
+  <title>Variable *PRINT-LINES*</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,30 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Variable *PRINT-CIRCLE*</h1>
+<h1 class="title">Variable *PRINT-LINES*</h1>
 </header>
 <p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="variable-print-circle">Variable <strong>*PRINT-CIRCLE*</strong></h1>
-<p>Variable <code>*PRINT-CIRCLE*</code></p>
+<h1 id="variable-print-lines">Variable <strong>*PRINT-LINES*</strong></h1>
+<p>Variable <code>*PRINT-LINES*</code></p>
 <h2 id="値の型">値の型</h2>
-<p>generalized-boolean</p>
+<p>非負の整数か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="初期値">初期値</h2>
-<p><em>false</em></p>
+<p><a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p>印刷を行うオブジェクトの 循環と共有を検出するかどうかを制御します。</p>
-<p>もし値が<em>false</em>のとき、 印刷の処理は、循環と共有の検出をすることなく 再帰的に降下していくことによって行います。</p>
-<p>もし値が<em>true</em>のとき、 プリンターは構造を印刷する中で 循環と共有を検出するよう努力し、 循環か共有の要素を示す<code>#n=</code>と<code>#n#</code>構文を使用します。 もしユーザーが定義した<a href="22.4.print-object.html"><code>print-object</code></a>メソッドが 提供されたストリーム以外に印刷するとき、 循環の検出はそのストリームに対してやり直しされます。</p>
-<p>Lispリーダーが自動的にオブジェクトの共有の保証を行うときは （例えば内部シンボルに生じたときなど）、 実装は<code>#n#</code>表記を使用するべきではないことに注意してください。</p>
+<p><a href="22.4.print-lines.html"><code>*print-lines*</code></a>の値が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 何かをプリティプリンターで印刷するときに 生成された出力の行数を制限します。 もし行数を越えて行こうとしたとき、 最後の行の終端に<code>..</code>を印刷し、 続いて保留されていた全てのサフィックス（閉じる区切り記号）を印刷します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((a (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">setf</span> (<span class="kw">cdddr</span> a) a)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((<span class="va">*print-circle*</span> <span class="kw">t</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">write</span> a)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    :done))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  #<span class="dv">1</span>=(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> . #<span class="dv">1</span>#)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  :DONE</span></code></pre></div>
-<h2 id="影響">影響</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*print-right-margin*</span> <span class="dv">25</span>) (<span class="va">*print-lines*</span> <span class="dv">3</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">pprint</span> &#39;(<span class="kw">progn</span> (<span class="kw">setq</span> a <span class="dv">1</span> b <span class="dv">2</span> c <span class="dv">3</span> d <span class="dv">4</span>))))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  (PROGN (SETQ A <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&gt;&gt;               B <span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;               C <span class="dv">3</span> ..))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  &lt;no values&gt;</span></code></pre></div>
 <h2 id="参考">参考</h2>
-<p><a href="22.4.write.html"><code>write</code></a></p>
+<p>なし。</p>
 <h2 id="備考">備考</h2>
-<p><a href="22.4.print-circle.html"><code>*print-circle*</code></a>に<a href="5.3.nil-variable.html"><code>nil</code></a>がされた状態で 循環構造を印刷しようとしたときは、 おそらくループの状態を引き起こし、 終了できない状態になります。</p>
+<p><code>..</code>の表記は、レベルの省略形として使われる<code>...</code>とは意図的に違うものにしています。 よって二つの違った状況は視覚的に区別できます。</p>
+<p>この表記は、省略された出力を後で読もうとしたときに、 Lispリーダーがエラーを通知する可能性を高めるために使用されます。 ただし、<code>"この文字列は切り捨てられた... "</code>のように 文字列の中で切り捨てが発生した場合は、 後で問題の状況を検出することができないため、 そのようなエラーは通知されないことに注意してください。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

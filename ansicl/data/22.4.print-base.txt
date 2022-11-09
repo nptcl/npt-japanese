@@ -53,12 +53,12 @@ Variable `*PRINT-BASE*`, `*PRINT-RADIX*`
 ## {examples}
 
 ```lisp
-(let ((*print-base* 24.) (*print-radix* t)) 
+(let ((*print-base* 24.) (*print-radix* t))
   (print 23.))
 >>  #24rN
 =>  23
 (setq *print-base* 10) =>  10
-(setq *print-radix* nil) =>  NIL                                          
+(setq *print-radix* nil) =>  NIL
 (dotimes (i 35)
    (let ((*print-base* (+ i 2)))           ;10進数の40を2から36進数で
      (write 40)                            ;それぞれ印刷します
@@ -67,9 +67,9 @@ Variable `*PRINT-BASE*`, `*PRINT-RADIX*`
 >>  1111 220 130 104 55 50 44 40 37 34
 >>  31 2C 2A 28 26 24 22 20 1J 1I
 >>  1H 1G 1F 1E 1D 1C 1B 1A 19 18
->>  17 16 15 14 
+>>  17 16 15 14
 =>  NIL
-(dolist (pb '(2 3 8 10 16))               
+(dolist (pb '(2 3 8 10 16))
    (let ((*print-radix* t)                 ;整数の10と分数の1/10を
          (*print-base* pb))                ;基数2, 3, 8, 10, 16で
     (format t "~&~S  ~S~%" 10 1/10)))        ;それぞれ印刷します

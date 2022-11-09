@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Variable *PRINT-CIRCLE*</title>
+  <title>Variable *PRINT-CASE*</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,45 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Variable *PRINT-CIRCLE*</h1>
+<h1 class="title">Variable *PRINT-CASE*</h1>
 </header>
 <p><a href="22.4.html">UP</a></p>
 <hr />
-<h1 id="variable-print-circle">Variable <strong>*PRINT-CIRCLE*</strong></h1>
-<p>Variable <code>*PRINT-CIRCLE*</code></p>
+<h1 id="variable-print-case">Variable <strong>*PRINT-CASE*</strong></h1>
+<p>Variable <code>*PRINT-CASE*</code></p>
 <h2 id="値の型">値の型</h2>
-<p>generalized-boolean</p>
+<p>シンボル<code>:upcase</code>, <code>:downcase</code>, <code>:capitalize</code>のうちのひとつ。</p>
 <h2 id="初期値">初期値</h2>
-<p><em>false</em></p>
+<p>シンボルの<code>:upcase</code>。</p>
 <h2 id="定義">定義</h2>
-<p>印刷を行うオブジェクトの 循環と共有を検出するかどうかを制御します。</p>
-<p>もし値が<em>false</em>のとき、 印刷の処理は、循環と共有の検出をすることなく 再帰的に降下していくことによって行います。</p>
-<p>もし値が<em>true</em>のとき、 プリンターは構造を印刷する中で 循環と共有を検出するよう努力し、 循環か共有の要素を示す<code>#n=</code>と<code>#n#</code>構文を使用します。 もしユーザーが定義した<a href="22.4.print-object.html"><code>print-object</code></a>メソッドが 提供されたストリーム以外に印刷するとき、 循環の検出はそのストリームに対してやり直しされます。</p>
-<p>Lispリーダーが自動的にオブジェクトの共有の保証を行うときは （例えば内部シンボルに生じたときなど）、 実装は<code>#n#</code>表記を使用するべきではないことに注意してください。</p>
+<p><a href="22.4.print-case.html"><code>*print-case*</code></a>の値は、 垂直バー構文を使用していないもののシンボルの名前に対して、 各文字を大文字に印刷するかどうかという 文字の種別（大文字、小文字、あるいは混合）を制御します。</p>
+<p><a href="22.4.print-case.html"><code>*print-case*</code></a>は <a href="22.4.print-escape.html"><code>*print-escape*</code></a>の値が<em>false</em>のときは いつでも効果があります。 <a href="22.4.print-case.html"><code>*print-case*</code></a>は、また <a href="22.4.print-escape.html"><code>*print-escape*</code></a>の値が<em>false</em>のときでも、 内部にエスケープ構文 （例えば、垂直バー間かスラッシュのあとではないとき） がない限り効果があります。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((a (<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>)))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">setf</span> (<span class="kw">cdddr</span> a) a)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((<span class="va">*print-circle*</span> <span class="kw">t</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">write</span> a)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    :done))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  #<span class="dv">1</span>=(<span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> . #<span class="dv">1</span>#)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  :DONE</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> test-print-case </span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">dolist</span> (<span class="va">*print-case*</span> &#39;(:upcase :downcase :capitalize))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp;~S ~S~%&quot;</span> &#39;this-and-that &#39;|And-something-elSE|)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  TEST-PC</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;; エスケープが指定された文字は*PRINT-CASE*によって扱われますが、</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">;; それらの文字（例えば、単体のエスケープか複数のエスケープかによらず）が</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">;; どのように扱われるかは処理系依存です。</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">;; 下記に示す2つの例は、エスケープを表す方法としては正当です。</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(test-print-case) <span class="co">;実装A</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  THIS-AND-THAT |And-something-elSE|</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  this-and-that a\n\d-\s\o\m\e\t\h\i\n\g-\e\lse</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  This-And-That A\n\d-\s\o\m\e\t\h\i\n\g-\e\lse</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(test-print-case) <span class="co">;実装B</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  THIS-AND-THAT |And-something-elSE|</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  this-and-that a|nd-something-el|se</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  This-And-That A|nd-something-el|se</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
 <p><a href="22.4.write.html"><code>write</code></a></p>
 <h2 id="備考">備考</h2>
-<p><a href="22.4.print-circle.html"><code>*print-circle*</code></a>に<a href="5.3.nil-variable.html"><code>nil</code></a>がされた状態で 循環構造を印刷しようとしたときは、 おそらくループの状態を引き起こし、 終了できない状態になります。</p>
+<p><code>read</code>は通常は シンボルに現れる小文字を対応する大文字に変換しますが、 内部では通常は大文字の文字のみ含むような名前で印刷します。</p>
+<p>もし<a href="22.4.print-escape.html"><code>*print-escape*</code></a>が<em>true</em>のとき、 シンボルの名前にある小文字は、 常に小文字として印刷され、 その文字に先行して単体のエスケープ文字が配置されるか、 あるいは複数のエスケープ文字によって囲まれます。 一方、シンボルの名前にある大文字は、 大文字か、小文字か、 単語として大文字で書かれたような混合した場合は、 <a href="22.4.print-case.html"><code>*print-case*</code></a>の値に従って印刷されます。 「単語」がどのように構成されて変換するかは、 <a href="16.2.string-case.html"><code>string-capitalize</code></a>と同じです。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

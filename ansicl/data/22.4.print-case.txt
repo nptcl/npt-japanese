@@ -1,0 +1,96 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-CASE*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-case
+@name: *print-case*
+@type: variable
+
+Variable `*PRINT-CASE*`
+
+
+## {value-type}
+
+シンボル`:upcase`, `:downcase`, `:capitalize`のうちのひとつ。
+
+
+## {initial-value}
+
+シンボルの`:upcase`。
+
+
+## {description}
+
+{*print-case*:link}の値は、
+垂直バー構文を使用していないもののシンボルの名前に対して、
+各文字を大文字に印刷するかどうかという
+文字の種別（大文字、小文字、あるいは混合）を制御します。
+
+{*print-case*:link}は
+{*print-escape*:link}の値が*false*のときは
+いつでも効果があります。
+{*print-case*:link}は、また
+{*print-escape*:link}の値が*false*のときでも、
+内部にエスケープ構文
+（例えば、垂直バー間かスラッシュのあとではないとき）
+がない限り効果があります。
+
+
+## {examples}
+
+```lisp
+(defun test-print-case ()
+  (dolist (*print-case* '(:upcase :downcase :capitalize))
+    (format t "~&~S ~S~%" 'this-and-that '|And-something-elSE|)))
+=>  TEST-PC
+;; エスケープが指定された文字は*PRINT-CASE*によって扱われますが、
+;; それらの文字（例えば、単体のエスケープか複数のエスケープかによらず）が
+;; どのように扱われるかは処理系依存です。
+;; 下記に示す2つの例は、エスケープを表す方法としては正当です。
+(test-print-case) ;実装A
+>>  THIS-AND-THAT |And-something-elSE|
+>>  this-and-that a\n\d-\s\o\m\e\t\h\i\n\g-\e\lse
+>>  This-And-That A\n\d-\s\o\m\e\t\h\i\n\g-\e\lse
+=>  NIL
+(test-print-case) ;実装B
+>>  THIS-AND-THAT |And-something-elSE|
+>>  this-and-that a|nd-something-el|se
+>>  This-And-That A|nd-something-el|se
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{write:link}
+
+
+## {notes}
+
+{read:link}は通常は
+シンボルに現れる小文字を対応する大文字に変換しますが、
+内部では通常は大文字の文字のみ含むような名前で印刷します。
+
+もし{*print-escape*:link}が*true*のとき、
+シンボルの名前にある小文字は、
+常に小文字として印刷され、
+その文字に先行して単体のエスケープ文字が配置されるか、
+あるいは複数のエスケープ文字によって囲まれます。
+一方、シンボルの名前にある大文字は、
+大文字か、小文字か、
+単語として大文字で書かれたような混合した場合は、
+{*print-case*:link}の値に従って印刷されます。
+「単語」がどのように構成されて変換するかは、
+{string-capitalize:link}と同じです。
+
+@end
+

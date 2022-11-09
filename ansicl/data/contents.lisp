@@ -922,12 +922,12 @@
 (dictionary 22.4.write-to-string)
 (dictionary 22.4.print-array)
 (dictionary 22.4.print-base)
-(dictionary 22.4.*print-case*)  ;; rename
+(dictionary 22.4.print-case)
 (dictionary 22.4.print-circle)
 (dictionary 22.4.print-escape)
-(dictionary 22.4.*print-gensym*)  ;; rename
-(dictionary 22.4.print-level)  ;; rename
-(dictionary 22.4.*print-lines*)  ;; rename
+(dictionary 22.4.print-gensym)
+(dictionary 22.4.print-level)
+(dictionary 22.4.print-lines)
 (dictionary 22.4.*print-miser-width*)  ;; rename
 (dictionary 22.4.*print-pprint-dispatch*)  ;; rename
 (dictionary 22.4.*print-pretty*)  ;; rename

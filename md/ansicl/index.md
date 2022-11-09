@@ -31,8 +31,8 @@ Dictionaryを約半分翻訳しました。
 |[19.](19.html)|[Filenames](19.html)|[ファイル名](19.html)|[辞書 ★完了](19.4.html)|
 |[20.](20.html)|[Files](20.html)|[ファイル操作](20.html)|[辞書 ★完了](20.2.html)|
 |[21.](21.html)|[Streams](21.html)|[ストリーム](21.html)|[辞書 ★完了](21.2.html)|
-|[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書 ☆作業中](22.4.html)|
-|[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書](23.2.html)|
+|[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書 ★完了](22.4.html)|
+|[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書 ☆作業中](23.2.html)|
 |[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書](24.2.html)|
 |[25.](25.html)|[Environment](25.html)|[環境](25.html)|[辞書](25.2.html)|
 |26.|Glossary|用語集|辞書|

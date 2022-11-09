@@ -164,7 +164,7 @@
 <em>n</em> - 実数<br />
 <em>stream</em> - 出力ストリーム指定子。デフォルトは標準出力。</p>
 <h2 id="定義">定義</h2>
-<p><a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は、 <em>stream</em>上で使用される論理ブロックのインデントを指定します。 <em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>が<em>true</em>のとき、 <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は もっとも内側の動的に閉じられた論理ブロック内の インデントを設定します。 それ以外の場合は、<a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は何もしません。</p>
+<p><a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は、 <em>stream</em>上で使用される論理ブロックのインデントを指定します。 <em>stream</em>がプリティプリントのストリームであり、 <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>が<em>true</em>のとき、 <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は もっとも内側の動的に閉じられた論理ブロック内の インデントを設定します。 それ以外の場合は、<a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>は何もしません。</p>
 <p><code>n</code>はインデントを<code>ems</code>で指定します。 <em>relative-to</em>が<code>:block</code>のとき、 動的な現在の論理ブロック内において最初の文字から <code>n ems</code>を加算した水平位置をインデントに設定します。 <em>relative-to</em>が<code>:current</code>のとき、 現在の出力位置に<code>n ems</code>を加算したものをインデントに設定します （可変幅のフォントに対応するため、 可能な限り<code>:current</code>において<code>n</code> が<code>0</code>を使用することが推奨されます）。</p>
 <p><code>n</code>が負の数のとき、 インデントの合計は行の始まりの左には移動できませんし、 行ごとのプレフィックスの右の終端より左には移動できませんが、 これらの制限を越えて移動しようとしたときは、 その制限に移動したものと同じように扱われます。 <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>によってインデントを変更したときは、 次の行の区切りの後までは効果が現れません。 さらに、マイザーモードにおいては <a href="22.4.pprint-indent.html"><code>pprint-indent</code></a>の全ての呼び出しは無視され、 論理ブロック内の対応する行は、 そのブロック内の最初の文字の元に揃えられます。</p>
 <h2 id="例文">例文</h2>

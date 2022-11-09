@@ -226,7 +226,7 @@
 <p><em>true</em></p>
 <h2 id="定義">定義</h2>
 <p>もし値が<em>false</em>のとき、 式が印刷されるときにエスケープ文字と パッケージのパッケージのプレフィックスは出力されません。</p>
-<p>もし値が<em>true</em>のとき、 ある式が印刷され、 その出力された結果が再び読み込まれたときに <a href="5.3.equal.html"><code>equal</code></a>式で同一になるようなものを生成できるような方法によって 印刷するように試みられます （これはただのガイドラインであって、要求ではありません。 <code>*print-readably*</code>をご確認ください）。</p>
+<p>もし値が<em>true</em>のとき、 ある式が印刷され、 その出力された結果が再び読み込まれたときに <a href="5.3.equal.html"><code>equal</code></a>式で同一になるようなものを生成できるような方法によって 印刷するように試みられます （これはただのガイドラインであって、要求ではありません。 <a href="22.4.print-readably.html"><code>*print-readably*</code></a>をご確認ください）。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*print-escape*</span> <span class="kw">t</span>)) (<span class="kw">write</span> <span class="ch">#\a</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  <span class="ch">#\a</span></span>
@@ -235,7 +235,7 @@
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  a</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="ch">#\a</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p><a href="22.4.write.html"><code>princ</code></a>, <a href="22.4.write.html"><code>prin1</code></a>, <code>format</code></p>
+<p><a href="22.4.write.html"><code>princ</code></a>, <a href="22.4.write.html"><code>prin1</code></a>, <a href="22.4.format.html"><code>format</code></a></p>
 <h2 id="参考">参考</h2>
 <p><a href="22.4.write.html"><code>write</code></a>, <code>readtable-case</code></p>
 <h2 id="備考">備考</h2>

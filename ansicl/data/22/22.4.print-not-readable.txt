@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type PRINT-NOT-READABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-not-readable
+@name: print-not-readable
+@type: condition-type
+
+Condition Type `PRINT-NOT-READABLE`
+
+
+## {class-precedence-list}
+
+{print-not-readable:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link},
+
+
+## {description}
+
+型{print-not-readable:link}は、
+{*print-readably*:link}が*true*のときに
+Lispリーダーが正しく読み込みを行うことができないような印刷表現を
+Lispプリンターが書き込もうと試みた結果として、
+出力中に生じたエラーの状態を含みます。
+そのような印刷できなかったオブジェクトは、
+{make-condition:link}の初期化引数`:object`によって初期化され、
+それは関数{print-not-readable-object:link}によってアクセスすることができます。
+
+
+## {see-also}
+
+{print-not-readable-object:link}
+
+@end
+

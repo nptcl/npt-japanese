@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type READTABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.readtable
+@name: readtable
+@type: condition-type
+
+Condition Type `READTABLE`
+
+
+## {class-precedence-list}
+
+{readtable:link},
+{t!system-class:link}
+
+
+## {description}
+
+`readtable`は、Lispリーダーの構文タイプにある文字を対応付けします。
+{2:ab}をご確認ください。
+`readtable`は、またマクロ文字とそれらのリーダーマクロ関数との
+一連の関連付けも含みます。
+また、Lispリーダーがシンボルを構文解析するときに使用される
+大文字小文字の変換ルールについての情報も記録されます。
+
+各`simple`な文字は`readtable`内において表現できなければいけません。
+`simple`ではない文字が`readtable`内において
+構文の定義を持つかどうかは実装定義です。
+
+
+## {see-also}
+
+{2.1.1:ab},
+{22.1.3.13:ab}
+
+@end
+

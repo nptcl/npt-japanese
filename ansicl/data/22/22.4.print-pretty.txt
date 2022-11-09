@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-PRETTY*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-pretty
+@name: *print-pretty*
+@type: variable
+
+Variable `*PRINT-PRETTY*`
+
+
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+Lispプリンターがプリティプリンターを呼び出すかどうかを制御します。
+
+もし値が*false*のとき、プリティプリンターは使用されず、
+式を出力する際には最小の空白文字が出力されます。
+
+もし値が*true*のとき、プリティプリンターは使用され、
+Lispプリンターは式がより読みやすいように生成できるような適切な場所では、
+余分な空白文字が挿入されるように努力します。
+
+{*print-pretty*:link}は、
+{*print-escape*:link}の値が*false*の場合でも効果を発揮します。
+
+
+## {examples}
+
+```lisp
+(setq *print-pretty* 'nil) =>  NIL
+(progn (write '(let ((a 1) (b 2) (c 3)) (+ a b c))) nil)
+>>  (LET ((A 1) (B 2) (C 3)) (+ A B C))
+=>  NIL
+(let ((*print-pretty* t))
+  (progn (write '(let ((a 1) (b 2) (c 3)) (+ a b c))) nil))
+>>  (LET ((A 1)
+>>        (B 2)
+>>        (C 3))
+>>    (+ A B C))
+=>  NIL
+;; 最初の2つの式（1,2番目）の印刷は、次に2つの式（3,4番目）とは
+;; エスケープ文字が印刷されているかどうかのみ違っています。
+;; 4つの場合全てで、余分な空白文字はプリティプリンターによって挿入されます。
+(flet ((test (x)
+         (let ((*print-pretty* t))
+           (print x)
+           (format t "~%~S " x)
+           (terpri) (princ x) (princ " ")
+           (format t "~%~A " x))))
+ (test '#'(lambda () (list "a" #'c #'d))))
+>>  #'(LAMBDA ()
+>>      (LIST "a" #'C #'D))
+>>  #'(LAMBDA ()
+>>      (LIST "a" #'C #'D))
+>>  #'(LAMBDA ()
+>>      (LIST a b 'C #'D))
+>>  #'(LAMBDA ()
+>>      (LIST a b 'C #'D))
+=>  NIL
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{write:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

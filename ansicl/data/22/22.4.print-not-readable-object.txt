@@ -1,0 +1,59 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PRINT-NOT-READABLE-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-not-readable-object
+@name: print-not-readable-object
+@type: function
+
+Function `PRINT-NOT-READABLE-OBJECT`
+
+
+## {syntax}
+
+`print-not-readable-object` *condition* => *object*
+
+
+## {arguments-and-values}
+
+*condition* - 型{print-not-readable:link}のコンディション  
+*object* - オブジェクト
+
+
+## {description}
+
+*condition*によって表現された状況下で、
+読み込み可能な印刷ができなかったオブジェクトを返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{print-not-readable:link},
+{9:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

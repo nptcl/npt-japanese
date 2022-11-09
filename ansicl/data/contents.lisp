@@ -38,6 +38,7 @@
 
 ;; Chapter 2
 (text 2.1 "文字の構文" "Character Syntax")
+(text 2.1.1 "リードテーブル" "Readtables")
 (text 2.1.3 "標準文字" "Standard Characters")
 (index 2.3 "トークンの解釈" "Interpretation of Tokens")
 (text 2.3.1 "トークンとしての数" "Numbers as Tokens")
@@ -928,11 +929,11 @@
 (dictionary 22.4.print-gensym)
 (dictionary 22.4.print-level)
 (dictionary 22.4.print-lines)
-(dictionary 22.4.*print-miser-width*)  ;; rename
-(dictionary 22.4.*print-pprint-dispatch*)  ;; rename
-(dictionary 22.4.*print-pretty*)  ;; rename
-(dictionary 22.4.*print-readably*)  ;; rename
-(dictionary 22.4.*print-right-margin*)  ;; rename
+(dictionary 22.4.print-miser-width)
+(dictionary 22.4.print-pprint-dispatch)
+(dictionary 22.4.print-pretty)
+(dictionary 22.4.print-readably)
+(dictionary 22.4.print-right-margin)
 (dictionary 22.4.print-not-readable)
 (dictionary 22.4.print-not-readable-object)
 (dictionary 22.4.format)
@@ -952,7 +953,7 @@
 (dictionary 23.2.set-syntax-from-char)
 (dictionary 23.2.read-base)
 (dictionary 23.2.*read-default-float-format*)  ;; rename
-(dictionary 23.2.read-eval)
+(dictionary 23.2.*read-eval*)  ;; rename
 (dictionary 23.2.read-suppress)
 (dictionary 23.2.*readtable*)  ;; delete
 (dictionary 23.2.reader-error)

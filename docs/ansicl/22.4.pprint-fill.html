@@ -232,7 +232,7 @@
 <em>tabsize</em> - 非負の整数。デフォルトは<code>16</code>。</p>
 <h2 id="定義">定義</h2>
 <p><a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>, <a href="22.4.pprint-fill.html"><code>pprint-linear</code></a>, <a href="22.4.pprint-fill.html"><code>pprint-tabular</code></a>の関数は、 <em>stream</em>に対してリストをどのように プリティプリントとして出力するか特定の方法を指定します。 <em>colon-p</em>が<em>true</em>のときは、 各関数は出力の周りを囲うようにカッコを出力します。 各関数は、<em>at-sign-p</em>の引数を無視します。 （両方の引数が、ひとつの引数しか必要ないにもかかわらず含まれるのは、 <code>~/.../</code>を経由して使用される関数や、 <a href="22.4.set-pprint-dispatch.html"><code>set-pprint-dispatch</code></a>関数によって直接使われるからです） 各関数は省略形を扱い、循環構造を検出し、 共有構造を正しく検出し、 そしてリストではないものが指定されたときは <a href="22.4.write.html"><code>write</code></a>を使用して<em>object</em>を印字します。</p>
-<p><em>object</em>がリストであり、 <code>*print-pretty*</code>の値が<em>false</em>のときは、 これらの関数は<em>object</em>を出力する際に 22.1.3.5. リストとコンスの印字の定義に従い最小の空白を使用します。 それ以外のときは （<em>object</em>がリストであり、<code>*print-pretty*</code>の値が<em>true</em>のとき）、 次のように出力します。</p>
+<p><em>object</em>がリストであり、 <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>の値が<em>false</em>のときは、 これらの関数は<em>object</em>を出力する際に 22.1.3.5. リストとコンスの印字の定義に従い最小の空白を使用します。 それ以外のときは （<em>object</em>がリストであり、<a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>の値が<em>true</em>のとき）、 次のように出力します。</p>
 <ul>
 <li>関数<a href="22.4.pprint-fill.html"><code>pprint-linear</code></a>はリストを、 ひとつの行に全てを出力するか、 あるいは各要素を行で区切るかのどちらかです。</li>
 <li>関数<a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>はリストに対して、 可能な限り一行に多くの要素を出力します。</li>
@@ -265,7 +265,7 @@
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">write-char</span> <span class="ch">#\S</span>pace s)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">pprint-tab</span> :section-relative <span class="dv">0</span> tabsize s)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>          (<span class="kw">pprint-newline</span> :fill s))))</span></code></pre></div>
-<p>これは<code>format</code>を使用して この関数を定義するには不便であることに注意してください。 なぜならリストの繰り返し内にある<code>format</code>の命令<code>~:T</code>に <code>tabsize</code>引数を渡す必要があるためです。</p>
+<p>これは<a href="22.4.format.html"><code>format</code></a>を使用して この関数を定義するには不便であることに注意してください。 なぜならリストの繰り返し内にある<code>format</code>の命令<code>~:T</code>に <code>tabsize</code>引数を渡す必要があるためです。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

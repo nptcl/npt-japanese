@@ -1,0 +1,134 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-READABLY*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-readably
+@name: *print-readably*
+@type: variable
+
+Variable `*PRINT-READABLY*`
+
+
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+*false*
+
+
+## {description}
+
+もし{*print-readably*:link}が*true*のとき、
+いくつかの特別なルールによって
+オブジェクトの出力の際に効果を発揮します。
+特に、何らかのオブジェクト`O1`を印刷するときに
+生成される印刷表現は、
+標準のリードテーブルの効果があるLispリーダーによって読み込まれたとき、
+その表現は`O1`と似たオブジェクト`O2`が生成されます。
+生成された印刷表現は、
+{*print-readably*:link}が*false*のときに生成されたものと
+同じか同じではないものが生成されます。
+もし`readably`なオブジェクトの印刷が不可能であるとき、
+同じ実装では読み込むことができない構文（例えば`#<`構文）を使うのではなく、
+型{print-not-readable:link}のエラーが発生します。
+もし他のいくつかのプリンター制御変数の値が
+これらの要求に違反するような場合は、
+それらの変数の値は無視されます。
+
+特に{*print-readably*:link}が*true*であれば、
+{*print-escape*:link}, {*print-array*:link}, {*print-gensym*:link}が
+それぞれ*true*、
+{*print-length*:link}, {*print-level*:link}, {*print-lines*:link}が
+それぞれ*false*として、
+印刷が進行します。
+
+もし{*print-readably*:link}が*false*のとき、
+印刷の通常の規則と、
+他のプリンター制御変数の通常の解釈は、
+効果を発揮します。
+
+{print-object:link}のユーザー定義のメソッドを含む個別のメソッドは、
+これらの要求を実装する責任を負います。
+
+もし{*read-eval*:link}が*false*であり、
+{*print-readably*:link}が*true*のとき、
+リードマクロである`#.`の参照を出力するようなどのようなメソッドも、
+何かを出力するのか、
+あるいはエラーを通知するのか（上記で定義されたような）の
+どちらかになります。
+
+
+## {examples}
+
+```lisp
+(let ((x (list "a" '\a (gensym) '((a (b (c))) d e f g)))
+      (*print-escape* nil)
+      (*print-gensym* nil)
+      (*print-level* 3)
+      (*print-length* 3))
+  (write x)
+  (let ((*print-readably* t))
+    (terpri)
+    (write x)
+    :done))
+>>  (a a G4581 ((A #) D E ...))
+>>  ("a" |a| #:G4581 ((A (B (C))) D E F G))
+=>  :DONE
+
+;; これは次に続く3つの仮想的な実装の例で共有される
+;; セットアップコードです。
+(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32005763> 
+(setf (gethash table 1) 'one) =>  ONE
+(setf (gethash table 2) 'two) =>  TWO
+
+;; 実装A
+(let ((*print-readably* t)) (print table))
+Error: Can't print #<HASH-TABLE EQL 0/120 32005763> readably.
+
+;; 実装B
+;; ハッシュテープルが標準ではない#S表記で定義されていますが
+;; これは実装定義の表記となるでしょう。
+(let ((*print-readably* t)) (print table))
+>>  #S(HASH-TABLE :TEST EQL :SIZE 120 :CONTENTS (1 ONE 2 TWO))
+=>  #<HASH-TABLE EQL 0/120 32005763>
+
+;; Implementation C
+;; #.表記は*READ-EVAL*がtrueのときのみ使用できることに注意してください。
+;; もし*READ-EVAL*がfalseのときは、同じ実装でも何か別の印刷の仕掛けにより
+;; 復帰する仕組みでもない限り、エラーが発生します。
+(let ((*print-readably* t)) (print table))
+>>  #.(LET ((HASH-TABLE (MAKE-HASH-TABLE)))
+>>      (SETF (GETHASH 1 HASH-TABLE) ONE)
+>>      (SETF (GETHASH 2 HASH-TABLE) TWO)
+>>      HASH-TABLE)
+=>  #<HASH-TABLE EQL 0/120 32005763>
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{write:link},
+{print-unreadable-object:link}
+
+
+## {notes}
+
+「類似性」の規則により、`#A`か`#(`の構文は
+要素の型が{t!system-class:link}ではない配列に使用することができません。
+実装は他の構文を使用するか、
+あるいは型{print-not-readable:link}のエラーを通知するべきかもしれません。
+
+@end
+

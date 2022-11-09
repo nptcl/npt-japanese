@@ -294,15 +294,15 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">miser-width</td>
-<td style="text-align: left;"><code>*print-miser-width*</code></td>
+<td style="text-align: left;"><a href="22.4.print-miser-width.html"><code>*print-miser-width*</code></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">pprint-dispatch</td>
-<td style="text-align: left;"><code>*print-pprint-dispatch*</code></td>
+<td style="text-align: left;"><a href="22.4.print-pprint-dispatch.html"><code>*print-pprint-dispatch*</code></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pretty</td>
-<td style="text-align: left;"><code>*print-pretty*</code></td>
+<td style="text-align: left;"><a href="22.4.print-pretty.html"><code>*print-pretty*</code></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">radix</td>
@@ -310,29 +310,29 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">readably</td>
-<td style="text-align: left;"><code>*print-readably*</code></td>
+<td style="text-align: left;"><a href="22.4.print-readably.html"><code>*print-readably*</code></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">right-margin</td>
-<td style="text-align: left;"><code>*print-right-margin*</code></td>
+<td style="text-align: left;"><a href="22.4.print-right-margin.html"><code>*print-right-margin*</code></a></td>
 </tr>
 </tbody>
 </table>
 <p>Figure 22-7. <code>WRITE</code>関数の引数の対応</p>
-<p><a href="22.4.write.html"><code>prin1</code></a>, <a href="22.4.write.html"><code>princ</code></a>, <a href="22.4.write.html"><code>print</code></a>, <a href="22.4.write.html"><code>pprint</code></a>は、 特定の印刷パラメーターを特定の値に暗に束縛します。 残りのパラメーターの値は、 <a href="22.4.print-array.html"><code>*print-array*</code></a>, <a href="22.4.print-base.html"><code>*print-base*</code></a>, <a href="22.4.print-case.html"><code>*print-case*</code></a>, <a href="22.4.print-circle.html"><code>*print-circle*</code></a>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <a href="22.4.print-gensym.html"><code>*print-gensym*</code></a>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, <a href="22.4.print-level.html"><code>*print-level*</code></a>, <a href="22.4.print-lines.html"><code>*print-lines*</code></a>, <code>*print-miser-width*</code>, <code>*print-pprint-dispatch*</code>, <code>*print-pretty*</code>, <a href="22.4.print-base.html"><code>*print-radix*</code></a>, <code>*print-right-margin*</code> から取得します。</p>
+<p><a href="22.4.write.html"><code>prin1</code></a>, <a href="22.4.write.html"><code>princ</code></a>, <a href="22.4.write.html"><code>print</code></a>, <a href="22.4.write.html"><code>pprint</code></a>は、 特定の印刷パラメーターを特定の値に暗に束縛します。 残りのパラメーターの値は、 <a href="22.4.print-array.html"><code>*print-array*</code></a>, <a href="22.4.print-base.html"><code>*print-base*</code></a>, <a href="22.4.print-case.html"><code>*print-case*</code></a>, <a href="22.4.print-circle.html"><code>*print-circle*</code></a>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <a href="22.4.print-gensym.html"><code>*print-gensym*</code></a>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, <a href="22.4.print-level.html"><code>*print-level*</code></a>, <a href="22.4.print-lines.html"><code>*print-lines*</code></a>, <a href="22.4.print-miser-width.html"><code>*print-miser-width*</code></a>, <a href="22.4.print-pprint-dispatch.html"><code>*print-pprint-dispatch*</code></a>, <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>, <a href="22.4.print-base.html"><code>*print-radix*</code></a>, <a href="22.4.print-right-margin.html"><code>*print-right-margin*</code></a> から取得します。</p>
 <p><a href="22.4.write.html"><code>prin1</code></a>は、<code>read</code>からの入力に適切な出力を生成します。 それは<a href="22.4.print-escape.html"><code>*print-escape*</code></a>を<em>true</em>に束縛します。</p>
-<p><a href="22.4.write.html"><code>princ</code></a>は、ちょうど<a href="22.4.write.html"><code>prin1</code></a>と似ていますが、 出力にエスケープ文字を含めない所が違っています。 <a href="22.4.print-escape.html"><code>*print-escape*</code></a>を<em>false</em>に、 <code>*print-readably*</code>を<em>false</em>に束縛します。 一般的なルールは、 <a href="22.4.write.html"><code>princ</code></a>による出力は人に見やすいことを意図しており、 <a href="22.4.write.html"><code>prin1</code></a>による出力は<code>read</code>に受け入れられることを意図しています。</p>
+<p><a href="22.4.write.html"><code>princ</code></a>は、ちょうど<a href="22.4.write.html"><code>prin1</code></a>と似ていますが、 出力にエスケープ文字を含めない所が違っています。 <a href="22.4.print-escape.html"><code>*print-escape*</code></a>を<em>false</em>に、 <a href="22.4.print-readably.html"><code>*print-readably*</code></a>を<em>false</em>に束縛します。 一般的なルールは、 <a href="22.4.write.html"><code>princ</code></a>による出力は人に見やすいことを意図しており、 <a href="22.4.write.html"><code>prin1</code></a>による出力は<code>read</code>に受け入れられることを意図しています。</p>
 <p><a href="22.4.write.html"><code>print</code></a>は、ちょうど<a href="22.4.write.html"><code>prin1</code></a>に似ていますが、 <em>object</em>の印刷表現の前に改行を、 その後にスペースを入れるところが違っています。</p>
-<p><a href="22.4.write.html"><code>pprint</code></a>は、ちょうど<a href="22.4.write.html"><code>print</code></a>に似ていますが、 末尾の空白が省略され、かつ<em>object</em>を印刷するときに <code>*print-pretty*</code>に<a href="5.3.nil-variable.html"><code>nil</code></a>以外の値を指定し、 プリティプリントの出力を行うということが違っています。</p>
+<p><a href="22.4.write.html"><code>pprint</code></a>は、ちょうど<a href="22.4.write.html"><code>print</code></a>に似ていますが、 末尾の空白が省略され、かつ<em>object</em>を印刷するときに <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>に<a href="5.3.nil-variable.html"><code>nil</code></a>以外の値を指定し、 プリティプリントの出力を行うということが違っています。</p>
 <p><em>output-stream</em>は出力を送信するストリームを指定します。</p>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.debug-io.html"><code>*standard-output*</code></a>, <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <a href="22.4.print-base.html"><code>*print-radix*</code></a>, <a href="22.4.print-base.html"><code>*print-base*</code></a>, <a href="22.4.print-circle.html"><code>*print-circle*</code></a>, <code>*print-pretty*</code>, <a href="22.4.print-level.html"><code>*print-level*</code></a>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, <a href="22.4.print-case.html"><code>*print-case*</code></a>, <a href="22.4.print-gensym.html"><code>*print-gensym*</code></a>, <a href="22.4.print-array.html"><code>*print-array*</code></a>, <code>*read-default-float-format*</code></p>
+<p><a href="21.2.debug-io.html"><code>*standard-output*</code></a>, <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <a href="22.4.print-base.html"><code>*print-radix*</code></a>, <a href="22.4.print-base.html"><code>*print-base*</code></a>, <a href="22.4.print-circle.html"><code>*print-circle*</code></a>, <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>, <a href="22.4.print-level.html"><code>*print-level*</code></a>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, <a href="22.4.print-case.html"><code>*print-case*</code></a>, <a href="22.4.print-gensym.html"><code>*print-gensym*</code></a>, <a href="22.4.print-array.html"><code>*print-array*</code></a>, <code>*read-default-float-format*</code></p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
 <p><code>readtable-case</code>, 22.3.4. <code>FORMAT</code>プリンター操作</p>
 <h2 id="備考">備考</h2>
-<p>関数の<a href="22.4.write.html"><code>prin1</code></a>と<a href="22.4.write.html"><code>print</code></a>は、 <code>*print-readably*</code>を束縛しません。</p>
+<p>関数の<a href="22.4.write.html"><code>prin1</code></a>と<a href="22.4.write.html"><code>print</code></a>は、 <a href="22.4.print-readably.html"><code>*print-readably*</code></a>を束縛しません。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">prin1</span> object output-stream)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="kw">write</span> object <span class="bu">:stream</span> output-stream <span class="bu">:escape</span> <span class="kw">t</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>

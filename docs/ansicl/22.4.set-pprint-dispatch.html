@@ -226,11 +226,11 @@
 <p><em>type-specifier</em> - 型指定子<br />
 <em>function</em> - 関数か、関数名か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
 <em>priority</em> - 実数。デフォルトは<code>0</code>。<br />
-<em>table</em> - <code>pprint</code>ディスパッチテーブル。デフォルトは<code>*print-pprint-dispatch*</code>の値。</p>
+<em>table</em> - <code>pprint</code>ディスパッチテーブル。デフォルトは<a href="22.4.print-pprint-dispatch.html"><code>*print-pprint-dispatch*</code></a>の値。</p>
 <h2 id="定義">定義</h2>
 <p><em>table</em>で指定された<code>pprint</code>ディスパッチテーブルにエントリーを導入します。</p>
 <p><em>type-specifier</em>はエントリーのキーです。 <a href="22.4.set-pprint-dispatch.html"><code>set-pprint-dispatch</code></a>の最初の動作は、 <em>type-specifier</em>に関連付けられた 以前に存在していたエントリーを削除することです。 これにより、与えられた<code>pprint</code>ディスパッチテーブル内において 同じ型指定子に関連付けられるエントリーが 2つになることがあり得ないことを保証します。 型指定子の同一性は<a href="5.3.equal.html"><code>equal</code></a>によってテストします。</p>
-<p><code>pprint</code>ディスパッチテーブル内の各型指定子にには、 <em>function</em>と<em>priority</em>の2つの値が 関連付けられます。 <em>function</em>は2つの引数を受け付ける必要があり、 最初の引数は出力を送信するストリーム、 次の引数は印刷するオブジェクトです。 <em>function</em>はオブジェクトをストリームへ プリティプリントとして印刷とするべきです。 <em>function</em>はオブジェクトが与えられた<em>type-specifier</em>を 満たすと仮定することができます。 <em>function</em>は<code>*print-readably*</code>に従うべきです。 <em>function</em>によって返却されるどんな値も無視されます。</p>
+<p><code>pprint</code>ディスパッチテーブル内の各型指定子にには、 <em>function</em>と<em>priority</em>の2つの値が 関連付けられます。 <em>function</em>は2つの引数を受け付ける必要があり、 最初の引数は出力を送信するストリーム、 次の引数は印刷するオブジェクトです。 <em>function</em>はオブジェクトをストリームへ プリティプリントとして印刷とするべきです。 <em>function</em>はオブジェクトが与えられた<em>type-specifier</em>を 満たすと仮定することができます。 <em>function</em>は<a href="22.4.print-readably.html"><code>*print-readably*</code></a>に従うべきです。 <em>function</em>によって返却されるどんな値も無視されます。</p>
 <p><em>priority</em>は、オブジェクトがひとつ以上のエントリーと マッチするような衝突を解決するための優先順位です。</p>
 <p><em>function</em>は<a href="5.3.nil-variable.html"><code>nil</code></a>であることが許されます。 このような状況においては、 <a href="22.4.set-pprint-dispatch.html"><code>set-pprint-dispatch</code></a>が返却されたあとは、 <em>table</em>内に<em>type-specifier</em>のエントリーが無くなります。</p>
 <h2 id="例文">例文</h2>

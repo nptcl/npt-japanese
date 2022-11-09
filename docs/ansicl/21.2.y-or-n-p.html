@@ -231,7 +231,7 @@
 <p>これらの関数は質問を行い、ユーザーからの返答を解釈します。 もし返答が肯定であったときは<em>true</em>を返却し、 返答が否定的であったときは<em>false</em>を返却します。</p>
 <p><a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>はユーザーに質問を行い、 答えが「yes」か「no」かのどちらかを問いかけます。 この関数はユーザーの返答が<code>yes</code>か<code>no</code>か 単一の文字であることを要求し、 返信することを意図しています。 <a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>もまたユーザーに質問を行い、 答えが「Yes」か「No」かのどちらかを問いかけます。 この関数はユーザーにちょうどひとつのキー押下以上の行動を要求し、 例えば<code>yes</code>や<code>no</code>という完全な単語の後に 改行をタイプするようなことを意図しています。</p>
 <p><a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>は、（もし指定されたなら）メッセージを出力し、 実装依存の入力で （短く単純であることを意図しており、例えば単一の文字である<code>Y</code>か<code>N</code>を読み込みます） 返答を読み込みます。 <a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>は、（もし指定されたなら）メッセージを出力し、 ユーザーの注意を引き付け （例えば、ターミナルのベルを鳴らしたり） 実装依存の入力で （複数の文字を意図しており、例えば<code>YES</code>か<code>NO</code>を読み込みます） 返答を読み込みます。</p>
-<p>もし<em>format-control</em>が指定され、 それが<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 まずは<a href="21.2.terpri.html"><code>fresh-line</code></a>操作が実行されます。 そのあと<em>format-control</em>と<em>arguments</em>が<code>format</code>に与えられて メッセージが出力されます。 いかなる場合でも、<a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>と<a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>は 適切であるならば<code>(Y or N)</code>か<code>(Yes or No)</code>のようなプロンプトが提供されます。</p>
+<p>もし<em>format-control</em>が指定され、 それが<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 まずは<a href="21.2.terpri.html"><code>fresh-line</code></a>操作が実行されます。 そのあと<em>format-control</em>と<em>arguments</em>が<a href="22.4.format.html"><code>format</code></a>に与えられて メッセージが出力されます。 いかなる場合でも、<a href="21.2.y-or-n-p.html"><code>yes-or-no-p</code></a>と<a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>は 適切であるならば<code>(Y or N)</code>か<code>(Yes or No)</code>のようなプロンプトが提供されます。</p>
 <p>全ての入出力はquery I/Oを使い実行されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">y-or-n-p</span> <span class="st">&quot;(t or nil) given by&quot;</span>)</span>
@@ -251,7 +251,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>format</code></p>
+<p><a href="22.4.format.html"><code>format</code></a></p>
 <h2 id="備考">備考</h2>
 <p>yes-or-no-p:link}と<a href="21.2.y-or-n-p.html"><code>y-or-n-p</code></a>はプロンプトの文字列の 最後にクエスチョン文字を追加しないので、 クエスチョンの文字や他の句読点を使いたいのであれば、 テキストの質問文に明示的に含める必要があります。</p>
 <hr />

@@ -171,17 +171,17 @@
 <p><a href="4.4.structure-object.html"><code>structure-object</code></a>のメソッドは デフォルトでは<code>#S</code>表記によってオブジェクトを印刷します。 22.1.3.2. 文字の印字をご確認ください。</p>
 <p><a href="22.4.print-object.html"><code>print-object</code></a>のメソッドは、 下記に示すプリンター制御の変数の意味の一部を実装する責任があります。</p>
 <ul>
-<li><code>*print-readably*</code>
+<li><a href="22.4.print-readably.html"><code>*print-readably*</code></a>
 <ul>
-<li><a href="22.4.print-object.html"><code>print-object</code></a>の全てのメソッドは、 <code>*print-readably*</code>に従う必要があります。 これはユーザー定義メソッドと実装定義のメソッドの両方が含まれます。 構造体と<a href="4.4.standard-object.html"><code>standard-object</code></a>のオブジェクトの 読み込み可能な印刷を制御するのは それらの<a href="22.4.print-object.html"><code>print-object</code></a>のメソッドであり、 それらの<a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドによってではありません。 これらのオブジェクトの類似性はアプリケーションに依存するので、 したがってこれらのメソッドが行うことは何でも定義できます。 3.2.4.2. リテラルオブジェクトの類似性をご確認ください。</li>
+<li><a href="22.4.print-object.html"><code>print-object</code></a>の全てのメソッドは、 <a href="22.4.print-readably.html"><code>*print-readably*</code></a>に従う必要があります。 これはユーザー定義メソッドと実装定義のメソッドの両方が含まれます。 構造体と<a href="4.4.standard-object.html"><code>standard-object</code></a>のオブジェクトの 読み込み可能な印刷を制御するのは それらの<a href="22.4.print-object.html"><code>print-object</code></a>のメソッドであり、 それらの<a href="7.7.make-load-form.html"><code>make-load-form</code></a>メソッドによってではありません。 これらのオブジェクトの類似性はアプリケーションに依存するので、 したがってこれらのメソッドが行うことは何でも定義できます。 3.2.4.2. リテラルオブジェクトの類似性をご確認ください。</li>
 </ul></li>
 <li><a href="22.4.print-escape.html"><code>*print-escape*</code></a>
 <ul>
 <li>各メソッドは<a href="22.4.print-escape.html"><code>*print-escape*</code></a>を実装しなければなりません。</li>
 </ul></li>
-<li><code>*print-pretty*</code>
+<li><a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>
 <ul>
-<li>メソッドは<code>*print-pretty*</code>の値によって 改行やその他の出力の状態を特別に実行したいかもしれません。 より詳しい情報は、（例えば）マクロ<a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>をご確認ください。 22.2.1.4. プリティプリンターのディスパッチテーブルと22.2.2. プリティプリンターの使用例も合わせてご確認ください。</li>
+<li>メソッドは<a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>の値によって 改行やその他の出力の状態を特別に実行したいかもしれません。 より詳しい情報は、（例えば）マクロ<a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>をご確認ください。 22.2.1.4. プリティプリンターのディスパッチテーブルと22.2.2. プリティプリンターの使用例も合わせてご確認ください。</li>
 </ul></li>
 <li><a href="22.4.print-level.html"><code>*print-length*</code></a>
 <ul>
@@ -193,7 +193,7 @@
 </ul></li>
 <li><a href="22.4.print-circle.html"><code>*print-circle*</code></a>
 <ul>
-<li><a href="22.4.print-circle.html"><code>*print-circle*</code></a>の値が<em>true</em>Nおとき、 <a href="22.4.print-object.html"><code>print-object</code></a>のユーザー定義メソッドは、 <a href="22.4.write.html"><code>write</code></a>, <a href="22.4.write.html"><code>prin1</code></a>, <a href="22.4.write.html"><code>princ</code></a>, <code>format</code>の どれかを使用することで、ストリームに対してオブジェクトを印刷できますが、 例外として循環が検出されたときは、<code>#n#</code>構文が使われて印刷されます。 もし<a href="22.4.print-object.html"><code>print-object</code></a>のユーザー定義メソッドが 指定されたストリーム以外のストリームに印刷するときは、 循環の検出はそのストリームに対してやり直されます。 <a href="22.4.print-circle.html"><code>*print-circle*</code></a>をご確認ください。</li>
+<li><a href="22.4.print-circle.html"><code>*print-circle*</code></a>の値が<em>true</em>Nおとき、 <a href="22.4.print-object.html"><code>print-object</code></a>のユーザー定義メソッドは、 <a href="22.4.write.html"><code>write</code></a>, <a href="22.4.write.html"><code>prin1</code></a>, <a href="22.4.write.html"><code>princ</code></a>, <a href="22.4.format.html"><code>format</code></a>の どれかを使用することで、ストリームに対してオブジェクトを印刷できますが、 例外として循環が検出されたときは、<code>#n#</code>構文が使われて印刷されます。 もし<a href="22.4.print-object.html"><code>print-object</code></a>のユーザー定義メソッドが 指定されたストリーム以外のストリームに印刷するときは、 循環の検出はそのストリームに対してやり直されます。 <a href="22.4.print-circle.html"><code>*print-circle*</code></a>をご確認ください。</li>
 </ul></li>
 <li><a href="22.4.print-base.html"><code>*print-base*</code></a>, <a href="22.4.print-base.html"><code>*print-radix*</code></a>, <a href="22.4.print-case.html"><code>*print-case*</code></a>, <a href="22.4.print-gensym.html"><code>*print-gensym*</code></a>, <a href="22.4.print-array.html"><code>*print-array*</code></a>
 <ul>
@@ -210,7 +210,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>, <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>, <a href="22.4.pprint-pop.html"><code>pprint-pop</code></a>, <a href="22.4.write.html"><code>write</code></a>, <code>*print-readably*</code>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <code>*print-pretty*</code>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, 22.1.3. 標準のPrint-Objectメソッド, 22.1.3.12. 構造体の印字, 22.2.1.4. プリティプリンターのディスパッチテーブル, 22.2.2. プリティプリンターの使用例</p>
+<p><a href="22.4.pprint-fill.html"><code>pprint-fill</code></a>, <a href="22.4.pprint-logical-block.html"><code>pprint-logical-block</code></a>, <a href="22.4.pprint-pop.html"><code>pprint-pop</code></a>, <a href="22.4.write.html"><code>write</code></a>, <a href="22.4.print-readably.html"><code>*print-readably*</code></a>, <a href="22.4.print-escape.html"><code>*print-escape*</code></a>, <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>, <a href="22.4.print-level.html"><code>*print-length*</code></a>, 22.1.3. 標準のPrint-Objectメソッド, 22.1.3.12. 構造体の印字, 22.2.1.4. プリティプリンターのディスパッチテーブル, 22.2.2. プリティプリンターの使用例</p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

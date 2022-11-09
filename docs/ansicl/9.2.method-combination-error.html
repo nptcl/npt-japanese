@@ -164,7 +164,7 @@
 <em>args</em> - <em>format-control</em>に対応する<code>format</code>の引数</p>
 <h2 id="定義">定義</h2>
 <p><a href="9.2.method-combination-error.html"><code>method-combination-error</code></a>関数は、 <code>method-combination</code>内でエラーを通知する際に使われます。</p>
-<p>エラーメッセージは、<em>format-control</em>と<em>args</em>を <code>format</code>に使って構築します。 実装はエラーメッセージに追加で文脈的な情報を 追加する必要があるかもしれないので、 <a href="9.2.method-combination-error.html"><code>method-combination-error</code></a>は<code>method-combination</code>関数の 動的エクステント内でのみ呼び出すことができます。</p>
+<p>エラーメッセージは、<em>format-control</em>と<em>args</em>を <a href="22.4.format.html"><code>format</code></a>に使って構築します。 実装はエラーメッセージに追加で文脈的な情報を 追加する必要があるかもしれないので、 <a href="9.2.method-combination-error.html"><code>method-combination-error</code></a>は<code>method-combination</code>関数の 動的エクステント内でのみ呼び出すことができます。</p>
 <p><a href="9.2.method-combination-error.html"><code>method-combination-error</code></a>が呼び出し元へ戻るのか、 あるいは<a href="5.3.throw.html"><code>throw</code></a>を経由して退出するかどうかは、 実装依存です。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>

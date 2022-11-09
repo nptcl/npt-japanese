@@ -1,0 +1,49 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-MISER-WIDTH*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-miser-width
+@name: *print-miser-width*
+@type: variable
+
+Variable `*PRINT-MISER-WIDTH*`
+
+
+## {value-type}
+
+非負の整数か、{nil!variable:link}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+もし値が{nil!variable:link}ではないとき、
+印刷時の副構造で利用可能な幅がこの値の`ems`以下のとき、
+プリティプリンターはコンパクトなスタイル
+（マイザースタイルと呼ばれる）に切り替えます。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

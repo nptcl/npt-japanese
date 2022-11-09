@@ -37,7 +37,12 @@
 (setf (gethash "*PRINT-LENGTH*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LEVEL*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-LINES*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-MISER-WIDTH*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-PPRINT-DISPATCH*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-PRETTY*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-RADIX*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-READABLY*" *name*) '("VARIABLE"))
+(setf (gethash "*PRINT-RIGHT-MARGIN*" *name*) '("VARIABLE"))
 (setf (gethash "*QUERY-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-INPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
@@ -291,6 +296,7 @@
 (setf (gethash "FLET" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "FMAKUNBOUND" *name*) '("FUNCTION"))
 (setf (gethash "FORCE-OUTPUT" *name*) '("FUNCTION"))
+(setf (gethash "FORMAT" *name*) '("FUNCTION"))
 (setf (gethash "FORMATTER" *name*) '("MACRO"))
 (setf (gethash "FOURTH" *name*) '("ACCESSOR"))
 (setf (gethash "FRESH-LINE" *name*) '("FUNCTION"))
@@ -495,6 +501,8 @@
 (setf (gethash "PRINC" *name*) '("FUNCTION"))
 (setf (gethash "PRINC-TO-STRING" *name*) '("FUNCTION"))
 (setf (gethash "PRINT" *name*) '("FUNCTION"))
+(setf (gethash "PRINT-NOT-READABLE" *name*) '("CONDITION-TYPE"))
+(setf (gethash "PRINT-NOT-READABLE-OBJECT" *name*) '("FUNCTION"))
 (setf (gethash "PRINT-OBJECT" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "PRINT-UNREADABLE-OBJECT" *name*) '("MACRO"))
 (setf (gethash "PROBE-FILE" *name*) '("FUNCTION"))
@@ -519,6 +527,7 @@
 (setf (gethash "READ-CHAR-NO-HANG" *name*) '("FUNCTION"))
 (setf (gethash "READ-LINE" *name*) '("FUNCTION"))
 (setf (gethash "READ-SEQUENCE" *name*) '("FUNCTION"))
+(setf (gethash "READTABLE" *name*) '("CONDITION-TYPE"))
 (setf (gethash "REDUCE" *name*) '("FUNCTION"))
 (setf (gethash "REINITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "REMF" *name*) '("MACRO"))
@@ -1208,6 +1217,56 @@
      "Lispリーダーがエラーを通知する可能性を高めるために使用されます。" "ただし、" (CODE1 "\"この文字列は切り捨てられた... \"") "のように"
      "文字列の中で切り捨てが発生した場合は、" "後で問題の状況を検出することができないため、" "そのようなエラーは通知されないことに注意してください。")))
 (setf (gethash '("*PRINT-LINES*" . "VARIABLE") *table*) (gethash "*PRINT-LINES*" *table*))
+(setf (gethash "*PRINT-MISER-WIDTH*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-MISER-WIDTH*"))
+    (CHAPTER ("## 値の型") 2 "非負の整数か、" (CODE1 "nil")) (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "もし値が" (CODE1 "nil") "ではないとき、" "印刷時の副構造で利用可能な幅がこの値の"
+     (CODE1 "ems") "以下のとき、" "プリティプリンターはコンパクトなスタイル" "（マイザースタイルと呼ばれる）に切り替えます。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*PRINT-MISER-WIDTH*" . "VARIABLE") *table*) (gethash "*PRINT-MISER-WIDTH*" *table*))
+(setf (gethash "*PRINT-PPRINT-DISPATCH*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-PPRINT-DISPATCH*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "pprint") "ディスパッチテーブル")
+    (CHAPTER ("## 初期値") 2 "実装依存ですが、" "初期値のエントリーは全て特別なクラスの優先順位が使われており、" "その優先順位は"
+     (CODE1 "set-pprint-dispatch") "を使って" "指定したものの全ての優先順位より低い優先順位を持ったもです。"
+     "したがって、初期にある全てのエントリーの要素を" "上書きすることができます。")
+    (CHAPTER ("## 定義") 2 "現在指定されている" (CODE1 "pprint") "ディスパッチテーブルは、" "プリティプリンターを制御します。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*print-pretty*") "," "22.2.1.4. プリティプリンターのディスパッチテーブル")
+    (CHAPTER ("## 備考") 2 "この変数の初期値は、" "伝統的なプリティプリントのコードであるという意図があります。" "しかし、一般的には"
+     "正確にはプリティプリントではないような出力に見える" "プリティプリントの出力を作成し、" "それを"
+     (CODE1 "*print-pprint-dispatch*") "の値に配置することができます。" EOL2 (CODE1 "*print-pretty*")
+     "を" (STRONG "true") "に設定するということは、" "現在の" (CODE1 "pprint")
+     "ディスパッチテーブル内に含まれる関数が持つ優先順位を、" "通常の" (CODE1 "print-object") "メソッドのものより" "超過させるだけです。"
+     "それらの関数が実際にきれいな出力を生成することを強制するような" "魔法みたいな方法があるわけではありません。"
+     "詳しくは22.2.1.4. プリティプリンターのディスパッチテーブルをご確認ください。")))
+(setf (gethash '("*PRINT-PPRINT-DISPATCH*" . "VARIABLE") *table*) (gethash "*PRINT-PPRINT-DISPATCH*" *table*))
+(setf (gethash "*PRINT-PRETTY*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-PRETTY*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "Lispプリンターがプリティプリンターを呼び出すかどうかを制御します。" EOL2 "もし値が"
+     (STRONG "false") "のとき、プリティプリンターは使用されず、" "式を出力する際には最小の空白文字が出力されます。" EOL2 "もし値が"
+     (STRONG "true") "のとき、プリティプリンターは使用され、" "Lispプリンターは式がより読みやすいように生成できるような適切な場所では、"
+     "余分な空白文字が挿入されるように努力します。" EOL2 (CODE1 "*print-pretty*") "は、" (CODE1 "*print-escape*")
+     "の値が" (STRONG "false") "の場合でも効果を発揮します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(setq *print-pretty* 'nil) =>  NIL"
+      "(progn (write '(let ((a 1) (b 2) (c 3)) (+ a b c))) nil)"
+      ">>  (LET ((A 1) (B 2) (C 3)) (+ A B C))" "=>  NIL" "(let ((*print-pretty* t))"
+      "  (progn (write '(let ((a 1) (b 2) (c 3)) (+ a b c))) nil))" ">>  (LET ((A 1)"
+      ">>        (B 2)" ">>        (C 3))" ">>    (+ A B C))" "=>  NIL"
+      ";; 最初の2つの式（1,2番目）の印刷は、次に2つの式（3,4番目）とは" ";; エスケープ文字が印刷されているかどうかのみ違っています。"
+      ";; 4つの場合全てで、余分な空白文字はプリティプリンターによって挿入されます。" "(flet ((test (x)"
+      "         (let ((*print-pretty* t))" "           (print x)"
+      "           (format t \"~%~S \" x)" "           (terpri) (princ x) (princ \" \")"
+      "           (format t \"~%~A \" x))))"
+      " (test '#'(lambda () (list \"a\" #'c #'d))))" ">>  #'(LAMBDA ()"
+      ">>      (LIST \"a\" #'C #'D))" ">>  #'(LAMBDA ()" ">>      (LIST \"a\" #'C #'D))"
+      ">>  #'(LAMBDA ()" ">>      (LIST a b 'C #'D))" ">>  #'(LAMBDA ()"
+      ">>      (LIST a b 'C #'D))" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "write"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*PRINT-PRETTY*" . "VARIABLE") *table*) (gethash "*PRINT-PRETTY*" *table*))
 (setf (gethash "*PRINT-RADIX*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-BASE*") ", " (CODE1 "*PRINT-RADIX*"))
     (CHAPTER ("## 値の型") 2 (CODE1 "*print-base*") " - 基数" EOL1 (CODE1 "*print-radix*")
@@ -1244,6 +1303,65 @@
      (CODE1 "write-to-string"))
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("*PRINT-RADIX*" . "VARIABLE") *table*) (gethash "*PRINT-RADIX*" *table*))
+(setf (gethash "*PRINT-READABLY*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-READABLY*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "false"))
+    (CHAPTER ("## 定義") 2 "もし" (CODE1 "*print-readably*") "が" (STRONG "true") "のとき、"
+     "いくつかの特別なルールによって" "オブジェクトの出力の際に効果を発揮します。" "特に、何らかのオブジェクト" (CODE1 "O1") "を印刷するときに"
+     "生成される印刷表現は、" "標準のリードテーブルの効果があるLispリーダーによって読み込まれたとき、" "その表現は" (CODE1 "O1")
+     "と似たオブジェクト" (CODE1 "O2") "が生成されます。" "生成された印刷表現は、" (CODE1 "*print-readably*") "が"
+     (STRONG "false") "のときに生成されたものと" "同じか同じではないものが生成されます。" "もし" (CODE1 "readably")
+     "なオブジェクトの印刷が不可能であるとき、" "同じ実装では読み込むことができない構文（例えば" (CODE1 "#<") "構文）を使うのではなく、" "型"
+     (CODE1 "print-not-readable") "のエラーが発生します。" "もし他のいくつかのプリンター制御変数の値が"
+     "これらの要求に違反するような場合は、" "それらの変数の値は無視されます。" EOL2 "特に" (CODE1 "*print-readably*") "が"
+     (STRONG "true") "であれば、" (CODE1 "*print-escape*") ", " (CODE1 "*print-array*") ", "
+     (CODE1 "*print-gensym*") "が" "それぞれ" (STRONG "true") "、" (CODE1 "*print-length*")
+     ", " (CODE1 "*print-level*") ", " (CODE1 "*print-lines*") "が" "それぞれ"
+     (STRONG "false") "として、" "印刷が進行します。" EOL2 "もし" (CODE1 "*print-readably*") "が"
+     (STRONG "false") "のとき、" "印刷の通常の規則と、" "他のプリンター制御変数の通常の解釈は、" "効果を発揮します。" EOL2
+     (CODE1 "print-object") "のユーザー定義のメソッドを含む個別のメソッドは、" "これらの要求を実装する責任を負います。" EOL2 "もし"
+     (CODE1 "*read-eval*") "が" (STRONG "false") "であり、" (CODE1 "*print-readably*") "が"
+     (STRONG "true") "のとき、" "リードマクロである" (CODE1 "#.") "の参照を出力するようなどのようなメソッドも、"
+     "何かを出力するのか、" "あるいはエラーを通知するのか（上記で定義されたような）の" "どちらかになります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((x (list \"a\" '\\a (gensym) '((a (b (c))) d e f g)))"
+      "      (*print-escape* nil)" "      (*print-gensym* nil)" "      (*print-level* 3)"
+      "      (*print-length* 3))" "  (write x)" "  (let ((*print-readably* t))"
+      "    (terpri)" "    (write x)" "    :done))" ">>  (a a G4581 ((A #) D E ...))"
+      ">>  (\"a\" |a| #:G4581 ((A (B (C))) D E F G))" "=>  :DONE" NIL
+      ";; これは次に続く3つの仮想的な実装の例で共有される" ";; セットアップコードです。"
+      "(setq table (make-hash-table)) =>  #<HASH-TABLE EQL 0/120 32005763> "
+      "(setf (gethash table 1) 'one) =>  ONE" "(setf (gethash table 2) 'two) =>  TWO" NIL
+      ";; 実装A" "(let ((*print-readably* t)) (print table))"
+      "Error: Can't print #<HASH-TABLE EQL 0/120 32005763> readably." NIL ";; 実装B"
+      ";; ハッシュテープルが標準ではない#S表記で定義されていますが" ";; これは実装定義の表記となるでしょう。"
+      "(let ((*print-readably* t)) (print table))"
+      ">>  #S(HASH-TABLE :TEST EQL :SIZE 120 :CONTENTS (1 ONE 2 TWO))"
+      "=>  #<HASH-TABLE EQL 0/120 32005763>" NIL ";; Implementation C"
+      ";; #.表記は*READ-EVAL*がtrueのときのみ使用できることに注意してください。"
+      ";; もし*READ-EVAL*がfalseのときは、同じ実装でも何か別の印刷の仕掛けにより" ";; 復帰する仕組みでもない限り、エラーが発生します。"
+      "(let ((*print-readably* t)) (print table))"
+      ">>  #.(LET ((HASH-TABLE (MAKE-HASH-TABLE)))"
+      ">>      (SETF (GETHASH 1 HASH-TABLE) ONE)"
+      ">>      (SETF (GETHASH 2 HASH-TABLE) TWO)" ">>      HASH-TABLE)"
+      "=>  #<HASH-TABLE EQL 0/120 32005763>"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "write") "," (CODE1 "print-unreadable-object"))
+    (CHAPTER ("## 備考") 2 "「類似性」の規則により、" (CODE1 "#A") "か" (CODE1 "#(") "の構文は" "要素の型が"
+     (CODE1 "t") "ではない配列に使用することができません。" "実装は他の構文を使用するか、" "あるいは型"
+     (CODE1 "print-not-readable") "のエラーを通知するべきかもしれません。")))
+(setf (gethash '("*PRINT-READABLY*" . "VARIABLE") *table*) (gethash "*PRINT-READABLY*" *table*))
+(setf (gethash "*PRINT-RIGHT-MARGIN*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*PRINT-RIGHT-MARGIN*"))
+    (CHAPTER ("## 値の型") 2 "非負の整数か、" (CODE1 "nil")) (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 "もし値が" (CODE1 "nil") "ではないとき、" "それはプリティプリンターがレイアウトを決定するときに、"
+     "右のマージン（" (CODE1 "ems") "としての整数値）として使用されます。" EOL2 "もし値が" (CODE1 "nil") "のときは、"
+     "右のマージンは、行の右終端による巻き戻り（改行）か" "切り捨てが生じることなく表示できるような行の最大の長さが使用されます。"
+     "もしそのような長さが決定できない場合は、" "実装依存な値が使用されます。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "この計測に使用されている" (CODE1 "ems") "という単位は、" "実装定義の可変幅フォントと互換性を保ちつつ、"
+     "まだ言語がそのようなフォントをサポートしていないような状況でも" "対応できるようにするためのものです。")))
+(setf (gethash '("*PRINT-RIGHT-MARGIN*" . "VARIABLE") *table*) (gethash "*PRINT-RIGHT-MARGIN*" *table*))
 (setf (gethash "*QUERY-IO*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*DEBUG-IO*") ", " (CODE1 "*ERROR-OUTPUT*") ", "
      (CODE1 "*QUERY-IO*") "," " " (CODE1 "*STANDARD-INPUT*") ", "
@@ -15779,6 +15897,35 @@
      (CODE1 "type-error") "のエラーが通知されるべきです。")
     (CHAPTER ("## 参考") 2 (CODE1 "clear-input")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("FORCE-OUTPUT" . "FUNCTION") *table*) (gethash "FORCE-OUTPUT" *table*))
+(setf (gethash "FORMAT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FORMAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "format") " " (STRONG "destination") " "
+     (STRONG "control-string") " " (CODE1 "&rest") " " (STRONG "args") " => "
+     (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "destination") " - " (CODE1 "nil") ", " (CODE1 "t")
+     "," "ストリーム, あるいはfill-pointerをもつ文字列" EOL1 (STRONG "control-string")
+     " - format-control" EOL1 (STRONG "args") " - " (STRONG "control-string")
+     "のformat-arguments" EOL1 (STRONG "result") " - " (STRONG "destination") "が"
+     (CODE1 "nil") "ではないときは" (CODE1 "nil") "、" "それ以外は文字列")
+    (CHAPTER ("## 定義") 2 (CODE1 "format") "は、" (STRONG "control-string") "の文字の出力と"
+     "チルダによって導入される指示の観測によって、" "書式化された出力を生成します。" "チルダの後の文字はパラメーターのプレフィックスによる"
+     "先行された文字である可能性があり、" "修正や何らかの書式化の種類を特定したいものを表します。" "ほとんどの指示は、それらの出力を生成するために"
+     "ひとつか複数の" (STRONG "args") "を使用します。" EOL2 "もし" (STRONG "destination") "が文字列かストリームか"
+     (CODE1 "t") "のとき、" (STRONG "result") "は" (CODE1 "nil") "です。" "それ以外は"
+     (STRONG "result") "は「出力」を含んだ文字列です。" EOL2 (CODE1 "format") "は" "きれいに書式化されたテキストの生成や、"
+     "見栄えがよいメッセージの生成などを出力するのに使いやすいものです。" (CODE1 "format") "は生成されたものを文字列として返却できますし、"
+     (STRONG "destination") "へ出力することもできます。" EOL2 (STRONG "control-string")
+     "がどのように解釈されるかの詳細は、" "22.3. 書式出力をご確認ください。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*") "," (CODE1 "*print-escape*") ","
+     (CODE1 "*print-radix*") "," (CODE1 "*print-base*") "," (CODE1 "*print-circle*") ","
+     (CODE1 "*print-pretty*") "," (CODE1 "*print-level*") "," (CODE1 "*print-length*")
+     "," (CODE1 "*print-case*") "," (CODE1 "*print-gensym*") "," (CODE1 "*print-array*"))
+    (CHAPTER ("## 例外") 2 "もし" (STRONG "destination") "がfill-pointerを持った文字列であり、"
+     "その呼び出しの動的エクステント期間中に" "破壊的修正がその文字列に直接生じたときの結果は未定義です。")
+    (CHAPTER ("## 参考") 2 (CODE1 "write") "," "13.1.10. 処理系実装のスクリプトの説明")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("FORMAT" . "FUNCTION") *table*) (gethash "FORMAT" *table*))
 (setf (gethash "FORMATTER" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FORMATTER"))
     (CHAPTER ("## 構文") 2 (CODE1 "formatter") " " (STRONG "control-string") " => "
@@ -24046,6 +24193,29 @@
       "(pprint object output-stream)"
       "==  (write object :stream output-stream :escape t :pretty t)"))))
 (setf (gethash '("PRINT" . "FUNCTION") *table*) (gethash "PRINT" *table*))
+(setf (gethash "PRINT-NOT-READABLE" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "PRINT-NOT-READABLE"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "print-not-readable") "," (CODE1 "error") ","
+     (CODE1 "serious-condition") "," (CODE1 "condition") "," (CODE1 "t") ",")
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "print-not-readable") "は、" (CODE1 "*print-readably*")
+     "が" (STRONG "true") "のときに" "Lispリーダーが正しく読み込みを行うことができないような印刷表現を"
+     "Lispプリンターが書き込もうと試みた結果として、" "出力中に生じたエラーの状態を含みます。" "そのような印刷できなかったオブジェクトは、"
+     (CODE1 "make-condition") "の初期化引数" (CODE1 ":object") "によって初期化され、" "それは関数"
+     (CODE1 "print-not-readable-object") "によってアクセスすることができます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "print-not-readable-object"))))
+(setf (gethash '("PRINT-NOT-READABLE" . "CONDITION-TYPE") *table*) (gethash "PRINT-NOT-READABLE" *table*))
+(setf (gethash "PRINT-NOT-READABLE-OBJECT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PRINT-NOT-READABLE-OBJECT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "print-not-readable-object") " " (STRONG "condition")
+     " => " (STRONG "object"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "condition") " - 型" (CODE1 "print-not-readable")
+     "のコンディション" EOL1 (STRONG "object") " - オブジェクト")
+    (CHAPTER ("## 定義") 2 (STRONG "condition") "によって表現された状況下で、"
+     "読み込み可能な印刷ができなかったオブジェクトを返却します。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "print-not-readable") "," "9. コンディション")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PRINT-NOT-READABLE-OBJECT" . "FUNCTION") *table*) (gethash "PRINT-NOT-READABLE-OBJECT" *table*))
 (setf (gethash "PRINT-OBJECT" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "PRINT-OBJECT"))
     (CHAPTER ("## 構文") 2 (CODE1 "print-object") " " (STRONG "object") " "
@@ -24879,6 +25049,16 @@
      "おそらくは同等のループよりもより効率的になります。" EOL2 "ある効率の良い実装では、" (STRONG "sequence") "が"
      (STRONG "stream") "の要素と同じ型の" (CODE1 "vector") "である場合に" "より効率的になるかもしれません。")))
 (setf (gethash '("READ-SEQUENCE" . "FUNCTION") *table*) (gethash "READ-SEQUENCE" *table*))
+(setf (gethash "READTABLE" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "READTABLE"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "readtable") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 (CODE1 "readtable") "は、Lispリーダーの構文タイプにある文字を対応付けします。"
+     "2. 構文をご確認ください。" (CODE1 "readtable") "は、またマクロ文字とそれらのリーダーマクロ関数との" "一連の関連付けも含みます。"
+     "また、Lispリーダーがシンボルを構文解析するときに使用される" "大文字小文字の変換ルールについての情報も記録されます。" EOL2 "各"
+     (CODE1 "simple") "な文字は" (CODE1 "readtable") "内において表現できなければいけません。" (CODE1 "simple")
+     "ではない文字が" (CODE1 "readtable") "内において" "構文の定義を持つかどうかは実装定義です。")
+    (CHAPTER ("## 参考") 2 "2.1.1. リードテーブル," "22.1.3.13. 他のオブジェクトの印字")))
+(setf (gethash '("READTABLE" . "CONDITION-TYPE") *table*) (gethash "READTABLE" *table*))
 (setf (gethash "REDUCE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "REDUCE"))
     (CHAPTER ("## 構文") 2 (CODE1 "reduce") " " (STRONG "function") " " (STRONG "sequence")

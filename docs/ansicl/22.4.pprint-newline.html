@@ -163,7 +163,7 @@
 <p><em>kind</em> - <code>:linear</code>, <code>:fill</code>, <code>:miser</code>, <code>:mandatory</code>のうちのひとつ<br />
 <em>stream</em> - ストリーム指定子。デフォルトは標準出力。</p>
 <h2 id="定義">定義</h2>
-<p>もし<em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>の値が<em>true</em>のとき、 下記の示す適切な状況である場合は改行が挿入されます。 それ以外のときは、<a href="22.4.pprint-newline.html"><code>pprint-newline</code></a>は効果を持ちません。</p>
+<p>もし<em>stream</em>がプリティプリントのストリームであり、 <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>の値が<em>true</em>のとき、 下記の示す適切な状況である場合は改行が挿入されます。 それ以外のときは、<a href="22.4.pprint-newline.html"><code>pprint-newline</code></a>は効果を持ちません。</p>
 <p><em>kind</em>は条件付き改行のスタイルを指定します。 このパラメーターは下記のように扱われます。</p>
 <ul>
 <li><code>:linear</code>
@@ -172,7 +172,7 @@
 </ul></li>
 <li><code>:miser</code>
 <ul>
-<li>「マイザースタイル」の条件付き改行を指定します。 もし直前に含まれるセクションが一行で印刷できず、 かつ直前に含まれる論理ブロックが マイザースタイルの効果を持っているときのみ、 改行が挿入されます。 その結果、マイザースタイルの条件付き改行は 線形スタイルの条件付き改行と似た動作をしますが、 ただマイザースタイルの効果を持ったもののみ出力を行います。 論理ブロックのマイザースタイルは、 論理ブロックの開始位置が左マージンから <code>*print-miser-width*</code> <code>ems</code>以下のときのみ効果を持ちます。</li>
+<li>「マイザースタイル」の条件付き改行を指定します。 もし直前に含まれるセクションが一行で印刷できず、 かつ直前に含まれる論理ブロックが マイザースタイルの効果を持っているときのみ、 改行が挿入されます。 その結果、マイザースタイルの条件付き改行は 線形スタイルの条件付き改行と似た動作をしますが、 ただマイザースタイルの効果を持ったもののみ出力を行います。 論理ブロックのマイザースタイルは、 論理ブロックの開始位置が左マージンから <a href="22.4.print-miser-width.html"><code>*print-miser-width*</code></a> <code>ems</code>以下のときのみ効果を持ちます。</li>
 </ul></li>
 <li><code>:fill</code>
 <ul>
@@ -202,7 +202,7 @@
 <h2 id="副作用">副作用</h2>
 <p><em>stream</em>へ出力を行います。</p>
 <h2 id="影響">影響</h2>
-<p><code>*print-pretty*</code>, <code>*print-miser-width*</code>。 論理ブロックに含まれる存在。 改行と条件付き改行の場所。</p>
+<p><a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>, <a href="22.4.print-miser-width.html"><code>*print-miser-width*</code></a>。 論理ブロックに含まれる存在。 改行と条件付き改行の場所。</p>
 <h2 id="例外">例外</h2>
 <p><em>kind</em>が<code>:linear</code>, <code>:fill</code>, <code>:miser</code>, <code>:mandatory</code>のどれでもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>

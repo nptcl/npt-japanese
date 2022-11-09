@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FORMAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.format
+@name: format
+@type: function
+
+Function `FORMAT`
+
+
+## {syntax}
+
+`format` *destination* *control-string* `&rest` *args* => *result*
+
+
+## {arguments-and-values}
+
+*destination* - {nil!variable:link}, {t!variable:link},
+ストリーム, あるいは{fill-pointer}をもつ文字列  
+*control-string* - {format-control}  
+*args* - *control-string*の{format-arguments}  
+*result* - *destination*が{nil!variable:link}ではないときは{nil!variable:link}、
+それ以外は文字列
+
+
+## {description}
+
+{format:link}は、
+*control-string*の文字の出力と
+チルダによって導入される指示の観測によって、
+書式化された出力を生成します。
+チルダの後の文字はパラメーターのプレフィックスによる
+先行された文字である可能性があり、
+修正や何らかの書式化の種類を特定したいものを表します。
+ほとんどの指示は、それらの出力を生成するために
+ひとつか複数の*args*を使用します。
+
+もし*destination*が文字列かストリームか{t!system-class:link}のとき、
+*result*は{nil!variable:link}です。
+それ以外は*result*は「出力」を含んだ文字列です。
+
+{format:link}は
+きれいに書式化されたテキストの生成や、
+見栄えがよいメッセージの生成などを出力するのに使いやすいものです。
+{format:link}は生成されたものを文字列として返却できますし、
+*destination*へ出力することもできます。
+
+*control-string*がどのように解釈されるかの詳細は、
+{22.3:ab}をご確認ください。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+{*standard-output*:link},
+{*print-escape*:link},
+{*print-radix*:link},
+{*print-base*:link},
+{*print-circle*:link},
+{*print-pretty*:link},
+{*print-level*:link},
+{*print-length*:link},
+{*print-case*:link},
+{*print-gensym*:link},
+{*print-array*:link}
+
+
+## {exceptional-situations}
+
+もし*destination*が{fill-pointer}を持った文字列であり、
+その呼び出しの動的エクステント期間中に
+破壊的修正がその文字列に直接生じたときの結果は未定義です。
+
+
+## {see-also}
+
+{write:link},
+{13.1.10:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

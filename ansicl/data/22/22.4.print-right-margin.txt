@@ -1,0 +1,57 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  22. プリンター
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *PRINT-RIGHT-MARGIN*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 22.4.print-right-margin
+@name: *print-right-margin*
+@type: variable
+
+Variable `*PRINT-RIGHT-MARGIN*`
+
+
+## {value-type}
+
+非負の整数か、{nil!variable:link}
+
+
+## {initial-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+もし値が{nil!variable:link}ではないとき、
+それはプリティプリンターがレイアウトを決定するときに、
+右のマージン（`ems`としての整数値）として使用されます。
+
+もし値が{nil!variable:link}のときは、
+右のマージンは、行の右終端による巻き戻り（改行）か
+切り捨てが生じることなく表示できるような行の最大の長さが使用されます。
+もしそのような長さが決定できない場合は、
+{implementation-dependent}な値が使用されます。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+この計測に使用されている`ems`という単位は、
+実装定義の可変幅フォントと互換性を保ちつつ、
+まだ言語がそのようなフォントをサポートしていないような状況でも
+対応できるようにするためのものです。
+
+@end
+

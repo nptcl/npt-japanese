@@ -165,7 +165,7 @@
 colinc - 非負の整数<br />
 <em>stream</em> - 出力ストリーム指定子</p>
 <h2 id="定義">定義</h2>
-<p>標準の<code>format</code>指示子である<code>~T</code>として実行される <em>stream</em>へのタブを指定します。 もし<em>stream</em>がプリティプリントのストリームであり、 <code>*print-pretty*</code>が<em>true</em>のとき、 タブは実行されます。 それ以外のときは<a href="22.4.pprint-tab.html"><code>pprint-tab</code></a>は効果を持ちません。</p>
+<p>標準の<code>format</code>指示子である<code>~T</code>として実行される <em>stream</em>へのタブを指定します。 もし<em>stream</em>がプリティプリントのストリームであり、 <a href="22.4.print-pretty.html"><code>*print-pretty*</code></a>が<em>true</em>のとき、 タブは実行されます。 それ以外のときは<a href="22.4.pprint-tab.html"><code>pprint-tab</code></a>は効果を持ちません。</p>
 <p>引数の<em>colnum</em>と<em>clink</em>は<code>~T</code>の2つのパラメーターに対応し、 単位は<code>ems</code>になります。 引数の<em>kind</em>は、タブのスタイルを指定します。 それは、<code>:line</code>（<code>~T</code>によるタブ）、 <code>:section</code>（<code>~T</code>によるタブですが、計測される水平位置は 動的に囲まれたセクションの開始からの相対位置）、 <code>:line-relative</code>（<code>~T</code>によるタブ）、 <code>:section-relative</code>（<code>~T</code>によるタブですが、計測される水平位置は 動的に囲まれたセクションの開始からの相対位置）のうちの ひとつでなければなりません。</p>
 <h2 id="例文">例文</h2>
 <p>なし。</p>

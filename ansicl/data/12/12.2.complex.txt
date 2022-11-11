@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class COMPLEX
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.complex!system-class
+@name: complex!system-class
+@type: system-class
+
+System Class `COMPLEX`
+
+
+## {class-precedence-list}
+
+{complex!system-class:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{complex!system-class:link}は、
+型{rational!system-class:link}に含まれるもの以外の
+全ての数学的な複素数を含むものです。
+複素数は、実部と虚部がそれぞれ実数の直交形式で表されます。
+実部と虚部は、両方とも`rational`か、
+あるいは両方とも同じ`float`の型です。
+虚部は`float`のゼロにすることができますが、
+`rational`のゼロにすることはできず、
+そのような数はCommon Lispによって
+常に複素数ではなく`rational`として表現されます。
+
+
+## {compound-type-specifier-kind}
+
+
+{specializing}
+
+
+## {compound-type-specifier-syntax}
+
+`complex` `[` *typespec* `|` `*` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*typespec* - 型{real:link}のサブタイプである型指定子  
+
+
+## {compound-type-specifier-description}
+
+この型の全ての要素は、実部と虚部がそれぞれ
+`(upgraded-complex-part-type typespec)`の型である複素数です。
+この型は、型*typespec*の数を{complex!function:link}に与えた結果によって
+生じた複素数を含みます。
+
+`(complex type-specifier)`は、
+型*type-specifier*の数を
+関数{complex!function:link}に与えた結果の
+全ての複素数を参照し、
+加えて同じ特定化された表現の
+その他の全ての複素数も含みます。
+
+
+## {see-also}
+
+{12.1.5.3:ab},
+{2.3.2:ab},
+{22.1.3.1.4:ab}
+
+
+## {notes}
+
+複素数の入力構文は、実部を`r`、虚部を`i`としたとき`#c(r i)`になります。
+さらなる詳細は、{2.4:ab}をご確認ください。
+
+全ての`float`を`n`としたとき、
+数学的に同じ数としｔ絵表現される複素数は、
+`(COERCE n 'COMPLEX)`として得ることができます。
+
+@end
+

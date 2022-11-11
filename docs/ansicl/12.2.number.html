@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>12.2. 数の辞書</title>
+  <title>System-Class NUMBER</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,15 +151,19 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">12.2. 数の辞書</h1>
+<h1 class="title">System-Class NUMBER</h1>
 </header>
-<p><a href="12.html">UP</a></p>
+<p><a href="12.2.html">UP</a></p>
 <hr />
-<p>12.2. 数の辞書</p>
-<ul>
-<li><a href="12.2.number.html">System-Class <strong>NUMBER</strong></a></li>
-<li><a href="12.2.complex-system-class.html">System-Class <strong>COMPLEX</strong></a></li>
-</ul>
+<h1 id="system-class-number">System-Class <strong>NUMBER</strong></h1>
+<p>System Class <code>NUMBER</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="12.2.number.html"><code>number</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>型<a href="12.2.number.html"><code>number</code></a>は、数学の数を表現したオブジェクトを含みます。 型<code>real</code>と<a href="12.2.complex-system-class.html"><code>complex</code></a>は <a href="12.2.number.html"><code>number</code></a>のサブタイプであり疎の関係です。</p>
+<p>関数<code>=</code>は、数値としての同一性を確認します。 関数<a href="5.3.eql-function.html"><code>eql</code></a>は、その引数が両方とも数であったとき、 それらは両方とも同じ型と数値であることをテストします。 2つの数が<a href="5.3.eql-function.html"><code>eql</code></a>か<code>=</code>で同一であったとしても、 <a href="5.3.eq.html"><code>eq</code></a>による同一である必要はありません。</p>
+<h2 id="備考">備考</h2>
+<p>Common Lispはいくつかの数学としての名前が違っている問題を抱えています。 数学では、<code>real</code>（実数）の数の集合は、 伝統的には<code>complex</code>（複素数）の数の集合として定義されますが、 Common Lispの場合は、 型<code>real</code>と型<a href="12.2.complex-system-class.html"><code>complex</code></a>は疎の関係にあります。 Common Lispでは、数学的な複素数を含む全ての型は、<a href="12.2.number.html"><code>number</code></a>と呼ばれます。 これらの違いがある理由は、 歴史的な前例があること、 他の多くの一般的なコンピュータ言語との互換性、 時間的・空間的な効率の問題など、いろいろあります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

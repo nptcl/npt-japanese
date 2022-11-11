@@ -181,6 +181,7 @@
 (setf (gethash "COMPILED-FUNCTION-P" *name*) '("FUNCTION"))
 (setf (gethash "COMPILER-MACRO-FUNCTION" *name*) '("ACCESSOR"))
 (setf (gethash "COMPLEMENT" *name*) '("FUNCTION"))
+(setf (gethash "COMPLEX" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "COMPUTE-RESTARTS" *name*) '("FUNCTION"))
 (setf (gethash "CONCATENATE" *name*) '("FUNCTION"))
@@ -197,6 +198,7 @@
 (setf (gethash "COPY-ALIST" *name*) '("FUNCTION"))
 (setf (gethash "COPY-LIST" *name*) '("FUNCTION"))
 (setf (gethash "COPY-PPRINT-DISPATCH" *name*) '("FUNCTION"))
+(setf (gethash "COPY-READTABLE" *name*) '("FUNCTION"))
 (setf (gethash "COPY-SEQ" *name*) '("FUNCTION"))
 (setf (gethash "COPY-STRUCTURE" *name*) '("FUNCTION"))
 (setf (gethash "COPY-SYMBOL" *name*) '("FUNCTION"))
@@ -377,6 +379,7 @@
 (setf (gethash "MAKE-BROADCAST-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "MAKE-CONCATENATED-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "MAKE-CONDITION" *name*) '("FUNCTION"))
+(setf (gethash "MAKE-DISPATCH-MACRO-CHARACTER" *name*) '("FUNCTION"))
 (setf (gethash "MAKE-ECHO-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "MAKE-HASH-TABLE" *name*) '("FUNCTION"))
 (setf (gethash "MAKE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
@@ -453,6 +456,7 @@
 (setf (gethash "NTH-VALUE" *name*) '("MACRO"))
 (setf (gethash "NTHCDR" *name*) '("FUNCTION"))
 (setf (gethash "NULL" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "NUMBER" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "NUNION" *name*) '("FUNCTION"))
 (setf (gethash "OPEN" *name*) '("FUNCTION"))
 (setf (gethash "OPEN-STREAM-P" *name*) '("FUNCTION"))
@@ -9886,6 +9890,30 @@
      (CODE1 "xxx-if") "」のような関数と" (CODE1 ":test") "引数を、" (CODE1 "complement")
      "と一緒に使うことが好まれます。")))
 (setf (gethash '("COMPLEMENT" . "FUNCTION") *table*) (gethash "COMPLEMENT" *table*))
+(setf (gethash "COMPLEX" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "COMPLEX"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "complex") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "complex") "は、" "型" (CODE1 "rational") "に含まれるもの以外の"
+     "全ての数学的な複素数を含むものです。" "複素数は、実部と虚部がそれぞれ実数の直交形式で表されます。" "実部と虚部は、両方とも"
+     (CODE1 "rational") "か、" "あるいは両方とも同じ" (CODE1 "float") "の型です。" "虚部は" (CODE1 "float")
+     "のゼロにすることができますが、" (CODE1 "rational") "のゼロにすることはできず、" "そのような数はCommon Lispによって"
+     "常に複素数ではなく" (CODE1 "rational") "として表現されます。")
+    (CHAPTER ("## 型指定子の種類") 2 "特定可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "complex") " " (CODE1 "[") " " (STRONG "typespec")
+     " " (CODE1 "|") " " (CODE1 "*") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "typespec") " - 型" (CODE1 "real") "のサブタイプである型指定子")
+    (CHAPTER ("## 型指定子の定義") 2 "この型の全ての要素は、実部と虚部がそれぞれ"
+     (CODE1 "(upgraded-complex-part-type typespec)") "の型である複素数です。" "この型は、型"
+     (STRONG "typespec") "の数を" (CODE1 "complex") "に与えた結果によって" "生じた複素数を含みます。" EOL2
+     (CODE1 "(complex type-specifier)") "は、" "型" (STRONG "type-specifier") "の数を" "関数"
+     (CODE1 "complex") "に与えた結果の" "全ての複素数を参照し、" "加えて同じ特定化された表現の" "その他の全ての複素数も含みます。")
+    (CHAPTER ("## 参考") 2 "12.1.5.3. " (CODE1 "rational") "型の複素数の標準的な表現のルール,"
+     "2.3.2. トークンから数の構築," "22.1.3.1.4. 複素数の印字")
+    (CHAPTER ("## 備考") 2 "複素数の入力構文は、実部を" (CODE1 "r") "、虚部を" (CODE1 "i") "としたとき"
+     (CODE1 "#c(r i)") "になります。" "さらなる詳細は、2.4. 標準マクロ文字をご確認ください。" EOL2 "全ての"
+     (CODE1 "float") "を" (CODE1 "n") "としたとき、" "数学的に同じ数としｔ絵表現される複素数は、"
+     (CODE1 "(COERCE n 'COMPLEX)") "として得ることができます。")))
+(setf (gethash '("COMPLEX" . "SYSTEM-CLASS") *table*) (gethash "COMPLEX" *table*))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "COMPUTE-APPLICABLE-METHODS"))
     (CHAPTER ("## 構文") 2 (CODE1 "compute-applicable-methods") " "
@@ -10353,6 +10381,39 @@
      (CODE1 "type-error") "のエラーを通知するべきです。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("COPY-PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "COPY-PPRINT-DISPATCH" *table*))
+(setf (gethash "COPY-READTABLE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "COPY-READTABLE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "copy-readtable") " " (CODE1 "&optional") " "
+     (STRONG "from-readtable") " " (STRONG "to-readtable") " => " (STRONG "readtable"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "from-readtable") " - " (CODE1 "readtable")
+     "指定子。デフォルトは現在の" (CODE1 "readtable") "。" EOL1 (STRONG "to-readtable") " - "
+     (CODE1 "readtable") "か、" (CODE1 "nil") "。" "デフォルトは" (CODE1 "nil") "。" EOL1
+     (STRONG "readtable") " - " (STRONG "to-readtable") "が" (CODE1 "nil") "ではないとき、"
+     (STRONG "to-readtable") "。" "そうではないときは新しい" (CODE1 "readtable") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "copy-readtable") "は、" (STRONG "from-readtable")
+     "をコピーします。" EOL2 (STRONG "to-readtable") "が" (CODE1 "nil") "のときは、" "新しい"
+     (CODE1 "readtable") "が生成されて返却されます。" "そうではないときは、" "指定した" (STRONG "to-readtable")
+     "が修正されて返却されます。" EOL2 (CODE1 "copy-readtable") "は、" (CODE1 "readtable-case")
+     "の設定をコピーします。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(setq zvar 123) =>  123"
+      "(set-syntax-from-char #\\z #\\' (setq table2 (copy-readtable))) =>  T"
+      "zvar =>  123" "(copy-readtable table2 *readtable*) =>  #<READTABLE 614000277>"
+      "zvar =>  VAR" "(setq *readtable* (copy-readtable)) =>  #<READTABLE 46210223>"
+      "zvar =>  VAR" "(setq *readtable* (copy-readtable nil)) =>  #<READTABLE 46302670>"
+      "zvar =>  123"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "readtable") "," (CODE1 "*readtable*"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(setq *readtable* (copy-readtable nil))") EOL2 "上記の式は、入力構文を"
+     "Common Lisp標準の構文に復元することができ、" "初期の" (CODE1 "readtable") "が壊れているときでも動作します"
+     "（上記の式を入力できないほど" "壊れているわけではないことを想定しています）。" EOL2 "一方、"
+     (CODE3 "```lisp" "```" "(setq *readtable* (copy-readtable))") EOL2 "上記の式は、現在の"
+     (CODE1 "readtable") "自身をコピーしてそれを置き換えます。" "これは、" (CODE1 "readtable")
+     "を変更している間から保護するために、" "後で使う" (CODE1 "readtable") "をコピーして保存したいときに便利です。" "また、"
+     (CODE1 "readtable") "をコピーして" "それ自身を局所的に束縛したいときは、" "次のようにするのが便利です。"
+     (CODE3 "```lisp" "```" "(let ((*readtable* (copy-readtable))) ...)"))))
+(setf (gethash '("COPY-READTABLE" . "FUNCTION") *table*) (gethash "COPY-READTABLE" *table*))
 (setf (gethash "COPY-SEQ" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "COPY-SEQ"))
     (CHAPTER ("## 構文") 2 (CODE1 "copy-seq") " " (STRONG "sequence") " => "
@@ -18848,6 +18909,30 @@
     (CHAPTER ("## 参考") 2 (CODE1 "define-condition") "," "9.1. コンディションシステムの説明")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("MAKE-CONDITION" . "FUNCTION") *table*) (gethash "MAKE-CONDITION" *table*))
+(setf (gethash "MAKE-DISPATCH-MACRO-CHARACTER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MAKE-DISPATCH-MACRO-CHARACTER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "make-dispatch-macro-character") " " (STRONG "char") " "
+     (CODE1 "&optional") " " (STRONG "non-terminating-p") " " (STRONG "readtable") " => "
+     (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "char") " - 文字" EOL1 (STRONG "non-terminating-p")
+     " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1 (STRONG "readtable") " - "
+     (CODE1 "readtable") "。デフォルトは現在の" (CODE1 "readtable") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "make-dispatch-macro-character") "は、"
+     (STRONG "readtable") "内において、" (STRONG "char") "をディスパッチマクロ文字に割り当てます。" EOL2 "初期状態では、"
+     (STRONG "char") "に関連するディスパッチテーブルの各文字には、" "型" (CODE1 "reader-error")
+     "のエラーを通知する関数が関連付けられています。" EOL2 "もし" (STRONG "non-terminating-p") "が" (STRONG "true")
+     "のとき、" "ディスパッチマクロ文字は非終端マクロ文字になります。" "もし" (STRONG "non-terminating-p") "が"
+     (STRONG "false") "のとき、" "ディスパッチマクロ文字は終端マクロ文字になります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(get-macro-character #\\{) =>  NIL, false"
+      "(make-dispatch-macro-character #\\{) =>  T"
+      "(not (get-macro-character #\\{)) =>  false"))
+    (CHAPTER ("## 副作用") 2 (STRONG "readtable") "は変更されます。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*readtable*") ","
+     (CODE1 "set-dispatch-macro-character"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MAKE-DISPATCH-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "MAKE-DISPATCH-MACRO-CHARACTER" *table*))
 (setf (gethash "MAKE-ECHO-STREAM" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "MAKE-ECHO-STREAM"))
     (CHAPTER ("## 構文") 2 (CODE1 "make-echo-stream") " " (STRONG "input-stream") " "
@@ -22103,6 +22188,20 @@
     (CHAPTER ("## 定義") 2 "型" (CODE1 "null") "の唯一のオブジェクトは、" (CODE1 "nil") "です。"
      "このオブジェクトは、空のリストの表現であり、" (CODE1 "()") "と記載することもできます。")
     (CHAPTER ("## 参考") 2 "2.3.4. トークンとしてのシンボル," "2.4.1. 左括弧," "22.1.3.3. シンボルの印字")))
+(setf (gethash "NUMBER" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "NUMBER"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "number") "は、数学の数を表現したオブジェクトを含みます。" "型"
+     (CODE1 "real") "と" (CODE1 "complex") "は" (CODE1 "number") "のサブタイプであり疎の関係です。" EOL2
+     "関数" (CODE1 "=") "は、数値としての同一性を確認します。" "関数" (CODE1 "eql") "は、その引数が両方とも数であったとき、"
+     "それらは両方とも同じ型と数値であることをテストします。" "2つの数が" (CODE1 "eql") "か" (CODE1 "=") "で同一であったとしても、"
+     (CODE1 "eq") "による同一である必要はありません。")
+    (CHAPTER ("## 備考") 2 "Common Lispはいくつかの数学としての名前が違っている問題を抱えています。" "数学では、"
+     (CODE1 "real") "（実数）の数の集合は、" "伝統的には" (CODE1 "complex") "（複素数）の数の集合として定義されますが、"
+     "Common Lispの場合は、" "型" (CODE1 "real") "と型" (CODE1 "complex") "は疎の関係にあります。"
+     "Common Lispでは、数学的な複素数を含む全ての型は、" (CODE1 "number") "と呼ばれます。" "これらの違いがある理由は、"
+     "歴史的な前例があること、" "他の多くの一般的なコンピュータ言語との互換性、" "時間的・空間的な効率の問題など、いろいろあります。")))
+(setf (gethash '("NUMBER" . "SYSTEM-CLASS") *table*) (gethash "NUMBER" *table*))
 (setf (gethash "NUNION" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "UNION") ", " (CODE1 "NUNION"))
     (CHAPTER ("## 構文") 2 (CODE1 "union") " " (STRONG "list-1") " " (STRONG "list-2")

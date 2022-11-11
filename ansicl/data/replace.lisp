@@ -150,6 +150,8 @@
 (replace pretty-printing-stream "プリティプリントのストリーム")
 (replace conditional-newline "条件付き改行")
 
+(replace readtable "`readtable`")
+
 ;;  Metaobject Protocol
 (replace methods "メソッド")
 (replace comments-and-remarks "コメントと備考")

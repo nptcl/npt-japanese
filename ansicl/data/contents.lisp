@@ -43,6 +43,7 @@
 (index 2.3 "トークンの解釈" "Interpretation of Tokens")
 (text 2.3.1 "トークンとしての数" "Numbers as Tokens")
 (text 2.3.1.1 "トークンとしての潜在的数" "Potential Numbers as Tokens")
+(text 2.3.2 "トークンから数の構築" "Constructing Numbers from Tokens")
 (text 2.3.4 "トークンとしてのシンボル" "Symbols as Tokens")
 (text 2.4 "標準マクロ文字" "Standard Macro Characters")
 (text 2.4.1 "左括弧" "Left-Parenthesis")
@@ -882,6 +883,8 @@
 ;; Chapter 22
 (index 22.1 "Lispプリンター" "The Lisp Printer")
 (text 22.1.3 "標準のPrint-Objectメソッド" "Default Print-Object Methods")
+(index 22.1.3.1 "数の印字" "Printing Numbers")
+(text 22.1.3.1.4 "複素数の印字" "Printing Complexes")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
 (text 22.1.3.3 "シンボルの印字" "Printing Symbols")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")

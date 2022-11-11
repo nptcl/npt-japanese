@@ -21,15 +21,15 @@ Condition Type `READTABLE`
 
 ## {description}
 
-`readtable`は、Lispリーダーの構文タイプにある文字を対応付けします。
+{readtable}は、Lispリーダーの構文タイプにある文字を対応付けします。
 {2:ab}をご確認ください。
-`readtable`は、またマクロ文字とそれらのリーダーマクロ関数との
+{readtable}は、またマクロ文字とそれらのリーダーマクロ関数との
 一連の関連付けも含みます。
 また、Lispリーダーがシンボルを構文解析するときに使用される
 大文字小文字の変換ルールについての情報も記録されます。
 
-各`simple`な文字は`readtable`内において表現できなければいけません。
-`simple`ではない文字が`readtable`内において
+各`simple`な文字は{readtable}内において表現できなければいけません。
+`simple`ではない文字が{readtable}内において
 構文の定義を持つかどうかは実装定義です。
 
 

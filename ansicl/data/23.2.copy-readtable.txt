@@ -1,0 +1,104 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COPY-READTABLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.copy-readtable
+@name: copy-readtable
+@type: function
+
+Function `COPY-READTABLE`
+
+
+## {syntax}
+
+`copy-readtable` `&optional` *from-readtable* *to-readtable* => *readtable*
+
+
+## {arguments-and-values}
+
+*from-readtable* - {readtable}指定子。デフォルトは現在の{readtable}。  
+*to-readtable* - {readtable}か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。  
+*readtable* - 
+*to-readtable*が{nil!variable:link}ではないとき、*to-readtable*。
+そうではないときは新しい{readtable}。
+
+
+## {description}
+
+{copy-readtable:link}は、*from-readtable*をコピーします。
+
+*to-readtable*が{nil!variable:link}のときは、
+新しい{readtable}が生成されて返却されます。
+そうではないときは、
+指定した*to-readtable*が修正されて返却されます。
+
+{copy-readtable:link}は、{readtable-case:link}の設定をコピーします。
+
+
+## {examples}
+
+```lisp
+(setq zvar 123) =>  123
+(set-syntax-from-char #\z #\' (setq table2 (copy-readtable))) =>  T
+zvar =>  123
+(copy-readtable table2 *readtable*) =>  #<READTABLE 614000277>
+zvar =>  VAR
+(setq *readtable* (copy-readtable)) =>  #<READTABLE 46210223>
+zvar =>  VAR
+(setq *readtable* (copy-readtable nil)) =>  #<READTABLE 46302670>
+zvar =>  123
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{readtable:link},
+{*readtable*:link}
+
+
+## {notes}
+
+```lisp
+(setq *readtable* (copy-readtable nil))
+```
+
+上記の式は、入力構文を
+Common Lisp標準の構文に復元することができ、
+初期の{readtable}が壊れているときでも動作します
+（上記の式を入力できないほど
+壊れているわけではないことを想定しています）。
+
+一方、
+
+```lisp
+(setq *readtable* (copy-readtable))
+```
+
+上記の式は、現在の{readtable}自身をコピーしてそれを置き換えます。
+これは、{readtable}を変更している間から保護するために、
+後で使う{readtable}をコピーして保存したいときに便利です。
+また、{readtable}をコピーして
+それ自身を局所的に束縛したいときは、
+次のようにするのが便利です。
+
+```lisp
+(let ((*readtable* (copy-readtable))) ...)
+```
+
+@end
+

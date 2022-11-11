@@ -239,9 +239,9 @@
 <ul>
 <li>もし<em>result-type</em>が<a href="13.2.character-system-class.html"><code>character</code></a>であり、 <em>object</em>が文字指定子のときは、 <em>result</em>は引数が示す文字になります。 <br><br></li>
 </ul></li>
-<li><code>complex</code>
+<li><a href="12.2.complex-system-class.html"><code>complex</code></a>
 <ul>
-<li>もし<em>result-type</em>が<code>complex</code>であり <em>object</em>が実装のときは、 <em>result</em>は実部が<em>object</em>、 虚部が整数の<code>0</code>を<em>object</em>の型で<a href="4.4.coerce.html"><code>coerce</code></a>したもので構築した 複素数になります （しかし文字実部が<code>rational</code>のときは、 結果もまた複素数ではなく<code>rational</code>になります。 12.1.5.3. <code>rational</code>型の複素数の標準的な表現のルールをご確認ください。 よって例えば<code>(coerce 3 'complex)</code>は許されますが、 返却値は複素数ではなく<code>3</code>になります）。 <br><br></li>
+<li>もし<em>result-type</em>が<a href="12.2.complex-system-class.html"><code>complex</code></a>であり <em>object</em>が実装のときは、 <em>result</em>は実部が<em>object</em>、 虚部が整数の<code>0</code>を<em>object</em>の型で<a href="4.4.coerce.html"><code>coerce</code></a>したもので構築した 複素数になります （しかし文字実部が<code>rational</code>のときは、 結果もまた複素数ではなく<code>rational</code>になります。 12.1.5.3. <code>rational</code>型の複素数の標準的な表現のルールをご確認ください。 よって例えば<code>(coerce 3 'complex)</code>は許されますが、 返却値は複素数ではなく<code>3</code>になります）。 <br><br></li>
 </ul></li>
 <li><code>float</code>
 <ul>

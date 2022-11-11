@@ -1,0 +1,49 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class NUMBER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.number
+@name: number
+@type: system-class
+
+System Class `NUMBER`
+
+
+## {class-precedence-list}
+
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{number:link}は、数学の数を表現したオブジェクトを含みます。
+型{real:link}と{complex!system-class:link}は
+{number:link}のサブタイプであり疎の関係です。
+
+関数{=:link}は、数値としての同一性を確認します。
+関数{eql!function:link}は、その引数が両方とも数であったとき、
+それらは両方とも同じ型と数値であることをテストします。
+2つの数が{eql!function:link}か{=:link}で同一であったとしても、
+{eq:link}による同一である必要はありません。
+
+
+## {notes}
+
+Common Lispはいくつかの数学としての名前が違っている問題を抱えています。
+数学では、`real`（実数）の数の集合は、
+伝統的には`complex`（複素数）の数の集合として定義されますが、
+Common Lispの場合は、
+型{real:link}と型{complex!system-class:link}は疎の関係にあります。
+Common Lispでは、数学的な複素数を含む全ての型は、{number:link}と呼ばれます。
+これらの違いがある理由は、
+歴史的な前例があること、
+他の多くの一般的なコンピュータ言語との互換性、
+時間的・空間的な効率の問題など、いろいろあります。
+
+@end
+

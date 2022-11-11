@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MAKE-DISPATCH-MACRO-CHARACTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.make-dispatch-macro-character
+@name: make-dispatch-macro-character
+@type: function
+
+Function `MAKE-DISPATCH-MACRO-CHARACTER`
+
+
+## {syntax}
+
+`make-dispatch-macro-character` *char*
+ `&optional` *non-terminating-p* *readtable*
+ => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*char* - 文字  
+*non-terminating-p* - {generalized-boolean}。デフォルトは*false*。  
+*readtable* - {readtable}。デフォルトは現在の{readtable}。
+
+
+## {description}
+
+{make-dispatch-macro-character:link}は、
+*readtable*内において、
+*char*をディスパッチマクロ文字に割り当てます。
+
+初期状態では、*char*に関連するディスパッチテーブルの各文字には、
+型{reader-error:link}のエラーを通知する関数が関連付けられています。
+
+もし*non-terminating-p*が*true*のとき、
+ディスパッチマクロ文字は非終端マクロ文字になります。
+もし*non-terminating-p*が*false*のとき、
+ディスパッチマクロ文字は終端マクロ文字になります。
+
+
+## {examples}
+
+```lisp
+(get-macro-character #\{) =>  NIL, false
+(make-dispatch-macro-character #\{) =>  T
+(not (get-macro-character #\{)) =>  false
+```
+
+
+## {side-effects}
+
+*readtable*は変更されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{*readtable*:link},
+{set-dispatch-macro-character:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

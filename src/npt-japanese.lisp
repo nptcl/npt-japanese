@@ -526,10 +526,13 @@
 (setf (gethash "RASSOC" *name*) '("FUNCTION"))
 (setf (gethash "RASSOC-IF" *name*) '("FUNCTION"))
 (setf (gethash "RASSOC-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "READ" *name*) '("FUNCTION"))
 (setf (gethash "READ-BYTE" *name*) '("FUNCTION"))
 (setf (gethash "READ-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "READ-CHAR-NO-HANG" *name*) '("FUNCTION"))
+(setf (gethash "READ-DELIMITED-LIST" *name*) '("FUNCTION"))
 (setf (gethash "READ-LINE" *name*) '("FUNCTION"))
+(setf (gethash "READ-PRESERVING-WHITESPACE" *name*) '("FUNCTION"))
 (setf (gethash "READ-SEQUENCE" *name*) '("FUNCTION"))
 (setf (gethash "READTABLE" *name*) '("CONDITION-TYPE"))
 (setf (gethash "REDUCE" *name*) '("FUNCTION"))
@@ -24986,6 +24989,85 @@
      (STRONG "alist") "のペアの場所に" (CODE1 "nil") "が現れるときです。" "関数" (CODE1 "assoc")
      "をご確認下さい。")))
 (setf (gethash '("RASSOC-IF-NOT" . "FUNCTION") *table*) (gethash "RASSOC-IF-NOT" *table*))
+(setf (gethash "READ" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "READ") ", " (CODE1 "READ-PRESERVING-WHITESPACE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "read") " " (CODE1 "&optional") " "
+     (STRONG "input-stream") " " (STRONG "eof-error-p") " " (STRONG "eof-value") " "
+     (STRONG "recursive-p") " => " (STRONG "object") EOL1
+     (CODE1 "read-preserving-whitespace") " " (CODE1 "&optional") " "
+     (STRONG "input-stream") " " (STRONG "eof-error-p") " " (STRONG "eof-value") " "
+     (STRONG "recursive-p") " => " (STRONG "object"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "input-stream") " - 入力ストリームの指定子" EOL1
+     (STRONG "eof-error-p") " - generalized-boolean。デフォルトは" (STRONG "true") "。" EOL1
+     (STRONG "eof-value") " - オブジェクト。デフォルトは" (CODE1 "nil") "。" EOL1
+     (STRONG "recursive-p") " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1
+     (STRONG "object") " - オブジェクト（Lispリーダーによって読み込まれたもの）か、" (STRONG "eof-value"))
+    (CHAPTER ("## 定義") 2 (CODE1 "read") "は、" (STRONG "input-stream") "から"
+     "オブジェクトの印刷表現を構文解析し、" "そのようなオブジェクトを構築します。" (CODE1 "read-preserving-whitespace") "は"
+     (CODE1 "read") "と似ていますが、" "印刷表現されたオブジェクトを区切っている" "どのような空白文字も保護します。"
+     (CODE1 "read-preserving-whitespace") "は、" (CODE1 "read-preserving-whitespace")
+     "自身の引数" (STRONG "recursive-p") "が" (STRONG "true") "のときは、" "正確に" (CODE1 "read")
+     "のように動作します。" EOL2 (CODE1 "*read-suppress*") "が" (STRONG "false") "のとき、"
+     (CODE1 "read") "は印刷表現として要求されている特定の区切り文字である" "空白文字のときはそれを捨てます。" "しかし、" (CODE1 "read")
+     "は" "それが構文として意味を持つ場合は、" "次の式の開始に使用できるようにするために、" "その空白文字を保護します（"
+     (CODE1 "unread-char") "で使用されます）。" EOL2 "もしシンボルか数のあとにすぐファイルの終わりが続いたとき、"
+     (CODE1 "read") "はそのシンボルか数の読み込みは成功します。" "そして再び呼び出されたときにファイルの終わりが発生し、" "ただ"
+     (STRONG "eof-error-p") "に従い動作します。" "もしファイルの終端に例えば空行やコメントなどの" "無視できるテキストが含まれていたとき、"
+     (CODE1 "read") "はそれをオブジェクトの途中で終了したとはみなしません。" EOL2 "もし" (STRONG "recursive-p") "が"
+     (STRONG "true") "の場合、" (CODE1 "read") "の呼び出しは" "トップレベルからのものではなく、" "それ自身が"
+     (CODE1 "read") "から呼び出されるような何らかの内部関数であるか、" "あるいは似たような入力関数で構成されることが期待されます。" EOL2
+     "両関数は" (STRONG "input-stream") "から読み込んだオブジェクトを返却します。" "もし" (STRONG "eof-error-p")
+     "が" (STRONG "false") "であり、" "オブジェクトの開始より前にファイルの終わりに到達したときは、" (STRONG "eof-value")
+     "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(read)" ">>  'a" "=>  (QUOTE A)"
+      "(with-input-from-string (is \" \") (read is nil 'the-end)) =>  THE-END"
+      "(defun skip-then-read-char (s c n)"
+      "   (if (char= c #\\{) (read s t nil t) (read-preserving-whitespace s))"
+      "   (read-char-no-hang s)) =>  SKIP-THEN-READ-CHAR"
+      "(let ((*readtable* (copy-readtable nil)))"
+      "   (set-dispatch-macro-character #\\# #\\{ #'skip-then-read-char)"
+      "   (set-dispatch-macro-character #\\# #\\} #'skip-then-read-char)"
+      "   (with-input-from-string (is \"#{123 x #}123 y\")"
+      "     (format t \"~S ~S\" (read is) (read is)))) =>  #\\x, #\\Space, NIL")
+     EOL2 "例として、次のリーダーマクロの定義を考えます。"
+     (CODE3 "```lisp" "```" "(defun slash-reader (stream char)"
+      "  (declare (ignore char))"
+      "  `(path . ,(loop for dir = (read-preserving-whitespace stream t nil t)"
+      "                  then (progn (read-char stream t nil t)"
+      "                              (read-preserving-whitespace stream t nil t))"
+      "                  collect dir"
+      "                  while (eql (peek-char nil stream nil nil t) #\\/))))"
+      "(set-macro-character #\\/ #'slash-reader)")
+     EOL2 "ここで、次の式に対して" (CODE1 "read") "を呼び出すことを考えます。"
+     (CODE3 "```lisp" "```" "(zyedh /usr/games/zork /usr/games/boggle)") EOL2 "マクロ"
+     (CODE1 "/") "は、複数の" (CODE1 "/") "文字によって分割されたオブジェクトを読み込むので、"
+     (CODE1 "/usr/games/zork") "は、" (CODE1 "(path usr games zork)") "のように読み込まれます。"
+     "したがって例の全体の式は、次のように読み込まれます。"
+     (CODE3 "```lisp" "```" "(zyedh (path usr games zork) (path usr games boggle))") EOL2
+     "しかし、もし" (CODE1 "read") "が" (CODE1 "read-preserving-whitespace") "の代わりに使用されたとき、"
+     "シンボル" (CODE1 "zork") "を読み込んだ後に続く空白は切り捨てられます。" "次に" (CODE1 "peek-char") "が呼ばれたときは続く"
+     (CODE1 "/") "を見るので、" "繰り返しは継続し、次のように解釈されます。"
+     (CODE3 "```lisp" "```" "(zyedh (path usr games zork usr games boggle))") EOL2
+     "これは空白が切り捨てられたときのものです。" "もしインタープリターのコマンドが単一の文字のコマンドを受け取り" "さらなるオブジェクトの読み込みがあるとき、"
+     "シンボルの後の空白文字を切り捨てないときは、" "そのシンボルが読み込まれた後にコマンドが解釈されるかもしれません。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-input*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*readtable*") "," (CODE1 "*read-default-float-format*") ","
+     (CODE1 "*read-base*") "," (CODE1 "*read-suppress*") "," (CODE1 "*package*") ","
+     (CODE1 "*read-eval*"))
+    (CHAPTER ("## 例外") 2 (CODE1 "read") "は、オブジェクトの表現の最中にファイルが終わったときは、"
+     (STRONG "eof-error-p") "に関係なく型" (CODE1 "end-of-file") "のエラーが通知されます。"
+     "例えば、あるファイルから読み込まれるオブジェクト内ににおいて、" "左かっこに対応するはずの十分な右かっこが含まれていなかったときは、" (CODE1 "read")
+     "はエラーを通知します。" "これは、" (CODE1 "read") "か" (CODE1 "read-preserving-whitespace")
+     "が呼び出されるとき、" (STRONG "recursive-p") "と" (STRONG "eof-error-p") "が" (CODE1 "nil")
+     "ではなく、" "あるオブジェクトの開始前にファイルの終わりに到達したときに" "検出されます。" EOL2 (STRONG "eof-error-p") "が"
+     (STRONG "true") "のとき、" "ファイルの終わりにて型" (CODE1 "end-of-file") "のエラーが通知されます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "peek-char") "," (CODE1 "read-char") ","
+     (CODE1 "unread-char") "," (CODE1 "read-from-string") ","
+     (CODE1 "read-delimited-list") "," (CODE1 "parse-integer") "," "2. 構文,"
+     "23.1. リーダーの説明")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("READ" . "FUNCTION") *table*) (gethash "READ" *table*))
 (setf (gethash "READ-BYTE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ-BYTE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read-byte") " " (STRONG "stream") " "
@@ -25079,6 +25161,61 @@
      "と似ていますが、" "もし文字を（例えばキーボードから）取得するために" "待機する必要があるような場合は違っており、" "このような場合は待つことなしに即座に"
      (CODE1 "nil") "を返却します。")))
 (setf (gethash '("READ-CHAR-NO-HANG" . "FUNCTION") *table*) (gethash "READ-CHAR-NO-HANG" *table*))
+(setf (gethash "READ-DELIMITED-LIST" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "READ-DELIMITED-LIST"))
+    (CHAPTER ("## 構文") 2 (CODE1 "read-delimited-list") " " (STRONG "char") " "
+     (CODE1 "&optional") " " (STRONG "input-stream") " " (STRONG "recursive-p") " => "
+     (STRONG "list"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "char") " - 文字" EOL1 (STRONG "input-stream")
+     " - 入力ストリーム指定子。デフォルトは標準入力。" EOL1 (STRONG "recursive-p")
+     " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1 (STRONG "list")
+     " - 読み込まれたオブジェクトのリスト")
+    (CHAPTER ("## 定義") 2 (CODE1 "read-delimited-list") "は、" (STRONG "input-stream") "から"
+     "オブジェクトの表現のあとにある次の文字" "（空白文字とコメントは無視します） が" (STRONG "char") "になるまで"
+     "複数のオブジェクトを読み込みます。" EOL2 (CODE1 "read-delimited-list") "は、" "各ステップで次の非空白文字を先読みし、"
+     (CODE1 "peek-char") "のようにのぞき見を行います。" "もしそれが" (STRONG "char") "のとき、その文字は消費され、"
+     "オブジェクトのリストが返却されます。" "もしそれが構成要素かエスケープ文字のとき、" (CODE1 "read") "はオブジェクトの読み込みに使われ、"
+     "リストの終端に追加されます。" "もしそれがマクロ文字のとき、" "そのリーダーマクロ関数が呼び出されます。" "もしその関数が値を返却するとき、"
+     "その値がリストに追加されます。" "こののぞき見による先読みのプロセスは繰り返されます。" EOL2 (STRONG "recursive-p") "が"
+     (STRONG "true") "のとき、" "この呼び出しは" "より高い階層の" (CODE1 "read") "や似た関数に埋め込まれた"
+     "呼び出しであると見なされます。" EOL2 (CODE1 "read-delimited-list") "の処理中に"
+     "ファイルの終わりに到達したときはエラーが発生します。" EOL2 (STRONG "char") "が現在のリードテーブル内において、"
+     "空白の構文タイプを持っていたときの結果は未定義です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(read-delimited-list #\\]) 1 2 3 4 5 6 ]"
+      "=>  (1 2 3 4 5 6)")
+     EOL2 "ここで、" (CODE1 "#{a b c ... z}") "を読み込むと" "その要素" (CODE1 "a, b, c, ..., z")
+     "の全てのペアのリストとして" "読み込まれるようにしたいことを考えます。"
+     (CODE3 "```" "```" "#{p q z a} は ((p q) (p z) (p a) (q z) (q a) (z a)) として読み込まれる")
+     EOL2 "これは、" (CODE1 "#{") "のマクロ文字を定義することで実現できます。" "マクロは、" (CODE1 "}")
+     "までの全ての要素を読み込むこと、" "それらのペアを構築することのふたつの動作から構成されます。" EOL2
+     (CODE1 "read-delimited-list") "は最初の仕事を実行します。"
+     (CODE3 "```lisp" "```" "(defun |#{-reader| (stream char arg)"
+      "  (declare (ignore char arg))" "  (mapcon #'(lambda (x)"
+      "             (mapcar #'(lambda (y) (list (car x) y)) (cdr x)))"
+      "         (read-delimited-list #\\} stream t))) =>  |#{-reader|" NIL
+      "(set-dispatch-macro-character #\\# #\\{ #'|#{-reader|) =>  T "
+      "(set-macro-character #\\} (get-macro-character #\\) nil))")
+     EOL2 "引数の" (STRONG "recursive-p") "に" (STRONG "true") "を指定していることに注意してください。" EOL2
+     "ここで、文字" (CODE1 "}") "に定義を与え、" "構成要素にならないようにすることも必要です。" EOL2
+     "もし次の行に示されるものが実行に含まれてなかった場合、"
+     (CODE3 "```lisp" "```" "(set-macro-character #\\} (get-macro-character #\\) nil))")
+     EOL2 "このとき次のオブジェクト" (CODE3 "```" "```" "#{ p q z a}") EOL2 "この中に存在する文字" (CODE1 "}")
+     "は構成文字としてみなされるので" (CODE1 "a}") "という名前のシンボルの一部になります。" "これは" (CODE1 "}")
+     "の前に空白を置くことによって正しくすることもできますが、" (CODE1 "set-macro-character") "を呼び出した方が適切です。" EOL2
+     "文字" (CODE1 "}") "には標準の定義である文字" (CODE1 ")") "と同じ定義を与えた方が、" "よく似たものとして便利であり、" "それは"
+     (CODE1 "read-delimited-list") "を用いたトークンの終端と" "それ以外の文脈で使われたときに不正であると見なす機能が与えられます。"
+     "単体の" (CODE1 "}") "を読み込もうとしたときは、エラーが通知されます。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-input*") "," (CODE1 "*readtable*") ","
+     (CODE1 "*terminal-io*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "read") "," (CODE1 "peek-char") "," (CODE1 "read-char")
+     "," (CODE1 "unread-char"))
+    (CHAPTER ("## 備考") 2 (CODE1 "read-delimited-list") "は、" "リーダーマクロの実装で使用されることを意図しています。"
+     "通常、" (STRONG "char") "をマクロ文字の終端にすることが望まれ、" "区切り文字としてのトークンとして使用することができます。" "しかし"
+     (CODE1 "read-delimited-list") "は、" "現在のリードテーブルに対して" (STRONG "char")
+     "をそのような構文に変更しようとはしません。" "この呼び出しを行うものが、" "リードテーブルの構文を明に変更する必要があります。")))
+(setf (gethash '("READ-DELIMITED-LIST" . "FUNCTION") *table*) (gethash "READ-DELIMITED-LIST" *table*))
 (setf (gethash "READ-LINE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ-LINE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read-line") " " (CODE1 "&optional") " "
@@ -25113,6 +25250,85 @@
     (CHAPTER ("## 参考") 2 (CODE1 "read"))
     (CHAPTER ("## 備考") 2 "対応する出力関数は" (CODE1 "write-line") "です。")))
 (setf (gethash '("READ-LINE" . "FUNCTION") *table*) (gethash "READ-LINE" *table*))
+(setf (gethash "READ-PRESERVING-WHITESPACE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "READ") ", " (CODE1 "READ-PRESERVING-WHITESPACE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "read") " " (CODE1 "&optional") " "
+     (STRONG "input-stream") " " (STRONG "eof-error-p") " " (STRONG "eof-value") " "
+     (STRONG "recursive-p") " => " (STRONG "object") EOL1
+     (CODE1 "read-preserving-whitespace") " " (CODE1 "&optional") " "
+     (STRONG "input-stream") " " (STRONG "eof-error-p") " " (STRONG "eof-value") " "
+     (STRONG "recursive-p") " => " (STRONG "object"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "input-stream") " - 入力ストリームの指定子" EOL1
+     (STRONG "eof-error-p") " - generalized-boolean。デフォルトは" (STRONG "true") "。" EOL1
+     (STRONG "eof-value") " - オブジェクト。デフォルトは" (CODE1 "nil") "。" EOL1
+     (STRONG "recursive-p") " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1
+     (STRONG "object") " - オブジェクト（Lispリーダーによって読み込まれたもの）か、" (STRONG "eof-value"))
+    (CHAPTER ("## 定義") 2 (CODE1 "read") "は、" (STRONG "input-stream") "から"
+     "オブジェクトの印刷表現を構文解析し、" "そのようなオブジェクトを構築します。" (CODE1 "read-preserving-whitespace") "は"
+     (CODE1 "read") "と似ていますが、" "印刷表現されたオブジェクトを区切っている" "どのような空白文字も保護します。"
+     (CODE1 "read-preserving-whitespace") "は、" (CODE1 "read-preserving-whitespace")
+     "自身の引数" (STRONG "recursive-p") "が" (STRONG "true") "のときは、" "正確に" (CODE1 "read")
+     "のように動作します。" EOL2 (CODE1 "*read-suppress*") "が" (STRONG "false") "のとき、"
+     (CODE1 "read") "は印刷表現として要求されている特定の区切り文字である" "空白文字のときはそれを捨てます。" "しかし、" (CODE1 "read")
+     "は" "それが構文として意味を持つ場合は、" "次の式の開始に使用できるようにするために、" "その空白文字を保護します（"
+     (CODE1 "unread-char") "で使用されます）。" EOL2 "もしシンボルか数のあとにすぐファイルの終わりが続いたとき、"
+     (CODE1 "read") "はそのシンボルか数の読み込みは成功します。" "そして再び呼び出されたときにファイルの終わりが発生し、" "ただ"
+     (STRONG "eof-error-p") "に従い動作します。" "もしファイルの終端に例えば空行やコメントなどの" "無視できるテキストが含まれていたとき、"
+     (CODE1 "read") "はそれをオブジェクトの途中で終了したとはみなしません。" EOL2 "もし" (STRONG "recursive-p") "が"
+     (STRONG "true") "の場合、" (CODE1 "read") "の呼び出しは" "トップレベルからのものではなく、" "それ自身が"
+     (CODE1 "read") "から呼び出されるような何らかの内部関数であるか、" "あるいは似たような入力関数で構成されることが期待されます。" EOL2
+     "両関数は" (STRONG "input-stream") "から読み込んだオブジェクトを返却します。" "もし" (STRONG "eof-error-p")
+     "が" (STRONG "false") "であり、" "オブジェクトの開始より前にファイルの終わりに到達したときは、" (STRONG "eof-value")
+     "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(read)" ">>  'a" "=>  (QUOTE A)"
+      "(with-input-from-string (is \" \") (read is nil 'the-end)) =>  THE-END"
+      "(defun skip-then-read-char (s c n)"
+      "   (if (char= c #\\{) (read s t nil t) (read-preserving-whitespace s))"
+      "   (read-char-no-hang s)) =>  SKIP-THEN-READ-CHAR"
+      "(let ((*readtable* (copy-readtable nil)))"
+      "   (set-dispatch-macro-character #\\# #\\{ #'skip-then-read-char)"
+      "   (set-dispatch-macro-character #\\# #\\} #'skip-then-read-char)"
+      "   (with-input-from-string (is \"#{123 x #}123 y\")"
+      "     (format t \"~S ~S\" (read is) (read is)))) =>  #\\x, #\\Space, NIL")
+     EOL2 "例として、次のリーダーマクロの定義を考えます。"
+     (CODE3 "```lisp" "```" "(defun slash-reader (stream char)"
+      "  (declare (ignore char))"
+      "  `(path . ,(loop for dir = (read-preserving-whitespace stream t nil t)"
+      "                  then (progn (read-char stream t nil t)"
+      "                              (read-preserving-whitespace stream t nil t))"
+      "                  collect dir"
+      "                  while (eql (peek-char nil stream nil nil t) #\\/))))"
+      "(set-macro-character #\\/ #'slash-reader)")
+     EOL2 "ここで、次の式に対して" (CODE1 "read") "を呼び出すことを考えます。"
+     (CODE3 "```lisp" "```" "(zyedh /usr/games/zork /usr/games/boggle)") EOL2 "マクロ"
+     (CODE1 "/") "は、複数の" (CODE1 "/") "文字によって分割されたオブジェクトを読み込むので、"
+     (CODE1 "/usr/games/zork") "は、" (CODE1 "(path usr games zork)") "のように読み込まれます。"
+     "したがって例の全体の式は、次のように読み込まれます。"
+     (CODE3 "```lisp" "```" "(zyedh (path usr games zork) (path usr games boggle))") EOL2
+     "しかし、もし" (CODE1 "read") "が" (CODE1 "read-preserving-whitespace") "の代わりに使用されたとき、"
+     "シンボル" (CODE1 "zork") "を読み込んだ後に続く空白は切り捨てられます。" "次に" (CODE1 "peek-char") "が呼ばれたときは続く"
+     (CODE1 "/") "を見るので、" "繰り返しは継続し、次のように解釈されます。"
+     (CODE3 "```lisp" "```" "(zyedh (path usr games zork usr games boggle))") EOL2
+     "これは空白が切り捨てられたときのものです。" "もしインタープリターのコマンドが単一の文字のコマンドを受け取り" "さらなるオブジェクトの読み込みがあるとき、"
+     "シンボルの後の空白文字を切り捨てないときは、" "そのシンボルが読み込まれた後にコマンドが解釈されるかもしれません。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-input*") "," (CODE1 "*terminal-io*") ","
+     (CODE1 "*readtable*") "," (CODE1 "*read-default-float-format*") ","
+     (CODE1 "*read-base*") "," (CODE1 "*read-suppress*") "," (CODE1 "*package*") ","
+     (CODE1 "*read-eval*"))
+    (CHAPTER ("## 例外") 2 (CODE1 "read") "は、オブジェクトの表現の最中にファイルが終わったときは、"
+     (STRONG "eof-error-p") "に関係なく型" (CODE1 "end-of-file") "のエラーが通知されます。"
+     "例えば、あるファイルから読み込まれるオブジェクト内ににおいて、" "左かっこに対応するはずの十分な右かっこが含まれていなかったときは、" (CODE1 "read")
+     "はエラーを通知します。" "これは、" (CODE1 "read") "か" (CODE1 "read-preserving-whitespace")
+     "が呼び出されるとき、" (STRONG "recursive-p") "と" (STRONG "eof-error-p") "が" (CODE1 "nil")
+     "ではなく、" "あるオブジェクトの開始前にファイルの終わりに到達したときに" "検出されます。" EOL2 (STRONG "eof-error-p") "が"
+     (STRONG "true") "のとき、" "ファイルの終わりにて型" (CODE1 "end-of-file") "のエラーが通知されます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "peek-char") "," (CODE1 "read-char") ","
+     (CODE1 "unread-char") "," (CODE1 "read-from-string") ","
+     (CODE1 "read-delimited-list") "," (CODE1 "parse-integer") "," "2. 構文,"
+     "23.1. リーダーの説明")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("READ-PRESERVING-WHITESPACE" . "FUNCTION") *table*) (gethash "READ-PRESERVING-WHITESPACE" *table*))
 (setf (gethash "READ-SEQUENCE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ-SEQUENCE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read-sequence") " " (STRONG "sequence") " "

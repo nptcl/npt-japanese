@@ -942,6 +942,7 @@
 (dictionary 22.4.format)
 
 ;; Chapter 23
+(index 23.1 "リーダーの説明" "Reader Concepts")
 (index 23.2 "リーダーの辞書" "Reader Dictionary")
 (dictionary 23.2.readtable)
 (dictionary 23.2.copy-readtable)
@@ -954,10 +955,10 @@
 (dictionary 23.2.set-dispatch-macro-character)
 (dictionary 23.2.set-macro-character)
 (dictionary 23.2.set-syntax-from-char)
-(dictionary 23.2.read-base)
+(dictionary 23.2.*read-base*)  ;; rename
 (dictionary 23.2.*read-default-float-format*)  ;; rename
 (dictionary 23.2.*read-eval*)  ;; rename
-(dictionary 23.2.read-suppress)
+(dictionary 23.2.*read-suppress*)  ;; rename
 (dictionary 23.2.*readtable*)  ;; delete
 (dictionary 23.2.reader-error)
 

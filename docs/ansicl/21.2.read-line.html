@@ -232,7 +232,7 @@
 <em>missing-newline-p</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
 <p><em>input-stream</em>から、改行かファイルの終わりを終端とする テキストの行を読み込みます。</p>
-<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<code>read</code>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
+<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<a href="23.2.read.html"><code>read</code></a>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
 <p>第一返却値の<em>line</em>は、読み込まれた行であり、 文字列として（もし読み込まれたものに改行があるなら、 それを取り除いたもの）表現されます。 もし<em>eof-error-p</em>が<em>false</em>であり、 何らかの文字が読み込まれる前に <em>input-stream</em>がファイルの終わりに到達していたときは、 <em>eof-value</em>が<em>line</em>として返却されます。</p>
 <p>第二返却値の<em>missing-newline-p</em>はgeneralized-booleanであり、 もし<em>line</em>が改行で終わっていたときは<em>false</em>を、 あるいは<em>line</em>が<em>input-stream</em>からのファイルの終わりによって 終端されていたとき（あるいは<em>line</em>が<em>eof-value</em>のとき）は、 <em>true</em>になります。</p>
 <h2 id="例文">例文</h2>
@@ -253,7 +253,7 @@
 <h2 id="例外">例外</h2>
 <p>もし行中で何らかの文字を読み込む前にファイルの終わりにが発生したときは、 <em>eof-error-p</em>が<em>true</em>のときはエラーが通知されます。</p>
 <h2 id="参考">参考</h2>
-<p><code>read</code></p>
+<p><a href="23.2.read.html"><code>read</code></a></p>
 <h2 id="備考">備考</h2>
 <p>対応する出力関数は<a href="21.2.write-string.html"><code>write-line</code></a>です。</p>
 <hr />

@@ -225,7 +225,7 @@
 <h2 id="初期値">初期値</h2>
 <p>実装依存ですが、 開いたストリームでなければならず、 それはI/Oカスタマイズ変数に対する一般化された<code>synonym</code>ストリームではなく、 あるI/Oカスタマイズ変数の値に対する一般化された<code>synonym</code>ストリームの 可能性があります。</p>
 <h2 id="定義">定義</h2>
-<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>の値は、端末I/Oと呼ばれ、 ユーザーの端末に接続された通常の双方向ストリームです。 例えば、典型的にはこのストリームの書き込みはディスプレイの画面上に 出力として現れるものとなり、 このストリームの読み込みは、 キーボードからの入力として受け付けられます。 これは、<code>read</code>や<a href="21.2.read-char.html"><code>read-char</code></a>のような標準入力を使う関数が これらがストリームを使用するとき、 入力のエコーがそのストリームの出力に行われることを意図しています。 これがどのように実行されるかは実装依存です。</p>
+<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>の値は、端末I/Oと呼ばれ、 ユーザーの端末に接続された通常の双方向ストリームです。 例えば、典型的にはこのストリームの書き込みはディスプレイの画面上に 出力として現れるものとなり、 このストリームの読み込みは、 キーボードからの入力として受け付けられます。 これは、<a href="23.2.read.html"><code>read</code></a>や<a href="21.2.read-char.html"><code>read-char</code></a>のような標準入力を使う関数が これらがストリームを使用するとき、 入力のエコーがそのストリームの出力に行われることを意図しています。 これがどのように実行されるかは実装依存です。</p>
 <p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>の値の変更についての効果は、 それが束縛か代入かに関わらず、実装依存です。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span> (<span class="kw">prin1</span> &#39;foo) (<span class="kw">prin1</span> &#39;bar <span class="va">*terminal-io*</span>))</span>

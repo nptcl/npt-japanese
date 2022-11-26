@@ -1,0 +1,157 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-DELIMITED-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.read-delimited-list
+@name: read-delimited-list
+@type: function
+
+Function `READ-DELIMITED-LIST`
+
+
+## {syntax}
+
+`read-delimited-list` *char* `&optional` *input-stream* *recursive-p* => *list*
+
+
+## {arguments-and-values}
+
+*char* - 文字  
+*input-stream* - 入力ストリーム指定子。デフォルトは標準入力。  
+*recursive-p* - {generalized-boolean}。デフォルトは*false*。  
+*list* - 読み込まれたオブジェクトのリスト
+
+
+## {description}
+
+{read-delimited-list:link}は、
+*input-stream*から
+オブジェクトの表現のあとにある次の文字
+（空白文字とコメントは無視します） が*char*になるまで
+複数のオブジェクトを読み込みます。
+
+{read-delimited-list:link}は、
+各ステップで次の非空白文字を先読みし、
+{peek-char:link}のようにのぞき見を行います。
+もしそれが*char*のとき、その文字は消費され、
+オブジェクトのリストが返却されます。
+もしそれが構成要素かエスケープ文字のとき、
+{read:link}はオブジェクトの読み込みに使われ、
+リストの終端に追加されます。
+もしそれがマクロ文字のとき、
+そのリーダーマクロ関数が呼び出されます。
+もしその関数が値を返却するとき、
+その値がリストに追加されます。
+こののぞき見による先読みのプロセスは繰り返されます。
+
+*recursive-p*が*true*のとき、
+この呼び出しは
+より高い階層の{read:link}や似た関数に埋め込まれた
+呼び出しであると見なされます。
+
+{read-delimited-list:link}の処理中に
+ファイルの終わりに到達したときはエラーが発生します。
+
+*char*が現在のリードテーブル内において、
+空白の構文タイプを持っていたときの結果は未定義です。
+
+
+## {examples}
+
+```lisp
+(read-delimited-list #\]) 1 2 3 4 5 6 ]
+=>  (1 2 3 4 5 6)
+```
+
+ここで、`#{a b c ... z}`を読み込むと
+その要素`a, b, c, ..., z`の全てのペアのリストとして
+読み込まれるようにしたいことを考えます。
+
+```
+#{p q z a} は ((p q) (p z) (p a) (q z) (q a) (z a)) として読み込まれる
+```
+
+これは、`#{`のマクロ文字を定義することで実現できます。
+マクロは、`}`までの全ての要素を読み込むこと、
+それらのペアを構築することのふたつの動作から構成されます。
+
+{read-delimited-list:link}は最初の仕事を実行します。
+
+```lisp
+(defun |#{-reader| (stream char arg)
+  (declare (ignore char arg))
+  (mapcon #'(lambda (x)
+             (mapcar #'(lambda (y) (list (car x) y)) (cdr x)))
+         (read-delimited-list #\} stream t))) =>  |#{-reader|
+
+(set-dispatch-macro-character #\# #\{ #'|#{-reader|) =>  T 
+(set-macro-character #\} (get-macro-character #\) nil))
+```
+
+引数の*recursive-p*に*true*を指定していることに注意してください。
+
+ここで、文字`}`に定義を与え、
+構成要素にならないようにすることも必要です。
+
+もし次の行に示されるものが実行に含まれてなかった場合、
+
+```lisp
+(set-macro-character #\} (get-macro-character #\) nil))
+```
+
+このとき次のオブジェクト
+
+```
+#{ p q z a}
+```
+
+この中に存在する文字`}`は構成文字としてみなされるので
+`a}`という名前のシンボルの一部になります。
+これは`}`の前に空白を置くことによって正しくすることもできますが、
+{set-macro-character:link}を呼び出した方が適切です。
+
+文字`}`には標準の定義である文字`)`と同じ定義を与えた方が、
+よく似たものとして便利であり、
+それは{read-delimited-list:link}を用いたトークンの終端と
+それ以外の文脈で使われたときに不正であると見なす機能が与えられます。
+単体の`}`を読み込もうとしたときは、エラーが通知されます。
+
+
+## {affected-by}
+
+{*standard-input*:link},
+{*readtable*:link},
+{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{read:link},
+{peek-char:link},
+{read-char:link},
+{unread-char:link}
+
+
+## {notes}
+
+{read-delimited-list:link}は、
+リーダーマクロの実装で使用されることを意図しています。
+通常、*char*をマクロ文字の終端にすることが望まれ、
+区切り文字としてのトークンとして使用することができます。
+しかし{read-delimited-list:link}は、
+現在のリードテーブルに対して
+*char*をそのような構文に変更しようとはしません。
+この呼び出しを行うものが、
+リードテーブルの構文を明に変更する必要があります。
+
+@end
+

@@ -1,0 +1,185 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ
+;;  Function READ-PRESERVING-WHITESPACE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.read
+@name: read
+@name: read-preserving-whitespace
+@type: function
+
+Function `READ`, `READ-PRESERVING-WHITESPACE`
+
+
+## {syntax}
+
+`read`
+ `&optional` *input-stream* *eof-error-p* *eof-value* *recursive-p*
+ => *object*  
+`read-preserving-whitespace`
+ `&optional` *input-stream* *eof-error-p* *eof-value* *recursive-p*
+ => *object*
+
+
+## {arguments-and-values}
+
+*input-stream* - 入力ストリームの指定子  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*recursive-p* - {generalized-boolean}。デフォルトは*false*。  
+*object* - オブジェクト（Lispリーダーによって読み込まれたもの）か、*eof-value*
+
+
+## {description}
+
+{read:link}は、*input-stream*から
+オブジェクトの印刷表現を構文解析し、
+そのようなオブジェクトを構築します。
+{read-preserving-whitespace:link}は{read:link}と似ていますが、
+印刷表現されたオブジェクトを区切っている
+どのような空白文字も保護します。
+{read-preserving-whitespace:link}は、
+{read-preserving-whitespace:link}自身の引数*recursive-p*が*true*のときは、
+正確に{read:link}のように動作します。
+
+{*read-suppress*:link}が*false*のとき、
+{read:link}は印刷表現として要求されている特定の区切り文字である
+空白文字のときはそれを捨てます。
+しかし、{read:link}は
+それが構文として意味を持つ場合は、
+次の式の開始に使用できるようにするために、
+その空白文字を保護します（{unread-char:link}で使用されます）。
+
+もしシンボルか数のあとにすぐファイルの終わりが続いたとき、
+{read:link}はそのシンボルか数の読み込みは成功します。
+そして再び呼び出されたときにファイルの終わりが発生し、
+ただ*eof-error-p*に従い動作します。
+もしファイルの終端に例えば空行やコメントなどの
+無視できるテキストが含まれていたとき、
+{read:link}はそれをオブジェクトの途中で終了したとはみなしません。
+
+もし*recursive-p*が*true*の場合、
+{read:link}の呼び出しは
+トップレベルからのものではなく、
+それ自身が{read:link}から呼び出されるような何らかの内部関数であるか、
+あるいは似たような入力関数で構成されることが期待されます。
+
+両関数は*input-stream*から読み込んだオブジェクトを返却します。
+もし*eof-error-p*が*false*であり、
+オブジェクトの開始より前にファイルの終わりに到達したときは、
+*eof-value*が返却されます。
+
+
+## {examples}
+
+```lisp
+(read)
+>>  'a
+=>  (QUOTE A)
+(with-input-from-string (is " ") (read is nil 'the-end)) =>  THE-END
+(defun skip-then-read-char (s c n)
+   (if (char= c #\{) (read s t nil t) (read-preserving-whitespace s))
+   (read-char-no-hang s)) =>  SKIP-THEN-READ-CHAR
+(let ((*readtable* (copy-readtable nil)))
+   (set-dispatch-macro-character #\# #\{ #'skip-then-read-char)
+   (set-dispatch-macro-character #\# #\} #'skip-then-read-char)
+   (with-input-from-string (is "#{123 x #}123 y")
+     (format t "~S ~S" (read is) (read is)))) =>  #\x, #\Space, NIL
+```
+
+例として、次のリーダーマクロの定義を考えます。
+
+```lisp
+(defun slash-reader (stream char)
+  (declare (ignore char))
+  `(path . ,(loop for dir = (read-preserving-whitespace stream t nil t)
+                  then (progn (read-char stream t nil t)
+                              (read-preserving-whitespace stream t nil t))
+                  collect dir
+                  while (eql (peek-char nil stream nil nil t) #\/))))
+(set-macro-character #\/ #'slash-reader)
+```
+
+ここで、次の式に対して{read:link}を呼び出すことを考えます。
+
+```lisp
+(zyedh /usr/games/zork /usr/games/boggle)
+```
+
+マクロ`/`は、複数の`/`文字によって分割されたオブジェクトを読み込むので、
+`/usr/games/zork`は、`(path usr games zork)`のように読み込まれます。
+したがって例の全体の式は、次のように読み込まれます。
+
+
+```lisp
+(zyedh (path usr games zork) (path usr games boggle))
+```
+
+しかし、もし{read:link}が
+{read-preserving-whitespace:link}の代わりに使用されたとき、
+シンボル`zork`を読み込んだ後に続く空白は切り捨てられます。
+次に{peek-char:link}が呼ばれたときは続く`/`を見るので、
+繰り返しは継続し、次のように解釈されます。
+
+```lisp
+(zyedh (path usr games zork usr games boggle))
+```
+
+これは空白が切り捨てられたときのものです。
+もしインタープリターのコマンドが単一の文字のコマンドを受け取り
+さらなるオブジェクトの読み込みがあるとき、
+シンボルの後の空白文字を切り捨てないときは、
+そのシンボルが読み込まれた後にコマンドが解釈されるかもしれません。
+
+
+## {affected-by}
+
+{*standard-input*:link},
+{*terminal-io*:link},
+{*readtable*:link},
+{*read-default-float-format*:link},
+{*read-base*:link},
+{*read-suppress*:link},
+{*package*:link},
+{*read-eval*:link}
+
+
+## {exceptional-situations}
+
+{read:link}は、オブジェクトの表現の最中にファイルが終わったときは、
+*eof-error-p*に関係なく型{end-of-file:link}のエラーが通知されます。
+例えば、あるファイルから読み込まれるオブジェクト内ににおいて、
+左かっこに対応するはずの十分な右かっこが含まれていなかったときは、
+{read:link}はエラーを通知します。
+これは、
+{read:link}か{read-preserving-whitespace:link}が呼び出されるとき、
+*recursive-p*と*eof-error-p*が{nil!variable:link}ではなく、
+あるオブジェクトの開始前にファイルの終わりに到達したときに
+検出されます。
+
+*eof-error-p*が*true*のとき、
+ファイルの終わりにて型{end-of-file:link}のエラーが通知されます。
+
+
+## {see-also}
+
+{peek-char:link},
+{read-char:link},
+{unread-char:link},
+{read-from-string:link},
+{read-delimited-list:link},
+{parse-integer:link},
+{2:ab},
+{23.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

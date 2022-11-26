@@ -230,7 +230,7 @@
 <em>char</em> - 文字か、<em>eof-value</em></p>
 <h2 id="定義">定義</h2>
 <p><a href="21.2.read-char-no-hang.html"><code>read-char-no-hang</code></a>は、 <em>input-stream</em>に利用可能な文字があるとき、 その文字を返却します。 もし文字が利用可能ではないとき、 <a href="21.2.read-char-no-hang.html"><code>read-char-no-hang</code></a>は<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
-<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<code>read</code>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
+<p>もし<em>recursive-p</em>が<em>true</em>のとき、 この呼び出しはより上位レベルの<a href="23.2.read.html"><code>read</code></a>によるものか、 Lispのリーダーによって使われる似たような関数から 埋め込まれたものであると見なされます。</p>
 <p>もしファイルの終わりが発生し、 <em>eof-error-p</em>が<em>false</em>であるときは、 <em>eof-value</em>が返却されます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; このコードは実装がコンソールからの入力の終端に</span></span>

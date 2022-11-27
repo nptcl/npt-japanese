@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor READTABLE-CASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.readtable-case
+@name: readtable-case
+@type: accessor
+
+Accessor `READTABLE-CASE`
+
+
+## {syntax}
+
+`readtable-case` *readtable* => *mode*  
+`(` `setf` `(` `readtable-case ` *readtable* `)` *mode* `)`
+
+
+## {arguments-and-values}
+
+*readtable* - {readtable}  
+*mode* - {case-sensitivity-mode}
+
+
+## {description}
+
+*readtable*にある{readtable}の大文字小文字にアクセスします。
+これはLispリーダーがシンボルを読み込む方法について影響を及ぼし、
+またLispプリンターがシンボルを書き込む方法についてにも影響があります。
+
+
+## {examples}
+
+{23.1.2.1:ab}と{22.1.3.3.2.1:ab}をご確認ください。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*readtable*が{readtable}ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+*mode*が{case-sensitivity-mode}ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+{*readtable*:link},
+{*print-escape*:link},
+{2.2:ab},
+{23.1.2:ab},
+{22.1.3.3.2:ab}
+
+
+## {notes}
+
+{copy-readtable:link}は、
+*readtable*にある{readtable}の大文字小文字をコピーします。
+
+@end
+

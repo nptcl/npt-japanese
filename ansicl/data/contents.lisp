@@ -39,7 +39,12 @@
 ;; Chapter 2
 (text 2.1 "文字の構文" "Character Syntax")
 (text 2.1.1 "リードテーブル" "Readtables")
+(text 2.1.1.1 "現在の{readtable}" "The Current Readtable")
 (text 2.1.3 "標準文字" "Standard Characters")
+(text 2.1.4 "文字の構文タイプ" "Character Syntax Types")
+(text 2.1.4.2 "構成要素としての特性" "Constituent Traits")
+(text 2.1.4.4 "マクロ文字" "Macro Characters")
+(text 2.2 "リーダーのアルゴリズム" "Reader Algorithm")
 (index 2.3 "トークンの解釈" "Interpretation of Tokens")
 (text 2.3.1 "トークンとしての数" "Numbers as Tokens")
 (text 2.3.1.1 "トークンとしての潜在的数" "Potential Numbers as Tokens")
@@ -509,7 +514,12 @@
 (dictionary 12.2.bit!type)
 (dictionary 12.2.fixnum)
 (dictionary 12.2.bignum)
-(dictionary 12.=)
+(dictionary 12.2.=)
+(dictionary 12.2./=)  ;; delete
+(dictionary 12.2.<)  ;; delete
+(dictionary 12.2.>)  ;; delete
+(dictionary 12.2.<=)  ;; delete
+(dictionary 12.2.>=)  ;; delete
 (dictionary 12.2.max)
 (dictionary 12.2.minusp)
 (dictionary 12.2.zerop)
@@ -887,6 +897,12 @@
 (text 22.1.3.1.4 "複素数の印字" "Printing Complexes")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
 (text 22.1.3.3 "シンボルの印字" "Printing Symbols")
+(text 22.1.3.3.2
+      "Lispプリンターにおける{readtable}の大文字小文字の効果"
+      "Effect of Readtable Case on the Lisp Printer")
+(text 22.1.3.3.2.1
+      "Lispプリンターにおける{readtable}の大文字小文字の効果の例"
+      "Examples of Effect of Readtable Case on the Lisp Printer")
 (text 22.1.3.4 "文字列の印字" "Printing Strings")
 (text 22.1.3.5 "リストとコンスの印字" "Printing Lists and Conses")
 (text 22.1.3.6 "Bit-Vectorの印字" "Printing Bit Vectors")
@@ -943,6 +959,12 @@
 
 ;; Chapter 23
 (index 23.1 "リーダーの説明" "Reader Concepts")
+(text 23.1.2
+      "Lispリーダーにおける{readtable}の大文字小文字の効果"
+      "Effect of Readtable Case on the Lisp Reader")
+(text 23.1.2.1
+      "Lispリーダーにおける{readtable}の大文字小文字の効果の例"
+      "Examples of Effect of Readtable Case on the Lisp Reader")
 (index 23.2 "リーダーの辞書" "Reader Dictionary")
 (dictionary 23.2.readtable)
 (dictionary 23.2.copy-readtable)
@@ -951,15 +973,16 @@
 (dictionary 23.2.read-delimited-list)
 (dictionary 23.2.read-from-string)
 (dictionary 23.2.readtable-case)
-(dictionary 23.2.readtable-p)
+(dictionary 23.2.readtablep)
 (dictionary 23.2.set-dispatch-macro-character)
 (dictionary 23.2.set-macro-character)
 (dictionary 23.2.set-syntax-from-char)
-(dictionary 23.2.*read-base*)  ;; rename
-(dictionary 23.2.*read-default-float-format*)  ;; rename
-(dictionary 23.2.*read-eval*)  ;; rename
-(dictionary 23.2.*read-suppress*)  ;; rename
-(dictionary 23.2.*readtable*)  ;; delete
+(dictionary 23.2.with-standard-io-syntax)
+(dictionary 23.2.read-base)
+(dictionary 23.2.read-default-float-format)
+(dictionary 23.2.read-eval)
+(dictionary 23.2.read-suppress)
+(dictionary 23.2.readtable!variable)
 (dictionary 23.2.reader-error)
 
 ;; Chapter 24

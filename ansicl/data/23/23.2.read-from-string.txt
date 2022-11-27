@@ -1,0 +1,105 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READ-FROM-STRING
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.read-from-string
+@name: read-from-string
+@type: function
+
+Function `READ-FROM-STRING`
+
+
+## {syntax}
+
+`read-from-string` *string*
+ `&optional` *eof-error-p* *eof-value*
+ `&key` *start* *end* *preserve-whitespace*  
+=> *object*, *position*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*eof-error-p* - {generalized-boolean}。デフォルトは*true*。  
+*eof-value* - オブジェクト。デフォルトは{nil!variable:link}。  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*preserve-whitespace* - {generalized-boolean}。デフォルトは*false*。  
+*object* - オブジェクト（Lispリーダーによって構文解析されたもの）か*eof-value*  
+*position* - ゼロ以上、かつ、*string*の長さより大きい値以下
+
+
+## {description}
+
+*start*と*end*によって囲まれた*string*のサブシーケンスから
+オブジェクトの印刷表現を構文解析し、
+これら同じ文字が含まれているような入力ストリームに対して
+{read:link}が呼ばれたかのように動作します。
+
+もし*preserve-whitespace*が*true*のときは、
+この操作は{read-preserving-whitespace:link}が実行されたかのように
+空白を保護します。
+
+オブジェクトの構文解析に成功したとき、
+第一返却値である*object*は構文解析されたものになります。
+もし*eof-error-p*が*false*であり、
+サブシーケンスが終わりに到達していたとき、
+*eof-value*が返却されます。
+
+第二返却値の*position*は、
+*string*に囲まれた中で読み込みが行われなかった
+最初の文字のインデックスです。
+*position*は*preserve-whitespace*の値に依存します。
+もし*string*全体が読み込まれたときは、
+*position*は*string*の長さではなく
+*string*の長さかそれより大きいものになります。
+
+## {examples}
+
+```lisp
+(read-from-string " 1 3 5" t nil :start 2) =>  3, 5
+(read-from-string "(a b c)") =>  (A B C), 7
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もしオブジェクトが読み込まれる前に
+指定されたサブシーケンスの終わりに到達したとき、
+*eof-error-p*が*true*ならエラーが発生します。
+オブジェクトが不完全のまま途中で
+サブシーケンスの終わりに到達したときはエラーが発生します。
+
+
+## {see-also}
+
+{read:link},
+{read-preserving-whitespace:link}
+
+
+## {notes}
+
+*position*が*string*の長さを越えることが許される理由は、
+実装が*string*の境界内の終わりに
+末尾の区切り文字の効果をシミュレートすることによって
+動作することを許すため（しかし必須ではない）です。
+*preserve-whitespace*が*true*のときに、
+このシミュレートされた区切り文字が
+*position*にカウントされるかもしれません。
+
+@end
+

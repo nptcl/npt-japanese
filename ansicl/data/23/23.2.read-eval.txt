@@ -1,0 +1,59 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *READ-EVAL*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.read-eval
+@name: *read-eval*
+@type: variable
+
+Variable `*READ-EVAL*`
+
+
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+*true*
+
+
+## {description}
+
+もし*true*のとき、
+`#.`リーダーマクロは通常の効果を持ちます。
+その他の場合は、
+このリーダーマクロは型{reader-error:link}のエラーを通知します。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{*print-readably*:link}
+
+
+## {notes}
+
+もし{*read-eval*:link}が*false*でかつ
+{*print-readably*:link}が*true*のとき、
+{print-object:link}のメソッドで、
+`#.`リーダーマクロを参照するような出力を行うものは、
+違う何かを出力するか、
+あるいは型{print-not-readable:link}のエラーが通知されます。
+
+@end
+

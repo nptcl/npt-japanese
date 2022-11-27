@@ -1,0 +1,98 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-STANDARD-IO-SYNTAX
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.with-standard-io-syntax
+@name: with-standard-io-syntax
+@type: macro
+
+Macro `WITH-STANDARD-IO-SYNTAX`
+
+
+## {syntax}
+
+`with-standard-io-syntax` *form\** => *result\**
+
+
+## {arguments-and-values}
+
+*form* - {implicit-progn}  
+*result* - *form*による返却値
+
+
+## {description}
+
+ボディ部である*form*の動的エクステント内で、
+全てのリーダーとプリンターを制御する全ての変数と、
+本標準で指定されていない実装定義のものも含む全ての変数に対して、
+標準のリーダーおよびプリンターの振る舞いを行うような値を生成し束縛します。
+本標準によって指定されている変数の値は、
+次の表によって示されます。
+
+|変数|値|
+|:--|:--|
+|{*package*:link}                   |`CL-USER`パッケージ         |
+|{*print-array*:link}               |{t!variable:link}           |
+|{*print-base*:link}                |`10`                        |
+|{*print-case*:link}                |`:upcase`                   |
+|{*print-circle*:link}              |{nil!variable:link}         |
+|{*print-escape*:link}              |{t!variable:link}           |
+|{*print-gensym*:link}              |{t!variable:link}           |
+|{*print-length*:link}              |{nil!variable:link}         |
+|{*print-level*:link}               |{nil!variable:link}         |
+|{*print-lines*:link}               |{nil!variable:link}         |
+|{*print-miser-width*:link}         |{nil!variable:link}         |
+|{*print-pprint-dispatch*:link}     |標準{pprint-dispatch-table} |
+|{*print-pretty*:link}              |{nil!variable:link}         |
+|{*print-radix*:link}               |{nil!variable:link}         |
+|{*print-readably*:link}            |{t!variable:link}           |
+|{*print-right-margin*:link}        |{nil!variable:link}         |
+|{*read-base*:link}                 |`10`                        |
+|{*read-default-float-format*:link} |{single-float:link}         |
+|{*read-eval*:link}                 |{t!variable:link}           |
+|{*read-suppress*:link}             |{nil!variable:link}         |
+|{*readtable*:link}                 |標準{readtable}             |
+
+Figure 23-1. 標準の制御変数の値
+
+
+## {examples}
+
+```lisp
+(with-open-file (file pathname :direction :output)
+  (with-standard-io-syntax
+    (print data file)))
+
+;;; ... 以降は他のLispによる実行
+
+(with-open-file (file pathname :direction :input)
+  (with-standard-io-syntax
+    (setq data (read file))))
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

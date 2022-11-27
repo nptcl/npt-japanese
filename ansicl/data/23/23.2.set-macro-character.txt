@@ -1,0 +1,118 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET-MACRO-CHARACTER
+;;  Function GET-MACRO-CHARACTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.set-macro-character
+@name: set-macro-character
+@name: get-macro-character
+@type: function
+
+Function `SET-MACRO-CHARACTER`, `GET-MACRO-CHARACTER`
+
+
+## {syntax}
+
+`get-macro-character` *char*
+ `&optional` *readtable*
+ => *function*, *non-terminating-p*  
+`set-macro-character` *char* *new-function*
+ `&optional` *non-terminating-p* *readtable*
+ => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*char* - 文字  
+*non-terminating-p* - {generalized-boolean}。デフォルトは*false*。  
+*readtable* - {readtable}指定子。デフォルトは現在の{readtable}。  
+*function* - {nil!variable:link}か、2つの引数の関数指定子  
+*new-function* - 関数指定子
+
+
+## {description}
+
+{get-macro-character:link}の第一返却値*function*は、
+*readtable*内にある*char*に関連したリーダーマクロ関数を
+（もしあるなら）返却するか、
+あるいは*char*が*readtable*においてマクロ文字ではないときは
+{nil!variable:link}を返却します。
+第二返却値*non-terminating-p*は、
+*char*が非終端マクロ文字のときは*true*を、
+それ以外のときは*false*を返却します。
+
+{set-macro-character:link}は、
+*readtable*内において
+リーダーマクロ関数である*new-function*
+（または*new-function*の指定子）を
+*char*のマクロ文字として関連付けます。
+もし*non-terminating-p*が*true*のとき、
+*char*は非終端マクロ文字になり、
+それ以外のときは終端マクロ文字になります。
+
+
+## {examples}
+
+```lisp
+(get-macro-character #\{) =>  NIL, false
+(not (get-macro-character #\;)) =>  false
+```
+
+下記の例は、標準構文のシングルクォート・リードマクロの定義を示したものです。
+
+```lisp
+(defun single-quote-reader (stream char)
+  (declare (ignore char))
+  (list 'quote (read stream t nil t))) =>  SINGLE-QUOTE-READER
+(set-macro-character #\' #'single-quote-reader) =>  T
+```
+
+ここでの`single-quote-reader`は、
+シングルクォートに続くオブジェクトを読み込み、
+{quote:link}とそのオブジェクトのリストを返却するものです。
+引数の*char*は無視されます。
+
+下記の例は、標準構文のセミコロン・リードマクロの定義を示したものです。
+
+```lisp
+(defun semicolon-reader (stream char)
+  (declare (ignore char))
+  ;; 最初に現在の入力の行全体を飲み込みます。
+  ;; コメントがend-of-fileで終端するのは許容します。
+  (do () ((char= (read-char stream nil #\Newline t) #\Newline)))
+  ;; 0個の値を返却します。
+  (values)) =>  SEMICOLON-READER
+(set-macro-character #\; #'semicolon-reader) =>  T
+```
+
+
+## {side-effects}
+
+*readtable*は変更されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{*readtable*:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

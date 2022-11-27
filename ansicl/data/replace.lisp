@@ -117,6 +117,7 @@
 (replace bit-vector "ビット配列")
 (replace specialized "`specialized`")
 (replace specializing "特定可能")
+(replace abbreviating "省略可能")
 (replace specialize "特定した")
 (replace normal-return "通常の返却")
 (replace explicit-return "`return-from`による明示的な返却")
@@ -151,6 +152,9 @@
 (replace conditional-newline "条件付き改行")
 
 (replace readtable "`readtable`")
+(replace case-sensitivity-mode "大文字小文字種別モード")
+
+(replace interval-designator "区間指定子")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

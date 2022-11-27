@@ -238,7 +238,7 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">set-macro-character</span> <span class="ch">#\$</span> #&#39;(<span class="kw">lambda</span> (<span class="kw">stream</span> <span class="kw">char</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">declare</span> (<span class="kw">ignore</span> <span class="kw">char</span>))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                               (<span class="kw">list</span> &#39;dollar (<span class="kw">read</span> <span class="kw">stream</span>))))) <span class="op">=&gt;</span>  T</span></code></pre></div>
-<p>これは<code>set-macro-character</code>の呼び出しが コンパイラーの実行環境内での実行を引き起こし、 それによってリーダーの構文テーブルに修正が起こります。</p>
+<p>これは<a href="23.2.set-macro-character.html"><code>set-macro-character</code></a>の呼び出しが コンパイラーの実行環境内での実行を引き起こし、 それによってリーダーの構文テーブルに修正が起こります。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">;;;     このケースではEVAL-WHENはtoplevelではなく、ただ:EXECUTEキーワード</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">;;;     のみが考慮されます。コンパイル時においてこれらの効果はありません。</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">;;;     ロード（もしこのLETがトップレベルのとき）か実行時（もしこのLETが</span></span>

@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function READTABLEP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.readtablep
+@name: readtablep
+@type: function
+
+Function `READTABLEP`
+
+
+## {syntax}
+
+`readtablep` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*型{readtable:link}のときは*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(readtablep *readtable*) =>  true
+(readtablep (copy-readtable)) =>  true
+(readtablep '*readtable*) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(readtablep object) ==  (typep object 'readtable) 
+```
+
+@end
+

@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *READ-DEFAULT-FLOAT-FORMAT*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.read-default-float-format
+@name: *read-default-float-format*
+@type: variable
+
+Variable `*READ-DEFAULT-FLOAT-FORMAT*`
+
+
+## {value-type}
+
+原始的な型指定子である
+{short-float:link}, {single-float:link},
+{double-float:link}, {long-float:link}か、
+実装が受け付けるものによって定義された他の型指定子か、
+いずれかのうちのひとつ。
+
+
+## {initial-value}
+
+シンボルである{single-float:link}
+
+
+## {description}
+
+浮動小数の数を読み込む際に、
+指数マーカーが存在しないときか
+あるいは`e`か`E`の指数マーカーが指定されたときの
+浮動小数フォーマットを制御します。
+その他の指数マーカーが明示的に指定されたときは、
+その浮動小数フォーマットを使用します。
+
+浮動小数を印刷するとき、
+プリンターは{*read-default-float-format*:link}を使用して
+指数マーカーの選択を決定します。
+
+
+## {examples}
+
+```lisp
+(let ((*read-default-float-format* 'double-float))
+  (read-from-string "(1.0 1.0e0 1.0s0 1.0f0 1.0d0 1.0L0)"))
+=>  (1.0   1.0   1.0   1.0 1.0   1.0)   ;実装は浮動小数フォーマットFを持つ
+=>  (1.0   1.0   1.0s0 1.0 1.0   1.0)   ;実装は浮動小数フォーマットS, Fを持つ
+=>  (1.0d0 1.0d0 1.0   1.0 1.0d0 1.0d0) ;実装は浮動小数フォーマットF, Dを持つ
+=>  (1.0d0 1.0d0 1.0s0 1.0 1.0d0 1.0d0) ;実装は浮動小数フォーマットS, F, Dを持つ
+=>  (1.0d0 1.0d0 1.0   1.0 1.0d0 1.0L0) ;実装は浮動小数フォーマットF, D, Lを持つ
+=>  (1.0d0 1.0d0 1.0s0 1.0 1.0d0 1.0L0) ;実装は浮動小数フォーマットS, F, D, Lを持つ
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

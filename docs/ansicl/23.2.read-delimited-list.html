@@ -254,10 +254,10 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set-macro-character</span> <span class="ch">#\}</span> (<span class="kw">get-macro-character</span> <span class="ch">#\)</span> <span class="kw">nil</span>))</span></code></pre></div>
 <p>このとき次のオブジェクト</p>
 <pre><code>#{ p q z a}</code></pre>
-<p>この中に存在する文字<code>}</code>は構成文字としてみなされるので <code>a}</code>という名前のシンボルの一部になります。 これは<code>}</code>の前に空白を置くことによって正しくすることもできますが、 <code>set-macro-character</code>を呼び出した方が適切です。</p>
+<p>この中に存在する文字<code>}</code>は構成文字としてみなされるので <code>a}</code>という名前のシンボルの一部になります。 これは<code>}</code>の前に空白を置くことによって正しくすることもできますが、 <a href="23.2.set-macro-character.html"><code>set-macro-character</code></a>を呼び出した方が適切です。</p>
 <p>文字<code>}</code>には標準の定義である文字<code>)</code>と同じ定義を与えた方が、 よく似たものとして便利であり、 それは<a href="23.2.read-delimited-list.html"><code>read-delimited-list</code></a>を用いたトークンの終端と それ以外の文脈で使われたときに不正であると見なす機能が与えられます。 単体の<code>}</code>を読み込もうとしたときは、エラーが通知されます。</p>
 <h2 id="影響">影響</h2>
-<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <code>*readtable*</code>, <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a></p>
+<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>, <a href="23.2.readtable-variable.html"><code>*readtable*</code></a>, <a href="21.2.terminal-io.html"><code>*terminal-io*</code></a></p>
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>

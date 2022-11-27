@@ -228,7 +228,7 @@
 <em>readtable</em> - <code>readtable</code>。デフォルトは現在の<code>readtable</code>。</p>
 <h2 id="定義">定義</h2>
 <p><a href="23.2.make-dispatch-macro-character.html"><code>make-dispatch-macro-character</code></a>は、 <em>readtable</em>内において、 <em>char</em>をディスパッチマクロ文字に割り当てます。</p>
-<p>初期状態では、<em>char</em>に関連するディスパッチテーブルの各文字には、 型<code>reader-error</code>のエラーを通知する関数が関連付けられています。</p>
+<p>初期状態では、<em>char</em>に関連するディスパッチテーブルの各文字には、 型<a href="23.2.reader-error.html"><code>reader-error</code></a>のエラーを通知する関数が関連付けられています。</p>
 <p>もし<em>non-terminating-p</em>が<em>true</em>のとき、 ディスパッチマクロ文字は非終端マクロ文字になります。 もし<em>non-terminating-p</em>が<em>false</em>のとき、 ディスパッチマクロ文字は終端マクロ文字になります。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get-macro-character</span> <span class="ch">#\{</span>) <span class="op">=&gt;</span>  NIL, false</span>
@@ -241,7 +241,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>*readtable*</code>, <code>set-dispatch-macro-character</code></p>
+<p><a href="23.2.readtable-variable.html"><code>*readtable*</code></a>, <a href="23.2.set-dispatch-macro-character.html"><code>set-dispatch-macro-character</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

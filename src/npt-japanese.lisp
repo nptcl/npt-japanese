@@ -44,6 +44,11 @@
 (setf (gethash "*PRINT-READABLY*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-RIGHT-MARGIN*" *name*) '("VARIABLE"))
 (setf (gethash "*QUERY-IO*" *name*) '("VARIABLE"))
+(setf (gethash "*READ-BASE*" *name*) '("VARIABLE"))
+(setf (gethash "*READ-DEFAULT-FLOAT-FORMAT*" *name*) '("VARIABLE"))
+(setf (gethash "*READ-EVAL*" *name*) '("VARIABLE"))
+(setf (gethash "*READ-SUPPRESS*" *name*) '("VARIABLE"))
+(setf (gethash "*READTABLE*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-INPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
@@ -312,6 +317,8 @@
 (setf (gethash "GENSYM" *name*) '("FUNCTION"))
 (setf (gethash "GENTEMP" *name*) '("FUNCTION"))
 (setf (gethash "GET" *name*) '("ACCESSOR"))
+(setf (gethash "GET-DISPATCH-MACRO-CHARACTER" *name*) '("FUNCTION"))
+(setf (gethash "GET-MACRO-CHARACTER" *name*) '("FUNCTION"))
 (setf (gethash "GET-OUTPUT-STREAM-STRING" *name*) '("FUNCTION"))
 (setf (gethash "GET-PROPERTIES" *name*) '("FUNCTION"))
 (setf (gethash "GET-SETF-EXPANSION" *name*) '("FUNCTION"))
@@ -531,10 +538,15 @@
 (setf (gethash "READ-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "READ-CHAR-NO-HANG" *name*) '("FUNCTION"))
 (setf (gethash "READ-DELIMITED-LIST" *name*) '("FUNCTION"))
+(setf (gethash "READ-FROM-STRING" *name*) '("FUNCTION"))
 (setf (gethash "READ-LINE" *name*) '("FUNCTION"))
 (setf (gethash "READ-PRESERVING-WHITESPACE" *name*) '("FUNCTION"))
 (setf (gethash "READ-SEQUENCE" *name*) '("FUNCTION"))
+(setf (gethash "READER-ERROR" *name*) '("CONDITION-TYPE"))
 (setf (gethash "READTABLE" *name*) '("CONDITION-TYPE"))
+(setf (gethash "READTABLE-CASE" *name*) '("ACCESSOR"))
+(setf (gethash "READTABLEP" *name*) '("FUNCTION"))
+(setf (gethash "REAL" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "REDUCE" *name*) '("FUNCTION"))
 (setf (gethash "REINITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "REMF" *name*) '("MACRO"))
@@ -570,8 +582,11 @@
 (setf (gethash "SERIOUS-CONDITION" *name*) '("CONDITION-TYPE"))
 (setf (gethash "SET" *name*) '("FUNCTION"))
 (setf (gethash "SET-DIFFERENCE" *name*) '("FUNCTION"))
+(setf (gethash "SET-DISPATCH-MACRO-CHARACTER" *name*) '("FUNCTION"))
 (setf (gethash "SET-EXCLUSIVE-OR" *name*) '("FUNCTION"))
+(setf (gethash "SET-MACRO-CHARACTER" *name*) '("FUNCTION"))
 (setf (gethash "SET-PPRINT-DISPATCH" *name*) '("FUNCTION"))
+(setf (gethash "SET-SYNTAX-FROM-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "SETF" *name*) '("MACRO"))
 (setf (gethash "SETQ" *name*) '("SPECIAL-FORM"))
 (setf (gethash "SEVENTH" *name*) '("ACCESSOR"))
@@ -729,6 +744,7 @@
 (setf (gethash "WITH-PACKAGE-ITERATOR" *name*) '("MACRO"))
 (setf (gethash "WITH-SIMPLE-RESTART" *name*) '("MACRO"))
 (setf (gethash "WITH-SLOTS" *name*) '("MACRO"))
+(setf (gethash "WITH-STANDARD-IO-SYNTAX" *name*) '("MACRO"))
 (setf (gethash "WRITE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-BYTE" *name*) '("FUNCTION"))
 (setf (gethash "WRITE-CHAR" *name*) '("FUNCTION"))
@@ -1425,6 +1441,114 @@
      "に束縛されているときは）、" (CODE1 "*error-output*") "に送信されたエラーメッセージは、" "通常望まれる形で、"
      (CODE1 "*terminal-io*") "を経由してユーザーに届きます。")))
 (setf (gethash '("*QUERY-IO*" . "VARIABLE") *table*) (gethash "*QUERY-IO*" *table*))
+(setf (gethash "*READ-BASE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*READ-BASE*")) (CHAPTER ("## 値の型") 2 "基数")
+    (CHAPTER ("## 初期値") 2 (CODE1 "10"))
+    (CHAPTER ("## 定義") 2 (CODE1 "read") "による整数か" (CODE1 "ratio") "としてのトークンの解釈を制御します。"
+     EOL2 (CODE1 "*read-base*") "の値は現在の入力基数と呼ばれ、" "Lispリーダーによって読み込まれる整数と" (CODE1 "ratio")
+     "の基数になります。" "他の数の型である（例えば" (CODE1 "float") "）の構文解析には" "このオプションによる影響はありません。" EOL2
+     "特定の" (CODE1 "rational") "の数の読み込み時における" (CODE1 "*read-base*") "の効果は、" "明示的に"
+     (CODE1 "#O") ", " (CODE1 "#X") ", " (CODE1 "#B") ", " (CODE1 "#nR") "の構文か、"
+     "あるいは末尾の小数点によって局所的に上書きすることができます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(dotimes (i 6)" "  (let ((*read-base* (+ 10. i)))"
+      "    (let ((object (read-from-string \"(\\\\DAD DAD |BEE| BEE 123. 123)\")))"
+      "      (print (list *read-base* object)))))" ">>  (10 (DAD DAD BEE BEE 123 123))"
+      ">>  (11 (DAD DAD BEE BEE 123 146))" ">>  (12 (DAD DAD BEE BEE 123 171))"
+      ">>  (13 (DAD DAD BEE BEE 123 198))" ">>  (14 (DAD 2701 BEE BEE 123 227))"
+      ">>  (15 (DAD 3088 BEE 2699 123 258))" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "入力の基数の変更は、" "特定のフォーマットに対するデータファイルを読み込むときに便利です。")))
+(setf (gethash '("*READ-BASE*" . "VARIABLE") *table*) (gethash "*READ-BASE*" *table*))
+(setf (gethash "*READ-DEFAULT-FLOAT-FORMAT*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*READ-DEFAULT-FLOAT-FORMAT*"))
+    (CHAPTER ("## 値の型") 2 "原始的な型指定子である" (CODE1 "short-float") ", " (CODE1 "single-float")
+     "," (CODE1 "double-float") ", " (CODE1 "long-float") "か、"
+     "実装が受け付けるものによって定義された他の型指定子か、" "いずれかのうちのひとつ。")
+    (CHAPTER ("## 初期値") 2 "シンボルである" (CODE1 "single-float"))
+    (CHAPTER ("## 定義") 2 "浮動小数の数を読み込む際に、" "指数マーカーが存在しないときか" "あるいは" (CODE1 "e") "か"
+     (CODE1 "E") "の指数マーカーが指定されたときの" "浮動小数フォーマットを制御します。" "その他の指数マーカーが明示的に指定されたときは、"
+     "その浮動小数フォーマットを使用します。" EOL2 "浮動小数を印刷するとき、" "プリンターは"
+     (CODE1 "*read-default-float-format*") "を使用して" "指数マーカーの選択を決定します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*read-default-float-format* 'double-float))"
+      "  (read-from-string \"(1.0 1.0e0 1.0s0 1.0f0 1.0d0 1.0L0)\"))"
+      "=>  (1.0   1.0   1.0   1.0 1.0   1.0)   ;実装は浮動小数フォーマットFを持つ"
+      "=>  (1.0   1.0   1.0s0 1.0 1.0   1.0)   ;実装は浮動小数フォーマットS, Fを持つ"
+      "=>  (1.0d0 1.0d0 1.0   1.0 1.0d0 1.0d0) ;実装は浮動小数フォーマットF, Dを持つ"
+      "=>  (1.0d0 1.0d0 1.0s0 1.0 1.0d0 1.0d0) ;実装は浮動小数フォーマットS, F, Dを持つ"
+      "=>  (1.0d0 1.0d0 1.0   1.0 1.0d0 1.0L0) ;実装は浮動小数フォーマットF, D, Lを持つ"
+      "=>  (1.0d0 1.0d0 1.0s0 1.0 1.0d0 1.0L0) ;実装は浮動小数フォーマットS, F, D, Lを持つ"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*READ-DEFAULT-FLOAT-FORMAT*" . "VARIABLE") *table*) (gethash "*READ-DEFAULT-FLOAT-FORMAT*" *table*))
+(setf (gethash "*READ-EVAL*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*READ-EVAL*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "true"))
+    (CHAPTER ("## 定義") 2 "もし" (STRONG "true") "のとき、" (CODE1 "#.") "リーダーマクロは通常の効果を持ちます。"
+     "その他の場合は、" "このリーダーマクロは型" (CODE1 "reader-error") "のエラーを通知します。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*print-readably*"))
+    (CHAPTER ("## 備考") 2 "もし" (CODE1 "*read-eval*") "が" (STRONG "false") "でかつ"
+     (CODE1 "*print-readably*") "が" (STRONG "true") "のとき、" (CODE1 "print-object")
+     "のメソッドで、" (CODE1 "#.") "リーダーマクロを参照するような出力を行うものは、" "違う何かを出力するか、" "あるいは型"
+     (CODE1 "print-not-readable") "のエラーが通知されます。")))
+(setf (gethash '("*READ-EVAL*" . "VARIABLE") *table*) (gethash "*READ-EVAL*" *table*))
+(setf (gethash "*READ-SUPPRESS*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*READ-SUPPRESS*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 (STRONG "false"))
+    (CHAPTER ("## 定義") 2 "この変数の主な目的は、" "読み込み時の状態表記である" (CODE1 "#+") "と" (CODE1 "#-")
+     "の処理を行うためです。" "これらの表記法を実装するリーダマクロにとって、" "読み飛ばされた式の構文が現在の実装にとって"
+     "完全に妥当でない可能性があるにもかかわらず、" "式の印刷表現を読み飛ばすことができることは重要です。" "なぜなら、" (CODE1 "#+") "と"
+     (CODE1 "#-") "は、構文の小さな非互換性があっても、" "複数のLispの実装（Common Lisp以外の方言を含む）で"
+     "同じプログラムを共有できるようにするために存在するからです。" EOL2 "もし" (STRONG "false")
+     "のときは、Lispリーダーは通常通り処理します。" EOL2 "もし" (CODE1 "*read-suppress*") "の値が" (STRONG "true")
+     "のとき、" (CODE1 "read") "," (CODE1 "read-preserving-whitespace") ","
+     (CODE1 "read-delimited-list") "," (CODE1 "read-from-string") "は、" "処理が完全に成功したときに"
+     (CODE1 "nil") "が主値として返却されます。" "しかし、そのオブジェクトをスキップするために、"
+     "これらの関数は通常の方法でオブジェクトの表現を構文解析し続け、" "そして通常の方法でファイルの終わりを示します。"
+     "例外として、標準のリーダーマクロに定義されているもので" "続くオブジェクトかあるいはトークンの読み込みを行ったとき、"
+     "もしそのオブジェクトの読み込みが適切な型か構文ではなかったときでも" "エラーは通知されません。" "その標準構文と関連したリーダーマクロは"
+     "どのような新しいオブジェクトも構築しないでしょう" "（例えば、シンボルの表現を読み込んだときでも、" "シンボルは構築されませんし"
+     (CODE1 "intern") "されません）。" EOL2 "- 拡張されたトークン" "  - 全ての拡張されたトークンは完全に解釈を行いません。"
+     "    例えば、不正な潜在数の検出、不正なパッケージマーク、" "    不正なドット文字の使用などを検出したときに発生する可能性がある"
+     "    エラーは通知されずに抑制されます。" EOL2 "- ディスパッチマクロ文字（シャープサイン" (CODE1 "#") "を含む）"
+     "  - ディスパッチマクロ文字は埋め込まれた数の引数を構文解析し、" "    ディスパッチ関数を実行します。" "    標準のシャープサイン・リーダーマクロは、"
+     "    数の引数の値かその存在についてどのような制約もありません。" EOL2 "- " (CODE1 "#=") "  - " (CODE1 "#=")
+     "表記は全体的に無視されます。" "    続くオブジェクトは読み込まれません。" "    オブジェクトの生成はされませんが、空白として扱われます。" EOL2
+     "- " (CODE1 "##") "  - " (CODE1 "##") "表記は常に" (CODE1 "nil") "を生成します。" EOL2
+     (CODE1 "*read-suppress*") "の値が何であれ、" "かっこの区切りとリストの構築は続けられます。" (CODE1 "#(") "表記の"
+     (CODE1 "vector") "の区切りも続けられ、" "またコメント、文字列、シングルクォート、" "バッククォート表記も正しい解釈が続きます。"
+     "このような状況で" (CODE1 "')") ", " (CODE1 "#<") ", " (CODE1 "#)") ", " (CODE1 "#<Space>")
+     "が読み込まれたときは、" "エラーが通知されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(let ((*read-suppress* t))" "  (mapcar #'read-from-string"
+      "          '(\"#(foo bar baz)\" \"#P(:type :lisp)\" \"#c1.2\""
+      "            \"#.(PRINT 'FOO)\" \"#3AHELLO\" \"#S(INTEGER)\""
+      "            \"#*ABC\" \"#\\GARBAGE\" \"#RALPHA\" \"#3R444\")))"
+      "=>  (NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL)"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "read") "," "2. 構文")
+    (CHAPTER ("## 備考") 2 "プログラマーと実装者は、" "追加でマクロ文字を定義するときは、" "ちょうど標準のマクロ文字が実施しているように、"
+     (CODE1 "*read-suppress*") "を配慮することを強く推奨します。" "これは、" (CODE1 "*read-suppress*") "の値が"
+     (STRONG "true") "のとき、" "続くオブジェクトを読むときに型エラーを無視するべきであり、" "ディスパッチマクロ文字として実装する関数は、"
+     "通常なら数値が必要な場合でも固定値のパラメータ値とすることで、" (CODE1 "nil") "を許容する必要があります。")))
+(setf (gethash '("*READ-SUPPRESS*" . "VARIABLE") *table*) (gethash "*READ-SUPPRESS*" *table*))
+(setf (gethash "*READTABLE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*READTABLE*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "readtable"))
+    (CHAPTER ("## 初期値") 2 "2. 構文に定義されているCommon Lispの構文に適合する" (CODE1 "readtable"))
+    (CHAPTER ("## 定義") 2 (CODE1 "*readtable*") "の値は、現在の" (CODE1 "readtable") "と呼ばれます。"
+     "これは構文解析におけるLispリーダーの振る舞いを制御し、" "そしてLispプリンターにもまた影響を与えます" "（例えば"
+     (CODE1 "readtable-case") "関数を参照）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(readtablep *readtable*) =>  true" "(setq zvar 123) =>  123"
+      "(set-syntax-from-char #\\z #\\' (setq table2 (copy-readtable))) =>  T"
+      "zvar =>  123" "(setq *readtable* table2) =>  #<READTABLE>" "zvar =>  VAR"
+      "(setq *readtable* (copy-readtable nil)) =>  #<READTABLE>" "zvar =>  123"))
+    (CHAPTER ("## 影響") 2 (CODE1 "compile-file") "," (CODE1 "load"))
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file") "," (CODE1 "load") ","
+     (CODE1 "readtable") "," "2.1.1.1. 現在の" (CODE1 "readtable"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*READTABLE*" . "VARIABLE") *table*) (gethash "*READTABLE*" *table*))
 (setf (gethash "*STANDARD-INPUT*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*DEBUG-IO*") ", " (CODE1 "*ERROR-OUTPUT*") ", "
      (CODE1 "*QUERY-IO*") "," " " (CODE1 "*STANDARD-INPUT*") ", "
@@ -16456,6 +16580,96 @@
      (STRONG "indicator") "を使ったときの効果は" "実装依存です。" EOL2 (CODE1 "get") "を使用して、存在しないプロパティと"
      "値がデフォルトであるプロパティを区別する方法はありません。" "しかし、" (CODE1 "get-properties") "を利用できます。")))
 (setf (gethash '("GET" . "ACCESSOR") *table*) (gethash "GET" *table*))
+(setf (gethash "GET-DISPATCH-MACRO-CHARACTER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-DISPATCH-MACRO-CHARACTER") ", "
+     (CODE1 "GET-DISPATCH-MACRO-CHARACTER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-dispatch-macro-character") " " (STRONG "disp-char")
+     " " (STRONG "sub-char") " " (CODE1 "&optional") " " (STRONG "readtable") " => "
+     (STRONG "function") EOL1 (CODE1 "set-dispatch-macro-character") " "
+     (STRONG "disp-char") " " (STRONG "sub-char") " " (STRONG "new-function") " "
+     (CODE1 "&optional") " " (STRONG "readtable") " => " (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "disp-char") " - 文字" EOL1 (STRONG "sub-char")
+     " - 文字" EOL1 (STRONG "readtable") " - " (CODE1 "readtable") "指定子。デフォルトは現在の"
+     (CODE1 "readtable") "。" EOL1 (STRONG "function") " - 関数指定子か、" (CODE1 "nil") EOL1
+     (STRONG "new-function") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "set-dispatch-macro-character") "は、" (STRONG "disp-char")
+     "に続き" (STRONG "sub-char") "が読み込まれたときに、" (STRONG "new-function") "を呼び出すよう設定します" "もし"
+     (STRONG "sub-char") "が小文字のときは、" "それは同等の大文字に変換されます。" "もし" (STRONG "sub-char")
+     "が10進数の数字であったときはエラーです。" EOL2 (CODE1 "set-dispatch-macro-character") "は、"
+     "特定のディスパッチマクロ文字のペアが読み込まれたときに、" (STRONG "new-function") "が呼び出される機能を導入します。"
+     (STRONG "new-function") "は" (STRONG "readtable") "が使用されているときに" (STRONG "disp-char")
+     "に続いて" (STRONG "sub-char") "が続くときに" "そのディスパッチ関数が呼び出されるように導入されます。" EOL2
+     (STRONG "new-function") "がどのように起動されるかについて" "より多くの情報は2.1.4.4. マクロ文字をご確認ください。" EOL2
+     (CODE1 "get-dispatch-macro-character") "は、" (STRONG "readtable") "内において"
+     (STRONG "disp-char") "と" (STRONG "sub-char") "に関連づいた" "ディスパッチ関数を検索します。" EOL2
+     (CODE1 "get-dispatch-macro-character") "は" (STRONG "disp-char") "配下の"
+     (STRONG "sub-char") "に対応する" "マクロ文字関数を返却するか、" "あるいは" (STRONG "sub-char")
+     "に関連した関数が存在しなかったときは" (CODE1 "nil") "を返却します。" "もし" (STRONG "sub-char") "が10進数の数字のとき、"
+     (CODE1 "get-dispatch-macro-character") "は" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(get-dispatch-macro-character #\\# #\\{) =>  NIL"
+      "(set-dispatch-macro-character #\\# #\\{        ;#{の割り当て" "   #'(lambda(s c n)"
+      "       (let ((list (read s nil (values) t)))  ;listは#n{の後のオブジェクトで"
+      "         (when (consp list)                   ;listのnthの要素を返却"
+      "           (unless (and n (< 0 n (length list))) (setq n 0))"
+      "           (setq list (nth n list)))" "        list))) =>  T" "#{(1 2 3 4) =>  1"
+      "#3{(0 1 2 3) =>  3" "#{123 =>  123")
+     EOL2 "もし" (CODE1 "#$foo") "を" (CODE1 "(dollar foo)") "としたい場合"
+     (CODE3 "```lisp" "```" "(defun |#$-reader| (stream subchar arg)"
+      "   (declare (ignore subchar arg))"
+      "   (list 'dollars (read stream t nil t))) =>  |#$-reader|"
+      "(set-dispatch-macro-character #\\# #\\$ #'|#$-reader|) =>  T"))
+    (CHAPTER ("## 参考") 2 "2.1.4.4. マクロ文字")
+    (CHAPTER ("## 副作用") 2 (STRONG "readtable") "は変更されます。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 例外") 2 "両関数において、" (STRONG "disp-char") "が" (STRONG "readtable")
+     "内でディスパッチマクロ文字ではないとき" "エラーが発生します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 備考") 2 "それらの" (STRONG "sub-char") "を指定する前に"
+     (CODE1 "make-dispatch-macro-character") "を使用して、" "ディスパッチ文字のセットアップを行う必要があります。")))
+(setf (gethash '("GET-DISPATCH-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "GET-DISPATCH-MACRO-CHARACTER" *table*))
+(setf (gethash "GET-MACRO-CHARACTER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-MACRO-CHARACTER") ", "
+     (CODE1 "GET-MACRO-CHARACTER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-macro-character") " " (STRONG "char") " "
+     (CODE1 "&optional") " " (STRONG "readtable") " => " (STRONG "function") ", "
+     (STRONG "non-terminating-p") EOL1 (CODE1 "set-macro-character") " " (STRONG "char")
+     " " (STRONG "new-function") " " (CODE1 "&optional") " " (STRONG "non-terminating-p")
+     " " (STRONG "readtable") " => " (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "char") " - 文字" EOL1 (STRONG "non-terminating-p")
+     " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1 (STRONG "readtable") " - "
+     (CODE1 "readtable") "指定子。デフォルトは現在の" (CODE1 "readtable") "。" EOL1 (STRONG "function")
+     " - " (CODE1 "nil") "か、2つの引数の関数指定子" EOL1 (STRONG "new-function") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "get-macro-character") "の第一返却値" (STRONG "function") "は、"
+     (STRONG "readtable") "内にある" (STRONG "char") "に関連したリーダーマクロ関数を" "（もしあるなら）返却するか、"
+     "あるいは" (STRONG "char") "が" (STRONG "readtable") "においてマクロ文字ではないときは" (CODE1 "nil")
+     "を返却します。" "第二返却値" (STRONG "non-terminating-p") "は、" (STRONG "char") "が非終端マクロ文字のときは"
+     (STRONG "true") "を、" "それ以外のときは" (STRONG "false") "を返却します。" EOL2
+     (CODE1 "set-macro-character") "は、" (STRONG "readtable") "内において" "リーダーマクロ関数である"
+     (STRONG "new-function") "（または" (STRONG "new-function") "の指定子）を" (STRONG "char")
+     "のマクロ文字として関連付けます。" "もし" (STRONG "non-terminating-p") "が" (STRONG "true") "のとき、"
+     (STRONG "char") "は非終端マクロ文字になり、" "それ以外のときは終端マクロ文字になります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(get-macro-character #\\{) =>  NIL, false"
+      "(not (get-macro-character #\\;)) =>  false")
+     EOL2 "下記の例は、標準構文のシングルクォート・リードマクロの定義を示したものです。"
+     (CODE3 "```lisp" "```" "(defun single-quote-reader (stream char)"
+      "  (declare (ignore char))"
+      "  (list 'quote (read stream t nil t))) =>  SINGLE-QUOTE-READER"
+      "(set-macro-character #\\' #'single-quote-reader) =>  T")
+     EOL2 "ここでの" (CODE1 "single-quote-reader") "は、" "シングルクォートに続くオブジェクトを読み込み、"
+     (CODE1 "quote") "とそのオブジェクトのリストを返却するものです。" "引数の" (STRONG "char") "は無視されます。" EOL2
+     "下記の例は、標準構文のセミコロン・リードマクロの定義を示したものです。"
+     (CODE3 "```lisp" "```" "(defun semicolon-reader (stream char)"
+      "  (declare (ignore char))" "  ;; 最初に現在の入力の行全体を飲み込みます。"
+      "  ;; コメントがend-of-fileで終端するのは許容します。"
+      "  (do () ((char= (read-char stream nil #\\Newline t) #\\Newline)))"
+      "  ;; 0個の値を返却します。" "  (values)) =>  SEMICOLON-READER"
+      "(set-macro-character #\\; #'semicolon-reader) =>  T"))
+    (CHAPTER ("## 副作用") 2 (STRONG "readtable") "は変更されます。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("GET-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "GET-MACRO-CHARACTER" *table*))
 (setf (gethash "GET-OUTPUT-STREAM-STRING" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "GET-OUTPUT-STREAM-STRING"))
     (CHAPTER ("## 構文") 2 (CODE1 "get-output-stream-string") " "
@@ -17421,7 +17635,7 @@
       ">>  To continue, type :CONTINUE followed by an option number:"
       ">>   1: Specify a different value to use." ">>   2: Return to Lisp Toplevel."
       ">>  Debug> (invoke-restart 'store-value 7)" "=>  10"))
-    (CHAPTER ("## 副作用") 2 (CODE1 "restart") "によって非局所的な背にの制御が行われるかもしれません。")
+    (CHAPTER ("## 副作用") 2 (CODE1 "restart") "によって非局所的な遷移の制御が行われるかもしれません。")
     (CHAPTER ("## 影響") 2 "存在する" (CODE1 "restart") "。")
     (CHAPTER ("## 例外") 2 "もし" (STRONG "restart") "が有効でないときは、" "型" (CODE1 "control-error")
      "のエラーが発生します。")
@@ -17429,7 +17643,7 @@
      (CODE1 "restart-case") "," (CODE1 "invoke-restart-interactively"))
     (CHAPTER ("## 備考") 2 "もっとも一般的には、" (CODE1 "invoke-restart") "はハンドラーの中で使用されます。"
      "それは明示的に使用されるかもしれませんし、" "または暗黙的に" (CODE1 "invoke-restart-interactively") "か"
-     (CODE1 "restart") "関数を通して使用されるかもしれません。" EOL2 (CODE1 "restart") "関数あは"
+     (CODE1 "restart") "関数を通して使用されるかもしれません。" EOL2 (CODE1 "restart") "関数は"
      (CODE1 "invoke-restart") "を呼び出しますし、" "逆もまた成り立ちます。" "これは、" (CODE1 "invoke-restart")
      "が原始的な機能を提供しており、" (CODE1 "restasrt") "関数は本質ではない「糖衣構文」です。")))
 (setf (gethash '("INVOKE-RESTART" . "FUNCTION") *table*) (gethash "INVOKE-RESTART" *table*))
@@ -25216,6 +25430,45 @@
      (CODE1 "read-delimited-list") "は、" "現在のリードテーブルに対して" (STRONG "char")
      "をそのような構文に変更しようとはしません。" "この呼び出しを行うものが、" "リードテーブルの構文を明に変更する必要があります。")))
 (setf (gethash '("READ-DELIMITED-LIST" . "FUNCTION") *table*) (gethash "READ-DELIMITED-LIST" *table*))
+(setf (gethash "READ-FROM-STRING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "READ-FROM-STRING"))
+    (CHAPTER ("## 構文") 2 (CODE1 "read-from-string") " " (STRONG "string") " "
+     (CODE1 "&optional") " " (STRONG "eof-error-p") " " (STRONG "eof-value") " "
+     (CODE1 "&key") " " (STRONG "start") " " (STRONG "end") " "
+     (STRONG "preserve-whitespace") EOL1 "=> " (STRONG "object") ", "
+     (STRONG "position"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "string") " - 文字列" EOL1 (STRONG "eof-error-p")
+     " - generalized-boolean。デフォルトは" (STRONG "true") "。" EOL1 (STRONG "eof-value")
+     " - オブジェクト。デフォルトは" (CODE1 "nil") "。" EOL1 (STRONG "start") ", " (STRONG "end") " - "
+     (STRONG "string") "の境界インデックス指定子。" "デフォルトは" (STRONG "start") ", " (STRONG "end")
+     "それぞれ" (CODE1 "0") "と" (CODE1 "nil") "。" EOL1 (STRONG "preserve-whitespace")
+     " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1 (STRONG "object")
+     " - オブジェクト（Lispリーダーによって構文解析されたもの）か" (STRONG "eof-value") EOL1 (STRONG "position")
+     " - ゼロ以上、かつ、" (STRONG "string") "の長さより大きい値以下")
+    (CHAPTER ("## 定義") 2 (STRONG "start") "と" (STRONG "end") "によって囲まれた" (STRONG "string")
+     "のサブシーケンスから" "オブジェクトの印刷表現を構文解析し、" "これら同じ文字が含まれているような入力ストリームに対して" (CODE1 "read")
+     "が呼ばれたかのように動作します。" EOL2 "もし" (STRONG "preserve-whitespace") "が" (STRONG "true")
+     "のときは、" "この操作は" (CODE1 "read-preserving-whitespace") "が実行されたかのように" "空白を保護します。" EOL2
+     "オブジェクトの構文解析に成功したとき、" "第一返却値である" (STRONG "object") "は構文解析されたものになります。" "もし"
+     (STRONG "eof-error-p") "が" (STRONG "false") "であり、" "サブシーケンスが終わりに到達していたとき、"
+     (STRONG "eof-value") "が返却されます。" EOL2 "第二返却値の" (STRONG "position") "は、"
+     (STRONG "string") "に囲まれた中で読み込みが行われなかった" "最初の文字のインデックスです。" (STRONG "position") "は"
+     (STRONG "preserve-whitespace") "の値に依存します。" "もし" (STRONG "string") "全体が読み込まれたときは、"
+     (STRONG "position") "は" (STRONG "string") "の長さではなく" (STRONG "string")
+     "の長さかそれより大きいものになります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(read-from-string \" 1 3 5\" t nil :start 2) =>  3, 5"
+      "(read-from-string \"(a b c)\") =>  (A B C), 7"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "もしオブジェクトが読み込まれる前に" "指定されたサブシーケンスの終わりに到達したとき、"
+     (STRONG "eof-error-p") "が" (STRONG "true") "ならエラーが発生します。" "オブジェクトが不完全のまま途中で"
+     "サブシーケンスの終わりに到達したときはエラーが発生します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "read") "," (CODE1 "read-preserving-whitespace"))
+    (CHAPTER ("## 備考") 2 (STRONG "position") "が" (STRONG "string") "の長さを越えることが許される理由は、"
+     "実装が" (STRONG "string") "の境界内の終わりに" "末尾の区切り文字の効果をシミュレートすることによって"
+     "動作することを許すため（しかし必須ではない）です。" (STRONG "preserve-whitespace") "が" (STRONG "true")
+     "のときに、" "このシミュレートされた区切り文字が" (STRONG "position") "にカウントされるかもしれません。")))
+(setf (gethash '("READ-FROM-STRING" . "FUNCTION") *table*) (gethash "READ-FROM-STRING" *table*))
 (setf (gethash "READ-LINE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ-LINE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read-line") " " (CODE1 "&optional") " "
@@ -25364,6 +25617,16 @@
      "おそらくは同等のループよりもより効率的になります。" EOL2 "ある効率の良い実装では、" (STRONG "sequence") "が"
      (STRONG "stream") "の要素と同じ型の" (CODE1 "vector") "である場合に" "より効率的になるかもしれません。")))
 (setf (gethash '("READ-SEQUENCE" . "FUNCTION") *table*) (gethash "READ-SEQUENCE" *table*))
+(setf (gethash "READER-ERROR" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "READER-ERROR"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "reader-error") "," (CODE1 "parse-error") ","
+     (CODE1 "stream-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "reader-error") "は、" "Lispリーダーによって実行する"
+     "トークン化と構文解析に関連する" "エラーのコンディションを含みます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "read") "," (CODE1 "stream-error-stream") ","
+     "23.1. リーダーの説明")))
+(setf (gethash '("READER-ERROR" . "CONDITION-TYPE") *table*) (gethash "READER-ERROR" *table*))
 (setf (gethash "READTABLE" *table*)
   '((CHAPTER NIL 0 "Condition Type " (CODE1 "READTABLE"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "readtable") "," (CODE1 "t"))
@@ -25374,6 +25637,63 @@
      "ではない文字が" (CODE1 "readtable") "内において" "構文の定義を持つかどうかは実装定義です。")
     (CHAPTER ("## 参考") 2 "2.1.1. リードテーブル," "22.1.3.13. 他のオブジェクトの印字")))
 (setf (gethash '("READTABLE" . "CONDITION-TYPE") *table*) (gethash "READTABLE" *table*))
+(setf (gethash "READTABLE-CASE" *table*)
+  '((CHAPTER NIL 0 "Accessor " (CODE1 "READTABLE-CASE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "readtable-case") " " (STRONG "readtable") " => "
+     (STRONG "mode") EOL1 (CODE1 "(") " " (CODE1 "setf") " " (CODE1 "(") " "
+     (CODE1 "readtable-case ") " " (STRONG "readtable") " " (CODE1 ")") " "
+     (STRONG "mode") " " (CODE1 ")"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "readtable") " - " (CODE1 "readtable") EOL1
+     (STRONG "mode") " - 大文字小文字種別モード")
+    (CHAPTER ("## 定義") 2 (STRONG "readtable") "にある" (CODE1 "readtable")
+     "の大文字小文字にアクセスします。" "これはLispリーダーがシンボルを読み込む方法について影響を及ぼし、"
+     "またLispプリンターがシンボルを書き込む方法についてにも影響があります。")
+    (CHAPTER ("## 例文") 2 "23.1.2.1. Lispリーダーにおける" (CODE1 "readtable")
+     "の大文字小文字の効果の例と22.1.3.3.2.1. Lispプリンターにおける" (CODE1 "readtable")
+     "の大文字小文字の効果の例をご確認ください。")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "readtable") "が" (CODE1 "readtable") "ではないとき、" "型"
+     (CODE1 "type-error") "のエラーを通知するべきです。" (STRONG "mode") "が大文字小文字種別モードではないとき、" "型"
+     (CODE1 "type-error") "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*readtable*") "," (CODE1 "*print-escape*") ","
+     "2.2. リーダーのアルゴリズム," "23.1.2. Lispリーダーにおける" (CODE1 "readtable") "の大文字小文字の効果,"
+     "22.1.3.3.2. Lispプリンターにおける" (CODE1 "readtable") "の大文字小文字の効果")
+    (CHAPTER ("## 備考") 2 (CODE1 "copy-readtable") "は、" (STRONG "readtable") "にある"
+     (CODE1 "readtable") "の大文字小文字をコピーします。")))
+(setf (gethash '("READTABLE-CASE" . "ACCESSOR") *table*) (gethash "READTABLE-CASE" *table*))
+(setf (gethash "READTABLEP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "READTABLEP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "readtablep") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "型" (CODE1 "readtable") "のときは" (STRONG "true")
+     "を、" "それ以外は" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(readtablep *readtable*) =>  true"
+      "(readtablep (copy-readtable)) =>  true" "(readtablep '*readtable*) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(readtablep object) ==  (typep object 'readtable) "))))
+(setf (gethash '("READTABLEP" . "FUNCTION") *table*) (gethash "READTABLEP" *table*))
+(setf (gethash "REAL" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "REAL"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "real") "は、" "数学的に実数と表現される全ての数を含みます。"
+     "それはCommon Lispでは正確に表現できないような" "数学的な実数（無理数など）も含まれます。" "ただ実数のみが、" "関数" (CODE1 "<")
+     ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "によって" "順序付けすることができます。" EOL2
+     "型" (CODE1 "rational") "と" (CODE1 "float") "は" "型" (CODE1 "real")
+     "のサブタイプであり疎の関係です。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "real") " " (CODE1 "[") " " (STRONG "lower-limit")
+     " " (CODE1 "[") " " (STRONG "upper-limit") " " (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "lower-limit") ", " (STRONG "upper-limit") " -" "型"
+     (CODE1 "real") "の区間指定子。" (STRONG "lower-limit") "と" (STRONG "upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、実数の区間を" (STRONG "lower-limit") "と"
+     (STRONG "upper-limit") "によって定義することを示します。")))
+(setf (gethash '("REAL" . "SYSTEM-CLASS") *table*) (gethash "REAL" *table*))
 (setf (gethash "REDUCE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "REDUCE"))
     (CHAPTER ("## 構文") 2 (CODE1 "reduce") " " (STRONG "function") " " (STRONG "sequence")
@@ -26746,6 +27066,54 @@
     (CHAPTER ("## 参考") 2 "3.2.1. コンパイラーの用語," "3.6. 横断の規則と副作用")
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。")))
 (setf (gethash '("SET-DIFFERENCE" . "FUNCTION") *table*) (gethash "SET-DIFFERENCE" *table*))
+(setf (gethash "SET-DISPATCH-MACRO-CHARACTER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-DISPATCH-MACRO-CHARACTER") ", "
+     (CODE1 "GET-DISPATCH-MACRO-CHARACTER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-dispatch-macro-character") " " (STRONG "disp-char")
+     " " (STRONG "sub-char") " " (CODE1 "&optional") " " (STRONG "readtable") " => "
+     (STRONG "function") EOL1 (CODE1 "set-dispatch-macro-character") " "
+     (STRONG "disp-char") " " (STRONG "sub-char") " " (STRONG "new-function") " "
+     (CODE1 "&optional") " " (STRONG "readtable") " => " (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "disp-char") " - 文字" EOL1 (STRONG "sub-char")
+     " - 文字" EOL1 (STRONG "readtable") " - " (CODE1 "readtable") "指定子。デフォルトは現在の"
+     (CODE1 "readtable") "。" EOL1 (STRONG "function") " - 関数指定子か、" (CODE1 "nil") EOL1
+     (STRONG "new-function") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "set-dispatch-macro-character") "は、" (STRONG "disp-char")
+     "に続き" (STRONG "sub-char") "が読み込まれたときに、" (STRONG "new-function") "を呼び出すよう設定します" "もし"
+     (STRONG "sub-char") "が小文字のときは、" "それは同等の大文字に変換されます。" "もし" (STRONG "sub-char")
+     "が10進数の数字であったときはエラーです。" EOL2 (CODE1 "set-dispatch-macro-character") "は、"
+     "特定のディスパッチマクロ文字のペアが読み込まれたときに、" (STRONG "new-function") "が呼び出される機能を導入します。"
+     (STRONG "new-function") "は" (STRONG "readtable") "が使用されているときに" (STRONG "disp-char")
+     "に続いて" (STRONG "sub-char") "が続くときに" "そのディスパッチ関数が呼び出されるように導入されます。" EOL2
+     (STRONG "new-function") "がどのように起動されるかについて" "より多くの情報は2.1.4.4. マクロ文字をご確認ください。" EOL2
+     (CODE1 "get-dispatch-macro-character") "は、" (STRONG "readtable") "内において"
+     (STRONG "disp-char") "と" (STRONG "sub-char") "に関連づいた" "ディスパッチ関数を検索します。" EOL2
+     (CODE1 "get-dispatch-macro-character") "は" (STRONG "disp-char") "配下の"
+     (STRONG "sub-char") "に対応する" "マクロ文字関数を返却するか、" "あるいは" (STRONG "sub-char")
+     "に関連した関数が存在しなかったときは" (CODE1 "nil") "を返却します。" "もし" (STRONG "sub-char") "が10進数の数字のとき、"
+     (CODE1 "get-dispatch-macro-character") "は" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(get-dispatch-macro-character #\\# #\\{) =>  NIL"
+      "(set-dispatch-macro-character #\\# #\\{        ;#{の割り当て" "   #'(lambda(s c n)"
+      "       (let ((list (read s nil (values) t)))  ;listは#n{の後のオブジェクトで"
+      "         (when (consp list)                   ;listのnthの要素を返却"
+      "           (unless (and n (< 0 n (length list))) (setq n 0))"
+      "           (setq list (nth n list)))" "        list))) =>  T" "#{(1 2 3 4) =>  1"
+      "#3{(0 1 2 3) =>  3" "#{123 =>  123")
+     EOL2 "もし" (CODE1 "#$foo") "を" (CODE1 "(dollar foo)") "としたい場合"
+     (CODE3 "```lisp" "```" "(defun |#$-reader| (stream subchar arg)"
+      "   (declare (ignore subchar arg))"
+      "   (list 'dollars (read stream t nil t))) =>  |#$-reader|"
+      "(set-dispatch-macro-character #\\# #\\$ #'|#$-reader|) =>  T"))
+    (CHAPTER ("## 参考") 2 "2.1.4.4. マクロ文字")
+    (CHAPTER ("## 副作用") 2 (STRONG "readtable") "は変更されます。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 例外") 2 "両関数において、" (STRONG "disp-char") "が" (STRONG "readtable")
+     "内でディスパッチマクロ文字ではないとき" "エラーが発生します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 備考") 2 "それらの" (STRONG "sub-char") "を指定する前に"
+     (CODE1 "make-dispatch-macro-character") "を使用して、" "ディスパッチ文字のセットアップを行う必要があります。")))
+(setf (gethash '("SET-DISPATCH-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "SET-DISPATCH-MACRO-CHARACTER" *table*))
 (setf (gethash "SET-EXCLUSIVE-OR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SET-EXCLUSIVE-OR") ", "
      (CODE1 "NSET-EXCLUSIVE-OR"))
@@ -26797,6 +27165,48 @@
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。" EOL2
      (CODE1 "nset-exclusive-or") "の副作用は必要ないため、" "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。")))
 (setf (gethash '("SET-EXCLUSIVE-OR" . "FUNCTION") *table*) (gethash "SET-EXCLUSIVE-OR" *table*))
+(setf (gethash "SET-MACRO-CHARACTER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-MACRO-CHARACTER") ", "
+     (CODE1 "GET-MACRO-CHARACTER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-macro-character") " " (STRONG "char") " "
+     (CODE1 "&optional") " " (STRONG "readtable") " => " (STRONG "function") ", "
+     (STRONG "non-terminating-p") EOL1 (CODE1 "set-macro-character") " " (STRONG "char")
+     " " (STRONG "new-function") " " (CODE1 "&optional") " " (STRONG "non-terminating-p")
+     " " (STRONG "readtable") " => " (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "char") " - 文字" EOL1 (STRONG "non-terminating-p")
+     " - generalized-boolean。デフォルトは" (STRONG "false") "。" EOL1 (STRONG "readtable") " - "
+     (CODE1 "readtable") "指定子。デフォルトは現在の" (CODE1 "readtable") "。" EOL1 (STRONG "function")
+     " - " (CODE1 "nil") "か、2つの引数の関数指定子" EOL1 (STRONG "new-function") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "get-macro-character") "の第一返却値" (STRONG "function") "は、"
+     (STRONG "readtable") "内にある" (STRONG "char") "に関連したリーダーマクロ関数を" "（もしあるなら）返却するか、"
+     "あるいは" (STRONG "char") "が" (STRONG "readtable") "においてマクロ文字ではないときは" (CODE1 "nil")
+     "を返却します。" "第二返却値" (STRONG "non-terminating-p") "は、" (STRONG "char") "が非終端マクロ文字のときは"
+     (STRONG "true") "を、" "それ以外のときは" (STRONG "false") "を返却します。" EOL2
+     (CODE1 "set-macro-character") "は、" (STRONG "readtable") "内において" "リーダーマクロ関数である"
+     (STRONG "new-function") "（または" (STRONG "new-function") "の指定子）を" (STRONG "char")
+     "のマクロ文字として関連付けます。" "もし" (STRONG "non-terminating-p") "が" (STRONG "true") "のとき、"
+     (STRONG "char") "は非終端マクロ文字になり、" "それ以外のときは終端マクロ文字になります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(get-macro-character #\\{) =>  NIL, false"
+      "(not (get-macro-character #\\;)) =>  false")
+     EOL2 "下記の例は、標準構文のシングルクォート・リードマクロの定義を示したものです。"
+     (CODE3 "```lisp" "```" "(defun single-quote-reader (stream char)"
+      "  (declare (ignore char))"
+      "  (list 'quote (read stream t nil t))) =>  SINGLE-QUOTE-READER"
+      "(set-macro-character #\\' #'single-quote-reader) =>  T")
+     EOL2 "ここでの" (CODE1 "single-quote-reader") "は、" "シングルクォートに続くオブジェクトを読み込み、"
+     (CODE1 "quote") "とそのオブジェクトのリストを返却するものです。" "引数の" (STRONG "char") "は無視されます。" EOL2
+     "下記の例は、標準構文のセミコロン・リードマクロの定義を示したものです。"
+     (CODE3 "```lisp" "```" "(defun semicolon-reader (stream char)"
+      "  (declare (ignore char))" "  ;; 最初に現在の入力の行全体を飲み込みます。"
+      "  ;; コメントがend-of-fileで終端するのは許容します。"
+      "  (do () ((char= (read-char stream nil #\\Newline t) #\\Newline)))"
+      "  ;; 0個の値を返却します。" "  (values)) =>  SEMICOLON-READER"
+      "(set-macro-character #\\; #'semicolon-reader) =>  T"))
+    (CHAPTER ("## 副作用") 2 (STRONG "readtable") "は変更されます。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "*readtable*"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SET-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "SET-MACRO-CHARACTER" *table*))
 (setf (gethash "SET-PPRINT-DISPATCH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SET-PPRINT-DISPATCH"))
     (CHAPTER ("## 構文") 2 (CODE1 "set-pprint-dispatch") " " (STRONG "type-specifier") " "
@@ -26831,6 +27241,36 @@
      (CODE1 "cdr") "部は" (STRONG "cdr-type") "という型指定子にマッチするようなことを意味しています。"
      (STRONG "cdr-type") "は省略することができ、" "そのような場合はデフォルトでは" (CODE1 "t") "になります。")))
 (setf (gethash '("SET-PPRINT-DISPATCH" . "FUNCTION") *table*) (gethash "SET-PPRINT-DISPATCH" *table*))
+(setf (gethash "SET-SYNTAX-FROM-CHAR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SET-SYNTAX-FROM-CHAR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "set-syntax-from-char") " " (STRONG "to-char") " "
+     (STRONG "from-char") " " (CODE1 "&optional") " " (STRONG "to-readtable") " "
+     (STRONG "from-readtable") " => " (CODE1 "t"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "to-char") " - 文字" EOL1 (STRONG "from-char") " - 文字"
+     EOL1 (STRONG "to-readtable") " - " (CODE1 "readtable") "。デフォルトは現在の"
+     (CODE1 "readtable") "。" EOL1 (STRONG "from-readtable") " - " (CODE1 "readtable")
+     "指定子。デフォルトは標準の" (CODE1 "readtable") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "set-syntax-from-char") "は、" (STRONG "to-readtable") "内の"
+     (STRONG "to-char") "の構文を、" (STRONG "from-readtable") "内の" (STRONG "from-char")
+     "の構文と同じものにします。" EOL2 (CODE1 "set-syntax-from-char") "は、" (STRONG "from-char")
+     "の構文タイプをコピーします。" "もし" (STRONG "from-char") "がマクロ文字のとき、" "そのリーダーマクロ関数もまたコピーされます。"
+     "もしその文字がディスパッチマクロ文字のとき、" "そのディスパッチテーブル全体にある" "リーダーマクロ関数がコピーされます。"
+     (STRONG "from-char") "の構成要素である特性はコピーされません。" EOL2 "例えば" (CODE1 "\"")
+     "のような文字のマクロ定義を他の文字にコピーできます。" (CODE1 "\"") "の標準定義は、他の文字で呼び出されたときでも同じように"
+     "その文字を見るようになります。" (CODE1 "(") "の定義を、" (CODE1 "{") "へ意味が通じるようなコピーはできませんし逆もできません。"
+     "この結果として、" (CODE1 "{a b c)") "のフォームがリストになりますが、" (CODE1 "{a b c}") "ではありません。"
+     "なぜならこの定義は常に閉じかっこを見ており、" "閉じた中かっこではないからです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(set-syntax-from-char #\\7 #\\;) =>  T" "123579 =>  1235"))
+    (CHAPTER ("## 副作用") 2 (STRONG "to-readtable") "は変更されます。")
+    (CHAPTER ("## 影響") 2 (STRONG "from-readtable") "内の既存の値") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "set-macro-character") ","
+     (CODE1 "make-dispatch-macro-character") "," "2.1.4. 文字の構文タイプ")
+    (CHAPTER ("## 備考") 2 "ある文字の構成要素である特性(" (CODE1 "constituent-traits") ")は、"
+     "拡張されたトークンのために構文解析器の中で固定されています。" "例えば、もし" (CODE1 "S") "の定義を" (CODE1 "*") "へコピーするとき、"
+     (CODE1 "*") "はアルファベットの構成要素にはなるかもしれませんが、" "それは" (CODE1 "short-float")
+     "の指数マーカーとして使用することはできません。" "より詳しい情報は2.1.4.2. 構成要素としての特性をご確認ください。")))
+(setf (gethash '("SET-SYNTAX-FROM-CHAR" . "FUNCTION") *table*) (gethash "SET-SYNTAX-FROM-CHAR" *table*))
 (setf (gethash "SETF" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "SETF") ", " (CODE1 "PSETF"))
     (CHAPTER ("## 構文") 2 (CODE1 "setf") " " (CODE1 "{") (STRONG "pair") (CODE1 "}")
@@ -32083,7 +32523,7 @@
 (setf (gethash "UNWIND-PROTECT" *table*)
   '((CHAPTER NIL 0 "Special Operator " (CODE1 "UNWIND-PROTECT"))
     (CHAPTER ("## 構文") 2 (CODE1 "unwind-protect") " " (STRONG "protected-form") " "
-     (STRONG "cleanup-form\\* => ") "result\\*")
+     (STRONG "cleanup-form\\*") " => " (STRONG "result\\*"))
     (CHAPTER ("## 引数と戻り値") 2 (STRONG "protected-form") " - フォーム" EOL1
      (STRONG "cleanup-form") " - フォーム" EOL1 (STRONG "result") " - "
      (STRONG "protected-form") "の返却値")
@@ -33321,6 +33761,46 @@
      (STRONG "slot-entry_i") "がフォームなら次のようになります。"
      (CODE3 "```lisp" "```" "(variable-namei 'slot-namei)"))))
 (setf (gethash '("WITH-SLOTS" . "MACRO") *table*) (gethash "WITH-SLOTS" *table*))
+(setf (gethash "WITH-STANDARD-IO-SYNTAX" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "WITH-STANDARD-IO-SYNTAX"))
+    (CHAPTER ("## 構文") 2 (CODE1 "with-standard-io-syntax") " " (STRONG "form\\*") " => "
+     (STRONG "result\\*"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "form") " - 暗黙のprogn" EOL1 (STRONG "result") " - "
+     (STRONG "form") "による返却値")
+    (CHAPTER ("## 定義") 2 "ボディ部である" (STRONG "form") "の動的エクステント内で、"
+     "全てのリーダーとプリンターを制御する全ての変数と、" "本標準で指定されていない実装定義のものも含む全ての変数に対して、"
+     "標準のリーダーおよびプリンターの振る舞いを行うような値を生成し束縛します。" "本標準によって指定されている変数の値は、" "次の表によって示されます。" EOL2
+     "|変数|値|" "|:--|:--|" "|" (CODE1 "*package*") "                   |"
+     (CODE1 "CL-USER") "パッケージ         |" "|" (CODE1 "*print-array*") "               |"
+     (CODE1 "t") "           |" "|" (CODE1 "*print-base*") "                |"
+     (CODE1 "10") "                        |" "|" (CODE1 "*print-case*")
+     "                |" (CODE1 ":upcase") "                   |" "|"
+     (CODE1 "*print-circle*") "              |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-escape*") "              |" (CODE1 "t") "           |" "|"
+     (CODE1 "*print-gensym*") "              |" (CODE1 "t") "           |" "|"
+     (CODE1 "*print-length*") "              |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-level*") "               |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-lines*") "               |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-miser-width*") "         |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-pprint-dispatch*") "     |標準" (CODE1 "pprint") "ディスパッチテーブル |" "|"
+     (CODE1 "*print-pretty*") "              |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-radix*") "               |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*print-readably*") "            |" (CODE1 "t") "           |" "|"
+     (CODE1 "*print-right-margin*") "        |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*read-base*") "                 |" (CODE1 "10") "                        |"
+     "|" (CODE1 "*read-default-float-format*") " |" (CODE1 "single-float") "         |"
+     "|" (CODE1 "*read-eval*") "                 |" (CODE1 "t") "           |" "|"
+     (CODE1 "*read-suppress*") "             |" (CODE1 "nil") "         |" "|"
+     (CODE1 "*readtable*") "                 |標準" (CODE1 "readtable") "             |"
+     EOL2 "Figure 23-1. 標準の制御変数の値")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(with-open-file (file pathname :direction :output)"
+      "  (with-standard-io-syntax" "    (print data file)))" NIL ";;; ... 以降は他のLispによる実行"
+      NIL "(with-open-file (file pathname :direction :input)"
+      "  (with-standard-io-syntax" "    (setq data (read file))))"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("WITH-STANDARD-IO-SYNTAX" . "MACRO") *table*) (gethash "WITH-STANDARD-IO-SYNTAX" *table*))
 (setf (gethash "WRITE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "WRITE") ", " (CODE1 "PRIN1") ", " (CODE1 "PRINT")
      ", " (CODE1 "PPRINT") ", " (CODE1 "PRINC"))

@@ -1,0 +1,97 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET-SYNTAX-FROM-CHAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.set-syntax-from-char
+@name: set-syntax-from-char
+@type: function
+
+Function `SET-SYNTAX-FROM-CHAR`
+
+
+## {syntax}
+
+`set-syntax-from-char` *to-char* *from-char*
+ `&optional` *to-readtable* *from-readtable*
+ => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*to-char* - 文字  
+*from-char* - 文字  
+*to-readtable* - {readtable}。デフォルトは現在の{readtable}。  
+*from-readtable* - {readtable}指定子。デフォルトは標準の{readtable}。
+
+
+## {description}
+
+{set-syntax-from-char:link}は、
+*to-readtable*内の*to-char*の構文を、
+*from-readtable*内の*from-char*の構文と同じものにします。
+
+{set-syntax-from-char:link}は、
+*from-char*の構文タイプをコピーします。
+もし*from-char*がマクロ文字のとき、
+そのリーダーマクロ関数もまたコピーされます。
+もしその文字がディスパッチマクロ文字のとき、
+そのディスパッチテーブル全体にある
+リーダーマクロ関数がコピーされます。
+*from-char*の構成要素である特性はコピーされません。
+
+例えば`"`のような文字のマクロ定義を他の文字にコピーできます。
+`"`の標準定義は、他の文字で呼び出されたときでも同じように
+その文字を見るようになります。
+`(`の定義を、`{`へ意味が通じるようなコピーはできませんし逆もできません。
+この結果として、
+`{a b c)`のフォームがリストになりますが、
+`{a b c}`ではありません。
+なぜならこの定義は常に閉じかっこを見ており、
+閉じた中かっこではないからです。
+
+
+## {examples}
+
+```lisp
+(set-syntax-from-char #\7 #\;) =>  T
+123579 =>  1235
+```
+
+
+## {side-effects}
+
+*to-readtable*は変更されます。
+
+
+## {affected-by}
+
+*from-readtable*内の既存の値
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{set-macro-character:link},
+{make-dispatch-macro-character:link},
+{2.1.4:ab}
+
+
+## {notes}
+
+ある文字の構成要素である特性(`constituent-traits`)は、
+拡張されたトークンのために構文解析器の中で固定されています。
+例えば、もし`S`の定義を`*`へコピーするとき、
+`*`はアルファベットの構成要素にはなるかもしれませんが、
+それは`short-float`の指数マーカーとして使用することはできません。
+より詳しい情報は{2.1.4.2:ab}をご確認ください。
+
+@end
+

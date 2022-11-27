@@ -1,0 +1,61 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class REAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.real
+@name: real
+@type: system-class
+
+System Class `REAL`
+
+
+## {class-precedence-list}
+
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{real:link}は、
+数学的に実数と表現される全ての数を含みます。
+それはCommon Lispでは正確に表現できないような
+数学的な実数（無理数など）も含まれます。
+ただ実数のみが、
+関数{<:link}, {>:link}, {<=:link}, {>=:link}によって
+順序付けすることができます。
+
+型{rational!system-class:link}と{float!system-class:link}は
+型{real:link}のサブタイプであり疎の関係です。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`real` `[` *lower-limit* `[` *upper-limit* `]` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*lower-limit*, *upper-limit* -
+型{real:link}の{interval-designator}。
+*lower-limit*と*upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは、実数の区間を
+*lower-limit*と*upper-limit*によって定義することを示します。
+
+@end
+

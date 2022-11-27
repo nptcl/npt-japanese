@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type READER-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.reader-error
+@name: reader-error
+@type: condition-type
+
+Condition Type `READER-ERROR`
+
+
+## {class-precedence-list}
+
+{reader-error:link},
+{parse-error:link},
+{stream-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{reader-error:link}は、
+Lispリーダーによって実行する
+トークン化と構文解析に関連する
+エラーのコンディションを含みます。
+
+
+## {see-also}
+
+{read:link},
+{stream-error-stream:link},
+{23.1:ab}
+
+@end
+

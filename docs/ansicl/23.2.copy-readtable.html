@@ -229,7 +229,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="23.2.copy-readtable.html"><code>copy-readtable</code></a>は、<em>from-readtable</em>をコピーします。</p>
 <p><em>to-readtable</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは、 新しい<code>readtable</code>が生成されて返却されます。 そうではないときは、 指定した<em>to-readtable</em>が修正されて返却されます。</p>
-<p><a href="23.2.copy-readtable.html"><code>copy-readtable</code></a>は、<code>readtable-case</code>の設定をコピーします。</p>
+<p><a href="23.2.copy-readtable.html"><code>copy-readtable</code></a>は、<a href="23.2.readtable-case.html"><code>readtable-case</code></a>の設定をコピーします。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> zvar <span class="dv">123</span>) <span class="op">=&gt;</span>  <span class="dv">123</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set-syntax-from-char</span> <span class="ch">#\z</span> <span class="ch">#\&#39;</span> (<span class="kw">setq</span> table2 (<span class="kw">copy-readtable</span>))) <span class="op">=&gt;</span>  T</span>
@@ -245,7 +245,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="23.2.readtable.html"><code>readtable</code></a>, <code>*readtable*</code></p>
+<p><a href="23.2.readtable.html"><code>readtable</code></a>, <a href="23.2.readtable-variable.html"><code>*readtable*</code></a></p>
 <h2 id="備考">備考</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> <span class="va">*readtable*</span> (<span class="kw">copy-readtable</span> <span class="kw">nil</span>))</span></code></pre></div>
 <p>上記の式は、入力構文を Common Lisp標準の構文に復元することができ、 初期の<code>readtable</code>が壊れているときでも動作します （上記の式を入力できないほど 壊れているわけではないことを想定しています）。</p>

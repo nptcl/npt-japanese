@@ -48,7 +48,7 @@ Function `INVOKE-RESTART`
 
 ## {side-effects}
 
-`restart`によって非局所的な背にの制御が行われるかもしれません。
+`restart`によって非局所的な遷移の制御が行われるかもしれません。
 
 
 ## {affected-by}
@@ -77,7 +77,7 @@ Function `INVOKE-RESTART`
 または暗黙的に{invoke-restart-interactively:link}か
 `restart`関数を通して使用されるかもしれません。
 
-`restart`関数あは{invoke-restart:link}を呼び出しますし、
+`restart`関数は{invoke-restart:link}を呼び出しますし、
 逆もまた成り立ちます。
 これは、{invoke-restart:link}が原始的な機能を提供しており、
 `restasrt`関数は本質ではない「糖衣構文」です。

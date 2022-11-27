@@ -1,0 +1,130 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  23. リーダー
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SET-DISPATCH-MACRO-CHARACTER
+;;  Function GET-DISPATCH-MACRO-CHARACTER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 23.2.set-dispatch-macro-character
+@name: set-dispatch-macro-character
+@name: get-dispatch-macro-character
+@type: function
+
+Function `SET-DISPATCH-MACRO-CHARACTER`, `GET-DISPATCH-MACRO-CHARACTER`
+
+
+## {syntax}
+
+`get-dispatch-macro-character` *disp-char* *sub-char*
+ `&optional` *readtable*
+ => *function*  
+`set-dispatch-macro-character` *disp-char* *sub-char* *new-function*
+ `&optional` *readtable*
+ => {t!variable:link}
+
+
+## {arguments-and-values}
+
+*disp-char* - 文字  
+*sub-char* - 文字  
+*readtable* - {readtable}指定子。デフォルトは現在の{readtable}。  
+*function* - 関数指定子か、{nil!variable:link}  
+*new-function* - 関数指定子
+
+
+## {description}
+
+{set-dispatch-macro-character:link}は、
+*disp-char*に続き*sub-char*が読み込まれたときに、
+*new-function*を呼び出すよう設定します
+もし*sub-char*が小文字のときは、
+それは同等の大文字に変換されます。
+もし*sub-char*が10進数の数字であったときはエラーです。
+
+{set-dispatch-macro-character:link}は、
+特定のディスパッチマクロ文字のペアが読み込まれたときに、
+*new-function*が呼び出される機能を導入します。
+*new-function*は*readtable*が使用されているときに
+*disp-char*に続いて*sub-char*が続くときに
+そのディスパッチ関数が呼び出されるように導入されます。
+
+*new-function*がどのように起動されるかについて
+より多くの情報は{2.1.4.4:ab}をご確認ください。
+
+{get-dispatch-macro-character:link}は、
+*readtable*内において*disp-char*と*sub-char*に関連づいた
+ディスパッチ関数を検索します。
+
+{get-dispatch-macro-character:link}は
+*disp-char*配下の*sub-char*に対応する
+マクロ文字関数を返却するか、
+あるいは*sub-char*に関連した関数が存在しなかったときは
+{nil!variable:link}を返却します。
+もし*sub-char*が10進数の数字のとき、
+{get-dispatch-macro-character:link}は
+{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(get-dispatch-macro-character #\# #\{) =>  NIL
+(set-dispatch-macro-character #\# #\{        ;#{の割り当て
+   #'(lambda(s c n)
+       (let ((list (read s nil (values) t)))  ;listは#n{の後のオブジェクトで
+         (when (consp list)                   ;listのnthの要素を返却
+           (unless (and n (< 0 n (length list))) (setq n 0))
+           (setq list (nth n list)))
+        list))) =>  T
+#{(1 2 3 4) =>  1
+#3{(0 1 2 3) =>  3
+#{123 =>  123
+```
+
+もし`#$foo`を`(dollar foo)`としたい場合
+
+```lisp
+(defun |#$-reader| (stream subchar arg)
+   (declare (ignore subchar arg))
+   (list 'dollars (read stream t nil t))) =>  |#$-reader|
+(set-dispatch-macro-character #\# #\$ #'|#$-reader|) =>  T
+```
+
+
+## {see-also}
+
+{2.1.4.4:ab}
+
+
+## {side-effects}
+
+*readtable*は変更されます。
+
+
+## {affected-by}
+
+{*readtable*:link}
+
+
+## {exceptional-situations}
+
+両関数において、*disp-char*が
+*readtable*内でディスパッチマクロ文字ではないとき
+エラーが発生します。
+
+
+## {see-also}
+
+{*readtable*:link}
+
+
+## {notes}
+
+それらの*sub-char*を指定する前に
+{make-dispatch-macro-character:link}を使用して、
+ディスパッチ文字のセットアップを行う必要があります。
+
+@end
+

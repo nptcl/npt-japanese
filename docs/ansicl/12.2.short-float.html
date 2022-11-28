@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Type SHORT-FLOAT, SINGLE-FLOAT, DOUBLE-FLOAT, LONG-FLOAT</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Type SHORT-FLOAT, SINGLE-FLOAT, DOUBLE-FLOAT, LONG-FLOAT</h1>
+</header>
+<p><a href="12.2.html">UP</a></p>
+<hr />
+<h1 id="type-short-float-single-float-double-float-long-float">Type <strong>SHORT-FLOAT, SINGLE-FLOAT, DOUBLE-FLOAT, LONG-FLOAT</strong></h1>
+<p>Type <code>SHORT-FLOAT</code>, <code>SINGLE-FLOAT</code>, <code>DOUBLE-FLOAT</code>, <code>LONG-FLOAT</code></p>
+<h2 id="クラス優先順位リスト">クラス優先順位リスト</h2>
+<p><a href="12.2.short-float.html"><code>short-float</code></a>: <a href="12.2.short-float.html"><code>short-float</code></a>, <a href="12.2.float-system-class.html"><code>float</code></a>, <a href="12.2.real.html"><code>real</code></a>, <a href="12.2.number.html"><code>number</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a><br />
+<a href="12.2.short-float.html"><code>single-float</code></a>: <a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.float-system-class.html"><code>float</code></a>, <a href="12.2.real.html"><code>real</code></a>, <a href="12.2.number.html"><code>number</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a><br />
+<a href="12.2.short-float.html"><code>double-float</code></a>: <a href="12.2.short-float.html"><code>double-float</code></a>, <a href="12.2.float-system-class.html"><code>float</code></a>, <a href="12.2.real.html"><code>real</code></a>, <a href="12.2.number.html"><code>number</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a><br />
+<a href="12.2.short-float.html"><code>long-float</code></a>: <a href="12.2.short-float.html"><code>long-float</code></a>, <a href="12.2.float-system-class.html"><code>float</code></a>, <a href="12.2.real.html"><code>real</code></a>, <a href="12.2.number.html"><code>number</code></a>, <a href="4.4.t-system-class.html"><code>t</code></a></p>
+<h2 id="定義">定義</h2>
+<p>これら4つの型は、型<a href="12.2.float-system-class.html"><code>float</code></a>のサブタイプとして定義され、 型<a href="12.2.short-float.html"><code>short-float</code></a>と型<a href="12.2.short-float.html"><code>long-float</code></a>の中間が 型<a href="12.2.short-float.html"><code>single-float</code></a>と型<a href="12.2.short-float.html"><code>double-float</code></a>になります。 これらの分類の精度の定義は実装定義です。 精度（「ビット」として計測され<code>p log 2b</code>として計算されます）と 指数のサイズ（また「ビット」として計測され <code>log 2(n+1)</code>、ただし<code>n</code>は指数値の最大値として計算されます）は、 少なくとも次の表に示される値より大きいことが推奨されます。 型<a href="12.2.float-system-class.html"><code>float</code></a>のサブタイプとして定義されたそれぞれは、 マイナスゼロがあっても無くてもかまいません。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">フォーマット</th>
+<th style="text-align: left;">最小精度</th>
+<th style="text-align: left;">最小指数サイズ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">short</td>
+<td style="text-align: left;"><code>13</code> bit</td>
+<td style="text-align: left;"><code>5</code> bit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">single</td>
+<td style="text-align: left;"><code>24</code> bit</td>
+<td style="text-align: left;"><code>8</code> bit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">double</td>
+<td style="text-align: left;"><code>50</code> bit</td>
+<td style="text-align: left;"><code>8</code> bit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">long</td>
+<td style="text-align: left;"><code>50</code> bit</td>
+<td style="text-align: left;"><code>8</code> bit</td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ</p>
+<p>浮動小数の内部表現は4つより少なくすることができます。 もし表現の区別が少ないときは、 下記の規則を適用してください。</p>
+<ul>
+<li><p>もしひとつしかないとき、それは型<a href="12.2.short-float.html"><code>single-float</code></a>です。 この表現では、オブジェクトは同時に <a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.short-float.html"><code>double-float</code></a>, <a href="12.2.short-float.html"><code>short-float</code></a>, <a href="12.2.short-float.html"><code>long-float</code></a>の型になります。</p></li>
+<li><p>2つの内部表現のとき、下記に示す方法のどちらかを選択できます。</p>
+<ul>
+<li>2つの型は<a href="12.2.short-float.html"><code>single-float</code></a>と<a href="12.2.short-float.html"><code>short-float</code></a>が提供されます。 オブジェクトは同時に <a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.short-float.html"><code>double-float</code></a>,<a href="12.2.short-float.html"><code>long-float</code></a>の型になります。</li>
+<li>2つの型は<a href="12.2.short-float.html"><code>single-float</code></a>と<a href="12.2.short-float.html"><code>double-float</code></a>が提供されます。 オブジェクトは同時に<a href="12.2.short-float.html"><code>single-float</code></a>と<a href="12.2.short-float.html"><code>short-float</code></a>か、 あるいは<a href="12.2.short-float.html"><code>double-float</code></a>と<a href="12.2.short-float.html"><code>long-float</code></a>の型になります。</li>
+</ul></li>
+<li><p>3つの内部表現のとき、下記に示す方法のどちらかを選択できます。</p>
+<ul>
+<li>3つの型は<a href="12.2.short-float.html"><code>short-float</code></a>, <a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.short-float.html"><code>double-float</code></a>が提供されます。 オブジェクトは同時に<a href="12.2.short-float.html"><code>double-float</code></a>と<a href="12.2.short-float.html"><code>long-float</code></a>の型になります。</li>
+<li>3つの型は<a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.short-float.html"><code>double-float</code></a>, <a href="12.2.short-float.html"><code>long-float</code></a>が提供されます。 オブジェクトは同時に<a href="12.2.short-float.html"><code>single-float</code></a>と<a href="12.2.short-float.html"><code>short-float</code></a>の型になります。</li>
+</ul></li>
+</ul>
+<h2 id="型指定子の種類">型指定子の種類</h2>
+<p>省略可能</p>
+<h2 id="型指定子の構文">型指定子の構文</h2>
+<p><code>short-float</code> <code>[</code> <em>short-lower-limit</em> <code>[</code> <em>short-upper-limit</em> <code>]</code> <code>]</code><br />
+<code>single-float</code> <code>[</code> <em>single-lower-limit</em> <code>[</code> <em>single-upper-limit</em> <code>]</code> <code>]</code><br />
+<code>double-float</code> <code>[</code> <em>double-lower-limit</em> <code>[</code> <em>double-upper-limit</em> <code>]</code> <code>]</code><br />
+<code>long-float</code> <code>[</code> <em>long-lower-limit</em> <code>[</code> <em>long-upper-limit</em> <code>]</code> <code>]</code></p>
+<h2 id="型指定子の引数">型指定子の引数</h2>
+<p><em>short-lower-limit</em>, <em>short-upper-limit</em> - 型<a href="12.2.short-float.html"><code>short-float</code></a>の区間指定子。 <em>short-lower-limit</em>と<em>short-upper-limit</em>の それぞれのデフォルト値はシンボル<code>*</code>。</p>
+<p><em>single-lower-limit</em>, <em>single-upper-limit</em> - 型<a href="12.2.short-float.html"><code>single-float</code></a>の区間指定子。 <em>single-lower-limit</em>と<em>single-upper-limit</em>の それぞれのデフォルト値はシンボル<code>*</code>。</p>
+<p><em>double-lower-limit</em>, <em>double-upper-limit</em> - 型<a href="12.2.short-float.html"><code>double-float</code></a>の区間指定子。 <em>double-lower-limit</em>と<em>double-upper-limit</em>の それぞれのデフォルト値はシンボル<code>*</code>。</p>
+<p><em>long-lower-limit</em>, <em>long-upper-limit</em> - 型<a href="12.2.short-float.html"><code>long-float</code></a>の区間指定子。 <em>long-lower-limit</em>と<em>long-upper-limit</em>の それぞれのデフォルト値はシンボル<code>*</code>。</p>
+<h2 id="型指定子の定義">型指定子の定義</h2>
+<p>それぞれは、指定された型の浮動小数の集合は 区間指定子によって 区間を定義していることを意味しています。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

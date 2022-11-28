@@ -284,7 +284,7 @@
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((foo <span class="dv">0</span>))</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">declare</span> (<span class="kw">type</span> (<span class="kw">signed-byte</span> <span class="dv">5</span>) foo))</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">setf</span> foo (<span class="kw">the</span> (<span class="kw">signed-byte</span> <span class="dv">5</span>) (<span class="kw">aref</span> an-array <span class="dv">0</span>)))))</span></code></pre></div>
-<p>ある実装では、<code>fixnum</code>が29-bitであり しかし<code>fixnum</code>の配列が符号付き32-bitへ格上げされるものであるとき、 下記の例は全て<code>fixnum</code>で計算されるようにコンパイルされます。</p>
+<p>ある実装では、<code>fixnum</code>が29-bitであり しかし<a href="12.2.fixnum.html"><code>fixnum</code></a>の配列が符号付き32-bitへ格上げされるものであるとき、 下記の例は全て<code>fixnum</code>で計算されるようにコンパイルされます。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> bump-counters </span>(counters)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">declare</span> (<span class="kw">type</span> (<span class="kw">array</span> <span class="kw">fixnum</span> <span class="op">*</span>) bump-counters))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">dotimes</span> (i (<span class="kw">length</span> counters))</span>

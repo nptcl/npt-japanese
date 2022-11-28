@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class RATIO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.ratio
+@name: ratio
+@type: system-class
+
+System Class `RATIO`
+
+
+## {class-precedence-list}
+
+{ratio:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+分数`ratio`は、
+2つのゼロではない整数である、分母と分子によって
+数学的な比として表現された数であり、
+最大公約数は`1`、分母は正であり、`1`より大きい数です。
+
+
+## {see-also}
+
+{figure_2-9:link},
+{2.3.2:ab},
+{22.1.3.1.2:ab}
+
+@end
+

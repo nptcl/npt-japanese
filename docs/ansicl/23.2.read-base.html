@@ -227,7 +227,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="23.2.read.html"><code>read</code></a>による整数か<code>ratio</code>としてのトークンの解釈を制御します。</p>
 <p><a href="23.2.read-base.html"><code>*read-base*</code></a>の値は現在の入力基数と呼ばれ、 Lispリーダーによって読み込まれる整数と<code>ratio</code>の基数になります。 他の数の型である（例えば<code>float</code>）の構文解析には このオプションによる影響はありません。</p>
-<p>特定の<code>rational</code>の数の読み込み時における<a href="23.2.read-base.html"><code>*read-base*</code></a>の効果は、 明示的に<code>#O</code>, <code>#X</code>, <code>#B</code>, <code>#nR</code>の構文か、 あるいは末尾の小数点によって局所的に上書きすることができます。</p>
+<p>特定の有理数の読み込み時における<a href="23.2.read-base.html"><code>*read-base*</code></a>の効果は、 明示的に<code>#O</code>, <code>#X</code>, <code>#B</code>, <code>#nR</code>の構文か、 あるいは末尾の小数点によって局所的に上書きすることができます。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">dotimes</span> (i <span class="dv">6</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((<span class="va">*read-base*</span> (<span class="op">+</span> <span class="fl">10.</span> i)))</span>

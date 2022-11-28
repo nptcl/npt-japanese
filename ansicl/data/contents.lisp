@@ -502,9 +502,6 @@
 (dictionary 12.2.real)
 (dictionary 12.2.float!system-class)
 (dictionary 12.2.short-float)
-(dictionary 12.2.single-float)  ;; delete
-(dictionary 12.2.double-float)  ;; delete
-(dictionary 12.2.long-float)  ;; delete
 (dictionary 12.2.rational!system-class)
 (dictionary 12.2.ratio)
 (dictionary 12.2.integer)
@@ -578,6 +575,7 @@
 (dictionary 12.2.ldb-test)
 (dictionary 12.2.mask-field)
 (dictionary 12.2.most-positive-fixnum)
+(dictionary 12.2.most-negative-fixnum)  ;; delete
 (dictionary 12.2.decode-float)
 (dictionary 12.2.float!function)
 (dictionary 12.2.floatp)
@@ -894,6 +892,9 @@
 (index 22.1 "Lispプリンター" "The Lisp Printer")
 (text 22.1.3 "標準のPrint-Objectメソッド" "Default Print-Object Methods")
 (index 22.1.3.1 "数の印字" "Printing Numbers")
+(text 22.1.3.1.1 "整数の印字" "Printing Integers")
+(text 22.1.3.1.2 "分数の印字" "Printing Ratios")
+(text 22.1.3.1.3 "浮動小数の印字" "Printing Floats")
 (text 22.1.3.1.4 "複素数の印字" "Printing Complexes")
 (text 22.1.3.2 "文字の印字" "Printing Characters")
 (text 22.1.3.3 "シンボルの印字" "Printing Symbols")

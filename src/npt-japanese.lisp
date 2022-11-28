@@ -87,7 +87,8 @@
 (setf (gethash "ATOM" *name*) '("FUNCTION" "TYPE"))
 (setf (gethash "BASE-CHAR" *name*) '("TYPE"))
 (setf (gethash "BASE-STRING" *name*) '("TYPE"))
-(setf (gethash "BIT" *name*) '("ACCESSOR"))
+(setf (gethash "BIGNUM" *name*) '("TYPE"))
+(setf (gethash "BIT" *name*) '("ACCESSOR" "TYPE"))
 (setf (gethash "BIT-AND" *name*) '("FUNCTION"))
 (setf (gethash "BIT-ANDC1" *name*) '("FUNCTION"))
 (setf (gethash "BIT-ANDC2" *name*) '("FUNCTION"))
@@ -252,6 +253,7 @@
 (setf (gethash "DOCUMENTATION" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "DOLIST" *name*) '("MACRO"))
 (setf (gethash "DOTIMES" *name*) '("MACRO"))
+(setf (gethash "DOUBLE-FLOAT" *name*) '("TYPE"))
 (setf (gethash "DYNAMIC-EXTENT" *name*) '("DECLARATION"))
 (setf (gethash "ECASE" *name*) '("MACRO"))
 (setf (gethash "ECHO-STREAM" *name*) '("SYSTEM-CLASS"))
@@ -300,7 +302,9 @@
 (setf (gethash "FIND-SYMBOL" *name*) '("FUNCTION"))
 (setf (gethash "FINISH-OUTPUT" *name*) '("FUNCTION"))
 (setf (gethash "FIRST" *name*) '("ACCESSOR"))
+(setf (gethash "FIXNUM" *name*) '("TYPE"))
 (setf (gethash "FLET" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "FLOAT" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "FMAKUNBOUND" *name*) '("FUNCTION"))
 (setf (gethash "FORCE-OUTPUT" *name*) '("FUNCTION"))
 (setf (gethash "FORMAT" *name*) '("FUNCTION"))
@@ -346,6 +350,7 @@
 (setf (gethash "INITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "INLINE" *name*) '("DECLARATION"))
 (setf (gethash "INPUT-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "INTEGER" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "INTERACTIVE-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "INTERN" *name*) '("FUNCTION"))
 (setf (gethash "INTERSECTION" *name*) '("FUNCTION"))
@@ -375,6 +380,7 @@
 (setf (gethash "LOCALLY" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LOGICAL-PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("ACCESSOR"))
+(setf (gethash "LONG-FLOAT" *name*) '("TYPE"))
 (setf (gethash "LOOP" *name*) '("MACRO"))
 (setf (gethash "LOOP-FINISH" *name*) '("LOCA-MACRO"))
 (setf (gethash "LOWER-CASE-P" *name*) '("FUNCTION"))
@@ -424,6 +430,7 @@
 (setf (gethash "METHOD-COMBINATION-ERROR" *name*) '("FUNCTION"))
 (setf (gethash "METHOD-QUALIFIERS" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "MISMATCH" *name*) '("FUNCTION"))
+(setf (gethash "MOD" *name*) '("TYPE-SPECIFIER"))
 (setf (gethash "MUFFLE-WARNING" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "MULTIPLE-VALUE-BIND" *name*) '("MACRO"))
 (setf (gethash "MULTIPLE-VALUE-CALL" *name*) '("SPECIAL-OPERATOR"))
@@ -533,6 +540,8 @@
 (setf (gethash "RASSOC" *name*) '("FUNCTION"))
 (setf (gethash "RASSOC-IF" *name*) '("FUNCTION"))
 (setf (gethash "RASSOC-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "RATIO" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "RATIONAL" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "READ" *name*) '("FUNCTION"))
 (setf (gethash "READ-BYTE" *name*) '("FUNCTION"))
 (setf (gethash "READ-CHAR" *name*) '("FUNCTION"))
@@ -594,7 +603,9 @@
 (setf (gethash "SHADOWING-IMPORT" *name*) '("FUNCTION"))
 (setf (gethash "SHARED-INITIALIZE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "SHIFTF" *name*) '("MACRO"))
+(setf (gethash "SHORT-FLOAT" *name*) '("TYPE"))
 (setf (gethash "SIGNAL" *name*) '("FUNCTION"))
+(setf (gethash "SIGNED-BYTE" *name*) '("TYPE"))
 (setf (gethash "SIMPLE-ARRAY" *name*) '("TYPE"))
 (setf (gethash "SIMPLE-BASE-STRING" *name*) '("TYPE"))
 (setf (gethash "SIMPLE-BIT-VECTOR" *name*) '("TYPE"))
@@ -609,6 +620,7 @@
 (setf (gethash "SIMPLE-VECTOR" *name*) '("TYPE"))
 (setf (gethash "SIMPLE-VECTOR-P" *name*) '("FUNCTION"))
 (setf (gethash "SIMPLE-WARNING" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SINGLE-FLOAT" *name*) '("TYPE"))
 (setf (gethash "SIXTH" *name*) '("ACCESSOR"))
 (setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
 (setf (gethash "SLOT-BOUNDP-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
@@ -715,6 +727,7 @@
 (setf (gethash "UNION" *name*) '("FUNCTION"))
 (setf (gethash "UNLESS" *name*) '("MACRO"))
 (setf (gethash "UNREAD-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "UNSIGNED-BYTE" *name*) '("TYPE"))
 (setf (gethash "UNUSE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "UNWIND-PROTECT" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
@@ -1034,15 +1047,15 @@
      " - generalized-boolean")
     (CHAPTER ("## 初期値") 2 (CODE1 "*print-base*") "の初期値は" (CODE1 "10") "。" EOL1
      (CODE1 "*print-radix*") "の初期値は" (STRONG "false") "。")
-    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*") "は、"
-     (CODE1 "rational") "の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
-     (CODE1 "*print-base*") "の値は、プリンターが" (CODE1 "rational") "を印刷する基数です。" "基数が"
-     (CODE1 "10") "より大きいとき、" "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*")
-     "の値が" (STRONG "true") "のとき、" "プリンターは" (CODE1 "rational") "の数を印刷するときに"
-     "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし" (CODE1 "*print-base*") "が"
-     (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、" "基数指定子はそれぞれ" (CODE1 "#b") ", "
-     (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
-     "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*")
+     "は、有理数の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
+     (CODE1 "*print-base*") "の値は、プリンターが有理数を印刷する基数です。" "基数が" (CODE1 "10") "より大きいとき、"
+     "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*") "の値が" (STRONG "true")
+     "のとき、" "プリンターは有理数を印刷するときに" "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし"
+     (CODE1 "*print-base*") "が" (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、"
+     "基数指定子はそれぞれ" (CODE1 "#b") ", " (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2
+     "整数のとき、基数" (CODE1 "10") "ということを" "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio")
+     "のときは、" (CODE1 "#10r") "を使用します。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t))"
       "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
@@ -1296,15 +1309,15 @@
      " - generalized-boolean")
     (CHAPTER ("## 初期値") 2 (CODE1 "*print-base*") "の初期値は" (CODE1 "10") "。" EOL1
      (CODE1 "*print-radix*") "の初期値は" (STRONG "false") "。")
-    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*") "は、"
-     (CODE1 "rational") "の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
-     (CODE1 "*print-base*") "の値は、プリンターが" (CODE1 "rational") "を印刷する基数です。" "基数が"
-     (CODE1 "10") "より大きいとき、" "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*")
-     "の値が" (STRONG "true") "のとき、" "プリンターは" (CODE1 "rational") "の数を印刷するときに"
-     "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし" (CODE1 "*print-base*") "が"
-     (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、" "基数指定子はそれぞれ" (CODE1 "#b") ", "
-     (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2 "整数のとき、基数" (CODE1 "10") "ということを"
-     "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio") "のときは、" (CODE1 "#10r") "を使用します。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*print-base*") "と" (CODE1 "*print-radix*")
+     "は、有理数の印刷を制御します。" (CODE1 "*print-base*") "の値は、現在の出力の基数と呼ばれます。" EOL2
+     (CODE1 "*print-base*") "の値は、プリンターが有理数を印刷する基数です。" "基数が" (CODE1 "10") "より大きいとき、"
+     "アルファベットの文字が9より上の数字の表現に使用されます。" EOL2 (CODE1 "*print-radix*") "の値が" (STRONG "true")
+     "のとき、" "プリンターは有理数を印刷するときに" "指定した基数を表す基数指定子を印刷します。" "基数指定子は、常に小文字で印刷されます。" "もし"
+     (CODE1 "*print-base*") "が" (CODE1 "2") ", " (CODE1 "8") ", " (CODE1 "6") "のとき、"
+     "基数指定子はそれぞれ" (CODE1 "#b") ", " (CODE1 "#o") ", " (CODE1 "#x") "が使用されます。" EOL2
+     "整数のとき、基数" (CODE1 "10") "ということを" "先行する基数指定子のかわりに、" "末尾の小数点で示します。" (CODE1 "ratio")
+     "のときは、" (CODE1 "#10r") "を使用します。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(let ((*print-base* 24.) (*print-radix* t))"
       "  (print 23.))" ">>  #24rN" "=>  23" "(setq *print-base* 10) =>  10"
@@ -1447,8 +1460,8 @@
     (CHAPTER ("## 定義") 2 (CODE1 "read") "による整数か" (CODE1 "ratio") "としてのトークンの解釈を制御します。"
      EOL2 (CODE1 "*read-base*") "の値は現在の入力基数と呼ばれ、" "Lispリーダーによって読み込まれる整数と" (CODE1 "ratio")
      "の基数になります。" "他の数の型である（例えば" (CODE1 "float") "）の構文解析には" "このオプションによる影響はありません。" EOL2
-     "特定の" (CODE1 "rational") "の数の読み込み時における" (CODE1 "*read-base*") "の効果は、" "明示的に"
-     (CODE1 "#O") ", " (CODE1 "#X") ", " (CODE1 "#B") ", " (CODE1 "#nR") "の構文か、"
+     "特定の有理数の読み込み時における" (CODE1 "*read-base*") "の効果は、" "明示的に" (CODE1 "#O") ", "
+     (CODE1 "#X") ", " (CODE1 "#B") ", " (CODE1 "#nR") "の構文か、"
      "あるいは末尾の小数点によって局所的に上書きすることができます。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(dotimes (i 6)" "  (let ((*read-base* (+ 10. i)))"
@@ -2802,7 +2815,16 @@
     (CHAPTER ("## 型指定子の定義") 2 "型" (CODE1 "(vector base-char size)") "と同一です。" "このとき、"
      (STRONG "size") "は基本文字列の集合のサイズです。")))
 (setf (gethash '("BASE-STRING" . "TYPE") *table*) (gethash "BASE-STRING" *table*))
+(setf (gethash "BIGNUM" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "BIGNUM"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "bignum") "," (CODE1 "integer") ","
+     (CODE1 "rational") "," (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "bignum") "は、正確に"
+     (CODE1 "(and integer (not fixnum))") "として定義されます。")))
+(setf (gethash '("BIGNUM" . "TYPE") *table*) (gethash "BIGNUM" *table*))
 (setf (gethash "BIT" *table*)
+  '("BIT ACCESSOR" EOL1 "BIT TYPE" EOL1))
+(setf (gethash '("BIT" . "ACCESSOR") *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "BIT") ", " (CODE1 "SBIT"))
     (CHAPTER ("## 構文") 2 (CODE1 "bit") " " (STRONG "bit-array") " " (CODE1 "&rest") " "
      (STRONG "subscripts") " => " (STRONG "bit") EOL1 (CODE1 "sbit") " "
@@ -2828,7 +2850,13 @@
      (STRONG "array") "がそれぞれビット配列と" (CODE1 "simple") "のビット配列であることを" "要求することが違っています。" EOL2
      (CODE1 "bit") "と" (CODE1 "sbit") "は" (CODE1 "char") "と" (CODE1 "schar") "とは似ておらず、"
      "最初の引数はどんなランクの配列でも許されます。")))
-(setf (gethash '("BIT" . "ACCESSOR") *table*) (gethash "BIT" *table*))
+(setf (gethash '("BIT" . "TYPE") *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "BIT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "bit") "," (CODE1 "unsigned-byte") ","
+     (CODE1 "signed-byte") "," (CODE1 "integer") "," (CODE1 "rational") ","
+     (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "bit") "は、" "型" (CODE1 "(integer 0 1)") "および"
+     (CODE1 "(unsigned-byte 1)") "と同等です。")))
 (setf (gethash "BIT-AND" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "BIT-AND") ", " (CODE1 "BIT-ANDC1") ", "
      (CODE1 "BIT-ANDC2") ", " (CODE1 "BIT-EQV") "," (CODE1 "BIT-IOR") ", "
@@ -9847,26 +9875,25 @@
      "    <br><br>" EOL2 "- " (CODE1 "complex") "  - もし" (STRONG "result-type") "が"
      (CODE1 "complex") "であり" "    " (STRONG "object") "が実装のときは、 " (STRONG "result")
      "は実部が" (STRONG "object") "、" "    虚部が整数の" (CODE1 "0") "を" (STRONG "object") "の型で"
-     (CODE1 "coerce") "したもので構築した" "    複素数になります" "    （しかし文字実部が" (CODE1 "rational")
-     "のときは、" "    結果もまた複素数ではなく" (CODE1 "rational") "になります。" "    12.1.5.3. "
-     (CODE1 "rational") "型の複素数の標準的な表現のルールをご確認ください。" "    よって例えば"
-     (CODE1 "(coerce 3 'complex)") "は許されますが、" "    返却値は複素数ではなく" (CODE1 "3") "になります）。"
-     "    <br><br>" EOL2 "- " (CODE1 "float") "  - もし" (STRONG "result-type") "が "
-     (CODE1 "float") "," "    " (CODE1 "short-float") ", " (CODE1 "single-float") ","
-     "    " (CODE1 "double-float") ", " (CODE1 "long-float") "のどれかであり" "    "
-     (STRONG "object") "が実装のときは、" "    " (STRONG "result") "は、型が" (STRONG "result-type")
-     "であり、" "    符号が" (STRONG "object") "と等しく、" "    その浮動小数の型が表現できる精度の大きさが" "    "
-     (STRONG "object") "と等しいものになります" "    （もし" (STRONG "result-type") "が" (CODE1 "float")
-     "で" "    " (STRONG "object") "が浮動小数ではないときは、" "    " (STRONG "result") "は"
-     (CODE1 "single-float") "になります）。" "    <br><br>" EOL2 "- " (CODE1 "function")
-     "  - もし" (STRONG "result-type") "が" (CODE1 "function") "で、" "    " (STRONG "object")
-     "が" (CODE1 "fbound") "の関数名であり、" "    その関数名がグローバルなマクロ名でもなければ" "    特殊オペレーターでもないときは、"
-     "    " (STRONG "result") "は" (STRONG "object") "の関数の値です。" "    <br><br>" "    もし"
-     (STRONG "result-type") "が" (CODE1 "function") "で、" "    " (STRONG "object")
-     "がラムダ式の場合は、" "    " (STRONG "result") "は" (CODE1 "null") "のレキシカルな環境の" "    "
-     (STRONG "object") "のクロージャーです。" "    <br><br>" EOL2 "- " (CODE1 "t") "  - どんな"
-     (STRONG "object") "でも型" (CODE1 "t") "へ強制できます" "    このような場合、" (STRONG "object")
-     "が単純に返却されます。")
+     (CODE1 "coerce") "したもので構築した" "    複素数になります" "    （しかしもし実部が有理数のときは、"
+     "    結果もまた複素数ではなく有理数になります。" "    12.1.5.3. " (CODE1 "rational")
+     "型の複素数の標準的な表現のルールをご確認ください。" "    よって例えば" (CODE1 "(coerce 3 'complex)") "は許されますが、"
+     "    返却値は複素数ではなく" (CODE1 "3") "になります）。" "    <br><br>" EOL2 "- " (CODE1 "float")
+     "  - もし" (STRONG "result-type") "が " (CODE1 "float") "," "    "
+     (CODE1 "short-float") ", " (CODE1 "single-float") "," "    " (CODE1 "double-float")
+     ", " (CODE1 "long-float") "のどれかであり" "    " (STRONG "object") "が実装のときは、" "    "
+     (STRONG "result") "は、型が" (STRONG "result-type") "であり、" "    符号が" (STRONG "object")
+     "と等しく、" "    その浮動小数の型が表現できる精度の大きさが" "    " (STRONG "object") "と等しいものになります" "    （もし"
+     (STRONG "result-type") "が" (CODE1 "float") "で" "    " (STRONG "object")
+     "が浮動小数ではないときは、" "    " (STRONG "result") "は" (CODE1 "single-float") "になります）。"
+     "    <br><br>" EOL2 "- " (CODE1 "function") "  - もし" (STRONG "result-type") "が"
+     (CODE1 "function") "で、" "    " (STRONG "object") "が" (CODE1 "fbound") "の関数名であり、"
+     "    その関数名がグローバルなマクロ名でもなければ" "    特殊オペレーターでもないときは、" "    " (STRONG "result") "は"
+     (STRONG "object") "の関数の値です。" "    <br><br>" "    もし" (STRONG "result-type") "が"
+     (CODE1 "function") "で、" "    " (STRONG "object") "がラムダ式の場合は、" "    "
+     (STRONG "result") "は" (CODE1 "null") "のレキシカルな環境の" "    " (STRONG "object")
+     "のクロージャーです。" "    <br><br>" EOL2 "- " (CODE1 "t") "  - どんな" (STRONG "object") "でも型"
+     (CODE1 "t") "へ強制できます" "    このような場合、" (STRONG "object") "が単純に返却されます。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(coerce '(a b c) 'vector) =>  #(A B C)"
       "(coerce 'a 'character) =>  #\\A" "(coerce 4.56 'complex) =>  #C(4.56 0.0)"
@@ -9887,8 +9914,8 @@
      (STRONG "object") "が違う長さでのときは、" "型" (CODE1 "type-error") "のエラーが発生します。")
     (CHAPTER ("## 参考") 2 (CODE1 "rational") "," (CODE1 "floor") "," (CODE1 "char-code")
      "," (CODE1 "char-int"))
-    (CHAPTER ("## 備考") 2 "浮動小数から" (CODE1 "rational") "への強制と、" "分数から浮動小数への強制は、"
-     "丸め問題のため提供されません。" (CODE3 "```lisp" "```" "(coerce x 't) ==  (identity x) ==  x"))))
+    (CHAPTER ("## 備考") 2 "浮動小数から有理数への強制と、" "分数から浮動小数への強制は、" "丸め問題のため提供されません。"
+     (CODE3 "```lisp" "```" "(coerce x 't) ==  (identity x) ==  x"))))
 (setf (gethash '("COERCE" . "FUNCTION") *table*) (gethash "COERCE" *table*))
 (setf (gethash "COMPILE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "COMPILE"))
@@ -10021,10 +10048,9 @@
   '((CHAPTER NIL 0 "System Class " (CODE1 "COMPLEX"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "complex") "," (CODE1 "number") "," (CODE1 "t"))
     (CHAPTER ("## 定義") 2 "型" (CODE1 "complex") "は、" "型" (CODE1 "rational") "に含まれるもの以外の"
-     "全ての数学的な複素数を含むものです。" "複素数は、実部と虚部がそれぞれ実数の直交形式で表されます。" "実部と虚部は、両方とも"
-     (CODE1 "rational") "か、" "あるいは両方とも同じ" (CODE1 "float") "の型です。" "虚部は" (CODE1 "float")
-     "のゼロにすることができますが、" (CODE1 "rational") "のゼロにすることはできず、" "そのような数はCommon Lispによって"
-     "常に複素数ではなく" (CODE1 "rational") "として表現されます。")
+     "全ての数学的な複素数を含むものです。" "複素数は、実部と虚部がそれぞれ実数の直交形式で表されます。" "実部と虚部は、両方とも有理数か、"
+     "あるいは両方とも同じ浮動小数の型です。" "虚部は浮動小数のゼロにすることができますが、" "有理数のゼロにすることはできず、"
+     "そのような数はCommon Lispによって" "常に複素数ではなく有理数として表現されます。")
     (CHAPTER ("## 型指定子の種類") 2 "特定可能")
     (CHAPTER ("## 型指定子の構文") 2 (CODE1 "complex") " " (CODE1 "[") " " (STRONG "typespec")
      " " (CODE1 "|") " " (CODE1 "*") " " (CODE1 "]"))
@@ -10037,9 +10063,9 @@
     (CHAPTER ("## 参考") 2 "12.1.5.3. " (CODE1 "rational") "型の複素数の標準的な表現のルール,"
      "2.3.2. トークンから数の構築," "22.1.3.1.4. 複素数の印字")
     (CHAPTER ("## 備考") 2 "複素数の入力構文は、実部を" (CODE1 "r") "、虚部を" (CODE1 "i") "としたとき"
-     (CODE1 "#c(r i)") "になります。" "さらなる詳細は、2.4. 標準マクロ文字をご確認ください。" EOL2 "全ての"
-     (CODE1 "float") "を" (CODE1 "n") "としたとき、" "数学的に同じ数としｔ絵表現される複素数は、"
-     (CODE1 "(COERCE n 'COMPLEX)") "として得ることができます。")))
+     (CODE1 "#c(r i)") "になります。" "さらなる詳細は、2.4. 標準マクロ文字をご確認ください。" EOL2 "全ての浮動小数を"
+     (CODE1 "n") "としたとき、" "数学的に同じ数としｔ絵表現される複素数は、" (CODE1 "(COERCE n 'COMPLEX)")
+     "として得ることができます。")))
 (setf (gethash '("COMPLEX" . "SYSTEM-CLASS") *table*) (gethash "COMPLEX" *table*))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "COMPUTE-APPLICABLE-METHODS"))
@@ -14144,6 +14170,70 @@
     (CHAPTER ("## 備考") 2 (CODE1 "go") "は、" (CODE1 "dotimes") "のボディ部で" (STRONG "tag")
      "によってラベル付けされた文へ" "遷移を制御するために使用されます。")))
 (setf (gethash '("DOTIMES" . "MACRO") *table*) (gethash "DOTIMES" *table*))
+(setf (gethash "DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
+     (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "short-float") ": " "  " (CODE1 "short-float")
+     "," "  " (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "single-float") ": " "  " (CODE1 "single-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "double-float") ": " "  " (CODE1 "double-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "long-float") ": " "  " (CODE1 "long-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "これら4つの型は、型" (CODE1 "float") "のサブタイプとして定義され、" "型"
+     (CODE1 "short-float") "と型" (CODE1 "long-float") "の中間が" "型" (CODE1 "single-float")
+     "と型" (CODE1 "double-float") "になります。" "これらの分類の精度の定義は実装定義です。" "精度（「ビット」として計測され"
+     (CODE1 "p log 2b") "として計算されます）と" "指数のサイズ（また「ビット」として計測され" (CODE1 "log 2(n+1)") "、ただし"
+     (CODE1 "n") "は指数値の最大値として計算されます）は、" "少なくとも次の表に示される値より大きいことが推奨されます。" "型"
+     (CODE1 "float") "のサブタイプとして定義されたそれぞれは、" "マイナスゼロがあっても無くてもかまいません。" EOL2
+     "|フォーマット |最小精度  |最小指数サイズ |" "|:------------|:---------|:--------------|"
+     "|short        |" (CODE1 "13") " bit  |" (CODE1 "5") " bit        |"
+     "|single       |" (CODE1 "24") " bit  |" (CODE1 "8") " bit        |"
+     "|double       |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |"
+     "|long         |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |" EOL2
+     "Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ" EOL2 "浮動小数の内部表現は4つより少なくすることができます。"
+     "もし表現の区別が少ないときは、" "下記の規則を適用してください。" EOL2 "- もしひとつしかないとき、それは型" (CODE1 "single-float")
+     "です。" "  この表現では、オブジェクトは同時に" "  " (CODE1 "single-float") ", " (CODE1 "double-float")
+     "," "  " (CODE1 "short-float") ", " (CODE1 "long-float") "の型になります。" EOL2
+     "- 2つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 2つの型は" (CODE1 "single-float") "と"
+     (CODE1 "short-float") "が提供されます。" "    オブジェクトは同時に " (CODE1 "single-float") "," "    "
+     (CODE1 "double-float") "," (CODE1 "long-float") "の型になります。" "  - 2つの型は"
+     (CODE1 "single-float") "と" (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "single-float") "と" (CODE1 "short-float") "か、" "    あるいは"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" EOL2
+     "- 3つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 3つの型は" (CODE1 "short-float") ", "
+     (CODE1 "single-float") "," "    " (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" "  - 3つの型は"
+     (CODE1 "single-float") ", " (CODE1 "double-float") "," "    " (CODE1 "long-float")
+     "が提供されます。" "    オブジェクトは同時に" (CODE1 "single-float") "と" (CODE1 "short-float")
+     "の型になります。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "short-float") " " (CODE1 "[") " "
+     (STRONG "short-lower-limit") " " (CODE1 "[") " " (STRONG "short-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "single-float") " " (CODE1 "[") " "
+     (STRONG "single-lower-limit") " " (CODE1 "[") " " (STRONG "single-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "double-float") " " (CODE1 "[") " "
+     (STRONG "double-lower-limit") " " (CODE1 "[") " " (STRONG "double-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "long-float") " " (CODE1 "[") " "
+     (STRONG "long-lower-limit") " " (CODE1 "[") " " (STRONG "long-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "short-lower-limit") ", "
+     (STRONG "short-upper-limit") " -" "型" (CODE1 "short-float") "の区間指定子。"
+     (STRONG "short-lower-limit") "と" (STRONG "short-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。" EOL2 (STRONG "single-lower-limit") ", "
+     (STRONG "single-upper-limit") " -" "型" (CODE1 "single-float") "の区間指定子。"
+     (STRONG "single-lower-limit") "と" (STRONG "single-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "double-lower-limit") ", "
+     (STRONG "double-upper-limit") " -" "型" (CODE1 "double-float") "の区間指定子。"
+     (STRONG "double-lower-limit") "と" (STRONG "double-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "long-lower-limit") ", "
+     (STRONG "long-upper-limit") " -" "型" (CODE1 "long-float") "の区間指定子。"
+     (STRONG "long-lower-limit") "と" (STRONG "long-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
+(setf (gethash '("DOUBLE-FLOAT" . "TYPE") *table*) (gethash "DOUBLE-FLOAT" *table*))
 (setf (gethash "DYNAMIC-EXTENT" *table*)
   '((CHAPTER NIL 0 "Declaration " (CODE1 "DYNAMIC-EXTENT"))
     (CHAPTER ("## 構文") 2 "(" (CODE1 "dynamic-extent") " [[" (STRONG "var\\*") " "
@@ -15929,6 +16019,15 @@
      (CODE1 "nth") "によって使われる採番は0開始であり、" "次の関係が成り立ちます。"
      (CODE3 "```lisp" "```" "(fifth x) == (nth 4 x)"))))
 (setf (gethash '("FIRST" . "ACCESSOR") *table*) (gethash "FIRST" *table*))
+(setf (gethash "FIXNUM" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "FIXNUM"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "fixnum") "," (CODE1 "integer") ","
+     (CODE1 "rational") "," (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 (CODE1 "fixnum") "は" (CODE1 "most-negative-fixnum") "と"
+     (CODE1 "most-positive-fixnum") "に" "包括的に含まれる値の整数です。" "正確な" (CODE1 "fixnum")
+     "の整数の範囲は実装定義です。" "型" (CODE1 "fixnum") "は" (CODE1 "(signed-byte 16)") "の"
+     "スーパータイプであることが要求されます。")))
+(setf (gethash '("FIXNUM" . "TYPE") *table*) (gethash "FIXNUM" *table*))
 (setf (gethash "FLET" *table*)
   '((CHAPTER NIL 0 "Special Operator " (CODE1 "FLET") ", " (CODE1 "LABELS") ", "
      (CODE1 "MACROLET"))
@@ -16042,6 +16141,40 @@
      "は、互いに再帰呼出できる関数を定義するのに使うことができます。" EOL2 "もし" (CODE1 "macrolet") "がトップレベルフォームのとき、"
      "ボディ部" (STRONG "form") "もまたトップレベルフォームとして処理されます。" "3.2.3. ファイルのコンパイルをご確認ください。")))
 (setf (gethash '("FLET" . "SPECIAL-OPERATOR") *table*) (gethash "FLET" *table*))
+(setf (gethash "FLOAT" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "FLOAT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "float") "," (CODE1 "real") "," (CODE1 "number")
+     "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "浮動小数は、" (CODE1 "s*f*b^{e-p}") "のフォームで表される"
+     "数学的な有理数（Common Lispの" (CODE1 "rational") "ではなく）です。" "ただし、" (CODE1 "s") "は符号であり"
+     (CODE1 "+1") "か" (CODE1 "-1") "、" (CODE1 "b") "は基数であり" (CODE1 "1") "より大きい整数、"
+     (CODE1 "p") "は浮動小数の精度（" (CODE1 "基数-b") "の数値）であり正の整数、" (CODE1 "f") "は仮数であり"
+     (CODE1 "b^{p-1}") "から" (CODE1 "b^{p}-1") "（含む）の間の正の整数、" (CODE1 "e") "は指数であり整数です。"
+     (CODE1 "p") "の値と" (CODE1 "e") "の区間は、" "実装自身と実装内における浮動小数の型に依存します。"
+     "加えて、浮動小数のゼロもまた実装依存であり" "「マイナスゼロ」が存在できます。" "もしマイナスゼロが存在しないときは、" (CODE1 "0.0") "と"
+     (CODE1 "-0.0") "は両方とも単純に浮動小数のゼロとして解釈されます。" (CODE1 "(= 0.0 -0.0)") "は常に"
+     (STRONG "true") "です。" "もしマイナスゼロが存在するとき、" (CODE1 "(eql -0.0 0.0)") "は"
+     (STRONG "false") "であり、" "そうではないときは" (STRONG "true") "です。" EOL2 "型"
+     (CODE1 "short-float") ", " (CODE1 "single-float") "," (CODE1 "double-float") ", "
+     (CODE1 "long-float") "は、" "型" (CODE1 "float") "のサブタイプです。"
+     "これらのうちどの2つも疎の型か同じ型のどちらかです。" "もし同じ型のとき、" "上記の順番の中でそれらの間にある他の型もまた同じ型です。" "例えば、もし型"
+     (CODE1 "single-float") "と型" (CODE1 "long-float") "が同じ型のとき、" "型"
+     (CODE1 "double-float") "もまた同じ型でなければなりません。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "float") " " (CODE1 "[") " " (STRONG "lower-limit")
+     " " (CODE1 "[") " " (STRONG "upper-limit") " " (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "lower-limit") ", " (STRONG "upper-limit") " -" "型"
+     (CODE1 "float") "の区間指定子。" (STRONG "lower-limit") "と" (STRONG "upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、浮動小数の区間を" (STRONG "lower-limit") "と"
+     (STRONG "upper-limit") "によって定義することを示します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "figure_2-9") "," "2.3.2. トークンから数の構築,"
+     "22.1.3.1.3. 浮動小数の印字")
+    (CHAPTER ("## 備考") 2 "全ての数学的な整数は、" "Common Lispの実数" (CODE1 "real") "で表現できるだけでなく、"
+     "浮動小数の複素数" (CODE1 "complex float") "でもまた表現できます。" "例えば、数学的な数の" (CODE1 "1")
+     "の表現として可能なものは、" "整数の" (CODE1 "1") "、浮動小数の" (CODE1 "1.0") "、複素数の"
+     (CODE1 "#C(1.0 0.0)") "が含まれます。")))
+(setf (gethash '("FLOAT" . "SYSTEM-CLASS") *table*) (gethash "FLOAT" *table*))
 (setf (gethash "FMAKUNBOUND" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "FMAKUNBOUND"))
     (CHAPTER ("## 構文") 2 (CODE1 "fmakunbound") " " (STRONG "name") " => "
@@ -17459,6 +17592,29 @@
      "のエラーを発生させるべきです。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("INPUT-STREAM-P" . "FUNCTION") *table*) (gethash "INPUT-STREAM-P" *table*))
+(setf (gethash "INTEGER" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "INTEGER"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "integer") "," (CODE1 "rational") ","
+     (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 (CODE1 "integer") "は、数学的な整数です。" "整数の大きさに制限はありません。" EOL2 "型"
+     (CODE1 "fixnum") "と" (CODE1 "bignum") "は、" "型" (CODE1 "integer") "の完全な分割です。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "integer") " " (CODE1 "[") " "
+     (STRONG "lower-limit") " " (CODE1 "[") " " (STRONG "upper-limit") " " (CODE1 "]")
+     " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "lower-limit") ", " (STRONG "upper-limit") " -" "型"
+     (CODE1 "integer") "の区間指定子。" (STRONG "lower-limit") "と" (STRONG "upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、整数の区間を" (STRONG "lower-limit") "と"
+     (STRONG "upper-limit") "によって定義することを示します。")
+    (CHAPTER ("## 参考") 2 (CODE1 "figure_2-9") "," "2.3.2. トークンから数の構築,"
+     "22.1.3.1.1. 整数の印字")
+    (CHAPTER ("## 備考") 2 "型を" (CODE1 "(integer lower upper)") "としたとき、" (STRONG "lower")
+     "と" (STRONG "upper") "がそれぞれ" (CODE1 "most-negative-fixnum") "と"
+     (CODE1 "most-positive-fixnum") "であるようなときは、" (CODE1 "fixnum") "とも呼ばれます。" EOL2 "型"
+     (CODE1 "(integer 0 1)") "は、" (CODE1 "bit") "とも呼ばれます。" "型" (CODE1 "(integer 0 *)")
+     "は、" (CODE1 "unsigned-byte") "とも呼ばれます。")))
+(setf (gethash '("INTEGER" . "SYSTEM-CLASS") *table*) (gethash "INTEGER" *table*))
 (setf (gethash "INTERACTIVE-STREAM-P" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "INTERACTIVE-STREAM-P"))
     (CHAPTER ("## 構文") 2 (CODE1 "interactive-stream-p") " " (STRONG "stream") " => "
@@ -18495,6 +18651,70 @@
     (CHAPTER ("## 備考") 2 "実装は論理パス名のホストを操作するための" "例えば追加で変換の規則やオプションなどを指定した"
      "追加の関数を定義できます。")))
 (setf (gethash '("LOGICAL-PATHNAME-TRANSLATIONS" . "ACCESSOR") *table*) (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *table*))
+(setf (gethash "LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
+     (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "short-float") ": " "  " (CODE1 "short-float")
+     "," "  " (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "single-float") ": " "  " (CODE1 "single-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "double-float") ": " "  " (CODE1 "double-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "long-float") ": " "  " (CODE1 "long-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "これら4つの型は、型" (CODE1 "float") "のサブタイプとして定義され、" "型"
+     (CODE1 "short-float") "と型" (CODE1 "long-float") "の中間が" "型" (CODE1 "single-float")
+     "と型" (CODE1 "double-float") "になります。" "これらの分類の精度の定義は実装定義です。" "精度（「ビット」として計測され"
+     (CODE1 "p log 2b") "として計算されます）と" "指数のサイズ（また「ビット」として計測され" (CODE1 "log 2(n+1)") "、ただし"
+     (CODE1 "n") "は指数値の最大値として計算されます）は、" "少なくとも次の表に示される値より大きいことが推奨されます。" "型"
+     (CODE1 "float") "のサブタイプとして定義されたそれぞれは、" "マイナスゼロがあっても無くてもかまいません。" EOL2
+     "|フォーマット |最小精度  |最小指数サイズ |" "|:------------|:---------|:--------------|"
+     "|short        |" (CODE1 "13") " bit  |" (CODE1 "5") " bit        |"
+     "|single       |" (CODE1 "24") " bit  |" (CODE1 "8") " bit        |"
+     "|double       |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |"
+     "|long         |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |" EOL2
+     "Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ" EOL2 "浮動小数の内部表現は4つより少なくすることができます。"
+     "もし表現の区別が少ないときは、" "下記の規則を適用してください。" EOL2 "- もしひとつしかないとき、それは型" (CODE1 "single-float")
+     "です。" "  この表現では、オブジェクトは同時に" "  " (CODE1 "single-float") ", " (CODE1 "double-float")
+     "," "  " (CODE1 "short-float") ", " (CODE1 "long-float") "の型になります。" EOL2
+     "- 2つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 2つの型は" (CODE1 "single-float") "と"
+     (CODE1 "short-float") "が提供されます。" "    オブジェクトは同時に " (CODE1 "single-float") "," "    "
+     (CODE1 "double-float") "," (CODE1 "long-float") "の型になります。" "  - 2つの型は"
+     (CODE1 "single-float") "と" (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "single-float") "と" (CODE1 "short-float") "か、" "    あるいは"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" EOL2
+     "- 3つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 3つの型は" (CODE1 "short-float") ", "
+     (CODE1 "single-float") "," "    " (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" "  - 3つの型は"
+     (CODE1 "single-float") ", " (CODE1 "double-float") "," "    " (CODE1 "long-float")
+     "が提供されます。" "    オブジェクトは同時に" (CODE1 "single-float") "と" (CODE1 "short-float")
+     "の型になります。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "short-float") " " (CODE1 "[") " "
+     (STRONG "short-lower-limit") " " (CODE1 "[") " " (STRONG "short-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "single-float") " " (CODE1 "[") " "
+     (STRONG "single-lower-limit") " " (CODE1 "[") " " (STRONG "single-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "double-float") " " (CODE1 "[") " "
+     (STRONG "double-lower-limit") " " (CODE1 "[") " " (STRONG "double-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "long-float") " " (CODE1 "[") " "
+     (STRONG "long-lower-limit") " " (CODE1 "[") " " (STRONG "long-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "short-lower-limit") ", "
+     (STRONG "short-upper-limit") " -" "型" (CODE1 "short-float") "の区間指定子。"
+     (STRONG "short-lower-limit") "と" (STRONG "short-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。" EOL2 (STRONG "single-lower-limit") ", "
+     (STRONG "single-upper-limit") " -" "型" (CODE1 "single-float") "の区間指定子。"
+     (STRONG "single-lower-limit") "と" (STRONG "single-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "double-lower-limit") ", "
+     (STRONG "double-upper-limit") " -" "型" (CODE1 "double-float") "の区間指定子。"
+     (STRONG "double-lower-limit") "と" (STRONG "double-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "long-lower-limit") ", "
+     (STRONG "long-upper-limit") " -" "型" (CODE1 "long-float") "の区間指定子。"
+     (STRONG "long-lower-limit") "と" (STRONG "long-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
+(setf (gethash '("LONG-FLOAT" . "TYPE") *table*) (gethash "LONG-FLOAT" *table*))
 (setf (gethash "LOOP" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "LOOP"))
     (CHAPTER ("## 構文") 2 "単純な" (CODE1 "loop") "フォーム:" EOL1 (CODE1 "loop") " "
@@ -20620,6 +20840,15 @@
     (CHAPTER ("## 参考") 2 "3.6. 横断の規則と副作用")
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。")))
 (setf (gethash '("MISMATCH" . "FUNCTION") *table*) (gethash "MISMATCH" *table*))
+(setf (gethash "MOD" *table*)
+  '((CHAPTER NIL 0 "Type Specifier " (CODE1 "MOD")) (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "mod") " " (STRONG "n"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "n") " - 正の整数")
+    (CHAPTER ("## 型指定子の定義") 2 "これは" (STRONG "n") "より小さい非負の整数の集合を示しています。" "これは"
+     (CODE1 "(integer 0 (n))") "か、" (CODE1 "(integer 0 m)") "ただし" (CODE1 "m=n-1")
+     "と同等です。" EOL2 "引数は必要であり、" (CODE1 "*") "は指定できません。" EOL2 "シンボルの" (CODE1 "mod")
+     "は有効な型指定子ではありません。")))
+(setf (gethash '("MOD" . "TYPE-SPECIFIER") *table*) (gethash "MOD" *table*))
 (setf (gethash "MUFFLE-WARNING" *table*)
   '("MUFFLE-WARNING FUNCTION" EOL1 "MUFFLE-WARNING RESTART" EOL1))
 (setf (gethash '("MUFFLE-WARNING" . "FUNCTION") *table*)
@@ -25203,6 +25432,32 @@
      (STRONG "alist") "のペアの場所に" (CODE1 "nil") "が現れるときです。" "関数" (CODE1 "assoc")
      "をご確認下さい。")))
 (setf (gethash '("RASSOC-IF-NOT" . "FUNCTION") *table*) (gethash "RASSOC-IF-NOT" *table*))
+(setf (gethash "RATIO" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "RATIO"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "ratio") "," (CODE1 "rational") ","
+     (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "分数" (CODE1 "ratio") "は、" "2つのゼロではない整数である、分母と分子によって"
+     "数学的な比として表現された数であり、" "最大公約数は" (CODE1 "1") "、分母は正であり、" (CODE1 "1") "より大きい数です。")
+    (CHAPTER ("## 参考") 2 (CODE1 "figure_2-9") "," "2.3.2. トークンから数の構築,"
+     "22.1.3.1.2. 分数の印字")))
+(setf (gethash '("RATIO" . "SYSTEM-CLASS") *table*) (gethash "RATIO" *table*))
+(setf (gethash "RATIONAL" *table*)
+  '((CHAPTER NIL 0 "System Class " (CODE1 "RATIONAL"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "rational") "," (CODE1 "real") ","
+     (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "有理数の正準表現は、" "その値が積分の場合は整数を、" "それ以外の場合は比(ratio)です。" EOL2 "型"
+     (CODE1 "integer") "と" (CODE1 "ratio") "は、" "型" (CODE1 "rational") "のサブタイプであり、"
+     "疎の関係にあります。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "rational") " " (CODE1 "[") " "
+     (STRONG "lower-limit") " " (CODE1 "[") " " (STRONG "upper-limit") " " (CODE1 "]")
+     " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "lower-limit") ", " (STRONG "upper-limit") " -" "型"
+     (CODE1 "rational") "の区間指定子。" (STRONG "lower-limit") "と" (STRONG "upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、有理数の区間を" (STRONG "lower-limit") "と"
+     (STRONG "upper-limit") "によって定義することを示します。")))
+(setf (gethash '("RATIONAL" . "SYSTEM-CLASS") *table*) (gethash "RATIONAL" *table*))
 (setf (gethash "READ" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ") ", " (CODE1 "READ-PRESERVING-WHITESPACE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read") " " (CODE1 "&optional") " "
@@ -27561,6 +27816,70 @@
       "(setq x (list 'a 'b 'c 'd)) =>  (A B C D)" "(prog1 (nth (setq n (+ n 1)) x)"
       "       (setf (nth (setq n (+ n 1)) x) 'z)) =>  B" "x =>  (A B Z D)"))))
 (setf (gethash '("SHIFTF" . "MACRO") *table*) (gethash "SHIFTF" *table*))
+(setf (gethash "SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
+     (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "short-float") ": " "  " (CODE1 "short-float")
+     "," "  " (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "single-float") ": " "  " (CODE1 "single-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "double-float") ": " "  " (CODE1 "double-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "long-float") ": " "  " (CODE1 "long-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "これら4つの型は、型" (CODE1 "float") "のサブタイプとして定義され、" "型"
+     (CODE1 "short-float") "と型" (CODE1 "long-float") "の中間が" "型" (CODE1 "single-float")
+     "と型" (CODE1 "double-float") "になります。" "これらの分類の精度の定義は実装定義です。" "精度（「ビット」として計測され"
+     (CODE1 "p log 2b") "として計算されます）と" "指数のサイズ（また「ビット」として計測され" (CODE1 "log 2(n+1)") "、ただし"
+     (CODE1 "n") "は指数値の最大値として計算されます）は、" "少なくとも次の表に示される値より大きいことが推奨されます。" "型"
+     (CODE1 "float") "のサブタイプとして定義されたそれぞれは、" "マイナスゼロがあっても無くてもかまいません。" EOL2
+     "|フォーマット |最小精度  |最小指数サイズ |" "|:------------|:---------|:--------------|"
+     "|short        |" (CODE1 "13") " bit  |" (CODE1 "5") " bit        |"
+     "|single       |" (CODE1 "24") " bit  |" (CODE1 "8") " bit        |"
+     "|double       |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |"
+     "|long         |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |" EOL2
+     "Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ" EOL2 "浮動小数の内部表現は4つより少なくすることができます。"
+     "もし表現の区別が少ないときは、" "下記の規則を適用してください。" EOL2 "- もしひとつしかないとき、それは型" (CODE1 "single-float")
+     "です。" "  この表現では、オブジェクトは同時に" "  " (CODE1 "single-float") ", " (CODE1 "double-float")
+     "," "  " (CODE1 "short-float") ", " (CODE1 "long-float") "の型になります。" EOL2
+     "- 2つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 2つの型は" (CODE1 "single-float") "と"
+     (CODE1 "short-float") "が提供されます。" "    オブジェクトは同時に " (CODE1 "single-float") "," "    "
+     (CODE1 "double-float") "," (CODE1 "long-float") "の型になります。" "  - 2つの型は"
+     (CODE1 "single-float") "と" (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "single-float") "と" (CODE1 "short-float") "か、" "    あるいは"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" EOL2
+     "- 3つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 3つの型は" (CODE1 "short-float") ", "
+     (CODE1 "single-float") "," "    " (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" "  - 3つの型は"
+     (CODE1 "single-float") ", " (CODE1 "double-float") "," "    " (CODE1 "long-float")
+     "が提供されます。" "    オブジェクトは同時に" (CODE1 "single-float") "と" (CODE1 "short-float")
+     "の型になります。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "short-float") " " (CODE1 "[") " "
+     (STRONG "short-lower-limit") " " (CODE1 "[") " " (STRONG "short-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "single-float") " " (CODE1 "[") " "
+     (STRONG "single-lower-limit") " " (CODE1 "[") " " (STRONG "single-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "double-float") " " (CODE1 "[") " "
+     (STRONG "double-lower-limit") " " (CODE1 "[") " " (STRONG "double-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "long-float") " " (CODE1 "[") " "
+     (STRONG "long-lower-limit") " " (CODE1 "[") " " (STRONG "long-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "short-lower-limit") ", "
+     (STRONG "short-upper-limit") " -" "型" (CODE1 "short-float") "の区間指定子。"
+     (STRONG "short-lower-limit") "と" (STRONG "short-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。" EOL2 (STRONG "single-lower-limit") ", "
+     (STRONG "single-upper-limit") " -" "型" (CODE1 "single-float") "の区間指定子。"
+     (STRONG "single-lower-limit") "と" (STRONG "single-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "double-lower-limit") ", "
+     (STRONG "double-upper-limit") " -" "型" (CODE1 "double-float") "の区間指定子。"
+     (STRONG "double-lower-limit") "と" (STRONG "double-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "long-lower-limit") ", "
+     (STRONG "long-upper-limit") " -" "型" (CODE1 "long-float") "の区間指定子。"
+     (STRONG "long-lower-limit") "と" (STRONG "long-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
+(setf (gethash '("SHORT-FLOAT" . "TYPE") *table*) (gethash "SHORT-FLOAT" *table*))
 (setf (gethash "SIGNAL" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SIGNAL"))
     (CHAPTER ("## 構文") 2 (CODE1 "signal") " " (STRONG "datum") " &rest "
@@ -27602,6 +27921,21 @@
      (CODE1 "restart") "は通知処理を継続するときに使われます。" "このことは、条件を通知すべき、あるいは通知しなければならない"
      "他のすべての関数やマクロにも当てはまります。")))
 (setf (gethash '("SIGNAL" . "FUNCTION") *table*) (gethash "SIGNAL" *table*))
+(setf (gethash "SIGNED-BYTE" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "SIGNED-BYTE"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "signed-byte") "," (CODE1 "integer") ","
+     (CODE1 "rational") "," (CODE1 "real") "," (CODE1 "number") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "原始的な型指定子" (CODE1 "signed-byte") "は、" "型指定子" (CODE1 "integer")
+     "によって示されるものと" "同じ型を示しています。" "しかし、これらの2つの型指定子のリストフォームは、" "それぞれ違う意味を持っています。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "signed-byte") " " (CODE1 "[") " " (STRONG "s") " "
+     (CODE1 "|") " " (CODE1 "*") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "s") " - 正の整数")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、" (STRONG "s") "ビットのバイトの中において" "2の補数フォームで表現することができる"
+     "整数の集合を示しています。" "これは" (CODE1 "(integer -2^{s-1} 2^{s-1}-1)") "と同等です。" "型"
+     (CODE1 "signed-byte") "か、" "型" (CODE1 "(signed-byte *)") "は、" "型" (CODE1 "integer")
+     "と同じです。")))
+(setf (gethash '("SIGNED-BYTE" . "TYPE") *table*) (gethash "SIGNED-BYTE" *table*))
 (setf (gethash "SIMPLE-ARRAY" *table*)
   '((CHAPTER NIL 0 "Type " (CODE1 "SIMPLE-ARRAY"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "simple-array") "," (CODE1 "array") ","
@@ -27841,6 +28175,70 @@
     (CHAPTER ("## 定義") 2 "型" (CODE1 "simple-warning") "は、" (CODE1 "warn") "関数が"
      "その最初の引数を" (STRONG "format-control") "で指定して" "いつでも通知できるようなコンディションの表現です。")))
 (setf (gethash '("SIMPLE-WARNING" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-WARNING" *table*))
+(setf (gethash "SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
+     (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "short-float") ": " "  " (CODE1 "short-float")
+     "," "  " (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "single-float") ": " "  " (CODE1 "single-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "double-float") ": " "  " (CODE1 "double-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t") EOL1 (CODE1 "long-float") ": " "  " (CODE1 "long-float") "," "  "
+     (CODE1 "float") "," "  " (CODE1 "real") "," "  " (CODE1 "number") "," "  "
+     (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "これら4つの型は、型" (CODE1 "float") "のサブタイプとして定義され、" "型"
+     (CODE1 "short-float") "と型" (CODE1 "long-float") "の中間が" "型" (CODE1 "single-float")
+     "と型" (CODE1 "double-float") "になります。" "これらの分類の精度の定義は実装定義です。" "精度（「ビット」として計測され"
+     (CODE1 "p log 2b") "として計算されます）と" "指数のサイズ（また「ビット」として計測され" (CODE1 "log 2(n+1)") "、ただし"
+     (CODE1 "n") "は指数値の最大値として計算されます）は、" "少なくとも次の表に示される値より大きいことが推奨されます。" "型"
+     (CODE1 "float") "のサブタイプとして定義されたそれぞれは、" "マイナスゼロがあっても無くてもかまいません。" EOL2
+     "|フォーマット |最小精度  |最小指数サイズ |" "|:------------|:---------|:--------------|"
+     "|short        |" (CODE1 "13") " bit  |" (CODE1 "5") " bit        |"
+     "|single       |" (CODE1 "24") " bit  |" (CODE1 "8") " bit        |"
+     "|double       |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |"
+     "|long         |" (CODE1 "50") " bit  |" (CODE1 "8") " bit        |" EOL2
+     "Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ" EOL2 "浮動小数の内部表現は4つより少なくすることができます。"
+     "もし表現の区別が少ないときは、" "下記の規則を適用してください。" EOL2 "- もしひとつしかないとき、それは型" (CODE1 "single-float")
+     "です。" "  この表現では、オブジェクトは同時に" "  " (CODE1 "single-float") ", " (CODE1 "double-float")
+     "," "  " (CODE1 "short-float") ", " (CODE1 "long-float") "の型になります。" EOL2
+     "- 2つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 2つの型は" (CODE1 "single-float") "と"
+     (CODE1 "short-float") "が提供されます。" "    オブジェクトは同時に " (CODE1 "single-float") "," "    "
+     (CODE1 "double-float") "," (CODE1 "long-float") "の型になります。" "  - 2つの型は"
+     (CODE1 "single-float") "と" (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "single-float") "と" (CODE1 "short-float") "か、" "    あるいは"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" EOL2
+     "- 3つの内部表現のとき、下記に示す方法のどちらかを選択できます。" "  - 3つの型は" (CODE1 "short-float") ", "
+     (CODE1 "single-float") "," "    " (CODE1 "double-float") "が提供されます。" "    オブジェクトは同時に"
+     (CODE1 "double-float") "と" (CODE1 "long-float") "の型になります。" "  - 3つの型は"
+     (CODE1 "single-float") ", " (CODE1 "double-float") "," "    " (CODE1 "long-float")
+     "が提供されます。" "    オブジェクトは同時に" (CODE1 "single-float") "と" (CODE1 "short-float")
+     "の型になります。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "short-float") " " (CODE1 "[") " "
+     (STRONG "short-lower-limit") " " (CODE1 "[") " " (STRONG "short-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "single-float") " " (CODE1 "[") " "
+     (STRONG "single-lower-limit") " " (CODE1 "[") " " (STRONG "single-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "double-float") " " (CODE1 "[") " "
+     (STRONG "double-lower-limit") " " (CODE1 "[") " " (STRONG "double-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]") EOL1 (CODE1 "long-float") " " (CODE1 "[") " "
+     (STRONG "long-lower-limit") " " (CODE1 "[") " " (STRONG "long-upper-limit") " "
+     (CODE1 "]") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "short-lower-limit") ", "
+     (STRONG "short-upper-limit") " -" "型" (CODE1 "short-float") "の区間指定子。"
+     (STRONG "short-lower-limit") "と" (STRONG "short-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。" EOL2 (STRONG "single-lower-limit") ", "
+     (STRONG "single-upper-limit") " -" "型" (CODE1 "single-float") "の区間指定子。"
+     (STRONG "single-lower-limit") "と" (STRONG "single-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "double-lower-limit") ", "
+     (STRONG "double-upper-limit") " -" "型" (CODE1 "double-float") "の区間指定子。"
+     (STRONG "double-lower-limit") "と" (STRONG "double-upper-limit") "の"
+     "それぞれのデフォルト値はシンボル" (CODE1 "*") "。" EOL2 (STRONG "long-lower-limit") ", "
+     (STRONG "long-upper-limit") " -" "型" (CODE1 "long-float") "の区間指定子。"
+     (STRONG "long-lower-limit") "と" (STRONG "long-upper-limit") "の" "それぞれのデフォルト値はシンボル"
+     (CODE1 "*") "。")
+    (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
+(setf (gethash '("SINGLE-FLOAT" . "TYPE") *table*) (gethash "SINGLE-FLOAT" *table*))
 (setf (gethash "SIXTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "
@@ -32496,6 +32894,23 @@
     (CHAPTER ("## 備考") 2 (CODE1 "unread-char") "は、" "Lispリーダーやその他の構文解析を実行するときに"
      (STRONG "input-stream") "からひとつの文字を先読みできるような" "効率的な仕組みの提供を目的としています。")))
 (setf (gethash '("UNREAD-CHAR" . "FUNCTION") *table*) (gethash "UNREAD-CHAR" *table*))
+(setf (gethash "UNSIGNED-BYTE" *table*)
+  '((CHAPTER NIL 0 "Type " (CODE1 "UNSIGNED-BYTE"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "unsigned-byte") "," (CODE1 "signed-byte") ","
+     (CODE1 "integer") "," (CODE1 "rational") "," (CODE1 "real") "," (CODE1 "number") ","
+     (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "原始的な型指定子" (CODE1 "unsigned-byte") "は、" "型指定子"
+     (CODE1 "(integer 0 *)") "によって示されるものと" "同じ型を示しています。")
+    (CHAPTER ("## 型指定子の種類") 2 "省略可能")
+    (CHAPTER ("## 型指定子の構文") 2 (CODE1 "unsigned-byte") " " (CODE1 "[") " " (STRONG "s")
+     " " (CODE1 "|") " " (CODE1 "*") " " (CODE1 "]"))
+    (CHAPTER ("## 型指定子の引数") 2 (STRONG "s") " - 正の整数")
+    (CHAPTER ("## 型指定子の定義") 2 "これは、" "サイズ" (STRONG "s") "(ビット)のバイトの中で表現することができる"
+     "非負の整数の集合を示しています。" "これは" (CODE1 "(mod m)") "ただし" (CODE1 "m=2^s") "か、"
+     (CODE1 "(integer n 0)") "ただし" (CODE1 "n=2^{s}-1") "と同等です。" "型"
+     (CODE1 "unsigned-byte") "か、" "型" (CODE1 "(unsigned-byte *)") "は、" "型"
+     (CODE1 "(integer 0 *)") "と同じであり、" "これは非負の整数の集合です。")))
+(setf (gethash '("UNSIGNED-BYTE" . "TYPE") *table*) (gethash "UNSIGNED-BYTE" *table*))
 (setf (gethash "UNUSE-PACKAGE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "UNUSE-PACKAGE"))
     (CHAPTER ("## 構文") 2 (CODE1 "unuse-package") " " (STRONG "packages-to-unuse") " "

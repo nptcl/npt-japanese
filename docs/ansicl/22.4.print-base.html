@@ -227,9 +227,9 @@
 <p><a href="22.4.print-base.html"><code>*print-base*</code></a>の初期値は<code>10</code>。<br />
 <a href="22.4.print-base.html"><code>*print-radix*</code></a>の初期値は<em>false</em>。</p>
 <h2 id="定義">定義</h2>
-<p><a href="22.4.print-base.html"><code>*print-base*</code></a>と<a href="22.4.print-base.html"><code>*print-radix*</code></a>は、<code>rational</code>の印刷を制御します。 <a href="22.4.print-base.html"><code>*print-base*</code></a>の値は、現在の出力の基数と呼ばれます。</p>
-<p><a href="22.4.print-base.html"><code>*print-base*</code></a>の値は、プリンターが<code>rational</code>を印刷する基数です。 基数が<code>10</code>より大きいとき、 アルファベットの文字が9より上の数字の表現に使用されます。</p>
-<p><a href="22.4.print-base.html"><code>*print-radix*</code></a>の値が<em>true</em>のとき、 プリンターは<code>rational</code>の数を印刷するときに 指定した基数を表す基数指定子を印刷します。 基数指定子は、常に小文字で印刷されます。 もし<a href="22.4.print-base.html"><code>*print-base*</code></a>が<code>2</code>, <code>8</code>, <code>6</code>のとき、 基数指定子はそれぞれ<code>#b</code>, <code>#o</code>, <code>#x</code>が使用されます。</p>
+<p><a href="22.4.print-base.html"><code>*print-base*</code></a>と<a href="22.4.print-base.html"><code>*print-radix*</code></a>は、有理数の印刷を制御します。 <a href="22.4.print-base.html"><code>*print-base*</code></a>の値は、現在の出力の基数と呼ばれます。</p>
+<p><a href="22.4.print-base.html"><code>*print-base*</code></a>の値は、プリンターが有理数を印刷する基数です。 基数が<code>10</code>より大きいとき、 アルファベットの文字が9より上の数字の表現に使用されます。</p>
+<p><a href="22.4.print-base.html"><code>*print-radix*</code></a>の値が<em>true</em>のとき、 プリンターは有理数を印刷するときに 指定した基数を表す基数指定子を印刷します。 基数指定子は、常に小文字で印刷されます。 もし<a href="22.4.print-base.html"><code>*print-base*</code></a>が<code>2</code>, <code>8</code>, <code>6</code>のとき、 基数指定子はそれぞれ<code>#b</code>, <code>#o</code>, <code>#x</code>が使用されます。</p>
 <p>整数のとき、基数<code>10</code>ということを 先行する基数指定子のかわりに、 末尾の小数点で示します。 <code>ratio</code>のときは、<code>#10r</code>を使用します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((<span class="va">*print-base*</span> <span class="fl">24.</span>) (<span class="va">*print-radix*</span> <span class="kw">t</span>))</span>

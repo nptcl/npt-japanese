@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class INTEGER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.integer
+@name: integer
+@type: system-class
+
+System Class `INTEGER`
+
+
+## {class-precedence-list}
+
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+`integer`は、数学的な整数です。
+整数の大きさに制限はありません。
+
+型{fixnum:link}と{bignum:link}は、
+型{integer:link}の{exhaustive-partition}です。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`integer` `[` *lower-limit* `[` *upper-limit* `]` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*lower-limit*, *upper-limit* -
+型{integer:link}の{interval-designator}。
+*lower-limit*と*upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは、整数の区間を
+*lower-limit*と*upper-limit*によって定義することを示します。
+
+
+## {see-also}
+
+{figure_2-9:link},
+{2.3.2:ab},
+{22.1.3.1.1:ab}
+
+
+## {notes}
+
+型を`(integer lower upper)`としたとき、
+*lower*と*upper*がそれぞれ
+{most-negative-fixnum:link}と{most-positive-fixnum:link}であるようなときは、
+{fixnum:link}とも呼ばれます。
+
+型`(integer 0 1)`は、{bit!type:link}とも呼ばれます。
+型`(integer 0 *)`は、{unsigned-byte:link}とも呼ばれます。
+
+@end
+

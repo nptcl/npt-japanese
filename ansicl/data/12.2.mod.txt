@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type Specifier MOD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.mod!type
+@name: mod!type
+@type: type-specifier
+
+Type Specifier `MOD`
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`mod` *n*
+
+
+## {compound-type-specifier-arguments}
+
+*n* - 正の整数
+
+
+## {compound-type-specifier-description}
+
+これは*n*より小さい非負の整数の集合を示しています。
+これは`(integer 0 (n))`か、
+`(integer 0 m)`ただし`m=n-1`と同等です。
+
+引数は必要であり、`*`は指定できません。
+
+シンボルの{mod!type:link}は有効な型指定子ではありません。
+
+@end
+

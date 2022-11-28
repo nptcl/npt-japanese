@@ -156,6 +156,9 @@
 
 (replace interval-designator "区間指定子")
 
+(replace float "浮動小数")
+(replace rational "有理数")
+
 ;;  Metaobject Protocol
 (replace methods "メソッド")
 (replace comments-and-remarks "コメントと備考")

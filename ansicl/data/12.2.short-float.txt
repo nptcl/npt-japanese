@@ -1,0 +1,142 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SHORT-FLOAT
+;;  Type SINGLE-FLOAT
+;;  Type DOUBLE-FLOAT
+;;  Type LONG-FLOAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.short-float
+@name: short-float
+@name: single-float
+@name: double-float
+@name: long-float
+@type: type
+
+Type `SHORT-FLOAT`, `SINGLE-FLOAT`, `DOUBLE-FLOAT`, `LONG-FLOAT`
+
+
+## {class-precedence-list}
+
+{short-float:link}: 
+  {short-float:link},
+  {float!system-class:link},
+  {real:link},
+  {number:link},
+  {t!system-class:link}  
+{single-float:link}: 
+  {single-float:link},
+  {float!system-class:link},
+  {real:link},
+  {number:link},
+  {t!system-class:link}  
+{double-float:link}: 
+  {double-float:link},
+  {float!system-class:link},
+  {real:link},
+  {number:link},
+  {t!system-class:link}  
+{long-float:link}: 
+  {long-float:link},
+  {float!system-class:link},
+  {real:link},
+  {number:link},
+  {t!system-class:link}
+
+
+## {description}
+
+これら4つの型は、型{float!system-class:link}のサブタイプとして定義され、
+型{short-float:link}と型{long-float:link}の中間が
+型{single-float:link}と型{double-float:link}になります。
+これらの分類の精度の定義は実装定義です。
+精度（「ビット」として計測され`p log 2b`として計算されます）と
+指数のサイズ（また「ビット」として計測され
+`log 2(n+1)`、ただし`n`は指数値の最大値として計算されます）は、
+少なくとも次の表に示される値より大きいことが推奨されます。
+型{float!system-class:link}のサブタイプとして定義されたそれぞれは、
+マイナスゼロがあっても無くてもかまいません。
+
+|フォーマット |最小精度  |最小指数サイズ |
+|:------------|:---------|:--------------|
+|short        |`13` bit  |`5` bit        |
+|single       |`24` bit  |`8` bit        |
+|double       |`50` bit  |`8` bit        |
+|long         |`50` bit  |`8` bit        |
+
+Figure 12-12. 推奨される最小の浮動小数の精度と指数サイズ
+
+
+{float}の内部表現は4つより少なくすることができます。
+もし表現の区別が少ないときは、
+下記の規則を適用してください。
+
+- もしひとつしかないとき、それは型{single-float:link}です。
+  この表現では、オブジェクトは同時に
+  {single-float:link}, {double-float:link},
+  {short-float:link}, {long-float:link}の型になります。
+
+- 2つの内部表現のとき、下記に示す方法のどちらかを選択できます。
+  - 2つの型は{single-float:link}と{short-float:link}が提供されます。
+    オブジェクトは同時に {single-float:link},
+    {double-float:link},{long-float:link}の型になります。
+  - 2つの型は{single-float:link}と{double-float:link}が提供されます。
+    オブジェクトは同時に{single-float:link}と{short-float:link}か、
+    あるいは{double-float:link}と{long-float:link}の型になります。
+
+- 3つの内部表現のとき、下記に示す方法のどちらかを選択できます。
+  - 3つの型は{short-float:link}, {single-float:link},
+    {double-float:link}が提供されます。
+    オブジェクトは同時に{double-float:link}と{long-float:link}の型になります。
+  - 3つの型は{single-float:link}, {double-float:link},
+    {long-float:link}が提供されます。
+    オブジェクトは同時に{single-float:link}と{short-float:link}の型になります。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`short-float` `[` *short-lower-limit* `[` *short-upper-limit* `]` `]`  
+`single-float` `[` *single-lower-limit* `[` *single-upper-limit* `]` `]`  
+`double-float` `[` *double-lower-limit* `[` *double-upper-limit* `]` `]`  
+`long-float` `[` *long-lower-limit* `[` *long-upper-limit* `]` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*short-lower-limit*, *short-upper-limit* -
+型{short-float:link}の{interval-designator}。
+*short-lower-limit*と*short-upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+*single-lower-limit*, *single-upper-limit* -
+型{single-float:link}の{interval-designator}。
+*single-lower-limit*と*single-upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+*double-lower-limit*, *double-upper-limit* -
+型{double-float:link}の{interval-designator}。
+*double-lower-limit*と*double-upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+*long-lower-limit*, *long-upper-limit* -
+型{long-float:link}の{interval-designator}。
+*long-lower-limit*と*long-upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+それぞれは、指定された型の{float}の集合は
+{interval-designator}によって
+区間を定義していることを意味しています。
+
+@end
+

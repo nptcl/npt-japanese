@@ -29,16 +29,16 @@ Variable `*PRINT-BASE*`, `*PRINT-RADIX*`
 
 ## {description}
 
-{*print-base*:link}と{*print-radix*:link}は、`rational`の印刷を制御します。
+{*print-base*:link}と{*print-radix*:link}は、{rational}の印刷を制御します。
 {*print-base*:link}の値は、現在の出力の基数と呼ばれます。
 
 
-{*print-base*:link}の値は、プリンターが`rational`を印刷する基数です。
+{*print-base*:link}の値は、プリンターが{rational}を印刷する基数です。
 基数が`10`より大きいとき、
 アルファベットの文字が9より上の数字の表現に使用されます。
 
 {*print-radix*:link}の値が*true*のとき、
-プリンターは`rational`の数を印刷するときに
+プリンターは{rational}を印刷するときに
 指定した基数を表す基数指定子を印刷します。
 基数指定子は、常に小文字で印刷されます。
 もし{*print-base*:link}が`2`, `8`, `6`のとき、

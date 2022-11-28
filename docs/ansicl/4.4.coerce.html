@@ -241,11 +241,11 @@
 </ul></li>
 <li><a href="12.2.complex-system-class.html"><code>complex</code></a>
 <ul>
-<li>もし<em>result-type</em>が<a href="12.2.complex-system-class.html"><code>complex</code></a>であり <em>object</em>が実装のときは、 <em>result</em>は実部が<em>object</em>、 虚部が整数の<code>0</code>を<em>object</em>の型で<a href="4.4.coerce.html"><code>coerce</code></a>したもので構築した 複素数になります （しかし文字実部が<code>rational</code>のときは、 結果もまた複素数ではなく<code>rational</code>になります。 12.1.5.3. <code>rational</code>型の複素数の標準的な表現のルールをご確認ください。 よって例えば<code>(coerce 3 'complex)</code>は許されますが、 返却値は複素数ではなく<code>3</code>になります）。 <br><br></li>
+<li>もし<em>result-type</em>が<a href="12.2.complex-system-class.html"><code>complex</code></a>であり <em>object</em>が実装のときは、 <em>result</em>は実部が<em>object</em>、 虚部が整数の<code>0</code>を<em>object</em>の型で<a href="4.4.coerce.html"><code>coerce</code></a>したもので構築した 複素数になります （しかしもし実部が有理数のときは、 結果もまた複素数ではなく有理数になります。 12.1.5.3. <code>rational</code>型の複素数の標準的な表現のルールをご確認ください。 よって例えば<code>(coerce 3 'complex)</code>は許されますが、 返却値は複素数ではなく<code>3</code>になります）。 <br><br></li>
 </ul></li>
-<li><code>float</code>
+<li><a href="12.2.float-system-class.html"><code>float</code></a>
 <ul>
-<li>もし<em>result-type</em>が <code>float</code>, <code>short-float</code>, <code>single-float</code>, <code>double-float</code>, <code>long-float</code>のどれかであり <em>object</em>が実装のときは、 <em>result</em>は、型が<em>result-type</em>であり、 符号が<em>object</em>と等しく、 その浮動小数の型が表現できる精度の大きさが <em>object</em>と等しいものになります （もし<em>result-type</em>が<code>float</code>で <em>object</em>が浮動小数ではないときは、 <em>result</em>は<code>single-float</code>になります）。 <br><br></li>
+<li>もし<em>result-type</em>が <a href="12.2.float-system-class.html"><code>float</code></a>, <a href="12.2.short-float.html"><code>short-float</code></a>, <a href="12.2.short-float.html"><code>single-float</code></a>, <a href="12.2.short-float.html"><code>double-float</code></a>, <a href="12.2.short-float.html"><code>long-float</code></a>のどれかであり <em>object</em>が実装のときは、 <em>result</em>は、型が<em>result-type</em>であり、 符号が<em>object</em>と等しく、 その浮動小数の型が表現できる精度の大きさが <em>object</em>と等しいものになります （もし<em>result-type</em>が<a href="12.2.float-system-class.html"><code>float</code></a>で <em>object</em>が浮動小数ではないときは、 <em>result</em>は<code>single-float</code>になります）。 <br><br></li>
 </ul></li>
 <li><a href="4.4.function-system-class.html"><code>function</code></a>
 <ul>
@@ -282,9 +282,9 @@
 <p><em>result-type</em>が<a href="4.4.function-system-class.html"><code>function</code></a>だが、 <em>object</em>が<code>fbound</code>ではないシンボルであったり、 またはシンボル名がマクロか特殊オペレーターのときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <p><em>result-type</em>で指定された要素数と<em>object</em>が違う長さでのときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが発生します。</p>
 <h2 id="参考">参考</h2>
-<p><code>rational</code>, <code>floor</code>, <a href="13.2.char-code.html"><code>char-code</code></a>, <a href="13.2.char-int.html"><code>char-int</code></a></p>
+<p><a href="12.2.rational-system-class.html"><code>rational</code></a>, <code>floor</code>, <a href="13.2.char-code.html"><code>char-code</code></a>, <a href="13.2.char-int.html"><code>char-int</code></a></p>
 <h2 id="備考">備考</h2>
-<p>浮動小数から<code>rational</code>への強制と、 分数から浮動小数への強制は、 丸め問題のため提供されません。</p>
+<p>浮動小数から有理数への強制と、 分数から浮動小数への強制は、 丸め問題のため提供されません。</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">coerce</span> x &#39;t) ==  (<span class="kw">identity</span> x) ==  x</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

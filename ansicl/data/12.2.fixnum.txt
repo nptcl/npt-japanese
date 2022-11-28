@@ -1,0 +1,36 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type FIXNUM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.fixnum
+@name: fixnum
+@type: type
+
+Type `FIXNUM`
+
+
+## {class-precedence-list}
+
+{fixnum:link},
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+`fixnum`は
+{most-negative-fixnum:link}と{most-positive-fixnum:link}に
+包括的に含まれる値の整数です。
+正確な`fixnum`の整数の範囲は実装定義です。
+型{fixnum:link}は`(signed-byte 16)`の
+スーパータイプであることが要求されます。
+
+@end
+

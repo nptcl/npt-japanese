@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type UNSIGNED-BYTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.unsigned-byte
+@name: unsigned-byte
+@type: type
+
+Type `UNSIGNED-BYTE`
+
+
+## {class-precedence-list}
+
+{unsigned-byte:link},
+{signed-byte:link},
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+原始的な型指定子{unsigned-byte:link}は、
+型指定子`(integer 0 *)`によって示されるものと
+同じ型を示しています。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`unsigned-byte` `[` *s* `|` `*` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*s* - 正の整数
+
+
+## {compound-type-specifier-description}
+
+これは、
+サイズ*s*(ビット)のバイトの中で表現することができる
+非負の整数の集合を示しています。
+これは`(mod m)`ただし`m=2^s`か、
+`(integer n 0)`ただし`n=2^{s}-1`と同等です。
+型{unsigned-byte:link}か、
+型`(unsigned-byte *)`は、
+型`(integer 0 *)`と同じであり、
+これは非負の整数の集合です。
+
+@end
+

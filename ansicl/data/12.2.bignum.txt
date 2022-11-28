@@ -1,0 +1,31 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type BIGNUM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.bignum
+@name: bignum
+@type: type
+
+Type `BIGNUM`
+
+
+## {class-precedence-list}
+
+{bignum:link},
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{bignum:link}は、正確に`(and integer (not fixnum))`として定義されます。
+
+@end
+

@@ -1,0 +1,62 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type SIGNED-BYTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.signed-byte
+@name: signed-byte
+@type: type
+
+Type `SIGNED-BYTE`
+
+
+## {class-precedence-list}
+
+{signed-byte:link},
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+原始的な型指定子{signed-byte:link}は、
+型指定子{integer:link}によって示されるものと
+同じ型を示しています。
+しかし、これらの2つの型指定子のリストフォームは、
+それぞれ違う意味を持っています。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`signed-byte` `[` *s* `|` `*` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*s* - 正の整数
+
+
+## {compound-type-specifier-description}
+
+これは、
+*s*ビットのバイトの中において
+2の補数フォームで表現することができる
+整数の集合を示しています。
+これは`(integer -2^{s-1} 2^{s-1}-1)`と同等です。
+型{signed-byte:link}か、
+型`(signed-byte *)`は、
+型{integer:link}と同じです。
+
+@end
+

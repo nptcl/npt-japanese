@@ -1,0 +1,94 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class FLOAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.float!system-class
+@name: float!system-class
+@type: system-class
+
+System Class `FLOAT`
+
+
+## {class-precedence-list}
+
+{float!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+{float}は、`s*f*b^{e-p}`のフォームで表される
+数学的な{rational}（Common Lispの`rational`ではなく）です。
+ただし、`s`は符号であり`+1`か`-1`、
+`b`は基数であり`1`より大きい整数、
+`p`は{float}の精度（`基数-b`の数値）であり正の整数、
+`f`は仮数であり`b^{p-1}`から`b^{p}-1`（含む）の間の正の整数、
+`e`は指数であり整数です。
+`p`の値と`e`の区間は、
+実装自身と実装内における{float}の型に依存します。
+加えて、浮動小数のゼロもまた実装依存であり
+「マイナスゼロ」が存在できます。
+もしマイナスゼロが存在しないときは、
+`0.0`と`-0.0`は両方とも単純に浮動小数のゼロとして解釈されます。
+`(= 0.0 -0.0)`は常に*true*です。
+もしマイナスゼロが存在するとき、
+`(eql -0.0 0.0)`は*false*であり、
+そうではないときは*true*です。
+
+型{short-float:link}, {single-float:link},
+{double-float:link}, {long-float:link}は、
+型{float!system-class:link}のサブタイプです。
+これらのうちどの2つも疎の型か同じ型のどちらかです。
+もし同じ型のとき、
+上記の順番の中でそれらの間にある他の型もまた同じ型です。
+例えば、もし型{single-float:link}と型{long-float:link}が同じ型のとき、
+型{double-float:link}もまた同じ型でなければなりません。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`float` `[` *lower-limit* `[` *upper-limit* `]` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*lower-limit*, *upper-limit* -
+型{float!system-class:link}の{interval-designator}。
+*lower-limit*と*upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは、{float}の区間を
+*lower-limit*と*upper-limit*によって定義することを示します。
+
+
+## {see-also}
+
+{figure_2-9:link},
+{2.3.2:ab},
+{22.1.3.1.3:ab}
+
+
+## {notes}
+
+全ての数学的な整数は、
+Common Lispの実数`real`で表現できるだけでなく、
+浮動小数の複素数`complex float`でもまた表現できます。
+例えば、数学的な数の`1`の表現として可能なものは、
+整数の`1`、{float}の`1.0`、複素数の`#C(1.0 0.0)`が含まれます。
+
+@end
+

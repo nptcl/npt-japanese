@@ -26,12 +26,12 @@ System Class `COMPLEX`
 型{rational!system-class:link}に含まれるもの以外の
 全ての数学的な複素数を含むものです。
 複素数は、実部と虚部がそれぞれ実数の直交形式で表されます。
-実部と虚部は、両方とも`rational`か、
-あるいは両方とも同じ`float`の型です。
-虚部は`float`のゼロにすることができますが、
-`rational`のゼロにすることはできず、
+実部と虚部は、両方とも{rational}か、
+あるいは両方とも同じ{float}の型です。
+虚部は{float}のゼロにすることができますが、
+{rational}のゼロにすることはできず、
 そのような数はCommon Lispによって
-常に複素数ではなく`rational`として表現されます。
+常に複素数ではなく{rational}として表現されます。
 
 
 ## {compound-type-specifier-kind}
@@ -77,7 +77,7 @@ System Class `COMPLEX`
 複素数の入力構文は、実部を`r`、虚部を`i`としたとき`#c(r i)`になります。
 さらなる詳細は、{2.4:ab}をご確認ください。
 
-全ての`float`を`n`としたとき、
+全ての{float}を`n`としたとき、
 数学的に同じ数としｔ絵表現される複素数は、
 `(COERCE n 'COMPLEX)`として得ることができます。
 

@@ -64,8 +64,8 @@ Function `COERCE`
     *object*が実装のときは、 *result*は実部が*object*、
     虚部が整数の`0`を*object*の型で{coerce:link}したもので構築した
     複素数になります
-    （しかし文字実部が`rational`のときは、
-    結果もまた複素数ではなく`rational`になります。
+    （しかしもし実部が{rational}のときは、
+    結果もまた複素数ではなく{rational}になります。
     {12.1.5.3:ab}をご確認ください。
     よって例えば`(coerce 3 'complex)`は許されますが、
     返却値は複素数ではなく`3`になります）。
@@ -161,7 +161,7 @@ Function `COERCE`
 
 ## {notes}
 
-浮動小数から`rational`への強制と、
+浮動小数から{rational}への強制と、
 分数から浮動小数への強制は、
 丸め問題のため提供されません。
 

@@ -1,0 +1,59 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class RATIONAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.rational!system-class
+@name: rational!system-class
+@type: system-class
+
+System Class `RATIONAL`
+
+
+## {class-precedence-list}
+
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+{rational}の正準表現は、
+その値が積分の場合は整数を、
+それ以外の場合は比(ratio)です。
+
+型{integer:link}と{ratio:link}は、
+型{rational!system-class:link}のサブタイプであり、
+疎の関係にあります。
+
+
+## {compound-type-specifier-kind}
+
+{abbreviating}
+
+
+## {compound-type-specifier-syntax}
+
+`rational` `[` *lower-limit* `[` *upper-limit* `]` `]`
+
+
+## {compound-type-specifier-arguments}
+
+*lower-limit*, *upper-limit* -
+型{rational!system-class:link}の{interval-designator}。
+*lower-limit*と*upper-limit*の
+それぞれのデフォルト値はシンボル`*`。
+
+
+## {compound-type-specifier-description}
+
+これは、{rational}の区間を
+*lower-limit*と*upper-limit*によって定義することを示します。
+
+@end
+

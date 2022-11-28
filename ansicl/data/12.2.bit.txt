@@ -1,0 +1,34 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Type BIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.bit!type
+@name: bit!type
+@type: type
+
+Type `BIT`
+
+
+## {class-precedence-list}
+
+{bit!type:link},
+{unsigned-byte:link},
+{signed-byte:link},
+{integer:link},
+{rational!system-class:link},
+{real:link},
+{number:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{bit!type:link}は、
+型`(integer 0 1)`および`(unsigned-byte 1)`と同等です。
+
+@end
+

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function SIN, COS, TAN</title>
+  <title>Constant-Variable PI</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,32 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function SIN, COS, TAN</h1>
+<h1 class="title">Constant-Variable PI</h1>
 </header>
 <p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="function-sin-cos-tan">Function <strong>SIN, COS, TAN</strong></h1>
-<p>Function <code>SIN</code>, <code>COS</code>, <code>TAN</code></p>
-<h2 id="構文">構文</h2>
-<p><code>sin</code> <em>radians</em> =&gt; <em>number</em><br />
-<code>cos</code> <em>radians</em> =&gt; <em>number</em><br />
-<code>tan</code> <em>radians</em> =&gt; <em>number</em></p>
-<h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>radians</em> - ラジアンで与えられる数<br />
-<em>number</em> - 数</p>
+<h1 id="constant-variable-pi">Constant-Variable <strong>PI</strong></h1>
+<p>Constant Variable <code>PI</code></p>
+<h2 id="値">値</h2>
+<p>実装依存であり<code>long-float</code>の値</p>
 <h2 id="定義">定義</h2>
-<p><a href="12.2.sin.html"><code>sin</code></a>, <a href="12.2.sin.html"><code>cos</code></a>, <a href="12.2.sin.html"><code>tan</code></a>は、<em>radians</em>の正弦、余弦、正接を返却します。</p>
+<p>適切に<code>long-float</code>で近似された数学的な定数のπ（円周率）。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">sin</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  <span class="fl">0.0</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cos</span> <span class="fl">0.7853982</span>) <span class="op">=&gt;</span>  <span class="fl">0.707107</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">tan</span> #c(<span class="dv">0</span> <span class="dv">1</span>)) <span class="op">=&gt;</span>  #C(<span class="fl">0.0</span> <span class="fl">0.761594</span>)</span></code></pre></div>
-<h2 id="副作用">副作用</h2>
-<p>なし。</p>
-<h2 id="影響">影響</h2>
-<p>なし。</p>
-<h2 id="例外">例外</h2>
-<p><em>radians</em>が数ではないとき、型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを 通知する必要があります。 <code>arithmetic-error</code>が発生する可能性があります。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 下記の計算は実装の精度に依存します。</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; また「long float」が実装によっては他のいくつかの</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">;; 浮動小数形式（例えば「double-float」）として扱われるため、</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">;; 指数マーカーは同等のものになるかもしれません</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;; （例えば「L」の代わりに「D」）。</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">pi</span> <span class="op">=&gt;</span>  <span class="fl">3.141592653589793</span>L0</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cos</span> <span class="kw">pi</span>) <span class="op">=&gt;</span>  -<span class="fl">1.0</span>L0</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> sin-of-degrees </span>(degrees)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let</span> ((x (<span class="kw">if</span> (<span class="kw">floatp</span> degrees) degrees (<span class="kw">float</span> degrees <span class="kw">pi</span>))))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">sin</span> (<span class="op">*</span> x (<span class="op">/</span> (<span class="kw">float</span> <span class="kw">pi</span> x) <span class="dv">180</span>)))))</span></code></pre></div>
 <h2 id="参考">参考</h2>
-<p><a href="12.2.asin.html"><code>asin</code></a>, <a href="12.2.asin.html"><code>acos</code></a>, <a href="12.2.asin.html"><code>atan</code></a>, 12.1.3.3. 浮動小数の代替可能性の規則</p>
-<h2 id="備考">備考</h2>
 <p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>他のいくつかの精度への<code>PI</code>の近似は、 <code>(float pi x)</code>、ただし<em>x</em>は希望する精度の浮動小数と書くか、 あるいは<code>(coerce pi type)</code>、ただし<em>type</em>は 例えば<a href="12.2.short-float.html"><code>short-float</code></a>のように希望する型を書くことで 得ることができます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

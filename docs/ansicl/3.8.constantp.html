@@ -231,7 +231,7 @@
 <p>下記に定義された種類のフォームが定数フォームであると考えます。</p>
 <ul>
 <li><p>自己評価オブジェクト（例えば数、文字、そして多種な配列）は、 常に定数フォームであると考えられ、 <a href="3.8.constantp.html"><code>constantp</code></a>によって認識されなければなりません。</p></li>
-<li><p>定数変数、キーワード、 Common Lispによって定義された定数シンボル （例えば<a href="5.3.nil-variable.html"><code>nil</code></a>、<a href="5.3.t-variable.html"><code>t</code></a>、<code>pi</code>）、 ユーザーが<a href="5.3.defconstant.html"><code>defconstant</code></a>で<em>environment</em>に定数として指定したシンボルは、 常に定数フォームであると考えられ、 <a href="3.8.constantp.html"><code>constantp</code></a>によって認識されなければなりません。</p></li>
+<li><p>定数変数、キーワード、 Common Lispによって定義された定数シンボル （例えば<a href="5.3.nil-variable.html"><code>nil</code></a>、<a href="5.3.t-variable.html"><code>t</code></a>、<a href="12.2.pi.html"><code>pi</code></a>）、 ユーザーが<a href="5.3.defconstant.html"><code>defconstant</code></a>で<em>environment</em>に定数として指定したシンボルは、 常に定数フォームであると考えられ、 <a href="3.8.constantp.html"><code>constantp</code></a>によって認識されなければなりません。</p></li>
 <li><p><a href="3.8.quote.html"><code>quote</code></a>フォームは 常に定数フォームであると考えられ、 <a href="3.8.constantp.html"><code>constantp</code></a>によって認識されなければなりません。</p></li>
 <li><p>実装はさらに追加で定数フォームを 検出することが許されますが、必須ではありません。 もしそれを行うのであれば、<em>environment</em>の情報を使用することができますが、 必須ではありません。 <a href="3.8.constantp.html"><code>constantp</code></a>によって<em>true</em>かもしれないし そうではないかもしれない定数フォームの例として次のものが挙げられます <code>(sqrt pi)</code>, <code>(+ 3 2)</code>, <code>(length '(a b c))</code>, <code>(let ((x 7)) (zerop x))</code>。</p></li>
 </ul>

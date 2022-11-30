@@ -1,0 +1,57 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable PI
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.pi
+@name: pi
+@type: constant-variable
+
+Constant Variable `PI`
+
+
+## {value}
+
+{implementation-dependent}であり`long-float`の値
+
+
+## {description}
+
+適切に`long-float`で近似された数学的な定数のπ（円周率）。
+
+
+## {examples}
+
+```lisp
+;; 下記の計算は実装の精度に依存します。
+;; また「long float」が実装によっては他のいくつかの
+;; 浮動小数形式（例えば「double-float」）として扱われるため、
+;; 指数マーカーは同等のものになるかもしれません
+;; （例えば「L」の代わりに「D」）。
+pi =>  3.141592653589793L0
+(cos pi) =>  -1.0L0
+
+(defun sin-of-degrees (degrees)
+  (let ((x (if (floatp degrees) degrees (float degrees pi))))
+    (sin (* x (/ (float pi x) 180)))))
+```
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+他のいくつかの精度への`PI`の近似は、
+`(float pi x)`、ただし*x*は希望する精度の{float}と書くか、
+あるいは`(coerce pi type)`、ただし*type*は
+例えば{short-float:link}のように希望する型を書くことで
+得ることができます。
+
+@end
+

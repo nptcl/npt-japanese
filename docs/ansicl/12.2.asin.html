@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function ASIN, ACOS, ATAN</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function ASIN, ACOS, ATAN</h1>
+</header>
+<p><a href="12.2.html">UP</a></p>
+<hr />
+<h1 id="function-asin-acos-atan">Function <strong>ASIN, ACOS, ATAN</strong></h1>
+<p>Function <code>ASIN</code>, <code>ACOS</code>, <code>ATAN</code></p>
+<h2 id="構文">構文</h2>
+<p><code>asin</code> <em>number</em> =&gt; <em>radians</em><br />
+<code>acos</code> <em>number</em> =&gt; <em>radians</em><br />
+<code>atan</code> <em>number1</em> <code>&amp;optional</code> <em>number2</em> =&gt; <em>radians</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>number</em> - 数<br />
+<em>number1</em> - <em>number2</em>が指定されていないときは数、 または<em>number2</em>が指定されているときは実数<br />
+<em>number2</em> - 実数<br />
+<em>radians</em> - 数（ラジアン）</p>
+<h2 id="定義">定義</h2>
+<p><a href="12.2.asin.html"><code>asin</code></a>, <a href="12.2.asin.html"><code>acos</code></a>, <a href="12.2.asin.html"><code>atan</code></a>は、 逆三角関数であるアークサイン、アークコサイン、アークタンジェント （以降arcsin, arccos, arctanと記載）をそれぞれ計算します。</p>
+<p>arcsin, arccos, arctan（<em>number1</em>のみ指定されたとき）の関数は、 <em>number</em>と<em>number1</em>を<em>x</em>と指定したときに 数学的には次の表のように定義できます。</p>
+<pre><code>arcsin: -i log(ix + sqrt(1 - x^2))
+arccos: (pi/2) - arcsin(x)
+arctan: -i log((1 + ix) sqrt(1/(1 + x^2)))</code></pre>
+<p>Figure 12-14. arcsin, arccos, arctanの数学的な定義</p>
+<p>これらの公式は、完全に正確に計算されたと仮定したときは 数学的には正しいです。 これらは実数値の計算のためのもっとも単純なものではありません。</p>
+<p>もし<a href="12.2.asin.html"><code>atan</code></a>に<em>number1</em>と<em>number2</em>の両方が指定されたとき、 結果は<em>number1</em>/<em>number2</em>のarctanになります。 マイナスゼロがサポートされていないときは、 <a href="12.2.asin.html"><code>atan</code></a>の値は常に<code>-pi</code>(含まれない）から<code>pi</code>(含まれる)になります。 マイナスゼロがサポートされてるときは、 2つの引数のarctanの範囲は<code>-pi</code>(含まれる)になります。</p>
+<p><em>number1</em>が実数のとき、結果は実数であり、 <code>-pi/2</code>から<code>pi/2</code>（両者とも境界は含まれない）の間に含まれます。 <em>number2</em>が指定されないときに<em>number1</em>は複素数にすることができます。 もし両方指定されたとき、 <em>number1</em>がゼロではないときに<em>number2</em>はゼロに指定できます。</p>
+<p>次の定義はarcsinであり、範囲とブランチカットを決定します。</p>
+<pre><code>arcsin(z) = -i log(iz + sqrt(1 - z^2))</code></pre>
+<p>arcsin関数のブランチカットは、2つの部分から成ります。 ひとつは負の実軸の<code>-1</code>（含む）の左から第2象限へ沿って続くものであり、 もうひとつは正の実軸の<code>1</code>（含む）の右から第4象限に沿って続くものです。 この範囲は複素平面に含まれる数の実部<code>-pi/2</code>から<code>pi/2</code>で分岐します。 実部が<code>-pi/2</code>と等しい数は、その虚部が非負であるときのみの範囲になります。 実部が<code>pi/2</code>と等しい数は、その虚部が非正であるときのみの範囲になります。</p>
+<p>次の定義はarccosであり、範囲とブランチカットを決定します。</p>
+<pre><code>arccos(z) = (pi/2) - arcsin(z)</code></pre>
+<p>または次の式と同等です。</p>
+<pre><code>arccos(z) = -i log(z + i sqrt(1 - z^2))
+arccos(z) = {2 log(sqrt((1 + z) / 2) + i sqrt((i - z)/2))}/i</code></pre>
+<p>arccos関数のブランチカットは、2つの部分からなります。 ひとつは負の実軸の<code>-1</code>（含む）の左から第2象限へ沿って続くものであり、 もうひとつは正の実軸の<code>1</code>（含む）の右から第4象限に沿って続くものです。 これはarcsinのブランチカットと同じです。 この範囲は複素平面に含まれる数の実部<code>0</code>から<code>pi</code>で分岐します。 実部が<code>0</code>と等しい数は、その虚部が非負であるときのみの範囲になります。 実部が<code>pi</code>と等しい数は、その虚部が非正であるときのみの範囲になります。</p>
+<p>次の定義は（ひとつの引数の）arctanであり、範囲とブランチカットを決定します。</p>
+<pre><code>arctan(z) = {log(1 + iz) - log(1 - iz)}/(2i)</code></pre>
+<p>この単純な公式に注意してください。 「明らかな」単純化はブランチカットの変更や ブランチカット上の正しくない値になる可能性があります。 arctan関数のブランチカットは、2つの部分からなります。 ひとつは正の虚軸の<code>i</code>（含まれない）上方から第2象限へ沿って続くものであり、 もうひとつは負の虚軸の<code>-i</code>（含まれない）下方から第4象限へ沿って続くものです。 この<code>i</code>と<code>-i</code>の点はその領域から排他的です。 この範囲は複素平面に含まれる数の実部<code>-pi/2</code>から<code>pi/2</code>で分岐します。 実部が<code>-pi/2</code>と等しい数は、その虚部が厳密に正であるときのみの範囲になります。 実部が<code>pi/2</code>と等しい数は、その虚部が厳密に負であるときのみの範囲になります。 したがってarctanの範囲は、arcsinの<code>-pi/2</code>と<code>pi/2</code>の排他的な点と同一です。</p>
+<p><a href="12.2.asin.html"><code>atan</code></a>は、<em>number1</em>（<em>x</em>として示される）の符号と <em>number2</em>（<em>y</em>として示される）の符号は、象限の情報から導出されます。 次の表はさまざまな特別な場合の詳細です。 図中のエントリーにあるアスタリスク<code>*</code>は、 マイナスゼロをサポートした実装で適用するものを示しています。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><code>*</code></th>
+<th style="text-align: left;"><code>y</code>の状態</th>
+<th style="text-align: left;"><code>x</code>の状態</th>
+<th style="text-align: left;">直交座標の位置</th>
+<th style="text-align: left;">結果の範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y = 0</td>
+<td style="text-align: left;">x &gt; 0</td>
+<td style="text-align: left;">正のx軸</td>
+<td style="text-align: left;"><code>0</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = +0</td>
+<td style="text-align: left;">x &gt; 0</td>
+<td style="text-align: left;">正のx軸</td>
+<td style="text-align: left;"><code>+0</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = -0</td>
+<td style="text-align: left;">x &gt; 0</td>
+<td style="text-align: left;">正のx軸</td>
+<td style="text-align: left;"><code>-0</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &gt; 0</td>
+<td style="text-align: left;">x &gt; 0</td>
+<td style="text-align: left;">第1象限</td>
+<td style="text-align: left;"><code>0</code> &lt; result&lt; <code>pi/2</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &gt; 0</td>
+<td style="text-align: left;">x = 0</td>
+<td style="text-align: left;">正のy軸</td>
+<td style="text-align: left;"><code>pi/2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &gt; 0</td>
+<td style="text-align: left;">x &lt; 0</td>
+<td style="text-align: left;">第2象限</td>
+<td style="text-align: left;"><code>pi/2</code> &lt; result &lt; <code>pi</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y = 0</td>
+<td style="text-align: left;">x &lt; 0</td>
+<td style="text-align: left;">負のx軸</td>
+<td style="text-align: left;"><code>pi</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = +0</td>
+<td style="text-align: left;">x &lt; 0</td>
+<td style="text-align: left;">負のx軸</td>
+<td style="text-align: left;"><code>+pi</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = -0</td>
+<td style="text-align: left;">x &lt; 0</td>
+<td style="text-align: left;">負のx軸</td>
+<td style="text-align: left;"><code>-pi</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &lt; 0</td>
+<td style="text-align: left;">x &lt; 0</td>
+<td style="text-align: left;">第3象限</td>
+<td style="text-align: left;"><code>-pi</code> &lt; result &lt; <code>-pi/2</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &lt; 0</td>
+<td style="text-align: left;">x = 0</td>
+<td style="text-align: left;">負のy軸</td>
+<td style="text-align: left;"><code>-pi/2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y &lt; 0</td>
+<td style="text-align: left;">x &gt; 0</td>
+<td style="text-align: left;">第4象限</td>
+<td style="text-align: left;"><code>-pi/2</code> &lt; result &lt; <code>0</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">y = 0</td>
+<td style="text-align: left;">x = 0</td>
+<td style="text-align: left;">原点</td>
+<td style="text-align: left;">未定義の結果</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = +0</td>
+<td style="text-align: left;">x = +0</td>
+<td style="text-align: left;">原点</td>
+<td style="text-align: left;"><code>+0</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = -0</td>
+<td style="text-align: left;">x = +0</td>
+<td style="text-align: left;">原点</td>
+<td style="text-align: left;"><code>-0</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = +0</td>
+<td style="text-align: left;">x = -0</td>
+<td style="text-align: left;">原点</td>
+<td style="text-align: left;"><code>+pi</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">y = -0</td>
+<td style="text-align: left;">x = -0</td>
+<td style="text-align: left;">原点</td>
+<td style="text-align: left;"><code>-pi</code></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12-15. arctan関数の象限の情報</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">asin</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  <span class="fl">0.0</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">acos</span> #c(<span class="dv">0</span> <span class="dv">1</span>))  <span class="op">=&gt;</span>  #C(<span class="fl">1.5707963267948966</span> -<span class="fl">0.8813735870195432</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="op">/</span> (<span class="kw">atan</span> <span class="dv">1</span> (<span class="kw">sqrt</span> <span class="dv">3</span>)) <span class="dv">6</span>)  <span class="op">=&gt;</span>  <span class="fl">0.087266</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">atan</span> #c(<span class="dv">0</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  #C(-<span class="fl">1.5707964</span> <span class="fl">0.54930615</span>)</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><a href="12.2.asin.html"><code>acos</code></a>と<a href="12.2.asin.html"><code>asin</code></a>は、もし<em>number</em>が数ではないときは 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知するべきです。 <a href="12.2.asin.html"><code>atan</code></a>は、引数がひとつ与えられ、その引数が数ではないか、 あるいはふたつの引数が与えられ、それら両方の引数が実数ではなかったとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知するべきです。</p>
+<p><a href="12.2.asin.html"><code>acos</code></a>, <a href="12.2.asin.html"><code>asin</code></a>, <a href="12.2.asin.html"><code>atan</code></a>は、 型<code>arithmetic-error</code>を通知するかもしれません。</p>
+<h2 id="参考">参考</h2>
+<p><code>log</code>, <code>sqrt</code>, 12.1.3.3. 浮動小数の代替可能性の規則</p>
+<h2 id="備考">備考</h2>
+<p><a href="12.2.asin.html"><code>asin</code></a>と<a href="12.2.asin.html"><code>acos</code></a>のどちらの場合も、 <em>number</em>が複素数ではないときでさえ結果が複素数になることができます。 これは<em>number</em>の絶対値が1より大きいときに生じます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

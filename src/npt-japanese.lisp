@@ -61,6 +61,7 @@
 (setf (gethash ">=" *name*) '("FUNCTION"))
 (setf (gethash "ABORT" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "ACONS" *name*) '("FUNCTION"))
+(setf (gethash "ACOS" *name*) '("FUNCTION"))
 (setf (gethash "ADD-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "ADJOIN" *name*) '("FUNCTION"))
 (setf (gethash "ADJUST-ARRAY" *name*) '("FUNCTION"))
@@ -86,10 +87,12 @@
 (setf (gethash "ARRAY-TOTAL-SIZE" *name*) '("FUNCTION"))
 (setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "ARRAYP" *name*) '("FUNCTION"))
+(setf (gethash "ASIN" *name*) '("FUNCTION"))
 (setf (gethash "ASSERT" *name*) '("MACRO"))
 (setf (gethash "ASSOC" *name*) '("FUNCTION"))
 (setf (gethash "ASSOC-IF" *name*) '("FUNCTION"))
 (setf (gethash "ASSOC-IF-NOT" *name*) '("FUNCTION"))
+(setf (gethash "ATAN" *name*) '("FUNCTION"))
 (setf (gethash "ATOM" *name*) '("FUNCTION" "TYPE"))
 (setf (gethash "BASE-CHAR" *name*) '("TYPE"))
 (setf (gethash "BASE-STRING" *name*) '("TYPE"))
@@ -515,6 +518,7 @@
 (setf (gethash "PATHNAME-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "PATHNAMEP" *name*) '("FUNCTION"))
 (setf (gethash "PEEK-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "PI" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "PLUSP" *name*) '("FUNCTION"))
 (setf (gethash "POP" *name*) '("MACRO"))
 (setf (gethash "POSITION" *name*) '("FUNCTION"))
@@ -2287,6 +2291,96 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(acons key datum alist) ==  (cons (cons key datum) alist)"))))
 (setf (gethash '("ACONS" . "FUNCTION") *table*) (gethash "ACONS" *table*))
+(setf (gethash "ACOS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ASIN") ", " (CODE1 "ACOS") ", " (CODE1 "ATAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "asin") " " (STRONG "number") " => " (STRONG "radians")
+     EOL1 (CODE1 "acos") " " (STRONG "number") " => " (STRONG "radians") EOL1
+     (CODE1 "atan") " " (STRONG "number1") " " (CODE1 "&optional") " " (STRONG "number2")
+     " => " (STRONG "radians"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "number1") " - "
+     (STRONG "number2") "が指定されていないときは数、" "または" (STRONG "number2") "が指定されているときは実数" EOL1
+     (STRONG "number2") " - 実数" EOL1 (STRONG "radians") " - 数（ラジアン）")
+    (CHAPTER ("## 定義") 2 (CODE1 "asin") ", " (CODE1 "acos") ", " (CODE1 "atan") "は、"
+     "逆三角関数であるアークサイン、アークコサイン、アークタンジェント" "（以降arcsin, arccos, arctanと記載）をそれぞれ計算します。" EOL2
+     "arcsin, arccos, arctan（" (STRONG "number1") "のみ指定されたとき）の関数は、" (STRONG "number") "と"
+     (STRONG "number1") "を" (STRONG "x") "と指定したときに" "数学的には次の表のように定義できます。"
+     (CODE3 "```" "```" "arcsin: -i log(ix + sqrt(1 - x^2))" "arccos: (pi/2) - arcsin(x)"
+      "arctan: -i log((1 + ix) sqrt(1/(1 + x^2)))")
+     EOL2 "Figure 12-14. arcsin, arccos, arctanの数学的な定義" EOL2
+     "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
+     "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
+     "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
+     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
+     (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
+     (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsin(z) = -i log(iz + sqrt(1 - z^2))") EOL2
+     "arcsin関数のブランチカットは、2つの部分から成ります。" "ひとつは負の実軸の" (CODE1 "-1") "（含む）の左から第2象限へ沿って続くものであり、"
+     "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。" "この範囲は複素平面に含まれる数の実部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が" (CODE1 "-pi/2")
+     "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義はarccosであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccos(z) = (pi/2) - arcsin(z)") EOL2 "または次の式と同等です。"
+     (CODE3 "```" "```" "arccos(z) = -i log(z + i sqrt(1 - z^2))"
+      "arccos(z) = {2 log(sqrt((1 + z) / 2) + i sqrt((i - z)/2))}/i")
+     EOL2 "arccos関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左から第2象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。"
+     "これはarcsinのブランチカットと同じです。" "この範囲は複素平面に含まれる数の実部" (CODE1 "0") "から" (CODE1 "pi")
+     "で分岐します。" "実部が" (CODE1 "0") "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義は（ひとつの引数の）arctanであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctan(z) = {log(1 + iz) - log(1 - iz)}/(2i)") EOL2
+     "この単純な公式に注意してください。" "「明らかな」単純化はブランチカットの変更や" "ブランチカット上の正しくない値になる可能性があります。"
+     "arctan関数のブランチカットは、2つの部分からなります。" "ひとつは正の虚軸の" (CODE1 "i")
+     "（含まれない）上方から第2象限へ沿って続くものであり、" "もうひとつは負の虚軸の" (CODE1 "-i")
+     "（含まれない）下方から第4象限へ沿って続くものです。" "この" (CODE1 "i") "と" (CODE1 "-i") "の点はその領域から排他的です。"
+     "この範囲は複素平面に含まれる数の実部" (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が"
+     (CODE1 "-pi/2") "と等しい数は、その虚部が厳密に正であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が厳密に負であるときのみの範囲になります。" "したがってarctanの範囲は、arcsinの" (CODE1 "-pi/2") "と"
+     (CODE1 "pi/2") "の排他的な点と同一です。" EOL2 (CODE1 "atan") "は、" (STRONG "number1") "（"
+     (STRONG "x") "として示される）の符号と" (STRONG "number2") "（" (STRONG "y")
+     "として示される）の符号は、象限の情報から導出されます。" "次の表はさまざまな特別な場合の詳細です。" "図中のエントリーにあるアスタリスク" (CODE1 "*")
+     "は、" "マイナスゼロをサポートした実装で適用するものを示しています。" EOL2 "|" (CODE1 "*") " |" (CODE1 "y") "の状態|"
+     (CODE1 "x") "の状態|直交座標の位置|結果の範囲               |"
+     "|:---|:--------|:--------|:-------------|:------------------------|"
+     "|    |y = 0    |x > 0    |正のx軸       |" (CODE1 "0") "                      |" "|"
+     (CODE1 "*") " |y = +0   |x > 0    |正のx軸       |" (CODE1 "+0")
+     "                     |" "|" (CODE1 "*") " |y = -0   |x > 0    |正のx軸       |"
+     (CODE1 "-0") "                     |" "|    |y > 0    |x > 0    |第1象限       |"
+     (CODE1 "0") " < result< " (CODE1 "pi/2") "     |"
+     "|    |y > 0    |x = 0    |正のy軸       |" (CODE1 "pi/2") "                   |"
+     "|    |y > 0    |x < 0    |第2象限       |" (CODE1 "pi/2") " < result < " (CODE1 "pi")
+     "   |" "|    |y = 0    |x < 0    |負のx軸       |" (CODE1 "pi")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x < 0    |負のx軸       |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x < 0    |負のx軸       |" (CODE1 "-pi") "                    |"
+     "|    |y < 0    |x < 0    |第3象限       |" (CODE1 "-pi") " < result < "
+     (CODE1 "-pi/2") " |" "|    |y < 0    |x = 0    |負のy軸       |" (CODE1 "-pi/2")
+     "                  |" "|    |y < 0    |x > 0    |第4象限       |" (CODE1 "-pi/2")
+     " < result < " (CODE1 "0") "   |"
+     "|    |y = 0    |x = 0    |原点          |未定義の結果             |" "|" (CODE1 "*")
+     " |y = +0   |x = +0   |原点          |" (CODE1 "+0") "                     |" "|"
+     (CODE1 "*") " |y = -0   |x = +0   |原点          |" (CODE1 "-0")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x = -0   |原点          |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x = -0   |原点          |" (CODE1 "-pi") "                    |" EOL2
+     "Figure 12-15. arctan関数の象限の情報")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(asin 0) =>  0.0 "
+      "(acos #c(0 1))  =>  #C(1.5707963267948966 -0.8813735870195432)"
+      "(/ (atan 1 (sqrt 3)) 6)  =>  0.087266 "
+      "(atan #c(0 2)) =>  #C(-1.5707964 0.54930615)"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (CODE1 "acos") "と" (CODE1 "asin") "は、もし" (STRONG "number")
+     "が数ではないときは" "型" (CODE1 "type-error") "のエラーを通知するべきです。" (CODE1 "atan")
+     "は、引数がひとつ与えられ、その引数が数ではないか、" "あるいはふたつの引数が与えられ、それら両方の引数が実数ではなかったとき、" "型"
+     (CODE1 "type-error") "のエラーを通知するべきです。" EOL2 (CODE1 "acos") ", " (CODE1 "asin") ", "
+     (CODE1 "atan") "は、" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
+     "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
+(setf (gethash '("ACOS" . "FUNCTION") *table*) (gethash "ACOS" *table*))
 (setf (gethash "ADD-METHOD" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "ADD-METHOD"))
     (CHAPTER ("## 構文") 2 (CODE1 "add-method") " " (STRONG "generic-function") " "
@@ -2938,6 +3032,96 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(arrayp object) ==  (typep object 'array)"))))
 (setf (gethash '("ARRAYP" . "FUNCTION") *table*) (gethash "ARRAYP" *table*))
+(setf (gethash "ASIN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ASIN") ", " (CODE1 "ACOS") ", " (CODE1 "ATAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "asin") " " (STRONG "number") " => " (STRONG "radians")
+     EOL1 (CODE1 "acos") " " (STRONG "number") " => " (STRONG "radians") EOL1
+     (CODE1 "atan") " " (STRONG "number1") " " (CODE1 "&optional") " " (STRONG "number2")
+     " => " (STRONG "radians"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "number1") " - "
+     (STRONG "number2") "が指定されていないときは数、" "または" (STRONG "number2") "が指定されているときは実数" EOL1
+     (STRONG "number2") " - 実数" EOL1 (STRONG "radians") " - 数（ラジアン）")
+    (CHAPTER ("## 定義") 2 (CODE1 "asin") ", " (CODE1 "acos") ", " (CODE1 "atan") "は、"
+     "逆三角関数であるアークサイン、アークコサイン、アークタンジェント" "（以降arcsin, arccos, arctanと記載）をそれぞれ計算します。" EOL2
+     "arcsin, arccos, arctan（" (STRONG "number1") "のみ指定されたとき）の関数は、" (STRONG "number") "と"
+     (STRONG "number1") "を" (STRONG "x") "と指定したときに" "数学的には次の表のように定義できます。"
+     (CODE3 "```" "```" "arcsin: -i log(ix + sqrt(1 - x^2))" "arccos: (pi/2) - arcsin(x)"
+      "arctan: -i log((1 + ix) sqrt(1/(1 + x^2)))")
+     EOL2 "Figure 12-14. arcsin, arccos, arctanの数学的な定義" EOL2
+     "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
+     "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
+     "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
+     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
+     (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
+     (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsin(z) = -i log(iz + sqrt(1 - z^2))") EOL2
+     "arcsin関数のブランチカットは、2つの部分から成ります。" "ひとつは負の実軸の" (CODE1 "-1") "（含む）の左から第2象限へ沿って続くものであり、"
+     "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。" "この範囲は複素平面に含まれる数の実部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が" (CODE1 "-pi/2")
+     "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義はarccosであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccos(z) = (pi/2) - arcsin(z)") EOL2 "または次の式と同等です。"
+     (CODE3 "```" "```" "arccos(z) = -i log(z + i sqrt(1 - z^2))"
+      "arccos(z) = {2 log(sqrt((1 + z) / 2) + i sqrt((i - z)/2))}/i")
+     EOL2 "arccos関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左から第2象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。"
+     "これはarcsinのブランチカットと同じです。" "この範囲は複素平面に含まれる数の実部" (CODE1 "0") "から" (CODE1 "pi")
+     "で分岐します。" "実部が" (CODE1 "0") "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義は（ひとつの引数の）arctanであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctan(z) = {log(1 + iz) - log(1 - iz)}/(2i)") EOL2
+     "この単純な公式に注意してください。" "「明らかな」単純化はブランチカットの変更や" "ブランチカット上の正しくない値になる可能性があります。"
+     "arctan関数のブランチカットは、2つの部分からなります。" "ひとつは正の虚軸の" (CODE1 "i")
+     "（含まれない）上方から第2象限へ沿って続くものであり、" "もうひとつは負の虚軸の" (CODE1 "-i")
+     "（含まれない）下方から第4象限へ沿って続くものです。" "この" (CODE1 "i") "と" (CODE1 "-i") "の点はその領域から排他的です。"
+     "この範囲は複素平面に含まれる数の実部" (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が"
+     (CODE1 "-pi/2") "と等しい数は、その虚部が厳密に正であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が厳密に負であるときのみの範囲になります。" "したがってarctanの範囲は、arcsinの" (CODE1 "-pi/2") "と"
+     (CODE1 "pi/2") "の排他的な点と同一です。" EOL2 (CODE1 "atan") "は、" (STRONG "number1") "（"
+     (STRONG "x") "として示される）の符号と" (STRONG "number2") "（" (STRONG "y")
+     "として示される）の符号は、象限の情報から導出されます。" "次の表はさまざまな特別な場合の詳細です。" "図中のエントリーにあるアスタリスク" (CODE1 "*")
+     "は、" "マイナスゼロをサポートした実装で適用するものを示しています。" EOL2 "|" (CODE1 "*") " |" (CODE1 "y") "の状態|"
+     (CODE1 "x") "の状態|直交座標の位置|結果の範囲               |"
+     "|:---|:--------|:--------|:-------------|:------------------------|"
+     "|    |y = 0    |x > 0    |正のx軸       |" (CODE1 "0") "                      |" "|"
+     (CODE1 "*") " |y = +0   |x > 0    |正のx軸       |" (CODE1 "+0")
+     "                     |" "|" (CODE1 "*") " |y = -0   |x > 0    |正のx軸       |"
+     (CODE1 "-0") "                     |" "|    |y > 0    |x > 0    |第1象限       |"
+     (CODE1 "0") " < result< " (CODE1 "pi/2") "     |"
+     "|    |y > 0    |x = 0    |正のy軸       |" (CODE1 "pi/2") "                   |"
+     "|    |y > 0    |x < 0    |第2象限       |" (CODE1 "pi/2") " < result < " (CODE1 "pi")
+     "   |" "|    |y = 0    |x < 0    |負のx軸       |" (CODE1 "pi")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x < 0    |負のx軸       |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x < 0    |負のx軸       |" (CODE1 "-pi") "                    |"
+     "|    |y < 0    |x < 0    |第3象限       |" (CODE1 "-pi") " < result < "
+     (CODE1 "-pi/2") " |" "|    |y < 0    |x = 0    |負のy軸       |" (CODE1 "-pi/2")
+     "                  |" "|    |y < 0    |x > 0    |第4象限       |" (CODE1 "-pi/2")
+     " < result < " (CODE1 "0") "   |"
+     "|    |y = 0    |x = 0    |原点          |未定義の結果             |" "|" (CODE1 "*")
+     " |y = +0   |x = +0   |原点          |" (CODE1 "+0") "                     |" "|"
+     (CODE1 "*") " |y = -0   |x = +0   |原点          |" (CODE1 "-0")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x = -0   |原点          |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x = -0   |原点          |" (CODE1 "-pi") "                    |" EOL2
+     "Figure 12-15. arctan関数の象限の情報")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(asin 0) =>  0.0 "
+      "(acos #c(0 1))  =>  #C(1.5707963267948966 -0.8813735870195432)"
+      "(/ (atan 1 (sqrt 3)) 6)  =>  0.087266 "
+      "(atan #c(0 2)) =>  #C(-1.5707964 0.54930615)"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (CODE1 "acos") "と" (CODE1 "asin") "は、もし" (STRONG "number")
+     "が数ではないときは" "型" (CODE1 "type-error") "のエラーを通知するべきです。" (CODE1 "atan")
+     "は、引数がひとつ与えられ、その引数が数ではないか、" "あるいはふたつの引数が与えられ、それら両方の引数が実数ではなかったとき、" "型"
+     (CODE1 "type-error") "のエラーを通知するべきです。" EOL2 (CODE1 "acos") ", " (CODE1 "asin") ", "
+     (CODE1 "atan") "は、" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
+     "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
+(setf (gethash '("ASIN" . "FUNCTION") *table*) (gethash "ASIN" *table*))
 (setf (gethash "ASSERT" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "ASSERT"))
     (CHAPTER ("## 構文") 2 (CODE1 "assert") " " (STRONG "test-form") " [("
@@ -3165,6 +3349,96 @@
      "を返却しますが、" "一方" (CODE1 "assoc") "は、" (STRONG "alist") "の" (CODE1 "nil") "を無視するため、"
      "継続して" (CODE1 "car") "が" (CODE1 "nil") "である実際のコンスを探します。")))
 (setf (gethash '("ASSOC-IF-NOT" . "FUNCTION") *table*) (gethash "ASSOC-IF-NOT" *table*))
+(setf (gethash "ATAN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ASIN") ", " (CODE1 "ACOS") ", " (CODE1 "ATAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "asin") " " (STRONG "number") " => " (STRONG "radians")
+     EOL1 (CODE1 "acos") " " (STRONG "number") " => " (STRONG "radians") EOL1
+     (CODE1 "atan") " " (STRONG "number1") " " (CODE1 "&optional") " " (STRONG "number2")
+     " => " (STRONG "radians"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "number1") " - "
+     (STRONG "number2") "が指定されていないときは数、" "または" (STRONG "number2") "が指定されているときは実数" EOL1
+     (STRONG "number2") " - 実数" EOL1 (STRONG "radians") " - 数（ラジアン）")
+    (CHAPTER ("## 定義") 2 (CODE1 "asin") ", " (CODE1 "acos") ", " (CODE1 "atan") "は、"
+     "逆三角関数であるアークサイン、アークコサイン、アークタンジェント" "（以降arcsin, arccos, arctanと記載）をそれぞれ計算します。" EOL2
+     "arcsin, arccos, arctan（" (STRONG "number1") "のみ指定されたとき）の関数は、" (STRONG "number") "と"
+     (STRONG "number1") "を" (STRONG "x") "と指定したときに" "数学的には次の表のように定義できます。"
+     (CODE3 "```" "```" "arcsin: -i log(ix + sqrt(1 - x^2))" "arccos: (pi/2) - arcsin(x)"
+      "arctan: -i log((1 + ix) sqrt(1/(1 + x^2)))")
+     EOL2 "Figure 12-14. arcsin, arccos, arctanの数学的な定義" EOL2
+     "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
+     "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
+     "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
+     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
+     (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
+     (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsin(z) = -i log(iz + sqrt(1 - z^2))") EOL2
+     "arcsin関数のブランチカットは、2つの部分から成ります。" "ひとつは負の実軸の" (CODE1 "-1") "（含む）の左から第2象限へ沿って続くものであり、"
+     "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。" "この範囲は複素平面に含まれる数の実部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が" (CODE1 "-pi/2")
+     "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義はarccosであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccos(z) = (pi/2) - arcsin(z)") EOL2 "または次の式と同等です。"
+     (CODE3 "```" "```" "arccos(z) = -i log(z + i sqrt(1 - z^2))"
+      "arccos(z) = {2 log(sqrt((1 + z) / 2) + i sqrt((i - z)/2))}/i")
+     EOL2 "arccos関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左から第2象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第4象限に沿って続くものです。"
+     "これはarcsinのブランチカットと同じです。" "この範囲は複素平面に含まれる数の実部" (CODE1 "0") "から" (CODE1 "pi")
+     "で分岐します。" "実部が" (CODE1 "0") "と等しい数は、その虚部が非負であるときのみの範囲になります。" "実部が" (CODE1 "pi")
+     "と等しい数は、その虚部が非正であるときのみの範囲になります。" EOL2 "次の定義は（ひとつの引数の）arctanであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctan(z) = {log(1 + iz) - log(1 - iz)}/(2i)") EOL2
+     "この単純な公式に注意してください。" "「明らかな」単純化はブランチカットの変更や" "ブランチカット上の正しくない値になる可能性があります。"
+     "arctan関数のブランチカットは、2つの部分からなります。" "ひとつは正の虚軸の" (CODE1 "i")
+     "（含まれない）上方から第2象限へ沿って続くものであり、" "もうひとつは負の虚軸の" (CODE1 "-i")
+     "（含まれない）下方から第4象限へ沿って続くものです。" "この" (CODE1 "i") "と" (CODE1 "-i") "の点はその領域から排他的です。"
+     "この範囲は複素平面に含まれる数の実部" (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "実部が"
+     (CODE1 "-pi/2") "と等しい数は、その虚部が厳密に正であるときのみの範囲になります。" "実部が" (CODE1 "pi/2")
+     "と等しい数は、その虚部が厳密に負であるときのみの範囲になります。" "したがってarctanの範囲は、arcsinの" (CODE1 "-pi/2") "と"
+     (CODE1 "pi/2") "の排他的な点と同一です。" EOL2 (CODE1 "atan") "は、" (STRONG "number1") "（"
+     (STRONG "x") "として示される）の符号と" (STRONG "number2") "（" (STRONG "y")
+     "として示される）の符号は、象限の情報から導出されます。" "次の表はさまざまな特別な場合の詳細です。" "図中のエントリーにあるアスタリスク" (CODE1 "*")
+     "は、" "マイナスゼロをサポートした実装で適用するものを示しています。" EOL2 "|" (CODE1 "*") " |" (CODE1 "y") "の状態|"
+     (CODE1 "x") "の状態|直交座標の位置|結果の範囲               |"
+     "|:---|:--------|:--------|:-------------|:------------------------|"
+     "|    |y = 0    |x > 0    |正のx軸       |" (CODE1 "0") "                      |" "|"
+     (CODE1 "*") " |y = +0   |x > 0    |正のx軸       |" (CODE1 "+0")
+     "                     |" "|" (CODE1 "*") " |y = -0   |x > 0    |正のx軸       |"
+     (CODE1 "-0") "                     |" "|    |y > 0    |x > 0    |第1象限       |"
+     (CODE1 "0") " < result< " (CODE1 "pi/2") "     |"
+     "|    |y > 0    |x = 0    |正のy軸       |" (CODE1 "pi/2") "                   |"
+     "|    |y > 0    |x < 0    |第2象限       |" (CODE1 "pi/2") " < result < " (CODE1 "pi")
+     "   |" "|    |y = 0    |x < 0    |負のx軸       |" (CODE1 "pi")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x < 0    |負のx軸       |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x < 0    |負のx軸       |" (CODE1 "-pi") "                    |"
+     "|    |y < 0    |x < 0    |第3象限       |" (CODE1 "-pi") " < result < "
+     (CODE1 "-pi/2") " |" "|    |y < 0    |x = 0    |負のy軸       |" (CODE1 "-pi/2")
+     "                  |" "|    |y < 0    |x > 0    |第4象限       |" (CODE1 "-pi/2")
+     " < result < " (CODE1 "0") "   |"
+     "|    |y = 0    |x = 0    |原点          |未定義の結果             |" "|" (CODE1 "*")
+     " |y = +0   |x = +0   |原点          |" (CODE1 "+0") "                     |" "|"
+     (CODE1 "*") " |y = -0   |x = +0   |原点          |" (CODE1 "-0")
+     "                     |" "|" (CODE1 "*") " |y = +0   |x = -0   |原点          |"
+     (CODE1 "+pi") "                    |" "|" (CODE1 "*")
+     " |y = -0   |x = -0   |原点          |" (CODE1 "-pi") "                    |" EOL2
+     "Figure 12-15. arctan関数の象限の情報")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(asin 0) =>  0.0 "
+      "(acos #c(0 1))  =>  #C(1.5707963267948966 -0.8813735870195432)"
+      "(/ (atan 1 (sqrt 3)) 6)  =>  0.087266 "
+      "(atan #c(0 2)) =>  #C(-1.5707964 0.54930615)"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (CODE1 "acos") "と" (CODE1 "asin") "は、もし" (STRONG "number")
+     "が数ではないときは" "型" (CODE1 "type-error") "のエラーを通知するべきです。" (CODE1 "atan")
+     "は、引数がひとつ与えられ、その引数が数ではないか、" "あるいはふたつの引数が与えられ、それら両方の引数が実数ではなかったとき、" "型"
+     (CODE1 "type-error") "のエラーを通知するべきです。" EOL2 (CODE1 "acos") ", " (CODE1 "asin") ", "
+     (CODE1 "atan") "は、" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
+     "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
+(setf (gethash '("ATAN" . "FUNCTION") *table*) (gethash "ATAN" *table*))
 (setf (gethash "ATOM" *table*)
   '("ATOM FUNCTION" EOL1 "ATOM TYPE" EOL1))
 (setf (gethash '("ATOM" . "FUNCTION") *table*)
@@ -24700,6 +24974,22 @@
      (CODE1 "end-of-file") "のエラーが通知されます。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("PEEK-CHAR" . "FUNCTION") *table*) (gethash "PEEK-CHAR" *table*))
+(setf (gethash "PI" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "PI"))
+    (CHAPTER ("## 値") 2 "実装依存であり" (CODE1 "long-float") "の値")
+    (CHAPTER ("## 定義") 2 "適切に" (CODE1 "long-float") "で近似された数学的な定数のπ（円周率）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の計算は実装の精度に依存します。" ";; また「long float」が実装によっては他のいくつかの"
+      ";; 浮動小数形式（例えば「double-float」）として扱われるため、" ";; 指数マーカーは同等のものになるかもしれません"
+      ";; （例えば「L」の代わりに「D」）。" "pi =>  3.141592653589793L0" "(cos pi) =>  -1.0L0" NIL
+      "(defun sin-of-degrees (degrees)"
+      "  (let ((x (if (floatp degrees) degrees (float degrees pi))))"
+      "    (sin (* x (/ (float pi x) 180)))))"))
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "他のいくつかの精度への" (CODE1 "PI") "の近似は、" (CODE1 "(float pi x)") "、ただし"
+     (STRONG "x") "は希望する精度の浮動小数と書くか、" "あるいは" (CODE1 "(coerce pi type)") "、ただし"
+     (STRONG "type") "は" "例えば" (CODE1 "short-float") "のように希望する型を書くことで" "得ることができます。")))
+(setf (gethash '("PI" . "CONSTANT-VARIABLE") *table*) (gethash "PI" *table*))
 (setf (gethash "PLUSP" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "MINUSP") ", " (CODE1 "PLUSP"))
     (CHAPTER ("## 構文") 2 (CODE1 "minusp") " " (STRONG "real") " => "

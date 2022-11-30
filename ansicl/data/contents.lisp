@@ -522,8 +522,6 @@
 (dictionary 12.2.floor)
 (dictionary 12.2.sin)
 (dictionary 12.2.asin)
-(dictionary 12.2.acos)  ;; delete
-(dictionary 12.2.atan)  ;; delete
 (dictionary 12.2.pi)
 (dictionary 12.2.sinh)
 (dictionary 12.2.*)

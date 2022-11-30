@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ZEROP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.zerop
+@name: zerop
+@type: function
+
+Function `ZEROP`
+
+
+## {syntax}
+
+`zerop` *number* => *generalized-boolean*
+
+
+## {pronunciation}
+
+`['zee(,)roh(,)pee]`
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*number*がゼロ（整数、{float}、複素数）のときは*true*、
+それ以外は*false*を返却します。
+
+実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、
+`(zerop -0.0)`は常に*true*です。
+
+
+## {examples}
+
+```lisp
+(zerop 0) =>  true
+(zerop 1) =>  false
+(zerop -0.0) =>  true
+(zerop 0/100) =>  true
+(zerop #c(0 0.0)) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*number*が数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(zerop number) ==  (= number 0)
+```
+
+@end
+

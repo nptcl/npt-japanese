@@ -1,0 +1,140 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function =
+;;  Function /=
+;;  Function <
+;;  Function >
+;;  Function <=
+;;  Function >=
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.number-equal
+@name: =
+@name: /=
+@name: <
+@name: >
+@name: <=
+@name: >=
+@type: function
+
+Function `=`, `/=`, `<`, `>`, `<=`, `>=`
+
+
+## {syntax}
+
+`=`  `&rest` *number*+ => *generalized-boolean*  
+`/=` `&rest` *number*+ => *generalized-boolean*  
+`<`  `&rest` *number*+ => *generalized-boolean*  
+`>`  `&rest` *number*+ => *generalized-boolean*  
+`<=` `&rest` *number*+ => *generalized-boolean*  
+`>=` `&rest` *number*+ => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*number* - {<:link}, {>:link}, {<=:link}, {>=:link}は実数。
+{=:link}, {/=:link}は数。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{=:link}, {/=:link}, {<:link}, {>:link}, {<=:link}, {>=:link}は、
+次のようにそれぞれの引数に対して数学的な比較を行います。
+
+- {=:link}
+  - もし全ての*number*が同じ値のとき、{=:link}の値は*true*であり、
+    それ以外のときは*false*です。
+    複素数のときは、実部と虚部が{=:link}で等しいときに
+    その2つの複素数が{=:link}で等しいと考えます。
+
+- {/=:link}
+  - もしどれも2つの*number*が等くないとき、{/=:link}の値は*true*であり、
+    それ以外のときは*false*です。
+
+- {<:link}
+  - もし全ての*number*が単調増加の順番のとき、{<:link}の値は*true*であり、
+    それ以外のときは*false*です。
+
+- {>:link}
+  - もし全ての*number*が単調減少の順番のとき、{>:link}の値は*true*であり、
+    それ以外のときは*false*です。
+
+- {<=:link}
+  - もし全ての*number*が単調減少ではない順番のとき、{<=:link}の値は*true*であり、
+    それ以外のときは*false*です。
+
+- {>=:link}
+  - もし全ての*number*が単調増加ではない順番のとき、{>=:link}の値は*true*であり、
+    それ以外のときは*false*です。
+
+{=:link}, {/=:link}, {<:link}, {>:link}, {<=:link}, {>=:link}は、
+必要に応じて型の変換を行います。
+
+
+## {examples}
+
+これらの関数の使用を次の表に表します。
+
+```lisp
+(= 3 3) は true.              (/= 3 3) は false.
+(= 3 5) は false.             (/= 3 5) は true.
+(= 3 3 3 3) は true.          (/= 3 3 3 3) は false.
+(= 3 3 5 3) は false.         (/= 3 3 5 3) は false.
+(= 3 6 5 2) は false.         (/= 3 6 5 2) は true.
+(= 3 2 3) は false.           (/= 3 2 3) は false.
+(< 3 5) は true.              (<= 3 5) は true.
+(< 3 -5) は false.            (<= 3 -5) は false.
+(< 3 3) は false.             (<= 3 3) は true.
+(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true.
+(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true.
+(> 4 3) は true.              (>= 4 3) は true.
+(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true.
+(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true.
+(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false.
+(= 3) は true.                (/= 3) は true.
+(< 3) は true.                (<= 3) は true.
+(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true.
+(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true.
+(= 0.0 -0.0) は true.         (= 5/2 2.5) は true.
+(> 0.0 -0.0) は false.        (= 0 -0.0) は true.
+(<= 0 x 9) は、xが0から9に含まれるときtrue
+(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue
+(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue
+```
+
+Figure 12-13. /=, =, <, >, <=, >=の使用
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数のどれかが実数ではないとき、
+型{type-error:link}を通知するかもしれません。
+その他に比較を実施することができないときは
+型{arithmetic-error:link}が通知されるかもしれません
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{=:link}は{eql!function:link}とはちがい、
+`(= 0.0 -0.0)`はいつも*true*です。
+なぜなら{=:link}はそれらの引数は
+数学的な値として比較されるからであり、
+一方{eql!function:link}は
+言うならば表現による値で比較します。
+
+@end
+

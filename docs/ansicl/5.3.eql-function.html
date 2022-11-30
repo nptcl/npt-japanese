@@ -264,10 +264,10 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.eq.html"><code>eq</code></a>, <a href="5.3.equal.html"><code>equal</code></a>, <a href="5.3.equalp.html"><code>equalp</code></a>, <code>=</code>, <a href="13.2.char-equal.html"><code>char=</code></a></p>
+<p><a href="5.3.eq.html"><code>eq</code></a>, <a href="5.3.equal.html"><code>equal</code></a>, <a href="5.3.equalp.html"><code>equalp</code></a>, <a href="12.2.number-equal.html"><code>=</code></a>, <a href="13.2.char-equal.html"><code>char=</code></a></p>
 <h2 id="備考">備考</h2>
 <p><a href="5.3.eql-function.html"><code>eql</code></a>は<a href="5.3.eq.html"><code>eq</code></a>と同じですが、 引数が文字か数の同じ型であり それらの値を比較するときが違っています。 したがって、<a href="5.3.eql-function.html"><code>eql</code></a>は 2つのオブジェクトが概念的に等いかどうを言っており、 一方<a href="5.3.eq.html"><code>eq</code></a>は2つのオブジェクトが 実装的に同一であるかどうかを言っています。 このような理由により、 シーケンスを引数として受け取ったオペレーターの叙述部が デフォルトで比較を行う際に、 <a href="5.3.eq.html"><code>eq</code></a>ではなく<a href="5.3.eql-function.html"><code>eql</code></a>を使用します。</p>
-<p><a href="5.3.eql-function.html"><code>eql</code></a>は、2つの浮動小数が同じ値と表現されているときでさえ、 真にならないかもしれません。 <code>=</code>は数学的な値を比較する際に使われます。</p>
+<p><a href="5.3.eql-function.html"><code>eql</code></a>は、2つの浮動小数が同じ値と表現されているときでさえ、 真にならないかもしれません。 <a href="12.2.number-equal.html"><code>=</code></a>は数学的な値を比較する際に使われます。</p>
 <p>2つの複素数は、 実部が<a href="5.3.eql-function.html"><code>eql</code></a>で虚部が<a href="5.3.eql-function.html"><code>eql</code></a>であれば <a href="5.3.eql-function.html"><code>eql</code></a>とみなされます。 例えば、<code>(eql #C(4 5) #C(4 5))</code>は<em>true</em>であり、 <code>(eql #C(4 5) #C(4.0 5.0))</code>は<em>false</em>です。 <code>(eql #C(5.0 0.0) 5.0)</code>は<em>false</em>であり、 <code>(eql #C(5 0) 5)</code>は<em>true</em>であることに注意してください。 <code>(eql #C(5 0) 5)</code>の場合は、<code>#C(5 0)</code>が複素数ではなく、 それは整数<code>5</code>に自動的に変換されます。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>

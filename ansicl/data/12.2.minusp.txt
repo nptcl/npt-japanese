@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MINUSP
+;;  Function PLUSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.minusp
+@name: minusp
+@name: plusp
+@type: function
+
+Function `MINUSP`, `PLUSP`
+
+
+## {syntax}
+
+`minusp` *real* => *generalized-boolean*  
+`plusp` *real* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*real* - 実数  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{minusp:link}は、*real*がゼロより小さいときは*true*、
+それ以外のときは*false*を返却します。
+{plusp:link}は、*real*がゼロより大きいときは*true*、
+それ以外のときは*false*を返却します。
+
+実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、
+`(minus -0.0)`は常に*false*です。
+
+
+## {examples}
+
+```lisp
+(minusp -1) =>  true
+(plusp 0) =>  false
+(plusp least-positive-single-float) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*real*が実数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SIN
+;;  Function COS
+;;  Function TAN
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.sin
+@name: sin
+@name: cos
+@name: tan
+@type: function
+
+Function `SIN`, `COS`, `TAN`
+
+
+## {syntax}
+
+`sin` *radians* => *number*  
+`cos` *radians* => *number*  
+`tan` *radians* => *number*
+
+
+## {arguments-and-values}
+
+*radians* - ラジアンで与えられる数  
+*number* - 数
+
+
+## {description}
+
+{sin:link}, {cos:link}, {tan:link}は、*radians*の正弦、余弦、正接を返却します。
+
+
+## {examples}
+
+```lisp
+(sin 0) =>  0.0
+(cos 0.7853982) =>  0.707107
+(tan #c(0 1)) =>  #C(0.0 0.761594)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*radians*が数ではないとき、型{type-error:link}のエラーを
+通知する必要があります。
+{arithmetic-error:link}が発生する可能性があります。
+
+
+## {see-also}
+
+{asin:link},
+{acos:link},
+{atan:link},
+{12.1.3.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

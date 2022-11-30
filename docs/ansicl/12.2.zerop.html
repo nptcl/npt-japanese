@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Accessor VALUES</title>
+  <title>Function ZEROP</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,48 +214,38 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Accessor VALUES</h1>
+<h1 class="title">Function ZEROP</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="accessor-values">Accessor <strong>VALUES</strong></h1>
-<p>Accessor <code>VALUES</code></p>
+<h1 id="function-zerop">Function <strong>ZEROP</strong></h1>
+<p>Function <code>ZEROP</code></p>
 <h2 id="構文">構文</h2>
-<p><code>values</code> &amp;rest <em>object</em> =&gt; <em>object*</em><br />
-(<code>setf</code> (<code>values</code> &amp;rest <em>place</em>) <em>new-values</em>)</p>
+<p><code>zerop</code> <em>number</em> =&gt; <em>generalized-boolean</em></p>
+<h2 id="発音">発音</h2>
+<p><code>['zee(,)roh(,)pee]</code></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>object</em> - オブジェクト<br />
-<em>place</em> - <code>place</code><br />
-<em>new-value</em> - オブジェクト</p>
+<p><em>number</em> - 数<br />
+<em>generalized-boolean</em> - generalized-boolean</p>
 <h2 id="定義">定義</h2>
-<p><a href="5.3.values-accessor.html"><code>values</code></a>は多値として<em>object</em>を返却します。</p>
-<p><a href="5.3.setf.html"><code>setf</code></a>の<a href="5.3.values-accessor.html"><code>values</code></a>は、 <em>new-values</em>の多値を<code>place</code>に格納するときに使います。 5.1.2.3. <code>place</code>としてのVALUESフォームをご確認ください。</p>
+<p><em>number</em>がゼロ（整数、浮動小数、複素数）のときは<em>true</em>、 それ以外は<em>false</em>を返却します。</p>
+<p>実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、 <code>(zerop -0.0)</code>は常に<em>true</em>です。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span>) <span class="op">=&gt;</span>  &lt;no values&gt;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span> <span class="dv">1</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="dv">1</span>, <span class="dv">2</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">values</span> (<span class="kw">values</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span>) <span class="dv">4</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> polar </span>(x y)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">values</span> (<span class="kw">sqrt</span> (<span class="op">+</span> (<span class="op">*</span> x x) (<span class="op">*</span> y y))) (<span class="kw">atan</span> y x))) <span class="op">=&gt;</span>  POLAR</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">multiple-value-bind</span> (r theta) (polar <span class="fl">3.0</span> <span class="fl">4.0</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">vector</span> r theta))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #(<span class="fl">5.0</span> <span class="fl">0.927295</span>)</span></code></pre></div>
-<p>よく関数の返却値を正確にひとつだけと 明に示したいことがあるかもしれません。 例えば、次の関数は<a href="12.2.floor.html"><code>floor</code></a>が2つの値を返却するので、 関数の返却値も2つです。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>(x y)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">floor</span> (<span class="op">+</span> x y) y)) <span class="op">=&gt;</span>  FOO</span></code></pre></div>
-<p>これは2番目の返却値が意味をなさないときもあるかもしれませんし、 あるいは効率という理由で2番目の値を算出してほしくないときもあると思います。 <a href="5.3.values-accessor.html"><code>values</code></a>は、返却値がただひとつだけであることを示す標準的な記載方法です。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> foo </span>(x y)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">values</span> (<span class="kw">floor</span> (<span class="op">+</span> x y) y))) <span class="op">=&gt;</span>  FOO</span></code></pre></div>
-<p>これは、<a href="5.3.values-accessor.html"><code>values</code></a>がどんな関数呼び出しでも、 どんな引数が複数の値を返却しても、 最初以外の全ては切り捨てられて各引数の値を正確にひとつ返却するので、 うまく動作します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> <span class="dv">1</span>) <span class="op">=&gt;</span>  false</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> -<span class="fl">0.0</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> <span class="dv">0</span>/<span class="dv">100</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> #c(<span class="dv">0</span> <span class="fl">0.0</span>)) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p><em>number</em>が数ではないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知するべきです。</p>
 <h2 id="参考">参考</h2>
-<p><a href="5.3.values-list.html"><code>values-list</code></a>, <a href="5.3.multiple-value-bind.html"><code>multiple-value-bind</code></a>, <a href="5.3.multiple-values-limit.html"><code>multiple-values-limit</code></a>, 3.1. 評価</p>
+<p>なし。</p>
 <h2 id="備考">備考</h2>
-<p><a href="5.3.values-accessor.html"><code>values</code></a>は関数であり、マクロや特殊フォームでもないので、 その引数のフォームはただ主値のみ引数として受け取ります。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">zerop</span> <span class="kw">number</span>) ==  (<span class="op">=</span> <span class="kw">number</span> <span class="dv">0</span>)</span></code></pre></div>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

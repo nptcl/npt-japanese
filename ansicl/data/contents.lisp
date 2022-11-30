@@ -492,6 +492,10 @@
 
 ;; Chapger 12
 (index 12.1 "数の説明" "Number Concepts")
+(text 12.1.1 "数値演算" "Numeric Operations")
+(text 12.1.1.2 "数値演算の伝染" "Contagion in Numeric Operations")
+(text 12.1.3 "{rational}の計算" "Rational Computations")
+(text 12.1.3.3 "浮動小数の代替可能性の規則" "Rule of Float Substitutability")
 (text 12.1.5 "複素数の計算" "Complex Computations")
 (text 12.1.5.3 
       "`rational`型の複素数の標準的な表現のルール"
@@ -511,18 +515,15 @@
 (dictionary 12.2.bit!type)
 (dictionary 12.2.fixnum)
 (dictionary 12.2.bignum)
-(dictionary 12.2.=)
-(dictionary 12.2./=)  ;; delete
-(dictionary 12.2.<)  ;; delete
-(dictionary 12.2.>)  ;; delete
-(dictionary 12.2.<=)  ;; delete
-(dictionary 12.2.>=)  ;; delete
+(dictionary 12.2.number-equal)
 (dictionary 12.2.max)
 (dictionary 12.2.minusp)
 (dictionary 12.2.zerop)
 (dictionary 12.2.floor)
 (dictionary 12.2.sin)
 (dictionary 12.2.asin)
+(dictionary 12.2.acos)  ;; delete
+(dictionary 12.2.atan)  ;; delete
 (dictionary 12.2.pi)
 (dictionary 12.2.sinh)
 (dictionary 12.2.*)

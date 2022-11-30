@@ -53,6 +53,12 @@
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*TRACE-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "/=" *name*) '("FUNCTION"))
+(setf (gethash "<" *name*) '("FUNCTION"))
+(setf (gethash "<=" *name*) '("FUNCTION"))
+(setf (gethash "=" *name*) '("FUNCTION"))
+(setf (gethash ">" *name*) '("FUNCTION"))
+(setf (gethash ">=" *name*) '("FUNCTION"))
 (setf (gethash "ABORT" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "ACONS" *name*) '("FUNCTION"))
 (setf (gethash "ADD-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
@@ -147,6 +153,7 @@
 (setf (gethash "CDDDR" *name*) '("ACCESSOR"))
 (setf (gethash "CDDR" *name*) '("ACCESSOR"))
 (setf (gethash "CDR" *name*) '("ACCESSOR"))
+(setf (gethash "CEILING" *name*) '("FUNCTION"))
 (setf (gethash "CELL-ERROR" *name*) '("CONDITION-TYPE"))
 (setf (gethash "CELL-ERROR-NAME" *name*) '("FUNCTION"))
 (setf (gethash "CERROR" *name*) '("FUNCTION"))
@@ -209,6 +216,7 @@
 (setf (gethash "COPY-STRUCTURE" *name*) '("FUNCTION"))
 (setf (gethash "COPY-SYMBOL" *name*) '("FUNCTION"))
 (setf (gethash "COPY-TREE" *name*) '("FUNCTION"))
+(setf (gethash "COS" *name*) '("FUNCTION"))
 (setf (gethash "COUNT" *name*) '("FUNCTION"))
 (setf (gethash "COUNT-IF" *name*) '("FUNCTION"))
 (setf (gethash "COUNT-IF-NOT" *name*) '("FUNCTION"))
@@ -278,7 +286,9 @@
 (setf (gethash "EXPORT" *name*) '("FUNCTION"))
 (setf (gethash "EXTENDED-CHAR" *name*) '("TYPE"))
 (setf (gethash "FBOUNDP" *name*) '("FUNCTION"))
+(setf (gethash "FCEILING" *name*) '("FUNCTION"))
 (setf (gethash "FDEFINITION" *name*) '("ACCESSOR"))
+(setf (gethash "FFLOOR" *name*) '("FUNCTION"))
 (setf (gethash "FIFTH" *name*) '("ACCESSOR"))
 (setf (gethash "FILE-AUTHOR" *name*) '("FUNCTION"))
 (setf (gethash "FILE-ERROR" *name*) '("CONDITION-TYPE"))
@@ -305,12 +315,15 @@
 (setf (gethash "FIXNUM" *name*) '("TYPE"))
 (setf (gethash "FLET" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "FLOAT" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "FLOOR" *name*) '("FUNCTION"))
 (setf (gethash "FMAKUNBOUND" *name*) '("FUNCTION"))
 (setf (gethash "FORCE-OUTPUT" *name*) '("FUNCTION"))
 (setf (gethash "FORMAT" *name*) '("FUNCTION"))
 (setf (gethash "FORMATTER" *name*) '("MACRO"))
 (setf (gethash "FOURTH" *name*) '("ACCESSOR"))
 (setf (gethash "FRESH-LINE" *name*) '("FUNCTION"))
+(setf (gethash "FROUND" *name*) '("FUNCTION"))
+(setf (gethash "FTRUNCATE" *name*) '("FUNCTION"))
 (setf (gethash "FTYPE" *name*) '("DECLARATION"))
 (setf (gethash "FUNCALL" *name*) '("FUNCTION"))
 (setf (gethash "FUNCTION" *name*) '("SPECIAL-OPERATOR" "SYSTEM-CLASS"))
@@ -420,6 +433,7 @@
 (setf (gethash "MAPHASH" *name*) '("FUNCTION"))
 (setf (gethash "MAPL" *name*) '("FUNCTION"))
 (setf (gethash "MAPLIST" *name*) '("FUNCTION"))
+(setf (gethash "MAX" *name*) '("FUNCTION"))
 (setf (gethash "MEMBER" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
 (setf (gethash "MEMBER-IF" *name*) '("FUNCTION"))
 (setf (gethash "MEMBER-IF-NOT" *name*) '("FUNCTION"))
@@ -429,6 +443,8 @@
 (setf (gethash "METHOD-COMBINATION" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "METHOD-COMBINATION-ERROR" *name*) '("FUNCTION"))
 (setf (gethash "METHOD-QUALIFIERS" *name*) '("STANDARD-GENERIC-FUNCTION"))
+(setf (gethash "MIN" *name*) '("FUNCTION"))
+(setf (gethash "MINUSP" *name*) '("FUNCTION"))
 (setf (gethash "MISMATCH" *name*) '("FUNCTION"))
 (setf (gethash "MOD" *name*) '("TYPE-SPECIFIER"))
 (setf (gethash "MUFFLE-WARNING" *name*) '("FUNCTION" "RESTART"))
@@ -499,6 +515,7 @@
 (setf (gethash "PATHNAME-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "PATHNAMEP" *name*) '("FUNCTION"))
 (setf (gethash "PEEK-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "PLUSP" *name*) '("FUNCTION"))
 (setf (gethash "POP" *name*) '("MACRO"))
 (setf (gethash "POSITION" *name*) '("FUNCTION"))
 (setf (gethash "POSITION-IF" *name*) '("FUNCTION"))
@@ -579,6 +596,7 @@
 (setf (gethash "REVAPPEND" *name*) '("FUNCTION"))
 (setf (gethash "REVERSE" *name*) '("FUNCTION"))
 (setf (gethash "ROTATEF" *name*) '("MACRO"))
+(setf (gethash "ROUND" *name*) '("FUNCTION"))
 (setf (gethash "ROW-MAJOR-AREF" *name*) '("ACCESSOR"))
 (setf (gethash "RPLACA" *name*) '("FUNCTION"))
 (setf (gethash "RPLACD" *name*) '("FUNCTION"))
@@ -620,6 +638,7 @@
 (setf (gethash "SIMPLE-VECTOR" *name*) '("TYPE"))
 (setf (gethash "SIMPLE-VECTOR-P" *name*) '("FUNCTION"))
 (setf (gethash "SIMPLE-WARNING" *name*) '("CONDITION-TYPE"))
+(setf (gethash "SIN" *name*) '("FUNCTION"))
 (setf (gethash "SINGLE-FLOAT" *name*) '("TYPE"))
 (setf (gethash "SIXTH" *name*) '("ACCESSOR"))
 (setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
@@ -699,6 +718,7 @@
 (setf (gethash "T" *name*) '("CONSTANT-VARIABLE" "SYSTEM-CLASS"))
 (setf (gethash "TAGBODY" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "TAILP" *name*) '("FUNCTION"))
+(setf (gethash "TAN" *name*) '("FUNCTION"))
 (setf (gethash "TENTH" *name*) '("ACCESSOR"))
 (setf (gethash "TERPRI" *name*) '("FUNCTION"))
 (setf (gethash "THE" *name*) '("SPECIAL-OPERATOR"))
@@ -708,6 +728,7 @@
 (setf (gethash "TRANSLATE-PATHNAME" *name*) '("FUNCTION"))
 (setf (gethash "TREE-EQUAL" *name*) '("FUNCTION"))
 (setf (gethash "TRUENAME" *name*) '("FUNCTION"))
+(setf (gethash "TRUNCATE" *name*) '("FUNCTION"))
 (setf (gethash "TWO-WAY-STREAM" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "TWO-WAY-STREAM-INPUT-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "TWO-WAY-STREAM-OUTPUT-STREAM" *name*) '("FUNCTION"))
@@ -767,6 +788,7 @@
 (setf (gethash "WRITE-TO-STRING" *name*) '("FUNCTION"))
 (setf (gethash "Y-OR-N-P" *name*) '("FUNCTION"))
 (setf (gethash "YES-OR-NO-P" *name*) '("FUNCTION"))
+(setf (gethash "ZEROP" *name*) '("FUNCTION"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*BREAK-ON-SIGNALS*"))
     (CHAPTER ("## 値の型") 2 "型指定子") (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
@@ -1751,6 +1773,390 @@
      "に束縛されているときは）、" (CODE1 "*error-output*") "に送信されたエラーメッセージは、" "通常望まれる形で、"
      (CODE1 "*terminal-io*") "を経由してユーザーに届きます。")))
 (setf (gethash '("*TRACE-OUTPUT*" . "VARIABLE") *table*) (gethash "*TRACE-OUTPUT*" *table*))
+(setf (gethash "/=" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '("/=" . "FUNCTION") *table*) (gethash "/=" *table*))
+(setf (gethash "<" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '("<" . "FUNCTION") *table*) (gethash "<" *table*))
+(setf (gethash "<=" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '("<=" . "FUNCTION") *table*) (gethash "<=" *table*))
+(setf (gethash "=" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '("=" . "FUNCTION") *table*) (gethash "=" *table*))
+(setf (gethash ">" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '(">" . "FUNCTION") *table*) (gethash ">" *table*))
+(setf (gethash ">=" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
+     (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
+    (CHAPTER ("## 構文") 2 (CODE1 "=") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "/=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 "<") "  "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1
+     (CODE1 ">") "  " (CODE1 "&rest") " " (STRONG "number") "+ => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "<=") " " (CODE1 "&rest") " "
+     (STRONG "number") "+ => " (STRONG "generalized-boolean") EOL1 (CODE1 ">=") " "
+     (CODE1 "&rest") " " (STRONG "number") "+ => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - " (CODE1 "<") ", " (CODE1 ">") ", "
+     (CODE1 "<=") ", " (CODE1 ">=") "は実数。" (CODE1 "=") ", " (CODE1 "/=") "は数。" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", " (CODE1 ">")
+     ", " (CODE1 "<=") ", " (CODE1 ">=") "は、" "次のようにそれぞれの引数に対して数学的な比較を行います。" EOL2 "- "
+     (CODE1 "=") "  - もし全ての" (STRONG "number") "が同じ値のとき、" (CODE1 "=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" "    複素数のときは、実部と虚部が"
+     (CODE1 "=") "で等しいときに" "    その2つの複素数が" (CODE1 "=") "で等しいと考えます。" EOL2 "- "
+     (CODE1 "/=") "  - もしどれも2つの" (STRONG "number") "が等くないとき、" (CODE1 "/=") "の値は"
+     (STRONG "true") "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<")
+     "  - もし全ての" (STRONG "number") "が単調増加の順番のとき、" (CODE1 "<") "の値は" (STRONG "true")
+     "であり、" "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">") "  - もし全ての"
+     (STRONG "number") "が単調減少の順番のとき、" (CODE1 ">") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 "<=") "  - もし全ての"
+     (STRONG "number") "が単調減少ではない順番のとき、" (CODE1 "<=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 "- " (CODE1 ">=") "  - もし全ての"
+     (STRONG "number") "が単調増加ではない順番のとき、" (CODE1 ">=") "の値は" (STRONG "true") "であり、"
+     "    それ以外のときは" (STRONG "false") "です。" EOL2 (CODE1 "=") ", " (CODE1 "/=") ", "
+     (CODE1 "<") ", " (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">=") "は、"
+     "必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2 "これらの関数の使用を次の表に表します。"
+     (CODE3 "```lisp" "```" "(= 3 3) は true.              (/= 3 3) は false."
+      "(= 3 5) は false.             (/= 3 5) は true."
+      "(= 3 3 3 3) は true.          (/= 3 3 3 3) は false."
+      "(= 3 3 5 3) は false.         (/= 3 3 5 3) は false."
+      "(= 3 6 5 2) は false.         (/= 3 6 5 2) は true."
+      "(= 3 2 3) は false.           (/= 3 2 3) は false."
+      "(< 3 5) は true.              (<= 3 5) は true."
+      "(< 3 -5) は false.            (<= 3 -5) は false."
+      "(< 3 3) は false.             (<= 3 3) は true."
+      "(< 0 3 4 6 7) は true.        (<= 0 3 4 6 7) は true."
+      "(< 0 3 4 4 6) は false.       (<= 0 3 4 4 6) は true."
+      "(> 4 3) は true.              (>= 4 3) は true."
+      "(> 4 3 2 1 0) は true.        (>= 4 3 2 1 0) は true."
+      "(> 4 3 3 2 0) は false.       (>= 4 3 3 2 0) は true."
+      "(> 4 3 1 2 0) は false.       (>= 4 3 1 2 0) は false."
+      "(= 3) は true.                (/= 3) は true."
+      "(< 3) は true.                (<= 3) は true."
+      "(= 3.0 #c(3.0 0.0)) は true.  (/= 3.0 #c(3.0 1.0)) は true."
+      "(= 3 3.0) は true.            (= 3.0s0 3.0d0) は true."
+      "(= 0.0 -0.0) は true.         (= 5/2 2.5) は true."
+      "(> 0.0 -0.0) は false.        (= 0 -0.0) は true." "(<= 0 x 9) は、xが0から9に含まれるときtrue"
+      "(< 0.0 x 1.0) は、xが0.0より大きく1.0より小さいときtrue"
+      "(< -1 j (length v)) は、jが配列vの有効なインデックスであるときtrue")
+     EOL2 "Figure 12-13. /=, =, <, >, <=, >=の使用")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数のどれかが実数ではないとき、" "型" (CODE1 "type-error") "を通知するかもしれません。"
+     "その他に比較を実施することができないときは" "型" (CODE1 "arithmetic-error") "が通知されるかもしれません")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "=") "は" (CODE1 "eql") "とはちがい、" (CODE1 "(= 0.0 -0.0)")
+     "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
+     "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
+(setf (gethash '(">=" . "FUNCTION") *table*) (gethash ">=" *table*))
 (setf (gethash "ABORT" *table*)
   '("ABORT FUNCTION" EOL1 "ABORT RESTART" EOL1))
 (setf (gethash '("ABORT" . "FUNCTION") *table*)
@@ -8202,6 +8608,81 @@
       "(caddr x)  ==  (third x)  ==  (car (cdr (cdr x)))"
       "(cadddr x) ==  (fourth x) ==  (car (cdr (cdr (cdr x))))"))))
 (setf (gethash '("CDR" . "ACCESSOR") *table*) (gethash "CDR" *table*))
+(setf (gethash "CEILING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("CEILING" . "FUNCTION") *table*) (gethash "CEILING" *table*))
 (setf (gethash "CELL-ERROR" *table*)
   '((CHAPTER NIL 0 "Condition Type " (CODE1 "CELL-ERROR"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "cell-error") "," (CODE1 "error") ","
@@ -10667,6 +11148,25 @@
     (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
     (CHAPTER ("## 参考") 2 (CODE1 "tree-equal")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("COPY-TREE" . "FUNCTION") *table*) (gethash "COPY-TREE" *table*))
+(setf (gethash "COS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SIN") ", " (CODE1 "COS") ", " (CODE1 "TAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sin") " " (STRONG "radians") " => " (STRONG "number")
+     EOL1 (CODE1 "cos") " " (STRONG "radians") " => " (STRONG "number") EOL1
+     (CODE1 "tan") " " (STRONG "radians") " => " (STRONG "number"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "radians") " - ラジアンで与えられる数" EOL1 (STRONG "number")
+     " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "sin") ", " (CODE1 "cos") ", " (CODE1 "tan") "は、"
+     (STRONG "radians") "の正弦、余弦、正接を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sin 0) =>  0.0" "(cos 0.7853982) =>  0.707107"
+      "(tan #c(0 1)) =>  #C(0.0 0.761594)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "radians") "が数ではないとき、型" (CODE1 "type-error") "のエラーを"
+     "通知する必要があります。" (CODE1 "arithmetic-error") "が発生する可能性があります。")
+    (CHAPTER ("## 参考") 2 (CODE1 "asin") "," (CODE1 "acos") "," (CODE1 "atan") ","
+     "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("COS" . "FUNCTION") *table*) (gethash "COS" *table*))
 (setf (gethash "COUNT" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "COUNT") ", " (CODE1 "COUNT-IF") ", "
      (CODE1 "COUNT-IF-NOT"))
@@ -15266,6 +15766,81 @@
      (CODE3 "```lisp" "```" "(if (fboundp x) (symbol-function x))") EOL2
      "setf-expanderの定義" (CODE1 "F") "は、" (CODE1 "(setf F)") "であらわされるsetf関数の定義にはなりません。")))
 (setf (gethash '("FBOUNDP" . "FUNCTION") *table*) (gethash "FBOUNDP" *table*))
+(setf (gethash "FCEILING" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("FCEILING" . "FUNCTION") *table*) (gethash "FCEILING" *table*))
 (setf (gethash "FDEFINITION" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "FDEFINITION"))
     (CHAPTER ("## 構文") 2 (CODE1 "fdefinition") " " (STRONG "function-name") " => "
@@ -15294,6 +15869,81 @@
      "は、新しい値に関数を要求します。" (STRONG "function-name") "の" (CODE1 "fdefinition") "に、"
      "シンボルか、リストか、" "あるいはマクロか特殊フォームの名前から" (CODE1 "fdefinition") "によって得られる値をセットするのはエラーです。")))
 (setf (gethash '("FDEFINITION" . "ACCESSOR") *table*) (gethash "FDEFINITION" *table*))
+(setf (gethash "FFLOOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("FFLOOR" . "FUNCTION") *table*) (gethash "FFLOOR" *table*))
 (setf (gethash "FIFTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "
@@ -16175,6 +16825,81 @@
      "の表現として可能なものは、" "整数の" (CODE1 "1") "、浮動小数の" (CODE1 "1.0") "、複素数の"
      (CODE1 "#C(1.0 0.0)") "が含まれます。")))
 (setf (gethash '("FLOAT" . "SYSTEM-CLASS") *table*) (gethash "FLOAT" *table*))
+(setf (gethash "FLOOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("FLOOR" . "FUNCTION") *table*) (gethash "FLOOR" *table*))
 (setf (gethash "FMAKUNBOUND" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "FMAKUNBOUND"))
     (CHAPTER ("## 構文") 2 (CODE1 "fmakunbound") " " (STRONG "name") " => "
@@ -16355,6 +17080,156 @@
     (CHAPTER ("## 備考") 2 (CODE1 "terpri") "の効果は下記の同等です。"
      (CODE3 "```lisp" "```" "(write-char #\\Newline output-stream)"))))
 (setf (gethash '("FRESH-LINE" . "FUNCTION") *table*) (gethash "FRESH-LINE" *table*))
+(setf (gethash "FROUND" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("FROUND" . "FUNCTION") *table*) (gethash "FROUND" *table*))
+(setf (gethash "FTRUNCATE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("FTRUNCATE" . "FUNCTION") *table*) (gethash "FTRUNCATE" *table*))
 (setf (gethash "FTYPE" *table*)
   '((CHAPTER NIL 0 "Declaration " (CODE1 "FTYPE"))
     (CHAPTER ("## 構文") 2 "(" (CODE1 "ftype") " " (STRONG "type") " "
@@ -20491,6 +21366,36 @@
     (CHAPTER ("## 参考") 2 (CODE1 "dolist") "," (CODE1 "map") "," "3.6. 横断の規則と副作用")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("MAPLIST" . "FUNCTION") *table*) (gethash "MAPLIST" *table*))
+(setf (gethash "MAX" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MAX") ", " (CODE1 "MIN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "max") " " (CODE1 "&rest") " " (STRONG "real") "+ => "
+     (STRONG "max-real") EOL1 (CODE1 "min") " " (CODE1 "&rest") " " (STRONG "real")
+     "+ => " (STRONG "min-real"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "real") " - 実数" EOL1 (STRONG "max-real") ", "
+     (STRONG "min-real") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "max") "は最も大きい（正の無限大に最も近い）" (STRONG "real") "を返却します。"
+     (CODE1 "min") "は最も小さい（負の無限大に最も近い）" (STRONG "real") "を返却します。" EOL2 (CODE1 "max")
+     "について、" "実装は最も大きい引数を返却するか、" "あるいは全ての引数を違う型への変換を伝染させるということを考慮し、"
+     "浮動小数への伝染の規則を適用させるかを選択できます。" "また、ひとつか複数の引数が" (CODE1 "=") "であるとき、"
+     "それらの内の一つが返却値として選択されます。" "例えば、" (STRONG "real") "が有理数と浮動小数の混合であり、"
+     "最も大きい引数が有理数であったとき、" "実装はその有理数か、あるいはその浮動小数の近似かの" "どちらかを生成することを自由にできます。"
+     "また、最も大きい引数がある浮動小数の形式であり、" "引数にある浮動小数の最も大きい浮動小数形式よりも" "小さい浮動小数形式であるとき、"
+     "実装はその与えられた引数の形式か、" "あるいは大きい浮動小数形式に拡張して返却することを自由にできます。" "同じような考えを" (CODE1 "min")
+     "に適用できます" "（最も大きい引数を最も小さい引数に置き換えて下さい）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(max 3) =>  3 " "(min 3) =>  3" "(max 6 12) =>  12 "
+      "(min 6 12) =>  6" "(max -6 -12) =>  -6 " "(min -6 -12) =>  -12"
+      "(max 1 3 2 -7) =>  3 " "(min 1 3 2 -7) =>  -7" "(max -2 3 0 7) =>  7 "
+      "(min -2 3 0 7) =>  -2" "(max 5.0 2) =>  5.0 " "(min 5.0 2)" "=>  2" "OR=>  2.0"
+      " (max 3.0 7 1)" "=>  7" "OR=>  7.0 " " (min 3.0 7 1)" "=>  1" "OR=>  1.0"
+      " (max 1.0s0 7.0d0) =>  7.0d0" " (min 1.0s0 7.0d0)" "=>  1.0s0" "OR=>  1.0d0"
+      " (max 3 1 1.0s0 1.0d0)" "=>  3" "OR=>  3.0d0" " (min 3 1 1.0s0 1.0d0)" "=>  1"
+      "OR=>  1.0s0 " "OR=>  1.0d0"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "どの" (STRONG "real") "も実数でなければ、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MAX" . "FUNCTION") *table*) (gethash "MAX" *table*))
 (setf (gethash "MEMBER" *table*)
   '("MEMBER FUNCTION" EOL1 "MEMBER TYPE-SPECIFIER" EOL1))
 (setf (gethash '("MEMBER" . "FUNCTION") *table*)
@@ -20803,6 +21708,56 @@
     (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
     (CHAPTER ("## 参考") 2 (CODE1 "define-method-combination")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("METHOD-QUALIFIERS" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "METHOD-QUALIFIERS" *table*))
+(setf (gethash "MIN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MAX") ", " (CODE1 "MIN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "max") " " (CODE1 "&rest") " " (STRONG "real") "+ => "
+     (STRONG "max-real") EOL1 (CODE1 "min") " " (CODE1 "&rest") " " (STRONG "real")
+     "+ => " (STRONG "min-real"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "real") " - 実数" EOL1 (STRONG "max-real") ", "
+     (STRONG "min-real") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "max") "は最も大きい（正の無限大に最も近い）" (STRONG "real") "を返却します。"
+     (CODE1 "min") "は最も小さい（負の無限大に最も近い）" (STRONG "real") "を返却します。" EOL2 (CODE1 "max")
+     "について、" "実装は最も大きい引数を返却するか、" "あるいは全ての引数を違う型への変換を伝染させるということを考慮し、"
+     "浮動小数への伝染の規則を適用させるかを選択できます。" "また、ひとつか複数の引数が" (CODE1 "=") "であるとき、"
+     "それらの内の一つが返却値として選択されます。" "例えば、" (STRONG "real") "が有理数と浮動小数の混合であり、"
+     "最も大きい引数が有理数であったとき、" "実装はその有理数か、あるいはその浮動小数の近似かの" "どちらかを生成することを自由にできます。"
+     "また、最も大きい引数がある浮動小数の形式であり、" "引数にある浮動小数の最も大きい浮動小数形式よりも" "小さい浮動小数形式であるとき、"
+     "実装はその与えられた引数の形式か、" "あるいは大きい浮動小数形式に拡張して返却することを自由にできます。" "同じような考えを" (CODE1 "min")
+     "に適用できます" "（最も大きい引数を最も小さい引数に置き換えて下さい）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(max 3) =>  3 " "(min 3) =>  3" "(max 6 12) =>  12 "
+      "(min 6 12) =>  6" "(max -6 -12) =>  -6 " "(min -6 -12) =>  -12"
+      "(max 1 3 2 -7) =>  3 " "(min 1 3 2 -7) =>  -7" "(max -2 3 0 7) =>  7 "
+      "(min -2 3 0 7) =>  -2" "(max 5.0 2) =>  5.0 " "(min 5.0 2)" "=>  2" "OR=>  2.0"
+      " (max 3.0 7 1)" "=>  7" "OR=>  7.0 " " (min 3.0 7 1)" "=>  1" "OR=>  1.0"
+      " (max 1.0s0 7.0d0) =>  7.0d0" " (min 1.0s0 7.0d0)" "=>  1.0s0" "OR=>  1.0d0"
+      " (max 3 1 1.0s0 1.0d0)" "=>  3" "OR=>  3.0d0" " (min 3 1 1.0s0 1.0d0)" "=>  1"
+      "OR=>  1.0s0 " "OR=>  1.0d0"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "どの" (STRONG "real") "も実数でなければ、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MIN" . "FUNCTION") *table*) (gethash "MIN" *table*))
+(setf (gethash "MINUSP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MINUSP") ", " (CODE1 "PLUSP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "minusp") " " (STRONG "real") " => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "plusp") " " (STRONG "real") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "real") " - 実数" EOL1 (STRONG "generalized-boolean")
+     " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "minusp") "は、" (STRONG "real") "がゼロより小さいときは"
+     (STRONG "true") "、" "それ以外のときは" (STRONG "false") "を返却します。" (CODE1 "plusp") "は、"
+     (STRONG "real") "がゼロより大きいときは" (STRONG "true") "、" "それ以外のときは" (STRONG "false")
+     "を返却します。" EOL2 "実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、" (CODE1 "(minus -0.0)") "は常に"
+     (STRONG "false") "です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(minusp -1) =>  true" "(plusp 0) =>  false"
+      "(plusp least-positive-single-float) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "real") "が実数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MINUSP" . "FUNCTION") *table*) (gethash "MINUSP" *table*))
 (setf (gethash "MISMATCH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "MISMATCH"))
     (CHAPTER ("## 構文") 2 (CODE1 "mismatch") " " (STRONG "sequence-1") " "
@@ -23745,6 +24700,26 @@
      (CODE1 "end-of-file") "のエラーが通知されます。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("PEEK-CHAR" . "FUNCTION") *table*) (gethash "PEEK-CHAR" *table*))
+(setf (gethash "PLUSP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MINUSP") ", " (CODE1 "PLUSP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "minusp") " " (STRONG "real") " => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "plusp") " " (STRONG "real") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "real") " - 実数" EOL1 (STRONG "generalized-boolean")
+     " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "minusp") "は、" (STRONG "real") "がゼロより小さいときは"
+     (STRONG "true") "、" "それ以外のときは" (STRONG "false") "を返却します。" (CODE1 "plusp") "は、"
+     (STRONG "real") "がゼロより大きいときは" (STRONG "true") "、" "それ以外のときは" (STRONG "false")
+     "を返却します。" EOL2 "実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、" (CODE1 "(minus -0.0)") "は常に"
+     (STRONG "false") "です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(minusp -1) =>  true" "(plusp 0) =>  false"
+      "(plusp least-positive-single-float) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "real") "が実数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PLUSP" . "FUNCTION") *table*) (gethash "PLUSP" *table*))
 (setf (gethash "POP" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "POP"))
     (CHAPTER ("## 構文") 2 (CODE1 "pop") " " (STRONG "place") " => " (STRONG "element"))
@@ -26980,6 +27955,81 @@
      EOL2 "ただし、これは各" (CODE1 "place") "のサブフォームを2度評価していますが、" (CODE1 "rotatef")
      "はただ一度だけです。")))
 (setf (gethash '("ROTATEF" . "MACRO") *table*) (gethash "ROTATEF" *table*))
+(setf (gethash "ROUND" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("ROUND" . "FUNCTION") *table*) (gethash "ROUND" *table*))
 (setf (gethash "ROW-MAJOR-AREF" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "ROW-MAJOR-AREF"))
     (CHAPTER ("## 構文") 2 (CODE1 "row-major-aref") " " (STRONG "array") " "
@@ -28175,6 +29225,25 @@
     (CHAPTER ("## 定義") 2 "型" (CODE1 "simple-warning") "は、" (CODE1 "warn") "関数が"
      "その最初の引数を" (STRONG "format-control") "で指定して" "いつでも通知できるようなコンディションの表現です。")))
 (setf (gethash '("SIMPLE-WARNING" . "CONDITION-TYPE") *table*) (gethash "SIMPLE-WARNING" *table*))
+(setf (gethash "SIN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SIN") ", " (CODE1 "COS") ", " (CODE1 "TAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sin") " " (STRONG "radians") " => " (STRONG "number")
+     EOL1 (CODE1 "cos") " " (STRONG "radians") " => " (STRONG "number") EOL1
+     (CODE1 "tan") " " (STRONG "radians") " => " (STRONG "number"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "radians") " - ラジアンで与えられる数" EOL1 (STRONG "number")
+     " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "sin") ", " (CODE1 "cos") ", " (CODE1 "tan") "は、"
+     (STRONG "radians") "の正弦、余弦、正接を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sin 0) =>  0.0" "(cos 0.7853982) =>  0.707107"
+      "(tan #c(0 1)) =>  #C(0.0 0.761594)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "radians") "が数ではないとき、型" (CODE1 "type-error") "のエラーを"
+     "通知する必要があります。" (CODE1 "arithmetic-error") "が発生する可能性があります。")
+    (CHAPTER ("## 参考") 2 (CODE1 "asin") "," (CODE1 "acos") "," (CODE1 "atan") ","
+     "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SIN" . "FUNCTION") *table*) (gethash "SIN" *table*))
 (setf (gethash "SINGLE-FLOAT" *table*)
   '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
      (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
@@ -31884,6 +32953,25 @@
       "       (if (eql list object) (nreverse r) (nreconc r list)))"
       "    (when (eql object list)" "      (return (nreverse r)))))"))))
 (setf (gethash '("TAILP" . "FUNCTION") *table*) (gethash "TAILP" *table*))
+(setf (gethash "TAN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SIN") ", " (CODE1 "COS") ", " (CODE1 "TAN"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sin") " " (STRONG "radians") " => " (STRONG "number")
+     EOL1 (CODE1 "cos") " " (STRONG "radians") " => " (STRONG "number") EOL1
+     (CODE1 "tan") " " (STRONG "radians") " => " (STRONG "number"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "radians") " - ラジアンで与えられる数" EOL1 (STRONG "number")
+     " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "sin") ", " (CODE1 "cos") ", " (CODE1 "tan") "は、"
+     (STRONG "radians") "の正弦、余弦、正接を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sin 0) =>  0.0" "(cos 0.7853982) =>  0.707107"
+      "(tan #c(0 1)) =>  #C(0.0 0.761594)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "radians") "が数ではないとき、型" (CODE1 "type-error") "のエラーを"
+     "通知する必要があります。" (CODE1 "arithmetic-error") "が発生する可能性があります。")
+    (CHAPTER ("## 参考") 2 (CODE1 "asin") "," (CODE1 "acos") "," (CODE1 "atan") ","
+     "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("TAN" . "FUNCTION") *table*) (gethash "TAN" *table*))
 (setf (gethash "TENTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "
@@ -32300,6 +33388,81 @@
     (CHAPTER ("## 備考") 2 (CODE1 "truename") "はファイルシステムによって実行できるような"
      "ファイル名に変換するときに使用されます。")))
 (setf (gethash '("TRUENAME" . "FUNCTION") *table*) (gethash "TRUENAME" *table*))
+(setf (gethash "TRUNCATE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
+     (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
+     (CODE1 "FTRUNCATE") ", " (CODE1 "ROUND") ", " (CODE1 "FROUND"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floor") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ffloor") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "fceiling") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "truncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "ftruncate") " " (STRONG "number") " " (CODE1 "&optional") " "
+     (STRONG "divisor") " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1
+     (CODE1 "round") " " (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor")
+     " => " (STRONG "quotient") ", " (STRONG "remainder") EOL1 (CODE1 "fround") " "
+     (STRONG "number") " " (CODE1 "&optional") " " (STRONG "divisor") " => "
+     (STRONG "quotient") ", " (STRONG "remainder"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "divisor")
+     " - ゼロではない実数。デフォルトは整数の" (CODE1 "1") "。" EOL1 (STRONG "quotient") " -"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "は整数。" (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "は浮動小数。" EOL1 (STRONG "remainder") " - 実数")
+    (CHAPTER ("## 定義") 2 "これらの関数は" (STRONG "number") "を" (STRONG "divisor") "によって割り算し、"
+     (STRONG "quotient") "と" (STRONG "remainder") "を次の式になるよう返却します。"
+     (CODE3 "```" "```" "quotient*divisor+remainder=number") EOL2 (STRONG "quotient")
+     "は常に数学的な整数としてあらわされます。" "数学的な整数の" (CODE1 "1") "より大きい数になる可能性があるとき" "（例えば"
+     (STRONG "remainder") "がゼロではないとき）、" "丸めと切り捨ては次のような処理ごとに依存します。" EOL2 "- "
+     (CODE1 "floor") ", " (CODE1 "ffloor") "  - " (CODE1 "floor") "と" (CODE1 "ffloor")
+     "は" (STRONG "quotient") "を負の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を越えないような" "    最も大きな数学的な整数として表されます。" EOL2 "- " (CODE1 "ceiling") ", "
+     (CODE1 "fceiling") "  - " (CODE1 "ceiling") "と" (CODE1 "fceiling") "は"
+     (STRONG "quotient") "を正の無限大の方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商を下回らないような" "    最も小さい数学的な整数として表されます。" EOL2 "- " (CODE1 "truncate") ", "
+     (CODE1 "ftruncate") "  - " (CODE1 "truncate") "と" (CODE1 "ftruncate") "は"
+     (STRONG "quotient") "をゼロの方向に切り捨てます。" "    つまり" (STRONG "quotient")
+     "は数学的な商として同じ符号の数学的整数として表現され、" "    かつ数学的な商より大きくならないような最大の積分等級を持つものです。" EOL2 "- "
+     (CODE1 "round") ", " (CODE1 "fround") "  - " (CODE1 "round") "と" (CODE1 "fround")
+     "は" (STRONG "quotient") "を数学的な整数に近い方向に丸めます。" "    もし数学的な商が正確に2つの整数の間にあるとき"
+     "    （つまり、それは" (CODE1 "integer+1/2") "という形で表されます）、" "    " (STRONG "quotient")
+     "は偶数（2で割ることができる）の整数へ丸められます。" EOL2 "これら全ての関数は、" (STRONG "number") "に型の変換処理が行われます。"
+     EOL2 (STRONG "x") "と" (STRONG "y") "が両方とも整数のとき" (STRONG "remainder") "は整数であり、"
+     (STRONG "x") "と" (STRONG "y") "が両方とも有理数のとき" (STRONG "remainder") "は有理数であり、"
+     (STRONG "x") "と" (STRONG "y") "のどちらかが浮動小数のときは浮動小数です。" EOL2 (CODE1 "ffloor") ", "
+     (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", " (CODE1 "fround") "は、"
+     "次に示す方法で引数間で違っている型を扱います。" "もし" (STRONG "number") "が浮動小数で" (STRONG "divisor")
+     "が浮動小数の大きな形式ではないとき、" "最初の結果は" (STRONG "number") "と同じ型の浮動小数です。"
+     "それ以外のときは最初の結果は伝染の規則にしたがって型が決定されます。" "12.1.1.2. 数値演算の伝染をご確認ください。" " ")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 3/2) =>  1, 1/2" "(ceiling 3 2) =>  2, -1"
+      "(ffloor 3 2) =>  1.0, 1" "(ffloor -4.7) =>  -5.0, 0.3"
+      "(ffloor 3.5d0) =>  3.0d0, 0.5d0" "(fceiling 3/2) =>  2.0, -1/2"
+      "(truncate 1) =>  1, 0" "(truncate .5) =>  0, 0.5" "(round .5) =>  0, 0.5"
+      "(ftruncate -7 2) =>  -3.0, -1" "(fround -7 2) =>  -4.0, 1"
+      "(dolist (n '(2.6 2.5 2.4 0.7 0.3 -0.3 -0.7 -2.4 -2.5 -2.6))"
+      "  (format t \"~&~4,1@F ~2,' D ~2,' D ~2,' D ~2,' D\""
+      "          n (floor n) (ceiling n) (truncate n) (round n)))" ">>  +2.6  2  3  2  3"
+      ">>  +2.5  2  3  2  2" ">>  +2.4  2  3  2  2" ">>  +0.7  0  1  0  1"
+      ">>  +0.3  0  1  0  0" ">>  -0.3 -1  0  0  0" ">>  -0.7 -1  0  0 -1"
+      ">>  -2.4 -3 -2 -2 -2" ">>  -2.5 -3 -2 -2 -2" ">>  -2.6 -3 -2 -2 -3" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (STRONG "number") "だけが与えられたとき、2つの結果は正確に決まっており、" "2つの結果の数学的な合計が"
+     (STRONG "number") "の数学的な値と常に等しいようになります。" EOL2 (CODE1 "(function number divisor)")
+     "と" (CODE1 "(function (/ number divisor))") "は" "（ただし" (STRONG "function") "は"
+     (CODE1 "floor") ", " (CODE1 "ceiling") ", " (CODE1 "truncate") ", " (CODE1 "round")
+     "," (CODE1 "ffloor") ", " (CODE1 "fceiling") ", " (CODE1 "ftruncate") ", "
+     (CODE1 "fround") "のどれか）、" "最初の値は同じですが、" "しかし2番目の値であるあまりは違っています。" "例えば、"
+     (CODE3 "```lisp" "```" "(floor 5 2) =>  2, 1" "(floor (/ 5 2)) =>  2, 1/2") EOL2
+     "もし" (CODE1 "round") "と似たようなものの、" "しかし常に切り上げか切り捨て（偶数の整数に近い方向に行うのではなく）"
+     "のような効果を行いたいときは、" "数学的な商が正確に2つの整数の半分であるとき、" "プログラマーは" (CODE1 "(floor (+ x 1/2))")
+     "か" (CODE1 "(ceiling (- x 1/2))") "のような" "実行を考える必要があります。")))
+(setf (gethash '("TRUNCATE" . "FUNCTION") *table*) (gethash "TRUNCATE" *table*))
 (setf (gethash "TWO-WAY-STREAM" *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "TWO-WAY-STREAM"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "two-way-stream") "," (CODE1 "stream") ","
@@ -34571,6 +35734,25 @@
     (CHAPTER ("## 備考") 2 "yes-or-no-p:link}と" (CODE1 "y-or-n-p") "はプロンプトの文字列の"
      "最後にクエスチョン文字を追加しないので、" "クエスチョンの文字や他の句読点を使いたいのであれば、" "テキストの質問文に明示的に含める必要があります。")))
 (setf (gethash '("YES-OR-NO-P" . "FUNCTION") *table*) (gethash "YES-OR-NO-P" *table*))
+(setf (gethash "ZEROP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ZEROP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "zerop") " " (STRONG "number") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 発音") 2 (CODE1 "['zee(,)roh(,)pee]"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "generalized-boolean")
+     " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "number") "がゼロ（整数、浮動小数、複素数）のときは" (STRONG "true") "、"
+     "それ以外は" (STRONG "false") "を返却します。" EOL2 "実装が正と負の浮動小数のゼロの表現を区別できるかどうかに関わらず、"
+     (CODE1 "(zerop -0.0)") "は常に" (STRONG "true") "です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(zerop 0) =>  true" "(zerop 1) =>  false"
+      "(zerop -0.0) =>  true" "(zerop 0/100) =>  true" "(zerop #c(0 0.0)) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE3 "```lisp" "```" "(zerop number) ==  (= number 0)"))))
+(setf (gethash '("ZEROP" . "FUNCTION") *table*) (gethash "ZEROP" *table*))
 
 
 ;;

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function SINH, COSH, TANH, ASINH, ACOSH, ATANH</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function SINH, COSH, TANH, ASINH, ACOSH, ATANH</h1>
+</header>
+<p><a href="12.2.html">UP</a></p>
+<hr />
+<h1 id="function-sinh-cosh-tanh-asinh-acosh-atanh">Function <strong>SINH, COSH, TANH, ASINH, ACOSH, ATANH</strong></h1>
+<p>Function <code>SINH</code>, <code>COSH</code>, <code>TANH</code>, <code>ASINH</code>, <code>ACOSH</code>, <code>ATANH</code></p>
+<h2 id="構文">構文</h2>
+<p><code>sinh</code> <em>number</em> =&gt; <em>result</em><br />
+<code>cosh</code> <em>number</em> =&gt; <em>result</em><br />
+<code>tanh</code> <em>number</em> =&gt; <em>result</em><br />
+<code>asinh</code> <em>number</em> =&gt; <em>result</em><br />
+<code>acosh</code> <em>number</em> =&gt; <em>result</em><br />
+<code>atanh</code> <em>number</em> =&gt; <em>result</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>number</em> - 数<br />
+<em>result</em> - 数</p>
+<h2 id="定義">定義</h2>
+<p>これらの関数は、 双曲線関数の正弦、余弦、正接、 またその逆関数であるアークサイン、アークコサイン、アークタンジェント （以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、 これらの関数は引数を<em>x</em>としたとき次の表のように 数学的に定義されます。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">関数</th>
+<th style="text-align: left;">定義</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">sinh</td>
+<td style="text-align: left;"><code>(e^{x} - e^{-x})/2</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cosh</td>
+<td style="text-align: left;"><code>(e^{x} + e^{-x})/2</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tanh</td>
+<td style="text-align: left;"><code>(e^{x} - e^{-x})/(e^{x} + e^{-x})</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">arcsinh</td>
+<td style="text-align: left;"><code>log(x + sqrt(1 + x^2))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">arccosh</td>
+<td style="text-align: left;"><code>2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">arctanh</td>
+<td style="text-align: left;"><code>(log(1 + x) - log(1 - x))/2</code></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12-16. 双曲線関数の数学的な定義</p>
+<p>次の定義はarccoshであり、範囲とブランチカットを決定します。</p>
+<pre><code>arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))</code></pre>
+<p>arccosh関数のブランチカットは、 実軸の<code>1</code>（含む）の左から実軸の負に沿って無制限に拡張され、 第2象限と（<code>0</code>と<code>1</code>の間の）第1象限に続きます。 この範囲は複素平面上に含まれる 実部が非負であり虚部が<code>-pi</code>（含まれない）から <code>pi</code>（含む）の数より半分分岐します。 実部がゼロの数は、 もしその虚部がゼロ（含む）から<code>pi</code>（含む）の間であるときが その範囲になります。</p>
+<p>次の定義はarcsinhであり、範囲とブランチカットを決定します。</p>
+<pre><code>arcsinh(z) = log(z + sqrt(1 + z^2))</code></pre>
+<p>arcsinh関数のブランチカットは、2つの部分から成ります。 ひとつは正の虚軸の<code>i</code>（含む）の左から第1象限へ沿って続くものであり、 もうひとつは負の虚軸の<code>-i</code>（含む）の右から第3象限に沿って続くものです。 この範囲は複素平面に含まれる数の虚部<code>-pi/2</code>から<code>pi/2</code>で分岐します。 虚部が<code>-pi/2</code>と等しい数は、その実部が非正であるときのみの範囲になります。 虚部が<code>pi/2</code>と等しい数は、その実部が非負であるときのみの範囲になります。</p>
+<p>次の定義はarctanhであり、範囲とブランチカットを決定します。</p>
+<pre><code>arctanh(z) = (log(1 + x) - log(1 - x))/2</code></pre>
+<p>また次のようになります。</p>
+<pre><code>i arctan(z) = arctanh(iz)</code></pre>
+<p>arctanh関数のブランチカットは、2つの部分からなります。 ひとつは負の実軸の<code>-1</code>（含む）の左上から第3象限へ沿って続くものであり、 もうひとつは正の実軸の<code>1</code>（含む）の右から第1象限へ沿って続くものです。 この<code>-1</code>と<code>1</code>の点はその領域から排他的です。 この範囲は複素平面に含まれる数の虚部<code>-pi/2</code>から<code>pi/2</code>で分岐します。 虚部が<code>-pi/2</code>と等しい数は、その実部が厳密に負であるときのみの範囲になります。 虚部が<code>pi/2</code>と等しい数は、その実部が厳密に正であるときのみの範囲になります。 したがってarctanhの範囲は、arcsinhの<code>-pi*i/2</code>と<code>pi*i/2</code>の排他的な点と同一です。</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">sinh</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  <span class="fl">0.0</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cosh</span> (<span class="kw">complex</span> <span class="dv">0</span> -<span class="dv">1</span>)) <span class="op">=&gt;</span>  #C(<span class="fl">0.540302</span> -<span class="fl">0.0</span>)</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p><em>number</em>が数ではないとき、型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知するべきです。 型<code>arithmetic-error</code>を通知するかもしれません。</p>
+<h2 id="参考">参考</h2>
+<p><code>log</code>, <code>sqrt</code>, 12.1.3.3. 浮動小数の代替可能性の規則</p>
+<h2 id="備考">備考</h2>
+<p><a href="12.2.sinh.html"><code>acosh</code></a>は<em>number</em>が複素数ではないときでも 結果が複素数になるかもしれません。 これは<em>number</em>が1より小さいときに生じます。 また、<a href="12.2.sinh.html"><code>atanh</code></a>は<em>number</em>が複素数ではないときでも 結果が複素数になるかもしれません。 これは<em>number</em>の絶対値が1より大きいときに生じます。</p>
+<p>ブランチカットの数式は、 完全に正確に計算されたと仮定したときは数学的には正しいです。 実装者は数値解析の良いテキストを参考にするべきです。 上記に与えられた数式は、 実数の値を計算するために単純に使用する必要はありません。 これらは複素数の場合ににおいて、 ブランチカットの定義を行うための望ましい方法として選ばれました。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

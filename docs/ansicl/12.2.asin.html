@@ -237,7 +237,7 @@ arccos: (pi/2) - arcsin(x)
 arctan: -i log((1 + ix) sqrt(1/(1 + x^2)))</code></pre>
 <p>Figure 12-14. arcsin, arccos, arctanの数学的な定義</p>
 <p>これらの公式は、完全に正確に計算されたと仮定したときは 数学的には正しいです。 これらは実数値の計算のためのもっとも単純なものではありません。</p>
-<p>もし<a href="12.2.asin.html"><code>atan</code></a>に<em>number1</em>と<em>number2</em>の両方が指定されたとき、 結果は<em>number1</em>/<em>number2</em>のarctanになります。 マイナスゼロがサポートされていないときは、 <a href="12.2.asin.html"><code>atan</code></a>の値は常に<code>-pi</code>(含まれない）から<code>pi</code>(含まれる)になります。 マイナスゼロがサポートされてるときは、 2つの引数のarctanの範囲は<code>-pi</code>(含まれる)になります。</p>
+<p>もし<a href="12.2.asin.html"><code>atan</code></a>に<em>number1</em>と<em>number2</em>の両方が指定されたとき、 結果は<em>number1</em>/<em>number2</em>のarctanになります。 マイナスゼロがサポートされていないときは、 <a href="12.2.asin.html"><code>atan</code></a>の値は常に<code>-pi</code>（含まれない）から<code>pi</code>（含む）になります。 マイナスゼロがサポートされてるときは、 2つの引数のarctanの範囲は<code>-pi</code>（含む）になります。</p>
 <p><em>number1</em>が実数のとき、結果は実数であり、 <code>-pi/2</code>から<code>pi/2</code>（両者とも境界は含まれない）の間に含まれます。 <em>number2</em>が指定されないときに<em>number1</em>は複素数にすることができます。 もし両方指定されたとき、 <em>number1</em>がゼロではないときに<em>number2</em>はゼロに指定できます。</p>
 <p>次の定義はarcsinであり、範囲とブランチカットを決定します。</p>
 <pre><code>arcsin(z) = -i log(iz + sqrt(1 - z^2))</code></pre>

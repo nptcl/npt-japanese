@@ -20,6 +20,7 @@
 (defvar *name*)
 (setq *table* (make-hash-table :test 'equal))
 (setq *name* (make-hash-table :test 'equal))
+(setf (gethash "*" *name*) '("FUNCTION"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *name*) '("VARIABLE"))
 (setf (gethash "*DEBUG-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*DEBUGGER-HOOK*" *name*) '("VARIABLE"))
@@ -53,6 +54,7 @@
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*TRACE-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "+" *name*) '("FUNCTION"))
 (setf (gethash "/=" *name*) '("FUNCTION"))
 (setf (gethash "<" *name*) '("FUNCTION"))
 (setf (gethash "<=" *name*) '("FUNCTION"))
@@ -62,6 +64,7 @@
 (setf (gethash "ABORT" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "ACONS" *name*) '("FUNCTION"))
 (setf (gethash "ACOS" *name*) '("FUNCTION"))
+(setf (gethash "ACOSH" *name*) '("FUNCTION"))
 (setf (gethash "ADD-METHOD" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "ADJOIN" *name*) '("FUNCTION"))
 (setf (gethash "ADJUST-ARRAY" *name*) '("FUNCTION"))
@@ -88,11 +91,13 @@
 (setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "ARRAYP" *name*) '("FUNCTION"))
 (setf (gethash "ASIN" *name*) '("FUNCTION"))
+(setf (gethash "ASINH" *name*) '("FUNCTION"))
 (setf (gethash "ASSERT" *name*) '("MACRO"))
 (setf (gethash "ASSOC" *name*) '("FUNCTION"))
 (setf (gethash "ASSOC-IF" *name*) '("FUNCTION"))
 (setf (gethash "ASSOC-IF-NOT" *name*) '("FUNCTION"))
 (setf (gethash "ATAN" *name*) '("FUNCTION"))
+(setf (gethash "ATANH" *name*) '("FUNCTION"))
 (setf (gethash "ATOM" *name*) '("FUNCTION" "TYPE"))
 (setf (gethash "BASE-CHAR" *name*) '("TYPE"))
 (setf (gethash "BASE-STRING" *name*) '("TYPE"))
@@ -220,6 +225,7 @@
 (setf (gethash "COPY-SYMBOL" *name*) '("FUNCTION"))
 (setf (gethash "COPY-TREE" *name*) '("FUNCTION"))
 (setf (gethash "COS" *name*) '("FUNCTION"))
+(setf (gethash "COSH" *name*) '("FUNCTION"))
 (setf (gethash "COUNT" *name*) '("FUNCTION"))
 (setf (gethash "COUNT-IF" *name*) '("FUNCTION"))
 (setf (gethash "COUNT-IF-NOT" *name*) '("FUNCTION"))
@@ -644,6 +650,7 @@
 (setf (gethash "SIMPLE-WARNING" *name*) '("CONDITION-TYPE"))
 (setf (gethash "SIN" *name*) '("FUNCTION"))
 (setf (gethash "SINGLE-FLOAT" *name*) '("TYPE"))
+(setf (gethash "SINH" *name*) '("FUNCTION"))
 (setf (gethash "SIXTH" *name*) '("ACCESSOR"))
 (setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
 (setf (gethash "SLOT-BOUNDP-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
@@ -723,6 +730,7 @@
 (setf (gethash "TAGBODY" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "TAILP" *name*) '("FUNCTION"))
 (setf (gethash "TAN" *name*) '("FUNCTION"))
+(setf (gethash "TANH" *name*) '("FUNCTION"))
 (setf (gethash "TENTH" *name*) '("ACCESSOR"))
 (setf (gethash "TERPRI" *name*) '("FUNCTION"))
 (setf (gethash "THE" *name*) '("SPECIAL-OPERATOR"))
@@ -793,6 +801,23 @@
 (setf (gethash "Y-OR-N-P" *name*) '("FUNCTION"))
 (setf (gethash "YES-OR-NO-P" *name*) '("FUNCTION"))
 (setf (gethash "ZEROP" *name*) '("FUNCTION"))
+(setf (gethash "*" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "*"))
+    (CHAPTER ("## 構文") 2 (CODE1 "*") " " (CODE1 "&rest") " " (STRONG "number") " => "
+     (STRONG "product"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "product") " - 数")
+    (CHAPTER ("## 定義") 2 (STRONG "number") "の積を返却し、" "その処理中に必要に応じて型の変換を行います。" "もし"
+     (STRONG "number") "が指定されなかったときは、" (CODE1 "1") "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(*) =>  1" "(* 3 5) =>  15"
+      "(* 1.0 #c(22 33) 55/98) =>  #C(12.346938775510203 18.520408163265305)"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "いくつかの引数が数ではなかったとき、" "型" (CODE1 "type-error")
+     "のエラーが通知されるかもしれません。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
+     "12.1.5. 複素数の計算")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*" . "FUNCTION") *table*) (gethash "*" *table*))
 (setf (gethash "*BREAK-ON-SIGNALS*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*BREAK-ON-SIGNALS*"))
     (CHAPTER ("## 値の型") 2 "型指定子") (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
@@ -1777,6 +1802,23 @@
      "に束縛されているときは）、" (CODE1 "*error-output*") "に送信されたエラーメッセージは、" "通常望まれる形で、"
      (CODE1 "*terminal-io*") "を経由してユーザーに届きます。")))
 (setf (gethash '("*TRACE-OUTPUT*" . "VARIABLE") *table*) (gethash "*TRACE-OUTPUT*" *table*))
+(setf (gethash "+" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "+"))
+    (CHAPTER ("## 構文") 2 (CODE1 "+") " " (CODE1 "&rest") " " (STRONG "number") " => "
+     (STRONG "sum"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "sum") " - 数")
+    (CHAPTER ("## 定義") 2 (STRONG "number") "の和を返却し、" "その処理中に必要に応じて型の変換を行います。" "もし"
+     (STRONG "number") "が指定されなかったときは、" (CODE1 "0") "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(+) =>  0" "(+ 1) =>  1" "(+ 31/100 69/100) =>  1"
+      "(+ 1/5 0.8) =>  1.0"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "いくつかの引数が数ではなかったとき、" "型" (CODE1 "type-error")
+     "のエラーが通知されるかもしれません。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
+     "12.1.5. 複素数の計算")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("+" . "FUNCTION") *table*) (gethash "+" *table*))
 (setf (gethash "/=" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
      (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
@@ -2310,9 +2352,9 @@
      "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
      "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
      "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
-     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
-     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
-     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "（含まれない）から"
+     (CODE1 "pi") "（含む）になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "（含む）になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
      (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
      (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
      (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
@@ -2381,6 +2423,64 @@
     (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
      "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
 (setf (gethash '("ACOS" . "FUNCTION") *table*) (gethash "ACOS" *table*))
+(setf (gethash "ACOSH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("ACOSH" . "FUNCTION") *table*) (gethash "ACOSH" *table*))
 (setf (gethash "ADD-METHOD" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "ADD-METHOD"))
     (CHAPTER ("## 構文") 2 (CODE1 "add-method") " " (STRONG "generic-function") " "
@@ -3051,9 +3151,9 @@
      "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
      "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
      "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
-     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
-     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
-     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "（含まれない）から"
+     (CODE1 "pi") "（含む）になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "（含む）になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
      (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
      (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
      (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
@@ -3122,6 +3222,64 @@
     (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
      "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
 (setf (gethash '("ASIN" . "FUNCTION") *table*) (gethash "ASIN" *table*))
+(setf (gethash "ASINH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("ASINH" . "FUNCTION") *table*) (gethash "ASINH" *table*))
 (setf (gethash "ASSERT" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "ASSERT"))
     (CHAPTER ("## 構文") 2 (CODE1 "assert") " " (STRONG "test-form") " [("
@@ -3368,9 +3526,9 @@
      "これらの公式は、完全に正確に計算されたと仮定したときは" "数学的には正しいです。" "これらは実数値の計算のためのもっとも単純なものではありません。" EOL2
      "もし" (CODE1 "atan") "に" (STRONG "number1") "と" (STRONG "number2") "の両方が指定されたとき、"
      "結果は" (STRONG "number1") "/" (STRONG "number2") "のarctanになります。"
-     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "(含まれない）から"
-     (CODE1 "pi") "(含まれる)になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
-     "(含まれる)になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
+     "マイナスゼロがサポートされていないときは、" (CODE1 "atan") "の値は常に" (CODE1 "-pi") "（含まれない）から"
+     (CODE1 "pi") "（含む）になります。" "マイナスゼロがサポートされてるときは、" "2つの引数のarctanの範囲は" (CODE1 "-pi")
+     "（含む）になります。" EOL2 (STRONG "number1") "が実数のとき、結果は実数であり、" (CODE1 "-pi/2") "から"
      (CODE1 "pi/2") "（両者とも境界は含まれない）の間に含まれます。" (STRONG "number2") "が指定されないときに"
      (STRONG "number1") "は複素数にすることができます。" "もし両方指定されたとき、" (STRONG "number1") "がゼロではないときに"
      (STRONG "number2") "はゼロに指定できます。" EOL2 "次の定義はarcsinであり、範囲とブランチカットを決定します。"
@@ -3439,6 +3597,64 @@
     (CHAPTER ("## 備考") 2 (CODE1 "asin") "と" (CODE1 "acos") "のどちらの場合も、" (STRONG "number")
      "が複素数ではないときでさえ結果が複素数になることができます。" "これは" (STRONG "number") "の絶対値が1より大きいときに生じます。")))
 (setf (gethash '("ATAN" . "FUNCTION") *table*) (gethash "ATAN" *table*))
+(setf (gethash "ATANH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("ATANH" . "FUNCTION") *table*) (gethash "ATANH" *table*))
 (setf (gethash "ATOM" *table*)
   '("ATOM FUNCTION" EOL1 "ATOM TYPE" EOL1))
 (setf (gethash '("ATOM" . "FUNCTION") *table*)
@@ -11441,6 +11657,64 @@
      "12.1.3.3. 浮動小数の代替可能性の規則")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("COS" . "FUNCTION") *table*) (gethash "COS" *table*))
+(setf (gethash "COSH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("COSH" . "FUNCTION") *table*) (gethash "COSH" *table*))
 (setf (gethash "COUNT" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "COUNT") ", " (CODE1 "COUNT-IF") ", "
      (CODE1 "COUNT-IF-NOT"))
@@ -29598,6 +29872,64 @@
      (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
 (setf (gethash '("SINGLE-FLOAT" . "TYPE") *table*) (gethash "SINGLE-FLOAT" *table*))
+(setf (gethash "SINH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("SINH" . "FUNCTION") *table*) (gethash "SINH" *table*))
 (setf (gethash "SIXTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "
@@ -33262,6 +33594,64 @@
      "12.1.3.3. 浮動小数の代替可能性の規則")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("TAN" . "FUNCTION") *table*) (gethash "TAN" *table*))
+(setf (gethash "TANH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
+     ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sinh") " " (STRONG "number") " => " (STRONG "result")
+     EOL1 (CODE1 "cosh") " " (STRONG "number") " => " (STRONG "result") EOL1
+     (CODE1 "tanh") " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "asinh")
+     " " (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "acosh") " "
+     (STRONG "number") " => " (STRONG "result") EOL1 (CODE1 "atanh") " "
+     (STRONG "number") " => " (STRONG "result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "result") " - 数")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" "双曲線関数の正弦、余弦、正接、"
+     "またその逆関数であるアークサイン、アークコサイン、アークタンジェント"
+     "（以降sinh, cosh, tanh, arcsinh, arccosh, arctanhと記載）を計算し、" "これらの関数は引数を" (STRONG "x")
+     "としたとき次の表のように" "数学的に定義されます。" EOL2
+     "|関数     |定義                                        |"
+     "|:--------|:-------------------------------------------|" "|sinh     |"
+     (CODE1 "(e^{x} - e^{-x})/2") "                        |" "|cosh     |"
+     (CODE1 "(e^{x} + e^{-x})/2") "                        |" "|tanh     |"
+     (CODE1 "(e^{x} - e^{-x})/(e^{x} + e^{-x})") "         |" "|arcsinh  |"
+     (CODE1 "log(x + sqrt(1 + x^2))") "                    |" "|arccosh  |"
+     (CODE1 "2 log(sqrt((x + 1)/2) + sqrt((x - 1)/2))") "  |" "|arctanh  |"
+     (CODE1 "(log(1 + x) - log(1 - x))/2") "               |" EOL2
+     "Figure 12-16. 双曲線関数の数学的な定義" EOL2 "次の定義はarccoshであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arccosh(z) = 2 log(sqrt((z + 1)/2) + sqrt((z - 1)/2))") EOL2
+     "arccosh関数のブランチカットは、" "実軸の" (CODE1 "1") "（含む）の左から実軸の負に沿って無制限に拡張され、" "第2象限と（"
+     (CODE1 "0") "と" (CODE1 "1") "の間の）第1象限に続きます。" "この範囲は複素平面上に含まれる" "実部が非負であり虚部が"
+     (CODE1 "-pi") "（含まれない）から" (CODE1 "pi") "（含む）の数より半分分岐します。" "実部がゼロの数は、"
+     "もしその虚部がゼロ（含む）から" (CODE1 "pi") "（含む）の間であるときが" "その範囲になります。" EOL2
+     "次の定義はarcsinhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arcsinh(z) = log(z + sqrt(1 + z^2))") EOL2
+     "arcsinh関数のブランチカットは、2つの部分から成ります。" "ひとつは正の虚軸の" (CODE1 "i") "（含む）の左から第1象限へ沿って続くものであり、"
+     "もうひとつは負の虚軸の" (CODE1 "-i") "（含む）の右から第3象限に沿って続くものです。" "この範囲は複素平面に含まれる数の虚部"
+     (CODE1 "-pi/2") "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が非正であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が非負であるときのみの範囲になります。" EOL2 "次の定義はarctanhであり、範囲とブランチカットを決定します。"
+     (CODE3 "```" "```" "arctanh(z) = (log(1 + x) - log(1 - x))/2") EOL2 "また次のようになります。"
+     (CODE3 "```" "```" "i arctan(z) = arctanh(iz)") EOL2
+     "arctanh関数のブランチカットは、2つの部分からなります。" "ひとつは負の実軸の" (CODE1 "-1")
+     "（含む）の左上から第3象限へ沿って続くものであり、" "もうひとつは正の実軸の" (CODE1 "1") "（含む）の右から第1象限へ沿って続くものです。" "この"
+     (CODE1 "-1") "と" (CODE1 "1") "の点はその領域から排他的です。" "この範囲は複素平面に含まれる数の虚部" (CODE1 "-pi/2")
+     "から" (CODE1 "pi/2") "で分岐します。" "虚部が" (CODE1 "-pi/2")
+     "と等しい数は、その実部が厳密に負であるときのみの範囲になります。" "虚部が" (CODE1 "pi/2")
+     "と等しい数は、その実部が厳密に正であるときのみの範囲になります。" "したがってarctanhの範囲は、arcsinhの" (CODE1 "-pi*i/2") "と"
+     (CODE1 "pi*i/2") "の排他的な点と同一です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sinh 0) =>  0.0 "
+      "(cosh (complex 0 -1)) =>  #C(0.540302 -0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "log") "," (CODE1 "sqrt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 (CODE1 "acosh") "は" (STRONG "number") "が複素数ではないときでも"
+     "結果が複素数になるかもしれません。" "これは" (STRONG "number") "が1より小さいときに生じます。" "また、" (CODE1 "atanh")
+     "は" (STRONG "number") "が複素数ではないときでも" "結果が複素数になるかもしれません。" "これは" (STRONG "number")
+     "の絶対値が1より大きいときに生じます。" EOL2 "ブランチカットの数式は、" "完全に正確に計算されたと仮定したときは数学的には正しいです。"
+     "実装者は数値解析の良いテキストを参考にするべきです。" "上記に与えられた数式は、" "実数の値を計算するために単純に使用する必要はありません。"
+     "これらは複素数の場合ににおいて、" "ブランチカットの定義を行うための望ましい方法として選ばれました。")))
+(setf (gethash '("TANH" . "FUNCTION") *table*) (gethash "TANH" *table*))
 (setf (gethash "TENTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "

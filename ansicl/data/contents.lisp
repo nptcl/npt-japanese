@@ -496,6 +496,7 @@
 (text 12.1.1.2 "数値演算の伝染" "Contagion in Numeric Operations")
 (text 12.1.3 "{rational}の計算" "Rational Computations")
 (text 12.1.3.3 "浮動小数の代替可能性の規則" "Rule of Float Substitutability")
+(text 12.1.4 "浮動小数の計算" "Floating-point Computations")
 (text 12.1.5 "複素数の計算" "Complex Computations")
 (text 12.1.5.3 
       "`rational`型の複素数の標準的な表現のルール"
@@ -524,8 +525,8 @@
 (dictionary 12.2.asin)
 (dictionary 12.2.pi)
 (dictionary 12.2.sinh)
-(dictionary 12.2.*)
-(dictionary 12.2.+)
+(dictionary 12.2.number-asterisk)
+(dictionary 12.2.number-plus)
 (dictionary 12.2.-)
 (dictionary 12.2./)
 (dictionary 12.2.1+)

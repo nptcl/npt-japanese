@@ -1,0 +1,77 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function EVENP
+;;  Function ODDP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.evenp
+@name: evenp
+@name: oddp
+@type: function
+
+Function `EVENP`, `ODDP`
+
+
+## {syntax}
+
+`evenp` *integer* => *generalized-boolean*  
+`oddp` *integer* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{evenp:link}は、*integer*が偶数（2で割り切れる）のとき*true*を、
+それ以外は*false*を返却します。
+
+{oddp:link}は、*integer*が奇数（2で割り切れない）のとき*true*を、
+それ以外は*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(evenp 0) =>  true
+(oddp 10000000000000000000000) =>  false
+(oddp -1) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer*が整数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(evenp integer) ==  (not (oddp integer))
+(oddp integer)  ==  (not (evenp integer))
+```
+
+@end
+

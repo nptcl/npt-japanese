@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ABS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.abs
+@name: abs
+@type: function
+
+Function `ABS`
+
+
+## {syntax}
+
+`abs` *number* => *absolute-value*
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*absolute-value* - 非負の実数
+
+
+## {description}
+
+{abs:link}は*number*の絶対値を返却します。
+
+もし*number*が実数のとき、返却値は*number*と同じ型です。
+
+もし*number*が複素数のとき、
+返却値は*number*と同じ大きさの正の実数です。
+もし*number*の要素が{rational}であり、
+返却値がちょうど{rational}であることが可能であっても、
+その返却値は{float}にすることができます。
+したがって、`(abs #c(3 4))`は`5`か`5.0`のどちらかになり、
+実装に依存します。
+
+
+## {examples}
+
+```lisp
+(abs 0) =>  0
+(abs 12/13) =>  12/13
+(abs -1.09) =>  1.09
+(abs #c(5.0 -5.0)) =>  7.071068
+(abs #c(5 5)) =>  7.071068
+(abs #c(3/5 4/5)) =>  1 or approximately 1.0
+(eql (abs -0.0) -0.0) =>  true
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{12.1.3.3:ab}
+
+
+## {notes}
+
+もし*number*が複素数のとき、
+結果は次のものと等しくなります。
+
+```lisp
+(sqrt (+ (expt (realpart number) 2) (expt (imagpart number) 2)))
+```
+
+実装はこの公式を全ての複素数に使うべきではありません。
+そうではなく非常に大きい要素か非常に小さい要素に対して、
+計算の途中でオーバーフローとアンダーフローが起きないよう
+特別な処理を行うべきです。
+
+@end
+

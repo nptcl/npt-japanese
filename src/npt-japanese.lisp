@@ -55,13 +55,18 @@
 (setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*TRACE-OUTPUT*" *name*) '("VARIABLE"))
 (setf (gethash "+" *name*) '("FUNCTION"))
+(setf (gethash "-" *name*) '("FUNCTION"))
+(setf (gethash "/" *name*) '("FUNCTION"))
 (setf (gethash "/=" *name*) '("FUNCTION"))
+(setf (gethash "1+" *name*) '("FUNCTION"))
+(setf (gethash "1-" *name*) '("FUNCTION"))
 (setf (gethash "<" *name*) '("FUNCTION"))
 (setf (gethash "<=" *name*) '("FUNCTION"))
 (setf (gethash "=" *name*) '("FUNCTION"))
 (setf (gethash ">" *name*) '("FUNCTION"))
 (setf (gethash ">=" *name*) '("FUNCTION"))
 (setf (gethash "ABORT" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "ABS" *name*) '("FUNCTION"))
 (setf (gethash "ACONS" *name*) '("FUNCTION"))
 (setf (gethash "ACOS" *name*) '("FUNCTION"))
 (setf (gethash "ACOSH" *name*) '("FUNCTION"))
@@ -291,6 +296,7 @@
 (setf (gethash "ETYPECASE" *name*) '("MACRO"))
 (setf (gethash "EVAL" *name*) '("FUNCTION"))
 (setf (gethash "EVAL-WHEN" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "EVENP" *name*) '("FUNCTION"))
 (setf (gethash "EVERY" *name*) '("FUNCTION"))
 (setf (gethash "EXPORT" *name*) '("FUNCTION"))
 (setf (gethash "EXTENDED-CHAR" *name*) '("TYPE"))
@@ -497,6 +503,7 @@
 (setf (gethash "NULL" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "NUMBER" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "NUNION" *name*) '("FUNCTION"))
+(setf (gethash "ODDP" *name*) '("FUNCTION"))
 (setf (gethash "OPEN" *name*) '("FUNCTION"))
 (setf (gethash "OPEN-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "OPTIMIZE" *name*) '("DECLARATION"))
@@ -1819,6 +1826,57 @@
      "12.1.5. 複素数の計算")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("+" . "FUNCTION") *table*) (gethash "+" *table*))
+(setf (gethash "-" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "-"))
+    (CHAPTER ("## 構文") 2 (CODE1 "-") " " (STRONG "number") " => " (STRONG "negation")
+     EOL1 (CODE1 "-") " " (STRONG "minuend") " " (CODE1 "&rest") " "
+     (STRONG "subtrahend") "+ => " (STRONG "difference"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") ", " (STRONG "minuend") ", "
+     (STRONG "subtrahend") " - 数" EOL1 (STRONG "negation") ", " (STRONG "difference")
+     " - 数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "-") "は、引き算とマイナスの数を計算します。" EOL2 (STRONG "number")
+     "のみが与えられたとき、" (STRONG "number") "のマイナスを返却します。" EOL2 "ひとつ以上の引数が与えられたとき、"
+     (STRONG "minuend") "から全ての" (STRONG "subtrahend") "を引き算し、" "その結果を返却します。" EOL2 "関数"
+     (CODE1 "-") "は必要に応じて型の変換を行います。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(- 55.55) =>  -55.55" "(- #c(3 -5)) =>  #C(-3 5)"
+      "(- 0) =>  0" "(eql (- 0.0) -0.0) =>  true" "(- #c(100 45) #c(0 45)) =>  100"
+      "(- 10 1 2 3 4) =>  0"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "いくつかの引数が数ではなかったとき、" "型" (CODE1 "type-error")
+     "のエラーが通知されるかもしれません。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
+     "12.1.5. 複素数の計算")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("-" . "FUNCTION") *table*) (gethash "-" *table*))
+(setf (gethash "/" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "/"))
+    (CHAPTER ("## 構文") 2 (CODE1 "/") " " (STRONG "number") " => " (STRONG "reciprocal")
+     EOL1 (CODE1 "/") " " (STRONG "numerator") " " (CODE1 "&rest") " "
+     (STRONG "denominator") "+ => " (STRONG "quotient"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") ", " (STRONG "denominator") " - ゼロではない数"
+     EOL1 (STRONG "numerator") ", " (STRONG "quotient") ", " (STRONG "reciprocal")
+     " - 数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "/") "は、割り算か逆数を計算します。" EOL2 (STRONG "denominator")
+     "が指定されなかったときは、" "関数" (CODE1 "/") "は" (STRONG "number") "の逆数を返却します。" EOL2
+     (STRONG "denominator") "が少なくともひとつ指定されたときは、" "関数" (CODE1 "/") "は" (STRONG "number")
+     "を全ての" (STRONG "denomnator") "によって除算し、" "結果の" (STRONG "quotient") "を返却します。" EOL2
+     "それぞれの引数が整数か分数のどちらかであるとき、" "結果は整数ではなく分数になります。" EOL2 "関数" (CODE1 "/")
+     "は必要に応じて型の変換を行います。" EOL2 "どれかの引数が浮動小数のとき、" "浮動総数の伝染の規則が適用されます。"
+     "詳しくは12.1.4. 浮動小数の計算をご確認ください。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(/ 12 4) =>  3" "(/ 13 4) =>  13/4" "(/ -8) =>  -1/8"
+      "(/ 3 4 5) =>  3/20" "(/ 0.5) =>  2.0" "(/ 20 5) =>  4" "(/ 5 20) =>  1/4"
+      "(/ 60 -2 3 5.0) =>  -2.0" "(/ 2 #c(2 2)) =>  #C(1/2 -1/2)"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "最初以外の引数のどれかがゼロであったときの結果は指定されていません。" "もし引数がひとつだけ指定され、"
+     "それがゼロであったときの結果は指定されていません。" EOL2 "いくつかの引数が数ではなかったとき、" "型" (CODE1 "type-error")
+     "のエラーが通知されるかもしれません。" "もしゼロの除算が行われたとき、" (CODE1 "division-by-zero") "が通知されるかもしれません。"
+     "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "floor") "," (CODE1 "ceiling") "," (CODE1 "truncate") ","
+     (CODE1 "round"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("/" . "FUNCTION") *table*) (gethash "/" *table*))
 (setf (gethash "/=" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
      (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
@@ -1883,6 +1941,46 @@
      "はいつも" (STRONG "true") "です。" "なぜなら" (CODE1 "=") "はそれらの引数は" "数学的な値として比較されるからであり、"
      "一方" (CODE1 "eql") "は" "言うならば表現による値で比較します。")))
 (setf (gethash '("/=" . "FUNCTION") *table*) (gethash "/=" *table*))
+(setf (gethash "1+" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "1+") ", " (CODE1 "1-"))
+    (CHAPTER ("## 構文") 2 (CODE1 "1+") " " (STRONG "number") " => " (STRONG "successor")
+     EOL1 (CODE1 "1-") " " (STRONG "number") " => " (STRONG "predecessor"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "successor") ", "
+     (STRONG "predecessor") " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "1+") "は、引数" (STRONG "number") "よりひとつ大きい数を返却します。"
+     (CODE1 "1-") "は、引数" (STRONG "number") "よりひとつ小さい数を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(1+ 99) =>  100 " "(1- 100) =>  99 "
+      "(1+ (complex 0.0)) =>  #C(1.0 0.0) " "(1- 5/3) =>  2/3 "))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数が数ではなかったとき、型" (CODE1 "type-error") "を通知するかもしれません。" "型"
+     (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "incf") "," (CODE1 "decf"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(1+ number) ==  (+ number 1)"
+      "(1- number) ==  (- number 1)")
+     EOL2 "実装者は上記の両方の式のパフォーマンスを同じにするよう勧められます。")))
+(setf (gethash '("1+" . "FUNCTION") *table*) (gethash "1+" *table*))
+(setf (gethash "1-" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "1+") ", " (CODE1 "1-"))
+    (CHAPTER ("## 構文") 2 (CODE1 "1+") " " (STRONG "number") " => " (STRONG "successor")
+     EOL1 (CODE1 "1-") " " (STRONG "number") " => " (STRONG "predecessor"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "successor") ", "
+     (STRONG "predecessor") " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "1+") "は、引数" (STRONG "number") "よりひとつ大きい数を返却します。"
+     (CODE1 "1-") "は、引数" (STRONG "number") "よりひとつ小さい数を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(1+ 99) =>  100 " "(1- 100) =>  99 "
+      "(1+ (complex 0.0)) =>  #C(1.0 0.0) " "(1- 5/3) =>  2/3 "))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数が数ではなかったとき、型" (CODE1 "type-error") "を通知するかもしれません。" "型"
+     (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "incf") "," (CODE1 "decf"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(1+ number) ==  (+ number 1)"
+      "(1- number) ==  (- number 1)")
+     EOL2 "実装者は上記の両方の式のパフォーマンスを同じにするよう勧められます。")))
+(setf (gethash '("1-" . "FUNCTION") *table*) (gethash "1-" *table*))
 (setf (gethash "<" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
      (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
@@ -2312,6 +2410,31 @@
      "させる方が適切な場合があります。")
     (CHAPTER ("## 参考") 2 "9.1.4.2. " (CODE1 "restart") "," "9.1.4.2.2. "
      (CODE1 "restart") "のインターフェイス," (CODE1 "invoke-restart") "," (CODE1 "abort") "（関数）")))
+(setf (gethash "ABS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ABS"))
+    (CHAPTER ("## 構文") 2 (CODE1 "abs") " " (STRONG "number") " => "
+     (STRONG "absolute-value"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "absolute-value")
+     " - 非負の実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "abs") "は" (STRONG "number") "の絶対値を返却します。" EOL2 "もし"
+     (STRONG "number") "が実数のとき、返却値は" (STRONG "number") "と同じ型です。" EOL2 "もし"
+     (STRONG "number") "が複素数のとき、" "返却値は" (STRONG "number") "と同じ大きさの正の実数です。" "もし"
+     (STRONG "number") "の要素が有理数であり、" "返却値がちょうど有理数であることが可能であっても、" "その返却値は浮動小数にすることができます。"
+     "したがって、" (CODE1 "(abs #c(3 4))") "は" (CODE1 "5") "か" (CODE1 "5.0") "のどちらかになり、"
+     "実装に依存します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(abs 0) =>  0" "(abs 12/13) =>  12/13"
+      "(abs -1.09) =>  1.09" "(abs #c(5.0 -5.0)) =>  7.071068"
+      "(abs #c(5 5)) =>  7.071068" "(abs #c(3/5 4/5)) =>  1 or approximately 1.0"
+      "(eql (abs -0.0) -0.0) =>  true"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "12.1.3.3. 浮動小数の代替可能性の規則")
+    (CHAPTER ("## 備考") 2 "もし" (STRONG "number") "が複素数のとき、" "結果は次のものと等しくなります。"
+     (CODE3 "```lisp" "```"
+      "(sqrt (+ (expt (realpart number) 2) (expt (imagpart number) 2)))")
+     EOL2 "実装はこの公式を全ての複素数に使うべきではありません。" "そうではなく非常に大きい要素か非常に小さい要素に対して、"
+     "計算の途中でオーバーフローとアンダーフローが起きないよう" "特別な処理を行うべきです。")))
+(setf (gethash '("ABS" . "FUNCTION") *table*) (gethash "ABS" *table*))
 (setf (gethash "ACONS" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "ACONS"))
     (CHAPTER ("## 構文") 2 (CODE1 "acons") " " (STRONG "key") " " (STRONG "datum") " "
@@ -16180,6 +16303,28 @@
       "  (setf (symbol-function 'foo) #'(lambda () (+ x 3))))")
      EOL2 "これは" (CODE1 "bar") "の定義がトップレベルフォームのものではありません。")))
 (setf (gethash '("EVAL-WHEN" . "SPECIAL-OPERATOR") *table*) (gethash "EVAL-WHEN" *table*))
+(setf (gethash "EVENP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "EVENP") ", " (CODE1 "ODDP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "evenp") " " (STRONG "integer") " => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "oddp") " " (STRONG "integer") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer") " - 整数" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "evenp") "は、" (STRONG "integer") "が偶数（2で割り切れる）のとき"
+     (STRONG "true") "を、" "それ以外は" (STRONG "false") "を返却します。" EOL2 (CODE1 "oddp") "は、"
+     (STRONG "integer") "が奇数（2で割り切れない）のとき" (STRONG "true") "を、" "それ以外は" (STRONG "false")
+     "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(evenp 0) =>  true"
+      "(oddp 10000000000000000000000) =>  false" "(oddp -1) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "integer") "が整数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(evenp integer) ==  (not (oddp integer))"
+      "(oddp integer)  ==  (not (evenp integer))"))))
+(setf (gethash '("EVENP" . "FUNCTION") *table*) (gethash "EVENP" *table*))
 (setf (gethash "EVERY" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "EVERY") ", " (CODE1 "SOME") ", "
      (CODE1 "NOTEVERY") ", " (CODE1 "NOTANY"))
@@ -24198,6 +24343,28 @@
     (CHAPTER ("## 備考") 2 (CODE1 ":test-not") "パラメーターは非推奨です。" EOL2 (CODE1 "nunion")
      "の副作用は必要ないため、" "移植可能なコードにおいては副作用のみを期待した姿勢で使うべきではありません。")))
 (setf (gethash '("NUNION" . "FUNCTION") *table*) (gethash "NUNION" *table*))
+(setf (gethash "ODDP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "EVENP") ", " (CODE1 "ODDP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "evenp") " " (STRONG "integer") " => "
+     (STRONG "generalized-boolean") EOL1 (CODE1 "oddp") " " (STRONG "integer") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer") " - 整数" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "evenp") "は、" (STRONG "integer") "が偶数（2で割り切れる）のとき"
+     (STRONG "true") "を、" "それ以外は" (STRONG "false") "を返却します。" EOL2 (CODE1 "oddp") "は、"
+     (STRONG "integer") "が奇数（2で割り切れない）のとき" (STRONG "true") "を、" "それ以外は" (STRONG "false")
+     "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(evenp 0) =>  true"
+      "(oddp 10000000000000000000000) =>  false" "(oddp -1) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "integer") "が整数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(evenp integer) ==  (not (oddp integer))"
+      "(oddp integer)  ==  (not (evenp integer))"))))
+(setf (gethash '("ODDP" . "FUNCTION") *table*) (gethash "ODDP" *table*))
 (setf (gethash "OPEN" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "OPEN"))
     (CHAPTER ("## 構文") 2 (CODE1 "open") " " (STRONG "filespec") " " (CODE1 "&key") " "

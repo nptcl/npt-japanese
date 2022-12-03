@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function 1+
+;;  Function 1-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.one-plus
+@name: 1+
+@name: 1-
+@type: function
+
+Function `1+`, `1-`
+
+
+## {syntax}
+
+`1+` *number* => *successor*  
+`1-` *number* => *predecessor*
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*successor*, *predecessor* - 数
+
+
+## {description}
+
+{1+:link}は、引数*number*よりひとつ大きい数を返却します。
+{1-:link}は、引数*number*よりひとつ小さい数を返却します。
+
+
+## {examples}
+
+```lisp
+(1+ 99) =>  100 
+(1- 100) =>  99 
+(1+ (complex 0.0)) =>  #C(1.0 0.0) 
+(1- 5/3) =>  2/3 
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数が数ではなかったとき、型{type-error:link}を通知するかもしれません。
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+{incf:link},
+{decf:link}
+
+
+## {notes}
+
+```lisp
+(1+ number) ==  (+ number 1)
+(1- number) ==  (- number 1)
+```
+
+実装者は上記の両方の式のパフォーマンスを同じにするよう勧められます。
+
+@end
+

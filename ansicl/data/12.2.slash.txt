@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function /
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.number-slash
+@name: /
+@type: function
+
+Function `/`
+
+
+## {syntax}
+
+`/` *number* => *reciprocal*  
+`/` *numerator* `&rest` *denominator*+ => *quotient*
+
+
+## {arguments-and-values}
+
+*number*, *denominator* - ゼロではない数  
+*numerator*, *quotient*, *reciprocal* - 数
+
+
+## {description}
+
+関数{/:link}は、割り算か逆数を計算します。
+
+*denominator*が指定されなかったときは、
+関数{/:link}は*number*の逆数を返却します。
+
+*denominator*が少なくともひとつ指定されたときは、
+関数{/:link}は*number*を全ての*denomnator*によって除算し、
+結果の*quotient*を返却します。
+
+それぞれの引数が整数か分数のどちらかであるとき、
+結果は整数ではなく分数になります。
+
+関数{/:link}は必要に応じて型の変換を行います。
+
+どれかの引数が{float}のとき、
+浮動総数の伝染の規則が適用されます。
+詳しくは{12.1.4:ab}をご確認ください。
+
+
+## {examples}
+
+```lisp
+(/ 12 4) =>  3
+(/ 13 4) =>  13/4
+(/ -8) =>  -1/8
+(/ 3 4 5) =>  3/20
+(/ 0.5) =>  2.0
+(/ 20 5) =>  4
+(/ 5 20) =>  1/4
+(/ 60 -2 3 5.0) =>  -2.0
+(/ 2 #c(2 2)) =>  #C(1/2 -1/2)
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+最初以外の引数のどれかがゼロであったときの結果は指定されていません。
+もし引数がひとつだけ指定され、
+それがゼロであったときの結果は指定されていません。
+
+いくつかの引数が数ではなかったとき、
+型{type-error:link}のエラーが通知されるかもしれません。
+もしゼロの除算が行われたとき、
+{division-by-zero:link}が通知されるかもしれません。
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+{floor:link},
+{ceiling:link},
+{truncate:link},
+{round:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

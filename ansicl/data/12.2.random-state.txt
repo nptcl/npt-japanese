@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  System Class RANDOM-STATE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.random-state
+@name: random-state
+@type: system-class
+
+System Class `RANDOM-STATE`
+
+
+## {class-precedence-list}
+
+{random-state:link},
+{t!system-class:link}
+
+
+## {description}
+
+{random-state}オブジェクトは、
+疑似乱数生成器によって使用される状態の情報を含みます。
+{random-state}オブジェクトの内容は{implementation-dependent}です。
+これは出力することができ、同じ実装によって再び読み込ませることができます。
+しかし他の実装で{random-state}を正しく機能しないかもしれません。
+
+実装は型{random-state:link}のオブジェクトの
+構文を読み込む機能を提供する必要があります。
+しかし構文の詳細については{implementation-dependent}です。
+
+
+## {see-also}
+
+{*random-state*:link},
+{random:link},
+{22.1.3.10:ab}
+
+@end
+

@@ -1,0 +1,88 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro INCF
+;;  Macro DECF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.incf
+@name: incf
+@name: decf
+@type: macro
+
+Macro `INCF`, `DECF`
+
+
+## {syntax}
+
+`incf` *place* `[` *delta-form* `]` => *new-value*  
+`decf` *place* `[` *delta-form* `]` => *new-value*
+
+
+## {arguments-and-values}
+
+*place* - {place}  
+*delta-form* - フォーム。評価され*delta*を生成します。
+デフォルトは`1`です。  
+*delta* - 数  
+*new-value* - 数
+
+
+## {description}
+
+{incf:link}と{decf:link}は、*place*の値を
+それぞれインクリメント、デクリメントするときに使用します。
+
+*delta*は*place*の数を加算（{incf:link}の場合）か
+減算（{decf:link}の場合）し、
+その結果を*place*に格納します。
+
+
+## {examples}
+
+```lisp
+(setq n 0)
+(incf n) =>  1      
+n =>  1
+(decf n 3) =>  -2   
+n =>  -2
+(decf n -5) =>  3      
+(decf n) =>  2      
+(incf n 0.5) =>  2.5
+(decf n) =>  1.5
+n =>  1.5
+```
+
+
+## {side-effects}
+
+*place*は変更されます。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{+:link},
+{-:link},
+{1+:link},
+{1-:link},
+{setf:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

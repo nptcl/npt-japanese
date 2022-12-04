@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MOD
+;;  Function REM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.mod!function
+@name: mod!function
+@name: rem
+@type: function
+
+Function `MOD`, `REM`
+
+
+## {syntax}
+
+`mod` *number* *divisor* => *modulus*  
+`rem` *number* *divisor* => *remainder*
+
+
+## {arguments-and-values}
+
+*number* - 実数  
+*divisor* - 実数  
+*modulus*, *remainder* - 実数
+
+
+## {description}
+
+{mod!function:link}と{rem:link}は、それぞれ係数と剰余の一般化関数です。
+
+{mod!function:link}は*number*と*divisor*を用いて{floor:link}の処理を実施し、
+その{floor:link}処理の余りを返却します。
+
+{rem:link}は*number*と*divisor*を用いて{truncate:link}の処理を実施し、
+その{truncate:link}処理の余りを返却します。
+
+*nubmer*と*divisor*が整数のとき、
+{mod!function:link}と{rem:link}は係数と剰余の関数です。
+
+
+## {examples}
+
+```lisp
+(rem -1 5) =>  -1
+(mod -1 5) =>  4
+(mod 13 4) =>  1
+(rem 13 4) =>  1
+(mod -13 4) =>  3
+(rem -13 4) =>  -1
+(mod 13 -4) =>  -3
+(rem 13 -4) =>  1
+(mod -13 -4) =>  -1
+(rem -13 -4) =>  -1
+(mod 13.4 1) =>  0.4
+(rem 13.4 1) =>  0.4
+(mod -13.4 1) =>  0.6
+(rem -13.4 1) =>  -0.4
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{floor:link},
+{truncate:link}
+
+
+## {notes}
+
+{mod!function:link}の返却値は、
+ゼロか、*divisor*と同じ符号の整数かの
+どちらかになります、
+
+@end
+

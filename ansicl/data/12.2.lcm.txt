@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LCM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.lcm
+@name: lcm
+@type: function
+
+Function `LCM`
+
+
+## {syntax}
+
+`lcm` `&rest` *integer* => *least-common-multiple*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*least-common-multiple* - 非負の整数
+
+
+## {description}
+
+{lcm:link}は*integer*の最小公倍数を返却します。
+
+もし*integer*が指定されなかったときは、整数の`1`を返却します。
+
+もし*integer*がひとつだけ指定されたときは、その絶対値が返却されます。
+
+2つの引数が両方ともゼロではないときは下記のようになります。
+
+```lisp
+(lcm a b) ==  (/ (abs (* a b)) (gcd a b))
+```
+
+ひとつか両方がゼロのときは下記のようになります。
+
+```lisp
+(lcm a 0) ==  (lcm 0 a) ==  0
+```
+
+3つ以上の引数のときは下記のようになります。
+
+```lisp
+(lcm a b c ... z) ==  (lcm (lcm a b) c ... z)
+```
+
+
+## {examples}
+
+```lisp
+(lcm 10) =>  10
+(lcm 25 30) =>  150
+(lcm -24 18 10) =>  360
+(lcm 14 35) =>  70
+(lcm 0 5) =>  0
+(lcm 1 2 3 4 5 6) =>  60
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer*のどれかが整数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+{gcd:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

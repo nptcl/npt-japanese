@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function 1+, 1-</title>
+  <title>Function RANDOM</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,37 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function 1+, 1-</h1>
+<h1 class="title">Function RANDOM</h1>
 </header>
 <p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="function-1-1-">Function <strong>1+, 1-</strong></h1>
-<p>Function <code>1+</code>, <code>1-</code></p>
+<h1 id="function-random">Function <strong>RANDOM</strong></h1>
+<p>Function <code>RANDOM</code></p>
 <h2 id="構文">構文</h2>
-<p><code>1+</code> <em>number</em> =&gt; <em>successor</em><br />
-<code>1-</code> <em>number</em> =&gt; <em>predecessor</em></p>
+<p><code>random</code> <em>limit</em> <code>&amp;optional</code> <em>random-state</em> =&gt; <em>random-number</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>number</em> - 数<br />
-<em>successor</em>, <em>predecessor</em> - 数</p>
+<p><em>limit</em> - 正の整数か、正の浮動小数<br />
+<em>random-state</em> - 乱数状態。デフォルトは現在の乱数状態。<br />
+<em>random-number</em> - <em>limit</em>未満の非負の数であり、<em>limit</em>と同じ型</p>
 <h2 id="定義">定義</h2>
-<p><a href="12.2.one-plus.html"><code>1+</code></a>は、引数<em>number</em>よりひとつ大きい数を返却します。 <a href="12.2.one-plus.html"><code>1-</code></a>は、引数<em>number</em>よりひとつ小さい数を返却します。</p>
+<p><em>limit</em>未満の非負の数であり、<em>limit</em>と同じ型である疑似乱数を返却します。</p>
+<p><em>random-state</em>はこの関数により変更され、 乱数生成器によって維持されている内部状態を符号化します。</p>
+<p>おおよそ一様に分布したものが使用されます。 もし<em>limit</em>が整数のとき、 おのおのの可能性のある結果は、<code>1/limit</code>の確率（近似）で発生します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> <span class="dv">99</span>) <span class="op">=&gt;</span>  <span class="dv">100</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="dv">100</span>) <span class="op">=&gt;</span>  <span class="dv">99</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> (<span class="kw">complex</span> <span class="fl">0.0</span>)) <span class="op">=&gt;</span>  #C(<span class="fl">1.0</span> <span class="fl">0.0</span>) </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="dv">5</span>/<span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">2</span>/<span class="dv">3</span> </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">&lt;=</span> <span class="dv">0</span> (<span class="kw">random</span> <span class="dv">1000</span>) <span class="dv">1000</span>) <span class="op">=&gt;</span>  true</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((state1 (<span class="kw">make-random-state</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      (state2 (<span class="kw">make-random-state</span>)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (<span class="op">=</span> (<span class="kw">random</span> <span class="dv">1000</span> state1) (<span class="kw">random</span> <span class="dv">1000</span> state2))) <span class="op">=&gt;</span>  true</span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p><em>random-statem</em>は変更されます。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>引数が数ではなかったとき、型<a href="4.4.type-error.html"><code>type-error</code></a>を通知するかもしれません。 型<code>arithmetic-error</code>を通知するかもしれません。</p>
+<p><em>limit</em>が正の整数でも正の実数でもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが通知されるべきです。</p>
 <h2 id="参考">参考</h2>
-<p><a href="12.2.incf.html"><code>incf</code></a>, <a href="12.2.incf.html"><code>decf</code></a></p>
+<p><a href="12.2.make-random-state.html"><code>make-random-state</code></a>, <a href="12.2.random-state-variable.html"><code>*random-state*</code></a></p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> <span class="kw">number</span>) ==  (<span class="op">+</span> <span class="kw">number</span> <span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="kw">number</span>) ==  (<span class="op">-</span> <span class="kw">number</span> <span class="dv">1</span>)</span></code></pre></div>
-<p>実装者は上記の両方の式のパフォーマンスを同じにするよう勧められます。</p>
+<p><code>Common Lisp: The Language</code>の乱数生成についての情報をご確認ください。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

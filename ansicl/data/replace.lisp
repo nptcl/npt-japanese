@@ -159,6 +159,7 @@
 
 (replace float "浮動小数")
 (replace rational "有理数")
+(replace random-state "乱数状態")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

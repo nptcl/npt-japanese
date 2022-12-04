@@ -256,7 +256,7 @@
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">progn</span> (<span class="kw">incf</span> *access-count*)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         (perform-access))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">decf</span> *access-count*))</span></code></pre></div>
-<p>もし<code>incf</code>完了前に退出が生じたとき、 <code>decf</code>フォームはやはり実行されるので、 その結果<code>*access-count*</code>は正しくない値になります。</p>
+<p>もし<a href="12.2.incf.html"><code>incf</code></a>完了前に退出が生じたとき、 <a href="12.2.incf.html"><code>decf</code></a>フォームはやはり実行されるので、 その結果<code>*access-count*</code>は正しくない値になります。</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((old-count *access-count*))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">unwind-protect</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">progn</span> (<span class="kw">incf</span> *access-count*)</span>

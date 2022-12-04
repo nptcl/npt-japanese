@@ -1,0 +1,95 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SIGNUM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.signum
+@name: signum
+@type: function
+
+Function `SIGNUM`
+
+
+## {syntax}
+
+`signum` *number* => *signed-prototype*
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*signed-prototype* - 数
+
+
+## {description}
+
+{signum:link}は*number*が数値的な値として
+負か、ゼロか、正かのどれを指し示すかを決定します。
+
+{rational}のとき、{signum:link}は*number*が負か、ゼロか、正かに従い、
+`-1`, `0`, `1`のひとつを返却します。
+{float}のとき、結果は{float}と同じフォーマットの
+`-1`か`0`か`1`を返却します。
+複素数`z`のとき、
+`z`が複素数のゼロではないとき
+`(signum z)`は同じ位相で大きさが`1`の複素数を返却します。
+`z`が複素数のゼロのときは`z`を返却します。
+
+{rational}の引数のとき、
+{signum:link}は有理数の関数ですが、
+複素数の引数のときはおそらく無理数になります。
+
+もし*number*が{float}のとき、結果は{float}です。
+もし*number*が{rational}のとき、結果は{rational}です。
+もし*number*が複素数の{float}のとき、 結果は複素数の{float}です。
+もし*number*が複素数の{rational}のとき、 結果は複素数ですが、
+その結果が複素数の{float}か、複素数の{rational}かは
+{implementation-dependent}です。
+
+
+## {examples}
+
+```lisp
+(signum 0) =>  0
+(signum 99) =>  1
+(signum 4/5) =>  1
+(signum -99/100) =>  -1
+(signum 0.0) =>  0.0
+(signum #c(0 33)) =>  #C(0.0 1.0)
+(signum #c(7.5 10.0)) =>  #C(0.6 0.8)
+(signum #c(0.0 -14.7)) =>  #C(0.0 -1.0)
+(eql (signum -0.0) -0.0) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{12.1.3.3:ab}
+
+
+## {notes}
+
+```lisp
+(signum x) ==  (if (zerop x) x (/ x (abs x)))
+```
+
+@end
+

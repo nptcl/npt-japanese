@@ -266,7 +266,7 @@
 <p><a href="10.2.get.html"><code>get</code></a>, <a href="14.2.get-properties.html"><code>get-properties</code></a>, <a href="5.3.setf.html"><code>setf</code></a>, 5.1.2.2. <code>place</code>としての関数呼び出しフォーム</p>
 <h2 id="備考">備考</h2>
 <p><a href="14.2.getf.html"><code>getf</code></a>を使用した場合、 プロパティフォームの不在と デフォルト値の区別をつけることができません。 <a href="14.2.get-properties.html"><code>get-properties</code></a>をご確認ください。</p>
-<p><a href="5.3.setf.html"><code>setf</code></a>の状況下で、 <a href="14.2.getf.html"><code>getf</code></a>の<em>default</em>引数を指定することは、 あまり興味が持たれません。 これが重要になるのは、<a href="14.2.push.html"><code>push</code></a>や<code>incf</code>のようなマクロであり、 <em>place</em>引数で読み込みと書き込みの両方が求められるときです そのような文脈において、<em>default</em>引数は、 読み込みの状況によって供給され、 それは書き込む状況によっても同様に 構文として有効でなければなりません。 例えば下記の通り。</p>
+<p><a href="5.3.setf.html"><code>setf</code></a>の状況下で、 <a href="14.2.getf.html"><code>getf</code></a>の<em>default</em>引数を指定することは、 あまり興味が持たれません。 これが重要になるのは、<a href="14.2.push.html"><code>push</code></a>や<a href="12.2.incf.html"><code>incf</code></a>のようなマクロであり、 <em>place</em>引数で読み込みと書き込みの両方が求められるときです そのような文脈において、<em>default</em>引数は、 読み込みの状況によって供給され、 それは書き込む状況によっても同様に 構文として有効でなければなりません。 例えば下記の通り。</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let</span> ((plist &#39;()))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">incf</span> (<span class="kw">getf</span> plist &#39;count <span class="dv">0</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  plist) <span class="op">=&gt;</span>  (COUNT <span class="dv">1</span>)</span></code></pre></div>

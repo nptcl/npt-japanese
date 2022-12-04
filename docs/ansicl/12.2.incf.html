@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function 1+, 1-</title>
+  <title>Macro INCF, DECF</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,35 +214,44 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function 1+, 1-</h1>
+<h1 class="title">Macro INCF, DECF</h1>
 </header>
 <p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="function-1-1-">Function <strong>1+, 1-</strong></h1>
-<p>Function <code>1+</code>, <code>1-</code></p>
+<h1 id="macro-incf-decf">Macro <strong>INCF, DECF</strong></h1>
+<p>Macro <code>INCF</code>, <code>DECF</code></p>
 <h2 id="構文">構文</h2>
-<p><code>1+</code> <em>number</em> =&gt; <em>successor</em><br />
-<code>1-</code> <em>number</em> =&gt; <em>predecessor</em></p>
+<p><code>incf</code> <em>place</em> <code>[</code> <em>delta-form</em> <code>]</code> =&gt; <em>new-value</em><br />
+<code>decf</code> <em>place</em> <code>[</code> <em>delta-form</em> <code>]</code> =&gt; <em>new-value</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>number</em> - 数<br />
-<em>successor</em>, <em>predecessor</em> - 数</p>
+<p><em>place</em> - <code>place</code><br />
+<em>delta-form</em> - フォーム。評価され<em>delta</em>を生成します。 デフォルトは<code>1</code>です。<br />
+<em>delta</em> - 数<br />
+<em>new-value</em> - 数</p>
 <h2 id="定義">定義</h2>
-<p><a href="12.2.one-plus.html"><code>1+</code></a>は、引数<em>number</em>よりひとつ大きい数を返却します。 <a href="12.2.one-plus.html"><code>1-</code></a>は、引数<em>number</em>よりひとつ小さい数を返却します。</p>
+<p><a href="12.2.incf.html"><code>incf</code></a>と<a href="12.2.incf.html"><code>decf</code></a>は、<em>place</em>の値を それぞれインクリメント、デクリメントするときに使用します。</p>
+<p><em>delta</em>は<em>place</em>の数を加算（<a href="12.2.incf.html"><code>incf</code></a>の場合）か 減算（<a href="12.2.incf.html"><code>decf</code></a>の場合）し、 その結果を<em>place</em>に格納します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> <span class="dv">99</span>) <span class="op">=&gt;</span>  <span class="dv">100</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="dv">100</span>) <span class="op">=&gt;</span>  <span class="dv">99</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> (<span class="kw">complex</span> <span class="fl">0.0</span>)) <span class="op">=&gt;</span>  #C(<span class="fl">1.0</span> <span class="fl">0.0</span>) </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="dv">5</span>/<span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">2</span>/<span class="dv">3</span> </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> n <span class="dv">0</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">incf</span> n) <span class="op">=&gt;</span>  <span class="dv">1</span>      </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">decf</span> n <span class="dv">3</span>) <span class="op">=&gt;</span>  -<span class="dv">2</span>   </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=&gt;</span>  -<span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">decf</span> n -<span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">3</span>      </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">decf</span> n) <span class="op">=&gt;</span>  <span class="dv">2</span>      </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">incf</span> n <span class="fl">0.5</span>) <span class="op">=&gt;</span>  <span class="fl">2.5</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">decf</span> n) <span class="op">=&gt;</span>  <span class="fl">1.5</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>n <span class="op">=&gt;</span>  <span class="fl">1.5</span></span></code></pre></div>
+<h2 id="副作用">副作用</h2>
+<p><em>place</em>は変更されます。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>引数が数ではなかったとき、型<a href="4.4.type-error.html"><code>type-error</code></a>を通知するかもしれません。 型<code>arithmetic-error</code>を通知するかもしれません。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="12.2.incf.html"><code>incf</code></a>, <a href="12.2.incf.html"><code>decf</code></a></p>
+<p><a href="12.2.number-plus.html"><code>+</code></a>, <a href="12.2.number-minus.html"><code>-</code></a>, <a href="12.2.one-plus.html"><code>1+</code></a>, <a href="12.2.one-plus.html"><code>1-</code></a>, <a href="5.3.setf.html"><code>setf</code></a></p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">1+</span> <span class="kw">number</span>) ==  (<span class="op">+</span> <span class="kw">number</span> <span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">1-</span> <span class="kw">number</span>) ==  (<span class="op">-</span> <span class="kw">number</span> <span class="dv">1</span>)</span></code></pre></div>
-<p>実装者は上記の両方の式のパフォーマンスを同じにするよう勧められます。</p>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *RANDOM-STATE*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.random-state-variable
+@name: *random-state*
+@type: variable
+
+Variable `*RANDOM-STATE*`
+
+
+## {value-type}
+
+{random-state}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+現在の{random-state}として使用されます。
+例えば、関数{random:link}では{random-state}を明に指定しないときに使用されます。
+
+
+## {examples}
+
+```lisp
+(random-state-p *random-state*) =>  true
+(setq snap-shot (make-random-state))
+;; この列はどの時点においてもランダムですが、
+;; ある時点でやり直したときは同じ列を取得できます。
+(list (loop for i from 1 to 10 collect (random))
+      (let ((*random-state* snap-shot))
+        (loop for i from 1 to 10 collect (random)))
+      (loop for i from 1 to 10 collect (random))
+      (let ((*random-state* snap-shot))
+        (loop for i from 1 to 10 collect (random))))
+=> ((19 16 44 19 96 15 76 96 13 61)
+    (19 16 44 19 96 15 76 96 13 61)
+    (16 67 0 43 70 79 58 5 63 50)
+    (16 67 0 43 70 79 58 5 63 50))
+```
+
+
+## {affected-by}
+
+実装。  
+{random:link}
+
+
+## {see-also}
+
+{make-random-state:link},
+{random:link},
+{random-state:link}
+
+
+## {notes}
+
+{*random-state*:link}を
+正しく保存された別の{random-state}オブジェクトに束縛すると
+古い{random-state}オブジェクトが復元されます。
+
+@end
+

@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GCD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.gcd
+@name: gcd
+@type: function
+
+Function `GCD`
+
+
+## {syntax}
+
+`gcd` `&rest` *integer* => *greatest-common-denominator*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*greatest-common-denominator* - 非負の整数
+
+
+## {description}
+
+*integer*の最大公約数を返却します。
+もし*integer*がひとつだけ指定されたときは、その絶対値が返却されます。
+もし*integer*が指定されなかったときは、{gcd:link}は`0`を返却し、
+これはこの操作の恒等式です。
+
+
+## {examples}
+
+```lisp
+(gcd) =>  0
+(gcd 60 42) =>  6
+(gcd 3333 -33 101) =>  1
+(gcd 3333 -33 1002001) =>  11
+(gcd 91 -49) =>  7
+(gcd 63 -42 35) =>  7
+(gcd 5) =>  5
+(gcd -4) =>  4
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer*のどれかが整数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+{lcm:link}
+
+
+## {notes}
+
+3つ以上の引数があるとき、下記のようになります。
+
+```lisp
+(gcd a b c ... z) ==  (gcd (gcd a b) c ... z)
+```
+
+@end
+

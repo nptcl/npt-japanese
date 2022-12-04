@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SQRT
+;;  Function ISQRT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.sqrt
+@name: sqrt
+@name: isqrt
+@type: function
+
+Function `SQRT`, `ISQRT`
+
+
+## {syntax}
+
+`sqrt` *number* => *root*  
+`isqrt` *natural* => *natural-root*
+
+
+## {arguments-and-values}
+
+*number*, *root* - 数  
+*natural*, *natural-root* - 非負の整数
+
+
+## {description}
+
+{sqrt:link}と{isqrt:link}は平方根を計算します。
+
+{sqrt:link}は*number*の主な平方根を返却します。
+*number*が複素数ではなく、かつ負のときは、
+その結果は複素数になります。
+
+{isqrt:link}は正確な*natural*の正の平方根以下の最大の整数を返却します。
+
+もし*number*が正の{rational}のとき、
+*root*が{rational}か{float}かは{implementation-dependent}です。
+もし*number*が負の{rational}のとき、
+*root*が複素数の{rational}か複素数の{float}かは{implementation-dependent}です。
+
+複素数の平方根（マイナスゼロがサポートされているかどうかに関わらず）の
+数学的な定義は下記のとおりです。
+
+```lisp
+(sqrt x) = (exp (/ (log x) 2))
+```
+
+平方根のブランチカットは負の実軸に沿って第2象限に続きます。
+その範囲は右半円で成り、非負の虚軸を含み、負の虚字句を含みません。
+
+
+## {examples}
+
+```lisp
+(sqrt 9.0) =>  3.0
+(sqrt -9.0) =>  #C(0.0 3.0)
+(isqrt 9) =>  3
+(sqrt 12) =>  3.4641016
+(isqrt 12) =>  3
+(isqrt 300) =>  17
+(isqrt 325) =>  18
+(sqrt 25)
+=>  5
+OR=>  5.0
+(isqrt 25) =>  5
+(sqrt -1) =>  #C(0.0 1.0)
+(sqrt #c(0 2)) =>  #C(1.0 1.0)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+関数{sqrt:link}は、引数が数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+関数{isqrt:link}は、引数が非負の整数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+
+関数{sqrt:link}と{isqrt:link}は、
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+{exp:link},
+{log:link},
+{12.1.3.3:ab}
+
+
+## {notes}
+
+```lisp
+(isqrt x) ==  (values (floor (sqrt x))) 
+```
+
+しかし、これはもっと効率よくなる可能性があります。
+
+@end
+

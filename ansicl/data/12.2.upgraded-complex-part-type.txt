@@ -1,0 +1,73 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function UPGRADED-COMPLEX-PART-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.upgraded-complex-part-type
+@name: upgraded-complex-part-type
+@type: function
+
+Function `UPGRADED-COMPLEX-PART-TYPE`
+
+
+## {syntax}
+
+`upgraded-complex-part-type` *typespec* `&optional` *environment*
+ => *upgraded-typespec*
+
+
+## {arguments-and-values}
+
+*typespec* - 型指定子  
+*environment* - 環境オブジェクト。デフォルトは{nil!variable:link}であり、
+{null-lexical-environment}と現在のグローバルな環境を示します。  
+*upgraded-typespec* - 型指定子
+
+
+## {description}
+
+{upgraded-complex-part-type:link}は、
+型*typespec*の要素をを保存できるような特別な複素数の表現の型を返却します。
+
+*typespec*は、*upgraded-typespec*のサブタイプ（可能であれば同一な型）です。
+
+{upgraded-complex-part-type:link}の目的は、
+実装がどのようにしてその型をアップグレードしているかを
+明らかにすることにあります。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{complex!function:link} (function),
+{complex!system-class:link} (type)
+
+
+## {notes}
+
+なし。
+
+@end
+

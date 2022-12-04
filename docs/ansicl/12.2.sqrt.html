@@ -233,7 +233,7 @@
 <p>もし<em>number</em>が正の有理数のとき、 <em>root</em>が有理数か浮動小数かは実装依存です。 もし<em>number</em>が負の有理数のとき、 <em>root</em>が複素数の有理数か複素数の浮動小数かは実装依存です。</p>
 <p>複素数の平方根（マイナスゼロがサポートされているかどうかに関わらず）の 数学的な定義は下記のとおりです。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">sqrt</span> x) <span class="op">=</span> (<span class="kw">exp</span> (<span class="op">/</span> (<span class="kw">log</span> x) <span class="dv">2</span>))</span></code></pre></div>
-<p>平方根のブランチカットは負の実軸に沿って第2象限に続きます。 その範囲は右半円で成り、非負の虚軸を含み、負の虚字句を含みません。</p>
+<p>平方根のブランチカットは負の実軸に沿って第2象限に続きます。 その範囲は右半円で成り、非負の虚軸を含み、負の虚軸を含みません。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">sqrt</span> <span class="fl">9.0</span>) <span class="op">=&gt;</span>  <span class="fl">3.0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">sqrt</span> -<span class="fl">9.0</span>) <span class="op">=&gt;</span>  #C(<span class="fl">0.0</span> <span class="fl">3.0</span>)</span>

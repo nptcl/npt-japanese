@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function NUMERATOR
+;;  Function DENOMINATOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.numerator
+@name: numerator
+@name: denominator
+@type: function
+
+Function `NUMERATOR`, `DENOMINATOR`
+
+
+## {syntax}
+
+`numerator` *rational* => *numerator*  
+`denominator` *rational* => *denominator*
+
+
+## {arguments-and-values}
+
+*rational* - {rational}  
+*numerator* - 整数  
+*denominator* - 正の整数
+
+
+## {description}
+
+{numerator:link}と{denominator:link}は*rational*を標準形に約分し、
+その数の分子と分母を計算します。
+
+{numerator:link}と{denominator:link}は
+*rational*を標準形の分子と分母を返却します。
+
+もし*rational*が整数のとき、
+{numerator:link}は*rational*を返却し、
+{denominator:link}は`1`を返却します。
+
+
+## {examples}
+
+```lisp
+(numerator 1/2) =>  1
+(denominator 12/36) =>  3
+(numerator -1) =>  -1
+(denominator (/ -33)) =>  33
+(numerator (/ 8 -6)) =>  -4
+(denominator (/ 8 -6)) =>  3
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{/:link}
+
+
+## {notes}
+
+```lisp
+(gcd (numerator x) (denominator x)) =>  1
+```
+
+@end
+

@@ -1,0 +1,76 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function REALPART
+;;  Function IMAGPART
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.realpart
+@name: realpart
+@name: imagpart
+@type: function
+
+Function `REALPART`, `IMAGPART`
+
+
+## {syntax}
+
+`realpart` *number* => *real*  
+`imagpart` *number* => *real*
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*real* - 実数
+
+
+## {description}
+
+{realpart:link}と{imagpart:link}は、
+それぞれ*number*の実部と虚部を返却します。
+もし*number*が実数のとき、
+{realpart:link}は*number*を返却し、
+{imagpart:link}は`(0 * number)`を返却します。
+この効果は虚部が{rational}のときは`0`であり、
+{float}のときは同じフォーマットの浮動小数のゼロになるというものです。
+
+
+## {examples}
+
+```lisp
+(realpart #c(23 41)) =>  23
+(imagpart #c(23 41.0)) =>  41.0
+(realpart #c(23 41.0)) =>  23.0
+(imagpart 23.0) =>  0.0
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*number*が数ではないとき、型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+{complex!function:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

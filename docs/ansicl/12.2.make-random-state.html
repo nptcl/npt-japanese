@@ -227,7 +227,7 @@
 <em>new-state</em> - 乱数状態オブジェクト</p>
 <h2 id="定義">定義</h2>
 <p><a href="12.2.random-state-variable.html"><code>*random-state*</code></a>の値として使いやすい 型<a href="12.2.random-state.html"><code>random-state</code></a>の新しいオブジェクトを生成します。</p>
-<p>もし<em>state</em>が乱数状態オブジェクトのとき、 <em>new-state</em>はそのオブジェクトをコピーします。 もし<em>state</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <em>new-state</em>は現在の乱数状態をコピーします。 もし<em>state</em>が<a href="5.3.t-variable.html"><code>t</code></a>のとき、 <em>new-state</em>は何とかして初期状態をランダムにした 新しい乱数状態オブジェクトです。</p>
+<p>もし<em>state</em>が乱数状態オブジェクトのとき、 <em>new-state</em>はそのオブジェクトをコピーしたものです。 もし<em>state</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 <em>new-state</em>は現在の乱数状態をコピーしたものです。 もし<em>state</em>が<a href="5.3.t-variable.html"><code>t</code></a>のとき、 <em>new-state</em>は何とかして初期状態をランダムにした 新しい乱数状態オブジェクトです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let*</span> ((rs1 (<span class="kw">make-random-state</span> <span class="kw">nil</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       (rs2 (<span class="kw">make-random-state</span> <span class="kw">t</span>))</span>

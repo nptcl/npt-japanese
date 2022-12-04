@@ -31,9 +31,9 @@ Function `MAKE-RANDOM-STATE`
 型{random-state:link}の新しいオブジェクトを生成します。
 
 もし*state*が{random-state}オブジェクトのとき、
-*new-state*はそのオブジェクトをコピーします。
+*new-state*はそのオブジェクトをコピーしたものです。
 もし*state*が{nil!variable:link}のとき、
-*new-state*は現在の{random-state}をコピーします。
+*new-state*は現在の{random-state}をコピーしたものです。
 もし*state*が{t!variable:link}のとき、
 *new-state*は何とかして初期状態をランダムにした
 新しい{random-state}オブジェクトです。

@@ -96,6 +96,7 @@
 (setf (gethash "ARRAY-TOTAL-SIZE" *name*) '("FUNCTION"))
 (setf (gethash "ARRAY-TOTAL-SIZE-LIMIT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "ARRAYP" *name*) '("FUNCTION"))
+(setf (gethash "ASH" *name*) '("FUNCTION"))
 (setf (gethash "ASIN" *name*) '("FUNCTION"))
 (setf (gethash "ASINH" *name*) '("FUNCTION"))
 (setf (gethash "ASSERT" *name*) '("MACRO"))
@@ -209,7 +210,8 @@
 (setf (gethash "COMPILED-FUNCTION-P" *name*) '("FUNCTION"))
 (setf (gethash "COMPILER-MACRO-FUNCTION" *name*) '("ACCESSOR"))
 (setf (gethash "COMPLEMENT" *name*) '("FUNCTION"))
-(setf (gethash "COMPLEX" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "COMPLEX" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "COMPLEXP" *name*) '("FUNCTION"))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "COMPUTE-RESTARTS" *name*) '("FUNCTION"))
 (setf (gethash "CONCATENATE" *name*) '("FUNCTION"))
@@ -217,6 +219,7 @@
 (setf (gethash "CONCATENATED-STREAM-STREAMS" *name*) '("FUNCTION"))
 (setf (gethash "COND" *name*) '("MACRO"))
 (setf (gethash "CONDITION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "CONJUGATE" *name*) '("FUNCTION"))
 (setf (gethash "CONS" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "CONSP" *name*) '("FUNCTION"))
 (setf (gethash "CONSTANTLY" *name*) '("FUNCTION"))
@@ -265,6 +268,7 @@
 (setf (gethash "DELETE-IF" *name*) '("FUNCTION"))
 (setf (gethash "DELETE-IF-NOT" *name*) '("FUNCTION"))
 (setf (gethash "DELETE-PACKAGE" *name*) '("FUNCTION"))
+(setf (gethash "DENOMINATOR" *name*) '("FUNCTION"))
 (setf (gethash "DESTRUCTURING-BIND" *name*) '("MACRO"))
 (setf (gethash "DIGIT-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "DIGIT-CHAR-P" *name*) '("FUNCTION"))
@@ -379,6 +383,7 @@
 (setf (gethash "IGNORABLE" *name*) '("DECLARATION"))
 (setf (gethash "IGNORE" *name*) '("DECLARATION"))
 (setf (gethash "IGNORE-ERRORS" *name*) '("MACRO"))
+(setf (gethash "IMAGPART" *name*) '("FUNCTION"))
 (setf (gethash "IMPORT" *name*) '("FUNCTION"))
 (setf (gethash "IN-PACKAGE" *name*) '("MACRO"))
 (setf (gethash "INCF" *name*) '("MACRO"))
@@ -386,6 +391,8 @@
 (setf (gethash "INLINE" *name*) '("DECLARATION"))
 (setf (gethash "INPUT-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "INTEGER" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "INTEGER-LENGTH" *name*) '("FUNCTION"))
+(setf (gethash "INTEGERP" *name*) '("FUNCTION"))
 (setf (gethash "INTERACTIVE-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "INTERN" *name*) '("FUNCTION"))
 (setf (gethash "INTERSECTION" *name*) '("FUNCTION"))
@@ -514,6 +521,7 @@
 (setf (gethash "NULL" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "NUMBER" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "NUMBERP" *name*) '("FUNCTION"))
+(setf (gethash "NUMERATOR" *name*) '("FUNCTION"))
 (setf (gethash "NUNION" *name*) '("FUNCTION"))
 (setf (gethash "ODDP" *name*) '("FUNCTION"))
 (setf (gethash "OPEN" *name*) '("FUNCTION"))
@@ -543,6 +551,7 @@
 (setf (gethash "PATHNAME-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "PATHNAMEP" *name*) '("FUNCTION"))
 (setf (gethash "PEEK-CHAR" *name*) '("FUNCTION"))
+(setf (gethash "PHASE" *name*) '("FUNCTION"))
 (setf (gethash "PI" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "PLUSP" *name*) '("FUNCTION"))
 (setf (gethash "POP" *name*) '("MACRO"))
@@ -590,7 +599,9 @@
 (setf (gethash "RASSOC-IF" *name*) '("FUNCTION"))
 (setf (gethash "RASSOC-IF-NOT" *name*) '("FUNCTION"))
 (setf (gethash "RATIO" *name*) '("SYSTEM-CLASS"))
-(setf (gethash "RATIONAL" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "RATIONAL" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "RATIONALIZE" *name*) '("FUNCTION"))
+(setf (gethash "RATIONALP" *name*) '("FUNCTION"))
 (setf (gethash "READ" *name*) '("FUNCTION"))
 (setf (gethash "READ-BYTE" *name*) '("FUNCTION"))
 (setf (gethash "READ-CHAR" *name*) '("FUNCTION"))
@@ -605,6 +616,8 @@
 (setf (gethash "READTABLE-CASE" *name*) '("ACCESSOR"))
 (setf (gethash "READTABLEP" *name*) '("FUNCTION"))
 (setf (gethash "REAL" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "REALP" *name*) '("FUNCTION"))
+(setf (gethash "REALPART" *name*) '("FUNCTION"))
 (setf (gethash "REDUCE" *name*) '("FUNCTION"))
 (setf (gethash "REINITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "REM" *name*) '("FUNCTION"))
@@ -791,6 +804,7 @@
 (setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "UPDATE-INSTANCE-FOR-REDEFINED-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "UPGRADED-COMPLEX-PART-TYPE" *name*) '("FUNCTION"))
 (setf (gethash "UPPER-CASE-P" *name*) '("FUNCTION"))
 (setf (gethash "USE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "USE-VALUE" *name*) '("FUNCTION" "RESTART"))
@@ -3295,6 +3309,32 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(arrayp object) ==  (typep object 'array)"))))
 (setf (gethash '("ARRAYP" . "FUNCTION") *table*) (gethash "ARRAYP" *table*))
+(setf (gethash "ASH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ASH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "ash") " " (STRONG "integer") " " (STRONG "count") " => "
+     (STRONG "shifted-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer") " - 整数" EOL1 (STRONG "count") " - 整数"
+     EOL1 (STRONG "shifted-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "ash") "は" (STRONG "integer") "をバイナリとして扱うかのように"
+     "2進表現としたときの演算シフト処理を行います。" EOL2 "もし" (STRONG "count") "が正のとき、" (CODE1 "ash") "は"
+     (STRONG "integer") "を" (STRONG "count") "の分だけ左に演算処理としてシフトします。" "あるいは、"
+     (STRONG "count") "が負のときは右にシフトします。" "シフトされた値は、" (STRONG "integer") "と同じ符号で返却されます。"
+     EOL2 "数学的に言うならば、" (CODE1 "ash") "は" (CODE1 "floor(integer*2^count)") "の計算を実行します。"
+     "論理的に言うならば、" (CODE1 "ash") "は" (STRONG "integer") "の全てのビットを左に移動し右からゼロビットを追加するか、"
+     "あるいはそれらを右に移動してビットを切り捨てます。" EOL2 (CODE1 "ash") "は" "整数が内部においてどのように表現されているかに関わらず、"
+     (STRONG "integer") "を2の補数として表現されたかのように振る舞うと定義できます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(ash 16 1) =>  32" "(ash 16 0) =>  16" "(ash 16 -1) =>  8"
+      "(ash -100000000000000000000000000000000 -100) =>  -79"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "integer") "が整数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" (STRONG "count") "が整数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logbitp j (ash n k))"
+      " ==  (and (>= j k) (logbitp (- j k) n))"))))
+(setf (gethash '("ASH" . "FUNCTION") *table*) (gethash "ASH" *table*))
 (setf (gethash "ASIN" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "ASIN") ", " (CODE1 "ACOS") ", " (CODE1 "ATAN"))
     (CHAPTER ("## 構文") 2 (CODE1 "asin") " " (STRONG "number") " => " (STRONG "radians")
@@ -10814,7 +10854,7 @@
     (CHAPTER ("## 構文") 2 (CODE1 "cis") " " (STRONG "radians") " => " (STRONG "number"))
     (CHAPTER ("## 引数と戻り値") 2 (STRONG "radians") " - 実数" EOL1 (STRONG "number") " - 複素数")
     (CHAPTER ("## 定義") 2 (CODE1 "cis") "は、" (CODE1 "e^{i * radians}") "の値を返却するものであり、"
-     "疎の返却値は実部が" (STRONG "radians") "のコサインと等しく、" "虚部が" (STRONG "radians")
+     "その返却値は実部が" (STRONG "radians") "のコサインと等しく、" "虚部が" (STRONG "radians")
      "のサインに等しい複素数です。")
     (CHAPTER ("## 例文") 2 (CODE3 "```lisp" "```" "(cis 0) =>  #C(1.0 0.0)"))
     (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
@@ -11190,6 +11230,35 @@
      "と一緒に使うことが好まれます。")))
 (setf (gethash '("COMPLEMENT" . "FUNCTION") *table*) (gethash "COMPLEMENT" *table*))
 (setf (gethash "COMPLEX" *table*)
+  '("COMPLEX FUNCTION" EOL1 "COMPLEX SYSTEM-CLASS" EOL1))
+(setf (gethash '("COMPLEX" . "FUNCTION") *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "COMPLEX"))
+    (CHAPTER ("## 構文") 2 (CODE1 "complex") " " (STRONG "realpart") " "
+     (CODE1 "&optional") " " (STRONG "imagpart") " => " (STRONG "complex"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "realpart") " - 実数" EOL1 (STRONG "imagpart") " - 実数"
+     EOL1 (STRONG "complex") " - 有理数か複素数")
+    (CHAPTER ("## 定義") 2 (CODE1 "complex") "は、" "実部が" (STRONG "realpart") "、虚部が"
+     (STRONG "imagpart") "の数を返却します。" EOL2 "もし" (STRONG "realpart") "が有理数であり、"
+     (STRONG "imagpart") "がゼロのとき、" (CODE1 "complex") "の結果は" (STRONG "realpart")
+     "であり、有理数です。" "それ以外のとき、結果は複素数です。" EOL2 (STRONG "realpart") "か" (STRONG "imagpart")
+     "が浮動小数のとき、" "複素数が生成される前に浮動小数ではない値は浮動小数に変換されます。" "もし" (STRONG "imagpart")
+     "が指定されなかったとき、" "虚部は" (STRONG "realpart") "と同じ型のゼロになり、" "例えば"
+     (CODE1 "(coerce 0 (type-of realpart))") "が効果的に使用されます。" EOL2 "型のアップグレードとは、"
+     "その型の階層的な格子の情報に移動することを意味します。" "複素数の場合は、その実部と虚部を表す型" (STRONG "type-specier") "は、"
+     (CODE1 "(upgraded-complex-part-type type-specifier)") "の" "サブタイプで無ければなりません。"
+     (STRONG "type-specifier1") "が" (STRONG "type-specifier2") "のサブタイプのとき、"
+     (CODE1 "(upgraded-complex-element-type 'type-specifier1)") "もまた"
+     (CODE1 "(upgraded-complex-element-type 'type-specifier2)") "のサブタイプでなければなりません。"
+     "2つの疎の型は、同じものへアップグレードすることができます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(complex 0) =>  0" "(complex 0.0) =>  #C(0.0 0.0)"
+      "(complex 1 1/2) =>  #C(1 1/2)" "(complex 1 .99) =>  #C(1.0 0.99)"
+      "(complex 3/2 0.0) =>  #C(1.5 0.0)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "realpart") "," (CODE1 "imagpart") ","
+     "2.4.8.11. シャープサイン C")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("COMPLEX" . "SYSTEM-CLASS") *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "COMPLEX"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "complex") "," (CODE1 "number") "," (CODE1 "t"))
     (CHAPTER ("## 定義") 2 "型" (CODE1 "complex") "は、" "型" (CODE1 "rational") "に含まれるもの以外の"
@@ -11211,7 +11280,23 @@
      (CODE1 "#c(r i)") "になります。" "さらなる詳細は、2.4. 標準マクロ文字をご確認ください。" EOL2 "全ての浮動小数を"
      (CODE1 "n") "としたとき、" "数学的に同じ数としｔ絵表現される複素数は、" (CODE1 "(COERCE n 'COMPLEX)")
      "として得ることができます。")))
-(setf (gethash '("COMPLEX" . "SYSTEM-CLASS") *table*) (gethash "COMPLEX" *table*))
+(setf (gethash "COMPLEXP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "COMPLEXP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "complexp") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "が型" (CODE1 "complex") "のときは" (STRONG "true")
+     "を、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(complexp 1.2d2) =>  false"
+      "(complexp #c(5/3 7.2)) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "complex") " (function)," (CODE1 "complex") " (type),"
+     (CODE1 "typep"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(complexp object) ==  (typep object 'complex)"))))
+(setf (gethash '("COMPLEXP" . "FUNCTION") *table*) (gethash "COMPLEXP" *table*))
 (setf (gethash "COMPUTE-APPLICABLE-METHODS" *table*)
   '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "COMPUTE-APPLICABLE-METHODS"))
     (CHAPTER ("## 構文") 2 (CODE1 "compute-applicable-methods") " "
@@ -11376,6 +11461,22 @@
      (CODE1 "with-slots") "は" "コンディションオブジェクトに使用してはいけません。" "かわりに（"
      (CODE1 "define-condition") "によって定義された）" "適切なアクセス関数を使用する必要があります。")))
 (setf (gethash '("CONDITION" . "CONDITION-TYPE") *table*) (gethash "CONDITION" *table*))
+(setf (gethash "CONJUGATE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "CONJUGATE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "conjugate") " " (STRONG "number") " => "
+     (STRONG "conjugate"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "conjugate") " - 数")
+    (CHAPTER ("## 定義") 2 (STRONG "number") "の共役複素数を返却します。" "実数の共役複素数は自身です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(conjugate #c(0 -1)) =>  #C(0 1)"
+      "(conjugate #c(1 1)) =>  #C(1 -1)" "(conjugate 1.5) =>  1.5"
+      "(conjugate #C(3/5 4/5)) =>  #C(3/5 -4/5)"
+      "(conjugate #C(0.0D0 -1.0D0)) =>  #C(0.0D0 1.0D0)" "(conjugate 3.7) =>  3.7"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "複素数を" (STRONG "z") "としたときに下記の関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(conjugate z) ==  (complex (realpart z) (- (imagpart z)))"))))
+(setf (gethash '("CONJUGATE" . "FUNCTION") *table*) (gethash "CONJUGATE" *table*))
 (setf (gethash "CONS" *table*)
   '("CONS FUNCTION" EOL1 "CONS SYSTEM-CLASS" EOL1))
 (setf (gethash '("CONS" . "FUNCTION") *table*)
@@ -14761,6 +14862,27 @@
      "を削除します。")
     (CHAPTER ("## 参考") 2 (CODE1 "unuse-package")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("DELETE-PACKAGE" . "FUNCTION") *table*) (gethash "DELETE-PACKAGE" *table*))
+(setf (gethash "DENOMINATOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "NUMERATOR") ", " (CODE1 "DENOMINATOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "numerator") " " (STRONG "rational") " => "
+     (STRONG "numerator") EOL1 (CODE1 "denominator") " " (STRONG "rational") " => "
+     (STRONG "denominator"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "rational") " - 有理数" EOL1 (STRONG "numerator")
+     " - 整数" EOL1 (STRONG "denominator") " - 正の整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "numerator") "と" (CODE1 "denominator") "は"
+     (STRONG "rational") "を標準形に約分し、" "その数の分子と分母を計算します。" EOL2 (CODE1 "numerator") "と"
+     (CODE1 "denominator") "は" (STRONG "rational") "を標準形の分子と分母を返却します。" EOL2 "もし"
+     (STRONG "rational") "が整数のとき、" (CODE1 "numerator") "は" (STRONG "rational") "を返却し、"
+     (CODE1 "denominator") "は" (CODE1 "1") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(numerator 1/2) =>  1" "(denominator 12/36) =>  3"
+      "(numerator -1) =>  -1" "(denominator (/ -33)) =>  33"
+      "(numerator (/ 8 -6)) =>  -4" "(denominator (/ 8 -6)) =>  3"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "/"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(gcd (numerator x) (denominator x)) =>  1"))))
+(setf (gethash '("DENOMINATOR" . "FUNCTION") *table*) (gethash "DENOMINATOR" *table*))
 (setf (gethash "DESTRUCTURING-BIND" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DESTRUCTURING-BIND"))
     (CHAPTER ("## 構文") 2 (CODE1 "destructuring-bind") " " (STRONG "lambda-list") " "
@@ -19195,6 +19317,25 @@
      EOL2 "例外の状況では第二返却値がコンディションであるので、" "通常の場合は第二返却値を省略するか" (CODE1 "nil") "にして、"
      "2つの状況を区別できるようにするのが一般的です（ただし必須ではありません）。")))
 (setf (gethash '("IGNORE-ERRORS" . "MACRO") *table*) (gethash "IGNORE-ERRORS" *table*))
+(setf (gethash "IMAGPART" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "REALPART") ", " (CODE1 "IMAGPART"))
+    (CHAPTER ("## 構文") 2 (CODE1 "realpart") " " (STRONG "number") " => " (STRONG "real")
+     EOL1 (CODE1 "imagpart") " " (STRONG "number") " => " (STRONG "real"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "real") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "realpart") "と" (CODE1 "imagpart") "は、" "それぞれ"
+     (STRONG "number") "の実部と虚部を返却します。" "もし" (STRONG "number") "が実数のとき、"
+     (CODE1 "realpart") "は" (STRONG "number") "を返却し、" (CODE1 "imagpart") "は"
+     (CODE1 "(0 * number)") "を返却します。" "この効果は虚部が有理数のときは" (CODE1 "0") "であり、"
+     "浮動小数のときは同じフォーマットの浮動小数のゼロになるというものです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(realpart #c(23 41)) =>  23"
+      "(imagpart #c(23 41.0)) =>  41.0" "(realpart #c(23 41.0)) =>  23.0"
+      "(imagpart 23.0) =>  0.0"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 (CODE1 "complex")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("IMAGPART" . "FUNCTION") *table*) (gethash "IMAGPART" *table*))
 (setf (gethash "IMPORT" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "IMPORT"))
     (CHAPTER ("## 構文") 2 (CODE1 "import") " " (STRONG "symbols") " " (CODE1 "&optional")
@@ -19394,6 +19535,49 @@
      (CODE1 "(integer 0 1)") "は、" (CODE1 "bit") "とも呼ばれます。" "型" (CODE1 "(integer 0 *)")
      "は、" (CODE1 "unsigned-byte") "とも呼ばれます。")))
 (setf (gethash '("INTEGER" . "SYSTEM-CLASS") *table*) (gethash "INTEGER" *table*))
+(setf (gethash "INTEGER-LENGTH" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "INTEGER-LENGTH"))
+    (CHAPTER ("## 構文") 2 (CODE1 "integer-length") " " (STRONG "integer") " => "
+     (STRONG "number-of-bits"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer") " - 整数" EOL1 (STRONG "number-of-bits")
+     " - 非負の整数")
+    (CHAPTER ("## 定義") 2 (STRONG "integer") "を2の補数フォーマットで表現するのに" "必要なビット数を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(integer-length 0) =>  0" "(integer-length 1) =>  1"
+      "(integer-length 3) =>  2" "(integer-length 4) =>  3" "(integer-length 7) =>  3"
+      "(integer-length -1) =>  0" "(integer-length -4) =>  2" "(integer-length -7) =>  3"
+      "(integer-length -8) =>  3" "(integer-length (expt 2 9)) =>  10"
+      "(integer-length (1- (expt 2 9))) =>  9" "(integer-length (- (expt 2 9))) =>  9"
+      "(integer-length (- (1+ (expt 2 9)))) =>  10"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "integer") "が整数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "この関数は次のように定義できます。"
+     (CODE3 "```lisp" "```" "(defun integer-length (integer)"
+      "  (ceiling (log (if (minusp integer)" "                    (- integer)"
+      "                    (1+ integer))" "                2)))")
+     EOL2 "もし" (STRONG "integer") "が負の数ではないとき、" "その値は" (CODE1 "(integer-length intger)")
+     "の返却値より小さくはない" "ビット数の幅の符号なしバイナリフォームとして表現することができます。" (STRONG "integer") "の符号に関わらず、"
+     "その値は" (CODE1 "(+ (integer-length integer) 1)") "の返却値より小さくはない"
+     "ビット数の幅の符号ありバイナリの2の補数フォームとして表現することができます。")))
+(setf (gethash '("INTEGER-LENGTH" . "FUNCTION") *table*) (gethash "INTEGER-LENGTH" *table*))
+(setf (gethash "INTEGERP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "INTEGERP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "integerp") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "が型" (CODE1 "integer") "のときは" (STRONG "true")
+     "を、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(integerp 1) =>  true" "(integerp (expt 2 130)) =>  true"
+      "(integerp 6/5) =>  false" "(integerp nil) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(numberp object) ==  (typep object 'integer)"))))
+(setf (gethash '("INTEGERP" . "FUNCTION") *table*) (gethash "INTEGERP" *table*))
 (setf (gethash "INTERACTIVE-STREAM-P" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "INTERACTIVE-STREAM-P"))
     (CHAPTER ("## 構文") 2 (CODE1 "interactive-stream-p") " " (STRONG "stream") " => "
@@ -19628,7 +19812,7 @@
      "が有理数か浮動小数かは実装依存です。" "もし" (STRONG "number") "が負の有理数のとき、" (STRONG "root")
      "が複素数の有理数か複素数の浮動小数かは実装依存です。" EOL2 "複素数の平方根（マイナスゼロがサポートされているかどうかに関わらず）の"
      "数学的な定義は下記のとおりです。" (CODE3 "```lisp" "```" "(sqrt x) = (exp (/ (log x) 2))") EOL2
-     "平方根のブランチカットは負の実軸に沿って第2象限に続きます。" "その範囲は右半円で成り、非負の虚軸を含み、負の虚字句を含みません。")
+     "平方根のブランチカットは負の実軸に沿って第2象限に続きます。" "その範囲は右半円で成り、非負の虚軸を含み、負の虚軸を含みません。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(sqrt 9.0) =>  3.0" "(sqrt -9.0) =>  #C(0.0 3.0)"
       "(isqrt 9) =>  3" "(sqrt 12) =>  3.4641016" "(isqrt 12) =>  3" "(isqrt 300) =>  17"
@@ -21662,9 +21846,9 @@
      "。" "デフォルトは" (CODE1 "nil") "。" EOL1 (STRONG "new-state") " - 乱数状態オブジェクト")
     (CHAPTER ("## 定義") 2 (CODE1 "*random-state*") "の値として使いやすい" "型" (CODE1 "random-state")
      "の新しいオブジェクトを生成します。" EOL2 "もし" (STRONG "state") "が乱数状態オブジェクトのとき、"
-     (STRONG "new-state") "はそのオブジェクトをコピーします。" "もし" (STRONG "state") "が" (CODE1 "nil")
-     "のとき、" (STRONG "new-state") "は現在の乱数状態をコピーします。" "もし" (STRONG "state") "が" (CODE1 "t")
-     "のとき、" (STRONG "new-state") "は何とかして初期状態をランダムにした" "新しい乱数状態オブジェクトです。")
+     (STRONG "new-state") "はそのオブジェクトをコピーしたものです。" "もし" (STRONG "state") "が" (CODE1 "nil")
+     "のとき、" (STRONG "new-state") "は現在の乱数状態をコピーしたものです。" "もし" (STRONG "state") "が"
+     (CODE1 "t") "のとき、" (STRONG "new-state") "は何とかして初期状態をランダムにした" "新しい乱数状態オブジェクトです。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(let* ((rs1 (make-random-state nil))"
       "       (rs2 (make-random-state t))" "       (rs3 (make-random-state rs2))"
@@ -24662,6 +24846,27 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(numberp object) ==  (typep object 'number)"))))
 (setf (gethash '("NUMBERP" . "FUNCTION") *table*) (gethash "NUMBERP" *table*))
+(setf (gethash "NUMERATOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "NUMERATOR") ", " (CODE1 "DENOMINATOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "numerator") " " (STRONG "rational") " => "
+     (STRONG "numerator") EOL1 (CODE1 "denominator") " " (STRONG "rational") " => "
+     (STRONG "denominator"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "rational") " - 有理数" EOL1 (STRONG "numerator")
+     " - 整数" EOL1 (STRONG "denominator") " - 正の整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "numerator") "と" (CODE1 "denominator") "は"
+     (STRONG "rational") "を標準形に約分し、" "その数の分子と分母を計算します。" EOL2 (CODE1 "numerator") "と"
+     (CODE1 "denominator") "は" (STRONG "rational") "を標準形の分子と分母を返却します。" EOL2 "もし"
+     (STRONG "rational") "が整数のとき、" (CODE1 "numerator") "は" (STRONG "rational") "を返却し、"
+     (CODE1 "denominator") "は" (CODE1 "1") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(numerator 1/2) =>  1" "(denominator 12/36) =>  3"
+      "(numerator -1) =>  -1" "(denominator (/ -33)) =>  33"
+      "(numerator (/ 8 -6)) =>  -4" "(denominator (/ 8 -6)) =>  3"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "/"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(gcd (numerator x) (denominator x)) =>  1"))))
+(setf (gethash '("NUMERATOR" . "FUNCTION") *table*) (gethash "NUMERATOR" *table*))
 (setf (gethash "NUNION" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "UNION") ", " (CODE1 "NUNION"))
     (CHAPTER ("## 構文") 2 (CODE1 "union") " " (STRONG "list-1") " " (STRONG "list-2")
@@ -25781,6 +25986,25 @@
      (CODE1 "end-of-file") "のエラーが通知されます。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("PEEK-CHAR" . "FUNCTION") *table*) (gethash "PEEK-CHAR" *table*))
+(setf (gethash "PHASE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PHASE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "phase") " " (STRONG "number") " => " (STRONG "phase"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "phase") " - 数")
+    (CHAPTER ("## 定義") 2 (CODE1 "phase") "は、" (STRONG "number") "の位相（値を極座標で表したときの角度）を"
+     "ラジアンで返却し、その範囲は" "マイナスゼロをサポートしない場合は" (CODE1 "-pi") "（含まない）から" (CODE1 "pi") "（含む）まで、"
+     "マイナスゼロをサポートする場合は" (CODE1 "-pi") "（含む）から" (CODE1 "pi") "（含む）までです。" "正の実数の位相はゼロであり、"
+     "負の実数の位相は" (CODE1 "pi") "です。" "ゼロの位相はゼロと定義します。" EOL2 "もし" (STRONG "number")
+     "が複素数の浮動小数のとき、" "その結果は" (STRONG "number") "の要素と同じ型の浮動小数です。" "もし" (STRONG "number")
+     "が浮動小数のとき、" "その結果は同じ型の浮動小数です。" "もし" (STRONG "number") "が有理数か複素数の有理数のとき、" "その結果は"
+     (CODE1 "single-float") "です。" EOL2 (CODE1 "phase") "のブランチカットは負の実軸に沿って第2象限へ続きます。"
+     "その範囲は実軸の" (CODE1 "-pi") "（含まない）から" (CODE1 "pi") "（含む）の間の部分から成ります。" EOL2
+     (CODE1 "phase") "の数学的な定義は下記のとおりです。"
+     (CODE3 "```lisp" "```" "(phase x) = (atan (imagpart x) (realpart x))"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数が数ではないとき、" "型" (CODE1 "type-error") "のエラーを通知するべきです。" "型"
+     (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "12.1.3.3. 浮動小数の代替可能性の規則") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PHASE" . "FUNCTION") *table*) (gethash "PHASE" *table*))
 (setf (gethash "PI" *table*)
   '((CHAPTER NIL 0 "Constant Variable " (CODE1 "PI"))
     (CHAPTER ("## 値") 2 "実装依存であり" (CODE1 "long-float") "の値")
@@ -27563,6 +27787,33 @@
      "22.1.3.1.2. 分数の印字")))
 (setf (gethash '("RATIO" . "SYSTEM-CLASS") *table*) (gethash "RATIO" *table*))
 (setf (gethash "RATIONAL" *table*)
+  '("RATIONAL FUNCTION" EOL1 "RATIONAL SYSTEM-CLASS" EOL1))
+(setf (gethash '("RATIONAL" . "FUNCTION") *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "RATIONAL") ", " (CODE1 "RATIONALIZE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "rational") " " (STRONG "number") " => "
+     (STRONG "rational") EOL1 (CODE1 "rationalize") " " (STRONG "number") " => "
+     (STRONG "rational"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "rational") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "rational") "と" (CODE1 "rationalize") "は、"
+     "実数を有理数に変換します。" EOL2 "もし" (STRONG "number") "がすでに有理数のときは、その値が返却されます。" EOL2 "もし"
+     (STRONG "number") "が浮動小数のときは、" (CODE1 "rational") "は" "数学的に同一な浮動小数の値を返却します。"
+     (CODE1 "rationalize") "は" "その浮動小数による浮動小数の表現を元とした精度を用いて近似した" "有理数が返却されます。" EOL2
+     (CODE1 "rational") "は" "その浮動小数が完全に正確であることを仮定します。" EOL2 (CODE1 "rationalize") "は"
+     "その浮動小数による浮動小数表現の精度のみを元に正確であることを仮定します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(rational 0) =>  0" "(rationalize -11/100) =>  -11/100"
+      "(rational .1) =>  13421773/134217728 ;implementation-dependent"
+      "(rationalize .1) =>  1/10"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が実数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "下記のような場合は常に成り立ちます。"
+     (CODE3 "```lisp" "```" "(float (rational x) x) ==  x") EOL2 "下記も同様です。"
+     (CODE3 "```lisp" "```" "(float (rationalize x) x) ==  x") EOL2
+     "これは、どちらの方法を用いた浮動小数から有理数への変換でも、" "浮動小数の同じフォーマットへ戻す変換は" "元の" (STRONG "number")
+     "を生成するということです。")))
+(setf (gethash '("RATIONAL" . "SYSTEM-CLASS") *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "RATIONAL"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "rational") "," (CODE1 "real") ","
      (CODE1 "number") "," (CODE1 "t"))
@@ -27578,7 +27829,48 @@
      "それぞれのデフォルト値はシンボル" (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "これは、有理数の区間を" (STRONG "lower-limit") "と"
      (STRONG "upper-limit") "によって定義することを示します。")))
-(setf (gethash '("RATIONAL" . "SYSTEM-CLASS") *table*) (gethash "RATIONAL" *table*))
+(setf (gethash "RATIONALIZE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "RATIONAL") ", " (CODE1 "RATIONALIZE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "rational") " " (STRONG "number") " => "
+     (STRONG "rational") EOL1 (CODE1 "rationalize") " " (STRONG "number") " => "
+     (STRONG "rational"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "rational") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "rational") "と" (CODE1 "rationalize") "は、"
+     "実数を有理数に変換します。" EOL2 "もし" (STRONG "number") "がすでに有理数のときは、その値が返却されます。" EOL2 "もし"
+     (STRONG "number") "が浮動小数のときは、" (CODE1 "rational") "は" "数学的に同一な浮動小数の値を返却します。"
+     (CODE1 "rationalize") "は" "その浮動小数による浮動小数の表現を元とした精度を用いて近似した" "有理数が返却されます。" EOL2
+     (CODE1 "rational") "は" "その浮動小数が完全に正確であることを仮定します。" EOL2 (CODE1 "rationalize") "は"
+     "その浮動小数による浮動小数表現の精度のみを元に正確であることを仮定します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(rational 0) =>  0" "(rationalize -11/100) =>  -11/100"
+      "(rational .1) =>  13421773/134217728 ;implementation-dependent"
+      "(rationalize .1) =>  1/10"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が実数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" "型" (CODE1 "arithmetic-error") "を通知するかもしれません。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "下記のような場合は常に成り立ちます。"
+     (CODE3 "```lisp" "```" "(float (rational x) x) ==  x") EOL2 "下記も同様です。"
+     (CODE3 "```lisp" "```" "(float (rationalize x) x) ==  x") EOL2
+     "これは、どちらの方法を用いた浮動小数から有理数への変換でも、" "浮動小数の同じフォーマットへ戻す変換は" "元の" (STRONG "number")
+     "を生成するということです。")))
+(setf (gethash '("RATIONALIZE" . "FUNCTION") *table*) (gethash "RATIONALIZE" *table*))
+(setf (gethash "RATIONALP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "RATIONALP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "rationalp") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "が型" (CODE1 "rational") "のときは" (STRONG "true")
+     "を、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(rationalp 12) =>  true" "(rationalp 6/5) =>  true"
+      "(rationalp 1.212) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "rational"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(numberp object) ==  (typep object 'rational)"))))
+(setf (gethash '("RATIONALP" . "FUNCTION") *table*) (gethash "RATIONALP" *table*))
 (setf (gethash "READ" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "READ") ", " (CODE1 "READ-PRESERVING-WHITESPACE"))
     (CHAPTER ("## 構文") 2 (CODE1 "read") " " (CODE1 "&optional") " "
@@ -28070,6 +28362,41 @@
     (CHAPTER ("## 型指定子の定義") 2 "これは、実数の区間を" (STRONG "lower-limit") "と"
      (STRONG "upper-limit") "によって定義することを示します。")))
 (setf (gethash '("REAL" . "SYSTEM-CLASS") *table*) (gethash "REAL" *table*))
+(setf (gethash "REALP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "REALP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "realp") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "が型" (CODE1 "real") "のときは" (STRONG "true")
+     "を、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(realp 12) =>  true" "(realp #c(5/3 7.2)) =>  false"
+      "(realp nil) =>  false" "(realp (cons 1 2)) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(realp object) ==  (typep object 'real)"))))
+(setf (gethash '("REALP" . "FUNCTION") *table*) (gethash "REALP" *table*))
+(setf (gethash "REALPART" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "REALPART") ", " (CODE1 "IMAGPART"))
+    (CHAPTER ("## 構文") 2 (CODE1 "realpart") " " (STRONG "number") " => " (STRONG "real")
+     EOL1 (CODE1 "imagpart") " " (STRONG "number") " => " (STRONG "real"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 数" EOL1 (STRONG "real") " - 実数")
+    (CHAPTER ("## 定義") 2 (CODE1 "realpart") "と" (CODE1 "imagpart") "は、" "それぞれ"
+     (STRONG "number") "の実部と虚部を返却します。" "もし" (STRONG "number") "が実数のとき、"
+     (CODE1 "realpart") "は" (STRONG "number") "を返却し、" (CODE1 "imagpart") "は"
+     (CODE1 "(0 * number)") "を返却します。" "この効果は虚部が有理数のときは" (CODE1 "0") "であり、"
+     "浮動小数のときは同じフォーマットの浮動小数のゼロになるというものです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(realpart #c(23 41)) =>  23"
+      "(imagpart #c(23 41.0)) =>  41.0" "(realpart #c(23 41.0)) =>  23.0"
+      "(imagpart 23.0) =>  0.0"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "number") "が数ではないとき、型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 (CODE1 "complex")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("REALPART" . "FUNCTION") *table*) (gethash "REALPART" *table*))
 (setf (gethash "REDUCE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "REDUCE"))
     (CHAPTER ("## 構文") 2 (CODE1 "reduce") " " (STRONG "function") " " (STRONG "sequence")
@@ -31132,7 +31459,7 @@
      "が有理数か浮動小数かは実装依存です。" "もし" (STRONG "number") "が負の有理数のとき、" (STRONG "root")
      "が複素数の有理数か複素数の浮動小数かは実装依存です。" EOL2 "複素数の平方根（マイナスゼロがサポートされているかどうかに関わらず）の"
      "数学的な定義は下記のとおりです。" (CODE3 "```lisp" "```" "(sqrt x) = (exp (/ (log x) 2))") EOL2
-     "平方根のブランチカットは負の実軸に沿って第2象限に続きます。" "その範囲は右半円で成り、非負の虚軸を含み、負の虚字句を含みません。")
+     "平方根のブランチカットは負の実軸に沿って第2象限に続きます。" "その範囲は右半円で成り、非負の虚軸を含み、負の虚軸を含みません。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(sqrt 9.0) =>  3.0" "(sqrt -9.0) =>  #C(0.0 3.0)"
       "(isqrt 9) =>  3" "(sqrt 12) =>  3.4641016" "(isqrt 12) =>  3" "(isqrt 300) =>  17"
@@ -35665,6 +35992,23 @@
       "(defun upgraded-array-element-type (type &optional environment)"
       "  (array-element-type (make-array 0 :element-type type)))"))))
 (setf (gethash '("UPGRADED-ARRAY-ELEMENT-TYPE" . "FUNCTION") *table*) (gethash "UPGRADED-ARRAY-ELEMENT-TYPE" *table*))
+(setf (gethash "UPGRADED-COMPLEX-PART-TYPE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "UPGRADED-COMPLEX-PART-TYPE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "upgraded-complex-part-type") " " (STRONG "typespec") " "
+     (CODE1 "&optional") " " (STRONG "environment") " => " (STRONG "upgraded-typespec"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "typespec") " - 型指定子" EOL1 (STRONG "environment")
+     " - 環境オブジェクト。デフォルトは" (CODE1 "nil") "であり、" (CODE1 "null")
+     "のレキシカルな環境と現在のグローバルな環境を示します。" EOL1 (STRONG "upgraded-typespec") " - 型指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "upgraded-complex-part-type") "は、" "型"
+     (STRONG "typespec") "の要素をを保存できるような特別な複素数の表現の型を返却します。" EOL2 (STRONG "typespec") "は、"
+     (STRONG "upgraded-typespec") "のサブタイプ（可能であれば同一な型）です。" EOL2
+     (CODE1 "upgraded-complex-part-type") "の目的は、" "実装がどのようにしてその型をアップグレードしているかを"
+     "明らかにすることにあります。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "complex") " (function)," (CODE1 "complex") " (type)")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("UPGRADED-COMPLEX-PART-TYPE" . "FUNCTION") *table*) (gethash "UPGRADED-COMPLEX-PART-TYPE" *table*))
 (setf (gethash "UPPER-CASE-P" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "UPPER-CASE-P") ", " (CODE1 "LOWER-CASE-P") ", "
      (CODE1 "BOTH-CASE-P"))

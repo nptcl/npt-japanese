@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPLEX
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.complex!function
+@name: complex!function
+@type: function
+
+Function `COMPLEX`
+
+
+## {syntax}
+
+`complex` *realpart* `&optional` *imagpart* => *complex*
+
+
+## {arguments-and-values}
+
+*realpart* - 実数  
+*imagpart* - 実数  
+*complex* - {rational}か複素数
+
+
+## {description}
+
+{complex!function:link}は、
+実部が*realpart*、虚部が*imagpart*の数を返却します。
+
+もし*realpart*が{rational}であり、*imagpart*がゼロのとき、
+{complex!function:link}の結果は*realpart*であり、{rational}です。
+それ以外のとき、結果は複素数です。
+
+*realpart*か*imagpart*が{float}のとき、
+複素数が生成される前に{float}ではない値は{float}に変換されます。
+もし*imagpart*が指定されなかったとき、
+虚部は*realpart*と同じ型のゼロになり、
+例えば`(coerce 0 (type-of realpart))`が効果的に使用されます。
+
+型のアップグレードとは、
+その型の階層的な格子の情報に移動することを意味します。
+複素数の場合は、その実部と虚部を表す型*type-specier*は、
+`(upgraded-complex-part-type type-specifier)`の
+サブタイプで無ければなりません。
+*type-specifier1*が*type-specifier2*のサブタイプのとき、
+`(upgraded-complex-element-type 'type-specifier1)`もまた
+`(upgraded-complex-element-type 'type-specifier2)`のサブタイプでなければなりません。
+2つの疎の型は、同じものへアップグレードすることができます。
+
+
+## {examples}
+
+```lisp
+(complex 0) =>  0
+(complex 0.0) =>  #C(0.0 0.0)
+(complex 1 1/2) =>  #C(1 1/2)
+(complex 1 .99) =>  #C(1.0 0.99)
+(complex 3/2 0.0) =>  #C(1.5 0.0)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{realpart:link},
+{imagpart:link},
+{2.4.8.11:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

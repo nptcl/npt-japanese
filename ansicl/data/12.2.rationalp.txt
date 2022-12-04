@@ -1,0 +1,69 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RATIONALP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.rationalp
+@name: rationalp
+@type: function
+
+Function `RATIONALP`
+
+
+## {syntax}
+
+`rationalp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{rational!system-class:link}のときは*true*を、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(rationalp 12) =>  true
+(rationalp 6/5) =>  true
+(rationalp 1.212) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{rational!function:link}
+
+
+## {notes}
+
+```lisp
+(numberp object) ==  (typep object 'rational)
+```
+
+@end
+

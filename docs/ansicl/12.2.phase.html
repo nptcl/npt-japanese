@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function CIS</title>
+  <title>Function PHASE</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,27 +214,29 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function CIS</h1>
+<h1 class="title">Function PHASE</h1>
 </header>
 <p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="function-cis">Function <strong>CIS</strong></h1>
-<p>Function <code>CIS</code></p>
+<h1 id="function-phase">Function <strong>PHASE</strong></h1>
+<p>Function <code>PHASE</code></p>
 <h2 id="構文">構文</h2>
-<p><code>cis</code> <em>radians</em> =&gt; <em>number</em></p>
+<p><code>phase</code> <em>number</em> =&gt; <em>phase</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>radians</em> - 実数<br />
-<em>number</em> - 複素数</p>
+<p><em>number</em> - 数<br />
+<em>phase</em> - 数</p>
 <h2 id="定義">定義</h2>
-<p><a href="12.2.cis.html"><code>cis</code></a>は、<code>e^{i * radians}</code>の値を返却するものであり、 その返却値は実部が<em>radians</em>のコサインと等しく、 虚部が<em>radians</em>のサインに等しい複素数です。</p>
-<h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">cis</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  #C(<span class="fl">1.0</span> <span class="fl">0.0</span>)</span></code></pre></div>
+<p><a href="12.2.phase.html"><code>phase</code></a>は、<em>number</em>の位相（値を極座標で表したときの角度）を ラジアンで返却し、その範囲は マイナスゼロをサポートしない場合は<code>-pi</code>（含まない）から<code>pi</code>（含む）まで、 マイナスゼロをサポートする場合は<code>-pi</code>（含む）から<code>pi</code>（含む）までです。 正の実数の位相はゼロであり、 負の実数の位相は<code>pi</code>です。 ゼロの位相はゼロと定義します。</p>
+<p>もし<em>number</em>が複素数の浮動小数のとき、 その結果は<em>number</em>の要素と同じ型の浮動小数です。 もし<em>number</em>が浮動小数のとき、 その結果は同じ型の浮動小数です。 もし<em>number</em>が有理数か複素数の有理数のとき、 その結果は<a href="12.2.short-float.html"><code>single-float</code></a>です。</p>
+<p><a href="12.2.phase.html"><code>phase</code></a>のブランチカットは負の実軸に沿って第2象限へ続きます。 その範囲は実軸の<code>-pi</code>（含まない）から<code>pi</code>（含む）の間の部分から成ります。</p>
+<p><a href="12.2.phase.html"><code>phase</code></a>の数学的な定義は下記のとおりです。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">phase</span> x) <span class="op">=</span> (<span class="kw">atan</span> (<span class="kw">imagpart</span> x) (<span class="kw">realpart</span> x))</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
 <p>なし。</p>
 <h2 id="影響">影響</h2>
 <p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p>引数が数ではないとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーを通知するべきです。 型<code>arithmetic-error</code>を通知するかもしれません。</p>
 <h2 id="参考">参考</h2>
 <p>12.1.3.3. 浮動小数の代替可能性の規則</p>
 <h2 id="備考">備考</h2>

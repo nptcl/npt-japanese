@@ -231,10 +231,10 @@
 <p>もし<em>object</em>が<em>type-specifier</em>によって指定された型のときは<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
 <p><em>type-specifier</em>が<code>(satisfies fn)</code>フォームのときは、 関数<code>fn</code>を<em>object</em>で適用することで返却します。</p>
 <p>式<code>(typep object '(array type-specifier))</code>の <em>type-specifier</em>が<code>*</code>ではないときは、 <em>object</em>が<a href="15.2.make-array.html"><code>make-array</code></a>関数の <code>:element-type</code>の引数に<em>type-specifier</em>が指定されて 生成された配列であるときに<em>true</em>を返却します。 <code>(array *)</code>は要素の型に関係せず全ての配列を意味し、 <code>(array type-specifier)</code>はただ<a href="15.2.make-array.html"><code>make-array</code></a>関数の <code>:element-type</code>の引数に<em>type-specifier</em>が指定されて 生成された配列のみを意味します。 似たような解釈として、 <code>(simple-array type-specifier)</code>と<code>(vector type-specifier)</code>にも 適用されます。 詳しくは15.1.2.1. 配列のアップグレードをご確認ください。</p>
-<p>式<code>(typep object '(complex type-specifier)</code>は、 <code>complex</code>関数に <em>type-specifier</em>型の数を与えた返却値による複素数か、 加えて同じ<code>specialized</code>の表現の数を持った 複素数のときに<em>true</em>を返却します。 そのような複素数は、実部と虚部の両方で次の式が満たされなければなりません。</p>
+<p>式<code>(typep object '(complex type-specifier)</code>は、 <a href="12.2.complex-function.html"><code>complex</code></a>関数に <em>type-specifier</em>型の数を与えた返却値による複素数か、 加えて同じ<code>specialized</code>の表現の数を持った 複素数のときに<em>true</em>を返却します。 そのような複素数は、実部と虚部の両方で次の式が満たされなければなりません。</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> <span class="kw">realpart</span> &#39;type-specifier)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> <span class="kw">imagpart</span> &#39;type-specifier)</span></code></pre></div>
-<p><code>upgraded-complex-part-type</code>関数をご確認ください。</p>
+<p><a href="12.2.upgraded-complex-part-type.html"><code>upgraded-complex-part-type</code></a>関数をご確認ください。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> <span class="dv">12</span> &#39;integer) <span class="op">=&gt;</span>  true</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">typep</span> (<span class="op">1+</span> <span class="kw">most-positive-fixnum</span>) &#39;fixnum) <span class="op">=&gt;</span>  false</span>
@@ -260,7 +260,7 @@
 <p>もし<em>type-specifier</em>が<a href="4.4.values-type.html"><code>values</code></a>か、 あるいは最初の要素が<a href="4.4.function-system-class.html"><code>function</code></a>か <a href="4.4.values-type.html"><code>values</code></a>のリストのときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが発生します。</p>
 <p><em>type-specifier</em>が型指定子ではないときの結果は未定義です。</p>
 <h2 id="参考">参考</h2>
-<p><a href="4.4.type-of.html"><code>type-of</code></a>, <a href="15.2.upgraded-array-element-type.html"><code>upgraded-array-element-type</code></a>, <code>upgraded-complex-part-type</code>, <a href="4.2.3.html">4.2.3. 型指定子</a></p>
+<p><a href="4.4.type-of.html"><code>type-of</code></a>, <a href="15.2.upgraded-array-element-type.html"><code>upgraded-array-element-type</code></a>, <a href="12.2.upgraded-complex-part-type.html"><code>upgraded-complex-part-type</code></a>, <a href="4.2.3.html">4.2.3. 型指定子</a></p>
 <h2 id="備考">備考</h2>
 <p>実装は、<code>(typep x (the class y))</code>のような式の場合は、 実行時に<a href="4.4.deftype.html"><code>deftype</code></a>による展開の実行が必要無いように 最適化を行うよう推奨されます。</p>
 <hr />

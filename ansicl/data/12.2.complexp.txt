@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPLEXP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.complexp
+@name: complexp
+@type: function
+
+Function `COMPLEXP`
+
+
+## {syntax}
+
+`complexp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{complex!system-class:link}のときは*true*を、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(complexp 1.2d2) =>  false
+(complexp #c(5/3 7.2)) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{complex!function:link} (function),
+{complex!system-class:link} (type),
+{typep:link}
+
+
+## {notes}
+
+```lisp
+(complexp object) ==  (typep object 'complex)
+```
+
+@end
+

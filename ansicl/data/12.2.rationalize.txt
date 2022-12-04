@@ -1,0 +1,101 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function RATIONAL
+;;  Function RATIONALIZE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.rational!function
+@name: rational!function
+@name: rationalize
+@type: function
+
+Function `RATIONAL`, `RATIONALIZE`
+
+
+## {syntax}
+
+`rational` *number* => *rational*  
+`rationalize` *number* => *rational*
+
+
+## {arguments-and-values}
+
+*number* - 実数  
+*rational* - 実数
+
+
+## {description}
+
+{rational!function:link}と{rationalize:link}は、
+実数を{rational}に変換します。
+
+もし*number*がすでに{rational}のときは、その値が返却されます。
+
+もし*number*が{float}のときは、
+{rational!function:link}は
+数学的に同一な{float}の値を返却します。
+{rationalize:link}は
+その{float}による浮動小数の表現を元とした精度を用いて近似した
+{rational}が返却されます。
+
+{rational!function:link}は
+その{float}が完全に正確であることを仮定します。
+
+{rationalize:link}は
+その{float}による浮動小数表現の精度のみを元に正確であることを仮定します。
+
+
+## {examples}
+
+```lisp
+(rational 0) =>  0
+(rationalize -11/100) =>  -11/100
+(rational .1) =>  13421773/134217728 ;implementation-dependent
+(rationalize .1) =>  1/10
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+実装
+
+
+## {exceptional-situations}
+
+*number*が実数ではないとき、型{type-error:link}のエラーを通知するべきです。
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+下記のような場合は常に成り立ちます。
+
+```lisp
+(float (rational x) x) ==  x
+```
+
+下記も同様です。
+
+```lisp
+(float (rationalize x) x) ==  x
+```
+
+これは、どちらの方法を用いた{float}から{rational}への変換でも、
+{float}の同じフォーマットへ戻す変換は
+元の*number*を生成するということです。
+
+@end
+

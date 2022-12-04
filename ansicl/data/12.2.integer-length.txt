@@ -1,0 +1,92 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INTEGER-LENGTH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.integer-length
+@name: integer-length
+@type: function
+
+Function `INTEGER-LENGTH`
+
+
+## {syntax}
+
+`integer-length` *integer* => *number-of-bits*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*number-of-bits* - 非負の整数
+
+
+## {description}
+
+*integer*を2の補数フォーマットで表現するのに
+必要なビット数を返却します。
+
+
+## {examples}
+
+```lisp
+(integer-length 0) =>  0
+(integer-length 1) =>  1
+(integer-length 3) =>  2
+(integer-length 4) =>  3
+(integer-length 7) =>  3
+(integer-length -1) =>  0
+(integer-length -4) =>  2
+(integer-length -7) =>  3
+(integer-length -8) =>  3
+(integer-length (expt 2 9)) =>  10
+(integer-length (1- (expt 2 9))) =>  9
+(integer-length (- (expt 2 9))) =>  9
+(integer-length (- (1+ (expt 2 9)))) =>  10
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer*が整数ではないとき、型{type-error:link}のエラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+この関数は次のように定義できます。
+
+```lisp
+(defun integer-length (integer)
+  (ceiling (log (if (minusp integer)
+                    (- integer)
+                    (1+ integer))
+                2)))
+```
+
+もし*integer*が負の数ではないとき、
+その値は`(integer-length intger)`の返却値より小さくはない
+ビット数の幅の符号なしバイナリフォームとして表現することができます。
+*integer*の符号に関わらず、
+その値は`(+ (integer-length integer) 1)`の返却値より小さくはない
+ビット数の幅の符号ありバイナリの2の補数フォームとして表現することができます。
+
+@end
+

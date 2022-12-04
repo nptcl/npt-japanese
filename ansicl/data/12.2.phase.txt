@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PHASE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.phase
+@name: phase
+@type: function
+
+Function `PHASE`
+
+
+## {syntax}
+
+`phase` *number* => *phase*
+
+
+## {arguments-and-values}
+
+*number* - 数  
+*phase* - 数
+
+
+## {description}
+
+{phase:link}は、*number*の位相（値を極座標で表したときの角度）を
+ラジアンで返却し、その範囲は
+マイナスゼロをサポートしない場合は`-pi`（含まない）から`pi`（含む）まで、
+マイナスゼロをサポートする場合は`-pi`（含む）から`pi`（含む）までです。
+正の実数の位相はゼロであり、
+負の実数の位相は`pi`です。
+ゼロの位相はゼロと定義します。
+
+もし*number*が複素数の{float}のとき、
+その結果は*number*の要素と同じ型の{float}です。
+もし*number*が{float}のとき、
+その結果は同じ型の{float}です。
+もし*number*が{rational}か複素数の{rational}のとき、
+その結果は{single-float:link}です。
+
+{phase:link}のブランチカットは負の実軸に沿って第2象限へ続きます。
+その範囲は実軸の`-pi`（含まない）から`pi`（含む）の間の部分から成ります。
+
+{phase:link}の数学的な定義は下記のとおりです。
+
+```lisp
+(phase x) = (atan (imagpart x) (realpart x))
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数が数ではないとき、
+型{type-error:link}のエラーを通知するべきです。
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+{12.1.3.3:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -4,37 +4,39 @@
 ;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  Function CIS
+;;  Function REALP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-@begin: 12.2.cis
-@name: cis
+@begin: 12.2.realp
+@name: realp
 @type: function
 
-Function `CIS`
+Function `REALP`
 
 
 ## {syntax}
 
-`cis` *radians* => *number*
+`realp` *object* => *generalized-boolean*
 
 
 ## {arguments-and-values}
 
-*radians* - 実数  
-*number* - 複素数
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
 
 
 ## {description}
 
-{cis:link}は、`e^{i * radians}`の値を返却するものであり、
-その返却値は実部が*radians*のコサインと等しく、
-虚部が*radians*のサインに等しい複素数です。
+*object*が型{real:link}のときは*true*を、
+それ以外のときは*false*を返却します。
 
 
 ## {examples}
 
 ```lisp
-(cis 0) =>  #C(1.0 0.0)
+(realp 12) =>  true
+(realp #c(5/3 7.2)) =>  false
+(realp nil) =>  false
+(realp (cons 1 2)) =>  false
 ```
 
 
@@ -55,12 +57,14 @@ Function `CIS`
 
 ## {see-also}
 
-{12.1.3.3:ab}
+なし。
 
 
 ## {notes}
 
-なし。
+```lisp
+(realp object) ==  (typep object 'real)
+```
 
 @end
 

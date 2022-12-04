@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ASH
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.ash
+@name: ash
+@type: function
+
+Function `ASH`
+
+
+## {syntax}
+
+`ash` *integer* *count* => *shifted-integer*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*count* - 整数  
+*shifted-integer* - 整数
+
+
+## {description}
+
+{ash:link}は*integer*をバイナリとして扱うかのように
+2進表現としたときの演算シフト処理を行います。
+
+もし*count*が正のとき、
+{ash:link}は*integer*を*count*の分だけ左に演算処理としてシフトします。
+あるいは、*count*が負のときは右にシフトします。
+シフトされた値は、*integer*と同じ符号で返却されます。
+
+数学的に言うならば、
+{ash:link}は`floor(integer*2^count)`の計算を実行します。
+論理的に言うならば、
+{ash:link}は*integer*の全てのビットを左に移動し右からゼロビットを追加するか、
+あるいはそれらを右に移動してビットを切り捨てます。
+
+{ash:link}は
+整数が内部においてどのように表現されているかに関わらず、
+*integer*を2の補数として表現されたかのように振る舞うと定義できます。
+
+
+## {examples}
+
+```lisp
+(ash 16 1) =>  32
+(ash 16 0) =>  16
+(ash 16 -1) =>  8
+(ash -100000000000000000000000000000000 -100) =>  -79
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer*が整数ではないとき、型{type-error:link}のエラーを通知するべきです。
+*count*が整数ではないとき、型{type-error:link}のエラーを通知するべきです。
+型{arithmetic-error:link}を通知するかもしれません。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(logbitp j (ash n k))
+ ==  (and (>= j k) (logbitp (- j k) n))
+```
+
+@end
+

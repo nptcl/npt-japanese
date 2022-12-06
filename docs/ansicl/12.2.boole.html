@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function BOOLE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function BOOLE</h1>
+</header>
+<p><a href="12.2.html">UP</a></p>
+<hr />
+<h1 id="function-boole">Function <strong>BOOLE</strong></h1>
+<p>Function <code>BOOLE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>boole</code> <em>op</em> <em>integer-1</em> <em>integer-2</em> =&gt; <em>result-integer</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>op</em> - ビット毎の論理演算指定子<br />
+<em>integer-1</em> - 整数<br />
+<em>integer-2</em> - 整数<br />
+<em>result-integer</em> - 整数</p>
+<h2 id="定義">定義</h2>
+<p><a href="12.2.boole.html"><code>boole</code></a>は、<em>integer-1</em>と<em>integer-2</em>を2の補数表記のバイナリとして扱い、 ビット毎の論理演算を行います。</p>
+<p>実施する処理と返却値は<em>op</em>によって決まります。</p>
+<p><a href="12.2.boole.html"><code>boole</code></a>は次の表に示される<em>op</em>によって 返却値が指定されます。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><em>op</em></th>
+<th style="text-align: left;">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-1</code></a></td>
+<td style="text-align: left;"><em>integer-1</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-2</code></a></td>
+<td style="text-align: left;"><em>integer-2</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-andc1</code></a></td>
+<td style="text-align: left;"><em>integer-1</em>の補数と、<em>integer-2</em>の<code>and</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-andc2</code></a></td>
+<td style="text-align: left;"><em>integer-1</em>と、<em>integer-2</em>の補数の<code>and</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-and</code></a></td>
+<td style="text-align: left;"><code>and</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-c1</code></a></td>
+<td style="text-align: left;"><em>integer-1</em>の補数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-c2</code></a></td>
+<td style="text-align: left;"><em>integer-2</em>の補数</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-clr</code></a></td>
+<td style="text-align: left;">常に<code>0</code>（全ビットがゼロ）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-eqv</code></a></td>
+<td style="text-align: left;">同値（排他的<code>nor</code>）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-ior</code></a></td>
+<td style="text-align: left;">包括的<code>or</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-nand</code></a></td>
+<td style="text-align: left;"><code>not-and</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-nor</code></a></td>
+<td style="text-align: left;"><code>not-or</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-orc1</code></a></td>
+<td style="text-align: left;"><em>integer-1</em>の補数と、<em>integer-2</em>の<code>or</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-orc2</code></a></td>
+<td style="text-align: left;"><em>integer-1</em>と、<em>integer-2</em>の補数の<code>or</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-set</code></a></td>
+<td style="text-align: left;">常に<code>-1</code>（全ビットが<code>1</code>）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="12.2.boole-1.html"><code>boole-xor</code></a></td>
+<td style="text-align: left;">排他的<code>or</code></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12-17. ビット毎の論理演算</p>
+<h2 id="例文">例文</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-ior</span> <span class="dv">1</span> <span class="dv">16</span>) <span class="op">=&gt;</span>  <span class="dv">17</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-and</span> -<span class="dv">2</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-eqv</span> <span class="dv">17</span> <span class="dv">15</span>) <span class="op">=&gt;</span>  -<span class="dv">31</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;;; これらの例はBOOLEの実行結果と指定できるOPの値、</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">;;; それぞれのあるビットの組み合わせを示したものです。</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">progn</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp;Results of (BOOLE &lt;op&gt; #b0011 #b0101) ...~</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">          ~%---Op-------Decimal-----Binary----Bits---~%&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">dolist</span> (<span class="kw">symbol</span> &#39;(<span class="kw">boole-1</span>     <span class="kw">boole-2</span>    <span class="kw">boole-and</span>  <span class="kw">boole-andc1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">boole-andc2</span> <span class="kw">boole-c1</span>   <span class="kw">boole-c2</span>   <span class="kw">boole-clr</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">boole-eqv</span>   <span class="kw">boole-ior</span>  <span class="kw">boole-nand</span> <span class="kw">boole-nor</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">boole-orc1</span>  <span class="kw">boole-orc2</span> <span class="kw">boole-set</span>  <span class="kw">boole-xor</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">let</span> ((result (<span class="kw">boole</span> (<span class="kw">symbol-value</span> <span class="kw">symbol</span>) <span class="ch">#b</span>0011 #b0101)))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">format</span> <span class="kw">t</span> <span class="st">&quot;~&amp; ~A~13T~3,&#39; D~23T~:*~5,&#39; B~31T ...~4,&#39;0B~%&quot;</span> </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>              <span class="kw">symbol</span> result (<span class="kw">logand</span> result <span class="ch">#b</span>1111)))))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  Results of (BOOLE &lt;op&gt; <span class="ch">#b</span>0011 #b0101) ...</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  ---Op-------Decimal-----Binary----Bits---</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE<span class="dv">-1</span>       <span class="dv">3</span>          <span class="dv">11</span>    ...<span class="dv">0011</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE<span class="dv">-2</span>       <span class="dv">5</span>         <span class="dv">101</span>    ...<span class="dv">0101</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-AND     <span class="dv">1</span>           <span class="dv">1</span>    ...<span class="dv">0001</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-ANDC1   <span class="dv">4</span>         <span class="dv">100</span>    ...<span class="dv">0100</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-ANDC2   <span class="dv">2</span>          <span class="dv">10</span>    ...<span class="dv">0010</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-C1     -<span class="dv">4</span>        -<span class="dv">100</span>    ...<span class="dv">1100</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-C2     -<span class="dv">6</span>        -<span class="dv">110</span>    ...<span class="dv">1010</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-CLR     <span class="dv">0</span>           <span class="dv">0</span>    ...<span class="dv">0000</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-EQV    -<span class="dv">7</span>        -<span class="dv">111</span>    ...<span class="dv">1001</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-IOR     <span class="dv">7</span>         <span class="dv">111</span>    ...<span class="dv">0111</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-NAND   -<span class="dv">2</span>         -<span class="dv">10</span>    ...<span class="dv">1110</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-NOR    -<span class="dv">8</span>       -<span class="dv">1000</span>    ...<span class="dv">1000</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-ORC1   -<span class="dv">3</span>         -<span class="dv">11</span>    ...<span class="dv">1101</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-ORC2   -<span class="dv">5</span>        -<span class="dv">101</span>    ...<span class="dv">1011</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-SET    -<span class="dv">1</span>          -<span class="dv">1</span>    ...<span class="dv">1111</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>&gt;&gt;   BOOLE-XOR     <span class="dv">6</span>         <span class="dv">110</span>    ...<span class="dv">0110</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  NIL</span></code></pre></div>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>もし最初の引数がビット毎の論理演算指定子ではないか、 続く引数が整数ではなかったとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>を通知するべきです。</p>
+<h2 id="参考">参考</h2>
+<p><a href="12.2.logand.html"><code>logand</code></a></p>
+<h2 id="備考">備考</h2>
+<p>一般的に下記の等式が成り立ちます。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-and</span> x y) ==  (<span class="kw">logand</span> x y)</span></code></pre></div>
+<p>ビット毎の論理演算指定子ではなく、 数値であるインデックス値を使いたいプログラマーは、 次に示すようなテクニックを用いて同じ効果を得ることができます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; この「テーブル」の値の順番は、</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">;; (logand (boole (elt boole-n-vector n) #b0101 #b0011) #b1111) =&gt; n</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defconstant</span><span class="fu"> boole-n-vector</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>   (<span class="kw">vector</span> <span class="kw">boole-clr</span>   <span class="kw">boole-and</span>  <span class="kw">boole-andc1</span> <span class="kw">boole-2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">boole-andc2</span> <span class="kw">boole-1</span>    <span class="kw">boole-xor</span>   <span class="kw">boole-ior</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="kw">boole-nor</span>   <span class="kw">boole-eqv</span>  <span class="kw">boole-c1</span>    <span class="kw">boole-orc1</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>           <span class="kw">boole-c2</span>    <span class="kw">boole-orc2</span> <span class="kw">boole-nand</span>  <span class="kw">boole-set</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  BOOLE-N-VECTOR</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">proclaim</span> &#39;(<span class="kw">inline</span> boole-n))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  実装依存</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> boole-n </span>(n <span class="kw">integer</span> &amp;<span class="kw">rest</span> more-integers)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">apply</span> #&#39;boole (<span class="kw">elt</span> boole-n-vector n) <span class="kw">integer</span> more-integers))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  BOOLE-N</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>(boole-n <span class="ch">#b</span>0111 <span class="dv">5</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">7</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>(boole-n <span class="ch">#b</span>0001 <span class="dv">5</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  <span class="dv">1</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>(boole-n <span class="ch">#b</span>1101 <span class="dv">5</span> <span class="dv">3</span>) <span class="op">=&gt;</span>  -<span class="dv">3</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>(<span class="kw">loop</span> for n from <span class="ch">#b</span>0000 to #b1111 collect (boole-n n <span class="dv">5</span> <span class="dv">3</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  (<span class="dv">0</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> -<span class="dv">8</span> -<span class="dv">7</span> -<span class="dv">6</span> -<span class="dv">5</span> -<span class="dv">4</span> -<span class="dv">3</span> -<span class="dv">2</span> -<span class="dv">1</span>)</span></code></pre></div>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

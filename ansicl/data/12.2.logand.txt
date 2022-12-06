@@ -1,0 +1,170 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOGAND
+;;  Function LOGANDC1
+;;  Function LOGANDC2
+;;  Function LOGEQV
+;;  Function LOGIOR
+;;  Function LOGNAND
+;;  Function LOGNOR
+;;  Function LOGNOT
+;;  Function LOGORC1
+;;  Function LOGORC2
+;;  Function LOGXOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.logand
+@name: logand
+@name: logandc1
+@name: logandc2
+@name: logeqv
+@name: logior
+@name: lognand
+@name: lognor
+@name: lognot
+@name: logorc1
+@name: logorc2
+@name: logxor
+@type: function
+
+Function `LOGAND`, `LOGANDC1`, `LOGANDC2`, `LOGEQV`,
+`LOGIOR`, `LOGNAND`, `LOGNOR`, `LOGNOT`,
+`LOGORC1`, `LOGORC2`, `LOGXOR`
+
+
+## {syntax}
+
+`logand` `&rest` *integers* => *result-integer*  
+`logandc1` *integer-1* *integer-2* => *result-integer*  
+`logandc2` *integer-1* *integer-2* => *result-integer*  
+`logeqv` `&rest` *integers* => *result-integer*  
+`logior` `&rest` *integers* => *result-integer*  
+`lognand` *integer-1* *integer-2* => *result-integer*  
+`lognor` *integer-1* *integer-2* => *result-integer*  
+`lognot` *integer* => *result-integer*  
+`logorc1` *integer-1* *integer-2* => *result-integer*  
+`logorc2` *integer-1* *integer-2* => *result-integer*  
+`logxor` `&rest` *integers* => *result-integer*
+
+
+## {arguments-and-values}
+
+*integers* - 整数  
+*integer* - 整数  
+*integer-1* - 整数  
+*integer-2* - 整数  
+*result-integer* - 整数
+
+
+## {description}
+
+関数{logandc1:link}, {logandc2:link}, {logand:link}, {logeqv:link},
+{logior:link}, {lognand:link}, {lognor:link}, {lognot:link},
+{logorc1:link}, {logorc2:link}, {logxor:link}は、
+引数をバイナリであるかのように扱い、
+ビット毎の論理演算処理を行います。
+
+次の表は、各関数の意味を示しています。
+「同一」となっている所は、
+引数が指定されなかったときにその関数が生成する値を示しています。
+
+|関数            |同一 |演算処理                                 |
+|:---------------|:----|:----------------------------------------|
+|{logandc1:link} |---  |*integer-1*の補数と、*integer-2*の`and`  |
+|{logandc2:link} |---  |*integer-1*と、*integer-2*の補数の`and`  |
+|{logand:link}   |`-1` |`and`                                    |
+|{logeqv:link}   |`-1` |同値（排他的`nor`）                      |
+|{logior:link}   |`0`  |包括的`or`                               |
+|{lognand:link}  |---  |*integer-1*と*integer-2*の`and`の補数    |
+|{lognor:link}   |---  ||*integer-1*と*integer-2*の`or`の補数    |
+|{lognot:link}   |---  |補数                                     |
+|{logorc1:link}  |---  |*integer-1*の補数と、*integer-2*の`or`   |
+|{logorc2:link}  |---  |*integer-1*と、*integer-2*の補数の`or`   |
+|{logxor:link}   |`0`  |排他的`or`                               |
+
+Figure 12-18. 整数のビット毎の論理演算
+
+負の*integers*は、2の補数表記として扱われます。
+
+
+## {examples}
+
+```lisp
+(logior 1 2 4 8) =>  15
+(logxor 1 3 7 15) =>  10
+(logeqv) =>  -1
+(logand 16 31) =>  16
+(lognot 0) =>  -1
+(lognot 1) =>  -2
+(lognot -1) =>  0
+(lognot (1+ (lognot 1000))) =>  999
+
+;;; 下記の例のmはマスクです。
+;;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。
+;;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。
+(flet ((show (m x y)
+         (format t "~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%"
+                 m x y)))
+  (let ((m #o007750)
+        (x #o452576)
+        (y #o317407))
+    (show m x y)
+    (let ((z (logand (logxor x y) m)))
+      (setq x (logxor z x))
+      (setq y (logxor z y))
+      (show m x y))))
+>>  m = #o007750
+>>  x = #o452576
+>>  y = #o317407
+>>  
+>>  m = #o007750
+>>  x = #o457426
+>>  y = #o312557
+=>  NIL
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+各引数が整数ではなかったとき、
+型{type-error:link}が通知されなければなりません。
+
+
+## {see-also}
+
+{boole:link}
+
+
+## {notes}
+
+`(logbitp k -1)`は、*k*が全ての値で*true*になります。
+
+下記の関数は結合的ではありませんので、
+それらは複数の引数を取るのではなく
+正確に2つの引数を取ります。
+
+```lisp
+(lognand n1 n2) ==  (lognot (logand n1 n2))
+(lognor n1 n2) ==  (lognot (logior n1 n2))
+(logandc1 n1 n2) ==  (logand (lognot n1) n2)
+(logandc2 n1 n2) ==  (logand n1 (lognot n2))
+(logiorc1 n1 n2) ==  (logior (lognot n1) n2)
+(logiorc2 n1 n2) ==  (logior n1 (lognot n2))
+(logbitp j (lognot x)) ==  (not (logbitp j x))
+```
+
+@end
+

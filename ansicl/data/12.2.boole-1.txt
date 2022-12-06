@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable BOOLE-1
+;;  Constant Variable BOOLE-2
+;;  Constant Variable BOOLE-AND
+;;  Constant Variable BOOLE-ANDC1
+;;  Constant Variable BOOLE-ANDC2
+;;  Constant Variable BOOLE-C1
+;;  Constant Variable BOOLE-C2
+;;  Constant Variable BOOLE-CLR
+;;  Constant Variable BOOLE-EQV
+;;  Constant Variable BOOLE-IOR
+;;  Constant Variable BOOLE-NAND
+;;  Constant Variable BOOLE-NOR
+;;  Constant Variable BOOLE-ORC1
+;;  Constant Variable BOOLE-ORC2
+;;  Constant Variable BOOLE-SET
+;;  Constant Variable BOOLE-XOR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.boole-1
+@name: boole-1
+@name: boole-2
+@name: boole-and
+@name: boole-andc1
+@name: boole-andc2
+@name: boole-c1
+@name: boole-c2
+@name: boole-clr
+@name: boole-eqv
+@name: boole-ior
+@name: boole-nand
+@name: boole-nor
+@name: boole-orc1
+@name: boole-orc2
+@name: boole-set
+@name: boole-xor
+@type: constant-variable
+
+Constant Variable `BOOLE-1`, `BOOLE-2`, `BOOLE-AND`, `BOOLE-ANDC1`,
+`BOOLE-ANDC2`, `BOOLE-C1`, `BOOLE-C2`, `BOOLE-CLR`,
+`BOOLE-EQV`, `BOOLE-IOR`, `BOOLE-NAND`, `BOOLE-NOR`,
+`BOOLE-ORC1`, `BOOLE-ORC2`, `BOOLE-SET`, `BOOLE-XOR`
+
+
+## {constant-value}
+
+各変数の同一性とその値は{implementation-dependent}ですが、
+例外としてこれらはその他のものとの区別がつくようにしなければならず、
+またこれらは関数{boole:link}の最初の引数として有効でなければなりません。
+
+
+## {description}
+
+これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。
+
+
+## {examples}
+
+```lisp
+(boole boole-ior 1 16) =>  17
+(boole boole-and -2 5) =>  4
+(boole boole-eqv 17 15) =>  -31
+```
+
+
+## {see-also}
+
+{boole:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

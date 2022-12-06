@@ -124,6 +124,23 @@
 (setf (gethash "BIT-VECTOR-P" *name*) '("FUNCTION"))
 (setf (gethash "BIT-XOR" *name*) '("FUNCTION"))
 (setf (gethash "BLOCK" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "BOOLE" *name*) '("FUNCTION"))
+(setf (gethash "BOOLE-1" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-2" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-AND" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-ANDC1" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-ANDC2" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-C1" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-C2" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-CLR" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-EQV" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-IOR" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-NAND" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-NOR" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-ORC1" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-ORC2" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-SET" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "BOOLE-XOR" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "BOOLEAN" *name*) '("TYPE"))
 (setf (gethash "BOTH-CASE-P" *name*) '("FUNCTION"))
 (setf (gethash "BOUNDP" *name*) '("FUNCTION"))
@@ -423,8 +440,20 @@
 (setf (gethash "LOAD-TIME-VALUE" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LOCALLY" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LOG" *name*) '("FUNCTION"))
+(setf (gethash "LOGAND" *name*) '("FUNCTION"))
+(setf (gethash "LOGANDC1" *name*) '("FUNCTION"))
+(setf (gethash "LOGANDC2" *name*) '("FUNCTION"))
+(setf (gethash "LOGBITP" *name*) '("FUNCTION"))
+(setf (gethash "LOGEQV" *name*) '("FUNCTION"))
 (setf (gethash "LOGICAL-PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("ACCESSOR"))
+(setf (gethash "LOGIOR" *name*) '("FUNCTION"))
+(setf (gethash "LOGNAND" *name*) '("FUNCTION"))
+(setf (gethash "LOGNOR" *name*) '("FUNCTION"))
+(setf (gethash "LOGNOT" *name*) '("FUNCTION"))
+(setf (gethash "LOGORC1" *name*) '("FUNCTION"))
+(setf (gethash "LOGORC2" *name*) '("FUNCTION"))
+(setf (gethash "LOGXOR" *name*) '("FUNCTION"))
 (setf (gethash "LONG-FLOAT" *name*) '("TYPE"))
 (setf (gethash "LOOP" *name*) '("MACRO"))
 (setf (gethash "LOOP-FINISH" *name*) '("LOCA-MACRO"))
@@ -540,6 +569,7 @@
 (setf (gethash "PACKAGEP" *name*) '("FUNCTION"))
 (setf (gethash "PAIRLIS" *name*) '("FUNCTION"))
 (setf (gethash "PARSE-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "PARSE-INTEGER" *name*) '("FUNCTION"))
 (setf (gethash "PARSE-NAMESTRING" *name*) '("FUNCTION"))
 (setf (gethash "PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "PATHNAME-DEVICE" *name*) '("FUNCTION"))
@@ -4778,6 +4808,331 @@
     (CHAPTER ("## 参考") 2 (CODE1 "return") "," (CODE1 "return-from") "," "3.1. 評価")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("BLOCK" . "SPECIAL-OPERATOR") *table*) (gethash "BLOCK" *table*))
+(setf (gethash "BOOLE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "BOOLE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "boole") " " (STRONG "op") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "op") " - ビット毎の論理演算指定子" EOL1 (STRONG "integer-1")
+     " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1 (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "boole") "は、" (STRONG "integer-1") "と"
+     (STRONG "integer-2") "を2の補数表記のバイナリとして扱い、" "ビット毎の論理演算を行います。" EOL2 "実施する処理と返却値は"
+     (STRONG "op") "によって決まります。" EOL2 (CODE1 "boole") "は次の表に示される" (STRONG "op") "によって"
+     "返却値が指定されます。" EOL2 "|" (STRONG "op")
+     "                |結果                                     |"
+     "|:-------------------|:----------------------------------------|" "|"
+     (CODE1 "boole-1") "      |" (STRONG "integer-1") "                              |"
+     "|" (CODE1 "boole-2") "      |" (STRONG "integer-2")
+     "                              |" "|" (CODE1 "boole-andc1") "  |"
+     (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "and") "  |" "|"
+     (CODE1 "boole-andc2") "  |" (STRONG "integer-1") "と、" (STRONG "integer-2") "の補数の"
+     (CODE1 "and") "  |" "|" (CODE1 "boole-and") "    |" (CODE1 "and")
+     "                                    |" "|" (CODE1 "boole-c1") "     |"
+     (STRONG "integer-1") "の補数                        |" "|" (CODE1 "boole-c2") "     |"
+     (STRONG "integer-2") "の補数                        |" "|" (CODE1 "boole-clr")
+     "    |常に" (CODE1 "0") "（全ビットがゼロ）                |" "|" (CODE1 "boole-eqv")
+     "    |同値（排他的" (CODE1 "nor") "）                      |" "|" (CODE1 "boole-ior")
+     "    |包括的" (CODE1 "or") "                               |" "|" (CODE1 "boole-nand")
+     "   |" (CODE1 "not-and") "                                |" "|" (CODE1 "boole-nor")
+     "    |" (CODE1 "not-or") "                                 |" "|"
+     (CODE1 "boole-orc1") "   |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "or") "   |" "|" (CODE1 "boole-orc2") "   |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "boole-set") "    |常に"
+     (CODE1 "-1") "（全ビットが" (CODE1 "1") "）                |" "|" (CODE1 "boole-xor")
+     "    |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-17. ビット毎の論理演算")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31" NIL
+      ";;; これらの例はBOOLEの実行結果と指定できるOPの値、" ";;; それぞれのあるビットの組み合わせを示したものです。" "(progn"
+      "  (format t \"~&Results of (BOOLE <op> #b0011 #b0101) ...~"
+      "          ~%---Op-------Decimal-----Binary----Bits---~%\")"
+      "  (dolist (symbol '(boole-1     boole-2    boole-and  boole-andc1"
+      "                    boole-andc2 boole-c1   boole-c2   boole-clr"
+      "                    boole-eqv   boole-ior  boole-nand boole-nor"
+      "                    boole-orc1  boole-orc2 boole-set  boole-xor))"
+      "    (let ((result (boole (symbol-value symbol) #b0011 #b0101)))"
+      "      (format t \"~& ~A~13T~3,' D~23T~:*~5,' B~31T ...~4,'0B~%\" "
+      "              symbol result (logand result #b1111)))))"
+      ">>  Results of (BOOLE <op> #b0011 #b0101) ..."
+      ">>  ---Op-------Decimal-----Binary----Bits---"
+      ">>   BOOLE-1       3          11    ...0011"
+      ">>   BOOLE-2       5         101    ...0101"
+      ">>   BOOLE-AND     1           1    ...0001"
+      ">>   BOOLE-ANDC1   4         100    ...0100"
+      ">>   BOOLE-ANDC2   2          10    ...0010"
+      ">>   BOOLE-C1     -4        -100    ...1100"
+      ">>   BOOLE-C2     -6        -110    ...1010"
+      ">>   BOOLE-CLR     0           0    ...0000"
+      ">>   BOOLE-EQV    -7        -111    ...1001"
+      ">>   BOOLE-IOR     7         111    ...0111"
+      ">>   BOOLE-NAND   -2         -10    ...1110"
+      ">>   BOOLE-NOR    -8       -1000    ...1000"
+      ">>   BOOLE-ORC1   -3         -11    ...1101"
+      ">>   BOOLE-ORC2   -5        -101    ...1011"
+      ">>   BOOLE-SET    -1          -1    ...1111"
+      ">>   BOOLE-XOR     6         110    ...0110" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "もし最初の引数がビット毎の論理演算指定子ではないか、" "続く引数が整数ではなかったとき、" "型"
+     (CODE1 "type-error") "を通知するべきです。")
+    (CHAPTER ("## 参考") 2 (CODE1 "logand"))
+    (CHAPTER ("## 備考") 2 "一般的に下記の等式が成り立ちます。"
+     (CODE3 "```lisp" "```" "(boole boole-and x y) ==  (logand x y)") EOL2
+     "ビット毎の論理演算指定子ではなく、" "数値であるインデックス値を使いたいプログラマーは、" "次に示すようなテクニックを用いて同じ効果を得ることができます。"
+     (CODE3 "```lisp" "```" ";; この「テーブル」の値の順番は、"
+      ";; (logand (boole (elt boole-n-vector n) #b0101 #b0011) #b1111) => n"
+      "(defconstant boole-n-vector"
+      "   (vector boole-clr   boole-and  boole-andc1 boole-2"
+      "           boole-andc2 boole-1    boole-xor   boole-ior"
+      "           boole-nor   boole-eqv  boole-c1    boole-orc1"
+      "           boole-c2    boole-orc2 boole-nand  boole-set))" "=>  BOOLE-N-VECTOR"
+      "(proclaim '(inline boole-n))" "=>  実装依存"
+      "(defun boole-n (n integer &rest more-integers)"
+      "  (apply #'boole (elt boole-n-vector n) integer more-integers))" "=>  BOOLE-N"
+      "(boole-n #b0111 5 3) =>  7" "(boole-n #b0001 5 3) =>  1"
+      "(boole-n #b1101 5 3) =>  -3"
+      "(loop for n from #b0000 to #b1111 collect (boole-n n 5 3))"
+      "=>  (0 1 2 3 4 5 6 7 -8 -7 -6 -5 -4 -3 -2 -1)"))))
+(setf (gethash '("BOOLE" . "FUNCTION") *table*) (gethash "BOOLE" *table*))
+(setf (gethash "BOOLE-1" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-1" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-1" *table*))
+(setf (gethash "BOOLE-2" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-2" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-2" *table*))
+(setf (gethash "BOOLE-AND" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-AND" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-AND" *table*))
+(setf (gethash "BOOLE-ANDC1" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-ANDC1" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-ANDC1" *table*))
+(setf (gethash "BOOLE-ANDC2" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-ANDC2" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-ANDC2" *table*))
+(setf (gethash "BOOLE-C1" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-C1" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-C1" *table*))
+(setf (gethash "BOOLE-C2" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-C2" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-C2" *table*))
+(setf (gethash "BOOLE-CLR" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-CLR" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-CLR" *table*))
+(setf (gethash "BOOLE-EQV" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-EQV" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-EQV" *table*))
+(setf (gethash "BOOLE-IOR" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-IOR" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-IOR" *table*))
+(setf (gethash "BOOLE-NAND" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-NAND" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-NAND" *table*))
+(setf (gethash "BOOLE-NOR" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-NOR" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-NOR" *table*))
+(setf (gethash "BOOLE-ORC1" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-ORC1" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-ORC1" *table*))
+(setf (gethash "BOOLE-ORC2" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-ORC2" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-ORC2" *table*))
+(setf (gethash "BOOLE-SET" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-SET" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-SET" *table*))
+(setf (gethash "BOOLE-XOR" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "BOOLE-1") ", " (CODE1 "BOOLE-2") ", "
+     (CODE1 "BOOLE-AND") ", " (CODE1 "BOOLE-ANDC1") "," (CODE1 "BOOLE-ANDC2") ", "
+     (CODE1 "BOOLE-C1") ", " (CODE1 "BOOLE-C2") ", " (CODE1 "BOOLE-CLR") ","
+     (CODE1 "BOOLE-EQV") ", " (CODE1 "BOOLE-IOR") ", " (CODE1 "BOOLE-NAND") ", "
+     (CODE1 "BOOLE-NOR") "," (CODE1 "BOOLE-ORC1") ", " (CODE1 "BOOLE-ORC2") ", "
+     (CODE1 "BOOLE-SET") ", " (CODE1 "BOOLE-XOR"))
+    (CHAPTER ("## 定数値") 2 "各変数の同一性とその値は実装依存ですが、" "例外としてこれらはその他のものとの区別がつくようにしなければならず、"
+     "またこれらは関数" (CODE1 "boole") "の最初の引数として有効でなければなりません。")
+    (CHAPTER ("## 定義") 2 "これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(boole boole-ior 1 16) =>  17"
+      "(boole boole-and -2 5) =>  4" "(boole boole-eqv 17 15) =>  -31"))
+    (CHAPTER ("## 参考") 2 (CODE1 "boole")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("BOOLE-XOR" . "CONSTANT-VARIABLE") *table*) (gethash "BOOLE-XOR" *table*))
 (setf (gethash "BOOLEAN" *table*)
   '((CHAPTER NIL 0 "Type " (CODE1 "BOOLEAN"))
     (CHAPTER ("## スーパータイプ") 2 (CODE1 "boolean") "," (CODE1 "symbol") "," (CODE1 "t"))
@@ -20545,7 +20900,7 @@
      "複素数を返却するかもしれません。"
      (CODE3 "```lisp" "```" "(log -1.0) ==  (complex 0.0 (float pi 0.0))") EOL2
      (STRONG "base") "がゼロのとき、" (CODE1 "log") "はゼロを返却します。" EOL2 (CODE1 "(log 8 2)")
-     "の結果は、" (CODE1 "3") "か" (CODE1 "3.0") "おどちらかになり、実装に依存します。"
+     "の結果は、" (CODE1 "3") "か" (CODE1 "3.0") "のどちらかになり、実装に依存します。"
      "実装は正確な整数で結果を表すことができるときでさえ、" "浮動小数を用いて計算することができます。" EOL2
      "ひとつの引数のときの対数関数（自然対数）のブランチカットは、" "負の実軸に沿って第2象限へ続きます。" "その領域は原点に排他的です。" EOL2
      "複素関数の対数の数学的な定義は、" "実装がマイナスゼロをサポートするかに関わらず" "次のようになります。"
@@ -20564,6 +20919,321 @@
     (CHAPTER ("## 参考") 2 (CODE1 "exp") "," (CODE1 "expt") "," "12.1.3.3. 浮動小数の代替可能性の規則")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("LOG" . "FUNCTION") *table*) (gethash "LOG" *table*))
+(setf (gethash "LOGAND" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGAND" . "FUNCTION") *table*) (gethash "LOGAND" *table*))
+(setf (gethash "LOGANDC1" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGANDC1" . "FUNCTION") *table*) (gethash "LOGANDC1" *table*))
+(setf (gethash "LOGANDC2" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGANDC2" . "FUNCTION") *table*) (gethash "LOGANDC2" *table*))
+(setf (gethash "LOGBITP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGBITP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logbitp") " " (STRONG "index") " " (STRONG "integer")
+     " => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "index") " - 非負の整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "logbitp") "は、" (STRONG "integer") "がバイナリであると見なして、"
+     "その値の特定のビットにある値をテストします。" "もし" (STRONG "integer") "のインデックス" (STRONG "index")
+     "番目（つまりその値は" (CODE1 "2^index") "）が" (CODE1 "1") "ビットのとき" (CODE1 "logbitp") "の値は"
+     (STRONG "true") "であり、" "それ以外のときは" (STRONG "false") "です。" EOL2 (STRONG "integer")
+     "が負のときは、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logbitp 1 1) =>  false" "(logbitp 0 1) =>  true"
+      "(logbitp 3 10) =>  true" "(logbitp 1000000 -1) =>  true" "(logbitp 2 6) =>  true"
+      "(logbitp 0 6) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "index") "が非負の整数でないときは、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。" (STRONG "integer") "が整数でないときは、" "型" (CODE1 "type-error")
+     "のエラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logbitp k n) ==  (ldb-test (byte 1 k) n)"))))
+(setf (gethash '("LOGBITP" . "FUNCTION") *table*) (gethash "LOGBITP" *table*))
+(setf (gethash "LOGEQV" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGEQV" . "FUNCTION") *table*) (gethash "LOGEQV" *table*))
 (setf (gethash "LOGICAL-PATHNAME" *table*)
   '("LOGICAL-PATHNAME FUNCTION" EOL1 "LOGICAL-PATHNAME SYSTEM-CLASS" EOL1))
 (setf (gethash '("LOGICAL-PATHNAME" . "FUNCTION") *table*)
@@ -20697,6 +21367,517 @@
     (CHAPTER ("## 備考") 2 "実装は論理パス名のホストを操作するための" "例えば追加で変換の規則やオプションなどを指定した"
      "追加の関数を定義できます。")))
 (setf (gethash '("LOGICAL-PATHNAME-TRANSLATIONS" . "ACCESSOR") *table*) (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *table*))
+(setf (gethash "LOGIOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGIOR" . "FUNCTION") *table*) (gethash "LOGIOR" *table*))
+(setf (gethash "LOGNAND" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGNAND" . "FUNCTION") *table*) (gethash "LOGNAND" *table*))
+(setf (gethash "LOGNOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGNOR" . "FUNCTION") *table*) (gethash "LOGNOR" *table*))
+(setf (gethash "LOGNOT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGNOT" . "FUNCTION") *table*) (gethash "LOGNOT" *table*))
+(setf (gethash "LOGORC1" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGORC1" . "FUNCTION") *table*) (gethash "LOGORC1" *table*))
+(setf (gethash "LOGORC2" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGORC2" . "FUNCTION") *table*) (gethash "LOGORC2" *table*))
+(setf (gethash "LOGXOR" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
+     (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
+     ", " (CODE1 "LOGNOR") ", " (CODE1 "LOGNOT") "," (CODE1 "LOGORC1") ", "
+     (CODE1 "LOGORC2") ", " (CODE1 "LOGXOR"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logand") " " (CODE1 "&rest") " " (STRONG "integers")
+     " => " (STRONG "result-integer") EOL1 (CODE1 "logandc1") " " (STRONG "integer-1")
+     " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logandc2")
+     " " (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer")
+     EOL1 (CODE1 "logeqv") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logior") " " (CODE1 "&rest") " "
+     (STRONG "integers") " => " (STRONG "result-integer") EOL1 (CODE1 "lognand") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "lognor") " " (STRONG "integer-1") " " (STRONG "integer-2") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "lognot") " " (STRONG "integer") " => "
+     (STRONG "result-integer") EOL1 (CODE1 "logorc1") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "result-integer") EOL1 (CODE1 "logorc2") " "
+     (STRONG "integer-1") " " (STRONG "integer-2") " => " (STRONG "result-integer") EOL1
+     (CODE1 "logxor") " " (CODE1 "&rest") " " (STRONG "integers") " => "
+     (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integers") " - 整数" EOL1 (STRONG "integer") " - 整数"
+     EOL1 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2") " - 整数" EOL1
+     (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "logandc1") ", " (CODE1 "logandc2") ", "
+     (CODE1 "logand") ", " (CODE1 "logeqv") "," (CODE1 "logior") ", " (CODE1 "lognand")
+     ", " (CODE1 "lognor") ", " (CODE1 "lognot") "," (CODE1 "logorc1") ", "
+     (CODE1 "logorc2") ", " (CODE1 "logxor") "は、" "引数をバイナリであるかのように扱い、"
+     "ビット毎の論理演算処理を行います。" EOL2 "次の表は、各関数の意味を示しています。" "「同一」となっている所は、"
+     "引数が指定されなかったときにその関数が生成する値を示しています。" EOL2
+     "|関数            |同一 |演算処理                                 |"
+     "|:---------------|:----|:----------------------------------------|" "|"
+     (CODE1 "logandc1") " |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の"
+     (CODE1 "and") "  |" "|" (CODE1 "logandc2") " |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "and") "  |" "|" (CODE1 "logand") "   |"
+     (CODE1 "-1") " |" (CODE1 "and") "                                    |" "|"
+     (CODE1 "logeqv") "   |" (CODE1 "-1") " |同値（排他的" (CODE1 "nor")
+     "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
+     (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
+     (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
+     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     "   |---  |補数                                     |" "|" (CODE1 "logorc1")
+     "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
+     "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
+     (STRONG "integer-2") "の補数の" (CODE1 "or") "   |" "|" (CODE1 "logxor") "   |"
+     (CODE1 "0") "  |排他的" (CODE1 "or") "                               |" EOL2
+     "Figure 12-18. 整数のビット毎の論理演算" EOL2 "負の" (STRONG "integers") "は、2の補数表記として扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logior 1 2 4 8) =>  15" "(logxor 1 3 7 15) =>  10"
+      "(logeqv) =>  -1" "(logand 16 31) =>  16" "(lognot 0) =>  -1" "(lognot 1) =>  -2"
+      "(lognot -1) =>  0" "(lognot (1+ (lognot 1000))) =>  999" NIL ";;; 下記の例のmはマスクです。"
+      ";;; マスクの各ビットが1のとき、対応するxとyのビットは交換されます。" ";;; マスクの各ビットが0のとき、対応するxとyのビットは変更されません。"
+      "(flet ((show (m x y)"
+      "         (format t \"~%m = #o~6,'0O~%x = #o~6,'0O~%y = #o~6,'0O~%\""
+      "                 m x y)))" "  (let ((m #o007750)" "        (x #o452576)"
+      "        (y #o317407))" "    (show m x y)" "    (let ((z (logand (logxor x y) m)))"
+      "      (setq x (logxor z x))" "      (setq y (logxor z y))" "      (show m x y))))"
+      ">>  m = #o007750" ">>  x = #o452576" ">>  y = #o317407" ">>  " ">>  m = #o007750"
+      ">>  x = #o457426" ">>  y = #o312557" "=>  NIL"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "各引数が整数ではなかったとき、" "型" (CODE1 "type-error") "が通知されなければなりません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "boole"))
+    (CHAPTER ("## 備考") 2 (CODE1 "(logbitp k -1)") "は、" (STRONG "k") "が全ての値で"
+     (STRONG "true") "になります。" EOL2 "下記の関数は結合的ではありませんので、" "それらは複数の引数を取るのではなく"
+     "正確に2つの引数を取ります。"
+     (CODE3 "```lisp" "```" "(lognand n1 n2) ==  (lognot (logand n1 n2))"
+      "(lognor n1 n2) ==  (lognot (logior n1 n2))"
+      "(logandc1 n1 n2) ==  (logand (lognot n1) n2)"
+      "(logandc2 n1 n2) ==  (logand n1 (lognot n2))"
+      "(logiorc1 n1 n2) ==  (logior (lognot n1) n2)"
+      "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
+      "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
+(setf (gethash '("LOGXOR" . "FUNCTION") *table*) (gethash "LOGXOR" *table*))
 (setf (gethash "LONG-FLOAT" *table*)
   '((CHAPTER NIL 0 "Type " (CODE1 "SHORT-FLOAT") ", " (CODE1 "SINGLE-FLOAT") ", "
      (CODE1 "DOUBLE-FLOAT") ", " (CODE1 "LONG-FLOAT"))
@@ -25351,6 +26532,39 @@
     (CHAPTER ("## 定義") 2 "型" (CODE1 "parse-error") "は、構文解析に関するエラーのコンディションを含みます。")
     (CHAPTER ("## 参考") 2 (CODE1 "parse-namestring") "," (CODE1 "reader-error"))))
 (setf (gethash '("PARSE-ERROR" . "CONDITION-TYPE") *table*) (gethash "PARSE-ERROR" *table*))
+(setf (gethash "PARSE-INTEGER" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PARSE-INTEGER"))
+    (CHAPTER ("## 構文") 2 (CODE1 "parse-integer") " " (STRONG "string") " " (CODE1 "&key")
+     " " (STRONG "start") " " (STRONG "end") " " (STRONG "radix") " "
+     (STRONG "junk-allowed") " => " (STRONG "integer") ", " (STRONG "pos"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "string") " - 文字列" EOL1 (STRONG "start") ", "
+     (STRONG "end") " - " (STRONG "string") "の境界インデックス指定子。" "デフォルトは" (STRONG "start")
+     ", " (STRONG "end") "それぞれ" (CODE1 "0") "と" (CODE1 "nil") "。" EOL1 (STRONG "radix")
+     " - 基数。デフォルトは10。" EOL1 (STRONG "junk-allowed") " - generalized-boolean。デフォルトは"
+     (STRONG "false") "。" EOL1 (STRONG "integer") " - 整数か、" (STRONG "false") EOL1
+     (STRONG "pos") " - " (STRONG "string") "の境界インデックス")
+    (CHAPTER ("## 定義") 2 (CODE1 "parse-integer") "は、" (STRONG "string") "の"
+     (STRONG "start") "と" (STRONG "end") "の境界内にある部分文字列から" "指定された" (STRONG "radix")
+     "を元に整数の構文解析を行います。" EOL2 (CODE1 "parse-integer") "は、" "オプションの符号（" (CODE1 "+") "か"
+     (CODE1 "-") "）に続き、" (STRONG "radix") "の指定により数字として解釈された、空ではない列が続きます。"
+     "先頭と末尾にあるかもしれない空白は無視されます。" EOL2 (CODE1 "parse-integer") "は、" "基数指定子のプレフィックスである"
+     (CODE1 "#O") ", " (CODE1 "#B") ", " (CODE1 "#X") ", " (CODE1 "#nR") "の構文は識別せず、"
+     "また末尾の小数点も識別しません。" EOL2 "もし" (STRONG "junk-allowed") "が" (STRONG "false") "のとき、"
+     "部分文字列全体において" "両サイドが空白文字で囲まれている可能性も考慮し、" "符号付きの整数の表現が含まれていなかったときは、" "型"
+     (CODE1 "parse-error") "のエラーが通知されます。" EOL2 "返却値の最初の値は構文解析された整数か、" "あるいは"
+     (STRONG "junk-allowd") "が" (STRONG "true") "であり、" "整数として正しくはない構文であったときは"
+     (CODE1 "nil") "です。" EOL2 "返却値の2番目の値は、" "文字列の中の構文解析が終了した区切りのインデックスか、"
+     "あるいは構文解析が部分文字列の終端で終了したとき" "（" (STRONG "junk-allowed") "が" (STRONG "false")
+     "のときは常にそうなります）" "その部分文字列の上のインデックスになります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(parse-integer \"123\") =>  123, 3"
+      "(parse-integer \"123\" :start 1 :radix 5) =>  13, 3"
+      "(parse-integer \"no-integer\" :junk-allowed t) =>  NIL, 0"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "もし" (STRONG "junk-allowed") "が" (STRONG "false") "のとき、"
+     "部分文字列全体において" "両サイドが空白文字で囲まれている可能性も考慮し、" "符号付きの整数の表現が含まれていなかったときは、" "エラーが通知されます。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("PARSE-INTEGER" . "FUNCTION") *table*) (gethash "PARSE-INTEGER" *table*))
 (setf (gethash "PARSE-NAMESTRING" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "PARSE-NAMESTRING"))
     (CHAPTER ("## 構文") 2 (CODE1 "parse-namestring") " " (STRONG "thing") " "

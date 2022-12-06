@@ -565,7 +565,6 @@
 (dictionary 12.2.boole)
 (dictionary 12.2.boole-1)
 (dictionary 12.2.logand)
-(dictionary 12.2.lognot)  ;; delete
 (dictionary 12.2.logbitp)
 (dictionary 12.2.logcount)
 (dictionary 12.2.logtest)

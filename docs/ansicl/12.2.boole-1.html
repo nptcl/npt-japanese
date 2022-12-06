@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function LOG</title>
+  <title>Constant-Variable BOOLE-1, BOOLE-2, BOOLE-AND, BOOLE-ANDC1, BOOLE-ANDC2, BOOLE-C1, BOOLE-C2, BOOLE-CLR, BOOLE-EQV, BOOLE-IOR, BOOLE-NAND, BOOLE-NOR, BOOLE-ORC1, BOOLE-ORC2, BOOLE-SET, BOOLE-XOR</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,49 +214,22 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function LOG</h1>
+<h1 class="title">Constant-Variable BOOLE-1, BOOLE-2, BOOLE-AND, BOOLE-ANDC1, BOOLE-ANDC2, BOOLE-C1, BOOLE-C2, BOOLE-CLR, BOOLE-EQV, BOOLE-IOR, BOOLE-NAND, BOOLE-NOR, BOOLE-ORC1, BOOLE-ORC2, BOOLE-SET, BOOLE-XOR</h1>
 </header>
 <p><a href="12.2.html">UP</a></p>
 <hr />
-<h1 id="function-log">Function <strong>LOG</strong></h1>
-<p>Function <code>LOG</code></p>
-<h2 id="構文">構文</h2>
-<p><code>log</code> <em>number</em> <code>&amp;optional</code> <em>base</em> =&gt; <em>logarithm</em></p>
-<h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>number</em> - ゼロではない数<br />
-<em>base</em> - 数<br />
-<em>logarithm</em> - 数</p>
+<h1 id="constant-variable-boole-1-boole-2-boole-and-boole-andc1-boole-andc2-boole-c1-boole-c2-boole-clr-boole-eqv-boole-ior-boole-nand-boole-nor-boole-orc1-boole-orc2-boole-set-boole-xor">Constant-Variable <strong>BOOLE-1, BOOLE-2, BOOLE-AND, BOOLE-ANDC1, BOOLE-ANDC2, BOOLE-C1, BOOLE-C2, BOOLE-CLR, BOOLE-EQV, BOOLE-IOR, BOOLE-NAND, BOOLE-NOR, BOOLE-ORC1, BOOLE-ORC2, BOOLE-SET, BOOLE-XOR</strong></h1>
+<p>Constant Variable <code>BOOLE-1</code>, <code>BOOLE-2</code>, <code>BOOLE-AND</code>, <code>BOOLE-ANDC1</code>, <code>BOOLE-ANDC2</code>, <code>BOOLE-C1</code>, <code>BOOLE-C2</code>, <code>BOOLE-CLR</code>, <code>BOOLE-EQV</code>, <code>BOOLE-IOR</code>, <code>BOOLE-NAND</code>, <code>BOOLE-NOR</code>, <code>BOOLE-ORC1</code>, <code>BOOLE-ORC2</code>, <code>BOOLE-SET</code>, <code>BOOLE-XOR</code></p>
+<h2 id="定数値">定数値</h2>
+<p>各変数の同一性とその値は実装依存ですが、 例外としてこれらはその他のものとの区別がつくようにしなければならず、 またこれらは関数<a href="12.2.boole.html"><code>boole</code></a>の最初の引数として有効でなければなりません。</p>
 <h2 id="定義">定義</h2>
-<p><a href="12.2.log.html"><code>log</code></a>は底が<em>base</em>のときの<em>number</em>の対数を返却します。 もし<em>base</em>が指定されなかったとき、 その値は自然対数の底である<code>e</code>になります。</p>
-<p><a href="12.2.log.html"><code>log</code></a>は、<em>number</em>が負の数が与えられたときに 複素数を返却するかもしれません。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> -<span class="fl">1.0</span>) ==  (<span class="kw">complex</span> <span class="fl">0.0</span> (<span class="kw">float</span> <span class="kw">pi</span> <span class="fl">0.0</span>))</span></code></pre></div>
-<p><em>base</em>がゼロのとき、<a href="12.2.log.html"><code>log</code></a>はゼロを返却します。</p>
-<p><code>(log 8 2)</code>の結果は、<code>3</code>か<code>3.0</code>のどちらかになり、実装に依存します。 実装は正確な整数で結果を表すことができるときでさえ、 浮動小数を用いて計算することができます。</p>
-<p>ひとつの引数のときの対数関数（自然対数）のブランチカットは、 負の実軸に沿って第2象限へ続きます。 その領域は原点に排他的です。</p>
-<p>複素関数の対数の数学的な定義は、 実装がマイナスゼロをサポートするかに関わらず 次のようになります。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> x) ==  (<span class="kw">complex</span> (<span class="kw">log</span> (<span class="kw">abs</span> x)) (<span class="kw">phase</span> x))</span></code></pre></div>
-<p>したがってひとつの引数の対数関数の範囲は、 複素平面に含まれる数の虚部において、 マイナスゼロがサポートされないときは<code>-pi</code>（含まれない）から<code>pi</code>（含む）、 マイナスゼロがサポートされるときは<code>-pi</code>（含む）から<code>pi</code>（含む）で分岐します。</p>
-<p>2つの引数の対数関数は下記のように定義されます。</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> base <span class="kw">number</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>==  (<span class="op">/</span> (<span class="kw">log</span> <span class="kw">number</span>) (<span class="kw">log</span> base))</span></code></pre></div>
-<p>この定義は主な値が正確です。 2つの引数の対数関数の範囲は複素平面全体です。</p>
+<p>これらの各定数は16個存在するビット毎の論理演算指定子のうちのひとつの値を持ちます。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> <span class="dv">100</span> <span class="dv">10</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="fl">2.0</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="dv">2</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> <span class="fl">100.0</span> <span class="dv">10</span>) <span class="op">=&gt;</span>  <span class="fl">2.0</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> #c(<span class="dv">0</span> <span class="dv">1</span>) #c(<span class="dv">0</span> -<span class="dv">1</span>))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #C(-<span class="fl">1.0</span> <span class="fl">0.0</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>OR=&gt;  #C(-<span class="dv">1</span> <span class="dv">0</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> <span class="fl">8.0</span> <span class="dv">2</span>) <span class="op">=&gt;</span>  <span class="fl">3.0</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">log</span> #c(-<span class="dv">16</span> <span class="dv">16</span>) #c(<span class="dv">2</span> <span class="dv">2</span>)) <span class="op">=&gt;</span>  <span class="dv">3</span> または #c(<span class="fl">3.0</span> <span class="fl">0.0</span>)の近似</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                               または <span class="fl">3.0</span>の近似（可能性は低い）</span></code></pre></div>
-<h2 id="影響">影響</h2>
-<p>実装</p>
-<h2 id="例外">例外</h2>
-<p>なし。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-ior</span> <span class="dv">1</span> <span class="dv">16</span>) <span class="op">=&gt;</span>  <span class="dv">17</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-and</span> -<span class="dv">2</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">boole</span> <span class="kw">boole-eqv</span> <span class="dv">17</span> <span class="dv">15</span>) <span class="op">=&gt;</span>  -<span class="dv">31</span></span></code></pre></div>
 <h2 id="参考">参考</h2>
-<p><a href="12.2.exp.html"><code>exp</code></a>, <a href="12.2.exp.html"><code>expt</code></a>, 12.1.3.3. 浮動小数の代替可能性の規則</p>
+<p><a href="12.2.boole.html"><code>boole</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

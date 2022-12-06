@@ -1,0 +1,105 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PARSE-INTEGER
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.parse-integer
+@name: parse-integer
+@type: function
+
+Function `PARSE-INTEGER`
+
+
+## {syntax}
+
+`parse-integer` *string* `&key` *start* *end* *radix* *junk-allowed*
+ => *integer*, *pos*
+
+
+## {arguments-and-values}
+
+*string* - 文字列  
+*start*, *end* - *string*の{bounding-index-designators}。
+デフォルトは*start*, *end*それぞれ`0`と{nil!variable:link}。  
+*radix* - 基数。デフォルトは10。  
+*junk-allowed* - {generalized-boolean}。デフォルトは*false*。  
+*integer* - 整数か、*false*  
+*pos* - *string*の境界インデックス
+
+
+## {description}
+
+{parse-integer:link}は、
+*string*の*start*と*end*の境界内にある部分文字列から
+指定された*radix*を元に整数の構文解析を行います。
+
+{parse-integer:link}は、
+オプションの符号（`+`か`-`）に続き、
+*radix*の指定により数字として解釈された、空ではない列が続きます。
+先頭と末尾にあるかもしれない空白は無視されます。
+
+{parse-integer:link}は、
+基数指定子のプレフィックスである
+`#O`, `#B`, `#X`, `#nR`の構文は識別せず、
+また末尾の小数点も識別しません。
+
+もし*junk-allowed*が*false*のとき、
+部分文字列全体において
+両サイドが空白文字で囲まれている可能性も考慮し、
+符号付きの整数の表現が含まれていなかったときは、
+型{parse-error:link}のエラーが通知されます。
+
+返却値の最初の値は構文解析された整数か、
+あるいは*junk-allowd*が*true*であり、
+整数として正しくはない構文であったときは
+{nil!variable:link}です。
+
+返却値の2番目の値は、
+文字列の中の構文解析が終了した区切りのインデックスか、
+あるいは構文解析が部分文字列の終端で終了したとき
+（*junk-allowed*が*false*のときは常にそうなります）
+その部分文字列の上のインデックスになります。
+
+
+## {examples}
+
+```lisp
+(parse-integer "123") =>  123, 3
+(parse-integer "123" :start 1 :radix 5) =>  13, 3
+(parse-integer "no-integer" :junk-allowed t) =>  NIL, 0
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+もし*junk-allowed*が*false*のとき、
+部分文字列全体において
+両サイドが空白文字で囲まれている可能性も考慮し、
+符号付きの整数の表現が含まれていなかったときは、
+エラーが通知されます。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

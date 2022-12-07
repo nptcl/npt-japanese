@@ -82,6 +82,9 @@
 (setf (gethash "APPEND" *name*) '("FUNCTION"))
 (setf (gethash "APPLY" *name*) '("FUNCTION"))
 (setf (gethash "AREF" *name*) '("ACCESSOR"))
+(setf (gethash "ARITHMETIC-ERROR" *name*) '("CONDITION-TYPE"))
+(setf (gethash "ARITHMETIC-ERROR-OPERANDS" *name*) '("FUNCTION"))
+(setf (gethash "ARITHMETIC-ERROR-OPERATION" *name*) '("FUNCTION"))
 (setf (gethash "ARRAY" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "ARRAY-DIMENSION" *name*) '("FUNCTION"))
 (setf (gethash "ARRAY-DIMENSION-LIMIT" *name*) '("CONSTANT-VARIABLE"))
@@ -149,6 +152,9 @@
 (setf (gethash "BROADCAST-STREAM-STREAMS" *name*) '("FUNCTION"))
 (setf (gethash "BUILT-IN-CLASS" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "BUTLAST" *name*) '("FUNCTION"))
+(setf (gethash "BYTE" *name*) '("FUNCTION"))
+(setf (gethash "BYTE-POSITION" *name*) '("FUNCTION"))
+(setf (gethash "BYTE-SIZE" *name*) '("FUNCTION"))
 (setf (gethash "CAAAAR" *name*) '("ACCESSOR"))
 (setf (gethash "CAAADR" *name*) '("ACCESSOR"))
 (setf (gethash "CAAAR" *name*) '("ACCESSOR"))
@@ -261,6 +267,7 @@
 (setf (gethash "DECLAIM" *name*) '("MACRO"))
 (setf (gethash "DECLARATION" *name*) '("DECLARATION"))
 (setf (gethash "DECLARE" *name*) '("SYMBOL"))
+(setf (gethash "DECODE-FLOAT" *name*) '("FUNCTION"))
 (setf (gethash "DEFCLASS" *name*) '("MACRO"))
 (setf (gethash "DEFCONSTANT" *name*) '("MACRO"))
 (setf (gethash "DEFGENERIC" *name*) '("MACRO"))
@@ -286,11 +293,13 @@
 (setf (gethash "DELETE-IF-NOT" *name*) '("FUNCTION"))
 (setf (gethash "DELETE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "DENOMINATOR" *name*) '("FUNCTION"))
+(setf (gethash "DEPOSIT-FIELD" *name*) '("FUNCTION"))
 (setf (gethash "DESTRUCTURING-BIND" *name*) '("MACRO"))
 (setf (gethash "DIGIT-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "DIGIT-CHAR-P" *name*) '("FUNCTION"))
 (setf (gethash "DIRECTORY" *name*) '("FUNCTION"))
 (setf (gethash "DIRECTORY-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "DIVISION-BY-ZERO" *name*) '("CONDITION-TYPE"))
 (setf (gethash "DO" *name*) '("MACRO"))
 (setf (gethash "DO*" *name*) '("MACRO"))
 (setf (gethash "DO-ALL-SYMBOLS" *name*) '("MACRO"))
@@ -300,6 +309,9 @@
 (setf (gethash "DOLIST" *name*) '("MACRO"))
 (setf (gethash "DOTIMES" *name*) '("MACRO"))
 (setf (gethash "DOUBLE-FLOAT" *name*) '("TYPE"))
+(setf (gethash "DOUBLE-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "DOUBLE-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "DPB" *name*) '("FUNCTION"))
 (setf (gethash "DYNAMIC-EXTENT" *name*) '("DECLARATION"))
 (setf (gethash "ECASE" *name*) '("MACRO"))
 (setf (gethash "ECHO-STREAM" *name*) '("SYSTEM-CLASS"))
@@ -355,7 +367,16 @@
 (setf (gethash "FIRST" *name*) '("ACCESSOR"))
 (setf (gethash "FIXNUM" *name*) '("TYPE"))
 (setf (gethash "FLET" *name*) '("SPECIAL-OPERATOR"))
-(setf (gethash "FLOAT" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "FLOAT" *name*) '("FUNCTION" "SYSTEM-CLASS"))
+(setf (gethash "FLOAT-DIGITS" *name*) '("FUNCTION"))
+(setf (gethash "FLOAT-PRECISION" *name*) '("FUNCTION"))
+(setf (gethash "FLOAT-RADIX" *name*) '("FUNCTION"))
+(setf (gethash "FLOAT-SIGN" *name*) '("FUNCTION"))
+(setf (gethash "FLOATING-POINT-INEXACT" *name*) '("CONDITION-TYPE"))
+(setf (gethash "FLOATING-POINT-INVALID-OPERATION" *name*) '("CONDITION-TYPE"))
+(setf (gethash "FLOATING-POINT-OVERFLOW" *name*) '("CONDITION-TYPE"))
+(setf (gethash "FLOATING-POINT-UNDERFLOW" *name*) '("CONDITION-TYPE"))
+(setf (gethash "FLOATP" *name*) '("FUNCTION"))
 (setf (gethash "FLOOR" *name*) '("FUNCTION"))
 (setf (gethash "FMAKUNBOUND" *name*) '("FUNCTION"))
 (setf (gethash "FORCE-OUTPUT" *name*) '("FUNCTION"))
@@ -408,6 +429,7 @@
 (setf (gethash "INLINE" *name*) '("DECLARATION"))
 (setf (gethash "INPUT-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "INTEGER" *name*) '("SYSTEM-CLASS"))
+(setf (gethash "INTEGER-DECODE-FLOAT" *name*) '("FUNCTION"))
 (setf (gethash "INTEGER-LENGTH" *name*) '("FUNCTION"))
 (setf (gethash "INTEGERP" *name*) '("FUNCTION"))
 (setf (gethash "INTERACTIVE-STREAM-P" *name*) '("FUNCTION"))
@@ -426,7 +448,25 @@
 (setf (gethash "LAMBDA-PARAMETERS-LIMIT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "LAST" *name*) '("FUNCTION"))
 (setf (gethash "LCM" *name*) '("FUNCTION"))
+(setf (gethash "LDB" *name*) '("ACCESSOR"))
+(setf (gethash "LDB-TEST" *name*) '("FUNCTION"))
 (setf (gethash "LDIFF" *name*) '("FUNCTION"))
+(setf (gethash "LEAST-NEGATIVE-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-NEGATIVE-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LEAST-POSITIVE-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "LENGTH" *name*) '("FUNCTION"))
 (setf (gethash "LET" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LET*" *name*) '("SPECIAL-OPERATOR"))
@@ -444,6 +484,7 @@
 (setf (gethash "LOGANDC1" *name*) '("FUNCTION"))
 (setf (gethash "LOGANDC2" *name*) '("FUNCTION"))
 (setf (gethash "LOGBITP" *name*) '("FUNCTION"))
+(setf (gethash "LOGCOUNT" *name*) '("FUNCTION"))
 (setf (gethash "LOGEQV" *name*) '("FUNCTION"))
 (setf (gethash "LOGICAL-PATHNAME" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("ACCESSOR"))
@@ -453,8 +494,11 @@
 (setf (gethash "LOGNOT" *name*) '("FUNCTION"))
 (setf (gethash "LOGORC1" *name*) '("FUNCTION"))
 (setf (gethash "LOGORC2" *name*) '("FUNCTION"))
+(setf (gethash "LOGTEST" *name*) '("FUNCTION"))
 (setf (gethash "LOGXOR" *name*) '("FUNCTION"))
 (setf (gethash "LONG-FLOAT" *name*) '("TYPE"))
+(setf (gethash "LONG-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LONG-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "LOOP" *name*) '("MACRO"))
 (setf (gethash "LOOP-FINISH" *name*) '("LOCA-MACRO"))
 (setf (gethash "LOWER-CASE-P" *name*) '("FUNCTION"))
@@ -495,6 +539,7 @@
 (setf (gethash "MAPHASH" *name*) '("FUNCTION"))
 (setf (gethash "MAPL" *name*) '("FUNCTION"))
 (setf (gethash "MAPLIST" *name*) '("FUNCTION"))
+(setf (gethash "MASK-FIELD" *name*) '("ACCESSOR"))
 (setf (gethash "MAX" *name*) '("FUNCTION"))
 (setf (gethash "MEMBER" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
 (setf (gethash "MEMBER-IF" *name*) '("FUNCTION"))
@@ -509,6 +554,16 @@
 (setf (gethash "MINUSP" *name*) '("FUNCTION"))
 (setf (gethash "MISMATCH" *name*) '("FUNCTION"))
 (setf (gethash "MOD" *name*) '("FUNCTION" "TYPE-SPECIFIER"))
+(setf (gethash "MOST-NEGATIVE-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-NEGATIVE-FIXNUM" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-NEGATIVE-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-NEGATIVE-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-NEGATIVE-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-POSITIVE-DOUBLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-POSITIVE-FIXNUM" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-POSITIVE-LONG-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-POSITIVE-SHORT-FLOAT" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "MOST-POSITIVE-SINGLE-FLOAT" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "MUFFLE-WARNING" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "MULTIPLE-VALUE-BIND" *name*) '("MACRO"))
 (setf (gethash "MULTIPLE-VALUE-CALL" *name*) '("SPECIAL-OPERATOR"))
@@ -678,6 +733,7 @@
 (setf (gethash "RPLACD" *name*) '("FUNCTION"))
 (setf (gethash "SATISFIES" *name*) '("TYPE-SPECIFIER"))
 (setf (gethash "SBIT" *name*) '("ACCESSOR"))
+(setf (gethash "SCALE-FLOAT" *name*) '("FUNCTION"))
 (setf (gethash "SCHAR" *name*) '("ACCESSOR"))
 (setf (gethash "SEARCH" *name*) '("FUNCTION"))
 (setf (gethash "SECOND" *name*) '("ACCESSOR"))
@@ -698,6 +754,8 @@
 (setf (gethash "SHARED-INITIALIZE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "SHIFTF" *name*) '("MACRO"))
 (setf (gethash "SHORT-FLOAT" *name*) '("TYPE"))
+(setf (gethash "SHORT-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "SHORT-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "SIGNAL" *name*) '("FUNCTION"))
 (setf (gethash "SIGNED-BYTE" *name*) '("TYPE"))
 (setf (gethash "SIGNUM" *name*) '("FUNCTION"))
@@ -717,6 +775,8 @@
 (setf (gethash "SIMPLE-WARNING" *name*) '("CONDITION-TYPE"))
 (setf (gethash "SIN" *name*) '("FUNCTION"))
 (setf (gethash "SINGLE-FLOAT" *name*) '("TYPE"))
+(setf (gethash "SINGLE-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "SINGLE-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "SINH" *name*) '("FUNCTION"))
 (setf (gethash "SIXTH" *name*) '("ACCESSOR"))
 (setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
@@ -3065,6 +3125,52 @@
      (CODE1 "row-major-aref") "," (CODE1 "svref") "," "3.2.1. コンパイラーの用語")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("AREF" . "ACCESSOR") *table*) (gethash "AREF" *table*))
+(setf (gethash "ARITHMETIC-ERROR" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "ARITHMETIC-ERROR"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "arithmetic-error") "," (CODE1 "error") ","
+     (CODE1 "serious-condition") "," (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "arithmetic-error") "は、算術処理中に生じたエラーの状態を含みます。"
+     "この処理とオペランドは" (CODE1 "make-condition") "の" (CODE1 ":operation") "と"
+     (CODE1 ":operands") "という名前の初期化引数によって初期化され、" "これらは関数の"
+     (CODE1 "arithmetic-error-operation") "と" (CODE1 "arithmetic-error-operands")
+     "によってアクセスできます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "arithmetic-error-operation") ","
+     (CODE1 "arithmetic-error-operands"))))
+(setf (gethash '("ARITHMETIC-ERROR" . "CONDITION-TYPE") *table*) (gethash "ARITHMETIC-ERROR" *table*))
+(setf (gethash "ARITHMETIC-ERROR-OPERANDS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ARITHMETIC-ERROR-OPERANDS") ", "
+     (CODE1 "ARITHMETIC-ERROR-OPERATION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "arithmetic-error-operands") " " (STRONG "condition")
+     " => " (STRONG "operands") EOL1 (CODE1 "arithmetic-error-operation") " "
+     (STRONG "condition") " => " (STRONG "operation"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "condition") " - 型" (CODE1 "arithmetic-error")
+     "のコンディション" EOL1 (STRONG "operands") " - リスト" EOL1 (STRONG "operation") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "arithmetic-error-operands") "は通知された"
+     (STRONG "condition") "において" "問題のある呼び出し内の処理で使われてたオペランドのリストを返却します。" EOL2
+     (CODE1 "arithmetic-error-operation") "は通知された" (STRONG "condition") "において"
+     "問題のある呼び出し内の、問題のある処理を返却します。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "arithmetic-error") "," "9. コンディション")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("ARITHMETIC-ERROR-OPERANDS" . "FUNCTION") *table*) (gethash "ARITHMETIC-ERROR-OPERANDS" *table*))
+(setf (gethash "ARITHMETIC-ERROR-OPERATION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ARITHMETIC-ERROR-OPERANDS") ", "
+     (CODE1 "ARITHMETIC-ERROR-OPERATION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "arithmetic-error-operands") " " (STRONG "condition")
+     " => " (STRONG "operands") EOL1 (CODE1 "arithmetic-error-operation") " "
+     (STRONG "condition") " => " (STRONG "operation"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "condition") " - 型" (CODE1 "arithmetic-error")
+     "のコンディション" EOL1 (STRONG "operands") " - リスト" EOL1 (STRONG "operation") " - 関数指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "arithmetic-error-operands") "は通知された"
+     (STRONG "condition") "において" "問題のある呼び出し内の処理で使われてたオペランドのリストを返却します。" EOL2
+     (CODE1 "arithmetic-error-operation") "は通知された" (STRONG "condition") "において"
+     "問題のある呼び出し内の、問題のある処理を返却します。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "arithmetic-error") "," "9. コンディション")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("ARITHMETIC-ERROR-OPERATION" . "FUNCTION") *table*) (gethash "ARITHMETIC-ERROR-OPERATION" *table*))
 (setf (gethash "ARRAY" *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "ARRAY"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "array") "," (CODE1 "t"))
@@ -5323,6 +5429,87 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(butlast list n) == (ldiff list (last list n))"))))
 (setf (gethash '("BUTLAST" . "FUNCTION") *table*) (gethash "BUTLAST" *table*))
+(setf (gethash "BYTE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "BYTE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "byte") " " (STRONG "size") " " (STRONG "position")
+     " => " (STRONG "bytespec") EOL1 (CODE1 "byte-size") " " (STRONG "bytespec") " => "
+     (STRONG "size") EOL1 (CODE1 "byte-position") " " (STRONG "bytespec") " => "
+     (STRONG "position"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "size") ", " (STRONG "position") " - 非負の整数" EOL1
+     (STRONG "bytespec") " - バイト指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "byte") "はバイト指定子を返却します。" "バイト指定子とは、バイトのビット幅"
+     (STRONG "size") "と" "ビットの重さ" (CODE1 "2^position + size - 1") "から"
+     (CODE1 "2^position") "までを示しており、" "その表現は実装依存です。" EOL2 (CODE1 "byte-size") "は"
+     (STRONG "bytespec") "によって指定されたビット数を返却します。" EOL2 (CODE1 "byte-position") "は"
+     (STRONG "bytespec") "によって指定された位置を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(setq b (byte 100 200)) =>  #<BYTE-SPECIFIER size 100 position 200>"
+      "(byte-size b) =>  100" "(byte-position b) =>  200"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "ldb") "," (CODE1 "dpb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(byte-size (byte j k)) ==  j"
+      "(byte-position (byte j k)) ==  k")
+     EOL2 "バイトのサイズ" (CODE1 "0") "は許されます。" "それはバイトの幅が" (CODE1 "0") "であることを意味しています。"
+     "例えば下記の通り。"
+     (CODE3 "```lisp" "```" "(ldb (byte 0 3) #o7777) =>  0"
+      "(dpb #o7777 (byte 0 3) 0) =>  0"))))
+(setf (gethash '("BYTE" . "FUNCTION") *table*) (gethash "BYTE" *table*))
+(setf (gethash "BYTE-POSITION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "BYTE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "byte") " " (STRONG "size") " " (STRONG "position")
+     " => " (STRONG "bytespec") EOL1 (CODE1 "byte-size") " " (STRONG "bytespec") " => "
+     (STRONG "size") EOL1 (CODE1 "byte-position") " " (STRONG "bytespec") " => "
+     (STRONG "position"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "size") ", " (STRONG "position") " - 非負の整数" EOL1
+     (STRONG "bytespec") " - バイト指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "byte") "はバイト指定子を返却します。" "バイト指定子とは、バイトのビット幅"
+     (STRONG "size") "と" "ビットの重さ" (CODE1 "2^position + size - 1") "から"
+     (CODE1 "2^position") "までを示しており、" "その表現は実装依存です。" EOL2 (CODE1 "byte-size") "は"
+     (STRONG "bytespec") "によって指定されたビット数を返却します。" EOL2 (CODE1 "byte-position") "は"
+     (STRONG "bytespec") "によって指定された位置を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(setq b (byte 100 200)) =>  #<BYTE-SPECIFIER size 100 position 200>"
+      "(byte-size b) =>  100" "(byte-position b) =>  200"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "ldb") "," (CODE1 "dpb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(byte-size (byte j k)) ==  j"
+      "(byte-position (byte j k)) ==  k")
+     EOL2 "バイトのサイズ" (CODE1 "0") "は許されます。" "それはバイトの幅が" (CODE1 "0") "であることを意味しています。"
+     "例えば下記の通り。"
+     (CODE3 "```lisp" "```" "(ldb (byte 0 3) #o7777) =>  0"
+      "(dpb #o7777 (byte 0 3) 0) =>  0"))))
+(setf (gethash '("BYTE-POSITION" . "FUNCTION") *table*) (gethash "BYTE-POSITION" *table*))
+(setf (gethash "BYTE-SIZE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "BYTE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "byte") " " (STRONG "size") " " (STRONG "position")
+     " => " (STRONG "bytespec") EOL1 (CODE1 "byte-size") " " (STRONG "bytespec") " => "
+     (STRONG "size") EOL1 (CODE1 "byte-position") " " (STRONG "bytespec") " => "
+     (STRONG "position"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "size") ", " (STRONG "position") " - 非負の整数" EOL1
+     (STRONG "bytespec") " - バイト指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "byte") "はバイト指定子を返却します。" "バイト指定子とは、バイトのビット幅"
+     (STRONG "size") "と" "ビットの重さ" (CODE1 "2^position + size - 1") "から"
+     (CODE1 "2^position") "までを示しており、" "その表現は実装依存です。" EOL2 (CODE1 "byte-size") "は"
+     (STRONG "bytespec") "によって指定されたビット数を返却します。" EOL2 (CODE1 "byte-position") "は"
+     (STRONG "bytespec") "によって指定された位置を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(setq b (byte 100 200)) =>  #<BYTE-SPECIFIER size 100 position 200>"
+      "(byte-size b) =>  100" "(byte-position b) =>  200"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "ldb") "," (CODE1 "dpb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(byte-size (byte j k)) ==  j"
+      "(byte-position (byte j k)) ==  k")
+     EOL2 "バイトのサイズ" (CODE1 "0") "は許されます。" "それはバイトの幅が" (CODE1 "0") "であることを意味しています。"
+     "例えば下記の通り。"
+     (CODE3 "```lisp" "```" "(ldb (byte 0 3) #o7777) =>  0"
+      "(dpb #o7777 (byte 0 3) 0) =>  0"))))
+(setf (gethash '("BYTE-SIZE" . "FUNCTION") *table*) (gethash "BYTE-SIZE" *table*))
 (setf (gethash "CAAAAR" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "CAR") ", " (CODE1 "CDR") "," (CODE1 "CAAR") ", "
      (CODE1 "CADR") ", " (CODE1 "CDAR") ", " (CODE1 "CDDR") "," (CODE1 "CAAAR") ", "
@@ -12666,6 +12853,90 @@
      "," (CODE1 "type"))
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("DECLARE" . "SYMBOL") *table*) (gethash "DECLARE" *table*))
+(setf (gethash "DECODE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("DECODE-FLOAT" . "FUNCTION") *table*) (gethash "DECODE-FLOAT" *table*))
 (setf (gethash "DEFCLASS" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DEFCLASS"))
     (CHAPTER ("## 構文") 2 (CODE1 "defclass") " " (STRONG "class-name") " ("
@@ -15238,6 +15509,27 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(gcd (numerator x) (denominator x)) =>  1"))))
 (setf (gethash '("DENOMINATOR" . "FUNCTION") *table*) (gethash "DENOMINATOR" *table*))
+(setf (gethash "DEPOSIT-FIELD" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DEPOSIT-FIELD"))
+    (CHAPTER ("## 構文") 2 (CODE1 "deposit-field") " " (STRONG "newbyte") " "
+     (STRONG "bytespec") " " (STRONG "integer") " => " (STRONG "result-integer"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "newbyte") " - 整数" EOL1 (STRONG "bytespec")
+     " - バイト指定子" EOL1 (STRONG "integer") " - 整数" EOL1 (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 (STRONG "integer") "内のビットの領域を置き換えます。" "特に返却される整数は、"
+     (STRONG "bytespec") "によって指定されたバイト内が" (STRONG "newbyte") "のビットを含んだものとなり、" "それ以外の場所は"
+     (STRONG "integer") "のビットを含んだものになります。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(deposit-field 7 (byte 2 1) 0) =>  6"
+      "(deposit-field -1 (byte 4 0) 0) =>  15" "(deposit-field 0 (byte 2 1) -3) =>  -7"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "byte") "," (CODE1 "dpb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logbitp j (deposit-field m (byte s p) n))"
+      "==  (if (and (>= j p) (< j (+ p s)))" "       (logbitp j m)"
+      "       (logbitp j n))")
+     EOL2 (CODE1 "dpb") "が" (CODE1 "ldb") "と対応するように、" (CODE1 "deposit-field") "は"
+     (CODE1 "mask-field") "に対応します。")))
+(setf (gethash '("DEPOSIT-FIELD" . "FUNCTION") *table*) (gethash "DEPOSIT-FIELD" *table*))
 (setf (gethash "DESTRUCTURING-BIND" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DESTRUCTURING-BIND"))
     (CHAPTER ("## 構文") 2 (CODE1 "destructuring-bind") " " (STRONG "lambda-list") " "
@@ -15386,6 +15678,13 @@
      "19.1.2. ファイル名としてのパス名")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("DIRECTORY-NAMESTRING" . "FUNCTION") *table*) (gethash "DIRECTORY-NAMESTRING" *table*))
+(setf (gethash "DIVISION-BY-ZERO" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "DIVISION-BY-ZERO"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "division-by-zero") ","
+     (CODE1 "arithmetic-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "division-by-zero") "は、" "ゼロの除算によって生じたエラーの状態を含みます。")))
+(setf (gethash '("DIVISION-BY-ZERO" . "CONDITION-TYPE") *table*) (gethash "DIVISION-BY-ZERO" *table*))
 (setf (gethash "DO" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DO") ", " (CODE1 "DO*"))
     (CHAPTER ("## 構文") 2 (CODE1 "do") " (" (CODE1 "{") (STRONG "var") " " (CODE1 "|")
@@ -15956,6 +16255,71 @@
      (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
 (setf (gethash '("DOUBLE-FLOAT" . "TYPE") *table*) (gethash "DOUBLE-FLOAT" *table*))
+(setf (gethash "DOUBLE-FLOAT-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("DOUBLE-FLOAT-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "DOUBLE-FLOAT-EPSILON" *table*))
+(setf (gethash "DOUBLE-FLOAT-NEGATIVE-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("DOUBLE-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "DOUBLE-FLOAT-NEGATIVE-EPSILON" *table*))
+(setf (gethash "DPB" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DPB"))
+    (CHAPTER ("## 構文") 2 (CODE1 "dpb") " " (STRONG "newbyte") " " (STRONG "bytespec") " "
+     (STRONG "integer") " => " (STRONG "result-integer"))
+    (CHAPTER ("## 発音") 2 (CODE1 "[,duh'pib]") "か" (CODE1 "[,duh'puhb]") "か"
+     (CODE1 "['dee'pee'bee]"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "newbyte") " - 整数" EOL1 (STRONG "bytespec")
+     " - バイト指定子" EOL1 (STRONG "integer") " - 整数" EOL1 (STRONG "result-integer") " - 整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "dpb") "（deposit byte）は、" (STRONG "integer")
+     "内のビット領域を置き換えるときに使われます。" (CODE1 "dpb") "は" (STRONG "bytespec") "によって指定されたビット以外は"
+     (STRONG "integer") "と同じ整数を返却します。" EOL2 (STRONG "s") "を" (STRONG "bytespec")
+     "のサイズとしたとき、" (STRONG "newbyte") "の下位" (STRONG "s") "ビットが" (STRONG "bytespec")
+     "によって指定されたバイトとして結果に現れます。" (STRONG "newbyte") "は" (CODE1 "ldb")
+     "の結果のように右に正規化されて解釈されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(dpb 1 (byte 1 10) 0) =>  1024"
+      "(dpb -2 (byte 2 10) 0) =>  2048" "(dpb 1 (byte 2 10) 2048) =>  1024"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "byte") "," (CODE1 "deposit-field") "," (CODE1 "ldb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logbitp j (dpb m (byte s p) n))"
+      "==  (if (and (>= j p) (< j (+ p s)))" "       (logbitp (- j p) m)"
+      "       (logbitp j n))")
+     EOL2 "一般的に、" (CODE3 "```lisp" "```" "(dpb x (byte 0 y) z) =>  z") EOL2 "上記の関係は全ての値"
+     (STRONG "x") ", " (STRONG "y") ", " (STRONG "z") "で正当です。" EOL2 "歴史的には" (CODE1 "dpb")
+     "という名前はDEC PDP-10のアセンブリ言語から来ており、" (CODE1 "deposit byte") "を意味する命令です。")))
+(setf (gethash '("DPB" . "FUNCTION") *table*) (gethash "DPB" *table*))
 (setf (gethash "DYNAMIC-EXTENT" *table*)
   '((CHAPTER NIL 0 "Declaration " (CODE1 "DYNAMIC-EXTENT"))
     (CHAPTER ("## 構文") 2 "(" (CODE1 "dynamic-extent") " [[" (STRONG "var\\*") " "
@@ -18130,6 +18494,25 @@
      "ボディ部" (STRONG "form") "もまたトップレベルフォームとして処理されます。" "3.2.3. ファイルのコンパイルをご確認ください。")))
 (setf (gethash '("FLET" . "SPECIAL-OPERATOR") *table*) (gethash "FLET" *table*))
 (setf (gethash "FLOAT" *table*)
+  '("FLOAT FUNCTION" EOL1 "FLOAT SYSTEM-CLASS" EOL1))
+(setf (gethash '("FLOAT" . "FUNCTION") *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "float") " " (STRONG "number") " " (CODE1 "&optional")
+     " " (STRONG "prototype") " => " (STRONG "float"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "number") " - 実数" EOL1 (STRONG "prototype")
+     " - 浮動小数" EOL1 (STRONG "float") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "float") "は、実数を浮動小数に変換します。" EOL2 "もし"
+     (STRONG "prototype") "が指定されたとき、" (STRONG "number") "と数学的に等しくなるような"
+     (STRONG "prototype") "と同じ型の値が返却されます。" EOL2 "もし" (STRONG "prototype") "が指定されなかったとき、"
+     (STRONG "number") "がすでに浮動小数であるときはそれが返却されます。" "それ以外のとき、" (STRONG "number")
+     "と数学的に等しくなるような" (CODE1 "single-float") "の浮動小数が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(float 0) =>  0.0" "(float 1 .5) =>  1.0"
+      "(float 1.0) =>  1.0" "(float 1/2) =>  0.5" "=>  1.0d0" "OR=>  1.0"
+      "(eql (float 1.0 1.0d0) 1.0d0) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "coerce")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("FLOAT" . "SYSTEM-CLASS") *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "FLOAT"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "float") "," (CODE1 "real") "," (CODE1 "number")
      "," (CODE1 "t"))
@@ -18162,7 +18545,394 @@
      "浮動小数の複素数" (CODE1 "complex float") "でもまた表現できます。" "例えば、数学的な数の" (CODE1 "1")
      "の表現として可能なものは、" "整数の" (CODE1 "1") "、浮動小数の" (CODE1 "1.0") "、複素数の"
      (CODE1 "#C(1.0 0.0)") "が含まれます。")))
-(setf (gethash '("FLOAT" . "SYSTEM-CLASS") *table*) (gethash "FLOAT" *table*))
+(setf (gethash "FLOAT-DIGITS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("FLOAT-DIGITS" . "FUNCTION") *table*) (gethash "FLOAT-DIGITS" *table*))
+(setf (gethash "FLOAT-PRECISION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("FLOAT-PRECISION" . "FUNCTION") *table*) (gethash "FLOAT-PRECISION" *table*))
+(setf (gethash "FLOAT-RADIX" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("FLOAT-RADIX" . "FUNCTION") *table*) (gethash "FLOAT-RADIX" *table*))
+(setf (gethash "FLOAT-SIGN" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("FLOAT-SIGN" . "FUNCTION") *table*) (gethash "FLOAT-SIGN" *table*))
+(setf (gethash "FLOATING-POINT-INEXACT" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "FLOATING-POINT-INEXACT"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "floating-point-inexact") ","
+     (CODE1 "arithmetic-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "floating-point-inexact") "は、"
+     "特定の浮動小数トラップによって生じたエラーの状態を含みます。" EOL2 "浮動小数トラップが生じるかどうかや、"
+     "それらが有効か無効か、どのようなものかについては" "実装依存です。" "したがって、適合するコードは" "このコンディションのハンドラーを確立できますが、"
+     "それが通知されることに依存してはいけません。")))
+(setf (gethash '("FLOATING-POINT-INEXACT" . "CONDITION-TYPE") *table*) (gethash "FLOATING-POINT-INEXACT" *table*))
+(setf (gethash "FLOATING-POINT-INVALID-OPERATION" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "FLOATING-POINT-INVALID-OPERATION"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "floating-point-invalid-operation") ","
+     (CODE1 "arithmetic-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "floating-point-invalid-operation") "は、"
+     "特定の浮動小数トラップによって生じたエラーの状態を含みます。" EOL2 "浮動小数トラップが生じるかどうかや、"
+     "それらが有効か無効か、どのようなものかについては" "実装依存です。" "したがって、適合するコードは" "このコンディションのハンドラーを確立できますが、"
+     "それが通知されることに依存してはいけません。")))
+(setf (gethash '("FLOATING-POINT-INVALID-OPERATION" . "CONDITION-TYPE") *table*) (gethash "FLOATING-POINT-INVALID-OPERATION" *table*))
+(setf (gethash "FLOATING-POINT-OVERFLOW" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "FLOATING-POINT-OVERFLOW"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "floating-point-overflow") ","
+     (CODE1 "arithmetic-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "floating-point-overflow") "は、"
+     "浮動小数のオーバーフローによって生じたエラーの状態を含みます。")))
+(setf (gethash '("FLOATING-POINT-OVERFLOW" . "CONDITION-TYPE") *table*) (gethash "FLOATING-POINT-OVERFLOW" *table*))
+(setf (gethash "FLOATING-POINT-UNDERFLOW" *table*)
+  '((CHAPTER NIL 0 "Condition Type " (CODE1 "FLOATING-POINT-UNDERFLOW"))
+    (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "floating-point-underflow") ","
+     (CODE1 "arithmetic-error") "," (CODE1 "error") "," (CODE1 "serious-condition") ","
+     (CODE1 "condition") "," (CODE1 "t"))
+    (CHAPTER ("## 定義") 2 "型" (CODE1 "floating-point-underflow") "は、"
+     "浮動小数のオーバーフローによって生じたエラーの状態を含みます。")))
+(setf (gethash '("FLOATING-POINT-UNDERFLOW" . "CONDITION-TYPE") *table*) (gethash "FLOATING-POINT-UNDERFLOW" *table*))
+(setf (gethash "FLOATP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "FLOATP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "floatp") " " (STRONG "object") " => "
+     (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1
+     (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "object") "が型" (CODE1 "float") "のときは" (STRONG "true")
+     "を、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floatp 1.2d2) =>  true" "(floatp 1.212) =>  true"
+      "(floatp 1.2s2) =>  true" "(floatp (expt 2 130)) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(floatp object) ==  (typep object 'float)"))))
+(setf (gethash '("FLOATP" . "FUNCTION") *table*) (gethash "FLOATP" *table*))
 (setf (gethash "FLOOR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "FLOOR") ", " (CODE1 "FFLOOR") ", "
      (CODE1 "CEILING") ", " (CODE1 "FCEILING") "," (CODE1 "TRUNCATE") ", "
@@ -19890,6 +20660,90 @@
      (CODE1 "(integer 0 1)") "は、" (CODE1 "bit") "とも呼ばれます。" "型" (CODE1 "(integer 0 *)")
      "は、" (CODE1 "unsigned-byte") "とも呼ばれます。")))
 (setf (gethash '("INTEGER" . "SYSTEM-CLASS") *table*) (gethash "INTEGER" *table*))
+(setf (gethash "INTEGER-DECODE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("INTEGER-DECODE-FLOAT" . "FUNCTION") *table*) (gethash "INTEGER-DECODE-FLOAT" *table*))
 (setf (gethash "INTEGER-LENGTH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "INTEGER-LENGTH"))
     (CHAPTER ("## 構文") 2 (CODE1 "integer-length") " " (STRONG "integer") " => "
@@ -20436,6 +21290,56 @@
      "のエラーを通知するべきです。")
     (CHAPTER ("## 参考") 2 (CODE1 "gcd")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("LCM" . "FUNCTION") *table*) (gethash "LCM" *table*))
+(setf (gethash "LDB" *table*)
+  '((CHAPTER NIL 0 "Accessor " (CODE1 "LDB"))
+    (CHAPTER ("## 構文") 2 (CODE1 "ldb") " " (STRONG "bytespec") " " (STRONG "integer")
+     " => " (STRONG "byte") EOL1 (CODE1 "(") " " (CODE1 "setf") " " (CODE1 "(") " "
+     (CODE1 "ldb") " " (STRONG "bytespec") " " (STRONG "place") " " (CODE1 ")") " "
+     (STRONG "new-byte") " " (CODE1 ")"))
+    (CHAPTER ("## 発音") 2 (CODE1 "['lidib]") "か" (CODE1 "['liduhb]") "か"
+     (CODE1 "['el'dee'bee]"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "bytespec") " - バイト指定子" EOL1 (STRONG "integer")
+     " - 整数" EOL1 (STRONG "byte") ", " (STRONG "new-byte") " - 非負の整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "ldb") "は" (STRONG "bytespec") "で指定された"
+     (STRONG "integer") "のバイトを展開し返却します。" EOL2 (CODE1 "ldb") "は整数を返却し、" "その内容は、"
+     (STRONG "s") "を" (CODE1 "(byte-size bytespec)") "、" (STRONG "p") "を"
+     (CODE1 "(byte-position bytespec)") "としたとき、" "返却値の" (CODE1 "2^(s-1)") "から"
+     (CODE1 "2^0") "までのビットと" (STRONG "integer") "の" (CODE1 "2^(p+s-1)") "から"
+     (CODE1 "2^p") "までを同じものとし、" "その他を全て" (CODE1 "0") "ビットにしたものです。" EOL2 (CODE1 "setf")
+     "の" (CODE1 "ldb") "は、" "与えられた" (STRONG "place") "に格納されている" (STRONG "integer")
+     "内部のバイトを修正するときに使用します。" (CODE1 "ldb") "フォームが" (CODE1 "setf") "に指定されたときの評価の順番は、"
+     "正確に左から右で行います。" "この効果は、" (CODE1 "dpb") "の操作を実行し、" "その結果を" (STRONG "place")
+     "内に戻して格納するというものです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(ldb (byte 2 1) 10) =>  1" "(setq a (list 8)) =>  (8)"
+      "(setf (ldb (byte 2 1) (car a)) 1) =>  1" "a =>  (10)"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "byte") "," (CODE1 "byte-position") ","
+     (CODE1 "byte-size") "," (CODE1 "dpb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logbitp j (ldb (byte s p) n))"
+      "   ==  (and (< j s) (logbitp (+ j p) n))")
+     EOL2 "一般的に、" (CODE3 "```lisp" "```" "(ldb (byte 0 x) y) =>  0") EOL2 "上記の関係は全ての値"
+     (STRONG "x") ", " (STRONG "y") ", " (STRONG "z") "で正当です。" EOL2 "歴史的には" (CODE1 "ldb")
+     "という名前はDEC PDP-10のアセンブリ言語から来ており、" (CODE1 "load byte") "を意味する命令です。")))
+(setf (gethash '("LDB" . "ACCESSOR") *table*) (gethash "LDB" *table*))
+(setf (gethash "LDB-TEST" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LDB-TEST"))
+    (CHAPTER ("## 構文") 2 (CODE1 "ldb-test") " " (STRONG "bytespec") " "
+     (STRONG "integer") " => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "bytespec") " - バイト指定子" EOL1 (STRONG "integer")
+     " - 整数" EOL1 (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (STRONG "bytespec") "で指定された" (STRONG "integer") "内のバイトの"
+     "どれかのビットがゼロではなかったとき" (STRONG "true") "を返却し、" "それ以外のときは" (STRONG "false") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(ldb-test (byte 4 1) 16) =>  true"
+      "(ldb-test (byte 3 1) 16) =>  false" "(ldb-test (byte 3 2) 16) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "byte") "," (CODE1 "ldb") "," (CODE1 "zerop"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(ldb-test bytespec n) == "
+      "(not (zerop (ldb bytespec n))) == " "(logtest (ldb bytespec -1) n)"))))
+(setf (gethash '("LDB-TEST" . "FUNCTION") *table*) (gethash "LDB-TEST" *table*))
 (setf (gethash "LDIFF" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "LDIFF") ", " (CODE1 "TAILP"))
     (CHAPTER ("## 構文") 2 (CODE1 "ldiff") " " (STRONG "list") " " (STRONG "object") " => "
@@ -20495,6 +21399,886 @@
       "       (if (eql list object) (nreverse r) (nreconc r list)))"
       "    (when (eql object list)" "      (return (nreverse r)))))"))))
 (setf (gethash '("LDIFF" . "FUNCTION") *table*) (gethash "LDIFF" *table*))
+(setf (gethash "LEAST-NEGATIVE-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-DOUBLE-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-LONG-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-SHORT-FLOAT" *table*))
+(setf (gethash "LEAST-NEGATIVE-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-NEGATIVE-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-NEGATIVE-SINGLE-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-DOUBLE-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-LONG-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-NORMALIZED-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-SHORT-FLOAT" *table*))
+(setf (gethash "LEAST-POSITIVE-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LEAST-POSITIVE-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "LEAST-POSITIVE-SINGLE-FLOAT" *table*))
 (setf (gethash "LENGTH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "LENGTH"))
     (CHAPTER ("## 構文") 2 (CODE1 "length") " " (STRONG "sequence") " => " (STRONG "n"))
@@ -20958,8 +22742,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21031,8 +22815,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21104,8 +22888,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21161,6 +22945,31 @@
     (CHAPTER ("## 備考") 2
      (CODE3 "```lisp" "```" "(logbitp k n) ==  (ldb-test (byte 1 k) n)"))))
 (setf (gethash '("LOGBITP" . "FUNCTION") *table*) (gethash "LOGBITP" *table*))
+(setf (gethash "LOGCOUNT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGCOUNT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logcount") " " (STRONG "integer") " => "
+     (STRONG "number-of-on-bits"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer") " - 整数" EOL1 (STRONG "number-of-on-bits")
+     " - 非負の整数")
+    (CHAPTER ("## 定義") 2 (STRONG "integer") "を2の補数表現としたとき、"
+     "その数のビットが「オン」か「セット」されてるものをカウントして返却します。" "もし" (STRONG "integer") "が負のときは" (CODE1 "0")
+     "のビットがカウントされ、" "それ以外は" (CODE1 "1") "のビットがカウントされます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logcount 0) =>  0" "(logcount -1) =>  0"
+      "(logcount 7) =>  3" "(logcount  13) =>  3 ;Two's-complement binary: ...0001101"
+      "(logcount -13) =>  2 ;Two's-complement binary: ...1110011"
+      "(logcount  30) =>  4 ;Two's-complement binary: ...0011110"
+      "(logcount -30) =>  4 ;Two's-complement binary: ...1100010"
+      "(logcount (expt 2 100)) =>  1" "(logcount (- (expt 2 100))) =>  100"
+      "(logcount (- (1+ (expt 2 100)))) =>  1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "引数が整数ではなかったとき、" "型" (CODE1 "type-error") "を通知する必要があります。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "実装は、整数の内部表現が2の補数ではなかったとしても、" (CODE1 "logcount")
+     "は本説明のように動作します。" EOL2 "下記の例は常に一致します。"
+     (CODE3 "```lisp" "```" "   (logcount x)" "==  (logcount (- (+ x 1)))"
+      "==  (logcount (lognot x))"))))
+(setf (gethash '("LOGCOUNT" . "FUNCTION") *table*) (gethash "LOGCOUNT" *table*))
 (setf (gethash "LOGEQV" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
      (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
@@ -21200,8 +23009,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21406,8 +23215,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21479,8 +23288,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21552,8 +23361,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21625,8 +23434,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21698,8 +23507,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21771,8 +23580,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21805,6 +23614,28 @@
       "(logiorc2 n1 n2) ==  (logior n1 (lognot n2))"
       "(logbitp j (lognot x)) ==  (not (logbitp j x))"))))
 (setf (gethash '("LOGORC2" . "FUNCTION") *table*) (gethash "LOGORC2" *table*))
+(setf (gethash "LOGTEST" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOGTEST"))
+    (CHAPTER ("## 構文") 2 (CODE1 "logtest") " " (STRONG "integer-1") " "
+     (STRONG "integer-2") " => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "integer-1") " - 整数" EOL1 (STRONG "integer-2")
+     " - 整数" EOL1 (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 "もし" (STRONG "integer-1") "内にある全ての" (CODE1 "1") "のビットが"
+     (STRONG "integer-2") "内において" (CODE1 "1") "であるときは" (STRONG "true") "を返却し、" "それ以外のときは"
+     (STRONG "false") "です。" (STRONG "integer-1") "と" (STRONG "integer-2")
+     "はバイナリとして扱われます。" EOL2 (STRONG "integer-1") "と" (STRONG "integer-2") "が負のときは、"
+     "2の補数表現のバイナリとして扱われます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(logtest 1 7) =>  true" "(logtest 1 2) =>  false"
+      "(logtest -2 -1) =>  true" "(logtest 0 -1) =>  false"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "integer-1") "が整数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知しなければなりません。" (STRONG "integer-2") "が整数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーを通知しなければなりません。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(logtest x y) ==  (not (zerop (logand x y)))"))))
+(setf (gethash '("LOGTEST" . "FUNCTION") *table*) (gethash "LOGTEST" *table*))
 (setf (gethash "LOGXOR" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "LOGAND") ", " (CODE1 "LOGANDC1") ", "
      (CODE1 "LOGANDC2") ", " (CODE1 "LOGEQV") "," (CODE1 "LOGIOR") ", " (CODE1 "LOGNAND")
@@ -21844,8 +23675,8 @@
      "）                      |" "|" (CODE1 "logior") "   |" (CODE1 "0") "  |包括的"
      (CODE1 "or") "                               |" "|" (CODE1 "lognand") "  |---  |"
      (STRONG "integer-1") "と" (STRONG "integer-2") "の" (CODE1 "and") "の補数    |" "|"
-     (CODE1 "lognor") "   |---  ||" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
-     (CODE1 "or") "の補数    |" "|" (CODE1 "lognot")
+     (CODE1 "lognor") "   |---  |" (STRONG "integer-1") "と" (STRONG "integer-2") "の"
+     (CODE1 "or") "の補数     |" "|" (CODE1 "lognot")
      "   |---  |補数                                     |" "|" (CODE1 "logorc1")
      "  |---  |" (STRONG "integer-1") "の補数と、" (STRONG "integer-2") "の" (CODE1 "or")
      "   |" "|" (CODE1 "logorc2") "  |---  |" (STRONG "integer-1") "と、"
@@ -21942,6 +23773,44 @@
      (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
 (setf (gethash '("LONG-FLOAT" . "TYPE") *table*) (gethash "LONG-FLOAT" *table*))
+(setf (gethash "LONG-FLOAT-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LONG-FLOAT-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "LONG-FLOAT-EPSILON" *table*))
+(setf (gethash "LONG-FLOAT-NEGATIVE-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LONG-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "LONG-FLOAT-NEGATIVE-EPSILON" *table*))
 (setf (gethash "LOOP" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "LOOP"))
     (CHAPTER ("## 構文") 2 "単純な" (CODE1 "loop") "フォーム:" EOL1 (CODE1 "loop") " "
@@ -23749,6 +25618,33 @@
     (CHAPTER ("## 参考") 2 (CODE1 "dolist") "," (CODE1 "map") "," "3.6. 横断の規則と副作用")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("MAPLIST" . "FUNCTION") *table*) (gethash "MAPLIST" *table*))
+(setf (gethash "MASK-FIELD" *table*)
+  '((CHAPTER NIL 0 "Accessor " (CODE1 "MASK-FIELD"))
+    (CHAPTER ("## 構文") 2 (CODE1 "mask-field") " " (STRONG "bytespec") " "
+     (STRONG "integer") " => " (STRONG "masked-field") EOL1 (CODE1 "(") " "
+     (CODE1 "setf") " " (CODE1 "(") " " (CODE1 "mask-field") " " (STRONG "bytespec") " "
+     (STRONG "place") " " (CODE1 ")") " " (STRONG "new-masked-field") " " (CODE1 ")"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "bytespec") " - バイト指定子" EOL1 (STRONG "integer")
+     " - 整数" EOL1 (STRONG "masked-integer") ", " (STRONG "new-masked-integer")
+     " - 非負の整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "mask-field") "は、" (STRONG "integer") "を「マスク」する処理を実施します。"
+     "この処理は整数を返却し、" "その整数は" (STRONG "bytespec") "によって指定された" (STRONG "integer") "のバイト内部と"
+     "同じビットを持っており、" "それ以外の場所はゼロビットであるというものです。" EOL2 (CODE1 "setf") "の"
+     (CODE1 "mask-field") "は、" "与えられた" (STRONG "place") "に格納されている" (STRONG "integer")
+     "内部のバイトを修正するときに使用します。" "この効果は、" (CODE1 "deposit-field") "の操作を実行し、" "その結果を"
+     (STRONG "place") "内に戻して格納するというものです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(mask-field (byte 1 5) -1) =>  32" "(setq a 15) =>  15"
+      "(mask-field (byte 2 0) a) =>  3" "a =>  15"
+      "(setf (mask-field (byte 2 0) a) 1) =>  1" "a =>  13"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "byte") "," (CODE1 "ldb"))
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "(ldb bs (mask-field bs n)) ==  (ldb bs n)"
+      "(logbitp j (mask-field (byte s p) n))"
+      "  ==  (and (>= j p) (< j s) (logbitp j n))"
+      "(mask-field bs n) ==  (logand n (dpb -1 bs 0))"))))
+(setf (gethash '("MASK-FIELD" . "ACCESSOR") *table*) (gethash "MASK-FIELD" *table*))
 (setf (gethash "MAX" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "MAX") ", " (CODE1 "MIN"))
     (CHAPTER ("## 構文") 2 (CODE1 "max") " " (CODE1 "&rest") " " (STRONG "real") "+ => "
@@ -24211,6 +26107,466 @@
      (CODE1 "(integer 0 (n))") "か、" (CODE1 "(integer 0 m)") "ただし" (CODE1 "m=n-1")
      "と同等です。" EOL2 "引数は必要であり、" (CODE1 "*") "は指定できません。" EOL2 "シンボルの" (CODE1 "mod")
      "は有効な型指定子ではありません。")))
+(setf (gethash "MOST-NEGATIVE-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-NEGATIVE-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-NEGATIVE-DOUBLE-FLOAT" *table*))
+(setf (gethash "MOST-NEGATIVE-FIXNUM" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "MOST-POSITIVE-FIXNUM") ", "
+     (CODE1 "MOST-NEGATIVE-FIXNUM"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "most-positive-fixnum") "は、" "実装が提供する" (CODE1 "fixnum")
+     "において正の無限大に最も近い値であり、" "それは" (CODE1 "2^15") "と" (CODE1 "array-dimension-limit")
+     "の両方に対して" "以上のものになります。" EOL2 (CODE1 "most-negative-fixnum") "は、" "実装が提供する"
+     (CODE1 "fixnum") "において負の無限大に最も近い値であり、" "それは" (CODE1 "-2^15") "以下のものになります。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-NEGATIVE-FIXNUM" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-NEGATIVE-FIXNUM" *table*))
+(setf (gethash "MOST-NEGATIVE-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-NEGATIVE-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-NEGATIVE-LONG-FLOAT" *table*))
+(setf (gethash "MOST-NEGATIVE-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-NEGATIVE-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-NEGATIVE-SHORT-FLOAT" *table*))
+(setf (gethash "MOST-NEGATIVE-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-NEGATIVE-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-NEGATIVE-SINGLE-FLOAT" *table*))
+(setf (gethash "MOST-POSITIVE-DOUBLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-POSITIVE-DOUBLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-POSITIVE-DOUBLE-FLOAT" *table*))
+(setf (gethash "MOST-POSITIVE-FIXNUM" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "MOST-POSITIVE-FIXNUM") ", "
+     (CODE1 "MOST-NEGATIVE-FIXNUM"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "most-positive-fixnum") "は、" "実装が提供する" (CODE1 "fixnum")
+     "において正の無限大に最も近い値であり、" "それは" (CODE1 "2^15") "と" (CODE1 "array-dimension-limit")
+     "の両方に対して" "以上のものになります。" EOL2 (CODE1 "most-negative-fixnum") "は、" "実装が提供する"
+     (CODE1 "fixnum") "において負の無限大に最も近い値であり、" "それは" (CODE1 "-2^15") "以下のものになります。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-POSITIVE-FIXNUM" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-POSITIVE-FIXNUM" *table*))
+(setf (gethash "MOST-POSITIVE-LONG-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-POSITIVE-LONG-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-POSITIVE-LONG-FLOAT" *table*))
+(setf (gethash "MOST-POSITIVE-SHORT-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-POSITIVE-SHORT-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-POSITIVE-SHORT-FLOAT" *table*))
+(setf (gethash "MOST-POSITIVE-SINGLE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Constant Variable" (CODE1 "MOST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-LONG-FLOAT") "," (CODE1 "LEAST-POSITIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-LONG-FLOAT") ","
+     (CODE1 "MOST-POSITIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-POSITIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SHORT-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SHORT-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-SINGLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-SINGLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-DOUBLE-FLOAT") "," (CODE1 "LEAST-NEGATIVE-DOUBLE-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT") ","
+     (CODE1 "MOST-NEGATIVE-LONG-FLOAT") "," (CODE1 "LEAST-NEGATIVE-LONG-FLOAT") ","
+     (CODE1 "LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "これらの定数変数は、" "プログラムのために" "様々な浮動小数のフォーマットについての実装定義の制限について"
+     "説明をする方法を提供します。" EOL2 "これらの変数の名前に" (CODE1 "-normalized") "というものがあるものは、"
+     "正規化された浮動小数についての値を持っており、" "変数の名前に" (CODE1 "-normalized") "というものが無いものは"
+     "正規化された浮動小数か、非正規化浮動小数かのどちらかに" "適用されたものの値を持っています。" EOL2 "これらの変数の名前に"
+     (CODE1 "short-float") "というものがあるものは、" (CODE1 "short-float") "についての値を持っており、"
+     (CODE1 "single-float") "という名前なら" (CODE1 "single-float") "、" (CODE1 "double-float")
+     "という名前なら" (CODE1 "double-float") "、" (CODE1 "long-float") "という名前なら"
+     (CODE1 "long-float") "のものになります。" EOL2 "- " (CODE1 "most-positive-short-float") ","
+     "  " (CODE1 "most-positive-single-float") "," "  "
+     (CODE1 "most-positive-double-float") "," "  " (CODE1 "most-positive-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の"
+     "    正の浮動小数の値を持っています。" EOL2 "- " (CODE1 "least-positive-short-float") "," "  "
+     (CODE1 "least-positive-normalized-short-float") "," "  "
+     (CODE1 "least-positive-single-float") "," "  "
+     (CODE1 "least-positive-normalized-single-float") "," "  "
+     (CODE1 "least-positive-double-float") "," "  "
+     (CODE1 "least-positive-normalized-double-float") "," "  "
+     (CODE1 "least-positive-long-float") "," "  "
+     (CODE1 "least-positive-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい正の（ゼロではない）浮動小数の値を持っています。" EOL2
+     "- " (CODE1 "least-negative-short-float") "," "  "
+     (CODE1 "least-negative-normalized-short-float") "," "  "
+     (CODE1 "least-negative-single-float") "," "  "
+     (CODE1 "least-negative-normalized-single-float") "," "  "
+     (CODE1 "least-negative-double-float") "," "  "
+     (CODE1 "least-negative-normalized-double-float") "," "  "
+     (CODE1 "least-negative-long-float") "," "  "
+     (CODE1 "least-negative-normalized-long-float")
+     "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける" "    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。"
+     "    （もし実装が正のゼロとは違うオブジェクトとして" "    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）" EOL2 "- "
+     (CODE1 "most-negative-short-float") "," "  " (CODE1 "most-negative-single-float")
+     "," "  " (CODE1 "most-negative-double-float") "," "  "
+     (CODE1 "most-negative-long-float") "  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける"
+     "    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の" "    負の浮動小数の値を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MOST-POSITIVE-SINGLE-FLOAT" . "CONSTANT-VARIABLE") *table*) (gethash "MOST-POSITIVE-SINGLE-FLOAT" *table*))
 (setf (gethash "MUFFLE-WARNING" *table*)
   '("MUFFLE-WARNING FUNCTION" EOL1 "MUFFLE-WARNING RESTART" EOL1))
 (setf (gethash '("MUFFLE-WARNING" . "FUNCTION") *table*)
@@ -27221,7 +29577,7 @@
 (setf (gethash '("PHASE" . "FUNCTION") *table*) (gethash "PHASE" *table*))
 (setf (gethash "PI" *table*)
   '((CHAPTER NIL 0 "Constant Variable " (CODE1 "PI"))
-    (CHAPTER ("## 値") 2 "実装依存であり" (CODE1 "long-float") "の値")
+    (CHAPTER ("## 定数値") 2 "実装依存であり" (CODE1 "long-float") "の値")
     (CHAPTER ("## 定義") 2 "適切に" (CODE1 "long-float") "で近似された数学的な定数のπ（円周率）。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" ";; 下記の計算は実装の精度に依存します。" ";; また「long float」が実装によっては他のいくつかの"
@@ -30854,6 +33210,90 @@
      (CODE1 "bit") "と" (CODE1 "sbit") "は" (CODE1 "char") "と" (CODE1 "schar") "とは似ておらず、"
      "最初の引数はどんなランクの配列でも許されます。")))
 (setf (gethash '("SBIT" . "ACCESSOR") *table*) (gethash "SBIT" *table*))
+(setf (gethash "SCALE-FLOAT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-FLOAT") ", " (CODE1 "SCALE-FLOAT") ", "
+     (CODE1 "FLOAT-RADIX") "," (CODE1 "FLOAT-SIGN") ", " (CODE1 "FLOAT-DIGITS") ", "
+     (CODE1 "FLOAT-PRECISION") ", " (CODE1 "INTEGER-DECODE-FLOAT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-float") " " (STRONG "float") " => "
+     (STRONG "significand") ", " (STRONG "exponent") ", " (STRONG "sign") EOL1
+     (CODE1 "scale-float") " " (STRONG "float") " " (STRONG "integer") " => "
+     (STRONG "scaled-float") EOL1 (CODE1 "float-radix") " " (STRONG "float") " => "
+     (STRONG "float-radix") EOL1 (CODE1 "float-sign") " " (STRONG "float-1") " "
+     (CODE1 "&optional") " " (STRONG "float-2") " => " (STRONG "signed-float") EOL1
+     (CODE1 "float-digits") " " (STRONG "float") " => " (STRONG "digits1") EOL1
+     (CODE1 "float-precision") " " (STRONG "float") " => " (STRONG "digits2") EOL1
+     (CODE1 "integer-decode-float") " " (STRONG "float") " => " (STRONG "significand")
+     ", " (STRONG "exponent") ", " (STRONG "integer-sign"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "digits1") " - 非負の整数" EOL1 (STRONG "digits2")
+     " - 非負の整数" EOL1 (STRONG "exponent") " - 整数" EOL1 (STRONG "float") " - 浮動小数" EOL1
+     (STRONG "float-1") " - 浮動小数" EOL1 (STRONG "float-2") " - 浮動小数" EOL1
+     (STRONG "float-radix") " - 整数" EOL1 (STRONG "integer") " - 非負の整数" EOL1
+     (STRONG "integer-sign") " - 整数の" (CODE1 "-1") "か、整数の" (CODE1 "1") EOL1
+     (STRONG "scaled-float") " - 浮動小数" EOL1 (STRONG "sign") " - " (STRONG "float")
+     "と同じ型の浮動小数であり、数値として" (CODE1 "1.0") "か" (CODE1 "-1.0") "と等しいもの" EOL1
+     (STRONG "signed-float") " - 浮動小数" EOL1 (STRONG "significand") " - 浮動小数")
+    (CHAPTER ("## 定義") 2 (CODE1 "decode-float") "は、" (STRONG "float")
+     "の特性を反映した3つの値を計算します。" "最初の値は" (STRONG "float") "と同じ型で表現された仮数です。" "2つめの値は基数（この定義では"
+     (STRONG "b") "として表記される）に基づいた" "指数の表現であり、" "最初の結果と乗算した結果が" (STRONG "float")
+     "の絶対値となるよう" "生成されるような値でなければなりません。" "もし" (STRONG "float") "がゼロのときは、"
+     "どのような整数値でも返却できますが、" (CODE1 "scale-float") "で示されるものと同一になるように提供されます。" "3つめの値は"
+     (STRONG "float") "と同じ型の値であり、" (STRONG "float") "がゼロ以上なら" (CODE1 "1.0") "、それ以外なら"
+     (CODE1 "-1.0") "になります。" EOL2 (CODE1 "decode-float") "は" (STRONG "float") "をを"
+     (STRONG "b") "のべき乗で割り、" "その値が" (CODE1 "1/b") "（包む）と" (CODE1 "1") "（含まない）の間になるようにし、"
+     "その商を最初の値として返します．" "しかし、もし" (STRONG "float") "がゼロのときは、" "その結果は" (STRONG "float")
+     "の絶対値" "（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）" "と等しくなります。" EOL2 (CODE1 "scale-float")
+     "は、" (CODE1 "(* float (expt (float b float) integer))") "を返却します。" "ただし" (STRONG "b")
+     "は浮動小数表現の基数です。" (STRONG "float") "は" (CODE1 "1/b") "と" (CODE1 "1") "の間である必要はありません。"
+     EOL2 (CODE1 "float-radix") "は、" (STRONG "float") "の基数を返却します。" EOL2
+     (CODE1 "float-sign") "は、" "数を" (STRONG "z") "としたとき、" (STRONG "z") "と"
+     (STRONG "float-1") "が同じ符号を持ち、" (STRONG "z") "と" (STRONG "float-2") "が同じ絶対値を持つような"
+     (STRONG "z") "を返却します。" "もし" (STRONG "float-2") "が指定されなかったとき、" "その値は"
+     (CODE1 "(float 1 float-1)") "になります。" "もし実装が負のゼロと正のゼロを区別するときは、"
+     (CODE1 "(float-sign -0.0) => -1.0") "になります。" EOL2 (CODE1 "float-digits") "は、"
+     (STRONG "float") "の表現で使用されている浮動小数型の、" "基数" (STRONG "b") "の値の数（個数）を返却します"
+     "（隠しビットのような暗黙的な数も含まれます）。" EOL2 (CODE1 "float-precision") "は、" (STRONG "float")
+     "の値内部に現れる基数" (STRONG "b") "の値の仮数の数（個数）を返却します。" "もし" (STRONG "float")
+     "が浮動小数のゼロのとき、結果は整数のゼロです。" EOL2 "正規化された浮動小数の場合は、" (CODE1 "float-digits") "と"
+     (CODE1 "float-precision") "の結果は同じです。" "しかし、非正規化かゼロの場合における" (CODE1 "precision")
+     "（精度）は、" "表現された値の数（個数）より小さくなります。" EOL2 (CODE1 "integer-decode-float") "は、"
+     (STRONG "float") "の特性を反映した3つの値を計算します。" "最初の値は整数としてスケールが調整された仮数であり、" "最後の2つの値は"
+     (CODE1 "decode-float") "によって返却されるものと同じです。" "もし" (STRONG "float") "がゼロのときは、"
+     (CODE1 "integer-decode-float") "は最初の値にゼロを返却します。" "2つめの値は、" (CODE1 "decode-float")
+     "として" "最初の値と同じ関係のような値を生成します。" "次のような関係が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                      (integer-decode-float f)"
+      "   (scale-float (float signif f) expon)) ==  (abs f)"))
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 下記の例の目的は実装の詳細を公開することではありますが、"
+      ";; これらの全ての例は非常に実装依存であることに注意してください。" ";; 結果はおそらく広く変化します。ここに示した値は、"
+      ";; ある特定の実装を選んだもので一貫しています。" "(decode-float .5) =>  0.5, 0, 1.0"
+      "(decode-float 1.0) =>  0.5, 1, 1.0" "(scale-float 1.0 1) =>  2.0"
+      "(scale-float 10.01 -2) =>  2.5025" "(scale-float 23.0 0) =>  23.0"
+      "(float-radix 1.0) =>  2" "(float-sign 5.0) =>  1.0" "(float-sign -5.0) =>  -1.0"
+      "(float-sign 0.0) =>  1.0" "(float-sign 1.0 0.0) =>  0.0"
+      "(float-sign 1.0 -10.0) =>  10.0" "(float-sign -1.0 10.0) =>  -10.0"
+      "(float-digits 1.0) =>  24" "(float-precision 1.0) =>  24"
+      "(float-precision least-positive-single-float) =>  1"
+      "(integer-decode-float 1.0) =>  8388608, -23, 1"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装が表現している浮動小数")
+    (CHAPTER ("## 例外") 2 "関数" (CODE1 "decode-float") "," (CODE1 "float-radix") ","
+     (CODE1 "float-digits") "," (CODE1 "float-precision") ","
+     (CODE1 "integer-decode-float") "は、" "最初の引数のみが浮動小数でないときエラーを通知するべきです。" EOL2 "関数"
+     (CODE1 "scale-float") "は、" "最初の引数が浮動小数ではないか、" "あるいは2番目の引数が整数でないときに" "エラーを通知するべきです。"
+     EOL2 "関数" (CODE1 "float-sign") "は、" "最初の引数が浮動小数ではないか、"
+     "あるいは2番目の引数が指定されていたものの浮動小数ではないときに" "エラーを通知するべきです。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 (CODE1 "decode-float") "か" (CODE1 "integer-decode-float")
+     "の最初の結果と、" "2つめの結果を基数のべき乗としたものの積は、" "3つめの結果と" (STRONG "float")
+     "によって得られたその値と正確に等しくなります。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (scale-float signif expon))"
+      "==  (abs f)")
+     EOL2 "そして下記が成り立ちます。"
+     (CODE3 "```lisp" "```" "(multiple-value-bind (signif expon sign)"
+      "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
+      "==  f"))))
+(setf (gethash '("SCALE-FLOAT" . "FUNCTION") *table*) (gethash "SCALE-FLOAT" *table*))
 (setf (gethash "SCHAR" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "CHAR") ", " (CODE1 "SCHAR"))
     (CHAPTER ("## 構文") 2 (CODE1 "char") " " (STRONG "string") " " (STRONG "index") " => "
@@ -31641,6 +34081,44 @@
      (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
 (setf (gethash '("SHORT-FLOAT" . "TYPE") *table*) (gethash "SHORT-FLOAT" *table*))
+(setf (gethash "SHORT-FLOAT-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SHORT-FLOAT-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "SHORT-FLOAT-EPSILON" *table*))
+(setf (gethash "SHORT-FLOAT-NEGATIVE-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SHORT-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "SHORT-FLOAT-NEGATIVE-EPSILON" *table*))
 (setf (gethash "SIGNAL" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SIGNAL"))
     (CHAPTER ("## 構文") 2 (CODE1 "signal") " " (STRONG "datum") " &rest "
@@ -32045,6 +34523,44 @@
      (CODE1 "*") "。")
     (CHAPTER ("## 型指定子の定義") 2 "それぞれは、指定された型の浮動小数の集合は" "区間指定子によって" "区間を定義していることを意味しています。")))
 (setf (gethash '("SINGLE-FLOAT" . "TYPE") *table*) (gethash "SINGLE-FLOAT" *table*))
+(setf (gethash "SINGLE-FLOAT-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SINGLE-FLOAT-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "SINGLE-FLOAT-EPSILON" *table*))
+(setf (gethash "SINGLE-FLOAT-NEGATIVE-EPSILON" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "SHORT-FLOAT-EPSILON") ","
+     (CODE1 "SHORT-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "SINGLE-FLOAT-EPSILON") ","
+     (CODE1 "SINGLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "DOUBLE-FLOAT-EPSILON") ","
+     (CODE1 "DOUBLE-FLOAT-NEGATIVE-EPSILON") "," (CODE1 "LONG-FLOAT-EPSILON") ","
+     (CODE1 "LONG-FLOAT-NEGATIVE-EPSILON"))
+    (CHAPTER ("## 定数値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "各定数" (CODE1 "short-float-epsilon") ","
+     (CODE1 "single-float-epsilon") "," (CODE1 "double-float-epsilon") ","
+     (CODE1 "long-float-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数" (CODE1 "eps") "であり、"
+     "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (+ (float 1 eps) eps)))") EOL2 "各定数"
+     (CODE1 "short-float-negative-epsilon") "," (CODE1 "single-float-negative-epsilon")
+     "," (CODE1 "double-float-negative-epsilon") ","
+     (CODE1 "long-float-negative-epsilon") "の値は、" "その与えられたフォーマットの最も小さい正の浮動小数"
+     (CODE1 "eps") "であり、" "下記の式が評価されたときに" (STRONG "true") "となるものです。"
+     (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SINGLE-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "SINGLE-FLOAT-NEGATIVE-EPSILON" *table*))
 (setf (gethash "SINH" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SINH") ", " (CODE1 "COSH") ", " (CODE1 "TANH")
      ", " (CODE1 "ASINH") ", " (CODE1 "ACOSH") ", " (CODE1 "ATANH"))

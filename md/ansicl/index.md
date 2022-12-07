@@ -21,7 +21,7 @@ Dictionaryを約半分翻訳しました。
 |[9.](9.html)|[Conditions](9.html)|[コンディション](9.html)|[辞書 ★完了](9.2.html)|
 |[10.](10.html)|[Symbols](10.html)|[シンボル](10.html)|[辞書 ★完了](10.2.html)|
 |[11.](11.html)|[Packages](11.html)|[パッケージ](11.html)|[辞書 ★完了](11.2.html)|
-|[12.](12.html)|[Numbers](12.html)|[数](12.html)|[辞書 ☆作業中](12.2.html)|
+|[12.](12.html)|[Numbers](12.html)|[数](12.html)|[辞書 ★完了](12.2.html)|
 |[13.](13.html)|[Characters](13.html)|[文字](13.html)|[辞書 ★完了](13.2.html)|
 |[14.](14.html)|[Conses](14.html)|[コンス](14.html)|[辞書 ★完了](14.2.html)|
 |[15.](15.html)|[Arrays](15.html)|[配列](15.html)|[辞書 ★完了](15.2.html)|
@@ -33,7 +33,7 @@ Dictionaryを約半分翻訳しました。
 |[21.](21.html)|[Streams](21.html)|[ストリーム](21.html)|[辞書 ★完了](21.2.html)|
 |[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書 ★完了](22.4.html)|
 |[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書 ★完了](23.2.html)|
-|[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書](24.2.html)|
+|[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書 ☆作業中](24.2.html)|
 |[25.](25.html)|[Environment](25.html)|[環境](25.html)|[辞書](25.2.html)|
 |26.|Glossary|用語集|辞書|
 |a.|Appendix|付録|辞書|

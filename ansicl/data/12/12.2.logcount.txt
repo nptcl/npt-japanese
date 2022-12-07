@@ -1,0 +1,86 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOGCOUNT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.logcount
+@name: logcount
+@type: function
+
+Function `LOGCOUNT`
+
+
+## {syntax}
+
+`logcount` *integer* => *number-of-on-bits*
+
+
+## {arguments-and-values}
+
+*integer* - 整数  
+*number-of-on-bits* - 非負の整数
+
+
+## {description}
+
+*integer*を2の補数表現としたとき、
+その数のビットが「オン」か「セット」されてるものをカウントして返却します。
+もし*integer*が負のときは`0`のビットがカウントされ、
+それ以外は`1`のビットがカウントされます。
+
+
+## {examples}
+
+```lisp
+(logcount 0) =>  0
+(logcount -1) =>  0
+(logcount 7) =>  3
+(logcount  13) =>  3 ;Two's-complement binary: ...0001101
+(logcount -13) =>  2 ;Two's-complement binary: ...1110011
+(logcount  30) =>  4 ;Two's-complement binary: ...0011110
+(logcount -30) =>  4 ;Two's-complement binary: ...1100010
+(logcount (expt 2 100)) =>  1
+(logcount (- (expt 2 100))) =>  100
+(logcount (- (1+ (expt 2 100)))) =>  1
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+引数が整数ではなかったとき、
+型{type-error:link}を通知する必要があります。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+実装は、整数の内部表現が2の補数ではなかったとしても、
+{logcount:link}は本説明のように動作します。
+
+下記の例は常に一致します。
+
+```lisp
+   (logcount x)
+==  (logcount (- (+ x 1)))
+==  (logcount (lognot x))
+```
+
+@end
+

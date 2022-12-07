@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor MASK-FIELD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.mask-field
+@name: mask-field
+@type: accessor
+
+Accessor `MASK-FIELD`
+
+
+## {syntax}
+
+`mask-field` *bytespec* *integer* => *masked-field*  
+`(` `setf` `(` `mask-field` *bytespec* *place* `)` *new-masked-field* `)`
+
+
+## {arguments-and-values}
+
+*bytespec* - バイト指定子  
+*integer* - 整数  
+*masked-integer*, *new-masked-integer* - 非負の整数
+
+
+## {description}
+
+{mask-field:link}は、*integer*を「マスク」する処理を実施します。
+この処理は整数を返却し、
+その整数は*bytespec*によって指定された*integer*のバイト内部と
+同じビットを持っており、
+それ以外の場所はゼロビットであるというものです。
+
+{setf:link}の{mask-field:link}は、
+与えられた*place*に格納されている
+*integer*内部のバイトを修正するときに使用します。
+この効果は、{deposit-field:link}の操作を実行し、
+その結果を*place*内に戻して格納するというものです。
+
+
+## {examples}
+
+```lisp
+(mask-field (byte 1 5) -1) =>  32
+(setq a 15) =>  15
+(mask-field (byte 2 0) a) =>  3
+a =>  15
+(setf (mask-field (byte 2 0) a) 1) =>  1
+a =>  13
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{byte:link},
+{ldb:link}
+
+
+## {notes}
+
+```lisp
+(ldb bs (mask-field bs n)) ==  (ldb bs n)
+(logbitp j (mask-field (byte s p) n))
+  ==  (and (>= j p) (< j s) (logbitp j n))
+(mask-field bs n) ==  (logand n (dpb -1 bs 0))
+```
+
+@end
+

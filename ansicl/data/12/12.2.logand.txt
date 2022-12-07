@@ -79,7 +79,7 @@ Function `LOGAND`, `LOGANDC1`, `LOGANDC2`, `LOGEQV`,
 |{logeqv:link}   |`-1` |同値（排他的`nor`）                      |
 |{logior:link}   |`0`  |包括的`or`                               |
 |{lognand:link}  |---  |*integer-1*と*integer-2*の`and`の補数    |
-|{lognor:link}   |---  ||*integer-1*と*integer-2*の`or`の補数    |
+|{lognor:link}   |---  |*integer-1*と*integer-2*の`or`の補数     |
 |{lognot:link}   |---  |補数                                     |
 |{logorc1:link}  |---  |*integer-1*の補数と、*integer-2*の`or`   |
 |{logorc2:link}  |---  |*integer-1*と、*integer-2*の補数の`or`   |

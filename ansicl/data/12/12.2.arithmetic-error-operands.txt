@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ARITHMETIC-ERROR-OPERANDS
+;;  Function ARITHMETIC-ERROR-OPERATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.arithmetic-error-operands
+@name: arithmetic-error-operands
+@name: arithmetic-error-operation
+@type: function
+
+Function `ARITHMETIC-ERROR-OPERANDS`, `ARITHMETIC-ERROR-OPERATION`
+
+
+## {syntax}
+
+`arithmetic-error-operands` *condition* => *operands*  
+`arithmetic-error-operation` *condition* => *operation*
+
+
+## {arguments-and-values}
+
+*condition* - 型{arithmetic-error:link}のコンディション  
+*operands* - リスト  
+*operation* - 関数指定子
+
+
+## {description}
+
+{arithmetic-error-operands:link}は通知された*condition*において
+問題のある呼び出し内の処理で使われてたオペランドのリストを返却します。
+
+{arithmetic-error-operation:link}は通知された*condition*において
+問題のある呼び出し内の、問題のある処理を返却します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{arithmetic-error:link},
+{9:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

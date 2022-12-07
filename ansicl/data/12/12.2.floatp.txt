@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FLOATP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.floatp
+@name: floatp
+@type: function
+
+Function `FLOATP`
+
+
+## {syntax}
+
+`floatp` *object* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*object*が型{float!system-class:link}のときは*true*を、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(floatp 1.2d2) =>  true
+(floatp 1.212) =>  true
+(floatp 1.2s2) =>  true
+(floatp (expt 2 130)) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(floatp object) ==  (typep object 'float)
+```
+
+@end
+

@@ -1,0 +1,210 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DECODE-FLOAT
+;;  Function SCALE-FLOAT
+;;  Function FLOAT-RADIX
+;;  Function FLOAT-SIGN
+;;  Function FLOAT-DIGITS
+;;  Function FLOAT-PRECISION
+;;  Function INTEGER-DECODE-FLOAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.decode-float
+@name: decode-float
+@name: scale-float
+@name: float-radix
+@name: float-sign
+@name: float-digits
+@name: float-precision
+@name: integer-decode-float
+@type: function
+
+Function `DECODE-FLOAT`, `SCALE-FLOAT`, `FLOAT-RADIX`,
+`FLOAT-SIGN`, `FLOAT-DIGITS`, `FLOAT-PRECISION`, `INTEGER-DECODE-FLOAT`
+
+
+## {syntax}
+
+`decode-float` *float* => *significand*, *exponent*, *sign*  
+`scale-float` *float* *integer* => *scaled-float*  
+`float-radix` *float* => *float-radix*  
+`float-sign` *float-1* `&optional` *float-2* => *signed-float*  
+`float-digits` *float* => *digits1*  
+`float-precision` *float* => *digits2*  
+`integer-decode-float` *float* => *significand*, *exponent*, *integer-sign*
+
+
+## {arguments-and-values}
+
+*digits1* - 非負の整数  
+*digits2* - 非負の整数  
+*exponent* - 整数  
+*float* - {float}  
+*float-1* - {float}  
+*float-2* - {float}  
+*float-radix* - 整数  
+*integer* - 非負の整数  
+*integer-sign* - 整数の`-1`か、整数の`1`  
+*scaled-float* - {float}  
+*sign* - *float*と同じ型の浮動小数であり、数値として`1.0`か`-1.0`と等しいもの  
+*signed-float* - {float}  
+*significand* - {float}
+
+
+## {description}
+
+{decode-float:link}は、*float*の特性を反映した3つの値を計算します。
+最初の値は*float*と同じ型で表現された仮数です。
+2つめの値は基数（この定義では*b*として表記される）に基づいた
+指数の表現であり、
+最初の結果と乗算した結果が*float*の絶対値となるよう
+生成されるような値でなければなりません。
+もし*float*がゼロのときは、
+どのような整数値でも返却できますが、
+{scale-float:link}で示されるものと同一になるように提供されます。
+3つめの値は*float*と同じ型の値であり、
+*float*がゼロ以上なら`1.0`、それ以外なら`-1.0`になります。
+
+{decode-float:link}は*float*をを*b*のべき乗で割り、
+その値が`1/b`（包む）と`1`（含まない）の間になるようにし、
+その商を最初の値として返します．
+しかし、もし*float*がゼロのときは、
+その結果は*float*の絶対値
+（つまり負のゼロのときは、その仮数が正のゼロとして考えられます）
+と等しくなります。
+
+{scale-float:link}は、
+`(* float (expt (float b float) integer))`を返却します。
+ただし*b*は浮動小数表現の基数です。
+*float*は`1/b`と`1`の間である必要はありません。
+
+{float-radix:link}は、*float*の基数を返却します。
+
+{float-sign:link}は、
+数を*z*としたとき、
+*z*と*float-1*が同じ符号を持ち、
+*z*と*float-2*が同じ絶対値を持つような
+*z*を返却します。
+もし*float-2*が指定されなかったとき、
+その値は`(float 1 float-1)`になります。
+もし実装が負のゼロと正のゼロを区別するときは、
+`(float-sign -0.0) => -1.0`になります。
+
+{float-digits:link}は、
+*float*の表現で使用されている浮動小数型の、
+基数*b*の値の数（個数）を返却します
+（隠しビットのような暗黙的な数も含まれます）。
+
+{float-precision:link}は、
+*float*の値内部に現れる基数*b*の値の仮数の数（個数）を返却します。
+もし*float*が{float}のゼロのとき、結果は整数のゼロです。
+
+正規化された浮動小数の場合は、
+{float-digits:link}と{float-precision:link}の結果は同じです。
+しかし、非正規化かゼロの場合における`precision`（精度）は、
+表現された値の数（個数）より小さくなります。
+
+{integer-decode-float:link}は、*float*の特性を反映した3つの値を計算します。
+最初の値は整数としてスケールが調整された仮数であり、
+最後の2つの値は{decode-float:link}によって返却されるものと同じです。
+もし*float*がゼロのときは、
+{integer-decode-float:link}は最初の値にゼロを返却します。
+2つめの値は、{decode-float:link}として
+最初の値と同じ関係のような値を生成します。
+次のような関係が成り立ちます。
+
+```lisp
+(multiple-value-bind (signif expon sign)
+                      (integer-decode-float f)
+   (scale-float (float signif f) expon)) ==  (abs f)
+```
+
+
+## {examples}
+
+```lisp
+;; 下記の例の目的は実装の詳細を公開することではありますが、
+;; これらの全ての例は非常に実装依存であることに注意してください。
+;; 結果はおそらく広く変化します。ここに示した値は、
+;; ある特定の実装を選んだもので一貫しています。
+(decode-float .5) =>  0.5, 0, 1.0
+(decode-float 1.0) =>  0.5, 1, 1.0
+(scale-float 1.0 1) =>  2.0
+(scale-float 10.01 -2) =>  2.5025
+(scale-float 23.0 0) =>  23.0
+(float-radix 1.0) =>  2
+(float-sign 5.0) =>  1.0
+(float-sign -5.0) =>  -1.0
+(float-sign 0.0) =>  1.0
+(float-sign 1.0 0.0) =>  0.0
+(float-sign 1.0 -10.0) =>  10.0
+(float-sign -1.0 10.0) =>  -10.0
+(float-digits 1.0) =>  24
+(float-precision 1.0) =>  24
+(float-precision least-positive-single-float) =>  1
+(integer-decode-float 1.0) =>  8388608, -23, 1
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+実装が表現している浮動小数
+
+
+## {exceptional-situations}
+
+関数{decode-float:link},
+{float-radix:link},
+{float-digits:link},
+{float-precision:link},
+{integer-decode-float:link}は、
+最初の引数のみが{float}でないときエラーを通知するべきです。
+
+関数{scale-float:link}は、
+最初の引数が{float}ではないか、
+あるいは2番目の引数が整数でないときに
+エラーを通知するべきです。
+
+関数{float-sign:link}は、
+最初の引数が{float}ではないか、
+あるいは2番目の引数が指定されていたものの{float}ではないときに
+エラーを通知するべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+{decode-float:link}か{integer-decode-float:link}の最初の結果と、
+2つめの結果を基数のべき乗としたものの積は、
+3つめの結果と*float*によって得られたその値と正確に等しくなります。
+
+```lisp
+(multiple-value-bind (signif expon sign)
+                     (decode-float f)
+  (scale-float signif expon))
+==  (abs f)
+```
+
+そして下記が成り立ちます。
+
+```lisp
+(multiple-value-bind (signif expon sign)
+                     (decode-float f)
+  (* (scale-float signif expon) sign))
+==  f
+```
+
+@end
+

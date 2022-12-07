@@ -23,7 +23,6 @@
 (replace valid-context "有効な文脈")
 (replace binding-types-affected "影響する束縛の型")
 (replace data-arguments-required "要求される引数のデータ")
-(replace value "値")
 
 (replace base-character "基本文字")
 (replace standard-character "標準文字")

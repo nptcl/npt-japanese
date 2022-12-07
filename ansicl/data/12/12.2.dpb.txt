@@ -1,0 +1,99 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DPB
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.dpb
+@name: dpb
+@type: function
+
+Function `DPB`
+
+
+## {syntax}
+
+`dpb` *newbyte* *bytespec* *integer* => *result-integer*
+
+
+## {pronunciation}
+
+`[,duh'pib]`か`[,duh'puhb]`か`['dee'pee'bee]`
+
+
+## {arguments-and-values}
+
+*newbyte* - 整数  
+*bytespec* - バイト指定子  
+*integer* - 整数  
+*result-integer* - 整数
+
+
+## {description}
+
+{dpb:link}（deposit byte）は、
+*integer*内のビット領域を置き換えるときに使われます。
+{dpb:link}は*bytespec*によって指定されたビット以外は
+*integer*と同じ整数を返却します。
+
+*s*を*bytespec*のサイズとしたとき、
+*newbyte*の下位*s*ビットが
+*bytespec*によって指定されたバイトとして結果に現れます。
+*newbyte*は{ldb:link}の結果のように右に正規化されて解釈されます。
+
+
+## {examples}
+
+```lisp
+(dpb 1 (byte 1 10) 0) =>  1024
+(dpb -2 (byte 2 10) 0) =>  2048
+(dpb 1 (byte 2 10) 2048) =>  1024
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{byte:link},
+{deposit-field:link},
+{ldb:link}
+
+
+## {notes}
+
+```lisp
+(logbitp j (dpb m (byte s p) n))
+==  (if (and (>= j p) (< j (+ p s)))
+       (logbitp (- j p) m)
+       (logbitp j n))
+```
+
+一般的に、
+
+```lisp
+(dpb x (byte 0 y) z) =>  z
+```
+
+上記の関係は全ての値*x*, *y*, *z*で正当です。
+
+歴史的には`dpb`という名前はDEC PDP-10のアセンブリ言語から来ており、
+`deposit byte`を意味する命令です。
+
+@end
+

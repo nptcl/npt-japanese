@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function BYTE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.byte
+@name: byte
+@name: byte-size
+@name: byte-position
+@type: function
+
+Function `BYTE`
+
+
+## {syntax}
+
+`byte` *size* *position* => *bytespec*  
+`byte-size` *bytespec* => *size*  
+`byte-position` *bytespec* => *position*
+
+
+## {arguments-and-values}
+
+*size*, *position* - 非負の整数  
+*bytespec* - バイト指定子
+
+
+## {description}
+
+{byte:link}はバイト指定子を返却します。
+バイト指定子とは、バイトのビット幅*size*と
+ビットの重さ`2^position + size - 1`から`2^position`までを示しており、
+その表現は{implementation-dependent}です。
+
+{byte-size:link}は*bytespec*によって指定されたビット数を返却します。
+
+{byte-position:link}は*bytespec*によって指定された位置を返却します。
+
+
+## {examples}
+
+```lisp
+(setq b (byte 100 200)) =>  #<BYTE-SPECIFIER size 100 position 200>
+(byte-size b) =>  100
+(byte-position b) =>  200
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{ldb:link},
+{dpb:link}
+
+
+## {notes}
+
+```lisp
+(byte-size (byte j k)) ==  j
+(byte-position (byte j k)) ==  k
+```
+
+バイトのサイズ`0`は許されます。
+それはバイトの幅が`0`であることを意味しています。
+例えば下記の通り。
+
+```lisp
+(ldb (byte 0 3) #o7777) =>  0
+(dpb #o7777 (byte 0 3) 0) =>  0
+```
+
+@end
+

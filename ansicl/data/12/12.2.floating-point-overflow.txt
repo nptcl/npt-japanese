@@ -1,0 +1,32 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type FLOATING-POINT-OVERFLOW
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.floating-point-overflow
+@name: floating-point-overflow
+@type: condition-type
+
+Condition Type `FLOATING-POINT-OVERFLOW`
+
+
+## {class-precedence-list}
+
+{floating-point-overflow:link},
+{arithmetic-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{floating-point-overflow:link}は、
+浮動小数のオーバーフローによって生じたエラーの状態を含みます。
+
+@end
+

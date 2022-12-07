@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LDB-TEST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.ldb-test
+@name: ldb-test
+@type: function
+
+Function `LDB-TEST`
+
+
+## {syntax}
+
+`ldb-test` *bytespec* *integer* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*bytespec* - バイト指定子  
+*integer* - 整数  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+*bytespec*で指定された*integer*内のバイトの
+どれかのビットがゼロではなかったとき*true*を返却し、
+それ以外のときは*false*を返却します。
+
+
+## {examples}
+
+```lisp
+(ldb-test (byte 4 1) 16) =>  true
+(ldb-test (byte 3 1) 16) =>  false
+(ldb-test (byte 3 2) 16) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{byte:link},
+{ldb:link},
+{zerop:link}
+
+## {notes}
+
+```lisp
+(ldb-test bytespec n) == 
+(not (zerop (ldb bytespec n))) == 
+(logtest (ldb bytespec -1) n)
+```
+
+@end
+

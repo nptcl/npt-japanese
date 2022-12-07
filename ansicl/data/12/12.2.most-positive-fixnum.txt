@@ -1,0 +1,50 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable MOST-POSITIVE-FIXNUM
+;;  Constant Variable MOST-NEGATIVE-FIXNUM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.most-positive-fixnum
+@name: most-positive-fixnum
+@name: most-negative-fixnum
+@type: constant-variable
+
+Constant Variable `MOST-POSITIVE-FIXNUM`, `MOST-NEGATIVE-FIXNUM`
+
+
+## {constant-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+{most-positive-fixnum:link}は、
+実装が提供する`fixnum`において正の無限大に最も近い値であり、
+それは`2^15`と{array-dimension-limit:link}の両方に対して
+以上のものになります。
+
+{most-negative-fixnum:link}は、
+実装が提供する`fixnum`において負の無限大に最も近い値であり、
+それは`-2^15`以下のものになります。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

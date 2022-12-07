@@ -1,0 +1,39 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type FLOATING-POINT-INVALID-OPERATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.floating-point-invalid-operation
+@name: floating-point-invalid-operation
+@type: condition-type
+
+Condition Type `FLOATING-POINT-INVALID-OPERATION`
+
+
+## {class-precedence-list}
+
+{floating-point-invalid-operation:link},
+{arithmetic-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{floating-point-invalid-operation:link}は、
+特定の浮動小数トラップによって生じたエラーの状態を含みます。
+
+浮動小数トラップが生じるかどうかや、
+それらが有効か無効か、どのようなものかについては
+{implementation-dependent}です。
+したがって、適合するコードは
+このコンディションのハンドラーを確立できますが、
+それが通知されることに依存してはいけません。
+
+@end
+

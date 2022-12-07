@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function FLOAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.float!function
+@name: float!function
+@type: function
+
+Function `FLOAT`
+
+
+## {syntax}
+
+`float` *number* `&optional` *prototype* => *float*
+
+
+## {arguments-and-values}
+
+*number* - 実数  
+*prototype* - {float}  
+*float* - {float}
+
+
+## {description}
+
+{float!function:link}は、実数を{float}に変換します。
+
+もし*prototype*が指定されたとき、
+*number*と数学的に等しくなるような
+*prototype*と同じ型の値が返却されます。
+
+もし*prototype*が指定されなかったとき、
+*number*がすでに{float}であるときはそれが返却されます。
+それ以外のとき、*number*と数学的に等しくなるような
+`single-float`の{float}が返却されます。
+
+
+## {examples}
+
+```lisp
+(float 0) =>  0.0
+(float 1 .5) =>  1.0
+(float 1.0) =>  1.0
+(float 1/2) =>  0.5
+=>  1.0d0
+OR=>  1.0
+(eql (float 1.0 1.0d0) 1.0d0) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{coerce:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

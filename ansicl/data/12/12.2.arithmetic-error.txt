@@ -1,0 +1,40 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type ARITHMETIC-ERROR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.arithmetic-error
+@name: arithmetic-error
+@type: condition-type
+
+Condition Type `ARITHMETIC-ERROR`
+
+
+## {class-precedence-list}
+
+{arithmetic-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{arithmetic-error:link}は、算術処理中に生じたエラーの状態を含みます。
+この処理とオペランドは{make-condition:link}の
+`:operation`と`:operands`という名前の初期化引数によって初期化され、
+これらは関数の{arithmetic-error-operation:link}と
+{arithmetic-error-operands:link}によってアクセスできます。
+
+
+## {see-also}
+
+{arithmetic-error-operation:link},
+{arithmetic-error-operands:link}
+
+@end
+

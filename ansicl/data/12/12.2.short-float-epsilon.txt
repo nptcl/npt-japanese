@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable SHORT-FLOAT-EPSILON
+;;  Constant Variable SHORT-FLOAT-NEGATIVE-EPSILON
+;;  Constant Variable SINGLE-FLOAT-EPSILON
+;;  Constant Variable SINGLE-FLOAT-NEGATIVE-EPSILON
+;;  Constant Variable DOUBLE-FLOAT-EPSILON
+;;  Constant Variable DOUBLE-FLOAT-NEGATIVE-EPSILON
+;;  Constant Variable LONG-FLOAT-EPSILON
+;;  Constant Variable LONG-FLOAT-NEGATIVE-EPSILON
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.short-float-epsilon
+@name: short-float-epsilon
+@name: short-float-negative-epsilon
+@name: single-float-epsilon
+@name: single-float-negative-epsilon
+@name: double-float-epsilon
+@name: double-float-negative-epsilon
+@name: long-float-epsilon
+@name: long-float-negative-epsilon
+@type: constant-variable
+
+Constant Variable 
+`SHORT-FLOAT-EPSILON`,
+`SHORT-FLOAT-NEGATIVE-EPSILON`,
+`SINGLE-FLOAT-EPSILON`,
+`SINGLE-FLOAT-NEGATIVE-EPSILON`,
+`DOUBLE-FLOAT-EPSILON`,
+`DOUBLE-FLOAT-NEGATIVE-EPSILON`,
+`LONG-FLOAT-EPSILON`,
+`LONG-FLOAT-NEGATIVE-EPSILON`
+
+
+## {constant-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+各定数{short-float-epsilon:link},
+{single-float-epsilon:link},
+{double-float-epsilon:link},
+{long-float-epsilon:link}の値は、
+その与えられたフォーマットの最も小さい正の浮動小数`eps`であり、
+下記の式が評価されたときに*true*となるものです。
+
+```lisp
+(not (= (float 1 eps) (+ (float 1 eps) eps)))
+```
+
+各定数{short-float-negative-epsilon:link},
+{single-float-negative-epsilon:link},
+{double-float-negative-epsilon:link},
+{long-float-negative-epsilon:link}の値は、
+その与えられたフォーマットの最も小さい正の浮動小数`eps`であり、
+下記の式が評価されたときに*true*となるものです。
+
+```lisp
+(not (= (float 1 eps) (- (float 1 eps) eps)))
+```
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

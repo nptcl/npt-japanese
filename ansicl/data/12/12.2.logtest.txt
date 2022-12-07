@@ -1,0 +1,79 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOGTEST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.logtest
+@name: logtest
+@type: function
+
+Function `LOGTEST`
+
+
+## {syntax}
+
+`logtest` *integer-1* *integer-2* => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*integer-1* - 整数  
+*integer-2* - 整数  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+もし*integer-1*内にある全ての`1`のビットが
+*integer-2*内において`1`であるときは*true*を返却し、
+それ以外のときは*false*です。
+*integer-1*と*integer-2*はバイナリとして扱われます。
+
+*integer-1*と*integer-2*が負のときは、
+2の補数表現のバイナリとして扱われます。
+
+
+## {examples}
+
+```lisp
+(logtest 1 7) =>  true
+(logtest 1 2) =>  false
+(logtest -2 -1) =>  true
+(logtest 0 -1) =>  false
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*integer-1*が整数ではないとき、
+型{type-error:link}のエラーを通知しなければなりません。
+*integer-2*が整数ではないとき、
+型{type-error:link}のエラーを通知しなければなりません。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+```lisp
+(logtest x y) ==  (not (zerop (logand x y)))
+```
+
+@end
+

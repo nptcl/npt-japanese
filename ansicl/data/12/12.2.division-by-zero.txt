@@ -1,0 +1,32 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Condition Type DIVISION-BY-ZERO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.division-by-zero
+@name: division-by-zero
+@type: condition-type
+
+Condition Type `DIVISION-BY-ZERO`
+
+
+## {class-precedence-list}
+
+{division-by-zero:link},
+{arithmetic-error:link},
+{error!condition:link},
+{serious-condition:link},
+{condition:link},
+{t!system-class:link}
+
+
+## {description}
+
+型{division-by-zero:link}は、
+ゼロの除算によって生じたエラーの状態を含みます。
+
+@end
+

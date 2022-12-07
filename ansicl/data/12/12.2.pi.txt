@@ -13,7 +13,7 @@
 Constant Variable `PI`
 
 
-## {value}
+## {constant-value}
 
 {implementation-dependent}であり`long-float`の値
 

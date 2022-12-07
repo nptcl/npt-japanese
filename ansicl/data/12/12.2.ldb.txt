@@ -1,0 +1,106 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Accessor LDB
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.ldb
+@name: ldb
+@type: accessor
+
+Accessor `LDB`
+
+
+## {syntax}
+
+`ldb` *bytespec* *integer* => *byte*  
+`(` `setf` `(` `ldb` *bytespec* *place* `)` *new-byte* `)`
+
+
+## {pronunciation}
+
+`['lidib]`か`['liduhb]`か`['el'dee'bee]`
+
+
+## {arguments-and-values}
+
+*bytespec* - バイト指定子  
+*integer* - 整数  
+*byte*, *new-byte* - 非負の整数
+
+
+## {description}
+
+{ldb:link}は*bytespec*で指定された*integer*のバイトを展開し返却します。
+
+{ldb:link}は整数を返却し、
+その内容は、
+*s*を`(byte-size bytespec)`、*p*を`(byte-position bytespec)`としたとき、
+返却値の`2^(s-1)`から`2^0`までのビットと
+*integer*の`2^(p+s-1)`から`2^p`までを同じものとし、
+その他を全て`0`ビットにしたものです。
+
+{setf:link}の{ldb:link}は、
+与えられた*place*に格納されている
+*integer*内部のバイトを修正するときに使用します。
+{ldb:link}フォームが{setf:link}に指定されたときの評価の順番は、
+正確に左から右で行います。
+この効果は、{dpb:link}の操作を実行し、
+その結果を*place*内に戻して格納するというものです。
+
+
+## {examples}
+
+```lisp
+(ldb (byte 2 1) 10) =>  1
+(setq a (list 8)) =>  (8)
+(setf (ldb (byte 2 1) (car a)) 1) =>  1
+a =>  (10)
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{byte:link},
+{byte-position:link},
+{byte-size:link},
+{dpb:link}
+
+
+## {notes}
+
+```lisp
+(logbitp j (ldb (byte s p) n))
+   ==  (and (< j s) (logbitp (+ j p) n))
+```
+
+一般的に、
+
+```lisp
+(ldb (byte 0 x) y) =>  0
+```
+
+上記の関係は全ての値*x*, *y*, *z*で正当です。
+
+歴史的には`ldb`という名前はDEC PDP-10のアセンブリ言語から来ており、
+`load byte`を意味する命令です。
+
+@end
+

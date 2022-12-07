@@ -1,0 +1,166 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable MOST-POSITIVE-SHORT-FLOAT
+;;  Constant Variable LEAST-POSITIVE-SHORT-FLOAT
+;;  Constant Variable LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT
+;;  Constant Variable MOST-POSITIVE-DOUBLE-FLOAT
+;;  Constant Variable LEAST-POSITIVE-DOUBLE-FLOAT
+;;  Constant Variable LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT
+;;  Constant Variable MOST-POSITIVE-LONG-FLOAT
+;;  Constant Variable LEAST-POSITIVE-LONG-FLOAT
+;;  Constant Variable LEAST-POSITIVE-NORMALIZED-LONG-FLOAT
+;;  Constant Variable MOST-POSITIVE-SINGLE-FLOAT
+;;  Constant Variable LEAST-POSITIVE-SINGLE-FLOAT
+;;  Constant Variable LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT
+;;  Constant Variable MOST-NEGATIVE-SHORT-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-SHORT-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT
+;;  Constant Variable MOST-NEGATIVE-SINGLE-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-SINGLE-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT
+;;  Constant Variable MOST-NEGATIVE-DOUBLE-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-DOUBLE-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT
+;;  Constant Variable MOST-NEGATIVE-LONG-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-LONG-FLOAT
+;;  Constant Variable LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.most-positive-short-float
+@name: most-positive-short-float
+@name: least-positive-short-float
+@name: least-positive-normalized-short-float
+@name: most-positive-double-float
+@name: least-positive-double-float
+@name: least-positive-normalized-double-float
+@name: most-positive-long-float
+@name: least-positive-long-float
+@name: least-positive-normalized-long-float
+@name: most-positive-single-float
+@name: least-positive-single-float
+@name: least-positive-normalized-single-float
+@name: most-negative-short-float
+@name: least-negative-short-float
+@name: least-negative-normalized-short-float
+@name: most-negative-single-float
+@name: least-negative-single-float
+@name: least-negative-normalized-single-float
+@name: most-negative-double-float
+@name: least-negative-double-float
+@name: least-negative-normalized-double-float
+@name: most-negative-long-float
+@name: least-negative-long-float
+@name: least-negative-normalized-long-float
+@type: constant-variable
+
+Constant Variable
+`MOST-POSITIVE-SHORT-FLOAT`,
+`LEAST-POSITIVE-SHORT-FLOAT`,
+`LEAST-POSITIVE-NORMALIZED-SHORT-FLOAT`,
+`MOST-POSITIVE-DOUBLE-FLOAT`,
+`LEAST-POSITIVE-DOUBLE-FLOAT`,
+`LEAST-POSITIVE-NORMALIZED-DOUBLE-FLOAT`,
+`MOST-POSITIVE-LONG-FLOAT`,
+`LEAST-POSITIVE-LONG-FLOAT`,
+`LEAST-POSITIVE-NORMALIZED-LONG-FLOAT`,
+`MOST-POSITIVE-SINGLE-FLOAT`,
+`LEAST-POSITIVE-SINGLE-FLOAT`,
+`LEAST-POSITIVE-NORMALIZED-SINGLE-FLOAT`,
+`MOST-NEGATIVE-SHORT-FLOAT`,
+`LEAST-NEGATIVE-SHORT-FLOAT`,
+`LEAST-NEGATIVE-NORMALIZED-SHORT-FLOAT`,
+`MOST-NEGATIVE-SINGLE-FLOAT`,
+`LEAST-NEGATIVE-SINGLE-FLOAT`,
+`LEAST-NEGATIVE-NORMALIZED-SINGLE-FLOAT`,
+`MOST-NEGATIVE-DOUBLE-FLOAT`,
+`LEAST-NEGATIVE-DOUBLE-FLOAT`,
+`LEAST-NEGATIVE-NORMALIZED-DOUBLE-FLOAT`,
+`MOST-NEGATIVE-LONG-FLOAT`,
+`LEAST-NEGATIVE-LONG-FLOAT`,
+`LEAST-NEGATIVE-NORMALIZED-LONG-FLOAT`
+
+
+## {constant-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+これらの定数変数は、
+プログラムのために
+様々な浮動小数のフォーマットについての実装定義の制限について
+説明をする方法を提供します。
+
+これらの変数の名前に`-normalized`というものがあるものは、
+正規化された浮動小数についての値を持っており、
+変数の名前に`-normalized`というものが無いものは
+正規化された浮動小数か、非正規化浮動小数かのどちらかに
+適用されたものの値を持っています。
+
+これらの変数の名前に`short-float`というものがあるものは、
+`short-float`についての値を持っており、
+`single-float`という名前なら`single-float`、
+`double-float`という名前なら`double-float`、
+`long-float`という名前なら`long-float`のものになります。
+
+- {most-positive-short-float:link},
+  {most-positive-single-float:link},
+  {most-positive-double-float:link},
+  {most-positive-long-float:link}
+  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける
+    最も大きい値（正の無限大に対して等しくはないが最も近いもの）の
+    正の浮動小数の値を持っています。
+
+- {least-positive-short-float:link},
+  {least-positive-normalized-short-float:link},
+  {least-positive-single-float:link},
+  {least-positive-normalized-single-float:link},
+  {least-positive-double-float:link},
+  {least-positive-normalized-double-float:link},
+  {least-positive-long-float:link},
+  {least-positive-normalized-long-float:link}
+  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける
+    最も小さい正の（ゼロではない）浮動小数の値を持っています。
+
+- {least-negative-short-float:link},
+  {least-negative-normalized-short-float:link},
+  {least-negative-single-float:link},
+  {least-negative-normalized-single-float:link},
+  {least-negative-double-float:link},
+  {least-negative-normalized-double-float:link},
+  {least-negative-long-float:link},
+  {least-negative-normalized-long-float:link}
+  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける
+    最も小さい値（ゼロではない）の負の浮動小数の値を持っています。
+    （もし実装が正のゼロとは違うオブジェクトとして
+    負のゼロをサポートしているとき、これらの値は負のゼロであってはなりません。）
+
+- {most-negative-short-float:link},
+  {most-negative-single-float:link},
+  {most-negative-double-float:link},
+  {most-negative-long-float:link}
+  - これらの各定数変数は、その名前が意味している浮動小数フォーマットにおける
+    最も大きい値（負の無限大に対して等しくはないが最も近いもの）の
+    負の浮動小数の値を持っています。
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

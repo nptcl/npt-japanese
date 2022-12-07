@@ -1,0 +1,81 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  12. 数
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DEPOSIT-FIELD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 12.2.deposit-field
+@name: deposit-field
+@type: function
+
+Function `DEPOSIT-FIELD`
+
+
+## {syntax}
+
+`deposit-field` *newbyte* *bytespec* *integer* => *result-integer*
+
+
+## {arguments-and-values}
+
+*newbyte* - 整数  
+*bytespec* - バイト指定子  
+*integer* - 整数  
+*result-integer* - 整数
+
+
+## {description}
+
+*integer*内のビットの領域を置き換えます。
+特に返却される整数は、
+*bytespec*によって指定されたバイト内が*newbyte*のビットを含んだものとなり、
+それ以外の場所は*integer*のビットを含んだものになります。
+
+
+## {examples}
+
+```lisp
+(deposit-field 7 (byte 2 1) 0) =>  6
+(deposit-field -1 (byte 4 0) 0) =>  15
+(deposit-field 0 (byte 2 1) -3) =>  -7
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{byte:link},
+{dpb:link}
+
+
+## {notes}
+
+```lisp
+(logbitp j (deposit-field m (byte s p) n))
+==  (if (and (>= j p) (< j (+ p s)))
+       (logbitp j m)
+       (logbitp j n))
+```
+
+
+{dpb:link}が{ldb:link}と対応するように、
+{deposit-field:link}は{mask-field:link}に対応します。
+
+@end
+

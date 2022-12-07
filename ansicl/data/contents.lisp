@@ -575,7 +575,6 @@
 (dictionary 12.2.ldb-test)
 (dictionary 12.2.mask-field)
 (dictionary 12.2.most-positive-fixnum)
-(dictionary 12.2.most-negative-fixnum)  ;; delete
 (dictionary 12.2.decode-float)
 (dictionary 12.2.float!function)
 (dictionary 12.2.floatp)

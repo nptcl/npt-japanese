@@ -22,12 +22,22 @@
 (setq *name* (make-hash-table :test 'equal))
 (setf (gethash "*" *name*) '("FUNCTION"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *name*) '("VARIABLE"))
+(setf (gethash "*COMPILE-FILE-PATHNAME*" *name*) '("VARIABLE"))
+(setf (gethash "*COMPILE-FILE-TRUENAME*" *name*) '("VARIABLE"))
+(setf (gethash "*COMPILE-PRINT*" *name*) '("VARIABLE"))
+(setf (gethash "*COMPILE-VERBOSE*" *name*) '("VARIABLE"))
 (setf (gethash "*DEBUG-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*DEBUGGER-HOOK*" *name*) '("VARIABLE"))
 (setf (gethash "*DEFAULT-PATHNAME-DEFAULTS*" *name*) '("VARIABLE"))
 (setf (gethash "*ERROR-OUTPUT*" *name*) '("VARIABLE"))
+(setf (gethash "*FEATURES*" *name*) '("VARIABLE"))
 (setf (gethash "*GENSYM-COUNTER*" *name*) '("VARIABLE"))
+(setf (gethash "*LOAD-PATHNAME*" *name*) '("VARIABLE"))
+(setf (gethash "*LOAD-PRINT*" *name*) '("VARIABLE"))
+(setf (gethash "*LOAD-TRUENAME*" *name*) '("VARIABLE"))
+(setf (gethash "*LOAD-VERBOSE*" *name*) '("VARIABLE"))
 (setf (gethash "*MACROEXPAND-HOOK*" *name*) '("VARIABLE"))
+(setf (gethash "*MODULES*" *name*) '("VARIABLE"))
 (setf (gethash "*PACKAGE*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-ARRAY*" *name*) '("VARIABLE"))
 (setf (gethash "*PRINT-BASE*" *name*) '("VARIABLE"))
@@ -229,6 +239,8 @@
 (setf (gethash "CODE-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "COERCE" *name*) '("FUNCTION"))
 (setf (gethash "COMPILE" *name*) '("FUNCTION"))
+(setf (gethash "COMPILE-FILE" *name*) '("FUNCTION"))
+(setf (gethash "COMPILE-FILE-PATHNAME" *name*) '("FUNCTION"))
 (setf (gethash "COMPILED-FUNCTION" *name*) '("TYPE"))
 (setf (gethash "COMPILED-FUNCTION-P" *name*) '("FUNCTION"))
 (setf (gethash "COMPILER-MACRO-FUNCTION" *name*) '("ACCESSOR"))
@@ -476,6 +488,7 @@
 (setf (gethash "LIST-LENGTH" *name*) '("FUNCTION"))
 (setf (gethash "LISTEN" *name*) '("FUNCTION"))
 (setf (gethash "LISTP" *name*) '("FUNCTION"))
+(setf (gethash "LOAD" *name*) '("FUNCTION"))
 (setf (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *name*) '("FUNCTION"))
 (setf (gethash "LOAD-TIME-VALUE" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LOCALLY" *name*) '("SPECIAL-OPERATOR"))
@@ -672,6 +685,7 @@
 (setf (gethash "PROGN" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "PROGRAM-ERROR" *name*) '("CONDITION-TYPE"))
 (setf (gethash "PROGV" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "PROVIDE" *name*) '("FUNCTION"))
 (setf (gethash "PSETF" *name*) '("MACRO"))
 (setf (gethash "PSETQ" *name*) '("MACRO"))
 (setf (gethash "PUSH" *name*) '("MACRO"))
@@ -717,6 +731,7 @@
 (setf (gethash "RENAME-FILE" *name*) '("FUNCTION"))
 (setf (gethash "RENAME-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "REPLACE" *name*) '("FUNCTION"))
+(setf (gethash "REQUIRE" *name*) '("FUNCTION"))
 (setf (gethash "REST" *name*) '("ACCESSOR"))
 (setf (gethash "RESTART" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "RESTART-BIND" *name*) '("MACRO"))
@@ -910,6 +925,7 @@
 (setf (gethash "WHEN" *name*) '("MACRO"))
 (setf (gethash "WILD-PATHNAME-P" *name*) '("FUNCTION"))
 (setf (gethash "WITH-ACCESSORS" *name*) '("MACRO"))
+(setf (gethash "WITH-COMPILATION-UNIT" *name*) '("MACRO"))
 (setf (gethash "WITH-CONDITION-RESTARTS" *name*) '("MACRO"))
 (setf (gethash "WITH-HASH-TABLE-ITERATOR" *name*) '("MACRO"))
 (setf (gethash "WITH-INPUT-FROM-STRING" *name*) '("MACRO"))
@@ -983,6 +999,62 @@
      (CODE1 "*break-on-signals*") "は、" "デバッガーに早く入ることができますが、" "このような場合でも" (CODE1 "error")
      "や" (CODE1 "cerror") "のような操作で起こる" "追加のデバッガーの起動を排除するようなものではありません。")))
 (setf (gethash '("*BREAK-ON-SIGNALS*" . "VARIABLE") *table*) (gethash "*BREAK-ON-SIGNALS*" *table*))
+(setf (gethash "*COMPILE-FILE-PATHNAME*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*COMPILE-FILE-PATHNAME*") ", "
+     (CODE1 "*COMPILE-FILE-TRUENAME*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*compile-file-pathname*") "の値は常にパス名か" (CODE1 "nil")
+     "です。" (CODE1 "*compile-file-truename*") "の値は常に物理パス名か" (CODE1 "nil") "です。")
+    (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "compile-file") "呼び出し中は、"
+     (CODE1 "*compile-file-pathname*") "は" (CODE1 "compile-file")
+     "の最初の引数とデフォルト値がマージされたものが束縛され、" "その束縛された値は"
+     (CODE1 "(pathname (merge-pathnames input-file))") "になります。" "同じ時間で"
+     (CODE1 "*compile-file-truename*") "には" "コンパイルされるファイルの" (CODE1 "truename") "が束縛されます。"
+     EOL2 "その他の時間においては、これらの変数の値は" (CODE1 "nil") "です。" EOL2 "もし" (CODE1 "compile-file")
+     "実施中に" (CODE1 "break loop") "として" (CODE1 "eval-loop") "などの割り込みが生じたとき、"
+     "それらの変数が保持している値が" "ちょうど" (CODE1 "break loop") "に入る前の値を保有しているか、" "あるいはそれらに"
+     (CODE1 "nil") "が束縛されているかどうかは" "実装依存です。" EOL2 "これらの変数に代入か束縛を仕様としたときの結果は指定されていません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "ファイルシステム")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*COMPILE-FILE-PATHNAME*" . "VARIABLE") *table*) (gethash "*COMPILE-FILE-PATHNAME*" *table*))
+(setf (gethash "*COMPILE-FILE-TRUENAME*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*COMPILE-FILE-PATHNAME*") ", "
+     (CODE1 "*COMPILE-FILE-TRUENAME*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*compile-file-pathname*") "の値は常にパス名か" (CODE1 "nil")
+     "です。" (CODE1 "*compile-file-truename*") "の値は常に物理パス名か" (CODE1 "nil") "です。")
+    (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "compile-file") "呼び出し中は、"
+     (CODE1 "*compile-file-pathname*") "は" (CODE1 "compile-file")
+     "の最初の引数とデフォルト値がマージされたものが束縛され、" "その束縛された値は"
+     (CODE1 "(pathname (merge-pathnames input-file))") "になります。" "同じ時間で"
+     (CODE1 "*compile-file-truename*") "には" "コンパイルされるファイルの" (CODE1 "truename") "が束縛されます。"
+     EOL2 "その他の時間においては、これらの変数の値は" (CODE1 "nil") "です。" EOL2 "もし" (CODE1 "compile-file")
+     "実施中に" (CODE1 "break loop") "として" (CODE1 "eval-loop") "などの割り込みが生じたとき、"
+     "それらの変数が保持している値が" "ちょうど" (CODE1 "break loop") "に入る前の値を保有しているか、" "あるいはそれらに"
+     (CODE1 "nil") "が束縛されているかどうかは" "実装依存です。" EOL2 "これらの変数に代入か束縛を仕様としたときの結果は指定されていません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "ファイルシステム")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*COMPILE-FILE-TRUENAME*" . "VARIABLE") *table*) (gethash "*COMPILE-FILE-TRUENAME*" *table*))
+(setf (gethash "*COMPILE-PRINT*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*COMPILE-PRINT*") ", "
+     (CODE1 "*COMPILE-VERBOSE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "*compile-print*") "の値は、" (CODE1 "compile-file") "の引数"
+     (CODE1 ":print") "がデフォルト値です。" (CODE1 "*compile-verbose*") "の値は、"
+     (CODE1 "compile-file") "の引数" (CODE1 ":verbose") "がデフォルト値です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*COMPILE-PRINT*" . "VARIABLE") *table*) (gethash "*COMPILE-PRINT*" *table*))
+(setf (gethash "*COMPILE-VERBOSE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*COMPILE-PRINT*") ", "
+     (CODE1 "*COMPILE-VERBOSE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean") (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "*compile-print*") "の値は、" (CODE1 "compile-file") "の引数"
+     (CODE1 ":print") "がデフォルト値です。" (CODE1 "*compile-verbose*") "の値は、"
+     (CODE1 "compile-file") "の引数" (CODE1 ":verbose") "がデフォルト値です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*COMPILE-VERBOSE*" . "VARIABLE") *table*) (gethash "*COMPILE-VERBOSE*" *table*))
 (setf (gethash "*DEBUG-IO*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*DEBUG-IO*") ", " (CODE1 "*ERROR-OUTPUT*") ", "
      (CODE1 "*QUERY-IO*") "," " " (CODE1 "*STANDARD-INPUT*") ", "
@@ -1147,6 +1219,66 @@
      "に束縛されているときは）、" (CODE1 "*error-output*") "に送信されたエラーメッセージは、" "通常望まれる形で、"
      (CODE1 "*terminal-io*") "を経由してユーザーに届きます。")))
 (setf (gethash '("*ERROR-OUTPUT*" . "VARIABLE") *table*) (gethash "*ERROR-OUTPUT*" *table*))
+(setf (gethash "*FEATURES*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*FEATURES*")) (CHAPTER ("## 値の型") 2 "通常のリスト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "*features*") "の値は、" (CODE1 "features") "リストと呼ばれます。"
+     "これはシンボルのリストであり、" (CODE1 "features") "と呼ばれ、" "実装や環境のいくつかの状況に対応しています。" EOL2 "多くの"
+     (CODE1 "features") "が実装依存の意味を持っています。" "下記の示すものは割り当てられた" (CODE1 "feature") "の名前です。"
+     EOL2 "- " (CODE1 ":cltl1") "  - この値が存在するとき、" "    " (CODE1 "LISP") "というパッケージが"
+     "    1984年に制定された" (CODE1 "Common Lisp: The Language") "に" "    適合していることを示します。"
+     "    この" (CODE1 "feature") "をもつ適合する実装は、" "    仕様に指定されたシンボルを" (CODE1 "LISP")
+     "パッケージではなく" "    " (CODE1 "COMMON-LISP") "パッケージ内にすることができますが、" "    しかし必須ではありません。"
+     EOL2 "- " (CODE1 ":cltl2") "  - この値が存在するとき、" "    実装は"
+     (CODE1 "Common Lisp: The Language, Second Edition") "に" "    適合していることを示します。"
+     "    この" (CODE1 "feature") "は、どのような適合する実装にも存在してはいけません。"
+     "    なぜならそのドキュメントへの適合性はこの仕様の適合性と互換性がないからです。" "    しかし、この名前はこの仕様書によって、"
+     "    プログラムがそのドキュメントの適合によって実装されたものと" "    またこの仕様書の適合によって実装されたものとの"
+     "    区別をする助けのために予約されています。" EOL2 "- " (CODE1 ":ieee-floating-point")
+     "  - この値が存在するとき、" "    実装が"
+     (CODE1 "IEEE Standard for Binary Floating-Point Arithmetic") "の要求に"
+     "    適合していることを示します。" EOL2 "- " (CODE1 ":x3j13") "  - この値が存在するとき、"
+     "    実装がこの仕様書のドラフト版にあるいくつかの特定の要求に合致しているか、" "    あるいは本仕様書に含まれる何らかのものについて、" "    いくつか"
+     (CODE1 "feature") "が含まれている部分があると信じられることを示します。" "    適合した実装は、このような" (CODE1 "feature")
+     "を含むかもしれないし含まないかもしれません" "    （この" (CODE1 "feature") "は、時期尚早に"
+     (CODE1 ":draft-ansi-cl") "や" (CODE1 ":ansi-cl") "を導入しないように、"
+     "    ドラフト版の標準を利用可能にするための" "    一時しのぎであることを主な目的としています）。" EOL2 "- "
+     (CODE1 ":draft-ansi-cl") "  - この値が存在するとき、" "    実装は1992年に公式にレビューされた本仕様の最初のドラフト版"
+     "    全てについて適合していることを示します。" "    適合した実装は、" (CODE1 ":draft-ansi-cl") "の"
+     (CODE1 "feature") "が含まれているときは、" "    " (CODE1 ":draft-ansi-cl-2") "か"
+     (CODE1 ":ansi-cl") "の" (CODE1 "feature") "持つことは許されていません。"
+     "    なぜなら最初のドラフトと続くものは互換性が無い変更があるためです。" EOL2 "- " (CODE1 ":draft-ansi-cl-2")
+     "  - この値が存在するとき、" "    実装は公式にレビューされた本仕様の2番目のドラフト版" "    全てについて適合していることを示します"
+     "    （もし追加のドラフト版の公式レビューが導入されたとき、" "    このキーワードは2番目のドラフトを意味するものであると続く、"
+     "    追加のキーワードが後のドラフト版の適合についての識別子として追加されます。" "    そのようなものとして、このキーワードの意味は、"
+     "    時間経過とともに変更されることはありません）。" "    適合した実装は、" (CODE1 "ansi-cl") "の" (CODE1 "feature")
+     "を持っているものについて、" "    もし最終的に承認された標準が" "    ドラフト版の標準と非互換性ではないときに、" "    だた"
+     (CODE1 ":draft-ansi-cl") "の" (CODE1 "feature") "のみを保持することが許されます。" EOL2 "- "
+     (CODE1 ":ansi-cl") "  - この値が存在するとき、" "    実装はANSIによって採用された公式の標準である本仕様について"
+     "    適合していることを示します。" EOL2 "- " (CODE1 ":common-lisp") "  - この" (CODE1 "feature")
+     "は、" "    " (CODE1 ":x3j13") ", " (CODE1 ":draft-ansi-cl") ", " (CODE1 ":ansi-cl")
+     "の" (CODE1 "feature") "を" "    ひとつ以上保有するような実装においては" "    " (CODE1 "*features*")
+     "に現れなければなりません。" "    これは" (CODE1 ":cltl1") "か" (CODE1 ":cltl2") "の"
+     (CODE1 "feature") "を持つような実装についても" "    また現れなければいけませんが、"
+     "    しかし本仕様書はそのようなふるまいを強制できません。" "    この" (CODE1 "feature")
+     "は「Common Lisp」という名前のファミリーの言語と、" "    そうではなくそのファミリー内の何らかの仕様書における方言と区別するための"
+     "    同一性を持たせるという意味を持っています。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "1.5.2.1.1. リアルタイムコンディションの使用," "2.4. 標準マクロ文字")
+    (CHAPTER ("## 備考") 2 (CODE1 "*features*") "の値は、リーダー構文の" (CODE1 "#+") "と" (CODE1 "#-")
+     "によって使用されます。" EOL2 (CODE1 "features") "リスト内のシンボルは、" "どのようなパッケージにもなれますが、"
+     "実際にはそれらは一般的に" (CODE1 "KEYWORD") "パッケージになります。" "これは、 " (CODE1 "feature")
+     "式を読み込むリーダーマクロの" (CODE1 "#+") "と" (CODE1 "#-") "が" "標準で" (CODE1 "KEYWORD")
+     "パッケージを使用するためです。" (CODE1 "feature") "の名前をパッケージ" (CODE1 "P") "（" (CODE1 "KEYWORD")
+     "ではなく）で" "使用する必要があるコードは、" (CODE1 "P") "へのパッケージ前置詞を明に使うことで実現できますが、" "そのようなコードは"
+     (CODE1 "read") "で" (CODE1 "feature") "式を使うために" "パッケージ" (CODE1 "P")
+     "が存在することを保証しなければならず、" "ある場合においては" (CODE1 "feature") "式の読み込みが失敗するかもしれません。" EOL2
+     "一般的に特定の実装で同一性を識別できる" (CODE1 "feature") "をひとつ以上含めることが" "実装にとってより良いと考えられます。"
+     "そうすることにより条件式は他とは違うある実装の特異性として区別するような" "書き方ができるようになります。" (CODE1 "feature") "は通常"
+     (CODE1 "KEYWORD") "パッケージのシンボルであるため、" "結果として衝突が起こりやすく、"
+     "また誰がどのシンボルをどのような理由で使用する権利を持っているかを決定する" "一意的なメカニズムがあるわけでもないので、" "保守的な戦略として"
+     "自分の会社名や製品名から派生した名前を選択することができます。")))
+(setf (gethash '("*FEATURES*" . "VARIABLE") *table*) (gethash "*FEATURES*" *table*))
 (setf (gethash "*GENSYM-COUNTER*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*GENSYM-COUNTER*")) (CHAPTER ("## 値の型") 2 "非負の整数")
     (CHAPTER ("## 初期値") 2 "実装依存")
@@ -1158,6 +1290,60 @@
     (CHAPTER ("## 備考") 2 (CODE1 "gensym") "の引数に数値を渡す機能は非推奨であり、" "明に"
      (CODE1 "*gensym-counter*") "を束縛するのが今では様式的に好まれます。")))
 (setf (gethash '("*GENSYM-COUNTER*" . "VARIABLE") *table*) (gethash "*GENSYM-COUNTER*" *table*))
+(setf (gethash "*LOAD-PATHNAME*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*LOAD-PATHNAME*") ", " (CODE1 "*LOAD-TRUENAME*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*load-pathname*") "の値は常にパス名か" (CODE1 "nil") "です。"
+     (CODE1 "*load-truename*") "の値は常に物理パス名か" (CODE1 "nil") "です。")
+    (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "load") "呼び出し中は、" (CODE1 "*load-pathname*") "は"
+     (CODE1 "load") "の最初の引数とデフォルト値がマージされたものが束縛され、" "その束縛された値は"
+     (CODE1 "(pathname (merge-pathnames input-file))") "になります。" "同じ時間で"
+     (CODE1 "*load-truename*") "には" "ロードされるファイルの" (CODE1 "truename") "が束縛されます。" EOL2
+     "その他の時間においては、これらの変数の値は" (CODE1 "nil") "です。" EOL2 "もし" (CODE1 "load") "実施中に"
+     (CODE1 "break loop") "として" (CODE1 "eval-loop") "などの割り込みが生じたとき、" "それらの変数が保持している値が"
+     "ちょうど" (CODE1 "break loop") "に入る前の値を保有しているか、" "あるいはそれらに" (CODE1 "nil")
+     "が束縛されているかどうかは" "実装依存です。" EOL2 "これらの変数に代入か束縛を仕様としたときの結果は指定されていません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "ファイルシステム")
+    (CHAPTER ("## 参考") 2 (CODE1 "load")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*LOAD-PATHNAME*" . "VARIABLE") *table*) (gethash "*LOAD-PATHNAME*" *table*))
+(setf (gethash "*LOAD-PRINT*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*LOAD-PRINT*") ", " (CODE1 "*LOAD-VERBOSE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean")
+    (CHAPTER ("## 初期値") 2 (CODE1 "*load-print*") "の値は" (STRONG "false") "。"
+     (CODE1 "*load-verbose*") "の値は実装依存。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*load-print*") "の値は、" (CODE1 "load") "の引数"
+     (CODE1 ":print") "がデフォルト値です。" (CODE1 "*load-verbose*") "の値は、" (CODE1 "load") "の引数"
+     (CODE1 ":verbose") "がデフォルト値です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "load")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*LOAD-PRINT*" . "VARIABLE") *table*) (gethash "*LOAD-PRINT*" *table*))
+(setf (gethash "*LOAD-TRUENAME*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*LOAD-PATHNAME*") ", " (CODE1 "*LOAD-TRUENAME*"))
+    (CHAPTER ("## 値の型") 2 (CODE1 "*load-pathname*") "の値は常にパス名か" (CODE1 "nil") "です。"
+     (CODE1 "*load-truename*") "の値は常に物理パス名か" (CODE1 "nil") "です。")
+    (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "load") "呼び出し中は、" (CODE1 "*load-pathname*") "は"
+     (CODE1 "load") "の最初の引数とデフォルト値がマージされたものが束縛され、" "その束縛された値は"
+     (CODE1 "(pathname (merge-pathnames input-file))") "になります。" "同じ時間で"
+     (CODE1 "*load-truename*") "には" "ロードされるファイルの" (CODE1 "truename") "が束縛されます。" EOL2
+     "その他の時間においては、これらの変数の値は" (CODE1 "nil") "です。" EOL2 "もし" (CODE1 "load") "実施中に"
+     (CODE1 "break loop") "として" (CODE1 "eval-loop") "などの割り込みが生じたとき、" "それらの変数が保持している値が"
+     "ちょうど" (CODE1 "break loop") "に入る前の値を保有しているか、" "あるいはそれらに" (CODE1 "nil")
+     "が束縛されているかどうかは" "実装依存です。" EOL2 "これらの変数に代入か束縛を仕様としたときの結果は指定されていません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "ファイルシステム")
+    (CHAPTER ("## 参考") 2 (CODE1 "load")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*LOAD-TRUENAME*" . "VARIABLE") *table*) (gethash "*LOAD-TRUENAME*" *table*))
+(setf (gethash "*LOAD-VERBOSE*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*LOAD-PRINT*") ", " (CODE1 "*LOAD-VERBOSE*"))
+    (CHAPTER ("## 値の型") 2 "generalized-boolean")
+    (CHAPTER ("## 初期値") 2 (CODE1 "*load-print*") "の値は" (STRONG "false") "。"
+     (CODE1 "*load-verbose*") "の値は実装依存。")
+    (CHAPTER ("## 定義") 2 (CODE1 "*load-print*") "の値は、" (CODE1 "load") "の引数"
+     (CODE1 ":print") "がデフォルト値です。" (CODE1 "*load-verbose*") "の値は、" (CODE1 "load") "の引数"
+     (CODE1 ":verbose") "がデフォルト値です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "load")) (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("*LOAD-VERBOSE*" . "VARIABLE") *table*) (gethash "*LOAD-VERBOSE*" *table*))
 (setf (gethash "*MACROEXPAND-HOOK*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*MACROEXPAND-HOOK*"))
     (CHAPTER ("## 値の型") 2 "3つの引数（マクロ関数、マクロフォーム、環境オブジェクト）を" "受け付ける関数指定子。")
@@ -1185,6 +1371,15 @@
      "そのような理由で、デバッグ用途に限定して使用したほうがよいでしょう。" EOL2 (CODE1 "*macroexpand-hook*")
      "を自分の関数に置き換えるユーザーは、" "以前のフックの値を保存しておいて、" "自分の関数上で以前の値を呼び出すように考える必要があります。")))
 (setf (gethash '("*MACROEXPAND-HOOK*" . "VARIABLE") *table*) (gethash "*MACROEXPAND-HOOK*" *table*))
+(setf (gethash "*MODULES*" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*MODULES*")) (CHAPTER ("## 値の型") 2 "文字列のリスト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "*modules*") "の値は、" "現在のLispイメージ内にロードされた"
+     "モジュールの名前のリストです。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 (CODE1 "provide"))
+    (CHAPTER ("## 参考") 2 (CODE1 "provide") "," (CODE1 "require"))
+    (CHAPTER ("## 備考") 2 "変数" (CODE1 "*modules*") "は非推奨です。")))
+(setf (gethash '("*MODULES*" . "VARIABLE") *table*) (gethash "*MODULES*" *table*))
 (setf (gethash "*PACKAGE*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*PACKAGE*")) (CHAPTER ("## 値の型") 2 "パッケージオブジェクト")
     (CHAPTER ("## 初期値") 2 (CODE1 "COMMON-LISP-USER") "パッケージ")
@@ -11686,6 +11881,104 @@
      "含まれてたいときの結果は未定義です" EOL2 "コンパイル処理中のエラーの検出の情報については、" "3.2.5. コンパイラーの例外状況をご確認ください。")
     (CHAPTER ("## 参考") 2 (CODE1 "compile-file")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("COMPILE" . "FUNCTION") *table*) (gethash "COMPILE" *table*))
+(setf (gethash "COMPILE-FILE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "COMPILE-FILE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "compile-file") " " (STRONG "input-file") " "
+     (CODE1 "&key") " " (STRONG "output-file") " " (STRONG "verbose") " "
+     (STRONG "print") " " (STRONG "external-format") " => " (STRONG "output-truename")
+     ", " (STRONG "warnings-p") ", " (STRONG "failure-p"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "input-file") " - パス名指定子（デフォルトでは未指定の要素は"
+     (CODE1 "*default-pathname-defaults*") "の値から取得し埋められます）。" EOL1 (STRONG "output-file")
+     " - パス名指定子。デフォルトは実装依存。" EOL1 (STRONG "verbose") " - generalized-boolean。デフォルトは"
+     (CODE1 "*compile-verbose*") "の値。" EOL1 (STRONG "print")
+     " - generalized-boolean。デフォルトは" (CODE1 "*compile-print*") "の値。" EOL1
+     (STRONG "external-format") " - 外部ファイルフォーマット指定子。デフォルトは" (CODE1 ":default") "。" EOL1
+     (STRONG "output-truename") " - パス名（出力ファイルの" (CODE1 "truename") "）か、" (CODE1 "nil")
+     "。" EOL1 (STRONG "warnings-p") " - generalized-boolean" EOL1 (STRONG "failure-p")
+     " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "compile-file") "は、" (STRONG "input-file")
+     "で指定されたファイルの内容を、" (STRONG "output-file") "によって指定されたファイルの位置へ" "実装依存のバイナリデータに変換します。"
+     EOL2 (STRONG "input-file") "で示すファイルはソースファイルでなければなりません。" (STRONG "output-file")
+     "は出力パス名を指定することができます。" "コンパイルされたコードを出力する" "コンパイルファイルの実際のパス名は、"
+     (CODE1 "compile-file-pathname") "を呼び出されたかのように計算されます。" EOL2 "もし"
+     (STRONG "input-file") "か" (STRONG "output-file") "が論理パス名のとき、" "それは"
+     (CODE1 "translate-logical-pathname") "が呼び出されたかのように" "物理パス名に変換されます。" EOL2 "もし"
+     (STRONG "verbose") "が" (STRONG "true") "のとき、" (CODE1 "compile-file")
+     "はコメントのフォーム（例えば先頭にセミコロン） で" "メッセージを標準出力に対して" "どのようなファイルがコンパイルされたかや、"
+     "その他の有益な情報などを印刷します。" "もし" (STRONG "verbose") "が" (STRONG "false")
+     "のときは、そのような情報は印刷されません。" EOL2 "もし" (STRONG "print") "が" (STRONG "true") "のとき、"
+     "コンパイルされるファイル内の" "トップレベルフォームについての情報を、" "標準出力に印刷します。" "どのようなものが印刷されるかの"
+     "正確な内容は実装依存ですが、" "それでも何らかの情報が印刷されます。" "もし" (STRONG "print") "が" (CODE1 "nil") "のときは"
+     "何の情報も印刷されません。" EOL2 (STRONG "external-format") "は、"
+     "ファイルを開くときに使われる外部ファイルフォーマットを指定します。" "関数" (CODE1 "open") "をご確認ください。"
+     "結果のコンパイルされたファイルは、" "改めて外部ファイルフォーマットの指定をせずに" "ロードすることができるので、" (CODE1 "compile-file")
+     "と" (CODE1 "load") "は" "このような方法を実現するために協調しなければなりません。" "関数" (CODE1 "load")
+     "をご確認ください。" EOL2 (CODE1 "compile-file") "は" (CODE1 "*readtable*") "と"
+     (CODE1 "*package*") "に対して、" "ファイル処理する前に保持されていた値に束縛します。" EOL2
+     (CODE1 "*compile-file-truename*") "は、" (CODE1 "compile-file") "によって束縛が行われ、"
+     "その内容はコンパイルされているファイルのパス名の" (CODE1 "truename") "です。" EOL2
+     (CODE1 "*compile-file-pathname*") "は" (CODE1 "compile-file") "によって束縛が行われ、" "その内容は"
+     (CODE1 "compile-file") "の最初の引数と" "デフォルト値がマージされたものを示します。" "つまり"
+     (CODE1 "(pathname (merge-pathnames input-file))") "です。" EOL2
+     "コンパイルされたファイル内に含まれるコンパイルされた関数は、" "Lispがそのコンパイルされたファイルをロードしたときに使用できるようになります。"
+     "コンパイラーによって処理されたどのような関数定義でも、" "それは" (CODE1 "#'(lambda ...)") "フォームや、" (CODE1 "flet")
+     "と" (CODE1 "labels") "によって生成されたローカル関数、" (CODE1 "defun") "フォームなどの結果は、" "型"
+     (CODE1 "compiled-function") "のオブジェクトです。" EOL2 (CODE1 "compile-file") "の返却値の主値である"
+     (STRONG "output-truename") "は、" "出力ファイルの" (CODE1 "truename") "か、"
+     "もしファイルが生成できなかったときは" (CODE1 "nil") "です。" EOL2 "2つめの返却値である" (STRONG "warnings-p")
+     "は、" "コンパイラーによって型" (CODE1 "error") "か" (CODE1 "warning") "のコンディションが" "検出されなかったときは"
+     (STRONG "false") "を、" "それ以外のときは" (STRONG "true") "を返却します。" EOL2 "3つめの返却値である"
+     (STRONG "failure-p") "は、" "コンパイラーによって型" (CODE1 "error") "か" (CODE1 "warning") "（"
+     (CODE1 "style-warning") "以外）コンディションが" "検出されなかったときは" (STRONG "false") "を、" "それ以外のときは"
+     (STRONG "true") "を返却します。" EOL2 "ファイルコンパイラーによって" "どのようにファイルを処理するかについての"
+     "一般的な情報は3.2.3. ファイルのコンパイルをご確認ください。" EOL2 "ファイルコンパイラーによってコンパイルされるプログラムは、"
+     "ただ外部化可能なオブジェクトのみが含まれます。" "そのようなオブジェクトの詳細については3.2.4. ファイルコンパイル時のリテラルオブジェクトをご確認ください。"
+     "どのようにして外部化可能なオブジェクトの集合を拡張するかについては" "関数" (CODE1 "make-load-form")
+     "と3.2.4.4. 外部オブジェクトの制約の追記をご確認ください。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 影響") 2 (CODE1 "*error-output*") "," (CODE1 "*standard-output*") ","
+     (CODE1 "*compile-verbose*") "," (CODE1 "*compile-print*") EOL2 "コンピューターのファイルシステム")
+    (CHAPTER ("## 例外") 2 "コンパイル処理中のエラーの検出についての情報は、" "3.2.5. コンパイラーの例外状況をご確認ください。" EOL2
+     "もし" (CODE1 "(wild-pathname-p input-file)") "が" (STRONG "true") "のとき、" "型"
+     (CODE1 "file-error") "のエラーが通知することができます。" EOL2 "入力としてソースファイルをオープンしようとしたか、"
+     "あるいは出力としてコンパイルされるファイルをオープンしようとしたときに" "失敗したときは、" "型" (CODE1 "file-error")
+     "のエラーが通知されます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile") "," (CODE1 "declare") "," (CODE1 "eval-when")
+     "," (CODE1 "pathname") "," (CODE1 "logical-pathname") "," "20.1. ファイルシステムの説明,"
+     "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("COMPILE-FILE" . "FUNCTION") *table*) (gethash "COMPILE-FILE" *table*))
+(setf (gethash "COMPILE-FILE-PATHNAME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "COMPILE-FILE-PATHNAME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "compile-file-pathname") " " (STRONG "input-file") " "
+     (CODE1 "&key") " " (STRONG "output-file") " " (CODE1 "&allow-other-keys") " => "
+     (STRONG "pathname"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "input-file") " - パス名指定子（デフォルトでは未指定の要素は"
+     (CODE1 "*default-pathname-defaults*") "の値から取得し埋められます）。" EOL1 (STRONG "output-file")
+     " - パス名指定子。デフォルトは実装依存。" EOL1 (STRONG "pathname") " - パス名")
+    (CHAPTER ("## 定義") 2 "この関数は" (CODE1 "compile-file") "に同じ引数を与えたときに"
+     "書き込みが行われるパス名を返却します。" EOL2 (STRONG "output-file") "のデフォルトは、" (STRONG "input-file")
+     "と" (CODE1 "*default-pathname-defaults*") "の値を" "マージした結果のパス名から取得されますが、"
+     "例外としてタイプの要素は" "実装定義によるコンパイルされたファイルのデフォルトタイプとして" "適切なものをデフォルト値に使用しなければなりません。" EOL2
+     "もし" (STRONG "input-file") "が論理パス名であり" "かつ" (STRONG "output-file") "が指定されなかったとき、"
+     "その結果は論理パス名です。" "もし" (STRONG "input-file") "が論理パス名のとき、" "それは"
+     (CODE1 "translate-logical-pathname") "が呼び出されたかのように" "物理パス名へ変換されます。" "もし"
+     (STRONG "input-file") "がストリームのとき、" "そのストリームは開いていても閉じていても受け付けます。"
+     (CODE1 "compile-file-pathname") "は、" "そのファイルが開いているときは、" "ファイルがクローズされたあとに実行したかのような"
+     "同じパス名を返却します。" (STRONG "input-file") "が" (CODE1 "make-two-way-stream") ","
+     (CODE1 "make-echo-stream") "," (CODE1 "make-broadcast-stream") ","
+     (CODE1 "make-concatenated-stream") "," (CODE1 "make-string-input-stream") ","
+     (CODE1 "make-string-output-stream") "によって" "生成されたストリームのときはエラーです。" EOL2 "もし実装が"
+     (CODE1 "compile-file") "に追加のキーワード引数をサポートしているとき、" (CODE1 "compile-file-pathname")
+     "も同じ引数を受け取れなければなりません。")
+    (CHAPTER ("## 例文") 2 (CODE1 "logical-pathname-translations") "をご確認ください。")
+    (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 (STRONG "input-file") "か" (STRONG "output-file")
+     "がワイルドカードを含んでいるときは、" "型" (CODE1 "file-error") "のエラーを通知できます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile-file") "," (CODE1 "pathname") ","
+     (CODE1 "logical-pathname") "," "20.1. ファイルシステムの説明," "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("COMPILE-FILE-PATHNAME" . "FUNCTION") *table*) (gethash "COMPILE-FILE-PATHNAME" *table*))
 (setf (gethash "COMPILED-FUNCTION" *table*)
   '((CHAPTER NIL 0 "Type " (CODE1 "COMPILED-FUNCTION"))
     (CHAPTER ("## スーパータイプ") 2 (CODE1 "compiled-function") "," (CODE1 "function") ","
@@ -22549,6 +22842,80 @@
      (CODE3 "```lisp" "```"
       "(listp object) ==  (typep object 'list) ==  (typep object '(or cons null))"))))
 (setf (gethash '("LISTP" . "FUNCTION") *table*) (gethash "LISTP" *table*))
+(setf (gethash "LOAD" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LOAD"))
+    (CHAPTER ("## 構文") 2 (CODE1 "load") " " (STRONG "filespec") " " (CODE1 "&key") " "
+     (STRONG "verbose") " " (STRONG "print") " " (STRONG "if-does-not-exist") " "
+     (STRONG "external-format") " => " (STRONG "generalized-boolean"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "filespec") " - ストリームか、パス名指定子。" "デフォルトは"
+     (CODE1 "*default-pathname-defaults*") "から取得されます。" EOL1 (STRONG "verbose")
+     " - generalized-boolean。デフォルトは" (CODE1 "*load-verbose*") "の値。" EOL1 (STRONG "print")
+     " - generalized-boolean。デフォルトは" (CODE1 "*load-print*") "の値。" EOL1
+     (STRONG "if-does-not-exist") " - generalized-boolean。デフォルトは" (STRONG "true") "。"
+     EOL1 (STRONG "external-format") " - 外部ファイルフォーマット指定子。デフォルトは" (CODE1 ":default") "。"
+     EOL1 (STRONG "generalized-boolean") " - generalized-boolean")
+    (CHAPTER ("## 定義") 2 (CODE1 "load") "は、" (STRONG "filespec")
+     "という名前のファイルをLisp環境にロードします。" EOL2 "ソースファイルとコンパイルファイルの区別する方法については" "実装依存です。"
+     "もしファイルの定義が不完全であり、" "ソースファイルとコンパイルファイルの両方が存在し、" "それらにマッチするとき、" "これらのどのファイルが"
+     (CODE1 "load") "に選択されるかは" "実装依存です。" EOL2 "もし" (STRONG "filespec") "がストリームのとき、"
+     (CODE1 "load") "はストリームが何の種類か決定し、" "そしてストリームから直接ロードを行います。" "もし" (STRONG "filespec")
+     "が論理パス名のとき、" "それは" (CODE1 "translate-logical-pathname") "が呼び出されたかのように"
+     "物理パス名へと変換されます。" EOL2 (CODE1 "load") "は" (STRONG "filespec") "によって名付けられたファイル内において"
+     "連続的に遭遇した各フォームを実行していきます。" "もしそのファイルがソースファイルであり、" "実装が暗黙的にコンパイルする処理を選んだとき、"
+     (CODE1 "load") "は3.2.3.1. トップレベルフォームの処理に記載されているような" "トップレベルのフォームとして識別しなければならず、"
+     "次の暗黙的なコンパイルが始まる前に" "各トップレベルフォームの実行を整えます" "（しかし" (CODE1 "load") "によって処理を行う"
+     (CODE1 "eval-when") "フォームの" (CODE1 ":execute") "の状況によって制御できます）。" EOL2 "もし"
+     (STRONG "verbose") "が" (STRONG "true") "のとき、" (CODE1 "load")
+     "はコメントのフォーム(例えば先頭にセミコロン） で" "メッセージを標準出力に対して" "どのようなファイルがコンパイルされたかや、"
+     "その他の有益な情報などを印刷します。" "もし" (STRONG "verbose") "が" (STRONG "false")
+     "のときは、そのような情報は印刷されません。" EOL2 "もし" (STRONG "print") "が" (STRONG "true") "のとき、"
+     (CODE1 "load") "は標準出力に対して徐々に情報を出力していき" "ロード処理の進行を示します。" "ソースファイルのとき、"
+     "この情報はそのファイル内の各フォームによって" "生成された値とすぐに返却される値を出力する意味があります。" "コンパイルファイルのとき、"
+     "何が印刷されるかはソースファイルの情報が" "正確に反映されないかもしれませんが、" "しかしいくつかの一般的な情報が印刷されます。" "もし"
+     (STRONG "print") "が" (STRONG "false") "のときは、そのような情報は印刷されません。" EOL2 "もし"
+     (STRONG "filespec") "という名前のファイルがロードに成功したとき、" (CODE1 "load") "は" (STRONG "true")
+     "を返却します。" EOL2 "もしファイルが存在しないときは、" (STRONG "if-does-not-exist") "に依存した動作が取得されます。"
+     "もしこの値が" (CODE1 "nil") "のときは" (CODE1 "load") "は" (CODE1 "nil") "を返却します。"
+     "それ以外のときはエラーが通知されます。" EOL2 (STRONG "external-format") "は、" "ファイルをオープンするときに使用される"
+     "（関数" (CODE1 "open") "をご確認ください）" "外部ファイルフォーマットを指定しますが、" (STRONG "filespec")
+     "という名前で指定されたファイルがコンパイルファイルのときは、" (STRONG "external-format") "は無視されます。" EOL2
+     (CODE1 "compile-file") "と" (CODE1 "load") "は強調して" "ファイルコンパイラ時に外部ファイルフォーマットが指定されたときに"
+     "そのソースファイルが処理された時点で" "参照されたソースファイルの文字の相似を保存するように、" "実装依存な方法にて保証します。"
+     "よってそのコンパイルファイルがロードされた時点での" (STRONG "external-format") "の値に関わらずロードされます。" EOL2
+     (CODE1 "load") "は" (CODE1 "*readtable*") "と" (CODE1 "*package*") "に対して、"
+     "ファイルのロードをする前に保持されていた値に束縛します。" EOL2 (CODE1 "*load-truename*") "は、" (CODE1 "load")
+     "によって束縛が行われ、" "その内容はロードされているファイルのパス名の" (CODE1 "truename") "です。" EOL2
+     (CODE1 "*load-pathname*") "は" (CODE1 "load") "によって束縛が行われ、" "その内容は" (CODE1 "load")
+     "の最初の引数と" "デフォルト値がマージされたものを示します。" "つまり"
+     (CODE1 "(pathname (merge-pathnames input-file))") "です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";Establish a data file..."
+      "(with-open-file (str \"data.in\" :direction :output :if-exists :error)"
+      "  (print 1 str) (print '(setq a 888) str) t)" "=>  T"
+      "(load \"data.in\") =>  true" "a =>  888"
+      "(load (setq p (merge-pathnames \"data.in\")) :verbose t)"
+      "; Loading contents of file /fred/data.in" "; Finished loading /fred/data.in"
+      "=>  true" "(load p :print t) " "; Loading contents of file /fred/data.in" ";  1"
+      ";  888" "; Finished loading /fred/data.in" "=>  true"
+      ";----[Begin file SETUP]----" "(in-package \"MY-STUFF\")"
+      "(defmacro compile-truename () `',*compile-file-truename*)"
+      "(defvar *my-compile-truename* (compile-truename) \"Just for debugging.\")"
+      "(defvar *my-load-pathname* *load-pathname*)" "(defun load-my-system ()"
+      "  (dolist (module-name '(\"FOO\" \"BAR\" \"BAZ\"))"
+      "    (load (merge-pathnames module-name *my-load-pathname*))))"
+      ";----[End of file SETUP]----" NIL NIL "(load \"SETUP\")" "(load-my-system)"))
+    (CHAPTER ("## 影響") 2 "実装と、ホストコンピューターのファイルシステム")
+    (CHAPTER ("## 例外") 2 "もし" (CODE1 ":if-does-not-exist") "が" (STRONG "true") "に指定されるか"
+     "あるいは指定されなかったとき、" (STRONG "filespec") "によって名前付けられたファイルが存在しなかったとき、"
+     "あるいはファイルシステムがその要求した処理を実施できなかったときは、" (CODE1 "load") "は型" (CODE1 "file-error")
+     "のエラーを通知します。" EOL2 "もし" (CODE1 "(wild-pathname-p filespec)") "が" (STRONG "true")
+     "のときは、" "型" (CODE1 "file-error") "のエラーを通知できます。")
+    (CHAPTER ("## 参考") 2 (CODE1 "error") "," (CODE1 "merge-pathnames") ","
+     (CODE1 "*load-verbose*") "," (CODE1 "*default-pathname-defaults*") ","
+     (CODE1 "pathname") "," (CODE1 "logical-pathname") "," "20.1. ファイルシステムの説明,"
+     "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LOAD" . "FUNCTION") *table*) (gethash "LOAD" *table*))
 (setf (gethash "LOAD-LOGICAL-PATHNAME-TRANSLATIONS" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "LOAD-LOGICAL-PATHNAME-TRANSLATIONS"))
     (CHAPTER ("## 構文") 2 (CODE1 "load-logical-pathname-translations") " " (STRONG "host")
@@ -31024,6 +31391,45 @@
     (CHAPTER ("## 備考") 2 "特に、" (CODE1 "progv") "はLisp内に組み込まれた言語の" "インタプリタを書くときに便利で、"
      "動的変数を束縛する機構を提供します。")))
 (setf (gethash '("PROGV" . "SPECIAL-OPERATOR") *table*) (gethash "PROGV" *table*))
+(setf (gethash "PROVIDE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PROVIDE") ", " (CODE1 "REQUIRE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "provide") " " (STRONG "module-name") " => "
+     (STRONG "implementation-dependent") EOL1 (CODE1 "require") " "
+     (STRONG "module-name") " " (CODE1 "&optional") " " (STRONG "pathname-list") " => "
+     (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "module-name") " - 文字列指定子" EOL1
+     (STRONG "pathname-list") " - " (CODE1 "nil") "か、" "パス名指定子の空ではないリスト。" "デフォルトは"
+     (CODE1 "nil") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "provide") "は" (CODE1 "*modules*") "が保有しているリストに、"
+     "そのような名前がまだ存在していないときに" (STRONG "module-name") "をそのリストに追加します。" EOL2 (CODE1 "require")
+     "は" (CODE1 "*modules*") "が保有するリスト内に" (STRONG "module-name") "が現れているかテストします。"
+     "もし現れているとき、" (CODE1 "require") "は即座に返却します。" "それ以外のとき、"
+     "次に示すようにファイルの集合を適切にロードするよう試みます。" (STRONG "pathname-list") "の引数について、" (CODE1 "nil")
+     "ではなくパス名のリストを指定しているとき、" "左から右の順番でロードを行います。" "もし" (STRONG "pathname-list") "が"
+     (CODE1 "nil") "のとき、" "実装依存の仕組みにより" (STRONG "module-name") "という名前のモジュールを"
+     "ロードするような仕組みが起動されます。" "もしそのようなモジュールがロードできなかったとき、" "型" (CODE1 "error") "のエラーが通知されます。"
+     EOL2 "両関数は、" (STRONG "module-name") "の存在をテストするときに" (CODE1 "string=") "を使用します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";;; これは移植不可能なREQUIREの使い方を示しています。"
+      ";;; なぜなら実装依存のファイルロードメカニズムだからです。" NIL "(require \"CALCULUS\")" NIL
+      ";;; これはリテラルな物理パス名のため" ";;; 移植不可能なREQUIREの使い方です。" NIL
+      "(require \"CALCULUS\" \"/usr/lib/lisp/calculus\")" NIL
+      ";;; 移植可能な使い方のフォームとして論理パス名を指定しており、" ";;; どこかで適用可能な変換が定義されているものとします。" NIL
+      "(require \"CALCULUS\" \"lib:calculus\")" NIL ";;; 他の移植可能な使い方のフォームとして変数か"
+      ";;; テーブルの検索関数によるパス名の決定が挙げられます。" ";;; これもまたどこかで初期化する必要があります。" NIL
+      "(require \"CALCULUS\" *calculus-module-pathname*)"))
+    (CHAPTER ("## 副作用") 2 (CODE1 "provide") "は" (CODE1 "*modules*") "を変更します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "require") "によって取られる特定の行動は、" (CODE1 "provide")
+     "の呼び出しによって" "（または一般的に" (CODE1 "*modules*") "の値の変更によって）" "影響します。")
+    (CHAPTER ("## 例外") 2 (STRONG "module-name") "が文字列指定子ではなかったとき、" "型"
+     (CODE1 "type-error") "のエラーが通知されるべきです。" EOL2 "もし" (CODE1 "require") "が"
+     "ファイルシステムとの相互処理をしている間に" "要求された処理に問題が生じて失敗したとき、" "型" (CODE1 "file-error")
+     "のエラーが通知されます。" EOL2 "もし" (STRONG "pathname-list") "の何かのパス名が"
+     "ワイルドカードのパス名を指定した指定子であったとき、" "型" (CODE1 "file-error") "のエラーが通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*modules*") "," "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "関数" (CODE1 "provide") "と" (CODE1 "require") "は非推奨です。" EOL2
+     "もしモジュールがひとつのパッケージに含まれているとき、" "慣習的にはパッケージとモジュールの名前は同じになります。")))
+(setf (gethash '("PROVIDE" . "FUNCTION") *table*) (gethash "PROVIDE" *table*))
 (setf (gethash "PSETF" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "SETF") ", " (CODE1 "PSETF"))
     (CHAPTER ("## 構文") 2 (CODE1 "setf") " " (CODE1 "{") (STRONG "pair") (CODE1 "}")
@@ -32625,6 +33031,45 @@
     (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "fill"))
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("REPLACE" . "FUNCTION") *table*) (gethash "REPLACE" *table*))
+(setf (gethash "REQUIRE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "PROVIDE") ", " (CODE1 "REQUIRE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "provide") " " (STRONG "module-name") " => "
+     (STRONG "implementation-dependent") EOL1 (CODE1 "require") " "
+     (STRONG "module-name") " " (CODE1 "&optional") " " (STRONG "pathname-list") " => "
+     (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "module-name") " - 文字列指定子" EOL1
+     (STRONG "pathname-list") " - " (CODE1 "nil") "か、" "パス名指定子の空ではないリスト。" "デフォルトは"
+     (CODE1 "nil") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "provide") "は" (CODE1 "*modules*") "が保有しているリストに、"
+     "そのような名前がまだ存在していないときに" (STRONG "module-name") "をそのリストに追加します。" EOL2 (CODE1 "require")
+     "は" (CODE1 "*modules*") "が保有するリスト内に" (STRONG "module-name") "が現れているかテストします。"
+     "もし現れているとき、" (CODE1 "require") "は即座に返却します。" "それ以外のとき、"
+     "次に示すようにファイルの集合を適切にロードするよう試みます。" (STRONG "pathname-list") "の引数について、" (CODE1 "nil")
+     "ではなくパス名のリストを指定しているとき、" "左から右の順番でロードを行います。" "もし" (STRONG "pathname-list") "が"
+     (CODE1 "nil") "のとき、" "実装依存の仕組みにより" (STRONG "module-name") "という名前のモジュールを"
+     "ロードするような仕組みが起動されます。" "もしそのようなモジュールがロードできなかったとき、" "型" (CODE1 "error") "のエラーが通知されます。"
+     EOL2 "両関数は、" (STRONG "module-name") "の存在をテストするときに" (CODE1 "string=") "を使用します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";;; これは移植不可能なREQUIREの使い方を示しています。"
+      ";;; なぜなら実装依存のファイルロードメカニズムだからです。" NIL "(require \"CALCULUS\")" NIL
+      ";;; これはリテラルな物理パス名のため" ";;; 移植不可能なREQUIREの使い方です。" NIL
+      "(require \"CALCULUS\" \"/usr/lib/lisp/calculus\")" NIL
+      ";;; 移植可能な使い方のフォームとして論理パス名を指定しており、" ";;; どこかで適用可能な変換が定義されているものとします。" NIL
+      "(require \"CALCULUS\" \"lib:calculus\")" NIL ";;; 他の移植可能な使い方のフォームとして変数か"
+      ";;; テーブルの検索関数によるパス名の決定が挙げられます。" ";;; これもまたどこかで初期化する必要があります。" NIL
+      "(require \"CALCULUS\" *calculus-module-pathname*)"))
+    (CHAPTER ("## 副作用") 2 (CODE1 "provide") "は" (CODE1 "*modules*") "を変更します。")
+    (CHAPTER ("## 影響") 2 (CODE1 "require") "によって取られる特定の行動は、" (CODE1 "provide")
+     "の呼び出しによって" "（または一般的に" (CODE1 "*modules*") "の値の変更によって）" "影響します。")
+    (CHAPTER ("## 例外") 2 (STRONG "module-name") "が文字列指定子ではなかったとき、" "型"
+     (CODE1 "type-error") "のエラーが通知されるべきです。" EOL2 "もし" (CODE1 "require") "が"
+     "ファイルシステムとの相互処理をしている間に" "要求された処理に問題が生じて失敗したとき、" "型" (CODE1 "file-error")
+     "のエラーが通知されます。" EOL2 "もし" (STRONG "pathname-list") "の何かのパス名が"
+     "ワイルドカードのパス名を指定した指定子であったとき、" "型" (CODE1 "file-error") "のエラーが通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*modules*") "," "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "関数" (CODE1 "provide") "と" (CODE1 "require") "は非推奨です。" EOL2
+     "もしモジュールがひとつのパッケージに含まれているとき、" "慣習的にはパッケージとモジュールの名前は同じになります。")))
+(setf (gethash '("REQUIRE" . "FUNCTION") *table*) (gethash "REQUIRE" *table*))
 (setf (gethash "REST" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "REST"))
     (CHAPTER ("## 構文") 2 (CODE1 "rest") " " (STRONG "list") " => " (STRONG "tail") EOL1
@@ -40349,6 +40794,39 @@
      EOL2 "ただし、" (CODE1 "Qi") "は下記のようになります。"
      (CODE3 "```lisp" "```" "(variable-namei () (accessor-namei in))"))))
 (setf (gethash '("WITH-ACCESSORS" . "MACRO") *table*) (gethash "WITH-ACCESSORS" *table*))
+(setf (gethash "WITH-COMPILATION-UNIT" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "WITH-COMPILATION-UNIT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "with-compilation-unit") " " (CODE1 "(") " " (CODE1 "[[")
+     " " (STRONG "option") " " (CODE1 "]]") " " (CODE1 ")") " " (STRONG "form\\*") " => "
+     (STRONG "result\\*") (CODE3 "```" "```" "option::= :override override "))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "override") " - generalized-boolean。評価されます。"
+     "デフォルトは" (CODE1 "nil") "。" EOL1 (STRONG "form") " - 暗黙のprogn" EOL1 (STRONG "result")
+     " - " (STRONG "form") "の返却値")
+    (CHAPTER ("## 定義") 2 (STRONG "form") "を左から右に評価します。" (CODE1 "with-compilation-unit")
+     "の動的環境内では、" "コンパイラーがコンパイルの終了まで延期した動作は、" (CODE1 "with-compilation-unit")
+     "の一番外側の呼び出しが" "終了するまで延期されます。" EOL2 (STRONG "option") "の集合は実装によって拡張されることが許されますが、"
+     "しかしキーワード" (CODE1 ":override") "のみが標準のものになります。" EOL2 "もし動的にネストされたとき、" "最も外側で呼び出された"
+     (CODE1 "with-compilation-unit") "のみが" "関連付けられた" (CODE1 ":override") "の値が"
+     (STRONG "true") "ではないときに限り、" "何らかの効果を持ちます。" (STRONG "override") "が" (STRONG "true")
+     "である場合においては、" "最も内側にある" (STRONG "override") "が" (STRONG "true") "のものが終了した時点まで"
+     "警告が遅延されます。" EOL2 "関数" (CODE1 "compile-file") "は、" "次のような効果を提供します。"
+     (CODE3 "```lisp" "```" "(with-compilation-unit (:override nil) ...)") EOL2
+     "コンパイルされるコードが上記のものに囲まれます。" EOL2 "実装依存の拡張は" "ただ実装依存なキーワードの使用によって"
+     "プログラマーが明示的に要求した結果としてのみ提供することができます。" "実装者はこのマクロの使用方法として、" "キーワードを全て削除するか、"
+     "あるいはちょうど" (CODE1 ":override") "のキーワードに対して" "追加の意味を割り当てることが許されていません。")
+    (CHAPTER ("## 例文") 2 "もし実装が通常特定の種類の警告、" "例えば" (CODE1 "undefined-function") "についての警告を"
+     "コンパイル単位（例えばファイル単位）の終端まで延期したいとき、" "次の例ではどのようにしてこれらの警告を" "いくつかのファイルにおいてコンパイルの終端まで"
+     "遅延させるかについて示します。"
+     (CODE3 "```lisp" "```" "(defun compile-files (&rest files)"
+      "  (with-compilation-unit ()"
+      "    (mapcar #'(lambda (file) (compile-file file)) files)))" NIL
+      "(compile-files \"A\" \"B\" \"C\")")
+     EOL2 "しかし、もし実装がどのような警告についても" "通常みられるような遅延をしないときは、" (CODE1 "with-compilation-unit")
+     "は何の効果も持たないことを注意して下さい。")
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "compile") "," (CODE1 "compile-file"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("WITH-COMPILATION-UNIT" . "MACRO") *table*) (gethash "WITH-COMPILATION-UNIT" *table*))
 (setf (gethash "WITH-CONDITION-RESTARTS" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "WITH-CONDITION-RESTARTS"))
     (CHAPTER ("## 構文") 2 (CODE1 "with-condition-restarts") " " (STRONG "condition-form")

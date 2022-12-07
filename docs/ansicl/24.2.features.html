@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Variable *FEATURES*</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Variable *FEATURES*</h1>
+</header>
+<p><a href="24.2.html">UP</a></p>
+<hr />
+<h1 id="variable-features">Variable <strong>*FEATURES*</strong></h1>
+<p>Variable <code>*FEATURES*</code></p>
+<h2 id="値の型">値の型</h2>
+<p>通常のリスト</p>
+<h2 id="初期値">初期値</h2>
+<p>実装依存</p>
+<h2 id="定義">定義</h2>
+<p><a href="24.2.features.html"><code>*features*</code></a>の値は、<code>features</code>リストと呼ばれます。 これはシンボルのリストであり、<code>features</code>と呼ばれ、 実装や環境のいくつかの状況に対応しています。</p>
+<p>多くの<code>features</code>が実装依存の意味を持っています。 下記の示すものは割り当てられた<code>feature</code>の名前です。</p>
+<ul>
+<li><code>:cltl1</code>
+<ul>
+<li>この値が存在するとき、 <code>LISP</code>というパッケージが 1984年に制定された<code>Common Lisp: The Language</code>に 適合していることを示します。 この<code>feature</code>をもつ適合する実装は、 仕様に指定されたシンボルを<code>LISP</code>パッケージではなく <code>COMMON-LISP</code>パッケージ内にすることができますが、 しかし必須ではありません。</li>
+</ul></li>
+<li><code>:cltl2</code>
+<ul>
+<li>この値が存在するとき、 実装は<code>Common Lisp: The Language, Second Edition</code>に 適合していることを示します。 この<code>feature</code>は、どのような適合する実装にも存在してはいけません。 なぜならそのドキュメントへの適合性はこの仕様の適合性と互換性がないからです。 しかし、この名前はこの仕様書によって、 プログラムがそのドキュメントの適合によって実装されたものと またこの仕様書の適合によって実装されたものとの 区別をする助けのために予約されています。</li>
+</ul></li>
+<li><code>:ieee-floating-point</code>
+<ul>
+<li>この値が存在するとき、 実装が<code>IEEE Standard for Binary Floating-Point Arithmetic</code>の要求に 適合していることを示します。</li>
+</ul></li>
+<li><code>:x3j13</code>
+<ul>
+<li>この値が存在するとき、 実装がこの仕様書のドラフト版にあるいくつかの特定の要求に合致しているか、 あるいは本仕様書に含まれる何らかのものについて、 いくつか<code>feature</code>が含まれている部分があると信じられることを示します。 適合した実装は、このような<code>feature</code>を含むかもしれないし含まないかもしれません （この<code>feature</code>は、時期尚早に<code>:draft-ansi-cl</code>や<code>:ansi-cl</code>を導入しないように、 ドラフト版の標準を利用可能にするための 一時しのぎであることを主な目的としています）。</li>
+</ul></li>
+<li><code>:draft-ansi-cl</code>
+<ul>
+<li>この値が存在するとき、 実装は1992年に公式にレビューされた本仕様の最初のドラフト版 全てについて適合していることを示します。 適合した実装は、<code>:draft-ansi-cl</code>の<code>feature</code>が含まれているときは、 <code>:draft-ansi-cl-2</code>か<code>:ansi-cl</code>の<code>feature</code>持つことは許されていません。 なぜなら最初のドラフトと続くものは互換性が無い変更があるためです。</li>
+</ul></li>
+<li><code>:draft-ansi-cl-2</code>
+<ul>
+<li>この値が存在するとき、 実装は公式にレビューされた本仕様の2番目のドラフト版 全てについて適合していることを示します （もし追加のドラフト版の公式レビューが導入されたとき、 このキーワードは2番目のドラフトを意味するものであると続く、 追加のキーワードが後のドラフト版の適合についての識別子として追加されます。 そのようなものとして、このキーワードの意味は、 時間経過とともに変更されることはありません）。 適合した実装は、<code>ansi-cl</code>の<code>feature</code>を持っているものについて、 もし最終的に承認された標準が ドラフト版の標準と非互換性ではないときに、 だた<code>:draft-ansi-cl</code>の<code>feature</code>のみを保持することが許されます。</li>
+</ul></li>
+<li><code>:ansi-cl</code>
+<ul>
+<li>この値が存在するとき、 実装はANSIによって採用された公式の標準である本仕様について 適合していることを示します。</li>
+</ul></li>
+<li><code>:common-lisp</code>
+<ul>
+<li>この<code>feature</code>は、 <code>:x3j13</code>, <code>:draft-ansi-cl</code>, <code>:ansi-cl</code>の<code>feature</code>を ひとつ以上保有するような実装においては <a href="24.2.features.html"><code>*features*</code></a>に現れなければなりません。 これは<code>:cltl1</code>か<code>:cltl2</code>の<code>feature</code>を持つような実装についても また現れなければいけませんが、 しかし本仕様書はそのようなふるまいを強制できません。 この<code>feature</code>は「Common Lisp」という名前のファミリーの言語と、 そうではなくそのファミリー内の何らかの仕様書における方言と区別するための 同一性を持たせるという意味を持っています。</li>
+</ul></li>
+</ul>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>1.5.2.1.1. リアルタイムコンディションの使用, 2.4. 標準マクロ文字</p>
+<h2 id="備考">備考</h2>
+<p><a href="24.2.features.html"><code>*features*</code></a>の値は、リーダー構文の<code>#+</code>と<code>#-</code>によって使用されます。</p>
+<p><code>features</code>リスト内のシンボルは、 どのようなパッケージにもなれますが、 実際にはそれらは一般的に<code>KEYWORD</code>パッケージになります。 これは、 <code>feature</code>式を読み込むリーダーマクロの<code>#+</code>と<code>#-</code>が 標準で<code>KEYWORD</code>パッケージを使用するためです。 <code>feature</code>の名前をパッケージ<code>P</code>（<code>KEYWORD</code>ではなく）で 使用する必要があるコードは、 <code>P</code>へのパッケージ前置詞を明に使うことで実現できますが、 そのようなコードは <a href="23.2.read.html"><code>read</code></a>で<code>feature</code>式を使うために パッケージ<code>P</code>が存在することを保証しなければならず、 ある場合においては<code>feature</code>式の読み込みが失敗するかもしれません。</p>
+<p>一般的に特定の実装で同一性を識別できる<code>feature</code>をひとつ以上含めることが 実装にとってより良いと考えられます。 そうすることにより条件式は他とは違うある実装の特異性として区別するような 書き方ができるようになります。 <code>feature</code>は通常<code>KEYWORD</code>パッケージのシンボルであるため、 結果として衝突が起こりやすく、 また誰がどのシンボルをどのような理由で使用する権利を持っているかを決定する 一意的なメカニズムがあるわけでもないので、 保守的な戦略として 自分の会社名や製品名から派生した名前を選択することができます。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

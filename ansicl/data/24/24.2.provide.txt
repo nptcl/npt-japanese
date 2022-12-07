@@ -1,0 +1,125 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function PROVIDE
+;;  Function REQUIRE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.provide
+@name: provide
+@name: require
+@type: function
+
+Function `PROVIDE`, `REQUIRE`
+
+
+## {syntax}
+
+`provide` *module-name* => *implementation-dependent*  
+`require` *module-name* `&optional` *pathname-list* => *implementation-dependent*
+
+
+## {arguments-and-values}
+
+*module-name* - 文字列指定子  
+*pathname-list* - {nil!variable:link}か、
+パス名指定子の空ではないリスト。
+デフォルトは{nil!variable:link}。
+
+
+## {description}
+
+{provide:link}は{*modules*:link}が保有しているリストに、
+そのような名前がまだ存在していないときに
+*module-name*をそのリストに追加します。
+
+{require:link}は{*modules*:link}が保有するリスト内に
+*module-name*が現れているかテストします。
+もし現れているとき、{require:link}は即座に返却します。
+それ以外のとき、
+次に示すようにファイルの集合を適切にロードするよう試みます。
+*pathname-list*の引数について、
+{nil!variable:link}ではなくパス名のリストを指定しているとき、
+左から右の順番でロードを行います。
+もし*pathname-list*が{nil!variable:link}のとき、
+{implementation-dependent}の仕組みにより
+*module-name*という名前のモジュールを
+ロードするような仕組みが起動されます。
+もしそのようなモジュールがロードできなかったとき、
+型{error!condition:link}のエラーが通知されます。
+
+両関数は、*module-name*の存在をテストするときに
+{string=:link}を使用します。
+
+
+## {examples}
+
+```lisp
+;;; これは移植不可能なREQUIREの使い方を示しています。
+;;; なぜなら実装依存のファイルロードメカニズムだからです。
+
+(require "CALCULUS")
+
+;;; これはリテラルな物理パス名のため
+;;; 移植不可能なREQUIREの使い方です。
+
+(require "CALCULUS" "/usr/lib/lisp/calculus")
+
+;;; 移植可能な使い方のフォームとして論理パス名を指定しており、
+;;; どこかで適用可能な変換が定義されているものとします。
+
+(require "CALCULUS" "lib:calculus")
+
+;;; 他の移植可能な使い方のフォームとして変数か
+;;; テーブルの検索関数によるパス名の決定が挙げられます。
+;;; これもまたどこかで初期化する必要があります。
+
+(require "CALCULUS" *calculus-module-pathname*)
+```
+
+
+## {side-effects}
+
+{provide:link}は{*modules*:link}を変更します。
+
+
+## {affected-by}
+
+{require:link}によって取られる特定の行動は、
+{provide:link}の呼び出しによって
+（または一般的に{*modules*:link}の値の変更によって）
+影響します。
+
+
+## {exceptional-situations}
+
+*module-name*が文字列指定子ではなかったとき、
+型{type-error:link}のエラーが通知されるべきです。
+
+もし{require:link}が
+ファイルシステムとの相互処理をしている間に
+要求された処理に問題が生じて失敗したとき、
+型{file-error:link}のエラーが通知されます。
+
+もし*pathname-list*の何かのパス名が
+ワイルドカードのパス名を指定した指定子であったとき、
+型{file-error:link}のエラーが通知されるかもしれません。
+
+
+## {see-also}
+
+{*modules*:link},
+{19.1.2:ab}
+
+
+## {notes}
+
+関数{provide:link}と{require:link}は非推奨です。
+
+もしモジュールがひとつのパッケージに含まれているとき、
+慣習的にはパッケージとモジュールの名前は同じになります。
+
+@end
+

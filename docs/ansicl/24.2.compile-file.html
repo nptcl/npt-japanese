@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function COMPILE-FILE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function COMPILE-FILE</h1>
+</header>
+<p><a href="24.2.html">UP</a></p>
+<hr />
+<h1 id="function-compile-file">Function <strong>COMPILE-FILE</strong></h1>
+<p>Function <code>COMPILE-FILE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>compile-file</code> <em>input-file</em> <code>&amp;key</code> <em>output-file</em> <em>verbose</em> <em>print</em> <em>external-format</em> =&gt; <em>output-truename</em>, <em>warnings-p</em>, <em>failure-p</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>input-file</em> - パス名指定子（デフォルトでは未指定の要素は <a href="19.4.default-pathname-defaults.html"><code>*default-pathname-defaults*</code></a>の値から取得し埋められます）。<br />
+<em>output-file</em> - パス名指定子。デフォルトは実装依存。<br />
+<em>verbose</em> - generalized-boolean。デフォルトは<a href="24.2.compile-print.html"><code>*compile-verbose*</code></a>の値。<br />
+<em>print</em> - generalized-boolean。デフォルトは<a href="24.2.compile-print.html"><code>*compile-print*</code></a>の値。<br />
+<em>external-format</em> - 外部ファイルフォーマット指定子。デフォルトは<code>:default</code>。<br />
+<em>output-truename</em> - パス名（出力ファイルの<a href="20.2.truename.html"><code>truename</code></a>）か、 <a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>warnings-p</em> - generalized-boolean<br />
+<em>failure-p</em> - generalized-boolean</p>
+<h2 id="定義">定義</h2>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>は、 <em>input-file</em>で指定されたファイルの内容を、 <em>output-file</em>によって指定されたファイルの位置へ 実装依存のバイナリデータに変換します。</p>
+<p><em>input-file</em>で示すファイルはソースファイルでなければなりません。 <em>output-file</em>は出力パス名を指定することができます。 コンパイルされたコードを出力する コンパイルファイルの実際のパス名は、 <a href="24.2.compile-file-pathname.html"><code>compile-file-pathname</code></a>を呼び出されたかのように計算されます。</p>
+<p>もし<em>input-file</em>か<em>output-file</em>が論理パス名のとき、 それは<a href="19.4.translate-logical-pathname.html"><code>translate-logical-pathname</code></a>が呼び出されたかのように 物理パス名に変換されます。</p>
+<p>もし<em>verbose</em>が<em>true</em>のとき、 <a href="24.2.compile-file.html"><code>compile-file</code></a>はコメントのフォーム（例えば先頭にセミコロン） で メッセージを標準出力に対して どのようなファイルがコンパイルされたかや、 その他の有益な情報などを印刷します。 もし<em>verbose</em>が<em>false</em>のときは、そのような情報は印刷されません。</p>
+<p>もし<em>print</em>が<em>true</em>のとき、 コンパイルされるファイル内の トップレベルフォームについての情報を、 標準出力に印刷します。 どのようなものが印刷されるかの 正確な内容は実装依存ですが、 それでも何らかの情報が印刷されます。 もし<em>print</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のときは 何の情報も印刷されません。</p>
+<p><em>external-format</em>は、 ファイルを開くときに使われる外部ファイルフォーマットを指定します。 関数<a href="21.2.open.html"><code>open</code></a>をご確認ください。 結果のコンパイルされたファイルは、 改めて外部ファイルフォーマットの指定をせずに ロードすることができるので、 <a href="24.2.compile-file.html"><code>compile-file</code></a>と<a href="24.2.load.html"><code>load</code></a>は このような方法を実現するために協調しなければなりません。 関数<a href="24.2.load.html"><code>load</code></a>をご確認ください。</p>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>は<a href="23.2.readtable-variable.html"><code>*readtable*</code></a>と<a href="11.2.package-variable.html"><code>*package*</code></a>に対して、 ファイル処理する前に保持されていた値に束縛します。</p>
+<p><a href="24.2.compile-file-pathname-variable.html"><code>*compile-file-truename*</code></a>は、 <a href="24.2.compile-file.html"><code>compile-file</code></a>によって束縛が行われ、 その内容はコンパイルされているファイルのパス名の<code>truename</code>です。</p>
+<p><a href="24.2.compile-file-pathname-variable.html"><code>*compile-file-pathname*</code></a>は <a href="24.2.compile-file.html"><code>compile-file</code></a>によって束縛が行われ、 その内容は<a href="24.2.compile-file.html"><code>compile-file</code></a>の最初の引数と デフォルト値がマージされたものを示します。 つまり<code>(pathname (merge-pathnames input-file))</code>です。</p>
+<p>コンパイルされたファイル内に含まれるコンパイルされた関数は、 Lispがそのコンパイルされたファイルをロードしたときに使用できるようになります。 コンパイラーによって処理されたどのような関数定義でも、 それは<code>#'(lambda ...)</code>フォームや、 <a href="5.3.flet.html"><code>flet</code></a>と<a href="5.3.flet.html"><code>labels</code></a>によって生成されたローカル関数、 <a href="5.3.defun.html"><code>defun</code></a>フォームなどの結果は、 型<a href="4.4.compiled-function.html"><code>compiled-function</code></a>のオブジェクトです。</p>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>の返却値の主値である<em>output-truename</em>は、 出力ファイルの<code>truename</code>か、 もしファイルが生成できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>です。</p>
+<p>2つめの返却値である<em>warnings-p</em>は、 コンパイラーによって型<a href="9.2.error-condition.html"><code>error</code></a>か <a href="9.2.warning.html"><code>warning</code></a>のコンディションが 検出されなかったときは<em>false</em>を、 それ以外のときは<em>true</em>を返却します。</p>
+<p>3つめの返却値である<em>failure-p</em>は、 コンパイラーによって型<a href="9.2.error-condition.html"><code>error</code></a>か <a href="9.2.warning.html"><code>warning</code></a>（<a href="9.2.style-warning.html"><code>style-warning</code></a>以外）コンディションが 検出されなかったときは<em>false</em>を、 それ以外のときは<em>true</em>を返却します。</p>
+<p>ファイルコンパイラーによって どのようにファイルを処理するかについての 一般的な情報は3.2.3. ファイルのコンパイルをご確認ください。</p>
+<p>ファイルコンパイラーによってコンパイルされるプログラムは、 ただ外部化可能なオブジェクトのみが含まれます。 そのようなオブジェクトの詳細については3.2.4. ファイルコンパイル時のリテラルオブジェクトをご確認ください。 どのようにして外部化可能なオブジェクトの集合を拡張するかについては 関数<a href="7.7.make-load-form.html"><code>make-load-form</code></a>と3.2.4.4. 外部オブジェクトの制約の追記をご確認ください。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p><a href="21.2.debug-io.html"><code>*error-output*</code></a>, <a href="21.2.debug-io.html"><code>*standard-output*</code></a>, <a href="24.2.compile-print.html"><code>*compile-verbose*</code></a>, <a href="24.2.compile-print.html"><code>*compile-print*</code></a></p>
+<p>コンピューターのファイルシステム</p>
+<h2 id="例外">例外</h2>
+<p>コンパイル処理中のエラーの検出についての情報は、 3.2.5. コンパイラーの例外状況をご確認ください。</p>
+<p>もし<code>(wild-pathname-p input-file)</code>が<em>true</em>のとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知することができます。</p>
+<p>入力としてソースファイルをオープンしようとしたか、 あるいは出力としてコンパイルされるファイルをオープンしようとしたときに 失敗したときは、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</p>
+<h2 id="参考">参考</h2>
+<p><a href="3.8.compile.html"><code>compile</code></a>, <a href="3.8.declare.html"><code>declare</code></a>, <a href="3.8.eval-when.html"><code>eval-when</code></a>, <a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, 20.1. ファイルシステムの説明, 19.1.2. ファイル名としてのパス名</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

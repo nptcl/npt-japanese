@@ -1,0 +1,56 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *COMPILE-PRINT*
+;;  Variable *COMPILE-VERBOSE*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.compile-print
+@name: *compile-print*
+@name: *compile-verbose*
+@type: variable
+
+Variable `*COMPILE-PRINT*`, `*COMPILE-VERBOSE*`
+
+
+## {value-type}
+
+{generalized-boolean}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+{*compile-print*:link}の値は、
+{compile-file:link}の引数`:print`がデフォルト値です。
+{*compile-verbose*:link}の値は、
+{compile-file:link}の引数`:verbose`がデフォルト値です。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {see-also}
+
+{compile-file:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

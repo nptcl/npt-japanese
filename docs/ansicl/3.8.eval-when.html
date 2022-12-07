@@ -229,7 +229,7 @@
 <em>result</em> - もし<em>form</em>が実行されたときはその値を、それ以外は<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
 <h2 id="定義">定義</h2>
 <p><a href="3.8.eval-when.html"><code>eval-when</code></a>フォームのボディ部は、 <em>situations</em>のリスト下にあるときのみ暗黙のprognとして処理します。</p>
-<p><code>compile-file</code>で処理しているコード内で <a href="3.8.eval-when.html"><code>eval-when</code></a>がトップレベルフォームとして現れたとき、 <em>situation</em>に<code>:compile-toplevel</code>（あるいは<code>compile</code>）と <code>:load-toplevel</code>（あるいは<code>load</code>）を使用することで 評価を行うかどうかを制御できます。 3.2.3. ファイルのコンパイルをご確認ください。</p>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>で処理しているコード内で <a href="3.8.eval-when.html"><code>eval-when</code></a>がトップレベルフォームとして現れたとき、 <em>situation</em>に<code>:compile-toplevel</code>（あるいは<code>compile</code>）と <code>:load-toplevel</code>（あるいは<code>load</code>）を使用することで 評価を行うかどうかを制御できます。 3.2.3. ファイルのコンパイルをご確認ください。</p>
 <p><em>situation</em>に<code>:execute</code>（あるいは<code>eval</code>）を使用することで <a href="3.8.eval-when.html"><code>eval-when</code></a>のその他のフォームの評価を行うかどうかを制御できます。 これは、それらがトップレベルフォームのものではないか、 あるいはコードが<a href="3.8.eval.html"><code>eval</code></a>か<a href="3.8.compile.html"><code>compile</code></a>によって処理されたときです。 もし<code>:execute</code>の<em>situation</em>にそのようなフォームが指定されたとき、 <em>form</em>のボディ部は暗黙のprognとして処理され、 それ以外の場合は<a href="3.8.eval-when.html"><code>eval-when</code></a>フォームは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <p><a href="3.8.eval-when.html"><code>eval-when</code></a>は通常トップレベルフォームに現れますが、 それが非トップレベルフォームとして現れても意味があります。 しかし、<a href="3.2.html">3.2. コンパイル</a>に記載されているコンパイル時の副作用は、 ただ<a href="3.8.eval-when.html"><code>eval-when</code></a>がトップレベルフォームに現れたときのみ行われます。</p>
 <h2 id="例文">例文</h2>
@@ -287,7 +287,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>compile-file</code>, <a href="3.2.html">3.2. コンパイル</a></p>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
 <p><a href="3.8.eval-when.html"><code>eval-when</code></a>の定義により、下記の論理的な効果が示されます。</p>
 <ul>

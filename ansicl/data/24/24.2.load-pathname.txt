@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *LOAD-PATHNAME*
+;;  Variable *LOAD-TRUENAME*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.load-pathname
+@name: *load-pathname*
+@name: *load-truename*
+@type: variable
+
+Variable `*LOAD-PATHNAME*`, `*LOAD-TRUENAME*`
+
+
+## {value-type}
+
+{*load-pathname*:link}の値は常にパス名か{nil!variable:link}です。
+{*load-truename*:link}の値は常に物理パス名か{nil!variable:link}です。
+
+
+## {initial-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+{load:link}呼び出し中は、
+{*load-pathname*:link}は
+{load:link}の最初の引数とデフォルト値がマージされたものが束縛され、
+その束縛された値は`(pathname (merge-pathnames input-file))`になります。
+同じ時間で{*load-truename*:link}には
+ロードされるファイルの`truename`が束縛されます。
+
+その他の時間においては、これらの変数の値は{nil!variable:link}です。
+
+もし{load:link}実施中に
+`break loop`として`eval-loop`などの割り込みが生じたとき、
+それらの変数が保持している値が
+ちょうど`break loop`に入る前の値を保有しているか、
+あるいはそれらに{nil!variable:link}が束縛されているかどうかは
+{implementation-dependent}です。
+
+これらの変数に代入か束縛を仕様としたときの結果は指定されていません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+ファイルシステム
+
+
+## {see-also}
+
+{load:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

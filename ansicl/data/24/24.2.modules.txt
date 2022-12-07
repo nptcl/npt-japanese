@@ -1,0 +1,54 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *MODULES*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.modules
+@name: *modules*
+@type: variable
+
+Variable `*MODULES*`
+
+
+## {value-type}
+
+文字列のリスト
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+{*modules*:link}の値は、
+現在のLispイメージ内にロードされた
+モジュールの名前のリストです。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+{provide:link}
+
+
+## {see-also}
+
+{provide:link},
+{require:link}
+
+
+## {notes}
+
+変数{*modules*:link}は非推奨です。
+
+@end
+

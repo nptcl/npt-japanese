@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Variable *READTABLE*</title>
+  <title>Macro WITH-COMPILATION-UNIT</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,31 +214,41 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Variable *READTABLE*</h1>
+<h1 class="title">Macro WITH-COMPILATION-UNIT</h1>
 </header>
-<p><a href="23.2.html">UP</a></p>
+<p><a href="24.2.html">UP</a></p>
 <hr />
-<h1 id="variable-readtable">Variable <strong>*READTABLE*</strong></h1>
-<p>Variable <code>*READTABLE*</code></p>
-<h2 id="値の型">値の型</h2>
-<p><code>readtable</code></p>
-<h2 id="初期値">初期値</h2>
-<p><a href="2.html">2. 構文</a>に定義されているCommon Lispの構文に適合する<code>readtable</code></p>
+<h1 id="macro-with-compilation-unit">Macro <strong>WITH-COMPILATION-UNIT</strong></h1>
+<p>Macro <code>WITH-COMPILATION-UNIT</code></p>
+<h2 id="構文">構文</h2>
+<p><code>with-compilation-unit</code> <code>(</code> <code>[[</code> <em>option</em> <code>]]</code> <code>)</code> <em>form*</em> =&gt; <em>result*</em></p>
+<pre><code>option::= :override override </code></pre>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>override</em> - generalized-boolean。評価されます。 デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>form</em> - 暗黙のprogn<br />
+<em>result</em> - <em>form</em>の返却値</p>
 <h2 id="定義">定義</h2>
-<p><a href="23.2.readtable-variable.html"><code>*readtable*</code></a>の値は、現在の<code>readtable</code>と呼ばれます。 これは構文解析におけるLispリーダーの振る舞いを制御し、 そしてLispプリンターにもまた影響を与えます （例えば<a href="23.2.readtable-case.html"><code>readtable-case</code></a>関数を参照）。</p>
+<p><em>form</em>を左から右に評価します。 <a href="24.2.with-compilation-unit.html"><code>with-compilation-unit</code></a>の動的環境内では、 コンパイラーがコンパイルの終了まで延期した動作は、 <a href="24.2.with-compilation-unit.html"><code>with-compilation-unit</code></a>の一番外側の呼び出しが 終了するまで延期されます。</p>
+<p><em>option</em>の集合は実装によって拡張されることが許されますが、 しかしキーワード<code>:override</code>のみが標準のものになります。</p>
+<p>もし動的にネストされたとき、 最も外側で呼び出された<a href="24.2.with-compilation-unit.html"><code>with-compilation-unit</code></a>のみが 関連付けられた<code>:override</code>の値が<em>true</em>ではないときに限り、 何らかの効果を持ちます。 <em>override</em>が<em>true</em>である場合においては、 最も内側にある<em>override</em>が<em>true</em>のものが終了した時点まで 警告が遅延されます。</p>
+<p>関数<a href="24.2.compile-file.html"><code>compile-file</code></a>は、 次のような効果を提供します。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-compilation-unit</span> (:override <span class="kw">nil</span>) ...)</span></code></pre></div>
+<p>コンパイルされるコードが上記のものに囲まれます。</p>
+<p>実装依存の拡張は ただ実装依存なキーワードの使用によって プログラマーが明示的に要求した結果としてのみ提供することができます。 実装者はこのマクロの使用方法として、 キーワードを全て削除するか、 あるいはちょうど<code>:override</code>のキーワードに対して 追加の意味を割り当てることが許されていません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">readtablep</span> <span class="va">*readtable*</span>) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> zvar <span class="dv">123</span>) <span class="op">=&gt;</span>  <span class="dv">123</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">set-syntax-from-char</span> <span class="ch">#\z</span> <span class="ch">#\&#39;</span> (<span class="kw">setq</span> table2 (<span class="kw">copy-readtable</span>))) <span class="op">=&gt;</span>  T</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>zvar <span class="op">=&gt;</span>  <span class="dv">123</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> <span class="va">*readtable*</span> table2) <span class="op">=&gt;</span>  #&lt;READTABLE&gt;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>zvar <span class="op">=&gt;</span>  VAR</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">setq</span> <span class="va">*readtable*</span> (<span class="kw">copy-readtable</span> <span class="kw">nil</span>)) <span class="op">=&gt;</span>  #&lt;READTABLE&gt;</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>zvar <span class="op">=&gt;</span>  <span class="dv">123</span></span></code></pre></div>
+<p>もし実装が通常特定の種類の警告、 例えば<code>undefined-function</code>についての警告を コンパイル単位（例えばファイル単位）の終端まで延期したいとき、 次の例ではどのようにしてこれらの警告を いくつかのファイルにおいてコンパイルの終端まで 遅延させるかについて示します。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> compile-files </span>(&amp;<span class="kw">rest</span> files)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">with-compilation-unit</span> ()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">mapcar</span> #&#39;(<span class="kw">lambda</span> (file) (<span class="kw">compile-file</span> file)) files)))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(compile-files <span class="st">&quot;A&quot;</span> <span class="st">&quot;B&quot;</span> <span class="st">&quot;C&quot;</span>)</span></code></pre></div>
+<p>しかし、もし実装がどのような警告についても 通常みられるような遅延をしないときは、 <a href="24.2.with-compilation-unit.html"><code>with-compilation-unit</code></a>は何の効果も持たないことを注意して下さい。</p>
 <h2 id="影響">影響</h2>
-<p><a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="24.2.load.html"><code>load</code></a></p>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="24.2.load.html"><code>load</code></a>, <a href="23.2.readtable.html"><code>readtable</code></a>, 2.1.1.1. 現在の<code>readtable</code></p>
+<p><a href="3.8.compile.html"><code>compile</code></a>, <a href="24.2.compile-file.html"><code>compile-file</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

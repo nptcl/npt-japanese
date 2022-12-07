@@ -229,7 +229,7 @@
 <h2 id="定義">定義</h2>
 <p><a href="3.8.load-time-value.html"><code>load-time-value</code></a>は、その式が実行環境に入るまで <em>form</em>の評価を遅らせる仕組みを提供します。 <a href="3.2.html">3.2. コンパイル</a>をご確認ください。</p>
 <p><em>read-only-p</em>は、結果を定数オブジェクトとみなすかどうかを指示します。 もし<a href="5.3.t-variable.html"><code>t</code></a>のとき結果は読み込み専用の値となり、 実装が適用可能であれば、読み込み専用の領域にコピーするか、 あるいは同時に他のプログラムからの似た定数オブジェクトと合併します。 もし<a href="5.3.nil-variable.html"><code>nil</code></a>のとき（デフォルト）は、 結果はコピーも合併もされません。 それは修正される可能性のあるデータとして扱われます。</p>
-<p>もし<a href="3.8.load-time-value.html"><code>load-time-value</code></a>の式が<code>compile-file</code>によって処理されるとき、 コンパイラーは、まず<em>form</em>をマクロ展開や機械語コードへの変換など、 通常の方法で処理します。そのとき、<em>form</em>のロード実行時に <code>null</code>のレキシカルな環境であるように配置します。 評価の結果は、実行時にはリテラルオブジェクトのように扱われます。 ファイル読み込み時には、<em>form</em>の実行はただ一度だけ行われることが保証されます。 しかしその評価順がファイル内のトップレベルフォームの評価順を 遵守するかどうかは実装依存です。</p>
+<p>もし<a href="3.8.load-time-value.html"><code>load-time-value</code></a>の式が<a href="24.2.compile-file.html"><code>compile-file</code></a>によって処理されるとき、 コンパイラーは、まず<em>form</em>をマクロ展開や機械語コードへの変換など、 通常の方法で処理します。そのとき、<em>form</em>のロード実行時に <code>null</code>のレキシカルな環境であるように配置します。 評価の結果は、実行時にはリテラルオブジェクトのように扱われます。 ファイル読み込み時には、<em>form</em>の実行はただ一度だけ行われることが保証されます。 しかしその評価順がファイル内のトップレベルフォームの評価順を 遵守するかどうかは実装依存です。</p>
 <p><a href="3.8.compile.html"><code>compile</code></a>によってコンパイルされた関数上に <a href="3.8.load-time-value.html"><code>load-time-value</code></a>があらわれたとき、 その<em>form</em>はコンパイル時に<code>null</code>のレキシカルな環境として評価されます。 コンパイル時に評価されたその結果は、 コンパイルされたコード上ではリテラルオブジェクトとして扱われます。</p>
 <p>もし<a href="3.8.load-time-value.html"><code>load-time-value</code></a>の式が<a href="3.8.eval.html"><code>eval</code></a>によって処理されるとき、 その<em>form</em>は<code>null</code>のレキシカルな環境によって評価され、 ひとつの値が返却されます。 <a href="3.8.eval.html"><code>eval</code></a>による式の処理の一部か全体を暗黙的にコンパイルするような実装では、 <em>form</em>がたった一度だけ評価されるときにコンパイル処理が行われます。</p>
 <p>もし<code>(load-time-value form)</code>という同じリストが 評価時かコンパイル時に複数現れたとき、 <em>form</em>の評価がただ一度だけ行われるか、 あるいは複数行われるかは実装依存です。 これは、式が評価とコンパイル時で部分構造を共有するときと、 同じフォームを<a href="3.8.eval.html"><code>eval</code></a>か<a href="3.8.compile.html"><code>compile</code></a>で複数回実行したときの、 両方の場合で生じます。 <a href="3.8.eval.html"><code>eval</code></a>による<a href="3.8.load-time-value.html"><code>load-time-value</code></a>の式は 同一の場所を複数参照したり複数評価できるので、 各実行が新しいオブジェクトとを返却するか、 あるいは別の何かの実行によって生成された 同じオブジェクトを返却するのかは 実装依存です。 ユーザーはこの返却値のオブジェクトを破壊的に修正するときには、 注意する必要があります。</p>
@@ -277,7 +277,7 @@
 <h2 id="例外">例外</h2>
 <p>なし。</p>
 <h2 id="参考">参考</h2>
-<p><code>compile-file</code>, <a href="3.8.compile.html"><code>compile</code></a>, <a href="3.8.eval.html"><code>eval</code></a>, 3.2.2.2. 小さなコンパイル, <a href="3.2.html">3.2. コンパイル</a></p>
+<p><a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="3.8.compile.html"><code>compile</code></a>, <a href="3.8.eval.html"><code>eval</code></a>, 3.2.2.2. 小さなコンパイル, <a href="3.2.html">3.2. コンパイル</a></p>
 <h2 id="備考">備考</h2>
 <p><a href="3.8.load-time-value.html"><code>load-time-value</code></a>は、クォートされた構造の外側の 「評価による」位置に現れる必要があります。 このような状況では、 クォートされた構造の内側で<a href="3.8.load-time-value.html"><code>load-time-value</code></a>を使って 呼び出されるようにしたいときは、 おそらくバッククォートリーダーマクロを呼び出します。 2.4.6. バッククォートをご確認ください。</p>
 <p>もしオブジェクトが既に読み込み専用であったときは、 <em>read-only-p</em>に<a href="5.3.nil-variable.html"><code>nil</code></a>を指定しても、 そのオブジェクトを強制的に修正可能にするわけではありません。 この操作は、変更可能なオブジェクトに対して 読み取り専用にする命令ではないと言っています。</p>

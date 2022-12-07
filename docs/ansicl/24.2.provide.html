@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function COMPILED-FUNCTION-P</title>
+  <title>Function PROVIDE, REQUIRE</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,44 +214,56 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function COMPILED-FUNCTION-P</h1>
+<h1 class="title">Function PROVIDE, REQUIRE</h1>
 </header>
-<p><a href="5.3.html">UP</a></p>
+<p><a href="24.2.html">UP</a></p>
 <hr />
-<h1 id="function-compiled-function-p">Function <strong>COMPILED-FUNCTION-P</strong></h1>
-<p>Function <code>COMPILED-FUNCTION-P</code></p>
+<h1 id="function-provide-require">Function <strong>PROVIDE, REQUIRE</strong></h1>
+<p>Function <code>PROVIDE</code>, <code>REQUIRE</code></p>
 <h2 id="構文">構文</h2>
-<p><code>compiled-function-p</code> <em>object</em> =&gt; <em>generalized-boolean</em></p>
+<p><code>provide</code> <em>module-name</em> =&gt; <em>implementation-dependent</em><br />
+<code>require</code> <em>module-name</em> <code>&amp;optional</code> <em>pathname-list</em> =&gt; <em>implementation-dependent</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>object</em> - オブジェクト<br />
-<em>generalized-boolean</em> - generalized-boolean</p>
+<p><em>module-name</em> - 文字列指定子<br />
+<em>pathname-list</em> - <a href="5.3.nil-variable.html"><code>nil</code></a>か、 パス名指定子の空ではないリスト。 デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
 <h2 id="定義">定義</h2>
-<p><em>object</em>が型<a href="4.4.compiled-function.html"><code>compiled-function</code></a>なら<em>true</em>を、 それ以外は<em>false</em>を返却します。</p>
+<p><a href="24.2.provide.html"><code>provide</code></a>は<a href="24.2.modules.html"><code>*modules*</code></a>が保有しているリストに、 そのような名前がまだ存在していないときに <em>module-name</em>をそのリストに追加します。</p>
+<p><a href="24.2.provide.html"><code>require</code></a>は<a href="24.2.modules.html"><code>*modules*</code></a>が保有するリスト内に <em>module-name</em>が現れているかテストします。 もし現れているとき、<a href="24.2.provide.html"><code>require</code></a>は即座に返却します。 それ以外のとき、 次に示すようにファイルの集合を適切にロードするよう試みます。 <em>pathname-list</em>の引数について、 <a href="5.3.nil-variable.html"><code>nil</code></a>ではなくパス名のリストを指定しているとき、 左から右の順番でロードを行います。 もし<em>pathname-list</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、 実装依存の仕組みにより <em>module-name</em>という名前のモジュールを ロードするような仕組みが起動されます。 もしそのようなモジュールがロードできなかったとき、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが通知されます。</p>
+<p>両関数は、<em>module-name</em>の存在をテストするときに <a href="16.2.string-equal.html"><code>string=</code></a>を使用します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x) x) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compile</span> &#39;f) <span class="op">=&gt;</span>  F</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;f) <span class="op">=&gt;</span>  true</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;f) <span class="op">=&gt;</span>  false</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> (<span class="kw">compile</span> <span class="kw">nil</span> &#39;(<span class="kw">lambda</span> (x) x)))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  true</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> #&#39;(<span class="kw">lambda</span> (x) x))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  false</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>OR=&gt;  true</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> &#39;(<span class="kw">lambda</span> (x) x)) <span class="op">=&gt;</span>  false</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;;; これは移植不可能なREQUIREの使い方を示しています。</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">;;; なぜなら実装依存のファイルロードメカニズムだからです。</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> <span class="st">&quot;CALCULUS&quot;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">;;; これはリテラルな物理パス名のため</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 移植不可能なREQUIREの使い方です。</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> <span class="st">&quot;CALCULUS&quot;</span> <span class="st">&quot;/usr/lib/lisp/calculus&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 移植可能な使い方のフォームとして論理パス名を指定しており、</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">;;; どこかで適用可能な変換が定義されているものとします。</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> <span class="st">&quot;CALCULUS&quot;</span> <span class="st">&quot;lib:calculus&quot;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">;;; 他の移植可能な使い方のフォームとして変数か</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">;;; テーブルの検索関数によるパス名の決定が挙げられます。</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">;;; これもまたどこかで初期化する必要があります。</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>(<span class="kw">require</span> <span class="st">&quot;CALCULUS&quot;</span> *calculus-module-pathname*)</span></code></pre></div>
 <h2 id="副作用">副作用</h2>
-<p>なし。</p>
+<p><a href="24.2.provide.html"><code>provide</code></a>は<a href="24.2.modules.html"><code>*modules*</code></a>を変更します。</p>
 <h2 id="影響">影響</h2>
-<p>なし。</p>
+<p><a href="24.2.provide.html"><code>require</code></a>によって取られる特定の行動は、 <a href="24.2.provide.html"><code>provide</code></a>の呼び出しによって （または一般的に<a href="24.2.modules.html"><code>*modules*</code></a>の値の変更によって） 影響します。</p>
 <h2 id="例外">例外</h2>
-<p>なし。</p>
+<p><em>module-name</em>が文字列指定子ではなかったとき、 型<a href="4.4.type-error.html"><code>type-error</code></a>のエラーが通知されるべきです。</p>
+<p>もし<a href="24.2.provide.html"><code>require</code></a>が ファイルシステムとの相互処理をしている間に 要求された処理に問題が生じて失敗したとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</p>
+<p>もし<em>pathname-list</em>の何かのパス名が ワイルドカードのパス名を指定した指定子であったとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されるかもしれません。</p>
 <h2 id="参考">参考</h2>
-<p><a href="3.8.compile.html"><code>compile</code></a>, <a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="4.4.compiled-function.html"><code>compiled-function</code></a></p>
+<p><a href="24.2.modules.html"><code>*modules*</code></a>, 19.1.2. ファイル名としてのパス名</p>
 <h2 id="備考">備考</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">compiled-function-p</span> object) == (<span class="kw">typep</span> object &#39;compiled-function)</span></code></pre></div>
+<p>関数<a href="24.2.provide.html"><code>provide</code></a>と<a href="24.2.provide.html"><code>require</code></a>は非推奨です。</p>
+<p>もしモジュールがひとつのパッケージに含まれているとき、 慣習的にはパッケージとモジュールの名前は同じになります。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

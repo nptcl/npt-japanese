@@ -1,0 +1,113 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Macro WITH-COMPILATION-UNIT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.with-compilation-unit
+@name: with-compilation-unit
+@type: macro
+
+Macro `WITH-COMPILATION-UNIT`
+
+
+## {syntax}
+
+`with-compilation-unit` `(` `[[` *option* `]]` `)` *form\** => *result\**
+
+```
+option::= :override override 
+```
+
+
+## {arguments-and-values}
+
+*override* - {generalized-boolean}。評価されます。
+デフォルトは{nil!variable:link}。  
+*form* - {implicit-progn}  
+*result* - *form*の返却値
+
+
+## {description}
+
+*form*を左から右に評価します。
+{with-compilation-unit:link}の動的環境内では、
+コンパイラーがコンパイルの終了まで延期した動作は、
+{with-compilation-unit:link}の一番外側の呼び出しが
+終了するまで延期されます。
+
+*option*の集合は実装によって拡張されることが許されますが、
+しかしキーワード`:override`のみが標準のものになります。
+
+もし動的にネストされたとき、
+最も外側で呼び出された{with-compilation-unit:link}のみが
+関連付けられた`:override`の値が*true*ではないときに限り、
+何らかの効果を持ちます。
+*override*が*true*である場合においては、
+最も内側にある*override*が*true*のものが終了した時点まで
+警告が遅延されます。
+
+関数{compile-file:link}は、
+次のような効果を提供します。
+
+```lisp
+(with-compilation-unit (:override nil) ...)
+```
+
+コンパイルされるコードが上記のものに囲まれます。
+
+{implementation-dependent}の拡張は
+ただ{implementation-dependent}なキーワードの使用によって
+プログラマーが明示的に要求した結果としてのみ提供することができます。
+実装者はこのマクロの使用方法として、
+キーワードを全て削除するか、
+あるいはちょうど`:override`のキーワードに対して
+追加の意味を割り当てることが許されていません。
+
+
+## {examples}
+
+もし実装が通常特定の種類の警告、
+例えば`undefined-function`についての警告を
+コンパイル単位（例えばファイル単位）の終端まで延期したいとき、
+次の例ではどのようにしてこれらの警告を
+いくつかのファイルにおいてコンパイルの終端まで
+遅延させるかについて示します。
+
+```lisp
+(defun compile-files (&rest files)
+  (with-compilation-unit ()
+    (mapcar #'(lambda (file) (compile-file file)) files)))
+
+(compile-files "A" "B" "C")
+```
+
+しかし、もし実装がどのような警告についても
+通常みられるような遅延をしないときは、
+{with-compilation-unit:link}は何の効果も持たないことを注意して下さい。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{compile:link},
+{compile-file:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

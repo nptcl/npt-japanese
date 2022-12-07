@@ -1,0 +1,70 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *COMPILE-FILE-PATHNAME*
+;;  Variable *COMPILE-FILE-TRUENAME*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.compile-file-pathname!variable
+@name: *compile-file-pathname*
+@name: *compile-file-truename*
+@type: variable
+
+Variable `*COMPILE-FILE-PATHNAME*`, `*COMPILE-FILE-TRUENAME*`
+
+
+## {value-type}
+
+{*compile-file-pathname*:link}の値は常にパス名か{nil!variable:link}です。
+{*compile-file-truename*:link}の値は常に物理パス名か{nil!variable:link}です。
+
+
+## {initial-value}
+
+{nil!variable:link}
+
+
+## {description}
+
+{compile-file:link}呼び出し中は、
+{*compile-file-pathname*:link}は
+{compile-file:link}の最初の引数とデフォルト値がマージされたものが束縛され、
+その束縛された値は`(pathname (merge-pathnames input-file))`になります。
+同じ時間で{*compile-file-truename*:link}には
+コンパイルされるファイルの`truename`が束縛されます。
+
+その他の時間においては、これらの変数の値は{nil!variable:link}です。
+
+もし{compile-file:link}実施中に
+`break loop`として`eval-loop`などの割り込みが生じたとき、
+それらの変数が保持している値が
+ちょうど`break loop`に入る前の値を保有しているか、
+あるいはそれらに{nil!variable:link}が束縛されているかどうかは
+{implementation-dependent}です。
+
+これらの変数に代入か束縛を仕様としたときの結果は指定されていません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+ファイルシステム
+
+
+## {see-also}
+
+{compile-file:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

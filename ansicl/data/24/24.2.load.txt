@@ -1,0 +1,190 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LOAD
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.load
+@name: load
+@type: function
+
+Function `LOAD`
+
+
+## {syntax}
+
+`load` *filespec* `&key` *verbose* *print* *if-does-not-exist* *external-format*
+ => *generalized-boolean*
+
+
+## {arguments-and-values}
+
+*filespec* - ストリームか、パス名指定子。
+デフォルトは{*default-pathname-defaults*:link}から取得されます。  
+*verbose* - {generalized-boolean}。デフォルトは{*load-verbose*:link}の値。  
+*print* - {generalized-boolean}。デフォルトは{*load-print*:link}の値。  
+*if-does-not-exist* - {generalized-boolean}。デフォルトは*true*。  
+*external-format* - 外部ファイルフォーマット指定子。デフォルトは`:default`。  
+*generalized-boolean* - {generalized-boolean}
+
+
+## {description}
+
+{load:link}は、*filespec*という名前のファイルをLisp環境にロードします。
+
+ソースファイルとコンパイルファイルの区別する方法については
+{implementation-dependent}です。
+もしファイルの定義が不完全であり、
+ソースファイルとコンパイルファイルの両方が存在し、
+それらにマッチするとき、
+これらのどのファイルが{load:link}に選択されるかは
+{implementation-dependent}です。
+
+もし*filespec*がストリームのとき、
+{load:link}はストリームが何の種類か決定し、
+そしてストリームから直接ロードを行います。
+もし*filespec*が論理パス名のとき、
+それは{translate-logical-pathname:link}が呼び出されたかのように
+物理パス名へと変換されます。
+
+{load:link}は*filespec*によって名付けられたファイル内において
+連続的に遭遇した各フォームを実行していきます。
+もしそのファイルがソースファイルであり、
+実装が暗黙的にコンパイルする処理を選んだとき、
+{load:link}は{3.2.3.1:ab}に記載されているような
+トップレベルのフォームとして識別しなければならず、
+次の暗黙的なコンパイルが始まる前に
+各トップレベルフォームの実行を整えます
+（しかし{load:link}によって処理を行う{eval-when:link}フォームの
+`:execute`の状況によって制御できます）。
+
+もし*verbose*が*true*のとき、
+{load:link}はコメントのフォーム(例えば先頭にセミコロン） で
+メッセージを標準出力に対して
+どのようなファイルがコンパイルされたかや、
+その他の有益な情報などを印刷します。
+もし*verbose*が*false*のときは、そのような情報は印刷されません。
+
+もし*print*が*true*のとき、
+{load:link}は標準出力に対して徐々に情報を出力していき
+ロード処理の進行を示します。
+ソースファイルのとき、
+この情報はそのファイル内の各フォームによって
+生成された値とすぐに返却される値を出力する意味があります。
+コンパイルファイルのとき、
+何が印刷されるかはソースファイルの情報が
+正確に反映されないかもしれませんが、
+しかしいくつかの一般的な情報が印刷されます。
+もし*print*が*false*のときは、そのような情報は印刷されません。
+
+もし*filespec*という名前のファイルがロードに成功したとき、
+{load:link}は*true*を返却します。
+
+もしファイルが存在しないときは、
+*if-does-not-exist*に依存した動作が取得されます。
+もしこの値が{nil!variable:link}のときは
+{load:link}は{nil!variable:link}を返却します。
+それ以外のときはエラーが通知されます。
+
+*external-format*は、
+ファイルをオープンするときに使用される
+（関数{open:link}をご確認ください）
+外部ファイルフォーマットを指定しますが、
+*filespec*という名前で指定されたファイルがコンパイルファイルのときは、
+*external-format*は無視されます。
+
+
+{compile-file:link}と{load:link}は強調して
+ファイルコンパイラ時に外部ファイルフォーマットが指定されたときに
+そのソースファイルが処理された時点で
+参照されたソースファイルの文字の相似を保存するように、
+{implementation-dependent}な方法にて保証します。
+よってそのコンパイルファイルがロードされた時点での
+*external-format*の値に関わらずロードされます。
+
+{load:link}は{*readtable*:link}と{*package*:link}に対して、
+ファイルのロードをする前に保持されていた値に束縛します。
+
+{*load-truename*:link}は、
+{load:link}によって束縛が行われ、
+その内容はロードされているファイルのパス名の`truename`です。
+
+{*load-pathname*:link}は
+{load:link}によって束縛が行われ、
+その内容は{load:link}の最初の引数と
+デフォルト値がマージされたものを示します。
+つまり`(pathname (merge-pathnames input-file))`です。
+
+
+## {examples}
+
+```lisp
+;Establish a data file...
+(with-open-file (str "data.in" :direction :output :if-exists :error)
+  (print 1 str) (print '(setq a 888) str) t)
+=>  T
+(load "data.in") =>  true
+a =>  888
+(load (setq p (merge-pathnames "data.in")) :verbose t)
+; Loading contents of file /fred/data.in
+; Finished loading /fred/data.in
+=>  true
+(load p :print t) 
+; Loading contents of file /fred/data.in
+;  1
+;  888
+; Finished loading /fred/data.in
+=>  true
+;----[Begin file SETUP]----
+(in-package "MY-STUFF")
+(defmacro compile-truename () `',*compile-file-truename*)
+(defvar *my-compile-truename* (compile-truename) "Just for debugging.")
+(defvar *my-load-pathname* *load-pathname*)
+(defun load-my-system ()
+  (dolist (module-name '("FOO" "BAR" "BAZ"))
+    (load (merge-pathnames module-name *my-load-pathname*))))
+;----[End of file SETUP]----
+
+
+(load "SETUP")
+(load-my-system)
+```
+
+
+## {affected-by}
+
+実装と、ホストコンピューターのファイルシステム
+
+
+## {exceptional-situations}
+
+もし`:if-does-not-exist`が*true*に指定されるか
+あるいは指定されなかったとき、
+*filespec*によって名前付けられたファイルが存在しなかったとき、
+あるいはファイルシステムがその要求した処理を実施できなかったときは、
+{load:link}は型{file-error:link}のエラーを通知します。
+
+もし`(wild-pathname-p filespec)`が*true*のときは、
+型{file-error:link}のエラーを通知できます。
+
+
+## {see-also}
+
+{error!condition:link},
+{merge-pathnames:link},
+{*load-verbose*:link},
+{*default-pathname-defaults*:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

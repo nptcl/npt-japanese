@@ -36,6 +36,13 @@
 (index 26 "用語集" "Glossary")
 (index A "付録" "Appendix")
 
+;; Chapter 1
+(text 1.5 "適合" "Conformance")
+(text 1.5.2 "適合した実装" "Conforming Programs")
+(text 1.5.2.1 "{implementation-dependent}の言語の`features`の使用"
+      "Use of Implementation-Defined Language Features")
+(text 1.5.2.1.1 "リアルタイムコンディションの使用" "Use of Read-Time Conditionals")
+
 ;; Chapter 2
 (text 2.1 "文字の構文" "Character Syntax")
 (text 2.1.1 "リードテーブル" "Readtables")
@@ -81,6 +88,7 @@
 (text 3.2.2.1 "コンパイラーマクロ" "Compiler Macros")
 (text 3.2.2.2 "小さなコンパイル" "Minimal Compilation")
 (text 3.2.3 "ファイルのコンパイル" "File Compilation")
+(text 3.2.3.1 "トップレベルフォームの処理" "Processing of Top Level Forms")
 (text 3.2.4 "ファイルコンパイル時の{literal-object}"
       "Literal Objects in Compiled Files")
 (index 3.2.4.2 "リテラルオブジェクトの類似性" "Similarity of Literal Objects")
@@ -992,6 +1000,13 @@
 (dictionary 24.2.compile-file-pathname)
 (dictionary 24.2.load)
 (dictionary 24.2.with-compilation-unit)
+(dictionary 24.2.features)
+(dictionary 24.2.compile-file-pathname!variable)
+(dictionary 24.2.load-pathname)
+(dictionary 24.2.compile-print)
+(dictionary 24.2.load-print)
+(dictionary 24.2.modules)
+(dictionary 24.2.provide)
 
 ;; Chapger 25
 (index 25.1 "外部環境" "The External Environment")

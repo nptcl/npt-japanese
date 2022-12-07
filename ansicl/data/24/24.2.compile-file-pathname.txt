@@ -1,0 +1,97 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  24. システム構築
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function COMPILE-FILE-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 24.2.compile-file-pathname
+@name: compile-file-pathname
+@type: function
+
+Function `COMPILE-FILE-PATHNAME`
+
+
+## {syntax}
+
+`compile-file-pathname` *input-file* `&key` *output-file* `&allow-other-keys`
+ => *pathname*
+
+
+## {arguments-and-values}
+
+*input-file* - パス名指定子（デフォルトでは未指定の要素は
+{*default-pathname-defaults*:link}の値から取得し埋められます）。  
+*output-file* - パス名指定子。デフォルトは{implementation-dependent}。  
+*pathname* - パス名
+
+
+## {description}
+
+この関数は{compile-file:link}に同じ引数を与えたときに
+書き込みが行われるパス名を返却します。
+
+*output-file*のデフォルトは、
+*input-file*と{*default-pathname-defaults*:link}の値を
+マージした結果のパス名から取得されますが、
+例外としてタイプの要素は
+実装定義によるコンパイルされたファイルのデフォルトタイプとして
+適切なものをデフォルト値に使用しなければなりません。
+
+もし*input-file*が論理パス名であり
+かつ*output-file*が指定されなかったとき、
+その結果は論理パス名です。
+もし*input-file*が論理パス名のとき、
+それは{translate-logical-pathname:link}が呼び出されたかのように
+物理パス名へ変換されます。
+もし*input-file*がストリームのとき、
+そのストリームは開いていても閉じていても受け付けます。
+{compile-file-pathname:link}は、
+そのファイルが開いているときは、
+ファイルがクローズされたあとに実行したかのような
+同じパス名を返却します。
+*input-file*が
+{make-two-way-stream:link},
+{make-echo-stream:link},
+{make-broadcast-stream:link},
+{make-concatenated-stream:link},
+{make-string-input-stream:link},
+{make-string-output-stream:link}によって
+生成されたストリームのときはエラーです。
+
+もし実装が{compile-file:link}に追加のキーワード引数をサポートしているとき、
+{compile-file-pathname:link}も同じ引数を受け取れなければなりません。
+
+
+## {examples}
+
+{logical-pathname-translations:link}をご確認ください。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+*input-file*か*output-file*がワイルドカードを含んでいるときは、
+型{file-error:link}のエラーを通知できます。
+
+
+## {see-also}
+
+{compile-file:link},
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{20.1:ab},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

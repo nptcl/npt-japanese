@@ -10,7 +10,7 @@ Dictionaryを約半分翻訳しました。
 
 |    |    |    |    |
 |:---|:---|:---|:---|
-|1.|Introduction|紹介|辞書|
+|[1.](1.html)|[Introduction](1.html)|[紹介](1.html)|辞書|
 |[2.](2.html)|[Syntax](2.html)|[構文](2.html)|辞書|
 |[3.](3.html)|[Evaluation and Compilation](3.html)|[評価とコンパイル](3.html)|[辞書 ★完了](3.8.html)|
 |[4.](4.html)|[Types and Classes](4.html)|[型とクラス ★完了](4.html)|[辞書 ★完了](4.4.html)|
@@ -33,8 +33,8 @@ Dictionaryを約半分翻訳しました。
 |[21.](21.html)|[Streams](21.html)|[ストリーム](21.html)|[辞書 ★完了](21.2.html)|
 |[22.](22.html)|[Printer](22.html)|[プリンター](22.html)|[辞書 ★完了](22.4.html)|
 |[23.](23.html)|[Reader](23.html)|[リーダー](23.html)|[辞書 ★完了](23.2.html)|
-|[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書 ☆作業中](24.2.html)|
-|[25.](25.html)|[Environment](25.html)|[環境](25.html)|[辞書](25.2.html)|
+|[24.](24.html)|[System Construction](24.html)|[システム構築](24.html)|[辞書 ★完了](24.2.html)|
+|[25.](25.html)|[Environment](25.html)|[環境](25.html)|[辞書 ☆作業中](25.2.html)|
 |26.|Glossary|用語集|辞書|
 |a.|Appendix|付録|辞書|
 |[mop.](mop.html)|[Metaobject Protocol](mop.html)|[Metaobject Protocol](mop.html)|[辞書](mop.6.html)|

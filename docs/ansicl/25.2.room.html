@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.1. 外部環境</title>
+  <title>Function ROOM</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,15 +151,31 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.1. 外部環境</h1>
+<h1 class="title">Function ROOM</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.1. 外部環境</p>
-<ul>
-<li>25.1.1. トップレベルのループ</li>
-<li>25.1.4. 時間</li>
-</ul>
+<h1 id="function-room">Function <strong>ROOM</strong></h1>
+<p>Function <code>ROOM</code></p>
+<h2 id="構文">構文</h2>
+<p><code>room</code> <code>&amp;optional</code> <em>x</em> =&gt; <em>implementation-dependent</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>x</em> - <a href="5.3.t-variable.html"><code>t</code></a>か、<a href="5.3.nil-variable.html"><code>nil</code></a>か、<code>:default</code>のうちのひとつ</p>
+<h2 id="定義">定義</h2>
+<p><a href="25.2.room.html"><code>room</code></a>は標準出力に、 内部ストレージの状態とその管理についての情報を印刷します。 これは、メモリ使用状況の定義や、 メモリコンパクションの程度、 もし可能なら内部データ型の損失可能性などを含みます。 印刷される情報の内容と形式は実装依存です。 これらの情報は、プログラマーが特定の実装に対して プログラムの調整をするときに使用する情報を提供する意図があります。</p>
+<p><code>(room nil)</code>は最小の情報量を印刷します。 <code>(room t)</code>は最大の情報量を印刷します。 <code>(room)</code>と<code>(room :default)</code>は、使いやすい程度の中間の情報量を印刷します。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>標準出力への出力</p>
+<h2 id="影響">影響</h2>
+<p><a href="21.2.debug-io.html"><code>*standard-output*</code></a></p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

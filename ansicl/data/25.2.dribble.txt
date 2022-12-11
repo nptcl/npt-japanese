@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DRIBBLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.dribble
+@name: dribble
+@type: function
+
+Function `DRIBBLE`
+
+
+## {syntax}
+
+`dribble` `&optional` *pathname* => *implementation-dependent*
+
+
+## {arguments-and-values}
+
+*pathname* - パス名指定子
+
+
+## {description}
+
+{*standard-input*:link}と{*standard-output*:link}の束縛か、
+他の適切な動作を取ることで、
+*pathname*によって指定されたファイルへ
+入出力のインタラクションの記録を送ります。
+{dribble:link}は読み込み可能な
+インタラクティブのセッションの記録を作成するという意図があります。
+
+*pathname*が論理パス名のとき、
+{translate-logical-pathname:link}が呼び出されたかのように
+物理パス名へ変換されます。
+
+`(dribble)`は入出力の記録を終了させ、
+`dribble`ファイルを閉じます。
+
+もし以前の{dribble:link}の呼び出しでまだオープンされている`dribble`ファイルに対して
+新たに{dribble:link}の呼び出しを行ったとき、その効果は実装定義です。
+例えば、すでにオープンされているストリームは閉じられる、
+`dribble`による記録は古いストリームと新しいストリームの両方に生じる、
+古いストリームは開いたままで出力を受け取らなくなる、
+新しい要求が無視される、
+別のアクションが取られる、
+などあげられます。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+実装
+
+
+## {exceptional-situations}
+
+もし`dribble`ファイルの作成時に
+ファイルシステムの何らかの操作の処理に失敗したとき、
+型{file-error:link}のエラーが通知されます。
+
+*pathname*がワイルドカードを含むパス名の指定子のとき、
+型{file-error:link}のエラーが通知されるかもしれません。
+
+
+## {see-also}
+
+{19.1.2:ab}
+
+
+## {notes}
+
+{dribble:link}は、続くフォームが実行される前に戻ることができます。
+また再帰的なインタラクションの繰り返しに入り、
+`(dribble)`が実行されたときのみ戻ることもできます。
+
+{dribble:link}は主にインタラクティブなデバッグを意図しています。
+プログラム内部で使用するときは、その効果をあてにすることはできません。
+
+@end
+

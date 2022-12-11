@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.1. 外部環境</title>
+  <title>Function DRIBBLE</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,15 +151,33 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.1. 外部環境</h1>
+<h1 class="title">Function DRIBBLE</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.1. 外部環境</p>
-<ul>
-<li>25.1.1. トップレベルのループ</li>
-<li>25.1.4. 時間</li>
-</ul>
+<h1 id="function-dribble">Function <strong>DRIBBLE</strong></h1>
+<p>Function <code>DRIBBLE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>dribble</code> <code>&amp;optional</code> <em>pathname</em> =&gt; <em>implementation-dependent</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>pathname</em> - パス名指定子</p>
+<h2 id="定義">定義</h2>
+<p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>と<a href="21.2.debug-io.html"><code>*standard-output*</code></a>の束縛か、 他の適切な動作を取ることで、 <em>pathname</em>によって指定されたファイルへ 入出力のインタラクションの記録を送ります。 <a href="25.2.dribble.html"><code>dribble</code></a>は読み込み可能な インタラクティブのセッションの記録を作成するという意図があります。</p>
+<p><em>pathname</em>が論理パス名のとき、 <a href="19.4.translate-logical-pathname.html"><code>translate-logical-pathname</code></a>が呼び出されたかのように 物理パス名へ変換されます。</p>
+<p><code>(dribble)</code>は入出力の記録を終了させ、 <code>dribble</code>ファイルを閉じます。</p>
+<p>もし以前の<a href="25.2.dribble.html"><code>dribble</code></a>の呼び出しでまだオープンされている<code>dribble</code>ファイルに対して 新たに<a href="25.2.dribble.html"><code>dribble</code></a>の呼び出しを行ったとき、その効果は実装定義です。 例えば、すでにオープンされているストリームは閉じられる、 <code>dribble</code>による記録は古いストリームと新しいストリームの両方に生じる、 古いストリームは開いたままで出力を受け取らなくなる、 新しい要求が無視される、 別のアクションが取られる、 などあげられます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>実装</p>
+<h2 id="例外">例外</h2>
+<p>もし<code>dribble</code>ファイルの作成時に ファイルシステムの何らかの操作の処理に失敗したとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</p>
+<p><em>pathname</em>がワイルドカードを含むパス名の指定子のとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されるかもしれません。</p>
+<h2 id="参考">参考</h2>
+<p>19.1.2. ファイル名としてのパス名</p>
+<h2 id="備考">備考</h2>
+<p><a href="25.2.dribble.html"><code>dribble</code></a>は、続くフォームが実行される前に戻ることができます。 また再帰的なインタラクションの繰り返しに入り、 <code>(dribble)</code>が実行されたときのみ戻ることもできます。</p>
+<p><a href="25.2.dribble.html"><code>dribble</code></a>は主にインタラクティブなデバッグを意図しています。 プログラム内部で使用するときは、その効果をあてにすることはできません。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

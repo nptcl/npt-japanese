@@ -1,0 +1,85 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.ed
+@name: ed
+@type: function
+
+Function `ED`
+
+
+## {syntax}
+
+`ed` `&optional` *x* => *implementation-dependent*
+
+
+## {arguments-and-values}
+
+*x* - {nil!variable:link}か、パス名か、文字列か、関数名。
+デフォルトは{nil!variable:link}。
+
+
+## {description}
+
+{ed:link}は、実装が特定のエディターを用意しているのならば、
+そのエディターを起動します。
+
+もし*x*が{nil!variable:link}のとき、エディターに入ります。
+もしエディターが以前に入っていたとき、可能であればその前の状態を復元します。
+
+もし*x*がパス名か文字列のとき、
+それはパス名指定子としてのファイルであり、エディターで編集されます。
+
+もし*x*が関数名のとき、
+その定義のテキストを編集します。
+その関数のテキストの意味を取得する方法は実装定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+実装がエディターを用意していなかったときの結果は未定義です。
+
+引数が指定され、それがシンボルでもパス名でも{nil!variable:link}でもないときは、
+型{type-error:link}が通知されるかもしれません。
+
+もしファイルの編集をしているときに
+ファイルシステムの何らかの操作の処理に失敗したとき、
+型{file-error:link}のエラーが通知されます。
+
+*x*がワイルドカードを含むパス名の指定子のとき、
+型{file-error:link}のエラーが通知されるかもしれません。
+
+同じように追加で{implementation-dependent}のコンディションが
+通知されるかもしれません。
+
+
+## {see-also}
+
+{pathname!system-class:link},
+{logical-pathname!system-class:link},
+{compile-file:link},
+{load:link},
+{19.1.2:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

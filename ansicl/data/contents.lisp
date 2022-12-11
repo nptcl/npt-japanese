@@ -1010,6 +1010,7 @@
 
 ;; Chapger 25
 (index 25.1 "外部環境" "The External Environment")
+(text 25.1.1 "トップレベルのループ" "Top level loop")
 (text 25.1.4 "時間" "Time")
 (text 25.1.4.2 "{universal-time}" "Universal Time")
 (index 25.2 "環境の辞書" "Environment Dictionary")

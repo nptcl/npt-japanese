@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable /
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.environment-slash
+@name: /!variable
+@name: //
+@name: ///
+@type: variable
+
+Variable `/`
+
+
+## {value-type}
+
+{proper-list}
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+変数{/!variable:link}, {//:link}, {///:link}は、
+Lispの`read-eval-print`ループによって管理されている、
+ループの終わりに印刷された結果の保存された多値です。
+
+{/!variable:link}の値はもっとも最近印刷された多値のリストであり、
+{//:link}の値は{/!variable:link}の前の値であり、
+{///:link}の値は{//:link}の前の値です。
+
+{/!variable:link}, {//:link}, {///:link}の値は、
+Lispの`read-eval-print`ループによって
+トップレベルフォームの返却値が印刷される前に即座に更新されます。
+もしそのようなフォームの評価が通常の返却の前に中断されたとき、
+{/!variable:link}, {//:link}, {///:link}の値は更新されません。
+
+
+## {examples}
+
+```lisp
+(floor 22 7) =>  3, 1
+(+ (* (car /) 7) (cadr /)) =>  22
+```
+
+
+## {affected-by}
+
+Lispの`read-eval-print`ループ
+
+
+## {see-also}
+
+{-!variable:link},
+{+!variable:link},
+{*!variable:link},
+{25.1.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

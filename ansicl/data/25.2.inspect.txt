@@ -1,0 +1,65 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function INSPECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.inspect
+@name: inspect
+@type: function
+
+Function `INSPECT`
+
+
+## {syntax}
+
+`inspect` *object* => *implementation-dependent*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト
+
+
+## {description}
+
+{inspect:link}は、{describe:link}のインタラクティブ版です。
+その情報の内容は{implementation-dependent}ですが、
+{inspect:link}の目的は、データ構造をさまよい、
+調査と修正をするのを簡単にすることです。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+{implementation-dependent}
+
+
+## {affected-by}
+
+{implementation-dependent}
+
+
+## {exceptional-situations}
+
+{implementation-dependent}
+
+
+## {see-also}
+
+{describe:link}
+
+
+## {notes}
+
+実装はコマンドのリストにヘルプ機能を提供する、
+「Helpキー」の押下や 「?」のタイプなどの応答を行うことが推奨されます。
+
+@end
+

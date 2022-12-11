@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.1. 外部環境</title>
+  <title>Function ED</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,15 +151,35 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.1. 外部環境</h1>
+<h1 class="title">Function ED</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.1. 外部環境</p>
-<ul>
-<li>25.1.1. トップレベルのループ</li>
-<li>25.1.4. 時間</li>
-</ul>
+<h1 id="function-ed">Function <strong>ED</strong></h1>
+<p>Function <code>ED</code></p>
+<h2 id="構文">構文</h2>
+<p><code>ed</code> <code>&amp;optional</code> <em>x</em> =&gt; <em>implementation-dependent</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>x</em> - <a href="5.3.nil-variable.html"><code>nil</code></a>か、パス名か、文字列か、関数名。 デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。</p>
+<h2 id="定義">定義</h2>
+<p><a href="25.2.ed.html"><code>ed</code></a>は、実装が特定のエディターを用意しているのならば、 そのエディターを起動します。</p>
+<p>もし<em>x</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>のとき、エディターに入ります。 もしエディターが以前に入っていたとき、可能であればその前の状態を復元します。</p>
+<p>もし<em>x</em>がパス名か文字列のとき、 それはパス名指定子としてのファイルであり、エディターで編集されます。</p>
+<p>もし<em>x</em>が関数名のとき、 その定義のテキストを編集します。 その関数のテキストの意味を取得する方法は実装定義です。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>実装がエディターを用意していなかったときの結果は未定義です。</p>
+<p>引数が指定され、それがシンボルでもパス名でも<a href="5.3.nil-variable.html"><code>nil</code></a>でもないときは、 型<a href="4.4.type-error.html"><code>type-error</code></a>が通知されるかもしれません。</p>
+<p>もしファイルの編集をしているときに ファイルシステムの何らかの操作の処理に失敗したとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されます。</p>
+<p><em>x</em>がワイルドカードを含むパス名の指定子のとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが通知されるかもしれません。</p>
+<p>同じように追加で実装依存のコンディションが 通知されるかもしれません。</p>
+<h2 id="参考">参考</h2>
+<p><a href="19.4.pathname-system-class.html"><code>pathname</code></a>, <a href="19.4.logical-pathname-system-class.html"><code>logical-pathname</code></a>, <a href="24.2.compile-file.html"><code>compile-file</code></a>, <a href="24.2.load.html"><code>load</code></a>, 19.1.2. ファイル名としてのパス名</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

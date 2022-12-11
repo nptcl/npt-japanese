@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ROOM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.room
+@name: room
+@type: function
+
+Function `ROOM`
+
+
+## {syntax}
+
+`room` `&optional` *x* => *implementation-dependent*
+
+
+## {arguments-and-values}
+
+*x* - {t!variable:link}か、{nil!variable:link}か、`:default`のうちのひとつ
+
+
+## {description}
+
+{room:link}は標準出力に、
+内部ストレージの状態とその管理についての情報を印刷します。
+これは、メモリ使用状況の定義や、
+メモリコンパクションの程度、
+もし可能なら内部データ型の損失可能性などを含みます。
+印刷される情報の内容と形式は{implementation-dependent}です。
+これらの情報は、プログラマーが特定の実装に対して
+プログラムの調整をするときに使用する情報を提供する意図があります。
+
+`(room nil)`は最小の情報量を印刷します。
+`(room t)`は最大の情報量を印刷します。
+`(room)`と`(room :default)`は、使いやすい程度の中間の情報量を印刷します。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+標準出力への出力
+
+
+## {affected-by}
+
+{*standard-output*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

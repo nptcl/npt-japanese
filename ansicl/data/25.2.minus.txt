@@ -1,0 +1,59 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable -
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.environment-minus
+@name: -!variable
+@type: variable
+
+Variable `-`
+
+
+## {value-type}
+
+フォーム
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+{-!variable:link}の値は
+Lispの`read-eval-print`ループにより現在評価しているフォームです。
+
+
+## {examples}
+
+```lisp
+(format t "~&Evaluating ~S~%" -)
+>>  Evaluating (FORMAT T "~&Evaluating ~S~%" -)
+=>  NIL
+```
+
+
+## {affected-by}
+
+Lispの`read-eval-print`ループ
+
+
+## {see-also}
+
+{+!variable:link},
+{*!variable:link},
+{/!variable:link},
+{25.1.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

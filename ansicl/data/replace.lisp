@@ -162,6 +162,8 @@
 (replace decoded-time "デコード時間")
 (replace daylight-saving-time "Daylight Saving Time")
 
+(replace argument-precedence-order "引数の優先順位")
+
 ;;  Metaobject Protocol
 (replace methods "メソッド")
 (replace comments-and-remarks "コメントと備考")

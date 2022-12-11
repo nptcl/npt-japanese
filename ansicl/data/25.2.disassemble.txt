@@ -1,0 +1,80 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DISASSEMBLE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.disassemble
+@name: disassemble
+@type: function
+
+Function `DISASSEMBLE`
+
+
+## {syntax}
+
+`disassemble` *fn* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*fn* - 拡張された関数指定子か、ラムダ式
+
+
+## {description}
+
+関数{disassemble:link}（逆アセンブル）は、デバッグの援助として、
+引数*fn*を関数かあるいはその名前とみなして生成されたもの使用し、
+命令記号や{implementation-dependent}の言語表現によって
+コードを表現したものを編成します。
+その結果は{implementation-dependent}の形式で
+標準出力に表示されます。
+
+もし*fn*がラムダ式かインタープリター関数の場合は、
+最初にコンパイルしてから逆アセンブルの結果を出力します。
+
+もし*fn*の指定子が関数名のとき、
+その名前の関数を逆アセンブルします
+（もしその関数がインタープリター関数のとき最初にコンパイルされますが、
+そのコンパイルされた結果は暗黙的には配置されません）。
+
+
+## {examples}
+
+```lisp
+(defun f (a) (1+ a)) =>  F
+(eq (symbol-function 'f)
+    (progn (disassemble 'f)
+           (symbol-function 'f))) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+{*standard-output*:link}
+
+
+## {exceptional-situations}
+
+*fn*が拡張された関数指定子でもラムダ式でもないときは、
+型{type-error:link}のエラーが通知されるべきです。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

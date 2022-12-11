@@ -20,7 +20,9 @@
 (defvar *name*)
 (setq *table* (make-hash-table :test 'equal))
 (setq *name* (make-hash-table :test 'equal))
-(setf (gethash "*" *name*) '("FUNCTION"))
+(setf (gethash "*" *name*) '("VARIABLE" "FUNCTION"))
+(setf (gethash "**" *name*) '("VARIABLE"))
+(setf (gethash "***" *name*) '("VARIABLE"))
 (setf (gethash "*BREAK-ON-SIGNALS*" *name*) '("VARIABLE"))
 (setf (gethash "*COMPILE-FILE-PATHNAME*" *name*) '("VARIABLE"))
 (setf (gethash "*COMPILE-FILE-TRUENAME*" *name*) '("VARIABLE"))
@@ -65,9 +67,13 @@
 (setf (gethash "*STANDARD-OUTPUT*" *name*) '("VARIABLE"))
 (setf (gethash "*TERMINAL-IO*" *name*) '("VARIABLE"))
 (setf (gethash "*TRACE-OUTPUT*" *name*) '("VARIABLE"))
-(setf (gethash "+" *name*) '("FUNCTION"))
-(setf (gethash "-" *name*) '("FUNCTION"))
-(setf (gethash "/" *name*) '("FUNCTION"))
+(setf (gethash "+" *name*) '("VARIABLE" "FUNCTION"))
+(setf (gethash "++" *name*) '("VARIABLE"))
+(setf (gethash "+++" *name*) '("VARIABLE"))
+(setf (gethash "-" *name*) '("VARIABLE" "FUNCTION"))
+(setf (gethash "/" *name*) '("VARIABLE" "FUNCTION"))
+(setf (gethash "//" *name*) '("VARIABLE"))
+(setf (gethash "///" *name*) '("VARIABLE"))
 (setf (gethash "/=" *name*) '("FUNCTION"))
 (setf (gethash "1+" *name*) '("FUNCTION"))
 (setf (gethash "1-" *name*) '("FUNCTION"))
@@ -316,6 +322,7 @@
 (setf (gethash "DIGIT-CHAR-P" *name*) '("FUNCTION"))
 (setf (gethash "DIRECTORY" *name*) '("FUNCTION"))
 (setf (gethash "DIRECTORY-NAMESTRING" *name*) '("FUNCTION"))
+(setf (gethash "DISASSEMBLE" *name*) '("FUNCTION"))
 (setf (gethash "DIVISION-BY-ZERO" *name*) '("CONDITION-TYPE"))
 (setf (gethash "DO" *name*) '("MACRO"))
 (setf (gethash "DO*" *name*) '("MACRO"))
@@ -329,11 +336,13 @@
 (setf (gethash "DOUBLE-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "DOUBLE-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "DPB" *name*) '("FUNCTION"))
+(setf (gethash "DRIBBLE" *name*) '("FUNCTION"))
 (setf (gethash "DYNAMIC-EXTENT" *name*) '("DECLARATION"))
 (setf (gethash "ECASE" *name*) '("MACRO"))
 (setf (gethash "ECHO-STREAM" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "ECHO-STREAM-INPUT-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "ECHO-STREAM-OUTPUT-STREAM" *name*) '("FUNCTION"))
+(setf (gethash "ED" *name*) '("FUNCTION"))
 (setf (gethash "EIGHTH" *name*) '("ACCESSOR"))
 (setf (gethash "ELT" *name*) '("ACCESSOR"))
 (setf (gethash "ENCODE-UNIVERSAL-TIME" *name*) '("FUNCTION"))
@@ -450,6 +459,7 @@
 (setf (gethash "INITIALIZE-INSTANCE" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "INLINE" *name*) '("DECLARATION"))
 (setf (gethash "INPUT-STREAM-P" *name*) '("FUNCTION"))
+(setf (gethash "INSPECT" *name*) '("FUNCTION"))
 (setf (gethash "INTEGER" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "INTEGER-DECODE-FLOAT" *name*) '("FUNCTION"))
 (setf (gethash "INTEGER-LENGTH" *name*) '("FUNCTION"))
@@ -752,6 +762,7 @@
 (setf (gethash "RETURN-FROM" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "REVAPPEND" *name*) '("FUNCTION"))
 (setf (gethash "REVERSE" *name*) '("FUNCTION"))
+(setf (gethash "ROOM" *name*) '("FUNCTION"))
 (setf (gethash "ROTATEF" *name*) '("MACRO"))
 (setf (gethash "ROUND" *name*) '("FUNCTION"))
 (setf (gethash "ROW-MAJOR-AREF" *name*) '("ACCESSOR"))
@@ -963,6 +974,30 @@
 (setf (gethash "YES-OR-NO-P" *name*) '("FUNCTION"))
 (setf (gethash "ZEROP" *name*) '("FUNCTION"))
 (setf (gethash "*" *table*)
+  '("* VARIABLE" EOL1 "* FUNCTION" EOL1))
+(setf (gethash '("*" . "VARIABLE") *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループを通して毎時印刷した結果の保存された値です。" EOL2
+     (CODE1 "*") "の値はもっとも最近印刷された主値であり、" (CODE1 "**") "の値は" (CODE1 "*") "の前の値であり、"
+     (CODE1 "***") "の値は" (CODE1 "**") "の前の値です。" EOL2 "もし複数の値が生成されたとき、" (CODE1 "*")
+     "は最初の値のみを含みます。" "もしゼロ個の値が生成されたとき、" (CODE1 "*") "は" (CODE1 "nil") "を含みます。" EOL2
+     (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "の値は、" "Lispの"
+     (CODE1 "read-eval-print") "ループによって" "トップレベルフォームの返却値が印刷される前に即座に更新されます。"
+     "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***")
+     "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(values 'a1 'a2) =>  A1, A2" "'b =>  B"
+      "(values 'c1 'c2 'c3) =>  C1, C2, C3" "(list * ** ***) =>  (C1 B A1)" NIL
+      "(defun cube-root (x) (expt x 1/3)) =>  CUBE-ROOT" "(compile *) =>  CUBE-ROOT"
+      "(setq a (cube-root 27.0)) =>  3.0" "(* * 9.0) =>  27.0"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "*   ==  (car /)" "**  ==  (car //)" "*** ==  (car ///)"))))
+(setf (gethash '("*" . "FUNCTION") *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "*"))
     (CHAPTER ("## 構文") 2 (CODE1 "*") " " (CODE1 "&rest") " " (STRONG "number") " => "
      (STRONG "product"))
@@ -978,7 +1013,52 @@
     (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
      "12.1.5. 複素数の計算")
     (CHAPTER ("## 備考") 2 "なし。")))
-(setf (gethash '("*" . "FUNCTION") *table*) (gethash "*" *table*))
+(setf (gethash "**" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループを通して毎時印刷した結果の保存された値です。" EOL2
+     (CODE1 "*") "の値はもっとも最近印刷された主値であり、" (CODE1 "**") "の値は" (CODE1 "*") "の前の値であり、"
+     (CODE1 "***") "の値は" (CODE1 "**") "の前の値です。" EOL2 "もし複数の値が生成されたとき、" (CODE1 "*")
+     "は最初の値のみを含みます。" "もしゼロ個の値が生成されたとき、" (CODE1 "*") "は" (CODE1 "nil") "を含みます。" EOL2
+     (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "の値は、" "Lispの"
+     (CODE1 "read-eval-print") "ループによって" "トップレベルフォームの返却値が印刷される前に即座に更新されます。"
+     "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***")
+     "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(values 'a1 'a2) =>  A1, A2" "'b =>  B"
+      "(values 'c1 'c2 'c3) =>  C1, C2, C3" "(list * ** ***) =>  (C1 B A1)" NIL
+      "(defun cube-root (x) (expt x 1/3)) =>  CUBE-ROOT" "(compile *) =>  CUBE-ROOT"
+      "(setq a (cube-root 27.0)) =>  3.0" "(* * 9.0) =>  27.0"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "*   ==  (car /)" "**  ==  (car //)" "*** ==  (car ///)"))))
+(setf (gethash '("**" . "VARIABLE") *table*) (gethash "**" *table*))
+(setf (gethash "***" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "*")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループを通して毎時印刷した結果の保存された値です。" EOL2
+     (CODE1 "*") "の値はもっとも最近印刷された主値であり、" (CODE1 "**") "の値は" (CODE1 "*") "の前の値であり、"
+     (CODE1 "***") "の値は" (CODE1 "**") "の前の値です。" EOL2 "もし複数の値が生成されたとき、" (CODE1 "*")
+     "は最初の値のみを含みます。" "もしゼロ個の値が生成されたとき、" (CODE1 "*") "は" (CODE1 "nil") "を含みます。" EOL2
+     (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***") "の値は、" "Lispの"
+     (CODE1 "read-eval-print") "ループによって" "トップレベルフォームの返却値が印刷される前に即座に更新されます。"
+     "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "*") ", " (CODE1 "**") ", " (CODE1 "***")
+     "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(values 'a1 'a2) =>  A1, A2" "'b =>  B"
+      "(values 'c1 'c2 'c3) =>  C1, C2, C3" "(list * ** ***) =>  (C1 B A1)" NIL
+      "(defun cube-root (x) (expt x 1/3)) =>  CUBE-ROOT" "(compile *) =>  CUBE-ROOT"
+      "(setq a (cube-root 27.0)) =>  3.0" "(* * 9.0) =>  27.0"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```" "*   ==  (car /)" "**  ==  (car //)" "*** ==  (car ///)"))))
+(setf (gethash '("***" . "VARIABLE") *table*) (gethash "***" *table*))
 (setf (gethash "*BREAK-ON-SIGNALS*" *table*)
   '((CHAPTER NIL 0 "Variable " (CODE1 "*BREAK-ON-SIGNALS*"))
     (CHAPTER ("## 値の型") 2 "型指定子") (CHAPTER ("## 初期値") 2 (CODE1 "nil"))
@@ -2165,6 +2245,25 @@
      (CODE1 "*terminal-io*") "を経由してユーザーに届きます。")))
 (setf (gethash '("*TRACE-OUTPUT*" . "VARIABLE") *table*) (gethash "*TRACE-OUTPUT*" *table*))
 (setf (gethash "+" *table*)
+  '("+ VARIABLE" EOL1 "+ FUNCTION" EOL1))
+(setf (gethash '("+" . "VARIABLE") *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "+")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "+") ", " (CODE1 "++") ", " (CODE1 "+++") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "最近評価されたものの保存されたフォームです。" EOL2
+     (CODE1 "+") "の値は最後に評価されたフォームであり、" (CODE1 "++") "の値は" (CODE1 "+") "の前に評価されたフォームであり、"
+     (CODE1 "+++") "の値は" (CODE1 "++") "の前に評価されたフォームです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(+ 0 1) =>  1" "(- 4 2) =>  2" "(/ 9 3) =>  3"
+      "(list + ++ +++) =>  ((/ 9 3) (- 4 2) (+ 0 1))"
+      "(setq a 1 b 2 c 3 d (list a b c)) =>  (1 2 3)"
+      "(setq a 4 b 5 c 6 d (list a b c)) =>  (4 5 6)" "(list a b c) =>  (4 5 6)"
+      "(eval +++) =>  (1 2 3)" "#.`(,@++ d) =>  (1 2 3 (1 2 3))"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "*") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("+" . "FUNCTION") *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "+"))
     (CHAPTER ("## 構文") 2 (CODE1 "+") " " (CODE1 "&rest") " " (STRONG "number") " => "
      (STRONG "sum"))
@@ -2180,8 +2279,57 @@
     (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
      "12.1.5. 複素数の計算")
     (CHAPTER ("## 備考") 2 "なし。")))
-(setf (gethash '("+" . "FUNCTION") *table*) (gethash "+" *table*))
+(setf (gethash "++" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "+")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "+") ", " (CODE1 "++") ", " (CODE1 "+++") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "最近評価されたものの保存されたフォームです。" EOL2
+     (CODE1 "+") "の値は最後に評価されたフォームであり、" (CODE1 "++") "の値は" (CODE1 "+") "の前に評価されたフォームであり、"
+     (CODE1 "+++") "の値は" (CODE1 "++") "の前に評価されたフォームです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(+ 0 1) =>  1" "(- 4 2) =>  2" "(/ 9 3) =>  3"
+      "(list + ++ +++) =>  ((/ 9 3) (- 4 2) (+ 0 1))"
+      "(setq a 1 b 2 c 3 d (list a b c)) =>  (1 2 3)"
+      "(setq a 4 b 5 c 6 d (list a b c)) =>  (4 5 6)" "(list a b c) =>  (4 5 6)"
+      "(eval +++) =>  (1 2 3)" "#.`(,@++ d) =>  (1 2 3 (1 2 3))"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "*") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("++" . "VARIABLE") *table*) (gethash "++" *table*))
+(setf (gethash "+++" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "+")) (CHAPTER ("## 値の型") 2 "オブジェクト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "+") ", " (CODE1 "++") ", " (CODE1 "+++") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "最近評価されたものの保存されたフォームです。" EOL2
+     (CODE1 "+") "の値は最後に評価されたフォームであり、" (CODE1 "++") "の値は" (CODE1 "+") "の前に評価されたフォームであり、"
+     (CODE1 "+++") "の値は" (CODE1 "++") "の前に評価されたフォームです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(+ 0 1) =>  1" "(- 4 2) =>  2" "(/ 9 3) =>  3"
+      "(list + ++ +++) =>  ((/ 9 3) (- 4 2) (+ 0 1))"
+      "(setq a 1 b 2 c 3 d (list a b c)) =>  (1 2 3)"
+      "(setq a 4 b 5 c 6 d (list a b c)) =>  (4 5 6)" "(list a b c) =>  (4 5 6)"
+      "(eval +++) =>  (1 2 3)" "#.`(,@++ d) =>  (1 2 3 (1 2 3))"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "*") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("+++" . "VARIABLE") *table*) (gethash "+++" *table*))
 (setf (gethash "-" *table*)
+  '("- VARIABLE" EOL1 "- FUNCTION" EOL1))
+(setf (gethash '("-" . "VARIABLE") *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "-")) (CHAPTER ("## 値の型") 2 "フォーム")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "-") "の値は" "Lispの" (CODE1 "read-eval-print")
+     "ループにより現在評価しているフォームです。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(format t \"~&Evaluating ~S~%\" -)"
+      ">>  Evaluating (FORMAT T \"~&Evaluating ~S~%\" -)" "=>  NIL"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "+") "," (CODE1 "*") "," (CODE1 "/") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("-" . "FUNCTION") *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "-"))
     (CHAPTER ("## 構文") 2 (CODE1 "-") " " (STRONG "number") " => " (STRONG "negation")
      EOL1 (CODE1 "-") " " (STRONG "minuend") " " (CODE1 "&rest") " "
@@ -2203,8 +2351,25 @@
     (CHAPTER ("## 参考") 2 "12.1.1. 数値演算," "12.1.3. 有理数の計算," "12.1.4. 浮動小数の計算,"
      "12.1.5. 複素数の計算")
     (CHAPTER ("## 備考") 2 "なし。")))
-(setf (gethash '("-" . "FUNCTION") *table*) (gethash "-" *table*))
 (setf (gethash "/" *table*)
+  '("/ VARIABLE" EOL1 "/ FUNCTION" EOL1))
+(setf (gethash '("/" . "VARIABLE") *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "/")) (CHAPTER ("## 値の型") 2 "通常のリスト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "/") ", " (CODE1 "//") ", " (CODE1 "///") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループの終わりに印刷された結果の保存された多値です。"
+     EOL2 (CODE1 "/") "の値はもっとも最近印刷された多値のリストであり、" (CODE1 "//") "の値は" (CODE1 "/")
+     "の前の値であり、" (CODE1 "///") "の値は" (CODE1 "//") "の前の値です。" EOL2 (CODE1 "/") ", "
+     (CODE1 "//") ", " (CODE1 "///") "の値は、" "Lispの" (CODE1 "read-eval-print") "ループによって"
+     "トップレベルフォームの返却値が印刷される前に即座に更新されます。" "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "/")
+     ", " (CODE1 "//") ", " (CODE1 "///") "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 22 7) =>  3, 1" "(+ (* (car /) 7) (cadr /)) =>  22"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "*") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("/" . "FUNCTION") *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "/"))
     (CHAPTER ("## 構文") 2 (CODE1 "/") " " (STRONG "number") " => " (STRONG "reciprocal")
      EOL1 (CODE1 "/") " " (STRONG "numerator") " " (CODE1 "&rest") " "
@@ -2231,7 +2396,40 @@
     (CHAPTER ("## 参考") 2 (CODE1 "floor") "," (CODE1 "ceiling") "," (CODE1 "truncate") ","
      (CODE1 "round"))
     (CHAPTER ("## 備考") 2 "なし。")))
-(setf (gethash '("/" . "FUNCTION") *table*) (gethash "/" *table*))
+(setf (gethash "//" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "/")) (CHAPTER ("## 値の型") 2 "通常のリスト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "/") ", " (CODE1 "//") ", " (CODE1 "///") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループの終わりに印刷された結果の保存された多値です。"
+     EOL2 (CODE1 "/") "の値はもっとも最近印刷された多値のリストであり、" (CODE1 "//") "の値は" (CODE1 "/")
+     "の前の値であり、" (CODE1 "///") "の値は" (CODE1 "//") "の前の値です。" EOL2 (CODE1 "/") ", "
+     (CODE1 "//") ", " (CODE1 "///") "の値は、" "Lispの" (CODE1 "read-eval-print") "ループによって"
+     "トップレベルフォームの返却値が印刷される前に即座に更新されます。" "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "/")
+     ", " (CODE1 "//") ", " (CODE1 "///") "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 22 7) =>  3, 1" "(+ (* (car /) 7) (cadr /)) =>  22"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "*") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("//" . "VARIABLE") *table*) (gethash "//" *table*))
+(setf (gethash "///" *table*)
+  '((CHAPTER NIL 0 "Variable " (CODE1 "/")) (CHAPTER ("## 値の型") 2 "通常のリスト")
+    (CHAPTER ("## 初期値") 2 "実装依存")
+    (CHAPTER ("## 定義") 2 "変数" (CODE1 "/") ", " (CODE1 "//") ", " (CODE1 "///") "は、"
+     "Lispの" (CODE1 "read-eval-print") "ループによって管理されている、" "ループの終わりに印刷された結果の保存された多値です。"
+     EOL2 (CODE1 "/") "の値はもっとも最近印刷された多値のリストであり、" (CODE1 "//") "の値は" (CODE1 "/")
+     "の前の値であり、" (CODE1 "///") "の値は" (CODE1 "//") "の前の値です。" EOL2 (CODE1 "/") ", "
+     (CODE1 "//") ", " (CODE1 "///") "の値は、" "Lispの" (CODE1 "read-eval-print") "ループによって"
+     "トップレベルフォームの返却値が印刷される前に即座に更新されます。" "もしそのようなフォームの評価が通常の返却の前に中断されたとき、" (CODE1 "/")
+     ", " (CODE1 "//") ", " (CODE1 "///") "の値は更新されません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(floor 22 7) =>  3, 1" "(+ (* (car /) 7) (cadr /)) =>  22"))
+    (CHAPTER ("## 影響") 2 "Lispの" (CODE1 "read-eval-print") "ループ")
+    (CHAPTER ("## 参考") 2 (CODE1 "-") "," (CODE1 "+") "," (CODE1 "*") ","
+     "25.1.1. トップレベルのループ")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("///" . "VARIABLE") *table*) (gethash "///" *table*))
 (setf (gethash "/=" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "=") ", " (CODE1 "/=") ", " (CODE1 "<") ", "
      (CODE1 ">") ", " (CODE1 "<=") ", " (CODE1 ">="))
@@ -16139,6 +16337,24 @@
      "19.1.2. ファイル名としてのパス名")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("DIRECTORY-NAMESTRING" . "FUNCTION") *table*) (gethash "DIRECTORY-NAMESTRING" *table*))
+(setf (gethash "DISASSEMBLE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DISASSEMBLE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "disassemble") " " (STRONG "fn") " => " (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "fn") " - 拡張された関数指定子か、ラムダ式")
+    (CHAPTER ("## 定義") 2 "関数" (CODE1 "disassemble") "（逆アセンブル）は、デバッグの援助として、" "引数"
+     (STRONG "fn") "を関数かあるいはその名前とみなして生成されたもの使用し、" "命令記号や実装依存の言語表現によって"
+     "コードを表現したものを編成します。" "その結果は実装依存の形式で" "標準出力に表示されます。" EOL2 "もし" (STRONG "fn")
+     "がラムダ式かインタープリター関数の場合は、" "最初にコンパイルしてから逆アセンブルの結果を出力します。" EOL2 "もし" (STRONG "fn")
+     "の指定子が関数名のとき、" "その名前の関数を逆アセンブルします" "（もしその関数がインタープリター関数のとき最初にコンパイルされますが、"
+     "そのコンパイルされた結果は暗黙的には配置されません）。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(defun f (a) (1+ a)) =>  F" "(eq (symbol-function 'f)"
+      "    (progn (disassemble 'f)" "           (symbol-function 'f))) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*"))
+    (CHAPTER ("## 例外") 2 (STRONG "fn") "が拡張された関数指定子でもラムダ式でもないときは、" "型"
+     (CODE1 "type-error") "のエラーが通知されるべきです。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("DISASSEMBLE" . "FUNCTION") *table*) (gethash "DISASSEMBLE" *table*))
 (setf (gethash "DIVISION-BY-ZERO" *table*)
   '((CHAPTER NIL 0 "Condition Type " (CODE1 "DIVISION-BY-ZERO"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "division-by-zero") ","
@@ -16560,7 +16776,191 @@
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("DO-SYMBOLS" . "MACRO") *table*) (gethash "DO-SYMBOLS" *table*))
 (setf (gethash "DOCUMENTATION" *table*)
-  '((CHAPTER NIL 0)))
+  '((CHAPTER NIL 0)
+    (CHAPTER ("## 構文") 2 (CODE1 "documentation") " " (STRONG "x") " " (STRONG "doc-type")
+     " => " (STRONG "documentation") EOL1 (CODE1 "(") " " (CODE1 "setf") " "
+     (STRONG "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (STRONG "x")
+     " " (STRONG "doc-type") " => " (STRONG "new-value"))
+    (CHAPTER ("## 引数の優先順位") 2 (STRONG "doc-type") ", " (STRONG "object"))
+    (CHAPTER ("## メソッド宣言") 2)
+    (CHAPTER ("### 関数、マクロ、特殊フォーム:") 3 (CODE1 "documentation") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "function") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "documentation") " "
+     (CODE1 "(") " " (STRONG "x") " " (CODE1 "function") " " (CODE1 ")") " " (CODE1 "(")
+     " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "function") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "documentation") " "
+     (CODE1 "(") " " (STRONG "x") " " (CODE1 "list") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "function") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "documentation") " "
+     (CODE1 "(") " " (STRONG "x") " " (CODE1 "list") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "compiler-macro") " " (CODE1 ")") " " (CODE1 ")") EOL1
+     (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "symbol") " "
+     (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " "
+     (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "function") " " (CODE1 ")") " " (CODE1 ")")
+     EOL1 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "symbol")
+     " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " "
+     (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "compiler-macro") " " (CODE1 ")") " "
+     (CODE1 ")") EOL1 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "setf") " " (CODE1 ")") " "
+     (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "function") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")") " "
+     (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "function") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "function") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "list") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "function") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "list") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "compiler-macro") " "
+     (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " "
+     (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "function") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " "
+     (CODE1 "setf ") " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value")
+     " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "symbol") " " (CODE1 ")") " "
+     (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " "
+     (CODE1 "'") " " (CODE1 "compiler-macro") " " (CODE1 ")") " " (CODE1 ")") EOL1
+     (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " " (CODE1 ")") " "
+     (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "symbol") " "
+     (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " "
+     (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "setf") " " (CODE1 ")") " " (CODE1 ")"))
+    (CHAPTER ("### " (CODE1 "method-combination") ":") 3 (CODE1 "documentation") " "
+     (CODE1 "(") " " (STRONG "x") " " (CODE1 "method-combination") " " (CODE1 ")") " "
+     (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " "
+     (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1
+     (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "method-combination") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type")
+     " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "method-combination")
+     " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "documentation") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "method-combination") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " "
+     (CODE1 "setf ") " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value")
+     " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "method-combination") " " (CODE1 ")")
+     " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " "
+     (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " "
+     (CODE1 "setf ") " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value")
+     " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "method-combination") " " (CODE1 ")")
+     " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " "
+     (CODE1 "'") " " (CODE1 "method-combination") " " (CODE1 ")") " " (CODE1 ")") EOL1
+     (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " " (CODE1 ")") " "
+     (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " " (CODE1 "symbol") " "
+     (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " "
+     (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "method-combination") " " (CODE1 ")") " "
+     (CODE1 ")"))
+    (CHAPTER ("### メソッド:") 3 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "standard-method") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type")
+     " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "standard-method") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type")
+     " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")")
+     " " (CODE1 ")"))
+    (CHAPTER ("### パッケージ:") 3 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x")
+     " " (CODE1 "package") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")") " "
+     (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "package") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")") " "
+     (CODE1 ")"))
+    (CHAPTER ("### 型、クラス、構造体の名前:") 3 (CODE1 "documentation") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "standard-class") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "documentation") " "
+     (CODE1 "(") " " (STRONG "x") " " (CODE1 "standard-class") " " (CODE1 ")") " "
+     (CODE1 "(") " " (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " "
+     (CODE1 "'") " " (CODE1 "type") " " (CODE1 ")") " " (CODE1 ")") EOL1
+     (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "structure-class") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type")
+     " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "t") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "structure-class") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type")
+     " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "type") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "type") " " (CODE1 ")") " "
+     (CODE1 ")") EOL1 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "structure") " "
+     (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " "
+     (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "standard-class") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " "
+     (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "standard-class") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "type") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ")
+     " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(")
+     " " (STRONG "x") " " (CODE1 "structure-class") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "t") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " "
+     (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " "
+     (STRONG "x") " " (CODE1 "structure-class") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "type") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ")
+     " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(")
+     " " (STRONG "x") " " (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "type") " " (CODE1 ")") " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ")
+     " " (CODE1 "documentation") " " (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(")
+     " " (STRONG "x") " " (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " "
+     (STRONG "doc-type") " " (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " "
+     (CODE1 "structure") " " (CODE1 ")") " " (CODE1 ")"))
+    (CHAPTER ("### 変数:") 3 (CODE1 "documentation") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "variable") " " (CODE1 ")")
+     " " (CODE1 ")") EOL1 (CODE1 "(") " " (CODE1 "setf ") " " (CODE1 "documentation") " "
+     (CODE1 ")") " " (STRONG "new-value") " " (CODE1 "(") " " (STRONG "x") " "
+     (CODE1 "symbol") " " (CODE1 ")") " " (CODE1 "(") " " (STRONG "doc-type") " "
+     (CODE1 "(") " " (CODE1 "eql") " " (CODE1 "'") " " (CODE1 "variable") " " (CODE1 ")")
+     " " (CODE1 ")"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "x") " - オブジェクト" EOL1 (STRONG "doc-type") " - シンボル"
+     EOL1 (STRONG "documentation") " - 文字列か、" (CODE1 "nil") EOL1 (STRONG "new-value")
+     " - 文字列")
+    (CHAPTER ("## 定義") 2 "ジェネリック関数" (CODE1 "documentation") "は、"
+     "もし引数のオブジェクトに関連付けられたものが利用可能なとき、" "そのドキュメント文字列を返却します。" "そうではないときは、" (CODE1 "nil")
+     "を返却します。" EOL2 "ジェネリック関数" (CODE1 "(setf documentation)") "は、" (STRONG "x")
+     "に関連付けられたドキュメント文字列を" (STRONG "new-value") "に更新します。" "もし" (STRONG "x") "がリストのとき、それは"
+     (CODE1 "(setf symbol)") "のフォームでなければなりません。" EOL2 "ドキュメント文字列はデバッグ目的で利用できます。"
+     "適合するプログラムは、ドキュメント文字列が存在するときは" "それを使うことが許されていますが、" "それらドキュメント文字列の存在が正しく返却されるような動作に"
+     "依存してはいけません。" "実装はどんな時でも、実装定義の理由で" "ドキュメント文字列を切り捨てることが許されます。" EOL2
+     "返却されるドキュメント文字列の性質は、" (STRONG "doc-type") "により下記に示すようなものに依存します。" EOL2 "- "
+     (CODE1 "compiler-macro") "  - " (STRONG "x") "という関数名のコンパイラーマクロのドキュメント文字列を返却します。"
+     EOL2 "- " (CODE1 "function") "  - もし" (STRONG "x") "が関数名のとき、" (STRONG "x")
+     "という名前の関数か、マクロか、特殊フォームかの" "    ドキュメント文字列を返却します。" "  - もし" (STRONG "x") "が関数のとき、"
+     (STRONG "x") "に関連づいたドキュメント文字列を返却します。" EOL2 "- " (CODE1 "method-combination")
+     "  - もし" (STRONG "x") "がシンボルのとき、" (STRONG "x") "という名前の" (CODE1 "method-combination")
+     "の" "    ドキュメント文字列を返却します。" "  - もし" (STRONG "x") "が" (CODE1 "method-combination")
+     "のとき、" "    " (STRONG "x") "に関連づいたドキュメント文字列を返却します。" EOL2 "- " (CODE1 "setf")
+     "  - シンボル" (STRONG "x") "という名前のsetf-expanderの" "    ドキュメント文字列を返却します。" EOL2 "- "
+     (CODE1 "structure") "  - 構造体名" (STRONG "x") "に関連づいたドキュメント文字列を返却します。" EOL2 "- "
+     (CODE1 "t") "  - 引数" (STRONG "x") "自身のクラスで特定化されたドキュメント文字列を返却します。" "    例えば"
+     (STRONG "x") "が関数のとき、関数" (STRONG "x") "に関連づいたドキュメント文字列が返却されます。" EOL2 "- "
+     (CODE1 "type") "  - もし" (STRONG "x") "がシンボルのとき、シンボル" (STRONG "x")
+     "という名前のクラスが存在するならば、" "    そのクラスのドキュメント文字列を返却します。" "    それ以外のときは、シンボル" (STRONG "x")
+     "の型指定子が示す型の" "    ドキュメント文字列を返却します。" "  - もし" (STRONG "x") "が"
+     (CODE1 "structure-class") "か" (CODE1 "standard-class") "のインスタンスのとき、" "    クラス"
+     (STRONG "x") "に関連づいたドキュメント文字列を返却します。" EOL2 "- " (CODE1 "variable") "  - シンボル"
+     (STRONG "x") "という名前の動的変数か定数変数の" "    ドキュメント文字列を返却します。" EOL2 "適合する実装か、適合するプログラムは、"
+     (STRONG "doc-type") "として許容可能なシンボルの集合を拡張するかもしれません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "標準では、ドキュメント文字列は" (CODE1 "defclass") "フォームによって指定された個別スロットから"
+     "取得するという意味で定めているのではありません。" "しかし実装はこの情報を処理するような" "デバッグツールやプログラミング言語の拡張を提供するかもしれません。"
+     "このようなサポートの提供を行いたいような実装者は、" "どのようにしてそれを行うかについての方法を得るために、"
+     "Metaobject Protocolを調査することをお勧めします。")))
 (setf (gethash '("DOCUMENTATION" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "DOCUMENTATION" *table*))
 (setf (gethash "DOLIST" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DOLIST"))
@@ -16781,6 +17181,30 @@
      (STRONG "x") ", " (STRONG "y") ", " (STRONG "z") "で正当です。" EOL2 "歴史的には" (CODE1 "dpb")
      "という名前はDEC PDP-10のアセンブリ言語から来ており、" (CODE1 "deposit byte") "を意味する命令です。")))
 (setf (gethash '("DPB" . "FUNCTION") *table*) (gethash "DPB" *table*))
+(setf (gethash "DRIBBLE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DRIBBLE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "dribble") " " (CODE1 "&optional") " "
+     (STRONG "pathname") " => " (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "pathname") " - パス名指定子")
+    (CHAPTER ("## 定義") 2 (CODE1 "*standard-input*") "と" (CODE1 "*standard-output*")
+     "の束縛か、" "他の適切な動作を取ることで、" (STRONG "pathname") "によって指定されたファイルへ"
+     "入出力のインタラクションの記録を送ります。" (CODE1 "dribble") "は読み込み可能な"
+     "インタラクティブのセッションの記録を作成するという意図があります。" EOL2 (STRONG "pathname") "が論理パス名のとき、"
+     (CODE1 "translate-logical-pathname") "が呼び出されたかのように" "物理パス名へ変換されます。" EOL2
+     (CODE1 "(dribble)") "は入出力の記録を終了させ、" (CODE1 "dribble") "ファイルを閉じます。" EOL2 "もし以前の"
+     (CODE1 "dribble") "の呼び出しでまだオープンされている" (CODE1 "dribble") "ファイルに対して" "新たに"
+     (CODE1 "dribble") "の呼び出しを行ったとき、その効果は実装定義です。" "例えば、すでにオープンされているストリームは閉じられる、"
+     (CODE1 "dribble") "による記録は古いストリームと新しいストリームの両方に生じる、" "古いストリームは開いたままで出力を受け取らなくなる、"
+     "新しい要求が無視される、" "別のアクションが取られる、" "などあげられます。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "実装")
+    (CHAPTER ("## 例外") 2 "もし" (CODE1 "dribble") "ファイルの作成時に" "ファイルシステムの何らかの操作の処理に失敗したとき、"
+     "型" (CODE1 "file-error") "のエラーが通知されます。" EOL2 (STRONG "pathname")
+     "がワイルドカードを含むパス名の指定子のとき、" "型" (CODE1 "file-error") "のエラーが通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 (CODE1 "dribble") "は、続くフォームが実行される前に戻ることができます。"
+     "また再帰的なインタラクションの繰り返しに入り、" (CODE1 "(dribble)") "が実行されたときのみ戻ることもできます。" EOL2
+     (CODE1 "dribble") "は主にインタラクティブなデバッグを意図しています。" "プログラム内部で使用するときは、その効果をあてにすることはできません。")))
+(setf (gethash '("DRIBBLE" . "FUNCTION") *table*) (gethash "DRIBBLE" *table*))
 (setf (gethash "DYNAMIC-EXTENT" *table*)
   '((CHAPTER NIL 0 "Declaration " (CODE1 "DYNAMIC-EXTENT"))
     (CHAPTER ("## 構文") 2 "(" (CODE1 "dynamic-extent") " [[" (STRONG "var\\*") " "
@@ -16976,6 +17400,27 @@
     (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
     (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("ECHO-STREAM-OUTPUT-STREAM" . "FUNCTION") *table*) (gethash "ECHO-STREAM-OUTPUT-STREAM" *table*))
+(setf (gethash "ED" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ED"))
+    (CHAPTER ("## 構文") 2 (CODE1 "ed") " " (CODE1 "&optional") " " (STRONG "x") " => "
+     (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "x") " - " (CODE1 "nil") "か、パス名か、文字列か、関数名。" "デフォルトは"
+     (CODE1 "nil") "。")
+    (CHAPTER ("## 定義") 2 (CODE1 "ed") "は、実装が特定のエディターを用意しているのならば、" "そのエディターを起動します。" EOL2
+     "もし" (STRONG "x") "が" (CODE1 "nil") "のとき、エディターに入ります。"
+     "もしエディターが以前に入っていたとき、可能であればその前の状態を復元します。" EOL2 "もし" (STRONG "x") "がパス名か文字列のとき、"
+     "それはパス名指定子としてのファイルであり、エディターで編集されます。" EOL2 "もし" (STRONG "x") "が関数名のとき、"
+     "その定義のテキストを編集します。" "その関数のテキストの意味を取得する方法は実装定義です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。")
+    (CHAPTER ("## 例外") 2 "実装がエディターを用意していなかったときの結果は未定義です。" EOL2 "引数が指定され、それがシンボルでもパス名でも"
+     (CODE1 "nil") "でもないときは、" "型" (CODE1 "type-error") "が通知されるかもしれません。" EOL2
+     "もしファイルの編集をしているときに" "ファイルシステムの何らかの操作の処理に失敗したとき、" "型" (CODE1 "file-error")
+     "のエラーが通知されます。" EOL2 (STRONG "x") "がワイルドカードを含むパス名の指定子のとき、" "型" (CODE1 "file-error")
+     "のエラーが通知されるかもしれません。" EOL2 "同じように追加で実装依存のコンディションが" "通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "pathname") "," (CODE1 "logical-pathname") ","
+     (CODE1 "compile-file") "," (CODE1 "load") "," "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("ED" . "FUNCTION") *table*) (gethash "ED" *table*))
 (setf (gethash "EIGHTH" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "FIRST") ", " (CODE1 "SECOND") ", " (CODE1 "THIRD")
      ", " (CODE1 "FOURTH") ", " (CODE1 "FIFTH") "," (CODE1 "SIXTH") ", "
@@ -21211,6 +21656,19 @@
      "のエラーを発生させるべきです。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("INPUT-STREAM-P" . "FUNCTION") *table*) (gethash "INPUT-STREAM-P" *table*))
+(setf (gethash "INSPECT" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "INSPECT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "inspect") " " (STRONG "object") " => "
+     (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト")
+    (CHAPTER ("## 定義") 2 (CODE1 "inspect") "は、" (CODE1 "describe") "のインタラクティブ版です。"
+     "その情報の内容は実装依存ですが、" (CODE1 "inspect") "の目的は、データ構造をさまよい、" "調査と修正をするのを簡単にすることです。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "実装依存")
+    (CHAPTER ("## 影響") 2 "実装依存") (CHAPTER ("## 例外") 2 "実装依存")
+    (CHAPTER ("## 参考") 2 (CODE1 "describe"))
+    (CHAPTER ("## 備考") 2 "実装はコマンドのリストにヘルプ機能を提供する、"
+     "「Helpキー」の押下や 「?」のタイプなどの応答を行うことが推奨されます。")))
+(setf (gethash '("INSPECT" . "FUNCTION") *table*) (gethash "INSPECT" *table*))
 (setf (gethash "INTEGER" *table*)
   '((CHAPTER NIL 0 "System Class " (CODE1 "INTEGER"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "integer") "," (CODE1 "rational") ","
@@ -33727,6 +34185,22 @@
      "のエラーを通知する準備をしなければなりません。")
     (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("REVERSE" . "FUNCTION") *table*) (gethash "REVERSE" *table*))
+(setf (gethash "ROOM" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ROOM"))
+    (CHAPTER ("## 構文") 2 (CODE1 "room") " " (CODE1 "&optional") " " (STRONG "x") " => "
+     (STRONG "implementation-dependent"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "x") " - " (CODE1 "t") "か、" (CODE1 "nil") "か、"
+     (CODE1 ":default") "のうちのひとつ")
+    (CHAPTER ("## 定義") 2 (CODE1 "room") "は標準出力に、" "内部ストレージの状態とその管理についての情報を印刷します。"
+     "これは、メモリ使用状況の定義や、" "メモリコンパクションの程度、" "もし可能なら内部データ型の損失可能性などを含みます。"
+     "印刷される情報の内容と形式は実装依存です。" "これらの情報は、プログラマーが特定の実装に対して"
+     "プログラムの調整をするときに使用する情報を提供する意図があります。" EOL2 (CODE1 "(room nil)") "は最小の情報量を印刷します。"
+     (CODE1 "(room t)") "は最大の情報量を印刷します。" (CODE1 "(room)") "と" (CODE1 "(room :default)")
+     "は、使いやすい程度の中間の情報量を印刷します。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "標準出力への出力")
+    (CHAPTER ("## 影響") 2 (CODE1 "*standard-output*")) (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("ROOM" . "FUNCTION") *table*) (gethash "ROOM" *table*))
 (setf (gethash "ROTATEF" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "ROTATEF"))
     (CHAPTER ("## 構文") 2 (CODE1 "rotatef") " " (STRONG "place\\*") " => " (CODE1 "nil"))

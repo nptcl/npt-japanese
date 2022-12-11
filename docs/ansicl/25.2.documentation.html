@@ -156,6 +156,114 @@
 <p><a href="25.2.html">UP</a></p>
 <hr />
 <h1 id="standard-generic-function-documentation">Standard-Generic-Function <strong>DOCUMENTATION</strong></h1>
+<h2 id="構文">構文</h2>
+<p><code>documentation</code> <em>x</em> <em>doc-type</em> =&gt; <em>documentation</em><br />
+<code>(</code> <code>setf</code> <em>documentation</em> <code>)</code> <em>new-value</em> <em>x</em> <em>doc-type</em> =&gt; <em>new-value</em></p>
+<h2 id="引数の優先順位">引数の優先順位</h2>
+<p><em>doc-type</em>, <em>object</em></p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<h3 id="関数マクロ特殊フォーム">関数、マクロ、特殊フォーム:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.function-system-class.html"><code>function</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.function-system-class.html"><code>function</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="14.2.list-system-class.html"><code>list</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="14.2.list-system-class.html"><code>list</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>compiler-macro</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>compiler-macro</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>setf</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.function-system-class.html"><code>function</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.function-system-class.html"><code>function</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="14.2.list-system-class.html"><code>list</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="14.2.list-system-class.html"><code>list</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>compiler-macro</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>function</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>compiler-macro</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>setf</code></a> <code>)</code> <code>)</code></p>
+<h3 id="method-combination"><code>method-combination</code>:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.method-combination.html"><code>method-combination</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.method-combination.html"><code>method-combination</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>method-combination</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>method-combination</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.method-combination.html"><code>method-combination</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.method-combination.html"><code>method-combination</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>method-combination</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>method-combination</code></a> <code>)</code> <code>)</code></p>
+<h3 id="メソッド">メソッド:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.standard-method.html"><code>standard-method</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.standard-method.html"><code>standard-method</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code></p>
+<h3 id="パッケージ">パッケージ:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="11.2.package.html"><code>package</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="11.2.package.html"><code>package</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code></p>
+<h3 id="型クラス構造体の名前">型、クラス、構造体の名前:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.standard-class.html"><code>standard-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.standard-class.html"><code>standard-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.structure-class.html"><code>structure-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="4.4.structure-class.html"><code>structure-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>structure</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.standard-class.html"><code>standard-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.standard-class.html"><code>standard-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.structure-class.html"><code>structure-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>t</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="4.4.structure-class.html"><code>structure-class</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>type</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>structure</code></a> <code>)</code> <code>)</code></p>
+<h3 id="変数">変数:</h3>
+<p><code>documentation</code> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>variable</code></a> <code>)</code> <code>)</code><br />
+<code>(</code> <code>setf</code> <code>documentation</code> <code>)</code> <em>new-value</em> <code>(</code> <em>x</em> <a href="10.2.symbol.html"><code>symbol</code></a> <code>)</code> <code>(</code> <em>doc-type</em> <code>(</code> <a href="4.4.eql-type.html"><code>eql</code></a> <code>'</code> <a href="25.2.documentation.html"><code>variable</code></a> <code>)</code> <code>)</code></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>x</em> - オブジェクト<br />
+<em>doc-type</em> - シンボル<br />
+<em>documentation</em> - 文字列か、<a href="5.3.nil-variable.html"><code>nil</code></a><br />
+<em>new-value</em> - 文字列</p>
+<h2 id="定義">定義</h2>
+<p>ジェネリック関数<a href="25.2.documentation.html"><code>documentation</code></a>は、 もし引数のオブジェクトに関連付けられたものが利用可能なとき、 そのドキュメント文字列を返却します。 そうではないときは、<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p>ジェネリック関数<code>(setf documentation)</code>は、 <em>x</em>に関連付けられたドキュメント文字列を<em>new-value</em>に更新します。 もし<em>x</em>がリストのとき、それは<code>(setf symbol)</code>のフォームでなければなりません。</p>
+<p>ドキュメント文字列はデバッグ目的で利用できます。 適合するプログラムは、ドキュメント文字列が存在するときは それを使うことが許されていますが、 それらドキュメント文字列の存在が正しく返却されるような動作に 依存してはいけません。 実装はどんな時でも、実装定義の理由で ドキュメント文字列を切り捨てることが許されます。</p>
+<p>返却されるドキュメント文字列の性質は、 <em>doc-type</em>により下記に示すようなものに依存します。</p>
+<ul>
+<li><a href="25.2.documentation.html"><code>compiler-macro</code></a>
+<ul>
+<li><em>x</em>という関数名のコンパイラーマクロのドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>function</code></a>
+<ul>
+<li>もし<em>x</em>が関数名のとき、<em>x</em>という名前の関数か、マクロか、特殊フォームかの ドキュメント文字列を返却します。</li>
+<li>もし<em>x</em>が関数のとき、<em>x</em>に関連づいたドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>method-combination</code></a>
+<ul>
+<li>もし<em>x</em>がシンボルのとき、<em>x</em>という名前の<code>method-combination</code>の ドキュメント文字列を返却します。</li>
+<li>もし<em>x</em>が<code>method-combination</code>のとき、 <em>x</em>に関連づいたドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>setf</code></a>
+<ul>
+<li>シンボル<em>x</em>という名前のsetf-expanderの ドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>structure</code></a>
+<ul>
+<li>構造体名<em>x</em>に関連づいたドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>t</code></a>
+<ul>
+<li>引数<em>x</em>自身のクラスで特定化されたドキュメント文字列を返却します。 例えば<em>x</em>が関数のとき、関数<em>x</em>に関連づいたドキュメント文字列が返却されます。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>type</code></a>
+<ul>
+<li>もし<em>x</em>がシンボルのとき、シンボル<em>x</em>という名前のクラスが存在するならば、 そのクラスのドキュメント文字列を返却します。 それ以外のときは、シンボル<em>x</em>の型指定子が示す型の ドキュメント文字列を返却します。</li>
+<li>もし<em>x</em>が<a href="4.4.structure-class.html"><code>structure-class</code></a>か<a href="4.4.standard-class.html"><code>standard-class</code></a>のインスタンスのとき、 クラス<em>x</em>に関連づいたドキュメント文字列を返却します。</li>
+</ul></li>
+<li><a href="25.2.documentation.html"><code>variable</code></a>
+<ul>
+<li>シンボル<em>x</em>という名前の動的変数か定数変数の ドキュメント文字列を返却します。</li>
+</ul></li>
+</ul>
+<p>適合する実装か、適合するプログラムは、 <em>doc-type</em>として許容可能なシンボルの集合を拡張するかもしれません。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>標準では、ドキュメント文字列は <a href="7.7.defclass.html"><code>defclass</code></a>フォームによって指定された個別スロットから 取得するという意味で定めているのではありません。 しかし実装はこの情報を処理するような デバッグツールやプログラミング言語の拡張を提供するかもしれません。 このようなサポートの提供を行いたいような実装者は、 どのようにしてそれを行うかについての方法を得るために、 Metaobject Protocolを調査することをお勧めします。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -1,0 +1,87 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable *
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.environment-asterisk
+@name: *!variable
+@name: **
+@name: ***
+@type: variable
+
+Variable `*`
+
+
+## {value-type}
+
+オブジェクト
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+変数{*!variable:link}, {**:link}, {***:link}は、
+Lispの`read-eval-print`ループによって管理されている、
+ループを通して毎時印刷した結果の保存された値です。
+
+{*!variable:link}の値はもっとも最近印刷された主値であり、
+{**:link}の値は{*!variable:link}の前の値であり、
+{***:link}の値は{**:link}の前の値です。
+
+もし複数の値が生成されたとき、
+{*!variable:link}は最初の値のみを含みます。
+もしゼロ個の値が生成されたとき、
+{*!variable:link}は{nil!variable:link}を含みます。
+
+{*!variable:link}, {**:link}, {***:link}の値は、
+Lispの`read-eval-print`ループによって
+トップレベルフォームの返却値が印刷される前に即座に更新されます。
+もしそのようなフォームの評価が通常の返却の前に中断されたとき、
+{*!variable:link}, {**:link}, {***:link}の値は更新されません。
+
+
+## {examples}
+
+```lisp
+(values 'a1 'a2) =>  A1, A2
+'b =>  B
+(values 'c1 'c2 'c3) =>  C1, C2, C3
+(list * ** ***) =>  (C1 B A1)
+
+(defun cube-root (x) (expt x 1/3)) =>  CUBE-ROOT
+(compile *) =>  CUBE-ROOT
+(setq a (cube-root 27.0)) =>  3.0
+(* * 9.0) =>  27.0
+```
+
+
+## {affected-by}
+
+Lispの`read-eval-print`ループ
+
+
+## {see-also}
+
+{-!variable:link},
+{+!variable:link},
+{/!variable:link},
+{25.1.1:ab}
+
+
+## {notes}
+
+```lisp
+*   ==  (car /)
+**  ==  (car //)
+*** ==  (car ///)
+```
+
+@end
+

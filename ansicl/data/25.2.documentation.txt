@@ -9,6 +9,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 @begin: 25.2.documentation
 @name: documentation
+@link: t!symbol
 @link: type!symbol
 @link: function!symbol
 @link: method-combination!symbol
@@ -18,6 +19,221 @@
 @link: structure!symbol
 @type: standard-generic-function
 
+
+## {syntax}
+
+`documentation` *x* *doc-type* => *documentation*  
+`(` `setf` *documentation* `)` *new-value* *x* *doc-type* => *new-value*
+
+
+## {argument-precedence-order}
+
+*doc-type*, *object*
+
+
+## {method-signatures}
+
+### 関数、マクロ、{special-form}:
+
+`documentation` `(` *x* {function!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`documentation` `(` *x* {function!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`documentation` `(` *x* {list!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`documentation` `(` *x* {list!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {compiler-macro!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {compiler-macro!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {setf!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {function!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {function!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {list!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {list!system-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {compiler-macro!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {function!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {compiler-macro!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {setf!symbol:link} `)` `)`  
+
+
+### {method-combination}:
+
+`documentation` `(` *x* {method-combination:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`documentation` `(` *x* {method-combination:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {method-combination!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {method-combination!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {method-combination:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {method-combination:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {method-combination!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {method-combination!symbol:link} `)` `)`  
+
+
+### メソッド:
+
+`documentation` `(` *x* {standard-method:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {standard-method:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+
+
+### パッケージ:
+
+`documentation` `(` *x* {package:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {package:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+
+
+### 型、クラス、構造体の名前:
+
+`documentation` `(` *x* {standard-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`documentation` `(` *x* {standard-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`documentation` `(` *x* {structure-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`documentation` `(` *x* {structure-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {structure!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {standard-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {standard-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {structure-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {t!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {structure-class:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {type!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {structure!symbol:link} `)` `)`  
+
+
+### 変数:
+
+`documentation` `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {variable!symbol:link} `)` `)`  
+`(` `setf ` `documentation` `)` *new-value* `(` *x* {symbol:link} `)`
+ `(` *doc-type* `(` {eql!type:link} `'` {variable!symbol:link} `)` `)`  
+
+
+## {arguments-and-values}
+
+*x* - オブジェクト  
+*doc-type* - シンボル  
+*documentation* - 文字列か、{nil!variable:link}  
+*new-value* - 文字列
+
+
+## {description}
+
+ジェネリック関数{documentation:link}は、
+もし引数のオブジェクトに関連付けられたものが利用可能なとき、
+そのドキュメント文字列を返却します。
+そうではないときは、{nil!variable:link}を返却します。
+
+ジェネリック関数`(setf documentation)`は、
+*x*に関連付けられたドキュメント文字列を*new-value*に更新します。
+もし*x*がリストのとき、それは`(setf symbol)`のフォームでなければなりません。
+
+ドキュメント文字列はデバッグ目的で利用できます。
+適合するプログラムは、ドキュメント文字列が存在するときは
+それを使うことが許されていますが、
+それらドキュメント文字列の存在が正しく返却されるような動作に
+依存してはいけません。
+実装はどんな時でも、実装定義の理由で
+ドキュメント文字列を切り捨てることが許されます。
+
+返却されるドキュメント文字列の性質は、
+*doc-type*により下記に示すようなものに依存します。
+
+- {compiler-macro!symbol:link}
+  - *x*という関数名のコンパイラーマクロのドキュメント文字列を返却します。
+
+- {function!symbol:link}
+  - もし*x*が関数名のとき、*x*という名前の関数か、マクロか、{special-form}かの
+    ドキュメント文字列を返却します。
+  - もし*x*が関数のとき、*x*に関連づいたドキュメント文字列を返却します。
+
+- {method-combination!symbol:link}
+  - もし*x*がシンボルのとき、*x*という名前の{method-combination}の
+    ドキュメント文字列を返却します。
+  - もし*x*が{method-combination}のとき、
+    *x*に関連づいたドキュメント文字列を返却します。
+
+- {setf!symbol:link}
+  - シンボル*x*という名前の{setf-expander}の
+    ドキュメント文字列を返却します。
+
+- {structure!symbol:link}
+  - 構造体名*x*に関連づいたドキュメント文字列を返却します。
+
+- {t!symbol:link}
+  - 引数*x*自身のクラスで特定化されたドキュメント文字列を返却します。
+    例えば*x*が関数のとき、関数*x*に関連づいたドキュメント文字列が返却されます。
+
+- {type!symbol:link}
+  - もし*x*がシンボルのとき、シンボル*x*という名前のクラスが存在するならば、
+    そのクラスのドキュメント文字列を返却します。
+    それ以外のときは、シンボル*x*の型指定子が示す型の
+    ドキュメント文字列を返却します。
+  - もし*x*が{structure-class:link}か{standard-class:link}のインスタンスのとき、
+    クラス*x*に関連づいたドキュメント文字列を返却します。
+
+- {variable!symbol:link}
+  - シンボル*x*という名前の動的変数か定数変数の
+    ドキュメント文字列を返却します。
+
+適合する実装か、適合するプログラムは、
+*doc-type*として許容可能なシンボルの集合を拡張するかもしれません。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+標準では、ドキュメント文字列は
+{defclass:link}フォームによって指定された個別スロットから
+取得するという意味で定めているのではありません。
+しかし実装はこの情報を処理するような
+デバッグツールやプログラミング言語の拡張を提供するかもしれません。
+このようなサポートの提供を行いたいような実装者は、
+どのようにしてそれを行うかについての方法を得るために、
+Metaobject Protocolを調査することをお勧めします。
 
 @end
 

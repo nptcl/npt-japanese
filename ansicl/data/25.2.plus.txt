@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Variable +
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.environment-plus
+@name: +!variable
+@name: ++
+@name: +++
+@type: variable
+
+Variable `+`
+
+
+## {value-type}
+
+オブジェクト
+
+
+## {initial-value}
+
+{implementation-dependent}
+
+
+## {description}
+
+変数{+!variable:link}, {++:link}, {+++:link}は、
+Lispの`read-eval-print`ループによって管理されている、
+最近評価されたものの保存されたフォームです。
+
+{+!variable:link}の値は最後に評価されたフォームであり、
+{++:link}の値は{+!variable:link}の前に評価されたフォームであり、
+{+++:link}の値は{++:link}の前に評価されたフォームです。
+
+
+## {examples}
+
+```lisp
+(+ 0 1) =>  1
+(- 4 2) =>  2
+(/ 9 3) =>  3
+(list + ++ +++) =>  ((/ 9 3) (- 4 2) (+ 0 1))
+(setq a 1 b 2 c 3 d (list a b c)) =>  (1 2 3)
+(setq a 4 b 5 c 6 d (list a b c)) =>  (4 5 6)
+(list a b c) =>  (4 5 6)
+(eval +++) =>  (1 2 3)
+#.`(,@++ d) =>  (1 2 3 (1 2 3))
+```
+
+
+## {affected-by}
+
+Lispの`read-eval-print`ループ
+
+
+## {see-also}
+
+{-!variable:link},
+{*!variable:link},
+{/!variable:link},
+{25.1.1:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,88 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function APROPOS
+;;  Function APROPOS-LIST
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.apropos
+@name: apropos
+@name: apropos-list
+@type: function
+
+Function `APROPOS`, `APROPOS-LIST`
+
+
+## {syntax}
+
+`apropos` *string* `&optional` *package* => `<` 返却値なし `>`  
+`apropos-list` *string* `&optional` *package* => *symbols*
+
+
+## {arguments-and-values}
+
+*string* - 文字列指定子  
+*package* - パッケージ指定子か、{nil!variable:link}。
+デフォルトは{nil!variable:link}。  
+*symbols* - シンボルのリスト
+
+
+## {description}
+
+これらの関数は、*string*という文字列が部分的に含まれる名前を持つ
+`intern`されたシンボルを検索します。
+
+{apropos:link}は、シンボルが見つかったとき、
+その名前を標準出力に印刷します。
+加えて、そのようなシンボルが関数定義か、動的変数定義か、
+それらの定義に関する情報も合わせて印刷されるかもしれません。
+
+{apropos-list:link}は、
+検索の結果として出力は行いません。
+そのかわりに、検索が完了した時点で
+マッチしたシンボルをリストとして返却します。
+
+*package*が{nil!variable:link}ではないとき、
+*package*内のアクセス可能なシンボルのみが検索されます。
+それ以外のときは、全てのパッケージ内における
+全てのアクセス可能なシンボルを検索します。
+
+シンボルはひとつ以上の継承経路を持つことができるため、
+{apropos:link}は同じシンボルについて
+一回以上の情報印刷が行われるかもしれず、
+{apropos-list:link}は重複されたシンボルを含むリストが
+返却されるかもしれません。
+
+検索で大文字小文字の区別が行われるかどうかは実装定義です。
+
+
+## {examples}
+
+なし。
+
+
+## {affected-by}
+
+検索時の全てのパッケージ内に現在`intern`されているシンボルの集合。
+
+{apropos:link}は{*standard-output*:link}もまた影響します。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

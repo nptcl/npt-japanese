@@ -91,6 +91,8 @@
 (setf (gethash "AND" *name*) '("MACRO" "TYPE-SPECIFIER"))
 (setf (gethash "APPEND" *name*) '("FUNCTION"))
 (setf (gethash "APPLY" *name*) '("FUNCTION"))
+(setf (gethash "APROPOS" *name*) '("FUNCTION"))
+(setf (gethash "APROPOS-LIST" *name*) '("FUNCTION"))
 (setf (gethash "AREF" *name*) '("ACCESSOR"))
 (setf (gethash "ARITHMETIC-ERROR" *name*) '("CONDITION-TYPE"))
 (setf (gethash "ARITHMETIC-ERROR-OPERANDS" *name*) '("FUNCTION"))
@@ -280,6 +282,7 @@
 (setf (gethash "DECLARATION" *name*) '("DECLARATION"))
 (setf (gethash "DECLARE" *name*) '("SYMBOL"))
 (setf (gethash "DECODE-FLOAT" *name*) '("FUNCTION"))
+(setf (gethash "DECODE-UNIVERSAL-TIME" *name*) '("FUNCTION"))
 (setf (gethash "DEFCLASS" *name*) '("MACRO"))
 (setf (gethash "DEFCONSTANT" *name*) '("MACRO"))
 (setf (gethash "DEFGENERIC" *name*) '("MACRO"))
@@ -306,6 +309,8 @@
 (setf (gethash "DELETE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "DENOMINATOR" *name*) '("FUNCTION"))
 (setf (gethash "DEPOSIT-FIELD" *name*) '("FUNCTION"))
+(setf (gethash "DESCRIBE" *name*) '("FUNCTION"))
+(setf (gethash "DESCRIBE-OBJECT" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "DESTRUCTURING-BIND" *name*) '("MACRO"))
 (setf (gethash "DIGIT-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "DIGIT-CHAR-P" *name*) '("FUNCTION"))
@@ -331,6 +336,7 @@
 (setf (gethash "ECHO-STREAM-OUTPUT-STREAM" *name*) '("FUNCTION"))
 (setf (gethash "EIGHTH" *name*) '("ACCESSOR"))
 (setf (gethash "ELT" *name*) '("ACCESSOR"))
+(setf (gethash "ENCODE-UNIVERSAL-TIME" *name*) '("FUNCTION"))
 (setf (gethash "END-OF-FILE" *name*) '("CONDITION-TYPE"))
 (setf (gethash "ENDP" *name*) '("FUNCTION"))
 (setf (gethash "ENOUGH-NAMESTRING" *name*) '("FUNCTION"))
@@ -409,11 +415,15 @@
 (setf (gethash "GENSYM" *name*) '("FUNCTION"))
 (setf (gethash "GENTEMP" *name*) '("FUNCTION"))
 (setf (gethash "GET" *name*) '("ACCESSOR"))
+(setf (gethash "GET-DECODED-TIME" *name*) '("FUNCTION"))
 (setf (gethash "GET-DISPATCH-MACRO-CHARACTER" *name*) '("FUNCTION"))
+(setf (gethash "GET-INTERNAL-REAL-TIME" *name*) '("FUNCTION"))
+(setf (gethash "GET-INTERNAL-RUN-TIME" *name*) '("FUNCTION"))
 (setf (gethash "GET-MACRO-CHARACTER" *name*) '("FUNCTION"))
 (setf (gethash "GET-OUTPUT-STREAM-STRING" *name*) '("FUNCTION"))
 (setf (gethash "GET-PROPERTIES" *name*) '("FUNCTION"))
 (setf (gethash "GET-SETF-EXPANSION" *name*) '("FUNCTION"))
+(setf (gethash "GET-UNIVERSAL-TIME" *name*) '("FUNCTION"))
 (setf (gethash "GETF" *name*) '("ACCESSOR"))
 (setf (gethash "GETHASH" *name*) '("ACCESSOR"))
 (setf (gethash "GO" *name*) '("SPECIAL-OPERATOR"))
@@ -446,6 +456,7 @@
 (setf (gethash "INTEGERP" *name*) '("FUNCTION"))
 (setf (gethash "INTERACTIVE-STREAM-P" *name*) '("FUNCTION"))
 (setf (gethash "INTERN" *name*) '("FUNCTION"))
+(setf (gethash "INTERNAL-TIME-UNITS-PER-SECOND" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "INTERSECTION" *name*) '("FUNCTION"))
 (setf (gethash "INVALID-METHOD-ERROR" *name*) '("FUNCTION"))
 (setf (gethash "INVOKE-DEBUGGER" *name*) '("FUNCTION"))
@@ -794,6 +805,7 @@
 (setf (gethash "SINGLE-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "SINH" *name*) '("FUNCTION"))
 (setf (gethash "SIXTH" *name*) '("ACCESSOR"))
+(setf (gethash "SLEEP" *name*) '("FUNCTION"))
 (setf (gethash "SLOT-BOUNDP" *name*) '("FUNCTION"))
 (setf (gethash "SLOT-BOUNDP-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
 (setf (gethash "SLOT-EXISTS-P" *name*) '("FUNCTION"))
@@ -815,6 +827,7 @@
 (setf (gethash "STANDARD-GENERIC-FUNCTION" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "STANDARD-METHOD" *name*) '("SYSTEM-CLASS"))
 (setf (gethash "STANDARD-OBJECT" *name*) '("CLASS"))
+(setf (gethash "STEP" *name*) '("MACRO"))
 (setf (gethash "STORAGE-CONDITION" *name*) '("CONDITION-TYPE"))
 (setf (gethash "STORE-VALUE" *name*) '("FUNCTION" "RESTART"))
 (setf (gethash "STREAM" *name*) '("SYSTEM-CLASS"))
@@ -879,6 +892,8 @@
 (setf (gethash "THE" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "THIRD" *name*) '("ACCESSOR"))
 (setf (gethash "THROW" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "TIME" *name*) '("MACRO"))
+(setf (gethash "TRACE" *name*) '("MACRO"))
 (setf (gethash "TRANSLATE-LOGICAL-PATHNAME" *name*) '("FUNCTION"))
 (setf (gethash "TRANSLATE-PATHNAME" *name*) '("FUNCTION"))
 (setf (gethash "TREE-EQUAL" *name*) '("FUNCTION"))
@@ -904,6 +919,7 @@
 (setf (gethash "UNLESS" *name*) '("MACRO"))
 (setf (gethash "UNREAD-CHAR" *name*) '("FUNCTION"))
 (setf (gethash "UNSIGNED-BYTE" *name*) '("TYPE"))
+(setf (gethash "UNTRACE" *name*) '("MACRO"))
 (setf (gethash "UNUSE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "UNWIND-PROTECT" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "UPDATE-INSTANCE-FOR-DIFFERENT-CLASS" *name*) '("STANDARD-GENERIC-FUNCTION"))
@@ -3287,6 +3303,52 @@
      (CODE1 "function") "," "3.1. 評価," "5.1.2.5. APPLYの" (CODE1 "place") "フォーム")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("APPLY" . "FUNCTION") *table*) (gethash "APPLY" *table*))
+(setf (gethash "APROPOS" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "APROPOS") ", " (CODE1 "APROPOS-LIST"))
+    (CHAPTER ("## 構文") 2 (CODE1 "apropos") " " (STRONG "string") " " (CODE1 "&optional")
+     " " (STRONG "package") " => " (CODE1 "<") " 返却値なし " (CODE1 ">") EOL1
+     (CODE1 "apropos-list") " " (STRONG "string") " " (CODE1 "&optional") " "
+     (STRONG "package") " => " (STRONG "symbols"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "string") " - 文字列指定子" EOL1 (STRONG "package")
+     " - パッケージ指定子か、" (CODE1 "nil") "。" "デフォルトは" (CODE1 "nil") "。" EOL1 (STRONG "symbols")
+     " - シンボルのリスト")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" (STRONG "string") "という文字列が部分的に含まれる名前を持つ"
+     (CODE1 "intern") "されたシンボルを検索します。" EOL2 (CODE1 "apropos") "は、シンボルが見つかったとき、"
+     "その名前を標準出力に印刷します。" "加えて、そのようなシンボルが関数定義か、動的変数定義か、" "それらの定義に関する情報も合わせて印刷されるかもしれません。"
+     EOL2 (CODE1 "apropos-list") "は、" "検索の結果として出力は行いません。" "そのかわりに、検索が完了した時点で"
+     "マッチしたシンボルをリストとして返却します。" EOL2 (STRONG "package") "が" (CODE1 "nil") "ではないとき、"
+     (STRONG "package") "内のアクセス可能なシンボルのみが検索されます。" "それ以外のときは、全てのパッケージ内における"
+     "全てのアクセス可能なシンボルを検索します。" EOL2 "シンボルはひとつ以上の継承経路を持つことができるため、" (CODE1 "apropos")
+     "は同じシンボルについて" "一回以上の情報印刷が行われるかもしれず、" (CODE1 "apropos-list") "は重複されたシンボルを含むリストが"
+     "返却されるかもしれません。" EOL2 "検索で大文字小文字の区別が行われるかどうかは実装定義です。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "検索時の全てのパッケージ内に現在" (CODE1 "intern") "されているシンボルの集合。" EOL2
+     (CODE1 "apropos") "は" (CODE1 "*standard-output*") "もまた影響します。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("APROPOS" . "FUNCTION") *table*) (gethash "APROPOS" *table*))
+(setf (gethash "APROPOS-LIST" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "APROPOS") ", " (CODE1 "APROPOS-LIST"))
+    (CHAPTER ("## 構文") 2 (CODE1 "apropos") " " (STRONG "string") " " (CODE1 "&optional")
+     " " (STRONG "package") " => " (CODE1 "<") " 返却値なし " (CODE1 ">") EOL1
+     (CODE1 "apropos-list") " " (STRONG "string") " " (CODE1 "&optional") " "
+     (STRONG "package") " => " (STRONG "symbols"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "string") " - 文字列指定子" EOL1 (STRONG "package")
+     " - パッケージ指定子か、" (CODE1 "nil") "。" "デフォルトは" (CODE1 "nil") "。" EOL1 (STRONG "symbols")
+     " - シンボルのリスト")
+    (CHAPTER ("## 定義") 2 "これらの関数は、" (STRONG "string") "という文字列が部分的に含まれる名前を持つ"
+     (CODE1 "intern") "されたシンボルを検索します。" EOL2 (CODE1 "apropos") "は、シンボルが見つかったとき、"
+     "その名前を標準出力に印刷します。" "加えて、そのようなシンボルが関数定義か、動的変数定義か、" "それらの定義に関する情報も合わせて印刷されるかもしれません。"
+     EOL2 (CODE1 "apropos-list") "は、" "検索の結果として出力は行いません。" "そのかわりに、検索が完了した時点で"
+     "マッチしたシンボルをリストとして返却します。" EOL2 (STRONG "package") "が" (CODE1 "nil") "ではないとき、"
+     (STRONG "package") "内のアクセス可能なシンボルのみが検索されます。" "それ以外のときは、全てのパッケージ内における"
+     "全てのアクセス可能なシンボルを検索します。" EOL2 "シンボルはひとつ以上の継承経路を持つことができるため、" (CODE1 "apropos")
+     "は同じシンボルについて" "一回以上の情報印刷が行われるかもしれず、" (CODE1 "apropos-list") "は重複されたシンボルを含むリストが"
+     "返却されるかもしれません。" EOL2 "検索で大文字小文字の区別が行われるかどうかは実装定義です。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "検索時の全てのパッケージ内に現在" (CODE1 "intern") "されているシンボルの集合。" EOL2
+     (CODE1 "apropos") "は" (CODE1 "*standard-output*") "もまた影響します。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("APROPOS-LIST" . "FUNCTION") *table*) (gethash "APROPOS-LIST" *table*))
 (setf (gethash "AREF" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "AREF"))
     (CHAPTER ("## 構文") 2 (CODE1 "aref") " " (STRONG "array") " " (CODE1 "&rest") " "
@@ -13230,6 +13292,40 @@
       "                     (decode-float f)" "  (* (scale-float signif expon) sign))"
       "==  f"))))
 (setf (gethash '("DECODE-FLOAT" . "FUNCTION") *table*) (gethash "DECODE-FLOAT" *table*))
+(setf (gethash "DECODE-UNIVERSAL-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DECODE-UNIVERSAL-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "decode-universal-time") " " (STRONG "universal-time")
+     " " (CODE1 "&optional") " " (STRONG "time-zone") EOL1 " => " (STRONG "second") ", "
+     (STRONG "minute") ", " (STRONG "hour") ", " (STRONG "date") "," " " (STRONG "month")
+     ", " (STRONG "year") ", " (STRONG "day") ", " (STRONG "daylight-p") ", "
+     (STRONG "zone"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "universal-time") " - 普遍時間" EOL1
+     (STRONG "time-zone") " - タイムゾーン" EOL1 (STRONG "second") ", " (STRONG "minute") ", "
+     (STRONG "hour") ", " (STRONG "date") "," (STRONG "month") ", " (STRONG "year") ", "
+     (STRONG "day") ", " (STRONG "daylight-p") ", " (STRONG "zone") " - デコード時間")
+    (CHAPTER ("## 定義") 2 "与えられた普遍時間によって表現されるデコード時間を返却します。" EOL2 "もし" (STRONG "time-zone")
+     "が指定されなかったとき、" "現在のタイムゾーンでDaylight Saving Time（日光節約時間）によって" "調整されたものをデフォルトとします。"
+     "もし" (STRONG "time-zone") "が指定されたとき、Daylight Saving Timeの情報は無視されます。" "もし"
+     (STRONG "time-zone") "が指定されたとき、Daylight Saving Timeのフラグは" (CODE1 "nil") "です。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```"
+      "(decode-universal-time 0 0) =>  0, 0, 0, 1, 1, 1900, 0, false, 0" NIL
+      ";; 次の2つの例は、Eastern Daylight Timeを仮定しています。"
+      "(decode-universal-time 2414296800 5) =>  0, 0, 1, 4, 7, 1976, 6, false, 5"
+      "(decode-universal-time 2414293200) =>  0, 0, 1, 4, 7, 1976, 6, true, 5" NIL
+      ";; この例は、タイムゾーンがEastern Daylight Timeを仮定しています。" ";; （そしてタイムゾーンは例を通して固定です）"
+      "(let* ((here (nth 8 (multiple-value-list (get-decoded-time)))) ;タイムゾーン"
+      "       (recently (get-universal-time))"
+      "       (a (nthcdr 7 (multiple-value-list (decode-universal-time recently))))"
+      "       (b (nthcdr 7 (multiple-value-list (decode-universal-time recently here)))))"
+      "  (list a b (equal a b))) =>  ((T 5) (NIL 5) NIL)"))
+    (CHAPTER ("## 影響") 2 "Daylight Saving Timeが与えられたセッションで効果を持つとき、"
+     "実装依存の仕組みによって計算されます。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "encode-universal-time") "," (CODE1 "get-universal-time")
+     "," "25.1.4. 時間")
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("DECODE-UNIVERSAL-TIME" . "FUNCTION") *table*) (gethash "DECODE-UNIVERSAL-TIME" *table*))
 (setf (gethash "DEFCLASS" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DEFCLASS"))
     (CHAPTER ("## 構文") 2 (CODE1 "defclass") " " (STRONG "class-name") " ("
@@ -15823,6 +15919,78 @@
      EOL2 (CODE1 "dpb") "が" (CODE1 "ldb") "と対応するように、" (CODE1 "deposit-field") "は"
      (CODE1 "mask-field") "に対応します。")))
 (setf (gethash '("DEPOSIT-FIELD" . "FUNCTION") *table*) (gethash "DEPOSIT-FIELD" *table*))
+(setf (gethash "DESCRIBE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "DESCRIBE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "describe") " " (STRONG "object") " " (CODE1 "&optional")
+     " " (STRONG "stream") " => " (CODE1 "<") " 返却値なし " (CODE1 ">"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "stream")
+     " - 出力ストリーム指定子。デフォルトは標準出力。")
+    (CHAPTER ("## 定義") 2 (CODE1 "describe") "は、" (STRONG "object") "についての情報を"
+     (STRONG "stream") "へ表示します。" EOL2 "例えば、シンボルの" (CODE1 "describe") "は、"
+     "シンボルの値、定義、各プロパティを表示するかもしれません。" "浮動小数の" (CODE1 "describe") "は、"
+     "その数の内部表現の丸め誤差の方法が表示されるかもしれません。" "しかしながら全ての場合において、" (CODE1 "describe")
+     "の性質と出力フォーマットは実装依存です。" EOL2 (CODE1 "describe") "は" (STRONG "object") "内部に見られる何かについて"
+     (CODE1 "describe") "することができます。" "このような場合、引数" (STRONG "oboject") "の定義と"
+     "再帰的に呼び出された定義と視覚的に区別を行うために、" "典型的にはデバイスの表現方法について" "インデントを増やしたり、テーブルの位置を変更したりします。"
+     EOL2 "実際のオブジェクトの定義の動作は、" (CODE1 "describe-object") "によって実装されます。" (CODE1 "describe")
+     "はデフォルトの引数" "（引数の" (CODE1 "t") "と" (CODE1 "nil") "を" "ストリームオブジェクトへ変換する動作を含む）を"
+     "管理するための主なるインターフェイスとして存在し、" (CODE1 "describe-object") "から返却されるどのような値も抑止します。" EOL2
+     (CODE1 "describe") "はインタラクティブな関数であることを意図していません。" "適合した実装では、" (CODE1 "describe")
+     "はデフォルトではプロンプトによる" "ユーザーの入力を受け付けてはいけません。" (CODE1 "describe-object")
+     "のユーザー定義メソッドには同じ制限があります。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "標準出力化、ターミナルI/Oへ出力します。")
+    (CHAPTER ("## 影響") 2 (STRONG "object") "が保有するユーザー定義クラスへの" (CODE1 "describe-object")
+     "と" (CODE1 "print-object") "それぞれのメソッドにおける、" (CODE1 "*standard-output*") "と"
+     (CODE1 "*terminal-io*"))
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "inspect") "," (CODE1 "describe-object"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("DESCRIBE" . "FUNCTION") *table*) (gethash "DESCRIBE" *table*))
+(setf (gethash "DESCRIBE-OBJECT" *table*)
+  '((CHAPTER NIL 0 "Standard Generic Function " (CODE1 "DESCRIBE-OBJECT"))
+    (CHAPTER ("## 構文") 2 (CODE1 "describe-object") " " (STRONG "object") " "
+     (STRONG "stream") " => " (STRONG "implementation-dependent"))
+    (CHAPTER ("## メソッド宣言") 2 (STRONG "describe-object") " " (CODE1 "(") " "
+     (STRONG "object") " " (CODE1 "standard-object") " " (CODE1 ")") " "
+     (STRONG "stream"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "object") " - オブジェクト" EOL1 (STRONG "stream")
+     " - ストリーム")
+    (CHAPTER ("## 定義") 2 "ジェネリック関数" (CODE1 "describe-object") "は、" (STRONG "object")
+     "の定義を" (STRONG "stream") "へ印刷します。" (CODE1 "describe-object") "は" (CODE1 "describe")
+     "によって呼び出されるものであり、" "ユーザーによって呼び出してはいけません。" EOL2 "各実装は、クラス" (CODE1 "standard-object")
+     "のメソッドと、" "その他にも適切なメソッドが常に存在することを保証するよう、" "十分なクラスのメソッドを提供するよう要求されています。"
+     "実装は、他のクラスのメソッドを追加することは自由です。" "ユーザーは、自身が作成したクラスについて、" "実装が提供したメソッドから継承したくはないときは"
+     (CODE1 "describe-object") "のメソッドを作成することができます。" EOL2 (CODE1 "describe-object")
+     "のメソッドは、" "再帰的に" (CODE1 "describe") "を呼び出すことができます。" "そのときのインデント、深さの制限、循環の検出は、"
+     "全て自動的に行われ、" "もし" (CODE1 "describe") "がより深い構造の階層で再帰的に呼び出されたとき、"
+     "各メソッドは正確にひとつの階層構造だけになるように調整されます。" "この規則に従わなかったときの結果は未定義です。" EOL2 "ある実装では、"
+     (CODE1 "describe-object") "メソッドの" "引数に渡された" (STRONG "stream") "は、元の"
+     (STRONG "stream") "ではなく、" (CODE1 "describe") "の実装部分による中間的なストリームであることがあります。"
+     "したがって、メソッドはこのストリームの同一性について依存するべきではありません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(defclass spaceship ()"
+      "  ((captain :initarg :captain :accessor spaceship-captain)"
+      "   (serial# :initarg :serial-number :accessor spaceship-serial-number)))" NIL
+      "(defclass federation-starship (spaceship) ())" NIL
+      "(defmethod describe-object ((s spaceship) stream)"
+      "  (with-slots (captain serial#) s"
+      "    (format stream \"~&~S is a spaceship of type ~S,~"
+      "                    ~%with ~A at the helm ~"
+      "                      and with serial number ~D.~%\""
+      "            s (type-of s) captain serial#)))" NIL
+      "(make-instance 'federation-starship" "               :captain \"Rachel Garrett\""
+      "               :serial-number \"NCC-1701-C\")"
+      "=>  #<FEDERATION-STARSHIP 26312465>" NIL "(describe *)"
+      ">>  #<FEDERATION-STARSHIP 26312465> is a spaceship of type FEDERATION-STARSHIP,"
+      ">>  with Rachel Garrett at the helm and with serial number NCC-1701-C."
+      "=>  <no values>"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "describe"))
+    (CHAPTER ("## 備考") 2 (CODE1 "print-object") "に適用可能なものは、" (CODE1 "describe-object")
+     "に適用可能なものと、" "同じ実装の技術を用いています。" EOL2 (CODE1 "describe-object") "の返却値が未指定になっている理由は、"
+     "それらの全てのメソッドで明に" (CODE1 "(values)") "という式を" "ユーザーに対して強制させることを避けるためです。" "これは"
+     (CODE1 "describe") "が行います。")))
+(setf (gethash '("DESCRIBE-OBJECT" . "STANDARD-GENERIC-FUNCTION") *table*) (gethash "DESCRIBE-OBJECT" *table*))
 (setf (gethash "DESTRUCTURING-BIND" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "DESTRUCTURING-BIND"))
     (CHAPTER ("## 構文") 2 (CODE1 "destructuring-bind") " " (STRONG "lambda-list") " "
@@ -16889,6 +17057,27 @@
     (CHAPTER ("## 備考") 2 (CODE1 "aref") "は、" (CODE1 "vector") "のfill-pointerを越えた、"
      (CODE1 "vector") "の要素に" "アクセスするときに使用します。")))
 (setf (gethash '("ELT" . "ACCESSOR") *table*) (gethash "ELT" *table*))
+(setf (gethash "ENCODE-UNIVERSAL-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "ENCODE-UNIVERSAL-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "encode-universal-time") " " (STRONG "second") " "
+     (STRONG "minute") " " (STRONG "hour") " " (STRONG "date") " " (STRONG "month") " "
+     (STRONG "year") " " (CODE1 "&optional") " " (STRONG "time-zone") " => "
+     (STRONG "universal-time"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "second") ", " (STRONG "minute") ", "
+     (STRONG "hour") ", " (STRONG "date") ", " (STRONG "month") ", " (STRONG "year") ", "
+     (STRONG "time-zone") " -" "デコード時間に対応した部分" "（完全なデコード時間にある9つのうちのいくつかの値は冗長なので、"
+     "この関数では入力として使用されません）" EOL1 (STRONG "universal-time") " - 普遍時間")
+    (CHAPTER ("## 定義") 2 (CODE1 "encode-universal-time") "は、" "デコード時間の形式の時間から普遍時間へ変換します。"
+     EOL2 "もし" (STRONG "time-zone") "が指定されたとき、" "Daylight Saving Timeの調整は行われません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(encode-universal-time 0 0 0 1 1 1900 0) =>  0"
+      "(encode-universal-time 0 0 1 4 7 1976 5) =>  2414296800"
+      ";; 次の例はEastern Dayligit Timeを想定しています。"
+      "(encode-universal-time 0 0 1 4 7 1976) =>  2414293200"))
+    (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "decode-universal-time") "," (CODE1 "get-decoded-time"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("ENCODE-UNIVERSAL-TIME" . "FUNCTION") *table*) (gethash "ENCODE-UNIVERSAL-TIME" *table*))
 (setf (gethash "END-OF-FILE" *table*)
   '((CHAPTER NIL 0 "Condition Type " (CODE1 "END-OF-FILE"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "end-of-file") "," (CODE1 "stream-error") ","
@@ -18014,7 +18203,7 @@
     (CHAPTER ("## 例外") 2 "もし" (STRONG "filespec") "がワイルドカードを含むとき、" "型"
      (CODE1 "file-error") "のエラーが発生します。" EOL2 "もしファイルシステムが要求された処理を実行できなかったときは、" "型"
      (CODE1 "file-error") "のエラーが発生します。")
-    (CHAPTER ("## 参考") 2 "25.1.4.2. ユニバーサル時間," "19.1.2. ファイル名としてのパス名")
+    (CHAPTER ("## 参考") 2 "25.1.4.2. 普遍時間," "19.1.2. ファイル名としてのパス名")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("FILE-AUTHOR" . "FUNCTION") *table*) (gethash "FILE-AUTHOR" *table*))
 (setf (gethash "FILE-ERROR" *table*)
@@ -18202,9 +18391,9 @@
     (CHAPTER ("## 構文") 2 (CODE1 "file-write-date") " " (STRONG "pathspec") " => "
      (STRONG "date"))
     (CHAPTER ("## 引数と戻り値") 2 (STRONG "pathspec") " - パス名指定子" EOL1 (STRONG "date")
-     " - ユニバーサル時間か、" (CODE1 "nil"))
+     " - 普遍時間か、" (CODE1 "nil"))
     (CHAPTER ("## 定義") 2 (STRONG "pathspec") "で指定されたファイルが"
-     "最後に書き込みされたとき（または作成されたとき）の時間を、" "ユニバーサル時間として表現したものを返却するか、" "そのような時間が決定できなかったときは"
+     "最後に書き込みされたとき（または作成されたとき）の時間を、" "普遍時間として表現したものを返却するか、" "そのような時間が決定できなかったときは"
      (CODE1 "nil") "を返却します。")
     (CHAPTER ("## 例文") 2
      (CODE3 "```lisp" "```" "(with-open-file (s \"noel.text\" "
@@ -20009,6 +20198,38 @@
      (STRONG "indicator") "を使ったときの効果は" "実装依存です。" EOL2 (CODE1 "get") "を使用して、存在しないプロパティと"
      "値がデフォルトであるプロパティを区別する方法はありません。" "しかし、" (CODE1 "get-properties") "を利用できます。")))
 (setf (gethash '("GET" . "ACCESSOR") *table*) (gethash "GET" *table*))
+(setf (gethash "GET-DECODED-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "GET-UNIVERSAL-TIME") ", "
+     (CODE1 "GET-DECODED-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-universal-time") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "universal-time") EOL1 (CODE1 "get-decoded-time") " "
+     (CODE1 "<") " 引数なし " (CODE1 ">") EOL1 "=> " (STRONG "second") ", " (STRONG "minute")
+     ", " (STRONG "hour") ", " (STRONG "date") ", " (STRONG "month") ", " (STRONG "year")
+     ", " (STRONG "day") "," " " (STRONG "daylight-p") ", " (STRONG "zone"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "universal-time") " - 普遍時間" EOL1 (STRONG "second")
+     ", " (STRONG "minute") ", " (STRONG "hour") ", " (STRONG "date") ", "
+     (STRONG "month") ", " (STRONG "year") ", " (STRONG "day") "," (STRONG "daylight-p")
+     ", " (STRONG "zone") " - デコード時間")
+    (CHAPTER ("## 定義") 2 (CODE1 "get-universal-time") "は、普遍時間として表現された" "現在の時刻を返却します。"
+     EOL2 (CODE1 "get-decoded-time") "は、デコード時間として表現された" "現在の時刻を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 米国東部標準時・夏時間（Eastern Daylight Time）の7月4日の正午"
+      "(get-decoded-time) =>  0, 0, 12, 4, 7, 1976, 6, true, 5" ";; 正確に同じ瞬間"
+      "(get-universal-time) =>  2414332800" ";; 正確に5分後"
+      "(get-universal-time) =>  2414333100" ";; 300秒（5分）ちがう"
+      ";; The difference is 300 seconds (five minutes)" "(- * **) =>  300"))
+    (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "時刻（時間の経過など）、" "システム時計の正確な時刻を保つ能力、" "システム時計の初期設定の正確さ。")
+    (CHAPTER ("## 例外") 2 "現在の時刻を決定できなかったときは、" "型" (CODE1 "error") "のエラーが通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "decode-universal-time") ","
+     (CODE1 "encode-universal-time") "," "25.1.4. 時間")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```"
+      "(get-decoded-time) ==  (decode-universal-time (get-universal-time))")
+     EOL2 "実装は返却された時間が正しいか" "確認する方法をもつ必要はありません。" "しかし、もし実装が正しいかを確認する方法を提供しており"
+     "（例えばシステムクロックの初期化で信頼性の異常を検知したなど）、" "その有効性の確認に失敗したとき、" "実装は（例えば特定のエラーを示す値を返却するのではなく）"
+     "型" (CODE1 "error") "のエラーを通知することを強く推奨します" "（ただし必須ではありません）。")))
+(setf (gethash '("GET-DECODED-TIME" . "FUNCTION") *table*) (gethash "GET-DECODED-TIME" *table*))
 (setf (gethash "GET-DISPATCH-MACRO-CHARACTER" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SET-DISPATCH-MACRO-CHARACTER") ", "
      (CODE1 "GET-DISPATCH-MACRO-CHARACTER"))
@@ -20057,6 +20278,34 @@
     (CHAPTER ("## 備考") 2 "それらの" (STRONG "sub-char") "を指定する前に"
      (CODE1 "make-dispatch-macro-character") "を使用して、" "ディスパッチ文字のセットアップを行う必要があります。")))
 (setf (gethash '("GET-DISPATCH-MACRO-CHARACTER" . "FUNCTION") *table*) (gethash "GET-DISPATCH-MACRO-CHARACTER" *table*))
+(setf (gethash "GET-INTERNAL-REAL-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "GET-INTERNAL-REAL-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-internal-real-time") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "internal-time"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "internal-time") " - 非負の整数")
+    (CHAPTER ("## 定義") 2 (CODE1 "get-internal-real-time") "は、" "現在の時刻を内部時間単位とした整数を返却し、"
+     "その値の基準は任意の時間の相対値です。" "この関数が2度呼び出されたときの値の差は、" "2つの呼び出しのリアルタイム（例えば時刻）の経過時間の量です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "時刻（例えば、経過時間）。" "この時間の基準値は、結果の大きさに影響します。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "internal-time-units-per-second"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("GET-INTERNAL-REAL-TIME" . "FUNCTION") *table*) (gethash "GET-INTERNAL-REAL-TIME" *table*))
+(setf (gethash "GET-INTERNAL-RUN-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "GET-INTERNAL-RUN-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-internal-run-time") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "internal-time"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "internal-time") " - 非負の整数")
+    (CHAPTER ("## 定義") 2 "現在の実行時間を内部時間単位とした整数として返却します。" "この量の正確な意味は実装依存であり、"
+     "リアルタイム、実行時間、CPUのサイクル、その他の量の計測などかもしれません。" "この関数が2度呼び出されたときの値の差は、"
+     "2つの呼び出しの間にプログラムの実行として浪費された計算処理の量です。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "実装の時刻（例えば、経過時間）") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "internal-time-units-per-second"))
+    (CHAPTER ("## 備考") 2 "実装の依存により、" "ページングの時間とガベージコレクションの時間は" "この測定におそらく含まれます。"
+     "またマルチタスク環境では、" "この値は自身のプロセスだけの時間を示すことができないかもしれず、" "よっていくつかの実装では"
+     "同時刻の間隔中のその他のプロセスによって得られる時間が" "同じようにこの計測中に含まれるかもしれません。")))
+(setf (gethash '("GET-INTERNAL-RUN-TIME" . "FUNCTION") *table*) (gethash "GET-INTERNAL-RUN-TIME" *table*))
 (setf (gethash "GET-MACRO-CHARACTER" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SET-MACRO-CHARACTER") ", "
      (CODE1 "GET-MACRO-CHARACTER"))
@@ -20183,6 +20432,38 @@
     (CHAPTER ("## 備考") 2 "compound-formの操作" (CODE1 "f") "がsetf展開を持たないなら"
      (CODE1 "(setf f)") "のように展開されるので、" "どのようなcompound-formも有効な" (CODE1 "place") "になります。")))
 (setf (gethash '("GET-SETF-EXPANSION" . "FUNCTION") *table*) (gethash "GET-SETF-EXPANSION" *table*))
+(setf (gethash "GET-UNIVERSAL-TIME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "GET-UNIVERSAL-TIME") ", "
+     (CODE1 "GET-DECODED-TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "get-universal-time") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "universal-time") EOL1 (CODE1 "get-decoded-time") " "
+     (CODE1 "<") " 引数なし " (CODE1 ">") EOL1 "=> " (STRONG "second") ", " (STRONG "minute")
+     ", " (STRONG "hour") ", " (STRONG "date") ", " (STRONG "month") ", " (STRONG "year")
+     ", " (STRONG "day") "," " " (STRONG "daylight-p") ", " (STRONG "zone"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "universal-time") " - 普遍時間" EOL1 (STRONG "second")
+     ", " (STRONG "minute") ", " (STRONG "hour") ", " (STRONG "date") ", "
+     (STRONG "month") ", " (STRONG "year") ", " (STRONG "day") "," (STRONG "daylight-p")
+     ", " (STRONG "zone") " - デコード時間")
+    (CHAPTER ("## 定義") 2 (CODE1 "get-universal-time") "は、普遍時間として表現された" "現在の時刻を返却します。"
+     EOL2 (CODE1 "get-decoded-time") "は、デコード時間として表現された" "現在の時刻を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" ";; 米国東部標準時・夏時間（Eastern Daylight Time）の7月4日の正午"
+      "(get-decoded-time) =>  0, 0, 12, 4, 7, 1976, 6, true, 5" ";; 正確に同じ瞬間"
+      "(get-universal-time) =>  2414332800" ";; 正確に5分後"
+      "(get-universal-time) =>  2414333100" ";; 300秒（5分）ちがう"
+      ";; The difference is 300 seconds (five minutes)" "(- * **) =>  300"))
+    (CHAPTER ("## 副作用") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "時刻（時間の経過など）、" "システム時計の正確な時刻を保つ能力、" "システム時計の初期設定の正確さ。")
+    (CHAPTER ("## 例外") 2 "現在の時刻を決定できなかったときは、" "型" (CODE1 "error") "のエラーが通知されるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "decode-universal-time") ","
+     (CODE1 "encode-universal-time") "," "25.1.4. 時間")
+    (CHAPTER ("## 備考") 2
+     (CODE3 "```lisp" "```"
+      "(get-decoded-time) ==  (decode-universal-time (get-universal-time))")
+     EOL2 "実装は返却された時間が正しいか" "確認する方法をもつ必要はありません。" "しかし、もし実装が正しいかを確認する方法を提供しており"
+     "（例えばシステムクロックの初期化で信頼性の異常を検知したなど）、" "その有効性の確認に失敗したとき、" "実装は（例えば特定のエラーを示す値を返却するのではなく）"
+     "型" (CODE1 "error") "のエラーを通知することを強く推奨します" "（ただし必須ではありません）。")))
+(setf (gethash '("GET-UNIVERSAL-TIME" . "FUNCTION") *table*) (gethash "GET-UNIVERSAL-TIME" *table*))
 (setf (gethash "GETF" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "GETF"))
     (CHAPTER ("## 構文") 2 (CODE1 "getf") " " (STRONG "plist") " " (STRONG "indicator")
@@ -21137,6 +21418,14 @@
     (CHAPTER ("## 備考") 2 (CODE1 "intern") "が名前の衝突チェックを行う必要はなく、"
      "なぜなら指定した名前のシンボルがすでにアクセス可能であるときに" "新しいシンボルを作成するようなことはないからです。")))
 (setf (gethash '("INTERN" . "FUNCTION") *table*) (gethash "INTERN" *table*))
+(setf (gethash "INTERNAL-TIME-UNITS-PER-SECOND" *table*)
+  '((CHAPTER NIL 0 "Constant Variable " (CODE1 "INTERNAL-TIME-UNITS-PER-SECOND"))
+    (CHAPTER ("## 定数値") 2 "正の整数であり、その大きさは実装依存") (CHAPTER ("## 定義") 2 "1秒における内部時間の単位の数")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "get-internal-run-time") ","
+     (CODE1 "get-internal-real-time"))
+    (CHAPTER ("## 備考") 2 "これらの単位は、内部時間形式の表現の基本です。")))
+(setf (gethash '("INTERNAL-TIME-UNITS-PER-SECOND" . "CONSTANT-VARIABLE") *table*) (gethash "INTERNAL-TIME-UNITS-PER-SECOND" *table*))
 (setf (gethash "INTERSECTION" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "INTERSECTION") ", " (CODE1 "NINTERSECTION"))
     (CHAPTER ("## 構文") 2 (CODE1 "intersection") " " (STRONG "list-1") " "
@@ -35124,6 +35413,23 @@
      (CODE1 "nth") "によって使われる採番は0開始であり、" "次の関係が成り立ちます。"
      (CODE3 "```lisp" "```" "(fifth x) == (nth 4 x)"))))
 (setf (gethash '("SIXTH" . "ACCESSOR") *table*) (gethash "SIXTH" *table*))
+(setf (gethash "SLEEP" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SLEEP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "sleep") " " (STRONG "seconds") " => " (CODE1 "nil"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "seconds") " - 非負の整数")
+    (CHAPTER ("## 定義") 2 "実行を停止し、" "指定された" (STRONG "seconds") "を現実の時間の秒数とし、"
+     "おおよそその時間だけ休止状態にしたあと、" "実行を再開します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(sleep 1) =>  NIL " NIL ";; 実際にはSLEEPは近似の時間を使用することが許されており、"
+      ";; この例は常にtrueになる分けではありません。" ";; しかし意図を示す例としては有効であると思います。"
+      "(let ((then (get-universal-time))"
+      "      (now  (progn (sleep 10) (get-universal-time))))" "  (>= (- now then) 10))"
+      "=>  true"))
+    (CHAPTER ("## 副作用") 2 "処理の停止") (CHAPTER ("## 影響") 2 "スケジューラーの精度")
+    (CHAPTER ("## 例外") 2 (STRONG "seconds") "が非負の整数ではないとき、" "型" (CODE1 "type-error")
+     "のエラーが通知されます。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SLEEP" . "FUNCTION") *table*) (gethash "SLEEP" *table*))
 (setf (gethash "SLOT-BOUNDP" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SLOT-BOUNDP"))
     (CHAPTER ("## 構文") 2 (CODE1 "slot-boundp") " " (STRONG "instance") " "
@@ -35785,6 +36091,23 @@
     (CHAPTER ("## 定義") 2 (CODE1 "standard-object") "クラスは" (CODE1 "standard-class")
      "のインスタンスであり、" "自分以外の" (CODE1 "standard-class") "のインスタンスの" "全てのクラスのスーパークラスです。")))
 (setf (gethash '("STANDARD-OBJECT" . "CLASS") *table*) (gethash "STANDARD-OBJECT" *table*))
+(setf (gethash "STEP" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "STEP"))
+    (CHAPTER ("## 構文") 2 (CODE1 "step") " " (STRONG "form") " => " (STRONG "result\\*"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "form") " - フォーム。下記の定義に従い評価されます。" EOL1
+     (STRONG "result") " - " (STRONG "form") "の返却値")
+    (CHAPTER ("## 定義") 2 (CODE1 "step") "は、" (STRONG "form") "の評価に対してプログラマーに"
+     "ステップ実行できるようなデバッグ機能を実装します。" "対話の内容や、使用されるI/Oストリーム、" "ステップ実行がレキシカルと動的の"
+     "どちらのスコープを持つかなどは実装依存です。" EOL2 (CODE1 "step") "は現在の環境で" (STRONG "form") "を評価します。"
+     (CODE1 "step") "の呼び出しはコンパイルすることができますが、" "しかし実装がインタラクティブにステップを実行する"
+     "それらの計算部分にに対してはインタープリタ形式が許容されます。" EOL2 "適合される実装に対しては、" (STRONG "form") "の通常の評価以外の、"
+     "その他の全てにおいて何もしないことが技術的に許されます。" "このような状況においては、例えば" (CODE1 "(step form)") "は"
+     (CODE1 "(let () form)") "と等しくなります。" "この場合、実装は関連するドキュメントでその事実を言及しなければなりません。")
+    (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "trace"))
+    (CHAPTER ("## 備考") 2 "実装はコマンドのリストにヘルプ機能を提供する、"
+     "「Helpキー」の押下や 「?」のタイプなどの応答を行うことが推奨されます。")))
+(setf (gethash '("STEP" . "MACRO") *table*) (gethash "STEP" *table*))
 (setf (gethash "STORAGE-CONDITION" *table*)
   '((CHAPTER NIL 0 "Condition Type " (CODE1 "STORAGE-CONDITION"))
     (CHAPTER ("## クラス優先順位リスト") 2 (CODE1 "storage-condition") ","
@@ -39037,6 +39360,64 @@
      (CODE1 "throw") "がレキシカルな" (CODE1 "catch") "に囲まれていないとき）に使われ、" "それに対して"
      (CODE1 "block") "と" (CODE1 "return-from") "は、" "レキシカルスコープで十分のときに使用されます。")))
 (setf (gethash '("THROW" . "SPECIAL-OPERATOR") *table*) (gethash "THROW" *table*))
+(setf (gethash "TIME" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "TIME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "time") " " (STRONG "form") " => " (STRONG "result\\*"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "form") " - フォーム。下記の定義に従い評価されます。" EOL1
+     (STRONG "result") " - " (STRONG "form") "の返却値")
+    (CHAPTER ("## 定義") 2 (CODE1 "time") "は現在の環境（レキシカルと動的）で、" (STRONG "form") "を評価します。"
+     (CODE1 "time") "の呼び出しはコンパイルできます。" EOL2 (CODE1 "time") "は様々なタイミングのデータと"
+     "その他の情報をトレース出力に印刷します。" "印刷される情報の内容と形式は実装定義です。" "実装はそのような情報について、"
+     "経過時間、機器の実行時間、そしてストレージ管理の統計などを" "提供することが勧められます。")
+    (CHAPTER ("## 例文") 2 "なし。")
+    (CHAPTER ("## 影響") 2 "結果得られるものの精度は、実行中の他の何らかの動作や、"
+     "オペレーティングシステムによって提供される操作関数の精度などに依存します。" EOL2 "結果の大きさはハードウェア、オペレーティングシステム、"
+     "Lispの実装、そしてグローバル環境の状況に依存するでしょう。" "いくつかの機能は、" "ハードウェアの速度の影響、" "スケジューリングの性質（もしあるなら）、"
+     "プロセスの競合数（もしあるなら）、" "システムのページング、" "呼び出しがインタープリタ命令かコンパイルされた命令か、"
+     "呼び出された関数がコンパイルされたものか、" "実行中に何らかのガベージコレクタが起動されたか、" "内部データ構造（例えばハッシュテーブル）が"
+     "暗黙的に生成されているか、など、" "によって周期的な問題が引き起こされます。")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "get-internal-real-time") ","
+     (CODE1 "get-internal-run-time"))
+    (CHAPTER ("## 備考") 2 "一般的に、これらのタイミングは、" "市場調査の比較に対しては保証や信頼性があるとは言えません。"
+     "これらの値は主に問題解決のためのものであり、" "チューニング目的によるものです。" EOL2 "これらタイミングの結果は、"
+     "複雑な問題が生じたものの背景の情報として" "解釈するときに使われるものでです。" "詳しくは"
+     (CODE1 "Performance and Evaluation of Lisp Programs") "をご確認ください。")))
+(setf (gethash '("TIME" . "MACRO") *table*) (gethash "TIME" *table*))
+(setf (gethash "TRACE" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "TRACE") ", " (CODE1 "UNTRACE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "trace") " " (STRONG "function-name\\*") " => "
+     (STRONG "trace-result") EOL1 (CODE1 "untrace") " " (STRONG "function-name\\*")
+     " => " (STRONG "untrace-result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "function-name") " - 関数名" EOL1
+     (STRONG "trace-result") " - " (STRONG "function-name") "が与えられたときは実装依存。"
+     "与えられなかったときは関数名のリスト。" EOL1 (STRONG "untrace-result") " - 実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "trace") "と" (CODE1 "untrace") "は、トレース機能の呼び出しを制御します。"
+     EOL2 (CODE1 "trace") "をひとつ以上の" (STRONG "function-name") "とともに呼び出したとき、"
+     "その関数は「トレースされた」ものになります。" "トレースされた関数が呼び出されたときはいつでも、"
+     "呼び出しについての情報、渡された引数、最終的な返却値について、" "トレース出力に印刷されます。" "もし" (CODE1 "trace") "が"
+     (STRONG "function-name") "を指定せず使われたとき、" "トレースの動作は行いませんが、"
+     "代わりに現在トレースされている関数のリストが返却されます。" EOL2 (CODE1 "untrace") "をひとつ以上の"
+     (STRONG "function-name") "とともに呼び出したとき、" "その関数は「トレースが解除された」ものになります"
+     "（つまりもはやトレースされたものではありません）。" "もし" (CODE1 "untrace") "が" (STRONG "function-name")
+     "を指定せず使われたとき、" "現在トレースされている全ての関数のトレースが解除されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(defun fact (n) (if (zerop n) 1 (* n (fact (- n 1)))))"
+      "=>  FACT" "(trace fact)" "=>  (FACT)" ";; もちろんトレースの出力フォーマットは実装依存です。" " (fact 3)"
+      ">>  1 Enter FACT 3" ">>  | 2 Enter FACT 2" ">>  |   3 Enter FACT 1"
+      ">>  |   | 4 Enter FACT 0" ">>  |   | 4 Exit FACT 1" ">>  |   3 Exit FACT 1"
+      ">>  | 2 Exit FACT 2" ">>  1 Exit FACT 6" "=>  6"))
+    (CHAPTER ("## 副作用") 2 (STRONG "function-names") "による名前の関数定義が変更されるかもしれません。")
+    (CHAPTER ("## 影響") 2 "指定された関数名で定義されたものか、" "すでにトレースされているものかのどちらか")
+    (CHAPTER ("## 例外") 2 "トレース指定が、すでにトレースされている関数であるときか、"
+     "あるいはトレースを解除した関数がトレースされていない関数のとき、" "有害になる効果を生成するべきではありませんが、" "しかし警告が発せられるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*trace-output*") "," (CODE1 "step"))
+    (CHAPTER ("## 備考") 2 (CODE1 "trace") "と" (CODE1 "untrace") "は、"
+     "追加で実装依存の引数の形式を受け取るかもしれません。" "そのトレース出力の形式は実装依存です。" EOL2 (CODE1 "trace")
+     "は非標準のオプションを受け取れるように拡張することができますが、" "実装はこの標準によって指定されたものでも" "実装が拡張によって追加されたものでもない"
+     "構文かオプションが使われたときに" "警告を発するように勧められます（ただし要求ではありません）。" "なぜなら、それは誤字によるものであったり、"
+     "または今の実装ではない他の実装の中でサポートされている機能に" "依存したものの可能性があるからです。")))
+(setf (gethash '("TRACE" . "MACRO") *table*) (gethash "TRACE" *table*))
 (setf (gethash "TRANSLATE-LOGICAL-PATHNAME" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "TRANSLATE-LOGICAL-PATHNAME"))
     (CHAPTER ("## 構文") 2 (CODE1 "translate-logical-pathname") " " (STRONG "pathname") " "
@@ -39917,6 +40298,40 @@
      (CODE1 "unsigned-byte") "か、" "型" (CODE1 "(unsigned-byte *)") "は、" "型"
      (CODE1 "(integer 0 *)") "と同じであり、" "これは非負の整数の集合です。")))
 (setf (gethash '("UNSIGNED-BYTE" . "TYPE") *table*) (gethash "UNSIGNED-BYTE" *table*))
+(setf (gethash "UNTRACE" *table*)
+  '((CHAPTER NIL 0 "Macro " (CODE1 "TRACE") ", " (CODE1 "UNTRACE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "trace") " " (STRONG "function-name\\*") " => "
+     (STRONG "trace-result") EOL1 (CODE1 "untrace") " " (STRONG "function-name\\*")
+     " => " (STRONG "untrace-result"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "function-name") " - 関数名" EOL1
+     (STRONG "trace-result") " - " (STRONG "function-name") "が与えられたときは実装依存。"
+     "与えられなかったときは関数名のリスト。" EOL1 (STRONG "untrace-result") " - 実装依存")
+    (CHAPTER ("## 定義") 2 (CODE1 "trace") "と" (CODE1 "untrace") "は、トレース機能の呼び出しを制御します。"
+     EOL2 (CODE1 "trace") "をひとつ以上の" (STRONG "function-name") "とともに呼び出したとき、"
+     "その関数は「トレースされた」ものになります。" "トレースされた関数が呼び出されたときはいつでも、"
+     "呼び出しについての情報、渡された引数、最終的な返却値について、" "トレース出力に印刷されます。" "もし" (CODE1 "trace") "が"
+     (STRONG "function-name") "を指定せず使われたとき、" "トレースの動作は行いませんが、"
+     "代わりに現在トレースされている関数のリストが返却されます。" EOL2 (CODE1 "untrace") "をひとつ以上の"
+     (STRONG "function-name") "とともに呼び出したとき、" "その関数は「トレースが解除された」ものになります"
+     "（つまりもはやトレースされたものではありません）。" "もし" (CODE1 "untrace") "が" (STRONG "function-name")
+     "を指定せず使われたとき、" "現在トレースされている全ての関数のトレースが解除されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(defun fact (n) (if (zerop n) 1 (* n (fact (- n 1)))))"
+      "=>  FACT" "(trace fact)" "=>  (FACT)" ";; もちろんトレースの出力フォーマットは実装依存です。" " (fact 3)"
+      ">>  1 Enter FACT 3" ">>  | 2 Enter FACT 2" ">>  |   3 Enter FACT 1"
+      ">>  |   | 4 Enter FACT 0" ">>  |   | 4 Exit FACT 1" ">>  |   3 Exit FACT 1"
+      ">>  | 2 Exit FACT 2" ">>  1 Exit FACT 6" "=>  6"))
+    (CHAPTER ("## 副作用") 2 (STRONG "function-names") "による名前の関数定義が変更されるかもしれません。")
+    (CHAPTER ("## 影響") 2 "指定された関数名で定義されたものか、" "すでにトレースされているものかのどちらか")
+    (CHAPTER ("## 例外") 2 "トレース指定が、すでにトレースされている関数であるときか、"
+     "あるいはトレースを解除した関数がトレースされていない関数のとき、" "有害になる効果を生成するべきではありませんが、" "しかし警告が発せられるかもしれません。")
+    (CHAPTER ("## 参考") 2 (CODE1 "*trace-output*") "," (CODE1 "step"))
+    (CHAPTER ("## 備考") 2 (CODE1 "trace") "と" (CODE1 "untrace") "は、"
+     "追加で実装依存の引数の形式を受け取るかもしれません。" "そのトレース出力の形式は実装依存です。" EOL2 (CODE1 "trace")
+     "は非標準のオプションを受け取れるように拡張することができますが、" "実装はこの標準によって指定されたものでも" "実装が拡張によって追加されたものでもない"
+     "構文かオプションが使われたときに" "警告を発するように勧められます（ただし要求ではありません）。" "なぜなら、それは誤字によるものであったり、"
+     "または今の実装ではない他の実装の中でサポートされている機能に" "依存したものの可能性があるからです。")))
+(setf (gethash '("UNTRACE" . "MACRO") *table*) (gethash "UNTRACE" *table*))
 (setf (gethash "UNUSE-PACKAGE" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "UNUSE-PACKAGE"))
     (CHAPTER ("## 構文") 2 (CODE1 "unuse-package") " " (STRONG "packages-to-unuse") " "

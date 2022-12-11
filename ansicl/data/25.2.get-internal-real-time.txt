@@ -1,0 +1,66 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GET-INTERNAL-REAL-TIME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.get-internal-real-time
+@name: get-internal-real-time
+@type: function
+
+Function `GET-INTERNAL-REAL-TIME`
+
+
+## {syntax}
+
+`get-internal-real-time` `<` 引数なし `>` => *internal-time*
+
+
+## {arguments-and-values}
+
+*internal-time* - 非負の整数
+
+
+## {description}
+
+{get-internal-real-time:link}は、
+現在の時刻を内部時間単位とした整数を返却し、
+その値の基準は任意の時間の相対値です。
+この関数が2度呼び出されたときの値の差は、
+2つの呼び出しのリアルタイム（例えば時刻）の経過時間の量です。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+時刻（例えば、経過時間）。
+この時間の基準値は、結果の大きさに影響します。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{internal-time-units-per-second:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

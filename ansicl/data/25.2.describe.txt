@@ -1,0 +1,93 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DESCRIBE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.describe
+@name: describe
+@type: function
+
+Function `DESCRIBE`
+
+
+## {syntax}
+
+`describe` *object* `&optional` *stream* => `<` 返却値なし `>`
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*stream* - 出力ストリーム指定子。デフォルトは標準出力。
+
+
+## {description}
+
+{describe:link}は、*object*についての情報を*stream*へ表示します。
+
+例えば、シンボルの{describe:link}は、
+シンボルの値、定義、各プロパティを表示するかもしれません。
+{float}の{describe:link}は、
+その数の内部表現の丸め誤差の方法が表示されるかもしれません。
+しかしながら全ての場合において、
+{describe:link}の性質と出力フォーマットは{implementation-dependent}です。
+
+{describe:link}は*object*内部に見られる何かについて
+`describe`することができます。
+このような場合、引数*oboject*の定義と
+再帰的に呼び出された定義と視覚的に区別を行うために、
+典型的にはデバイスの表現方法について
+インデントを増やしたり、テーブルの位置を変更したりします。
+
+実際のオブジェクトの定義の動作は、
+{describe-object:link}によって実装されます。
+{describe:link}はデフォルトの引数
+（引数の{t!variable:link}と{nil!variable:link}を
+ストリームオブジェクトへ変換する動作を含む）を
+管理するための主なるインターフェイスとして存在し、
+{describe-object:link}から返却されるどのような値も抑止します。
+
+{describe:link}はインタラクティブな関数であることを意図していません。
+適合した実装では、
+{describe:link}はデフォルトではプロンプトによる
+ユーザーの入力を受け付けてはいけません。
+{describe-object:link}のユーザー定義メソッドには同じ制限があります。
+
+
+## {examples}
+
+なし。
+
+
+## {side-effects}
+
+標準出力化、ターミナルI/Oへ出力します。
+
+
+## {affected-by}
+
+*object*が保有するユーザー定義クラスへの
+{describe-object:link}と{print-object:link}それぞれのメソッドにおける、
+{*standard-output*:link}と{*terminal-io*:link}
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{inspect:link},
+{describe-object:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

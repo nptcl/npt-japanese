@@ -233,7 +233,7 @@
 <p><a href="21.2.debug-io.html"><code>*query-io*</code></a>の値は、クエリ―I/Oと呼ばれ、 ユーザーの質問と返答を行うために使われる双方向ストリームです。 質問はこのストリームに出力され、 返信はこのストリームから読み込まれるべきです。</p>
 <p><a href="21.2.debug-io.html"><code>*standard-input*</code></a>の値は、標準入力と呼ばれ、 多くの操作で入力ストリームが指定されなかったときに デフォルトの入力元として暗に指定されたものとして 利用されるストリームです。</p>
 <p><a href="21.2.debug-io.html"><code>*standard-output*</code></a>の値は、標準出力と呼ばれ、 多くの操作で出力ストリームが指定されなかったときに デフォルトの出力元として暗に指定されたものとして 利用されるストリームです。</p>
-<p><a href="21.2.debug-io.html"><code>*trace-output*</code></a>の値は、トレース出力と呼ばれ、 トレースを行う関数（<code>trace</code>を参照）と、 <code>time</code>マクロによる出力によって印字されるストリームです。</p>
+<p><a href="21.2.debug-io.html"><code>*trace-output*</code></a>の値は、トレース出力と呼ばれ、 トレースを行う関数（<a href="25.2.trace.html"><code>trace</code></a>を参照）と、 <a href="25.2.time.html"><code>time</code></a>マクロによる出力によって印字されるストリームです。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-output-to-string</span> (<span class="va">*error-output*</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">warn</span> <span class="st">&quot;this string is sent to *error-output*&quot;</span>))</span>
@@ -267,7 +267,7 @@
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="st">| 2 Exit FACT 2</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">1 Exit FACT 6&quot;</span></span></code></pre></div>
 <h2 id="参考">参考</h2>
-<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>, <a href="21.2.synonym-stream.html"><code>synonym-stream</code></a>, <code>time</code>, <code>trace</code>, <a href="9.html">9. コンディション</a>, <a href="23.html">23. リーダー</a>, <a href="22.html">22. プリンター</a></p>
+<p><a href="21.2.terminal-io.html"><code>*terminal-io*</code></a>, <a href="21.2.synonym-stream.html"><code>synonym-stream</code></a>, <a href="25.2.time.html"><code>time</code></a>, <a href="25.2.trace.html"><code>trace</code></a>, <a href="9.html">9. コンディション</a>, <a href="23.html">23. リーダー</a>, <a href="22.html">22. プリンター</a></p>
 <h2 id="備考">備考</h2>
 <p>I/Oカスタマイズ変数の初期値に対する制限の意図は、 実装の柔軟性を過度に制限することなく、 これらの変数を別のI/Oカスタマイズ変数の値に束縛と代入することが 常に安全であることを保証ためです。</p>
 <p><a href="21.2.debug-io.html"><code>*debug-io*</code></a>と<a href="21.2.debug-io.html"><code>*query-io*</code></a>の初期値を同じストリームに、 <a href="21.2.debug-io.html"><code>*error-output*</code></a>と<a href="21.2.debug-io.html"><code>*standard-output*</code></a>の初期値を同じストリームにするような 実装が一般的です。</p>

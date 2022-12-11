@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function FILE-AUTHOR</title>
+  <title>Function GET-UNIVERSAL-TIME, GET-DECODED-TIME</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,32 +214,43 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function FILE-AUTHOR</h1>
+<h1 class="title">Function GET-UNIVERSAL-TIME, GET-DECODED-TIME</h1>
 </header>
-<p><a href="20.2.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<h1 id="function-file-author">Function <strong>FILE-AUTHOR</strong></h1>
-<p>Function <code>FILE-AUTHOR</code></p>
+<h1 id="function-get-universal-time-get-decoded-time">Function <strong>GET-UNIVERSAL-TIME, GET-DECODED-TIME</strong></h1>
+<p>Function <code>GET-UNIVERSAL-TIME</code>, <code>GET-DECODED-TIME</code></p>
 <h2 id="構文">構文</h2>
-<p><code>file-author</code> <em>pathspec</em> =&gt; <em>author</em></p>
+<p><code>get-universal-time</code> <code>&lt;</code> 引数なし <code>&gt;</code> =&gt; <em>universal-time</em><br />
+<code>get-decoded-time</code> <code>&lt;</code> 引数なし <code>&gt;</code><br />
+=&gt; <em>second</em>, <em>minute</em>, <em>hour</em>, <em>date</em>, <em>month</em>, <em>year</em>, <em>day</em>, <em>daylight-p</em>, <em>zone</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>pathspec</em> - パス名指定子<br />
-<em>author</em> - 文字列か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><em>universal-time</em> - 普遍時間<br />
+<em>second</em>, <em>minute</em>, <em>hour</em>, <em>date</em>, <em>month</em>, <em>year</em>, <em>day</em>, <em>daylight-p</em>, <em>zone</em> - デコード時間</p>
 <h2 id="定義">定義</h2>
-<p><em>pathspec</em>によって指定されたファイルの作者の名前を表す文字列を返却するか、 あるいは作者の名前が決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>が返却します。</p>
+<p><a href="25.2.get-universal-time.html"><code>get-universal-time</code></a>は、普遍時間として表現された 現在の時刻を返却します。</p>
+<p><a href="25.2.get-universal-time.html"><code>get-decoded-time</code></a>は、デコード時間として表現された 現在の時刻を返却します。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (<span class="kw">stream</span> <span class="st">&quot;&gt;relativity&gt;general.text&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">file-author</span> s))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;albert&quot;</span></span></code></pre></div>
-<h2 id="影響">影響</h2>
-<p>ホストコンピューターのファイルシステム</p>
-<h2 id="例外">例外</h2>
-<p>もし<em>filespec</em>がワイルドカードを含むとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
-<p>もしファイルシステムが要求された処理を実行できなかったときは、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
-<h2 id="参考">参考</h2>
-<p>25.1.4.2. 普遍時間, 19.1.2. ファイル名としてのパス名</p>
-<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">;; 米国東部標準時・夏時間（Eastern Daylight Time）の7月4日の正午</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get-decoded-time</span>) <span class="op">=&gt;</span>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">1976</span>, <span class="dv">6</span>, true, <span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">;; 正確に同じ瞬間</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get-universal-time</span>) <span class="op">=&gt;</span>  <span class="dv">2414332800</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">;; 正確に5分後</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get-universal-time</span>) <span class="op">=&gt;</span>  <span class="dv">2414333100</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">;; 300秒（5分）ちがう</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">;; The difference is 300 seconds (five minutes)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(<span class="op">-</span> <span class="op">*</span> <span class="op">**</span>) <span class="op">=&gt;</span>  <span class="dv">300</span></span></code></pre></div>
+<h2 id="副作用">副作用</h2>
 <p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>時刻（時間の経過など）、 システム時計の正確な時刻を保つ能力、 システム時計の初期設定の正確さ。</p>
+<h2 id="例外">例外</h2>
+<p>現在の時刻を決定できなかったときは、 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーが通知されるかもしれません。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.decode-universal-time.html"><code>decode-universal-time</code></a>, <a href="25.2.encode-universal-time.html"><code>encode-universal-time</code></a>, 25.1.4. 時間</p>
+<h2 id="備考">備考</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">get-decoded-time</span>) ==  (<span class="kw">decode-universal-time</span> (<span class="kw">get-universal-time</span>))</span></code></pre></div>
+<p>実装は返却された時間が正しいか 確認する方法をもつ必要はありません。 しかし、もし実装が正しいかを確認する方法を提供しており （例えばシステムクロックの初期化で信頼性の異常を検知したなど）、 その有効性の確認に失敗したとき、 実装は（例えば特定のエラーを示す値を返却するのではなく） 型<a href="9.2.error-condition.html"><code>error</code></a>のエラーを通知することを強く推奨します （ただし必須ではありません）。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

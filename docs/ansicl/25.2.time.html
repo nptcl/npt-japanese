@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.2. 環境の辞書</title>
+  <title>Macro TIME</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,27 +151,32 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.2. 環境の辞書</h1>
+<h1 class="title">Macro TIME</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.2. 環境の辞書</p>
-<ul>
-<li><a href="25.2.decode-universal-time.html">Function <strong>DECODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.encode-universal-time.html">Function <strong>ENCODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.get-universal-time.html">Function <strong>GET-UNIVERSAL-TIME, GET-DECODED-TIME</strong></a></li>
-<li><a href="25.2.sleep.html">Function <strong>SLEEP</strong></a></li>
-<li><a href="25.2.apropos.html">Function <strong>APROPOS, APROPOS-LIST</strong></a></li>
-<li><a href="25.2.describe.html">Function <strong>DESCRIBE</strong></a></li>
-<li><a href="25.2.describe-object.html">Standard-Generic-Function <strong>DESCRIBE-OBJECT</strong></a></li>
-<li><a href="25.2.trace.html">Macro <strong>TRACE, UNTRACE</strong></a></li>
-<li><a href="25.2.step.html">Macro <strong>STEP</strong></a></li>
-<li><a href="25.2.time.html">Macro <strong>TIME</strong></a></li>
-<li><a href="25.2.internal-time-units-per-second.html">Constant-Variable <strong>INTERNAL-TIME-UNITS-PER-SECOND</strong></a></li>
-<li><a href="25.2.get-internal-real-time.html">Function <strong>GET-INTERNAL-REAL-TIME</strong></a></li>
-<li><a href="25.2.get-internal-run-time.html">Function <strong>GET-INTERNAL-RUN-TIME</strong></a></li>
-<li><a href="25.2.documentation.html">Standard-Generic-Function <strong>DOCUMENTATION</strong></a></li>
-</ul>
+<h1 id="macro-time">Macro <strong>TIME</strong></h1>
+<p>Macro <code>TIME</code></p>
+<h2 id="構文">構文</h2>
+<p><code>time</code> <em>form</em> =&gt; <em>result*</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>form</em> - フォーム。下記の定義に従い評価されます。<br />
+<em>result</em> - <em>form</em>の返却値</p>
+<h2 id="定義">定義</h2>
+<p><a href="25.2.time.html"><code>time</code></a>は現在の環境（レキシカルと動的）で、<em>form</em>を評価します。 <a href="25.2.time.html"><code>time</code></a>の呼び出しはコンパイルできます。</p>
+<p><a href="25.2.time.html"><code>time</code></a>は様々なタイミングのデータと その他の情報をトレース出力に印刷します。 印刷される情報の内容と形式は実装定義です。 実装はそのような情報について、 経過時間、機器の実行時間、そしてストレージ管理の統計などを 提供することが勧められます。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>結果得られるものの精度は、実行中の他の何らかの動作や、 オペレーティングシステムによって提供される操作関数の精度などに依存します。</p>
+<p>結果の大きさはハードウェア、オペレーティングシステム、 Lispの実装、そしてグローバル環境の状況に依存するでしょう。 いくつかの機能は、 ハードウェアの速度の影響、 スケジューリングの性質（もしあるなら）、 プロセスの競合数（もしあるなら）、 システムのページング、 呼び出しがインタープリタ命令かコンパイルされた命令か、 呼び出された関数がコンパイルされたものか、 実行中に何らかのガベージコレクタが起動されたか、 内部データ構造（例えばハッシュテーブル）が 暗黙的に生成されているか、など、 によって周期的な問題が引き起こされます。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.get-internal-real-time.html"><code>get-internal-real-time</code></a>, <a href="25.2.get-internal-run-time.html"><code>get-internal-run-time</code></a></p>
+<h2 id="備考">備考</h2>
+<p>一般的に、これらのタイミングは、 市場調査の比較に対しては保証や信頼性があるとは言えません。 これらの値は主に問題解決のためのものであり、 チューニング目的によるものです。</p>
+<p>これらタイミングの結果は、 複雑な問題が生じたものの背景の情報として 解釈するときに使われるものでです。 詳しくは<code>Performance and Evaluation of Lisp Programs</code>をご確認ください。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

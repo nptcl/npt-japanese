@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function DECODE-UNIVERSAL-TIME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.decode-universal-time
+@name: decode-universal-time
+@type: function
+
+Function `DECODE-UNIVERSAL-TIME`
+
+
+## {syntax}
+
+`decode-universal-time` *universal-time* `&optional` *time-zone*  
+ => *second*, *minute*, *hour*, *date*,
+ *month*, *year*, *day*, *daylight-p*, *zone*
+
+
+## {arguments-and-values}
+
+*universal-time* - {universal-time}  
+*time-zone* - タイムゾーン  
+*second*, *minute*, *hour*, *date*,
+*month*, *year*, *day*, *daylight-p*, *zone* - {decoded-time}
+
+
+## {description}
+
+与えられた{universal-time}によって表現される{decoded-time}を返却します。
+
+もし*time-zone*が指定されなかったとき、
+現在のタイムゾーンで{daylight-saving-time}（日光節約時間）によって
+調整されたものをデフォルトとします。
+もし*time-zone*が指定されたとき、{daylight-saving-time}の情報は無視されます。
+もし*time-zone*が指定されたとき、{daylight-saving-time}のフラグは{nil!variable:link}です。
+
+
+## {examples}
+
+```lisp
+(decode-universal-time 0 0) =>  0, 0, 0, 1, 1, 1900, 0, false, 0
+
+;; 次の2つの例は、Eastern Daylight Timeを仮定しています。
+(decode-universal-time 2414296800 5) =>  0, 0, 1, 4, 7, 1976, 6, false, 5
+(decode-universal-time 2414293200) =>  0, 0, 1, 4, 7, 1976, 6, true, 5
+
+;; この例は、タイムゾーンがEastern Daylight Timeを仮定しています。
+;; （そしてタイムゾーンは例を通して固定です）
+(let* ((here (nth 8 (multiple-value-list (get-decoded-time)))) ;タイムゾーン
+       (recently (get-universal-time))
+       (a (nthcdr 7 (multiple-value-list (decode-universal-time recently))))
+       (b (nthcdr 7 (multiple-value-list (decode-universal-time recently here)))))
+  (list a b (equal a b))) =>  ((T 5) (NIL 5) NIL)
+```
+
+
+## {affected-by}
+
+{daylight-saving-time}が与えられたセッションで効果を持つとき、
+{implementation-dependent}の仕組みによって計算されます。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{encode-universal-time:link},
+{get-universal-time:link},
+{25.1.4:ab}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,98 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function GET-UNIVERSAL-TIME
+;;  Function GET-DECODED-TIME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.get-universal-time
+@name: get-universal-time
+@name: get-decoded-time
+@type: function
+
+Function `GET-UNIVERSAL-TIME`, `GET-DECODED-TIME`
+
+
+## {syntax}
+
+`get-universal-time` `<` 引数なし `>` => *universal-time*  
+`get-decoded-time` `<` 引数なし `>`  
+=> *second*, *minute*, *hour*, *date*, *month*, *year*, *day*,
+ *daylight-p*, *zone*
+
+
+## {arguments-and-values}
+
+*universal-time* - {universal-time}  
+*second*, *minute*, *hour*, *date*, *month*, *year*, *day*,
+*daylight-p*, *zone* - {decoded-time}
+
+
+## {description}
+
+{get-universal-time:link}は、{universal-time}として表現された
+現在の時刻を返却します。
+
+{get-decoded-time:link}は、{decoded-time}として表現された
+現在の時刻を返却します。
+
+
+## {examples}
+
+```lisp
+;; 米国東部標準時・夏時間（Eastern Daylight Time）の7月4日の正午
+(get-decoded-time) =>  0, 0, 12, 4, 7, 1976, 6, true, 5
+;; 正確に同じ瞬間
+(get-universal-time) =>  2414332800
+;; 正確に5分後
+(get-universal-time) =>  2414333100
+;; 300秒（5分）ちがう
+;; The difference is 300 seconds (five minutes)
+(- * **) =>  300
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+時刻（時間の経過など）、
+システム時計の正確な時刻を保つ能力、
+システム時計の初期設定の正確さ。
+
+
+## {exceptional-situations}
+
+現在の時刻を決定できなかったときは、
+型{error!condition:link}のエラーが通知されるかもしれません。
+
+
+## {see-also}
+
+{decode-universal-time:link},
+{encode-universal-time:link},
+{25.1.4:ab}
+
+
+## {notes}
+
+```lisp
+(get-decoded-time) ==  (decode-universal-time (get-universal-time))
+```
+
+実装は返却された時間が正しいか
+確認する方法をもつ必要はありません。
+しかし、もし実装が正しいかを確認する方法を提供しており
+（例えばシステムクロックの初期化で信頼性の異常を検知したなど）、
+その有効性の確認に失敗したとき、
+実装は（例えば特定のエラーを示す値を返却するのではなく）
+型{error!condition:link}のエラーを通知することを強く推奨します
+（ただし必須ではありません）。
+
+@end
+

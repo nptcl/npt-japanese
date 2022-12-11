@@ -1,0 +1,72 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function ENCODE-UNIVERSAL-TIME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.encode-universal-time
+@name: encode-universal-time
+@type: function
+
+Function `ENCODE-UNIVERSAL-TIME`
+
+
+## {syntax}
+
+`encode-universal-time`
+ *second* *minute* *hour* *date* *month* *year* `&optional` *time-zone*
+ => *universal-time*
+
+
+## {arguments-and-values}
+
+*second*, *minute*, *hour*, *date*, *month*, *year*, *time-zone* -
+{decoded-time}に対応した部分
+（完全な{decoded-time}にある9つのうちのいくつかの値は冗長なので、
+この関数では入力として使用されません）  
+*universal-time* - {universal-time}
+
+
+## {description}
+
+{encode-universal-time:link}は、
+{decoded-time}の形式の時間から{universal-time}へ変換します。
+
+もし*time-zone*が指定されたとき、
+{daylight-saving-time}の調整は行われません。
+
+
+## {examples}
+
+```lisp
+(encode-universal-time 0 0 0 1 1 1900 0) =>  0
+(encode-universal-time 0 0 1 4 7 1976 5) =>  2414296800
+;; 次の例はEastern Dayligit Timeを想定しています。
+(encode-universal-time 0 0 1 4 7 1976) =>  2414293200
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{decode-universal-time:link},
+{get-decoded-time:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

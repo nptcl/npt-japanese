@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Function DESCRIBE</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Function DESCRIBE</h1>
+</header>
+<p><a href="25.2.html">UP</a></p>
+<hr />
+<h1 id="function-describe">Function <strong>DESCRIBE</strong></h1>
+<p>Function <code>DESCRIBE</code></p>
+<h2 id="構文">構文</h2>
+<p><code>describe</code> <em>object</em> <code>&amp;optional</code> <em>stream</em> =&gt; <code>&lt;</code> 返却値なし <code>&gt;</code></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>object</em> - オブジェクト<br />
+<em>stream</em> - 出力ストリーム指定子。デフォルトは標準出力。</p>
+<h2 id="定義">定義</h2>
+<p><a href="25.2.describe.html"><code>describe</code></a>は、<em>object</em>についての情報を<em>stream</em>へ表示します。</p>
+<p>例えば、シンボルの<a href="25.2.describe.html"><code>describe</code></a>は、 シンボルの値、定義、各プロパティを表示するかもしれません。 浮動小数の<a href="25.2.describe.html"><code>describe</code></a>は、 その数の内部表現の丸め誤差の方法が表示されるかもしれません。 しかしながら全ての場合において、 <a href="25.2.describe.html"><code>describe</code></a>の性質と出力フォーマットは実装依存です。</p>
+<p><a href="25.2.describe.html"><code>describe</code></a>は<em>object</em>内部に見られる何かについて <code>describe</code>することができます。 このような場合、引数<em>oboject</em>の定義と 再帰的に呼び出された定義と視覚的に区別を行うために、 典型的にはデバイスの表現方法について インデントを増やしたり、テーブルの位置を変更したりします。</p>
+<p>実際のオブジェクトの定義の動作は、 <a href="25.2.describe-object.html"><code>describe-object</code></a>によって実装されます。 <a href="25.2.describe.html"><code>describe</code></a>はデフォルトの引数 （引数の<a href="5.3.t-variable.html"><code>t</code></a>と<a href="5.3.nil-variable.html"><code>nil</code></a>を ストリームオブジェクトへ変換する動作を含む）を 管理するための主なるインターフェイスとして存在し、 <a href="25.2.describe-object.html"><code>describe-object</code></a>から返却されるどのような値も抑止します。</p>
+<p><a href="25.2.describe.html"><code>describe</code></a>はインタラクティブな関数であることを意図していません。 適合した実装では、 <a href="25.2.describe.html"><code>describe</code></a>はデフォルトではプロンプトによる ユーザーの入力を受け付けてはいけません。 <a href="25.2.describe-object.html"><code>describe-object</code></a>のユーザー定義メソッドには同じ制限があります。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>標準出力化、ターミナルI/Oへ出力します。</p>
+<h2 id="影響">影響</h2>
+<p><em>object</em>が保有するユーザー定義クラスへの <a href="25.2.describe-object.html"><code>describe-object</code></a>と<a href="22.4.print-object.html"><code>print-object</code></a>それぞれのメソッドにおける、 <a href="21.2.debug-io.html"><code>*standard-output*</code></a>と<a href="21.2.terminal-io.html"><code>*terminal-io*</code></a></p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><code>inspect</code>, <a href="25.2.describe-object.html"><code>describe-object</code></a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
+<hr />
+<p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
+</body>
+</html>

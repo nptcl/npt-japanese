@@ -1,0 +1,42 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Constant Variable INTERNAL-TIME-UNITS-PER-SECOND
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.internal-time-units-per-second
+@name: internal-time-units-per-second
+@type: constant-variable
+
+Constant Variable `INTERNAL-TIME-UNITS-PER-SECOND`
+
+
+## {constant-value}
+
+正の整数であり、その大きさは{implementation-dependent}
+
+
+## {description}
+
+1秒における内部時間の単位の数
+
+
+## {examples}
+
+なし。
+
+
+## {see-also}
+
+{get-internal-run-time:link},
+{get-internal-real-time:link}
+
+
+## {notes}
+
+これらの単位は、内部時間形式の表現の基本です。
+
+@end
+

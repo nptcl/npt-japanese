@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SLEEP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.sleep
+@name: sleep
+@type: function
+
+Function `SLEEP`
+
+
+## {syntax}
+
+`sleep` *seconds* => {nil!variable:link}
+
+
+## {arguments-and-values}
+
+*seconds* - 非負の整数
+
+
+## {description}
+
+実行を停止し、
+指定された*seconds*を現実の時間の秒数とし、
+おおよそその時間だけ休止状態にしたあと、
+実行を再開します。
+
+
+## {examples}
+
+```lisp
+(sleep 1) =>  NIL 
+
+;; 実際にはSLEEPは近似の時間を使用することが許されており、
+;; この例は常にtrueになる分けではありません。
+;; しかし意図を示す例としては有効であると思います。
+(let ((then (get-universal-time))
+      (now  (progn (sleep 10) (get-universal-time))))
+  (>= (- now then) 10))
+=>  true
+```
+
+
+## {side-effects}
+
+処理の停止
+
+
+## {affected-by}
+
+スケジューラーの精度
+
+
+## {exceptional-situations}
+
+*seconds*が非負の整数ではないとき、
+型{type-error:link}のエラーが通知されます。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

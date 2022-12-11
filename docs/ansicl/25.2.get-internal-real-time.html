@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.2. 環境の辞書</title>
+  <title>Function GET-INTERNAL-REAL-TIME</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,27 +151,30 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.2. 環境の辞書</h1>
+<h1 class="title">Function GET-INTERNAL-REAL-TIME</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.2. 環境の辞書</p>
-<ul>
-<li><a href="25.2.decode-universal-time.html">Function <strong>DECODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.encode-universal-time.html">Function <strong>ENCODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.get-universal-time.html">Function <strong>GET-UNIVERSAL-TIME, GET-DECODED-TIME</strong></a></li>
-<li><a href="25.2.sleep.html">Function <strong>SLEEP</strong></a></li>
-<li><a href="25.2.apropos.html">Function <strong>APROPOS, APROPOS-LIST</strong></a></li>
-<li><a href="25.2.describe.html">Function <strong>DESCRIBE</strong></a></li>
-<li><a href="25.2.describe-object.html">Standard-Generic-Function <strong>DESCRIBE-OBJECT</strong></a></li>
-<li><a href="25.2.trace.html">Macro <strong>TRACE, UNTRACE</strong></a></li>
-<li><a href="25.2.step.html">Macro <strong>STEP</strong></a></li>
-<li><a href="25.2.time.html">Macro <strong>TIME</strong></a></li>
-<li><a href="25.2.internal-time-units-per-second.html">Constant-Variable <strong>INTERNAL-TIME-UNITS-PER-SECOND</strong></a></li>
-<li><a href="25.2.get-internal-real-time.html">Function <strong>GET-INTERNAL-REAL-TIME</strong></a></li>
-<li><a href="25.2.get-internal-run-time.html">Function <strong>GET-INTERNAL-RUN-TIME</strong></a></li>
-<li><a href="25.2.documentation.html">Standard-Generic-Function <strong>DOCUMENTATION</strong></a></li>
-</ul>
+<h1 id="function-get-internal-real-time">Function <strong>GET-INTERNAL-REAL-TIME</strong></h1>
+<p>Function <code>GET-INTERNAL-REAL-TIME</code></p>
+<h2 id="構文">構文</h2>
+<p><code>get-internal-real-time</code> <code>&lt;</code> 引数なし <code>&gt;</code> =&gt; <em>internal-time</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>internal-time</em> - 非負の整数</p>
+<h2 id="定義">定義</h2>
+<p><a href="25.2.get-internal-real-time.html"><code>get-internal-real-time</code></a>は、 現在の時刻を内部時間単位とした整数を返却し、 その値の基準は任意の時間の相対値です。 この関数が2度呼び出されたときの値の差は、 2つの呼び出しのリアルタイム（例えば時刻）の経過時間の量です。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="副作用">副作用</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>時刻（例えば、経過時間）。 この時間の基準値は、結果の大きさに影響します。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.internal-time-units-per-second.html"><code>internal-time-units-per-second</code></a></p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

@@ -136,8 +136,6 @@
 (replace vector "`vector`")
 (replace fixnum "`fixnum`")
 
-(replace universal-time "ユニバーサル時間")
-
 (replace broadcast-stream "`broadcast`ストリーム")
 (replace concatenated-stream "`concatenated`ストリーム")
 (replace echo-stream "`echo`ストリーム")
@@ -159,6 +157,10 @@
 (replace float "浮動小数")
 (replace rational "有理数")
 (replace random-state "乱数状態")
+
+(replace universal-time "普遍時間")
+(replace decoded-time "デコード時間")
+(replace daylight-saving-time "Daylight Saving Time")
 
 ;;  Metaobject Protocol
 (replace methods "メソッド")

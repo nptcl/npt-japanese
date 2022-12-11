@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function FILE-AUTHOR</title>
+  <title>Function ENCODE-UNIVERSAL-TIME</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,30 +214,31 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function FILE-AUTHOR</h1>
+<h1 class="title">Function ENCODE-UNIVERSAL-TIME</h1>
 </header>
-<p><a href="20.2.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<h1 id="function-file-author">Function <strong>FILE-AUTHOR</strong></h1>
-<p>Function <code>FILE-AUTHOR</code></p>
+<h1 id="function-encode-universal-time">Function <strong>ENCODE-UNIVERSAL-TIME</strong></h1>
+<p>Function <code>ENCODE-UNIVERSAL-TIME</code></p>
 <h2 id="構文">構文</h2>
-<p><code>file-author</code> <em>pathspec</em> =&gt; <em>author</em></p>
+<p><code>encode-universal-time</code> <em>second</em> <em>minute</em> <em>hour</em> <em>date</em> <em>month</em> <em>year</em> <code>&amp;optional</code> <em>time-zone</em> =&gt; <em>universal-time</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>pathspec</em> - パス名指定子<br />
-<em>author</em> - 文字列か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><em>second</em>, <em>minute</em>, <em>hour</em>, <em>date</em>, <em>month</em>, <em>year</em>, <em>time-zone</em> - デコード時間に対応した部分 （完全なデコード時間にある9つのうちのいくつかの値は冗長なので、 この関数では入力として使用されません）<br />
+<em>universal-time</em> - 普遍時間</p>
 <h2 id="定義">定義</h2>
-<p><em>pathspec</em>によって指定されたファイルの作者の名前を表す文字列を返却するか、 あるいは作者の名前が決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>が返却します。</p>
+<p><a href="25.2.encode-universal-time.html"><code>encode-universal-time</code></a>は、 デコード時間の形式の時間から普遍時間へ変換します。</p>
+<p>もし<em>time-zone</em>が指定されたとき、 Daylight Saving Timeの調整は行われません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (<span class="kw">stream</span> <span class="st">&quot;&gt;relativity&gt;general.text&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">file-author</span> s))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;albert&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">encode-universal-time</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1900</span> <span class="dv">0</span>) <span class="op">=&gt;</span>  <span class="dv">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="kw">encode-universal-time</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span> <span class="dv">1976</span> <span class="dv">5</span>) <span class="op">=&gt;</span>  <span class="dv">2414296800</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">;; 次の例はEastern Dayligit Timeを想定しています。</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">encode-universal-time</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">4</span> <span class="dv">7</span> <span class="dv">1976</span>) <span class="op">=&gt;</span>  <span class="dv">2414293200</span></span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>ホストコンピューターのファイルシステム</p>
+<p>なし。</p>
 <h2 id="例外">例外</h2>
-<p>もし<em>filespec</em>がワイルドカードを含むとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
-<p>もしファイルシステムが要求された処理を実行できなかったときは、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
+<p>なし。</p>
 <h2 id="参考">参考</h2>
-<p>25.1.4.2. 普遍時間, 19.1.2. ファイル名としてのパス名</p>
+<p><a href="25.2.decode-universal-time.html"><code>decode-universal-time</code></a>, <a href="25.2.get-universal-time.html"><code>get-decoded-time</code></a></p>
 <h2 id="備考">備考</h2>
 <p>なし。</p>
 <hr />

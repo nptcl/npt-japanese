@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>25.2. 環境の辞書</title>
+  <title>Function APROPOS, APROPOS-LIST</title>
   <style>
     html {
       line-height: 1.5;
@@ -151,27 +151,37 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">25.2. 環境の辞書</h1>
+<h1 class="title">Function APROPOS, APROPOS-LIST</h1>
 </header>
-<p><a href="25.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<p>25.2. 環境の辞書</p>
-<ul>
-<li><a href="25.2.decode-universal-time.html">Function <strong>DECODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.encode-universal-time.html">Function <strong>ENCODE-UNIVERSAL-TIME</strong></a></li>
-<li><a href="25.2.get-universal-time.html">Function <strong>GET-UNIVERSAL-TIME, GET-DECODED-TIME</strong></a></li>
-<li><a href="25.2.sleep.html">Function <strong>SLEEP</strong></a></li>
-<li><a href="25.2.apropos.html">Function <strong>APROPOS, APROPOS-LIST</strong></a></li>
-<li><a href="25.2.describe.html">Function <strong>DESCRIBE</strong></a></li>
-<li><a href="25.2.describe-object.html">Standard-Generic-Function <strong>DESCRIBE-OBJECT</strong></a></li>
-<li><a href="25.2.trace.html">Macro <strong>TRACE, UNTRACE</strong></a></li>
-<li><a href="25.2.step.html">Macro <strong>STEP</strong></a></li>
-<li><a href="25.2.time.html">Macro <strong>TIME</strong></a></li>
-<li><a href="25.2.internal-time-units-per-second.html">Constant-Variable <strong>INTERNAL-TIME-UNITS-PER-SECOND</strong></a></li>
-<li><a href="25.2.get-internal-real-time.html">Function <strong>GET-INTERNAL-REAL-TIME</strong></a></li>
-<li><a href="25.2.get-internal-run-time.html">Function <strong>GET-INTERNAL-RUN-TIME</strong></a></li>
-<li><a href="25.2.documentation.html">Standard-Generic-Function <strong>DOCUMENTATION</strong></a></li>
-</ul>
+<h1 id="function-apropos-apropos-list">Function <strong>APROPOS, APROPOS-LIST</strong></h1>
+<p>Function <code>APROPOS</code>, <code>APROPOS-LIST</code></p>
+<h2 id="構文">構文</h2>
+<p><code>apropos</code> <em>string</em> <code>&amp;optional</code> <em>package</em> =&gt; <code>&lt;</code> 返却値なし <code>&gt;</code><br />
+<code>apropos-list</code> <em>string</em> <code>&amp;optional</code> <em>package</em> =&gt; <em>symbols</em></p>
+<h2 id="引数と戻り値">引数と戻り値</h2>
+<p><em>string</em> - 文字列指定子<br />
+<em>package</em> - パッケージ指定子か、<a href="5.3.nil-variable.html"><code>nil</code></a>。 デフォルトは<a href="5.3.nil-variable.html"><code>nil</code></a>。<br />
+<em>symbols</em> - シンボルのリスト</p>
+<h2 id="定義">定義</h2>
+<p>これらの関数は、<em>string</em>という文字列が部分的に含まれる名前を持つ <code>intern</code>されたシンボルを検索します。</p>
+<p><a href="25.2.apropos.html"><code>apropos</code></a>は、シンボルが見つかったとき、 その名前を標準出力に印刷します。 加えて、そのようなシンボルが関数定義か、動的変数定義か、 それらの定義に関する情報も合わせて印刷されるかもしれません。</p>
+<p><a href="25.2.apropos.html"><code>apropos-list</code></a>は、 検索の結果として出力は行いません。 そのかわりに、検索が完了した時点で マッチしたシンボルをリストとして返却します。</p>
+<p><em>package</em>が<a href="5.3.nil-variable.html"><code>nil</code></a>ではないとき、 <em>package</em>内のアクセス可能なシンボルのみが検索されます。 それ以外のときは、全てのパッケージ内における 全てのアクセス可能なシンボルを検索します。</p>
+<p>シンボルはひとつ以上の継承経路を持つことができるため、 <a href="25.2.apropos.html"><code>apropos</code></a>は同じシンボルについて 一回以上の情報印刷が行われるかもしれず、 <a href="25.2.apropos.html"><code>apropos-list</code></a>は重複されたシンボルを含むリストが 返却されるかもしれません。</p>
+<p>検索で大文字小文字の区別が行われるかどうかは実装定義です。</p>
+<h2 id="例文">例文</h2>
+<p>なし。</p>
+<h2 id="影響">影響</h2>
+<p>検索時の全てのパッケージ内に現在<code>intern</code>されているシンボルの集合。</p>
+<p><a href="25.2.apropos.html"><code>apropos</code></a>は<a href="21.2.debug-io.html"><code>*standard-output*</code></a>もまた影響します。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p>なし。</p>
+<h2 id="備考">備考</h2>
+<p>なし。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

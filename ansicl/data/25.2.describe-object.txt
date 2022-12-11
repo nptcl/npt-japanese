@@ -1,0 +1,116 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Standard Generic Function DESCRIBE-OBJECT
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.describe-object
+@name: describe-object
+@type: standard-generic-function
+
+Standard Generic Function `DESCRIBE-OBJECT`
+
+
+## {syntax}
+
+`describe-object` *object* *stream* => *implementation-dependent*
+
+
+## {method-signatures}
+
+*describe-object* `(` *object* {standard-object:link} `)` *stream*
+
+
+## {arguments-and-values}
+
+*object* - オブジェクト  
+*stream* - ストリーム
+
+
+## {description}
+
+ジェネリック関数{describe-object:link}は、
+*object*の定義を*stream*へ印刷します。
+{describe-object:link}は{describe:link}によって呼び出されるものであり、
+ユーザーによって呼び出してはいけません。
+
+各実装は、クラス{standard-object:link}のメソッドと、
+その他にも適切なメソッドが常に存在することを保証するよう、
+十分なクラスのメソッドを提供するよう要求されています。
+実装は、他のクラスのメソッドを追加することは自由です。
+ユーザーは、自身が作成したクラスについて、
+実装が提供したメソッドから継承したくはないときは
+{describe-object:link}のメソッドを作成することができます。
+
+{describe-object:link}のメソッドは、
+再帰的に{describe:link}を呼び出すことができます。
+そのときのインデント、深さの制限、循環の検出は、
+全て自動的に行われ、
+もし{describe:link}がより深い構造の階層で再帰的に呼び出されたとき、
+各メソッドは正確にひとつの階層構造だけになるように調整されます。
+この規則に従わなかったときの結果は未定義です。
+
+ある実装では、{describe-object:link}メソッドの
+引数に渡された*stream*は、元の*stream*ではなく、
+{describe:link}の実装部分による中間的なストリームであることがあります。
+したがって、メソッドはこのストリームの同一性について依存するべきではありません。
+
+
+## {examples}
+
+```lisp
+(defclass spaceship ()
+  ((captain :initarg :captain :accessor spaceship-captain)
+   (serial# :initarg :serial-number :accessor spaceship-serial-number)))
+
+(defclass federation-starship (spaceship) ())
+
+(defmethod describe-object ((s spaceship) stream)
+  (with-slots (captain serial#) s
+    (format stream "~&~S is a spaceship of type ~S,~
+                    ~%with ~A at the helm ~
+                      and with serial number ~D.~%"
+            s (type-of s) captain serial#)))
+
+(make-instance 'federation-starship
+               :captain "Rachel Garrett"
+               :serial-number "NCC-1701-C")
+=>  #<FEDERATION-STARSHIP 26312465>
+
+(describe *)
+>>  #<FEDERATION-STARSHIP 26312465> is a spaceship of type FEDERATION-STARSHIP,
+>>  with Rachel Garrett at the helm and with serial number NCC-1701-C.
+=>  <no values>
+```
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{describe:link}
+
+
+## {notes}
+
+{print-object:link}に適用可能なものは、
+{describe-object:link}に適用可能なものと、
+同じ実装の技術を用いています。
+
+{describe-object:link}の返却値が未指定になっている理由は、
+それらの全てのメソッドで明に`(values)`という式を
+ユーザーに対して強制させることを避けるためです。
+これは{describe:link}が行います。
+
+@end
+

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Function FILE-AUTHOR</title>
+  <title>Standard-Generic-Function DESCRIBE-OBJECT</title>
   <style>
     html {
       line-height: 1.5;
@@ -214,32 +214,56 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Function FILE-AUTHOR</h1>
+<h1 class="title">Standard-Generic-Function DESCRIBE-OBJECT</h1>
 </header>
-<p><a href="20.2.html">UP</a></p>
+<p><a href="25.2.html">UP</a></p>
 <hr />
-<h1 id="function-file-author">Function <strong>FILE-AUTHOR</strong></h1>
-<p>Function <code>FILE-AUTHOR</code></p>
+<h1 id="standard-generic-function-describe-object">Standard-Generic-Function <strong>DESCRIBE-OBJECT</strong></h1>
+<p>Standard Generic Function <code>DESCRIBE-OBJECT</code></p>
 <h2 id="構文">構文</h2>
-<p><code>file-author</code> <em>pathspec</em> =&gt; <em>author</em></p>
+<p><code>describe-object</code> <em>object</em> <em>stream</em> =&gt; <em>implementation-dependent</em></p>
+<h2 id="メソッド宣言">メソッド宣言</h2>
+<p><em>describe-object</em> <code>(</code> <em>object</em> <a href="4.4.standard-object.html"><code>standard-object</code></a> <code>)</code> <em>stream</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
-<p><em>pathspec</em> - パス名指定子<br />
-<em>author</em> - 文字列か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<p><em>object</em> - オブジェクト<br />
+<em>stream</em> - ストリーム</p>
 <h2 id="定義">定義</h2>
-<p><em>pathspec</em>によって指定されたファイルの作者の名前を表す文字列を返却するか、 あるいは作者の名前が決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>が返却します。</p>
+<p>ジェネリック関数<a href="25.2.describe-object.html"><code>describe-object</code></a>は、 <em>object</em>の定義を<em>stream</em>へ印刷します。 <a href="25.2.describe-object.html"><code>describe-object</code></a>は<a href="25.2.describe.html"><code>describe</code></a>によって呼び出されるものであり、 ユーザーによって呼び出してはいけません。</p>
+<p>各実装は、クラス<a href="4.4.standard-object.html"><code>standard-object</code></a>のメソッドと、 その他にも適切なメソッドが常に存在することを保証するよう、 十分なクラスのメソッドを提供するよう要求されています。 実装は、他のクラスのメソッドを追加することは自由です。 ユーザーは、自身が作成したクラスについて、 実装が提供したメソッドから継承したくはないときは <a href="25.2.describe-object.html"><code>describe-object</code></a>のメソッドを作成することができます。</p>
+<p><a href="25.2.describe-object.html"><code>describe-object</code></a>のメソッドは、 再帰的に<a href="25.2.describe.html"><code>describe</code></a>を呼び出すことができます。 そのときのインデント、深さの制限、循環の検出は、 全て自動的に行われ、 もし<a href="25.2.describe.html"><code>describe</code></a>がより深い構造の階層で再帰的に呼び出されたとき、 各メソッドは正確にひとつの階層構造だけになるように調整されます。 この規則に従わなかったときの結果は未定義です。</p>
+<p>ある実装では、<a href="25.2.describe-object.html"><code>describe-object</code></a>メソッドの 引数に渡された<em>stream</em>は、元の<em>stream</em>ではなく、 <a href="25.2.describe.html"><code>describe</code></a>の実装部分による中間的なストリームであることがあります。 したがって、メソッドはこのストリームの同一性について依存するべきではありません。</p>
 <h2 id="例文">例文</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (<span class="kw">stream</span> <span class="st">&quot;&gt;relativity&gt;general.text&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">file-author</span> s))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  <span class="st">&quot;albert&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> spaceship </span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  ((captain :initarg :captain :accessor spaceship-captain)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (serial# :initarg :serial-number :accessor spaceship-serial-number)))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defclass</span><span class="fu"> federation-starship </span>(spaceship) ())</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>(<span class="kw">defmethod</span><span class="fu"> describe-object </span>((s spaceship) <span class="kw">stream</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">with-slots</span> (captain serial#) s</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">format</span> <span class="kw">stream</span> <span class="st">&quot;~&amp;~S is a spaceship of type ~S,~</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">                    ~%with ~A at the helm ~</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">                      and with serial number ~D.~%&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            s (<span class="kw">type-of</span> s) captain serial#)))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">make-instance</span> &#39;federation-starship</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>               :captain <span class="st">&quot;Rachel Garrett&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>               :serial-number <span class="st">&quot;NCC-1701-C&quot;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  #&lt;FEDERATION-STARSHIP <span class="dv">26312465</span>&gt;</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>(<span class="kw">describe</span> <span class="op">*</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  #&lt;FEDERATION-STARSHIP <span class="dv">26312465</span>&gt; is a spaceship of <span class="kw">type</span> FEDERATION-STARSHIP,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>&gt;&gt;  with Rachel Garrett at <span class="kw">the</span> helm <span class="kw">and</span> with serial <span class="kw">number</span> NCC<span class="dv">-1701</span>-C.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">=&gt;</span>  &lt;no values&gt;</span></code></pre></div>
 <h2 id="影響">影響</h2>
-<p>ホストコンピューターのファイルシステム</p>
-<h2 id="例外">例外</h2>
-<p>もし<em>filespec</em>がワイルドカードを含むとき、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
-<p>もしファイルシステムが要求された処理を実行できなかったときは、 型<a href="20.2.file-error.html"><code>file-error</code></a>のエラーが発生します。</p>
-<h2 id="参考">参考</h2>
-<p>25.1.4.2. 普遍時間, 19.1.2. ファイル名としてのパス名</p>
-<h2 id="備考">備考</h2>
 <p>なし。</p>
+<h2 id="例外">例外</h2>
+<p>なし。</p>
+<h2 id="参考">参考</h2>
+<p><a href="25.2.describe.html"><code>describe</code></a></p>
+<h2 id="備考">備考</h2>
+<p><a href="22.4.print-object.html"><code>print-object</code></a>に適用可能なものは、 <a href="25.2.describe-object.html"><code>describe-object</code></a>に適用可能なものと、 同じ実装の技術を用いています。</p>
+<p><a href="25.2.describe-object.html"><code>describe-object</code></a>の返却値が未指定になっている理由は、 それらの全てのメソッドで明に<code>(values)</code>という式を ユーザーに対して強制させることを避けるためです。 これは<a href="25.2.describe.html"><code>describe</code></a>が行います。</p>
 <hr />
 <p><a href="index.html">TOP</a>, <a href="https://github.com/nptcl/npt-japanese">Github</a></p>
 </body>

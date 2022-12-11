@@ -224,9 +224,9 @@
 <p><code>file-write-date</code> <em>pathspec</em> =&gt; <em>date</em></p>
 <h2 id="引数と戻り値">引数と戻り値</h2>
 <p><em>pathspec</em> - パス名指定子<br />
-<em>date</em> - ユニバーサル時間か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
+<em>date</em> - 普遍時間か、<a href="5.3.nil-variable.html"><code>nil</code></a></p>
 <h2 id="定義">定義</h2>
-<p><em>pathspec</em>で指定されたファイルが 最後に書き込みされたとき（または作成されたとき）の時間を、 ユニバーサル時間として表現したものを返却するか、 そのような時間が決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
+<p><em>pathspec</em>で指定されたファイルが 最後に書き込みされたとき（または作成されたとき）の時間を、 普遍時間として表現したものを返却するか、 そのような時間が決定できなかったときは<a href="5.3.nil-variable.html"><code>nil</code></a>を返却します。</p>
 <h2 id="例文">例文</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">with-open-file</span> (s <span class="st">&quot;noel.text&quot;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="bu">:direction</span> <span class="bu">:output</span> :if-exists <span class="bu">:error</span>)</span>

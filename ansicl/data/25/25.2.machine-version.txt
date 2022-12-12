@@ -1,0 +1,67 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MACHINE-VERSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.machine-version
+@name: machine-version
+@type: function
+
+Function `MACHINE-VERSION`
+
+
+## {syntax}
+
+`machine-version` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+Common Lispが動作している
+コンピューターハードウェアの
+バージョンを識別する文字列を返却するか、
+そのような文字列が計算できないときは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(machine-version) =>  "KL-10, microcode 9"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+計算機のインスタンスと、その実装
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{machine-type:link},
+{machine-instance:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

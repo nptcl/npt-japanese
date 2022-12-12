@@ -503,6 +503,8 @@
 (setf (gethash "LENGTH" *name*) '("FUNCTION"))
 (setf (gethash "LET" *name*) '("SPECIAL-OPERATOR"))
 (setf (gethash "LET*" *name*) '("SPECIAL-OPERATOR"))
+(setf (gethash "LISP-IMPLEMENTATION-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "LISP-IMPLEMENTATION-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "LIST" *name*) '("FUNCTION" "SYSTEM-CLASS"))
 (setf (gethash "LIST*" *name*) '("FUNCTION"))
 (setf (gethash "LIST-ALL-PACKAGES" *name*) '("FUNCTION"))
@@ -533,9 +535,13 @@
 (setf (gethash "LONG-FLOAT" *name*) '("TYPE"))
 (setf (gethash "LONG-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "LONG-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "LONG-SITE-NAME" *name*) '("FUNCTION"))
 (setf (gethash "LOOP" *name*) '("MACRO"))
 (setf (gethash "LOOP-FINISH" *name*) '("LOCA-MACRO"))
 (setf (gethash "LOWER-CASE-P" *name*) '("FUNCTION"))
+(setf (gethash "MACHINE-INSTANCE" *name*) '("FUNCTION"))
+(setf (gethash "MACHINE-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "MACHINE-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "MACRO-FUNCTION" *name*) '("ACCESSOR"))
 (setf (gethash "MACROEXPAND" *name*) '("FUNCTION"))
 (setf (gethash "MACROEXPAND-1" *name*) '("FUNCTION"))
@@ -793,6 +799,7 @@
 (setf (gethash "SHORT-FLOAT" *name*) '("TYPE"))
 (setf (gethash "SHORT-FLOAT-EPSILON" *name*) '("CONSTANT-VARIABLE"))
 (setf (gethash "SHORT-FLOAT-NEGATIVE-EPSILON" *name*) '("CONSTANT-VARIABLE"))
+(setf (gethash "SHORT-SITE-NAME" *name*) '("FUNCTION"))
 (setf (gethash "SIGNAL" *name*) '("FUNCTION"))
 (setf (gethash "SIGNED-BYTE" *name*) '("TYPE"))
 (setf (gethash "SIGNUM" *name*) '("FUNCTION"))
@@ -826,6 +833,8 @@
 (setf (gethash "SLOT-UNBOUND" *name*) '("STANDARD-GENERIC-FUNCTION"))
 (setf (gethash "SLOT-VALUE" *name*) '("FUNCTION"))
 (setf (gethash "SLOT-VALUE-USING-CLASS" *name*) '("GENERIC-FUNCTION"))
+(setf (gethash "SOFTWARE-TYPE" *name*) '("FUNCTION"))
+(setf (gethash "SOFTWARE-VERSION" *name*) '("FUNCTION"))
 (setf (gethash "SOME" *name*) '("FUNCTION"))
 (setf (gethash "SORT" *name*) '("FUNCTION"))
 (setf (gethash "SPECIAL" *name*) '("DECLARATION"))
@@ -940,6 +949,7 @@
 (setf (gethash "UPPER-CASE-P" *name*) '("FUNCTION"))
 (setf (gethash "USE-PACKAGE" *name*) '("FUNCTION"))
 (setf (gethash "USE-VALUE" *name*) '("FUNCTION" "RESTART"))
+(setf (gethash "USER-HOMEDIR-PATHNAME" *name*) '("FUNCTION"))
 (setf (gethash "VALUES" *name*) '("ACCESSOR" "TYPE-SPECIFIER"))
 (setf (gethash "VALUES-LIST" *name*) '("FUNCTION"))
 (setf (gethash "VECTOR" *name*) '("FUNCTION" "SYSTEM-CLASS"))
@@ -23440,6 +23450,46 @@
     (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
     (CHAPTER ("## 参考") 2 (CODE1 "progv")) (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("LET*" . "SPECIAL-OPERATOR") *table*) (gethash "LET*" *table*))
+(setf (gethash "LISP-IMPLEMENTATION-TYPE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LISP-IMPLEMENTATION-TYPE") ", "
+     (CODE1 "LISP-IMPLEMENTATION-VERSION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "lisp-implementation-type") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "description") EOL1 (CODE1 "lisp-implementation-version")
+     " " (CODE1 "<") " 引数なし " (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "lisp-implementation-type") "と"
+     (CODE1 "lisp-implementation-version") "は、" "Common Lispの現在の実装を識別します。" EOL2
+     (CODE1 "lisp-implementation-type") "は、" "特定のCommon Lisp実装の一般的な名前を識別する文字列を返却します。"
+     EOL2 (CODE1 "lisp-implementation-version") "は、"
+     "特定のCommon Lisp実装のバージョンを識別する文字列を返却します。" EOL2 "適切なものか関連する結果がないときは、" "文字列の代わりに"
+     (CODE1 "nil") "を返却できます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(lisp-implementation-type)" "=>  \"ACME Lisp\""
+      "OR=>  \"Joe's Common Lisp\"" "(lisp-implementation-version)" "=>  \"1.3a\""
+      "=>  \"V2\"" "OR=>  \"Release 17.3, ECO #6\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LISP-IMPLEMENTATION-TYPE" . "FUNCTION") *table*) (gethash "LISP-IMPLEMENTATION-TYPE" *table*))
+(setf (gethash "LISP-IMPLEMENTATION-VERSION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "LISP-IMPLEMENTATION-TYPE") ", "
+     (CODE1 "LISP-IMPLEMENTATION-VERSION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "lisp-implementation-type") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "description") EOL1 (CODE1 "lisp-implementation-version")
+     " " (CODE1 "<") " 引数なし " (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "lisp-implementation-type") "と"
+     (CODE1 "lisp-implementation-version") "は、" "Common Lispの現在の実装を識別します。" EOL2
+     (CODE1 "lisp-implementation-type") "は、" "特定のCommon Lisp実装の一般的な名前を識別する文字列を返却します。"
+     EOL2 (CODE1 "lisp-implementation-version") "は、"
+     "特定のCommon Lisp実装のバージョンを識別する文字列を返却します。" EOL2 "適切なものか関連する結果がないときは、" "文字列の代わりに"
+     (CODE1 "nil") "を返却できます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(lisp-implementation-type)" "=>  \"ACME Lisp\""
+      "OR=>  \"Joe's Common Lisp\"" "(lisp-implementation-version)" "=>  \"1.3a\""
+      "=>  \"V2\"" "OR=>  \"Release 17.3, ECO #6\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "なし。") (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LISP-IMPLEMENTATION-VERSION" . "FUNCTION") *table*) (gethash "LISP-IMPLEMENTATION-VERSION" *table*))
 (setf (gethash "LIST" *table*)
   '("LIST FUNCTION" EOL1 "LIST SYSTEM-CLASS" EOL1))
 (setf (gethash '("LIST" . "FUNCTION") *table*)
@@ -24925,6 +24975,22 @@
      (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
     (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("LONG-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "LONG-FLOAT-NEGATIVE-EPSILON" *table*))
+(setf (gethash "LONG-SITE-NAME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SHORT-SITE-NAME") ", " (CODE1 "LONG-SITE-NAME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "short-site-name") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description") EOL1 (CODE1 "long-site-name") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "short-site-name") "と" (CODE1 "long-site-name") "は、"
+     "コンピューターのハードウェアが物理的に配置されている場所を" "識別する文字列を返却し、" "適切な" (STRONG "description")
+     "が生成できないときは" (CODE1 "nil") "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(short-site-name)" "=>  \"MIT AI Lab\"" "OR=>  \"CMU-CSD\""
+      "(long-site-name)" "=>  \"MIT Artificial Intelligence Laboratory\""
+      "OR=>  \"CMU Computer Science Department\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装のコンピューターハードウェアの位置と、導入と設定の手順。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("LONG-SITE-NAME" . "FUNCTION") *table*) (gethash "LONG-SITE-NAME" *table*))
 (setf (gethash "LOOP" *table*)
   '((CHAPTER NIL 0 "Macro " (CODE1 "LOOP"))
     (CHAPTER ("## 構文") 2 "単純な" (CODE1 "loop") "フォーム:" EOL1 (CODE1 "loop") " "
@@ -25080,6 +25146,49 @@
      ", 13.1.4.3. 文字のケース, 13.1.10. 処理系実装のスクリプトの説明")
     (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("LOWER-CASE-P" . "FUNCTION") *table*) (gethash "LOWER-CASE-P" *table*))
+(setf (gethash "MACHINE-INSTANCE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MACHINE-INSTANCE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "machine-instance") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 "Common Lispが動作している" "コンピューターハードウェアの" "特定のインスタンスを識別する文字列を返却するか、"
+     "そのような文字列が計算できないときは" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(machine-instance)" "=>  \"ACME.COM\""
+      "OR=>  \"S/N 123231\"" "OR=>  \"18.26.0.179\"" "OR=>  \"AA-00-04-00-A7-A4\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "計算機のインスタンスと、その実装")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "machine-type") "," (CODE1 "machine-version"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MACHINE-INSTANCE" . "FUNCTION") *table*) (gethash "MACHINE-INSTANCE" *table*))
+(setf (gethash "MACHINE-TYPE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MACHINE-TYPE"))
+    (CHAPTER ("## 構文") 2 (CODE1 "machine-type") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 "Common Lispが動作している" "コンピューターハードウェアの" "一般的な名前を識別する文字列を返却するか、"
+     "そのような文字列が計算できないときは" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(machine-type)" "=>  \"DEC PDP-10\""
+      "OR=>  \"Symbolics LM-2\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "計算機のインスタンスと、その実装")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 (CODE1 "machine-version"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MACHINE-TYPE" . "FUNCTION") *table*) (gethash "MACHINE-TYPE" *table*))
+(setf (gethash "MACHINE-VERSION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "MACHINE-VERSION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "machine-version") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 "Common Lispが動作している" "コンピューターハードウェアの" "バージョンを識別する文字列を返却するか、"
+     "そのような文字列が計算できないときは" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(machine-version) =>  \"KL-10, microcode 9\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "計算機のインスタンスと、その実装")
+    (CHAPTER ("## 例外") 2 "なし。")
+    (CHAPTER ("## 参考") 2 (CODE1 "machine-type") "," (CODE1 "machine-instance"))
+    (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("MACHINE-VERSION" . "FUNCTION") *table*) (gethash "MACHINE-VERSION" *table*))
 (setf (gethash "MACRO-FUNCTION" *table*)
   '((CHAPTER NIL 0 "Accessor " (CODE1 "MACRO-FUNCTION"))
     (CHAPTER ("## 構文") 2 (CODE1 "macro-function") " " (STRONG "symbol") " &optional "
@@ -35327,6 +35436,22 @@
      (CODE3 "```lisp" "```" "(not (= (float 1 eps) (- (float 1 eps) eps)))"))
     (CHAPTER ("## 例文") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
 (setf (gethash '("SHORT-FLOAT-NEGATIVE-EPSILON" . "CONSTANT-VARIABLE") *table*) (gethash "SHORT-FLOAT-NEGATIVE-EPSILON" *table*))
+(setf (gethash "SHORT-SITE-NAME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SHORT-SITE-NAME") ", " (CODE1 "LONG-SITE-NAME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "short-site-name") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description") EOL1 (CODE1 "long-site-name") " " (CODE1 "<") " 引数なし "
+     (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "short-site-name") "と" (CODE1 "long-site-name") "は、"
+     "コンピューターのハードウェアが物理的に配置されている場所を" "識別する文字列を返却し、" "適切な" (STRONG "description")
+     "が生成できないときは" (CODE1 "nil") "が返却されます。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(short-site-name)" "=>  \"MIT AI Lab\"" "OR=>  \"CMU-CSD\""
+      "(long-site-name)" "=>  \"MIT Artificial Intelligence Laboratory\""
+      "OR=>  \"CMU Computer Science Department\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "実装のコンピューターハードウェアの位置と、導入と設定の手順。")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("SHORT-SITE-NAME" . "FUNCTION") *table*) (gethash "SHORT-SITE-NAME" *table*))
 (setf (gethash "SIGNAL" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "SIGNAL"))
     (CHAPTER ("## 構文") 2 (CODE1 "signal") " " (STRONG "datum") " &rest "
@@ -36195,6 +36320,40 @@
      ") " (STRONG "object") " " (STRONG "slot") " => " (CODE1 "|"))
     (CHAPTER ("### 定義") 3 "このメソッドはエラーが発生します。")))
 (setf (gethash '("SLOT-VALUE-USING-CLASS" . "GENERIC-FUNCTION") *table*) (gethash "SLOT-VALUE-USING-CLASS" *table*))
+(setf (gethash "SOFTWARE-TYPE" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SOFTWARE-TYPE") ", " (CODE1 "SOFTWARE-VERSION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "software-type") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description") EOL1 (CODE1 "software-version") " " (CODE1 "<")
+     " 引数なし " (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "software-type") "は、" "サポートしているソフトウェアに関連する"
+     "一般的な名前を識別する文字列を返却し、" "適切なものか関連する結果がないときは" (CODE1 "nil") "を返却します。" EOL2
+     (CODE1 "software-version") "は、" "サポートしているソフトウェアに関連する" "バージョンを識別する文字列を返却し、"
+     "適切なものか関連する結果がないときは" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(software-type) =>  \"Multics\""
+      "(software-version) =>  \"1.3x\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "オペレーティングシステムの環境")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "この情報は、実装の管理に使用されます。")))
+(setf (gethash '("SOFTWARE-TYPE" . "FUNCTION") *table*) (gethash "SOFTWARE-TYPE" *table*))
+(setf (gethash "SOFTWARE-VERSION" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "SOFTWARE-TYPE") ", " (CODE1 "SOFTWARE-VERSION"))
+    (CHAPTER ("## 構文") 2 (CODE1 "software-type") " " (CODE1 "<") " 引数なし " (CODE1 ">")
+     " => " (STRONG "description") EOL1 (CODE1 "software-version") " " (CODE1 "<")
+     " 引数なし " (CODE1 ">") " => " (STRONG "description"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "description") " - 文字列か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "software-type") "は、" "サポートしているソフトウェアに関連する"
+     "一般的な名前を識別する文字列を返却し、" "適切なものか関連する結果がないときは" (CODE1 "nil") "を返却します。" EOL2
+     (CODE1 "software-version") "は、" "サポートしているソフトウェアに関連する" "バージョンを識別する文字列を返却し、"
+     "適切なものか関連する結果がないときは" (CODE1 "nil") "を返却します。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(software-type) =>  \"Multics\""
+      "(software-version) =>  \"1.3x\""))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "オペレーティングシステムの環境")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。")
+    (CHAPTER ("## 備考") 2 "この情報は、実装の管理に使用されます。")))
+(setf (gethash '("SOFTWARE-VERSION" . "FUNCTION") *table*) (gethash "SOFTWARE-VERSION" *table*))
 (setf (gethash "SOME" *table*)
   '((CHAPTER NIL 0 "Function " (CODE1 "EVERY") ", " (CODE1 "SOME") ", "
      (CODE1 "NOTEVERY") ", " (CODE1 "NOTANY"))
@@ -41243,6 +41402,26 @@
      "9.1.4.2. " (CODE1 "restart") "," "9.1.4.2.2. " (CODE1 "restart") "のインターフェイス,"
      (CODE1 "invoke-restart") "," (CODE1 "use-value") "（関数）," (CODE1 "store-value")
      "（関数）," (CODE1 "store-value") "（" (CODE1 "restart") "）")))
+(setf (gethash "USER-HOMEDIR-PATHNAME" *table*)
+  '((CHAPTER NIL 0 "Function " (CODE1 "USER-HOMEDIR-PATHNAME"))
+    (CHAPTER ("## 構文") 2 (CODE1 "user-homedir-pathname") " " (CODE1 "&optional") " "
+     (STRONG "host") " => " (STRONG "pathname"))
+    (CHAPTER ("## 引数と戻り値") 2 (STRONG "host") " - 文字列か、文字列のリストか、" (CODE1 ":unspecific")
+     EOL1 (STRONG "pathname") " - パス名か、" (CODE1 "nil"))
+    (CHAPTER ("## 定義") 2 (CODE1 "user-homedir-pathname") "は、" (STRONG "host") "上にある"
+     "ユーザーのホームディレクトリに対応するパス名を決定します。" "もし" (STRONG "host") "が指定されなかったときは、" "その値は実装依存です。"
+     (CODE1 ":unspecific") "の定義は、19.2.1. パス名の説明をご確認ください。" EOL2 "ホームディレクトリの定義は実装依存ですが、"
+     "しかしCommon Lispにおける定義としては、" "ユーザーの初期化ファイルやメールのような" "個人のファイルが保存されている場所を示す"
+     "ディレクトリを意味しています。" EOL2 (CODE1 "user-homedir-pathname") "は、"
+     "名前、タイプ、バージョンのそれぞれの要素が存在しないような" "（これらの要素は全て" (CODE1 "nil") "）、" (STRONG "host")
+     "上にあるユーザーのホームディレクトリを示すパス名を返却します。" EOL2 "もし" (STRONG "host")
+     "上にあるユーザーのホームディレクトリが決定できないとき、" (CODE1 "nil") "が返却されます。" "もし" (STRONG "host")
+     "が指定されなかったとき、" (CODE1 "user-homedir-pathname") "は決して" (CODE1 "nil") "を返却しません。")
+    (CHAPTER ("## 例文") 2
+     (CODE3 "```lisp" "```" "(pathnamep (user-homedir-pathname)) =>  true"))
+    (CHAPTER ("## 副作用") 2 "なし。") (CHAPTER ("## 影響") 2 "ホストコンピューターのファイルシステムと、その実装")
+    (CHAPTER ("## 例外") 2 "なし。") (CHAPTER ("## 参考") 2 "なし。") (CHAPTER ("## 備考") 2 "なし。")))
+(setf (gethash '("USER-HOMEDIR-PATHNAME" . "FUNCTION") *table*) (gethash "USER-HOMEDIR-PATHNAME" *table*))
 (setf (gethash "VALUES" *table*)
   '("VALUES ACCESSOR" EOL1 "VALUES TYPE-SPECIFIER" EOL1))
 (setf (gethash '("VALUES" . "ACCESSOR") *table*)

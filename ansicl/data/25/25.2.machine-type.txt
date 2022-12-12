@@ -1,0 +1,68 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MACHINE-TYPE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.machine-type
+@name: machine-type
+@type: function
+
+Function `MACHINE-TYPE`
+
+
+## {syntax}
+
+`machine-type` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+Common Lispが動作している
+コンピューターハードウェアの
+一般的な名前を識別する文字列を返却するか、
+そのような文字列が計算できないときは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(machine-type)
+=>  "DEC PDP-10"
+OR=>  "Symbolics LM-2"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+計算機のインスタンスと、その実装
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{machine-version:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

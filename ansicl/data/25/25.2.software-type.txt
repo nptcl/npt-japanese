@@ -1,0 +1,75 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SOFTWARE-TYPE
+;;  Function SOFTWARE-VERSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.software-type
+@name: software-type
+@name: software-version
+@type: function
+
+Function `SOFTWARE-TYPE`, `SOFTWARE-VERSION`
+
+
+## {syntax}
+
+`software-type` `<` 引数なし `>` => *description*  
+`software-version` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+{software-type:link}は、
+サポートしているソフトウェアに関連する
+一般的な名前を識別する文字列を返却し、
+適切なものか関連する結果がないときは{nil!variable:link}を返却します。
+
+{software-version:link}は、
+サポートしているソフトウェアに関連する
+バージョンを識別する文字列を返却し、
+適切なものか関連する結果がないときは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(software-type) =>  "Multics"
+(software-version) =>  "1.3x"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+オペレーティングシステムの環境
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+この情報は、実装の管理に使用されます。
+
+@end
+

@@ -1,0 +1,84 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function USER-HOMEDIR-PATHNAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.user-homedir-pathname
+@name: user-homedir-pathname
+@type: function
+
+Function `USER-HOMEDIR-PATHNAME`
+
+
+## {syntax}
+
+`user-homedir-pathname` `&optional` *host* => *pathname*
+
+
+## {arguments-and-values}
+
+*host* - 文字列か、文字列のリストか、`:unspecific`  
+*pathname* - パス名か、{nil!variable:link}
+
+
+## {description}
+
+{user-homedir-pathname:link}は、*host*上にある
+ユーザーのホームディレクトリに対応するパス名を決定します。
+もし*host*が指定されなかったときは、
+その値は{implementation-dependent}です。
+`:unspecific`の定義は、{19.2.1:ab}をご確認ください。
+
+ホームディレクトリの定義は{implementation-dependent}ですが、
+しかしCommon Lispにおける定義としては、
+ユーザーの初期化ファイルやメールのような
+個人のファイルが保存されている場所を示す
+ディレクトリを意味しています。
+
+{user-homedir-pathname:link}は、
+名前、タイプ、バージョンのそれぞれの要素が存在しないような
+（これらの要素は全て{nil!variable:link}）、
+*host*上にあるユーザーのホームディレクトリを示すパス名を返却します。
+
+もし*host*上にあるユーザーのホームディレクトリが決定できないとき、
+{nil!variable:link}が返却されます。
+もし*host*が指定されなかったとき、
+{user-homedir-pathname:link}は決して{nil!variable:link}を返却しません。
+
+
+## {examples}
+
+```lisp
+(pathnamep (user-homedir-pathname)) =>  true
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+ホストコンピューターのファイルシステムと、その実装
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

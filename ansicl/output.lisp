@@ -209,8 +209,8 @@
 (defun toppage-dictionary-string (x)
   (let ((v (car (contents-index x))))
     (case (assocv v *working*)
-      (finish "辞書 ★完了")
-      (all "辞書 ★完了")
+      (finish "辞書 ★")
+      (all "辞書 ★")
       (work "辞書 ☆作業中")
       (otherwise "辞書"))))
 
@@ -229,7 +229,7 @@
   (let ((v (car (contents-index x)))
         (title (reference-title x)))
     (case (assocv v *working*)
-      (all (format nil "~A ★完了" title))
+      (all (format nil "~A ★" title))
       (otherwise title))))
 
 (defun toppage-link (s x)
@@ -261,10 +261,9 @@
 
 (defun toppage-header (s)
   (format s "% ANSI Common Lisp~2%")
-  (format s "ANSI Common Lisp仕様書のDictionaryの日本語訳をめざします。~2%")
+  (format s "ANSI Common Lisp仕様書のDictionaryの日本語訳です。~2%")
   (format s "**★★翻訳の対象はDictionaryだけです★★**  ~%")
-  (format s "Dictionaryを約半分翻訳しました。  ~%")
-  (format s "気が向いたら更新します。~2%"))
+  (format s "「★」が付いてる所が完了しています。~2%"))
 
 (defun toppage-footer (s)
   (format s "# 参考文献~2%")

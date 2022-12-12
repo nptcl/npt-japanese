@@ -1,0 +1,83 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function LISP-IMPLEMENTATION-TYPE
+;;  Function LISP-IMPLEMENTATION-VERSION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.lisp-implementation-type
+@name: lisp-implementation-type
+@name: lisp-implementation-version
+@type: function
+
+Function `LISP-IMPLEMENTATION-TYPE`, `LISP-IMPLEMENTATION-VERSION`
+
+
+## {syntax}
+
+`lisp-implementation-type` `<` 引数なし `>` => *description*  
+`lisp-implementation-version` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+{lisp-implementation-type:link}と
+{lisp-implementation-version:link}は、
+Common Lispの現在の実装を識別します。
+
+{lisp-implementation-type:link}は、
+特定のCommon Lisp実装の一般的な名前を識別する文字列を返却します。
+
+{lisp-implementation-version:link}は、
+特定のCommon Lisp実装のバージョンを識別する文字列を返却します。
+
+適切なものか関連する結果がないときは、
+文字列の代わりに{nil!variable:link}を返却できます。
+
+
+## {examples}
+
+```lisp
+(lisp-implementation-type)
+=>  "ACME Lisp"
+OR=>  "Joe's Common Lisp"
+(lisp-implementation-version)
+=>  "1.3a"
+=>  "V2"
+OR=>  "Release 17.3, ECO #6"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+なし。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

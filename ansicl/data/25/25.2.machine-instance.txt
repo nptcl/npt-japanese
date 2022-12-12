@@ -1,0 +1,71 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function MACHINE-INSTANCE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.machine-instance
+@name: machine-instance
+@type: function
+
+Function `MACHINE-INSTANCE`
+
+
+## {syntax}
+
+`machine-instance` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+Common Lispが動作している
+コンピューターハードウェアの
+特定のインスタンスを識別する文字列を返却するか、
+そのような文字列が計算できないときは{nil!variable:link}を返却します。
+
+
+## {examples}
+
+```lisp
+(machine-instance)
+=>  "ACME.COM"
+OR=>  "S/N 123231"
+OR=>  "18.26.0.179"
+OR=>  "AA-00-04-00-A7-A4"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+計算機のインスタンスと、その実装
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+{machine-type:link},
+{machine-version:link}
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -1,0 +1,74 @@
+;;
+;;  ANSI Common Lisp 日本語訳
+;;  25. 環境
+;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Function SHORT-SITE-NAME
+;;  Function LONG-SITE-NAME
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+@begin: 25.2.short-site-name
+@name: short-site-name
+@name: long-site-name
+@type: function
+
+Function `SHORT-SITE-NAME`, `LONG-SITE-NAME`
+
+
+## {syntax}
+
+`short-site-name` `<` 引数なし `>` => *description*  
+`long-site-name` `<` 引数なし `>` => *description*
+
+
+## {arguments-and-values}
+
+*description* - 文字列か、{nil!variable:link}
+
+
+## {description}
+
+{short-site-name:link}と{long-site-name:link}は、
+コンピューターのハードウェアが物理的に配置されている場所を
+識別する文字列を返却し、
+適切な*description*が生成できないときは{nil!variable:link}が返却されます。
+
+
+## {examples}
+
+```lisp
+(short-site-name)
+=>  "MIT AI Lab"
+OR=>  "CMU-CSD"
+(long-site-name)
+=>  "MIT Artificial Intelligence Laboratory"
+OR=>  "CMU Computer Science Department"
+```
+
+
+## {side-effects}
+
+なし。
+
+
+## {affected-by}
+
+実装のコンピューターハードウェアの位置と、導入と設定の手順。
+
+
+## {exceptional-situations}
+
+なし。
+
+
+## {see-also}
+
+なし。
+
+
+## {notes}
+
+なし。
+
+@end
+

@@ -11,7 +11,7 @@ npt英語ドキュメント
 [https://nptcl.github.io/npt/docs/md/index.html](https://nptcl.github.io/npt/docs/md/index.html)
 
 
-ANSI Common Lisp Dictionary日本語訳（途中）  
+ANSI Common Lisp Dictionary日本語訳）  
 [https://nptcl.github.io/npt-japanese/md/ansicl/index.html](https://nptcl.github.io/npt-japanese/md/ansicl/index.html)
 
 

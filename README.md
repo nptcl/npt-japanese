@@ -7,7 +7,7 @@
 [https://nptcl.github.io/npt-japanese/md/npt/index.html](https://nptcl.github.io/npt-japanese/md/npt/index.html)
 
 
-# 2. ANSI Common Lisp Dictionary 日本語訳（途中）
+# 2. ANSI Common Lisp Dictionary 日本語訳
 
 [https://nptcl.github.io/npt-japanese/md/ansicl/index.html](https://nptcl.github.io/npt-japanese/md/ansicl/index.html)
 
